@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>longhorn - Kalaxy2 Cluster</title>
+    <meta name="description" content="Arm64/Amd64 cluster research">
+    <meta name="author" content="Don Buddenbaum">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">Kalaxy2 Cluster</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ai</a><ul class='Nav'><li class='Nav__item '><a href="../ai/convolutional_neural_network.html">convolutional neural network</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ansible</a><ul class='Nav'><li class='Nav__item '><a href="../ansible/ansible_automation.html">ansible automation</a></li><li class='Nav__item '><a href="../ansible/microk8s_setup.html">microk8s setup</a></li><li class='Nav__item '><a href="../ansible/storage.html">storage</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>cicd</a><ul class='Nav'><li class='Nav__item '><a href="../cicd/jenkins_argocd.html">jenkins argocd</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>clickhouse</a><ul class='Nav'><li class='Nav__item '><a href="../clickhouse/docker.html">docker</a></li><li class='Nav__item '><a href="../clickhouse/documentation.html">documentation</a></li><li class='Nav__item '><a href="../clickhouse/kubernetes_operator.html">kubernetes operator</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>data engineering</a><ul class='Nav'><li class='Nav__item '><a href="../data_engineering/deltalake.html">deltalake</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>databases</a><ul class='Nav'><li class='Nav__item '><a href="../databases/cockroachDB.html">cockroachDB</a></li><li class='Nav__item '><a href="../databases/mongodb.html">mongodb</a></li><li class='Nav__item '><a href="../databases/mysql.html">mysql</a></li><li class='Nav__item '><a href="../databases/performant_datamodels.html">performant datamodels</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>documentation</a><ul class='Nav'><li class='Nav__item '><a href="../documentation/documentation.html">documentation</a></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nodejs</a><ul class='Nav'><li class='Nav__item '><a href="../documentation/nodejs/face_recognition_attendance_system.html">face recognition attendance system</a></li><li class='Nav__item '><a href="../documentation/nodejs/node.html">node</a></li></ul></li><li class='Nav__item '><a href="../documentation/resume.html">resume</a></li></ul></li><li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'><li class='Nav__item '><a href="../file_system/backup.html">backup</a></li><li class='Nav__item '><a href="../file_system/ceph.html">ceph</a></li><li class='Nav__item '><a href="../file_system/crd.html">crd</a></li><li class='Nav__item Nav__item--active'><a href="../file_system/longhorn.html">longhorn</a></li><li class='Nav__item '><a href="../file_system/minio.html">minio</a></li><li class='Nav__item '><a href="../file_system/nfs.html">nfs</a></li><li class='Nav__item '><a href="../file_system/openebs.html">openebs</a></li><li class='Nav__item '><a href="../file_system/rook_ceph.html">rook ceph</a></li><li class='Nav__item '><a href="../file_system/samba.html">samba</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>hosting homelab on internet</a><ul class='Nav'><li class='Nav__item '><a href="../hosting_homelab_on_internet/cloudflare.html">cloudflare</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iac</a><ul class='Nav'><li class='Nav__item '><a href="../iac/pulumi.html">pulumi</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'><li class='Nav__item '><a href="../id_auth/zitadel.html">zitadel</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'><li class='Nav__item '><a href="../ideas/AI_ideas.html">AI ideas</a></li><li class='Nav__item '><a href="../ideas/sources.html">sources</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iris</a><ul class='Nav'><li class='Nav__item '><a href="../iris/restapi.html">restapi</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>java</a><ul class='Nav'><li class='Nav__item '><a href="../java/knotes.html">knotes</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>jupyter tensorflow</a><ul class='Nav'><li class='Nav__item '><a href="../jupyter_tensorflow/jupyter_tensorflow.html">jupyter tensorflow</a></li></ul></li><li class='Nav__item '><a href="../microk8s_add_ons.html">microk8s add ons</a></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nfs</a><ul class='Nav'><li class='Nav__item '><a href="../nfs/nfs_csi.html">nfs-csi</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nodejs</a><ul class='Nav'><li class='Nav__item '><a href="../nodejs/face_recognition.html">face recognition</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>object storage</a><ul class='Nav'><li class='Nav__item '><a href="../object_storage/minio.html">minio</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>python</a><ul class='Nav'><li class='Nav__item '><a href="../python/django_cicd_ecom_k8s.html">django cicd ecom k8s</a></li><li class='Nav__item '><a href="../python/environment.html">environment</a></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>frameworks</a><ul class='Nav'><li class='Nav__item '><a href="../python/frameworks/click.html">click</a></li><li class='Nav__item '><a href="../python/frameworks/django.html">django</a></li></ul></li><li class='Nav__item '><a href="../python/nicegui.html">nicegui</a></li><li class='Nav__item '><a href="../python/pollapp.html">pollapp</a></li></ul></li><li class='Nav__item '><a href="../references/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>references</a><ul class='Nav'></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>remove</a><ul class='Nav'><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>microk8s</a><ul class='Nav'><li class='Nav__item '><a href="../remove/microk8s/microk8s_node.html">microk8s node</a></li></ul></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>setup</a><ul class='Nav'><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argocd</a><ul class='Nav'><li class='Nav__item '><a href="../setup/argocd/argocd.html">argocd</a></li></ul></li><li class='Nav__item '><a href="../setup/microk8s.html">microk8s</a></li><li class='Nav__item '><a href="../setup/minio.html">minio</a></li><li class='Nav__item '><a href="../setup/notes.html">notes</a></li><li class='Nav__item '><a href="../setup/podnodeselector.html">podnodeselector</a></li><li class='Nav__item '><a href="../setup/README.html">README</a></li><li class='Nav__item '><a href="../setup/rpi_usb_ubuntu.html">rpi usb ubuntu</a></li></ul></li><li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>utilities</a><ul class='Nav'><li class='Nav__item '><a href="../utilities/k8s_cmd_ref.html">k8s cmd ref</a></li><li class='Nav__item '><a href="../utilities/k9s.html">k9s</a></li><li class='Nav__item '><a href="../utilities/kube_shark.html">kube shark</a></li><li class='Nav__item '><a href="../utilities/pvc_backup.html">pvc backup</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../file_system/backup.html">file system</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../file_system/longhorn.html">longhorn</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li>
+<a href="#longhorn">Longhorn</a>
+<ul>
+<li>
+<a href="#validate">Validate</a>
+</li>
+<li>
+<a href="#install-prerequisites">Install Prerequisites</a>
+</li>
+<li>
+<a href="#install-yaml">Install Yaml</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#"></a>
+<ul>
+<li>
+<a href="#install-helm">Install Helm</a>
+</li>
+<li>
+<a href="#uninstall">Uninstall</a>
+</li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h1><a id="longhorn" href="#longhorn" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn</h1>
+<ul>
+<li>
+<a href="https://longhorn.io/docs/" class="Link--external" rel="noopener noreferrer">https://longhorn.io/docs/</a>
+</li>
+<li>
+<a href="https://medium.com/@ramkicse/how-to-install-longhorn-distributed-block-storage-system-for-kubernetes-811f8afc4d8e" class="Link--external" rel="noopener noreferrer">How to install Longhorn (distributed block storage system) for Kubernetes. (Kubernetes Series Part 2)</a>
+</li>
+<li>
+<a href="https://artsysops.com/2021/10/12/how-to-install-rancher-longhorn-on-microk8s-ubuntu-20-04/" class="Link--external" rel="noopener noreferrer">How to Install Rancher Longhorn on Microk8s, Ubuntu 20.04</a>
+</li>
+<li>
+<a href="https://artsysops.com/2021/10/31/how-to-make-rancher-longhorn-work-with-microk8s/" class="Link--external" rel="noopener noreferrer">How to Make Rancher Longhorn Work with MicroK8S</a>
+</li>
+<li>
+<a href="https://github.com/balchua/do-microk8s/blob/master/docs/longhorn.md" class="Link--external" rel="noopener noreferrer">Using Longhorn Storage</a>
+</li>
+</ul>
+<h2><a id="validate" href="#validate" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validate</h2>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo microk8s kubectl config view –raw &gt; $HOME/.kube/config</p>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo snap install kubectl –classic</p>
+<p><code>kubectl 1.23.5 from Canonical✓ installed</code></p>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo apt  install jq</p>
+<pre><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+The following additional packages will be installed:
+libjq1 libonig5
+The following NEW packages will be installed:
+jq libjq1 libonig5
+0 upgraded, 3 newly installed, 0 to remove and 27 not upgraded.
+Need to get 291 kB of archives.
+After this operation, 1022 kB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://ports.ubuntu.com/ubuntu-ports focal/universe arm64 libonig5 arm64 6.9.4-1 [134 kB]
+Get:2 http://ports.ubuntu.com/ubuntu-ports focal-updates/universe arm64 libjq1 arm64 1.6-1ubuntu0.20.04.1 [107 kB]
+Get:3 http://ports.ubuntu.com/ubuntu-ports focal-updates/universe arm64 jq arm64 1.6-1ubuntu0.20.04.1 [49.6 kB]
+Fetched 291 kB in 1s (369 kB/s)
+Selecting previously unselected package libonig5:arm64.
+(Reading database ... 133088 files and directories currently installed.)
+Preparing to unpack .../libonig5_6.9.4-1_arm64.deb ...
+Unpacking libonig5:arm64 (6.9.4-1) ...
+Selecting previously unselected package libjq1:arm64.
+Preparing to unpack .../libjq1_1.6-1ubuntu0.20.04.1_arm64.deb ...
+Unpacking libjq1:arm64 (1.6-1ubuntu0.20.04.1) ...
+Selecting previously unselected package jq.
+Preparing to unpack .../jq_1.6-1ubuntu0.20.04.1_arm64.deb ...
+Unpacking jq (1.6-1ubuntu0.20.04.1) ...
+Setting up libonig5:arm64 (6.9.4-1) ...
+Setting up libjq1:arm64 (1.6-1ubuntu0.20.04.1) ...
+Setting up jq (1.6-1ubuntu0.20.04.1) ...
+Processing triggers for man-db (2.9.1-1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.7) ...
+Files have not changed, Decompression not needed
+</code></pre>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>curl -sSfL <a href="https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/scripts/environment_check.sh" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/scripts/environment_check.sh</a> | bash</p>
+<pre><code>daemonset.apps/longhorn-environment-check created
+waiting for pods to become ready (0/0)
+waiting for pods to become ready (0/6)
+all pods ready (6/6)
+
+MountPropagation is enabled!
+
+cleaning up...
+daemonset.apps &quot;longhorn-environment-check&quot; deleted
+clean up complete
+</code></pre>
+<h2><a id="install-prerequisites" href="#install-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Install Prerequisites</h2>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo apt install nfs-common open-iscsi -y</p>
+<pre><code>Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+nfs-common is already the newest version (1:1.3.4-2.5ubuntu3.4).
+open-iscsi is already the newest version (2.0.874-7.1ubuntu6.2).
+0 upgraded, 0 newly installed, 0 to remove and 27 not upgraded.
+</code></pre>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo rm -f /lib/systemd/system/nfs-common.service</p>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo systemctl daemon-reload</p>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo systemctl start nfs-common</p>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo systemctl enable  nfs-common</p>
+<pre><code>nfs-common.service is not a native service, redirecting to systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable nfs-common
+</code></pre>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo systemctl start open-iscsi</p>
+<p>###dbuddenbaum@arm64-01:~$</p>
+<p>sudo systemctl enable open-iscsi</p>
+<pre><code>Synchronizing state of open-iscsi.service with SysV service script with /lib/systemd/systemd-sysv-install.
+Executing: /lib/systemd/systemd-sysv-install enable open-iscsi
+</code></pre>
+<h2><a id="install-yaml" href="#install-yaml" class="Permalink" aria-hidden="true" title="Permalink">#</a>Install Yaml</h2>
+<p>#( 04/10/22@10:39PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl ns longhorn-system
+Context “microk8s” modified.
+Active namespace is “longhorn-system”.
+#( 04/10/22@10:39PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl -n longhorn-system apply -f <a href="https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-iscsi-installation.yaml" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-iscsi-installation.yaml</a></p>
+<p>daemonset.apps/longhorn-iscsi-installation created
+#( 04/10/22@10:40PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl -n longhorn-system apply -f <a href="https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-nfs-installation.yaml" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-nfs-installation.yaml</a></p>
+<p>daemonset.apps/longhorn-nfs-installation created
+#( 04/10/22@10:42PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl apply -f <a href="https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/longhorn.yaml" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/longhorn.yaml</a>
+Warning: resource namespaces/longhorn-system is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+namespace/longhorn-system configured
+Warning: resource serviceaccounts/longhorn-service-account is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+serviceaccount/longhorn-service-account configured
+Warning: resource clusterroles/longhorn-role is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+clusterrole.rbac.authorization.k8s.io/longhorn-role configured
+Warning: resource clusterrolebindings/longhorn-bind is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+clusterrolebinding.rbac.authorization.k8s.io/longhorn-bind configured
+customresourcedefinition.apiextensions.k8s.io/engines.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/replicas.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/settings.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/volumes.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/engineimages.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/nodes.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/instancemanagers.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/sharemanagers.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/backingimages.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/backingimagemanagers.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/backingimagedatasources.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/backuptargets.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/backupvolumes.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/backups.longhorn.io created
+customresourcedefinition.apiextensions.k8s.io/recurringjobs.longhorn.io created
+Warning: resource configmaps/longhorn-default-setting is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+configmap/longhorn-default-setting configured
+Warning: policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+
+Warning: resource podsecuritypolicies/longhorn-psp is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+podsecuritypolicy.policy/longhorn-psp configured
+Warning: resource roles/longhorn-psp-role is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+role.rbac.authorization.k8s.io/longhorn-psp-role configured
+Warning: resource rolebindings/longhorn-psp-binding is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+rolebinding.rbac.authorization.k8s.io/longhorn-psp-binding configured
+Warning: resource configmaps/longhorn-storageclass is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+configmap/longhorn-storageclass configured
+daemonset.apps/longhorn-manager created
+Warning: resource services/longhorn-backend is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+service/longhorn-backend configured
+Warning: resource services/longhorn-engine-manager is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+service/longhorn-engine-manager configured
+Warning: resource services/longhorn-replica-manager is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+service/longhorn-replica-manager configured
+deployment.apps/longhorn-ui created
+Warning: resource services/longhorn-frontend is missing the kubectl.kubernetes.io/last-applied-configuration annotation which is required by kubectl apply. kubectl apply should only be used on resources created declaratively by either kubectl create –save-config or kubectl apply. The missing annotation will be patched automatically.
+service/longhorn-frontend configured
+deployment.apps/longhorn-driver-deployer created</p>
+<h1><a id="" href="#" class="Permalink" aria-hidden="true" title="Permalink">#</a></h1>
+<h2><a id="install-helm" href="#install-helm" class="Permalink" aria-hidden="true" title="Permalink">#</a>Install Helm</h2>
+<p>###( 04/02/22@ 7:31PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/KubeScrape_PrometheusManifests@main✗✗✗**</p>
+<p>helm repo add longhorn <a href="https://charts.longhorn.io" class="Link--external" rel="noopener noreferrer">https://charts.longhorn.io</a></p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/dbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/dbuddenbaum/.kube/config
+&quot;longhorn&quot; has been added to your repositories
+</code></pre>
+<p>###( 04/02/22@ 7:37PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/KubeScrape_PrometheusManifests@main✗✗✗**</p>
+<p>helm repo update</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/dbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/dbuddenbaum/.kube/config
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the &quot;longhorn&quot; chart repository
+Update Complete. ⎈Happy Helming!⎈
+</code></pre>
+<p>###( 04/02/22@ 7:38PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/KubeScrape_PrometheusManifests@main✗✗✗**</p>
+<p>kubectl create namespace longhorn-system</p>
+<pre><code>namespace/longhorn-system created
+</code></pre>
+<p>###( 04/02/22@ 7:38PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/KubeScrape_PrometheusManifests@main✗✗✗**</p>
+<p>helm install longhorn longhorn/longhorn –namespace longhorn-system</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/dbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/dbuddenbaum/.kube/config
+W0402 19:38:53.691241    2463 warnings.go:70] policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+
+W0402 19:38:54.421354    2463 warnings.go:70] policy/v1beta1 PodSecurityPolicy is deprecated in v1.21+, unavailable in v1.25+
+NAME: longhorn
+LAST DEPLOYED: Sat Apr  2 19:38:50 2022
+NAMESPACE: longhorn-system
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+NOTES:
+Longhorn is now installed on the cluster!
+
+Please wait a few minutes for other Longhorn components such as CSI deployments, Engine Images, and Instance Managers to be initialized.
+
+Visit our documentation at https://longhorn.io/docs/
+</code></pre>
+<p>###( 04/02/22@11:50PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy/yaml/longhorn@main✗✗✗**</p>
+<p>kubectl -n longhorn-system apply -f <a href="https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-iscsi-installation.yaml" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-iscsi-installation.yaml</a></p>
+<pre><code>daemonset.apps/longhorn-iscsi-installation created
+</code></pre>
+<p>###( 04/03/22@ 2:26PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy/yaml/longhorn@main✗✗✗**</p>
+<p>kubectl -n longhorn-system apply -f <a href="https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-nfs-installation.yaml" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/longhorn/longhorn/v1.2.4/deploy/prerequisite/longhorn-nfs-installation.yaml</a></p>
+<h2><a id="uninstall" href="#uninstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>Uninstall</h2>
+<p>###( 04/10/22@ 7:41PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl delete customresourcedefinition nodes.longhorn.io</p>
+<p>###( 04/10/22@ 7:54PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl patch crd/nodes.longhorn.io -p ‘{“metadata”:{“finalizers”:[]}}’ –type=merge</p>
+<pre><code>customresourcedefinition.apiextensions.k8s.io/nodes.longhorn.io patched
+</code></pre>
+<p>###( 04/10/22@ 7:54PM )( dbuddenbaum@donb-mbp4 ):~/Documents/rpi4/kalaxy@main✗✗✗
+kubectl patch crd/engineimages.longhorn.io -p ‘{“metadata”:{“finalizers”:[]}}’ –type=merge</p>
+<pre><code>customresourcedefinition.apiextensions.k8s.io/engineimages.longhorn.io patched
+</code></pre>
+<p>helm uninstall longhorn –namespace longhorn-system</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../file_system/crd.html">Previous</a></li>            <li class=Pager--next><a href="../file_system/minio.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/daux.min.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
