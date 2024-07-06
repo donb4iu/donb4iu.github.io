@@ -192,6 +192,14 @@
 <li>
 <a href="#resources">Resources</a>
 </li>
+<li>
+<a href="#setup">Setup</a>
+<ul>
+<li>
+<a href="#docker-run">Docker Run</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>    </div>
@@ -205,7 +213,23 @@
 <li>
 <a href="https://medium.com/@danieljimgarcia/publishing-static-sites-to-github-pages-using-github-actions-8040f57dfeaf" class="Link--external" rel="noopener noreferrer">Deploying static sites to GitHub Pages using GitHub Actions</a>
 </li>
+<li>
+<a href="https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/" class="Link--external" rel="noopener noreferrer">Using Docker Run inside of GitHub Actions</a>
+</li>
 </ul>
+<h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
+<h3><a id="docker-run" href="#docker-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Docker Run</h3>
+<pre><code>- name: Generate static Daux webpages
+  uses: addnab/docker-run-action@v3
+  with:
+    image: daux/daux.io:latest
+    options: |
+      --rm 
+      -v ${{ github.workspace }}:/build
+      -w /build
+    run: /daux/bin/daux generate -s markdown -d docs
+</code></pre>
+<p>addnab/docker-run-action@v3 doesnt support entry point so have to call executible directly</p>
     </div>
 
         <nav>
