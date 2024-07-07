@@ -196,7 +196,10 @@
 <a href="#setup">Setup</a>
 <ul>
 <li>
-<a href="#docker-run">Docker Run</a>
+<a href="#docker-run-for-daux-io">Docker Run for Daux IO</a>
+</li>
+<li>
+<a href="#build-docker-image-for-webpage-deployment">Build Docker Image for WebPage Deployment</a>
 </li>
 </ul>
 </li>
@@ -208,17 +211,20 @@
 <h2><a id="resources" href="#resources" class="Permalink" aria-hidden="true" title="Permalink">#</a>Resources</h2>
 <ul>
 <li>
-<a href="https://github.com/marketplace/actions/copy-files-to-another-repository" class="Link--external" rel="noopener noreferrer">Copy files to another repository</a>
+<p><a href="https://github.com/marketplace/actions/copy-files-to-another-repository" class="Link--external" rel="noopener noreferrer">Copy files to another repository</a></p>
 </li>
 <li>
-<a href="https://medium.com/@danieljimgarcia/publishing-static-sites-to-github-pages-using-github-actions-8040f57dfeaf" class="Link--external" rel="noopener noreferrer">Deploying static sites to GitHub Pages using GitHub Actions</a>
+<p><a href="https://medium.com/@danieljimgarcia/publishing-static-sites-to-github-pages-using-github-actions-8040f57dfeaf" class="Link--external" rel="noopener noreferrer">Deploying static sites to GitHub Pages using GitHub Actions</a></p>
 </li>
 <li>
-<a href="https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/" class="Link--external" rel="noopener noreferrer">Using Docker Run inside of GitHub Actions</a>
+<p><a href="https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/" class="Link--external" rel="noopener noreferrer">Using Docker Run inside of GitHub Actions</a></p>
+</li>
+<li>
+<p><a href="https://docs.docker.com/build/ci/github-actions/multi-platform/" class="Link--external" rel="noopener noreferrer">Multi-platform image with GitHub Actions</a></p>
 </li>
 </ul>
 <h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
-<h3><a id="docker-run" href="#docker-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Docker Run</h3>
+<h3><a id="docker-run-for-daux-io" href="#docker-run-for-daux-io" class="Permalink" aria-hidden="true" title="Permalink">#</a>Docker Run for Daux IO</h3>
 <pre><code>- name: Generate static Daux webpages
   uses: addnab/docker-run-action@v3
   with:
@@ -230,6 +236,7 @@
     run: /daux/bin/daux generate -s markdown -d docs
 </code></pre>
 <p>addnab/docker-run-action@v3 doesnt support entry point so have to call executible directly</p>
+<h3><a id="build-docker-image-for-webpage-deployment" href="#build-docker-image-for-webpage-deployment" class="Permalink" aria-hidden="true" title="Permalink">#</a>Build Docker Image for WebPage Deployment</h3>
     </div>
 
         <nav>
