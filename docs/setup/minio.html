@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>minio - Kalaxy2 Cluster</title>
+    <meta name="description" content="Arm64/Amd64 cluster research">
+    <meta name="author" content="Don Buddenbaum">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">Kalaxy2 Cluster</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ai</a><ul class='Nav'>
+<li class='Nav__item '><a href="../ai/convolutional_neural_network.html">convolutional neural network</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ansible</a><ul class='Nav'>
+<li class='Nav__item '><a href="../ansible/ansible_automation.html">ansible automation</a></li>
+<li class='Nav__item '><a href="../ansible/microk8s_setup.html">microk8s setup</a></li>
+<li class='Nav__item '><a href="../ansible/storage.html">storage</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>automation</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>github</a><ul class='Nav'>
+<li class='Nav__item '><a href="../automation/github/actions.html">actions</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>cicd</a><ul class='Nav'>
+<li class='Nav__item '><a href="../cicd/jenkins_argocd.html">jenkins argocd</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>clickhouse</a><ul class='Nav'>
+<li class='Nav__item '><a href="../clickhouse/docker.html">docker</a></li>
+<li class='Nav__item '><a href="../clickhouse/documentation.html">documentation</a></li>
+<li class='Nav__item '><a href="../clickhouse/kubernetes_operator.html">kubernetes operator</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>cloud</a><ul class='Nav'>
+<li class='Nav__item '><a href="../cloud/next_cloud.html">next cloud</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>data engineering</a><ul class='Nav'>
+<li class='Nav__item '><a href="../data_engineering/deltalake.html">deltalake</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>databases</a><ul class='Nav'>
+<li class='Nav__item '><a href="../databases/cockroachDB.html">cockroachDB</a></li>
+<li class='Nav__item '><a href="../databases/mongodb.html">mongodb</a></li>
+<li class='Nav__item '><a href="../databases/mysql.html">mysql</a></li>
+<li class='Nav__item '><a href="../databases/performant_datamodels.html">performant datamodels</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>documentation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../documentation/documentation.html">documentation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nodejs</a><ul class='Nav'>
+<li class='Nav__item '><a href="../documentation/nodejs/face_recognition_attendance_system.html">face recognition attendance system</a></li>
+<li class='Nav__item '><a href="../documentation/nodejs/node.html">node</a></li></ul></li>
+<li class='Nav__item '><a href="../documentation/resume.html">resume</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
+<li class='Nav__item '><a href="../file_system/backup.html">backup</a></li>
+<li class='Nav__item '><a href="../file_system/ceph.html">ceph</a></li>
+<li class='Nav__item '><a href="../file_system/crd.html">crd</a></li>
+<li class='Nav__item '><a href="../file_system/longhorn.html">longhorn</a></li>
+<li class='Nav__item '><a href="../file_system/minio.html">minio</a></li>
+<li class='Nav__item '><a href="../file_system/nfs.html">nfs</a></li>
+<li class='Nav__item '><a href="../file_system/openebs.html">openebs</a></li>
+<li class='Nav__item '><a href="../file_system/rook_ceph.html">rook ceph</a></li>
+<li class='Nav__item '><a href="../file_system/samba.html">samba</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>hosting homelab on internet</a><ul class='Nav'>
+<li class='Nav__item '><a href="../hosting_homelab_on_internet/cloudflare.html">cloudflare</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iac</a><ul class='Nav'>
+<li class='Nav__item '><a href="../iac/pulumi.html">pulumi</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'>
+<li class='Nav__item '><a href="../id_auth/zitadel.html">zitadel</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'>
+<li class='Nav__item '><a href="../ideas/AI_ideas.html">AI ideas</a></li>
+<li class='Nav__item '><a href="../ideas/sources.html">sources</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iris</a><ul class='Nav'>
+<li class='Nav__item '><a href="../iris/restapi.html">restapi</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>java</a><ul class='Nav'>
+<li class='Nav__item '><a href="../java/knotes.html">knotes</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>jupyter tensorflow</a><ul class='Nav'>
+<li class='Nav__item '><a href="../jupyter_tensorflow/jupyter_tensorflow.html">jupyter tensorflow</a></li></ul></li>
+<li class='Nav__item '><a href="../microk8s_add_ons.html">microk8s add ons</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nfs</a><ul class='Nav'>
+<li class='Nav__item '><a href="../nfs/nfs_csi.html">nfs-csi</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nodejs</a><ul class='Nav'>
+<li class='Nav__item '><a href="../nodejs/face_recognition.html">face recognition</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>object storage</a><ul class='Nav'>
+<li class='Nav__item '><a href="../object_storage/minio.html">minio</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>project management</a><ul class='Nav'>
+<li class='Nav__item '><a href="../project_management/open_project.html">open project</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>python</a><ul class='Nav'>
+<li class='Nav__item '><a href="../python/django_cicd_ecom_k8s.html">django cicd ecom k8s</a></li>
+<li class='Nav__item '><a href="../python/environment.html">environment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>frameworks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../python/frameworks/click.html">click</a></li>
+<li class='Nav__item '><a href="../python/frameworks/django.html">django</a></li></ul></li>
+<li class='Nav__item '><a href="../python/nicegui.html">nicegui</a></li>
+<li class='Nav__item '><a href="../python/pollapp.html">pollapp</a></li></ul></li>
+<li class='Nav__item '><a href="../references/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>references</a><ul class='Nav'></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>remove</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>microk8s</a><ul class='Nav'>
+<li class='Nav__item '><a href="../remove/microk8s/microk8s_node.html">microk8s node</a></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>setup</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argocd</a><ul class='Nav'>
+<li class='Nav__item '><a href="../setup/argocd/argocd.html">argocd</a></li></ul></li>
+<li class='Nav__item '><a href="../setup/microk8s.html">microk8s</a></li>
+<li class='Nav__item Nav__item--active'><a href="../setup/minio.html">minio</a></li>
+<li class='Nav__item '><a href="../setup/notes.html">notes</a></li>
+<li class='Nav__item '><a href="../setup/podnodeselector.html">podnodeselector</a></li>
+<li class='Nav__item '><a href="../setup/README.html">README</a></li>
+<li class='Nav__item '><a href="../setup/rpi_usb_ubuntu.html">rpi usb ubuntu</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>utilities</a><ul class='Nav'>
+<li class='Nav__item '><a href="../utilities/k8s_cmd_ref.html">k8s cmd ref</a></li>
+<li class='Nav__item '><a href="../utilities/k9s.html">k9s</a></li>
+<li class='Nav__item '><a href="../utilities/kube_shark.html">kube shark</a></li>
+<li class='Nav__item '><a href="../utilities/pvc_backup.html">pvc backup</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../setup/microk8s.html">setup</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../setup/minio.html">minio</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li>
+<a href="#minio">Minio</a>
+<ul>
+<li>
+<a href="#references">References</a>
+</li>
+<li>
+<a href="#setup">Setup</a>
+<ul>
+<li>
+<a href="#dbuddenbaum-arm64-01">dbuddenbaum@arm64-01:~$</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#setup-node-storage">Setup Node Storage</a>
+<ul>
+<li>
+<a href="#dbuddenbaum-arm64-01-1">dbuddenbaum@arm64-01:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-01-2">dbuddenbaum@arm64-01:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-amd64-03">dbuddenbaum@amd64-03:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-01-3">dbuddenbaum@arm64-01:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-01-sudo-mkdir-mnt-hdisk">dbuddenbaum@arm64-01:~$ sudo mkdir /mnt/hdisk</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-01-sudo-mount-dev-sdb-mnt-hdisk">dbuddenbaum@arm64-01:~$ sudo mount /dev/sdb /mnt/hdisk</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-01-4">dbuddenbaum@arm64-01:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-01-5">dbuddenbaum@arm64-01:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-arm64-02">dbuddenbaum@arm64-02:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-amd64-03-1">dbuddenbaum@amd64-03:~$</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h1><a id="minio" href="#minio" class="Permalink" aria-hidden="true" title="Permalink">#</a>Minio</h1>
+<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
+<ul>
+<li>
+<p><a href="https://medium.com/@kapincev/easy-guide-setting-up-minio-with-microk8s-kubernetes-321048d901ac" class="Link--external" rel="noopener noreferrer">Easy Guide: Setting Up Minio with MicroK8s Kubernetes</a></p>
+</li>
+<li>
+<p><a href="https://github.com/minio/operator" class="Link--external" rel="noopener noreferrer">https://github.com/minio/operator</a></p>
+</li>
+</ul>
+<h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
+<h3><a id="dbuddenbaum-arm64-01" href="#dbuddenbaum-arm64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$</h3>
+<p>sudo microk8s enable minio -c 300Gi -s openebs-jiva-csi-default</p>
+<pre><code>Infer repository core for addon minio
+Infer repository core for addon dns
+Addon core/dns is already enabled
+Infer repository core for addon hostpath-storage
+Addon core/hostpath-storage is already enabled
+Download kubectl-minio
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 35.6M  100 35.6M    0     0  9495k      0  0:00:03  0:00:03 --:--:-- 10.9M
+Initialize minio operator
+namespace/minio-operator created
+serviceaccount/minio-operator created
+clusterrole.rbac.authorization.k8s.io/minio-operator-role created
+clusterrolebinding.rbac.authorization.k8s.io/minio-operator-binding created
+customresourcedefinition.apiextensions.k8s.io/tenants.minio.min.io created
+service/operator created
+deployment.apps/minio-operator created
+serviceaccount/console-sa created
+secret/console-sa-secret created
+clusterrole.rbac.authorization.k8s.io/console-sa-role created
+clusterrolebinding.rbac.authorization.k8s.io/console-sa-binding created
+configmap/console-env created
+service/console created
+deployment.apps/console created
+-----------------
+
+To open Operator UI, start a port forward using this command:
+
+kubectl minio proxy -n minio-operator
+
+-----------------
+Create default tenant with:
+
+  Name: microk8s
+  Capacity: 300Gi
+  Servers: 1
+  Volumes: 1
+  Storage class: openebs-jiva-csi-default
+  TLS: no
+  Prometheus: no
+
++ /var/snap/microk8s/common/plugins/kubectl-minio tenant create microk8s --storage-class openebs-jiva-csi-default --capacity 300Gi --servers 1 --volumes 1 --namespace minio-operator --enable-audit-logs=false --disable-tls --enable-prometheus=false
+W0229 21:14:49.752537   71434 warnings.go:70] unknown field &quot;spec.pools[0].volumeClaimTemplate.metadata.creationTimestamp&quot;
+
+Tenant 'microk8s' created in 'minio-operator' Namespace
+
+  Username: ICNSF7L1666PNW0K0TBO
+  Password: pc9pNbTlBsotppIH6hjuB9KUMRxQaeeItkI1bZif
+  Note: Copy the credentials to a secure location. MinIO will not display these again.
+
+APPLICATION	SERVICE NAME    	NAMESPACE     	SERVICE TYPE	SERVICE PORT
+MinIO      	minio           	minio-operator	ClusterIP   	80
+Console    	microk8s-console	minio-operator	ClusterIP   	9090
+
++ set +x
+================================
+Enabled minio addon.
+
+You can manage minio tenants using the kubectl-minio plugin.
+
+For more details, use
+
+    microk8s kubectl-minio --help
+</code></pre>
+<h2><a id="setup-node-storage" href="#setup-node-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup Node Storage</h2>
+<h3><a id="dbuddenbaum-arm64-01-1" href="#dbuddenbaum-arm64-01-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$</h3>
+<p>lsblk -f</p>
+<pre><code>NAME   FSTYPE   LABEL       UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+loop0  squashfs                                                        0   100% /snap/core18/1883
+loop1  squashfs                                                        0   100% /snap/core20/2107
+loop2  squashfs                                                        0   100% /snap/lxd/24065
+loop3  squashfs                                                        0   100% /snap/core18/2810
+loop4  squashfs                                                        0   100% /snap/core20/2186
+loop5  squashfs                                                        0   100% /snap/lxd/16103
+loop6  squashfs                                                        0   100% /snap/microk8s/6357
+loop7  squashfs                                                        0   100% /snap/snapd/20674
+loop8  squashfs                                                        0   100% /snap/microk8s/6564
+sda
+├─sda1 vfat     system-boot B726-57E2                              81.7M    68% /boot/firmware
+└─sda2 ext4     writable    483efb12-d682-4daf-9b34-6e2f774b56f7    201G     5% /
+sdb
+└─sdb1 vfat     UNTITLED    B1E2-1721
+</code></pre>
+<h3><a id="dbuddenbaum-arm64-01-2" href="#dbuddenbaum-arm64-01-2" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$</h3>
+<p>fdisk dev/sdb</p>
+<pre><code>Welcome to fdisk (util-linux 2.34).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+
+Command (m for help): d
+Selected partition 1
+Partition 1 has been deleted.
+
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+<h3><a id="dbuddenbaum-amd64-03" href="#dbuddenbaum-amd64-03" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@amd64-03:~$</h3>
+<p>sudo mkfs.ext4 /dev/sdb</p>
+<pre><code>mke2fs 1.45.5 (07-Jan-2020)
+Found a dos partition table in /dev/sdb
+Proceed anyway? (y,N) y
+Creating filesystem with 244190646 4k blocks and 61054976 inodes
+Filesystem UUID: 95ec5a28-daf8-475a-b6f0-06b20d1f154f
+Superblock backups stored on blocks:
+	32768, 98304, 163840, 229376, 294912, 819200, 884736, 1605632, 2654208,
+	4096000, 7962624, 11239424, 20480000, 23887872, 71663616, 78675968,
+	102400000, 214990848
+
+Allocating group tables: done
+Writing inode tables: done
+Creating journal (262144 blocks): done
+Writing superblocks and filesystem accounting information: done
+</code></pre>
+<h3><a id="dbuddenbaum-arm64-01-3" href="#dbuddenbaum-arm64-01-3" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$</h3>
+<p>lsblk -f</p>
+<pre><code>NAME   FSTYPE   LABEL       UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+loop0  squashfs                                                        0   100% /snap/core18/1883
+loop1  squashfs                                                        0   100% /snap/core20/2107
+loop2  squashfs                                                        0   100% /snap/lxd/24065
+loop3  squashfs                                                        0   100% /snap/core18/2810
+loop4  squashfs                                                        0   100% /snap/core20/2186
+loop5  squashfs                                                        0   100% /snap/lxd/16103
+loop6  squashfs                                                        0   100% /snap/microk8s/6357
+loop7  squashfs                                                        0   100% /snap/snapd/20674
+loop8  squashfs                                                        0   100% /snap/microk8s/6564
+sda
+├─sda1 vfat     system-boot B726-57E2                              81.7M    68% /boot/firmware
+└─sda2 ext4     writable    483efb12-d682-4daf-9b34-6e2f774b56f7    201G     5% /
+sdb    ext4                 95ec5a28-daf8-475a-b6f0-06b20d1f154f
+</code></pre>
+<h3><a id="dbuddenbaum-arm64-01-sudo-mkdir-mnt-hdisk" href="#dbuddenbaum-arm64-01-sudo-mkdir-mnt-hdisk" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$ sudo mkdir /mnt/hdisk</h3>
+<h3><a id="dbuddenbaum-arm64-01-sudo-mount-dev-sdb-mnt-hdisk" href="#dbuddenbaum-arm64-01-sudo-mount-dev-sdb-mnt-hdisk" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$ sudo mount /dev/sdb /mnt/hdisk</h3>
+<h3><a id="dbuddenbaum-arm64-01-4" href="#dbuddenbaum-arm64-01-4" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$</h3>
+<p>lsblk -f</p>
+<pre><code>NAME   FSTYPE   LABEL       UUID                                 FSAVAIL FSUSE% MOUNTPOINT
+loop0  squashfs                                                        0   100% /snap/core18/1883
+loop1  squashfs                                                        0   100% /snap/core20/2107
+loop2  squashfs                                                        0   100% /snap/lxd/24065
+loop3  squashfs                                                        0   100% /snap/core18/2810
+loop4  squashfs                                                        0   100% /snap/core20/2186
+loop5  squashfs                                                        0   100% /snap/lxd/16103
+loop6  squashfs                                                        0   100% /snap/microk8s/6357
+loop7  squashfs                                                        0   100% /snap/snapd/20674
+loop8  squashfs                                                        0   100% /snap/microk8s/6564
+sda
+├─sda1 vfat     system-boot B726-57E2                              81.7M    68% /boot/firmware
+└─sda2 ext4     writable    483efb12-d682-4daf-9b34-6e2f774b56f7  200.9G     5% /
+sdb    ext4                 95ec5a28-daf8-475a-b6f0-06b20d1f154f  869.2G     0% /mnt/hdisk
+</code></pre>
+<h3><a id="dbuddenbaum-arm64-01-5" href="#dbuddenbaum-arm64-01-5" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-01:~$</h3>
+<p>sudo vi /etc/fstab</p>
+<pre><code>UUID=95ec5a28-daf8-475a-b6f0-06b20d1f154f /mnt/hdisk ext4 defaults 0 0
+</code></pre>
+<h3><a id="dbuddenbaum-arm64-02" href="#dbuddenbaum-arm64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@arm64-02:~$</h3>
+<p>microk8s stop</p>
+<pre><code>2024-02-29T20:22:57-05:00 INFO Waiting for &quot;snap.microk8s.daemon-k8s-dqlite.service&quot; to stop.
+Stopped.
+</code></pre>
+<h3><a id="dbuddenbaum-amd64-03-1" href="#dbuddenbaum-amd64-03-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@amd64-03:~$</h3>
+<p>sudo reboot</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../setup/microk8s.html">Previous</a></li>            <li class=Pager--next><a href="../setup/notes.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.mjs"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
