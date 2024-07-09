@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>actions - Kalaxy2 Cluster</title>
+    <title>argocd - Kalaxy2 Cluster</title>
     <meta name="description" content="Arm64/Amd64 cluster research">
     <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
@@ -69,11 +69,11 @@
 <li class='Nav__item '><a href="../../ansible/microk8s_setup.html">microk8s setup</a></li>
 <li class='Nav__item '><a href="../../ansible/storage.html">storage</a></li></ul></li>
 <li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>automation</a><ul class='Nav'>
-<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argocd</a><ul class='Nav'>
-<li class='Nav__item '><a href="../../automation/argocd/argocd.html">argocd</a></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argocd</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../../automation/argocd/argocd.html">argocd</a></li>
 <li class='Nav__item '><a href="../../automation/argocd/argocd_image_updater.html">argocd image updater</a></li></ul></li>
-<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>github</a><ul class='Nav'>
-<li class='Nav__item Nav__item--active'><a href="../../automation/github/actions.html">actions</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>github</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../automation/github/actions.html">actions</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>microk8s</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../automation/microk8s/microk8s_add_ons.html">microk8s add ons</a></li></ul></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>cicd</a><ul class='Nav'>
@@ -188,7 +188,7 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../../automation/argocd/argocd.html">automation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../automation/github/actions.html">github</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../automation/github/actions.html">actions</a></h1>
+        <h1><a href="../../automation/argocd/argocd.html">automation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../automation/argocd/argocd.html">argocd</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../automation/argocd/argocd.html">argocd</a></h1>
                     </div>
 
     <div class="s-content">
@@ -197,22 +197,19 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#git-actions">Git Actions</a>
+<a href="#argocd">ArgoCD</a>
 <ul>
 <li>
-<a href="#resources">Resources</a>
+<a href="#references">References</a>
 </li>
 <li>
 <a href="#setup">Setup</a>
 <ul>
 <li>
-<a href="#docker-run-for-daux-io">Docker Run for Daux IO</a>
+<a href="#07-08-24-6-44pm-donbuddenbaum-donbs-imac">#( 07/08/24@ 6:44PM )( donbuddenbaum@donbs-imac ):~</a>
 </li>
 <li>
-<a href="#webpage-deployment-to-git-pages-repo">WebPage Deployment to Git Pages Repo</a>
-</li>
-<li>
-<a href="#webpage-image-creation-and-push">Webpage Image Creation and Push</a>
+<a href="#07-08-24-6-46pm-donbuddenbaum-donbs-imac">#( 07/08/24@ 6:46PM )( donbuddenbaum@donbs-imac ):~</a>
 </li>
 </ul>
 </li>
@@ -220,55 +217,76 @@
 </li>
 </ul>    </div>
 </div>
-<h1><a id="git-actions" href="#git-actions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git Actions</h1>
-<h2><a id="resources" href="#resources" class="Permalink" aria-hidden="true" title="Permalink">#</a>Resources</h2>
+<h1><a id="argocd" href="#argocd" class="Permalink" aria-hidden="true" title="Permalink">#</a>ArgoCD</h1>
+<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
 <li>
-<a href="https://github.com/marketplace/actions/copy-files-to-another-repository" class="Link--external" rel="noopener noreferrer">Copy files to another repository</a>
-</li>
-<li>
-<a href="https://github.com/cpina/github-action-push-to-another-repository" class="Link--external" rel="noopener noreferrer">github-action-push-to-another-repository</a>
-</li>
-<li>
-<a href="https://cpina.github.io/push-to-another-repository-docs/" class="Link--external" rel="noopener noreferrer">Welcome to github-action-push-to-another-repository’s documentation!</a>
-</li>
-<li>
-<a href="https://medium.com/@danieljimgarcia/publishing-static-sites-to-github-pages-using-github-actions-8040f57dfeaf" class="Link--external" rel="noopener noreferrer">Deploying static sites to GitHub Pages using GitHub Actions</a>
-</li>
-<li>
-<a href="https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/" class="Link--external" rel="noopener noreferrer">Using Docker Run inside of GitHub Actions</a>
-</li>
-<li>
-<a href="https://github.com/docker/build-push-action?tab=readme-ov-file" class="Link--external" rel="noopener noreferrer">build-push-action</a>
-</li>
-<li>
-<a href="https://docs.docker.com/build/ci/github-actions/multi-platform/" class="Link--external" rel="noopener noreferrer">Multi-platform image with GitHub Actions</a>
+<a href="https://argo-cd.readthedocs.io/en/stable/" class="Link--external" rel="noopener noreferrer">Overview</a>
 </li>
 </ul>
 <h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
-<h3><a id="docker-run-for-daux-io" href="#docker-run-for-daux-io" class="Permalink" aria-hidden="true" title="Permalink">#</a>Docker Run for Daux IO</h3>
-<pre><code>- name: Generate static Daux webpages
-  uses: addnab/docker-run-action@v3
-  with:
-    image: daux/daux.io:latest
-    options: |
-      --rm 
-      -v ${{ github.workspace }}:/build
-      -w /build
-    run: /daux/bin/daux generate -s markdown -d docs
+<h3><a id="07-08-24-6-44pm-donbuddenbaum-donbs-imac" href="#07-08-24-6-44pm-donbuddenbaum-donbs-imac" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/08/24@ 6:44PM )( donbuddenbaum@donbs-imac ):~</h3>
+<p>brew install argocd</p>
+<h3><a id="07-08-24-6-46pm-donbuddenbaum-donbs-imac" href="#07-08-24-6-46pm-donbuddenbaum-donbs-imac" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/08/24@ 6:46PM )( donbuddenbaum@donbs-imac ):~</h3>
+<p>argocd</p>
+<pre><code>argocd controls a Argo CD server
+
+Usage:
+  argocd [flags]
+  argocd [command]
+
+Available Commands:
+  account     Manage account settings
+  admin       Contains a set of commands useful for Argo CD administrators and requires direct Kubernetes access
+  app         Manage applications
+  appset      Manage ApplicationSets
+  cert        Manage repository certificates and SSH known hosts entries
+  cluster     Manage cluster credentials
+  completion  output shell completion code for the specified shell (bash or zsh)
+  context     Switch between contexts
+  gpg         Manage GPG keys used for signature verification
+  help        Help about any command
+  login       Log in to Argo CD
+  logout      Log out from Argo CD
+  proj        Manage projects
+  relogin     Refresh an expired authenticate token
+  repo        Manage repository connection parameters
+  repocreds   Manage repository connection parameters
+  version     Print version information
+
+Flags:
+      --auth-token string               Authentication token
+      --client-crt string               Client certificate file
+      --client-crt-key string           Client certificate key file
+      --config string                   Path to Argo CD config (default &quot;/Users/donbuddenbaum/.config/argocd/config&quot;)
+      --controller-name string          Name of the Argo CD Application controller; set this or the ARGOCD_APPLICATION_CONTROLLER_NAME environment variable when the controller's name label differs from the default, for example when installing via the Helm chart (default &quot;argocd-application-controller&quot;)
+      --core                            If set to true then CLI talks directly to Kubernetes instead of talking to Argo CD API server
+      --grpc-web                        Enables gRPC-web protocol. Useful if Argo CD server is behind proxy which does not support HTTP2.
+      --grpc-web-root-path string       Enables gRPC-web protocol. Useful if Argo CD server is behind proxy which does not support HTTP2. Set web root.
+  -H, --header strings                  Sets additional header to all requests made by Argo CD CLI. (Can be repeated multiple times to add multiple headers, also supports comma separated headers)
+  -h, --help                            help for argocd
+      --http-retry-max int              Maximum number of retries to establish http connection to Argo CD server
+      --insecure                        Skip server certificate and domain verification
+      --kube-context string             Directs the command to the given kube-context
+      --logformat string                Set the logging format. One of: text|json (default &quot;text&quot;)
+      --loglevel string                 Set the logging level. One of: debug|info|warn|error (default &quot;info&quot;)
+      --plaintext                       Disable TLS
+      --port-forward                    Connect to a random argocd-server port using port forwarding
+      --port-forward-namespace string   Namespace name which should be used for port forwarding
+      --redis-haproxy-name string       Name of the Redis HA Proxy; set this or the ARGOCD_REDIS_HAPROXY_NAME environment variable when the HA Proxy's name label differs from the default, for example when installing via the Helm chart (default &quot;argocd-redis-ha-haproxy&quot;)
+      --redis-name string               Name of the Redis deployment; set this or the ARGOCD_REDIS_NAME environment variable when the Redis's name label differs from the default, for example when installing via the Helm chart (default &quot;argocd-redis&quot;)
+      --repo-server-name string         Name of the Argo CD Repo server; set this or the ARGOCD_REPO_SERVER_NAME environment variable when the server's name label differs from the default, for example when installing via the Helm chart (default &quot;argocd-repo-server&quot;)
+      --server string                   Argo CD server address
+      --server-crt string               Server certificate file
+      --server-name string              Name of the Argo CD API server; set this or the ARGOCD_SERVER_NAME environment variable when the server's name label differs from the default, for example when installing via the Helm chart (default &quot;argocd-server&quot;)
+
+Use &quot;argocd [command] --help&quot; for more information about a command.
 </code></pre>
-<p>addnab/docker-run-action@v3 doesnt support entry point so have to call executible directly</p>
-<h3><a id="webpage-deployment-to-git-pages-repo" href="#webpage-deployment-to-git-pages-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a>WebPage Deployment to Git Pages Repo</h3>
-<ul>
-<li>Copy files to another repository: adds/updatres docs in docs directory</li>
-<li>github-action-push-to-another-repository: deletes and recreates docs directory</li>
-</ul>
-<h3><a id="webpage-image-creation-and-push" href="#webpage-image-creation-and-push" class="Permalink" aria-hidden="true" title="Permalink">#</a>Webpage Image Creation and Push</h3>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../../automation/argocd/argocd_image_updater.html">Previous</a></li>            <li class=Pager--next><a href="../../automation/microk8s/microk8s_add_ons.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../../ansible/storage.html">Previous</a></li>            <li class=Pager--next><a href="../../automation/argocd/argocd_image_updater.html">Next</a></li>        </ul>
     </nav>
     </article>
 
