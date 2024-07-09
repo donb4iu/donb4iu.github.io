@@ -236,6 +236,17 @@
 <li>
 <a href="#body">Body</a>
 </li>
+<li>
+<a href="#fault">Fault</a>
+<ul>
+<li>
+<a href="#points-to-note-2">Points to Note</a>
+</li>
+<li>
+<a href="#sub-elements-of-fault">Sub-elements of Fault</a>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -324,6 +335,49 @@
 </ul>
 <h3><a id="body" href="#body" class="Permalink" aria-hidden="true" title="Permalink">#</a>Body</h3>
 <p>The SOAP body is a mandatory element that contains the application-defined XML data being exchanged in the SOAP message. The body must be contained within the envelope and must follow any headers that might be defined for the message.</p>
+<h3><a id="fault" href="#fault" class="Permalink" aria-hidden="true" title="Permalink">#</a>Fault</h3>
+<p>If an error occurs during processing, the response to a SOAP message is a SOAP fault element in the body of the message, and the fault is returned to the sender of the SOAP message.</p>
+<p>The SOAP fault mechanism returns specific information about the error, including a predefined code, a description, and the address of the SOAP processor that generated the fault.</p>
+<h4><a id="points-to-note-2" href="#points-to-note-2" class="Permalink" aria-hidden="true" title="Permalink">#</a>Points to Note</h4>
+<ul>
+<li>A SOAP message can carry only one fault block.</li>
+<li>Fault is an optional part of a SOAP message.</li>
+<li>For HTTP binding, a successful response is linked to the 200 to 299 range of status codes.</li>
+<li>SOAP Fault is linked to the 500 to 599 range of status codes.</li>
+</ul>
+<h4><a id="sub-elements-of-fault" href="#sub-elements-of-fault" class="Permalink" aria-hidden="true" title="Permalink">#</a>Sub-elements of Fault</h4>
+<p>The SOAP Fault has the following sub elements −</p>
+<table>
+<thead>
+<tr>
+<th align="center">Sr.No</th>
+<th align="center">Sub-element</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">1</td>
+<td align="center">&lt;faultCode&gt;</td>
+<td align="left">It is a text code used to indicate a class of errors. See the next Table for a listing of predefined fault codes.</td>
+</tr>
+<tr>
+<td align="center">2</td>
+<td align="center">&lt;faultString&gt;</td>
+<td align="left">It is a text message explaining the error.</td>
+</tr>
+<tr>
+<td align="center">3</td>
+<td align="center">&lt;faultActor&gt;</td>
+<td align="left">It is a text string indicating who caused the fault. It is useful if the SOAP message travels through several nodes in the SOAP message path, and the client needs to know which node caused the error. A node that does not act as the ultimate destination must include a faultActor element</td>
+</tr>
+<tr>
+<td align="center">4</td>
+<td align="center">&lt;detail&gt;</td>
+<td align="left">It is an element used to carry application-specific error messages. The detail element can contain child elements called detail entries.</td>
+</tr>
+</tbody>
+</table>
     </div>
 
         <nav>
