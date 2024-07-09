@@ -212,6 +212,82 @@
 <li>
 <a href="#defintion">Defintion</a>
 </li>
+<li>
+<a href="#features-of-wsdl">Features of WSDL</a>
+</li>
+<li>
+<a href="#web-services-elements">Web services elements</a>
+</li>
+<li>
+<a href="#wsdl-elements">WSDL Elements</a>
+</li>
+<li>
+<a href="#wsdl-document-structure">WSDL Document Structure</a>
+</li>
+<li>
+<a href="#example-contents-of-helloservice-wsdl-file">Example - contents of HelloService.wsdl file −</a>
+</li>
+<li>
+<a href="#example-analysis">Example Analysis</a>
+</li>
+<li>
+<a href="#wsdl-definition-element">WSDL - &lt;definition&gt; Element</a>
+</li>
+<li>
+<a href="#wsdl-types-element">WSDL - &lt;types&gt; Element</a>
+</li>
+<li>
+<a href="#wsdl-message-element">WSDL - &lt;message&gt; Element</a>
+</li>
+<li>
+<a href="#wsdl-porttype-element">WSDL - &lt;portType&gt; Element</a>
+<ul>
+<li>
+<a href="#one-request-and-one-response-message">one request and one response message</a>
+</li>
+<li>
+<a href="#patterns-of-operation">Patterns of Operation</a>
+<ul>
+<li>
+<a href="#one-way">One-way</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#request-response">Request-response</a>
+<ul>
+<li>
+<a href="#solicit-response">Solicit-response</a>
+</li>
+<li>
+<a href="#notification">Notification</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#wsdl-binding-element">WSDL - &lt;binding&gt; Element</a>
+<ul>
+<li>
+<a href="#soap-binding">SOAP Binding</a>
+<ul>
+<li>
+<a href="#soap-operation">soap:operation</a>
+</li>
+<li>
+<a href="#soap-body">soap:body</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#wsdl-ports-element">WSDL - &lt;ports&gt; Element</a>
+</li>
+<li>
+<a href="#wsdl-service-element">WSDL - &lt;service&gt; Element</a>
+</li>
 </ul>
 </li>
 </ul>
@@ -224,9 +300,486 @@
 <li>
 <a href="https://medium.com/@AlexanderObregon/exploring-web-services-and-xml-soap-wsdl-and-uddi-66353df368d2" class="Link--external" rel="noopener noreferrer">Exploring Web Services and XML — SOAP, WSDL, and UDDI</a>
 </li>
+<li>
+<a href="https://www.tutorialspoint.com/wsdl/index.htm" class="Link--external" rel="noopener noreferrer">WSDL Tutorial</a>
+</li>
 </ul>
 <h2><a id="wsdl-1" href="#wsdl-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL</h2>
 <h3><a id="defintion" href="#defintion" class="Permalink" aria-hidden="true" title="Permalink">#</a>Defintion</h3>
+<p>WSDL stands for Web Services Description Language. It is the standard format for describing a web service. WSDL was developed jointly by Microsoft and IBM.</p>
+<h3><a id="features-of-wsdl" href="#features-of-wsdl" class="Permalink" aria-hidden="true" title="Permalink">#</a>Features of WSDL</h3>
+<p>WSDL is an XML-based protocol for information exchange in decentralized and distributed environments.</p>
+<ul>
+<li>WSDL definitions describe how to access a web service and what operations it will perform.</li>
+<li>WSDL is a language for describing how to interface with XML-based services.</li>
+<li>WSDL is an integral part of Universal Description, Discovery, and Integration (UDDI), an XML-based worldwide business registry.</li>
+<li>WSDL is the language that UDDI uses.</li>
+<li>WSDL is pronounced as ‘wiz-dull’ and spelled out as ‘W-S-D-L’.</li>
+</ul>
+<h3><a id="web-services-elements" href="#web-services-elements" class="Permalink" aria-hidden="true" title="Permalink">#</a>Web services elements</h3>
+<p>WSDL breaks down web services into three specific, identifiable elements that can be combined or reused once defined.</p>
+<ul>
+<li>Types</li>
+<li>Operations</li>
+<li>Binding</li>
+</ul>
+<h3><a id="wsdl-elements" href="#wsdl-elements" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL Elements</h3>
+<p>A WSDL document contains the following elements −</p>
+<ul>
+<li>
+<p>Definition − It is the root element of all WSDL documents. It defines the name of the web service, declares multiple namespaces used throughout the remainder of the document, and contains all the service elements described here.</p>
+</li>
+<li>
+<p>Data types − The data types to be used in the messages are in the form of XML schemas.</p>
+</li>
+<li>
+<p>Message − It is an abstract definition of the data, in the form of a message presented either as an entire document or as arguments to be mapped to a method invocation.</p>
+</li>
+<li>
+<p>Operation − It is the abstract definition of the operation for a message, such as naming a method, message queue, or business process, that will accept and process the message.</p>
+</li>
+<li>
+<p>Port type − It is an abstract set of operations mapped to one or more end-points, defining the collection of operations for a binding; the collection of operations, as it is abstract, can be mapped to multiple transports through various bindings.</p>
+</li>
+<li>
+<p>Binding − It is the concrete protocol and data formats for the operations and messages defined for a particular port type.</p>
+</li>
+<li>
+<p>Port − It is a combination of a binding and a network address, providing the target address of the service communication.</p>
+</li>
+<li>
+<p>Service − It is a collection of related end-points encompassing the service definitions in the file; the services map the binding to the port and include any extensibility definitions.</p>
+</li>
+</ul>
+<p>In addition to these major elements, the WSDL specification also defines the following utility elements −</p>
+<ul>
+<li>
+<p>Documentation − This element is used to provide human-readable documentation and can be included inside any other WSDL element.</p>
+</li>
+<li>
+<p>Import − This element is used to import other WSDL documents or XML Schemas.</p>
+<pre><code>  **NOTE − WSDL parts are usually generated automatically using web services-aware tools.**
+</code></pre>
+</li>
+</ul>
+<h3><a id="wsdl-document-structure" href="#wsdl-document-structure" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL Document Structure</h3>
+<pre><code>&lt;definitions&gt;
+   &lt;types&gt;
+      definition of types........
+   &lt;/types&gt;
+
+   &lt;message&gt;
+      definition of a message....
+   &lt;/message&gt;
+
+   &lt;portType&gt;
+      &lt;operation&gt;
+         definition of a operation.......  
+      &lt;/operation&gt;
+   &lt;/portType&gt;
+
+   &lt;binding&gt;
+      definition of a binding....
+   &lt;/binding&gt;
+
+   &lt;service&gt;
+      definition of a service....
+   &lt;/service&gt;
+&lt;/definitions&gt;
+</code></pre>
+<p>A WSDL document can also contain other elements, like extension elements and a service element that makes it possible to group together the definitions of several web services in one single WSDL document.</p>
+<h3><a id="example-contents-of-helloservice-wsdl-file" href="#example-contents-of-helloservice-wsdl-file" class="Permalink" aria-hidden="true" title="Permalink">#</a>Example - contents of HelloService.wsdl file −</h3>
+<pre><code>&lt;definitions name = &quot;HelloService&quot;
+   targetNamespace = &quot;http://www.examples.com/wsdl/HelloService.wsdl&quot;
+   xmlns = &quot;http://schemas.xmlsoap.org/wsdl/&quot;
+   xmlns:soap = &quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;
+   xmlns:tns = &quot;http://www.examples.com/wsdl/HelloService.wsdl&quot;
+   xmlns:xsd = &quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+ 
+   &lt;message name = &quot;SayHelloRequest&quot;&gt;
+      &lt;part name = &quot;firstName&quot; type = &quot;xsd:string&quot;/&gt;
+   &lt;/message&gt;
+	
+   &lt;message name = &quot;SayHelloResponse&quot;&gt;
+      &lt;part name = &quot;greeting&quot; type = &quot;xsd:string&quot;/&gt;
+   &lt;/message&gt;
+
+   &lt;portType name = &quot;Hello_PortType&quot;&gt;
+      &lt;operation name = &quot;sayHello&quot;&gt;
+         &lt;input message = &quot;tns:SayHelloRequest&quot;/&gt;
+         &lt;output message = &quot;tns:SayHelloResponse&quot;/&gt;
+      &lt;/operation&gt;
+   &lt;/portType&gt;
+
+   &lt;binding name = &quot;Hello_Binding&quot; type = &quot;tns:Hello_PortType&quot;&gt;
+      &lt;soap:binding style = &quot;rpc&quot;
+         transport = &quot;http://schemas.xmlsoap.org/soap/http&quot;/&gt;
+      &lt;operation name = &quot;sayHello&quot;&gt;
+         &lt;soap:operation soapAction = &quot;sayHello&quot;/&gt;
+         &lt;input&gt;
+            &lt;soap:body
+               encodingStyle = &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+               namespace = &quot;urn:examples:helloservice&quot;
+               use = &quot;encoded&quot;/&gt;
+         &lt;/input&gt;
+		
+         &lt;output&gt;
+            &lt;soap:body
+               encodingStyle = &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+               namespace = &quot;urn:examples:helloservice&quot;
+               use = &quot;encoded&quot;/&gt;
+         &lt;/output&gt;
+      &lt;/operation&gt;
+   &lt;/binding&gt;
+
+   &lt;service name = &quot;Hello_Service&quot;&gt;
+      &lt;documentation&gt;WSDL File for HelloService&lt;/documentation&gt;
+      &lt;port binding = &quot;tns:Hello_Binding&quot; name = &quot;Hello_Port&quot;&gt;
+         &lt;soap:address
+            location = &quot;http://www.examples.com/SayHello/&quot; /&gt;
+      &lt;/port&gt;
+   &lt;/service&gt;
+&lt;/definitions&gt;
+</code></pre>
+<h3><a id="example-analysis" href="#example-analysis" class="Permalink" aria-hidden="true" title="Permalink">#</a>Example Analysis</h3>
+<ul>
+<li>
+<p>Definitions − HelloService</p>
+</li>
+<li>
+<p>Type − Using built-in data types and they are defined in XMLSchema.</p>
+</li>
+<li>
+<p>Message −</p>
+<ul>
+<li>
+<p>sayHelloRequest − firstName parameter</p>
+</li>
+<li>
+<p>sayHelloresponse − greeting return value</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Port Type − sayHello operation that consists of a request and a response service.</p>
+</li>
+<li>
+<p>Binding − Direction to use the SOAP HTTP transport protocol.</p>
+</li>
+<li>
+<p>Service − Service available at <a href="http://www.examples.com/SayHello/" class="Link--external" rel="noopener noreferrer">http://www.examples.com/SayHello/</a></p>
+</li>
+<li>
+<p>Port − Associates the binding with the URI <a href="http://www.examples.com/SayHello/" class="Link--external" rel="noopener noreferrer">http://www.examples.com/SayHello/</a> where the running service can be accessed.</p>
+</li>
+</ul>
+<h3><a id="wsdl-definition-element" href="#wsdl-definition-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;definition&gt; Element</h3>
+<pre><code>&lt;definitions name=&quot;HelloService&quot;
+   targetNamespace=&quot;http://www.examples.com/wsdl/HelloService.wsdl&quot;
+   xmlns=&quot;http://schemas.xmlsoap.org/wsdl/&quot;
+   xmlns:soap=&quot;http://schemas.xmlsoap.org/wsdl/soap/&quot;
+   xmlns:tns=&quot;http://www.examples.com/wsdl/HelloService.wsdl&quot;
+   xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot;&gt;
+   ................................................
+&lt;/definitions&gt;
+</code></pre>
+<p>From the above example, we can conclude that definitions −</p>
+<ul>
+<li>
+<p>is a container of all the other elements.</p>
+</li>
+<li>
+<p>specifies that this document is called HelloService.</p>
+</li>
+<li>
+<p>specifies a targetNamespace attribute. The targetNamespace is a convention of XML Schema that enables the WSDL document to refer to itself. In this example, we have specified a targetNamespace of <a href="http://www.examples.com/wsdl/HelloService.wsdl" class="Link--external" rel="noopener noreferrer">http://www.examples.com/wsdl/HelloService.wsdl</a></p>
+</li>
+<li>
+<p>specifies a default namespace: xmlns=http://schemas.xmlsoap.org/wsdl/. All elements without a namespace prefix, such as message or portType, are therefore assumed to be a part of the default WSDL namespace.</p>
+</li>
+<li>
+<p>specifies numerous namespaces that are used throughout the remainder of the document.</p>
+</li>
+<li>
+<p>NOTE − The namespace specification does not require the document to be present at the given location. The important point is that you specify a value that is unique, different from all other namespaces that are defined.</p>
+</li>
+</ul>
+<h3><a id="wsdl-types-element" href="#wsdl-types-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;types&gt; Element</h3>
+<p>A web service needs to define its inputs and outputs and how they are mapped into and out of the services. WSDL <types> element takes care of defining the data types that are used by the web service. Types are XML documents, or document parts.</p>
+<ul>
+<li>
+<p>The types element describes all the data types used between the client and the server.</p>
+</li>
+<li>
+<p>WSDL is not tied exclusively to a specific typing system.</p>
+</li>
+<li>
+<p>WSDL uses the W3C XML Schema specification as its default choice to define data types.</p>
+</li>
+<li>
+<p>If the service uses only XML Schema built-in simple types, such as strings and integers, then types element is not required.</p>
+</li>
+<li>
+<p>WSDL allows the types to be defined in separate elements so that the types are reusable with multiple web services.</p>
+</li>
+</ul>
+<pre><code>&lt;types&gt;
+   &lt;schema targetNamespace = &quot;http://example.com/stockquote.xsd&quot;
+      xmlns = &quot;http://www.w3.org/2000/10/XMLSchema&quot;&gt;
+		
+      &lt;element name = &quot;TradePriceRequest&quot;&gt;
+         &lt;complexType&gt;
+            &lt;all&gt;
+               &lt;element name = &quot;tickerSymbol&quot; type = &quot;string&quot;/&gt;
+            &lt;/all&gt;
+         &lt;/complexType&gt;
+      &lt;/element&gt;
+		
+      &lt;element name = &quot;TradePrice&quot;&gt;
+         &lt;complexType&gt;
+            &lt;all&gt;
+               &lt;element name = &quot;price&quot; type = &quot;float&quot;/&gt;
+            &lt;/all&gt;
+         &lt;/complexType&gt;
+      &lt;/element&gt;
+		
+   &lt;/schema&gt;
+&lt;/types&gt;
+</code></pre>
+<h3><a id="wsdl-message-element" href="#wsdl-message-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;message&gt; Element</h3>
+<p>The <message> element describes the data being exchanged between the web service providers and the consumers.</p>
+<ul>
+<li>
+<p>Each Web Service has two messages: input and output.</p>
+</li>
+<li>
+<p>The input describes the parameters for the web service and the output describes the return data from the web service.</p>
+</li>
+<li>
+<p>Each message contains zero or more <part> parameters, one for each parameter of the web service function.</p>
+</li>
+<li>
+<p>Each <part> parameter associates with a concrete type defined in the <types> container element.</p>
+</li>
+</ul>
+<pre><code>&lt;message name = &quot;SayHelloRequest&quot;&gt;
+   &lt;part name = &quot;firstName&quot; type = &quot;xsd:string&quot;/&gt;
+&lt;/message&gt;
+
+&lt;message name = &quot;SayHelloResponse&quot;&gt;
+   &lt;part name = &quot;greeting&quot; type = &quot;xsd:string&quot;/&gt;
+&lt;/message&gt;
+</code></pre>
+<h3><a id="wsdl-porttype-element" href="#wsdl-porttype-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;portType&gt; Element</h3>
+<p>The &lt;portType&gt; element combines multiple message elements to form a complete one-way or round-trip operation.</p>
+<h4><a id="one-request-and-one-response-message" href="#one-request-and-one-response-message" class="Permalink" aria-hidden="true" title="Permalink">#</a>one request and one response message</h4>
+<p>For example, a &lt;portType&gt; can combine one request and one response message into a single request/response operation. This is most commonly used in SOAP services. A portType can define multiple operations.</p>
+<p>Let us take a piece of code from the WSDL Example chapter −</p>
+<pre><code>&lt;portType name = &quot;Hello_PortType&quot;&gt;
+   &lt;operation name = &quot;sayHello&quot;&gt;
+      &lt;input message = &quot;tns:SayHelloRequest&quot;/&gt;
+      &lt;output message = &quot;tns:SayHelloResponse&quot;/&gt;
+   &lt;/operation&gt;
+&lt;/portType&gt;
+</code></pre>
+<ul>
+<li>
+<p>The portType element defines a single operation, called sayHello.</p>
+</li>
+<li>
+<p>The operation consists of a single input message SayHelloRequest and an</p>
+</li>
+<li>
+<p>output message SayHelloResponse.</p>
+</li>
+</ul>
+<h4><a id="patterns-of-operation" href="#patterns-of-operation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Patterns of Operation</h4>
+<p>WSDL supports four basic patterns of operation −</p>
+<h5><a id="one-way" href="#one-way" class="Permalink" aria-hidden="true" title="Permalink">#</a>One-way</h5>
+<p>The service receives a message. The operation therefore has a single input element. The grammar for a one-way operation is −</p>
+<pre><code>&lt;wsdl:definitions .... &gt; 
+   &lt;wsdl:portType .... &gt; *
+      &lt;wsdl:operation name = &quot;nmtoken&quot;&gt;
+         &lt;wsdl:input name = &quot;nmtoken&quot;? message = &quot;qname&quot;/&gt;
+      &lt;/wsdl:operation&gt;
+   &lt;/wsdl:portType &gt;
+&lt;/wsdl:definitions&gt;
+</code></pre>
+<h4><a id="request-response" href="#request-response" class="Permalink" aria-hidden="true" title="Permalink">#</a>Request-response</h4>
+<p>The service receives a message and sends a response. The operation therefore has one input element, followed by one output element. To encapsulate errors, an optional fault element can also be specified. The grammar for a request-response operation is −</p>
+<pre><code>&lt;wsdl:definitions .... &gt;
+   &lt;wsdl:portType .... &gt; *
+      &lt;wsdl:operation name = &quot;nmtoken&quot; parameterOrder = &quot;nmtokens&quot;&gt;
+         &lt;wsdl:input name = &quot;nmtoken&quot;? message = &quot;qname&quot;/&gt;
+         &lt;wsdl:output name = &quot;nmtoken&quot;? message = &quot;qname&quot;/&gt;
+         &lt;wsdl:fault name = &quot;nmtoken&quot; message = &quot;qname&quot;/&gt;*
+      &lt;/wsdl:operation&gt;
+   &lt;/wsdl:portType&gt;
+&lt;/wsdl:definitions&gt;
+</code></pre>
+<h5><a id="solicit-response" href="#solicit-response" class="Permalink" aria-hidden="true" title="Permalink">#</a>Solicit-response</h5>
+<p>The service sends a message and receives a response. The operation therefore has one output element, followed by one input element. To encapsulate errors, an optional fault element can also be specified. The grammar for a solicit-response operation is −</p>
+<pre><code>&lt;wsdl:definitions .... &gt;
+   &lt;wsdl:portType .... &gt; *
+      &lt;wsdl:operation name = &quot;nmtoken&quot; parameterOrder = &quot;nmtokens&quot;&gt;
+         &lt;wsdl:output name = &quot;nmtoken&quot;? message = &quot;qname&quot;/&gt;
+         &lt;wsdl:input name = &quot;nmtoken&quot;? message = &quot;qname&quot;/&gt;
+         &lt;wsdl:fault name = &quot;nmtoken&quot; message = &quot;qname&quot;/&gt;*
+      &lt;/wsdl:operation&gt;
+   &lt;/wsdl:portType &gt;
+&lt;/wsdl:definitions&gt;
+</code></pre>
+<h5><a id="notification" href="#notification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Notification</h5>
+<p>The service sends a message. The operation therefore has a single output element. Following is the grammar for a notification operation −</p>
+<pre><code>&lt;wsdl:definitions .... &gt;
+   &lt;wsdl:portType .... &gt; *
+      &lt;wsdl:operation name = &quot;nmtoken&quot;&gt;
+         &lt;wsdl:output name = &quot;nmtoken&quot;? message = &quot;qname&quot;/&gt;
+      &lt;/wsdl:operation&gt;
+   &lt;/wsdl:portType&gt;
+&lt;/wsdl:definitions&gt;
+</code></pre>
+<h3><a id="wsdl-binding-element" href="#wsdl-binding-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;binding&gt; Element</h3>
+<p>The <binding> element provides specific details on how a portType operation will actually be transmitted over the wire.</p>
+<ul>
+<li>
+<p>The bindings can be made available via multiple transports including HTTP GET, HTTP POST, or SOAP.</p>
+</li>
+<li>
+<p>The bindings provide concrete information on what protocol is being used to transfer portType operations.</p>
+</li>
+<li>
+<p>The bindings provide information where the service is located.</p>
+</li>
+<li>
+<p>For SOAP protocol, the binding is &lt;soap:binding&gt;, and the transport is SOAP messages on top of HTTP protocol.</p>
+</li>
+<li>
+<p>You can specify multiple bindings for a single portType.</p>
+</li>
+</ul>
+<p>The binding element has two attributes : name and type attribute.</p>
+<binding name = "Hello_Binding" type = "tns:Hello_PortType">
+<p>The name attribute defines the name of the binding, and the type attribute points to the port for the binding, in this case the “tns:Hello_PortType” port.</p>
+<h4><a id="soap-binding" href="#soap-binding" class="Permalink" aria-hidden="true" title="Permalink">#</a>SOAP Binding</h4>
+<p>WSDL 1.1 includes built-in extensions for SOAP 1.1. It allows you to specify SOAP specific details including SOAP headers, SOAP encoding styles, and the SOAPAction HTTP header. The SOAP extension elements include the following −</p>
+<ul>
+<li>soap:binding</li>
+<li>soap:operation</li>
+<li>soap:body</li>
+<li>soap:binding</li>
+</ul>
+<p>This element indicates that the binding will be made available via SOAP. The style attribute indicates the overall style of the SOAP message format. A style value of rpc specifies an RPC format.</p>
+<p>The transport attribute indicates the transport of the SOAP messages. The value <a href="http://schemas.xmlsoap.org/soap/http" class="Link--external" rel="noopener noreferrer">http://schemas.xmlsoap.org/soap/http</a> indicates the SOAP HTTP transport, whereas <a href="http://schemas.xmlsoap.org/soap/smtp" class="Link--external" rel="noopener noreferrer">http://schemas.xmlsoap.org/soap/smtp</a> indicates the SOAP SMTP transport.</p>
+<h5><a id="soap-operation" href="#soap-operation" class="Permalink" aria-hidden="true" title="Permalink">#</a>soap:operation</h5>
+<p>This element indicates the binding of a specific operation to a specific SOAP implementation. The soapAction attribute specifies that the SOAPAction HTTP header be used for identifying the service.</p>
+<h5><a id="soap-body" href="#soap-body" class="Permalink" aria-hidden="true" title="Permalink">#</a>soap:body</h5>
+<p>This element enables you to specify the details of the input and output messages. In the case of HelloWorld, the body element specifies the SOAP encoding style and the namespace URN associated with the specified service.</p>
+<p>Here is the piece of code from the Example chapter −</p>
+<pre><code>&lt;binding name = &quot;Hello_Binding&quot; type = &quot;tns:Hello_PortType&quot;&gt;
+   &lt;soap:binding style = &quot;rpc&quot; transport = &quot;http://schemas.xmlsoap.org/soap/http&quot;/&gt;
+   &lt;operation name = &quot;sayHello&quot;&gt;
+      &lt;soap:operation soapAction = &quot;sayHello&quot;/&gt;
+			
+      &lt;input&gt;
+         &lt;soap:body
+            encodingStyle = &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+            namespace = &quot;urn:examples:helloservice&quot; use = &quot;encoded&quot;/&gt;
+      &lt;/input&gt;
+			
+      &lt;output&gt;
+         &lt;soap:body
+            encodingStyle = &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+            namespace = &quot;urn:examples:helloservice&quot; use = &quot;encoded&quot;/&gt;
+      &lt;/output&gt;
+   &lt;/operation&gt;
+&lt;/binding&gt;
+</code></pre>
+<h3><a id="wsdl-ports-element" href="#wsdl-ports-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;ports&gt; Element</h3>
+<p>A <port> element defines an individual endpoint by specifying a single address for a binding.</p>
+<p>Here is the grammar to specify a port −</p>
+<pre><code>&lt;wsdl:definitions .... &gt;
+   &lt;wsdl:service .... &gt; *
+      &lt;wsdl:port name = &quot;nmtoken&quot; binding = &quot;qname&quot;&gt; *
+         &lt;-- extensibility element (1) --&gt;
+      &lt;/wsdl:port&gt;
+   &lt;/wsdl:service&gt;
+&lt;/wsdl:definitions&gt;
+</code></pre>
+<ul>
+<li>
+<p>The port element has two attributes: name and binding .</p>
+</li>
+<li>
+<p>The name attribute provides a unique name among all ports defined within the enclosing WSDL document.</p>
+</li>
+<li>
+<p>The binding attribute refers to the binding using the linking rules defined by WSDL.</p>
+</li>
+<li>
+<p>Binding extensibility elements are used to specify the address information for the port.</p>
+</li>
+<li>
+<p><strong>A port MUST NOT specify more than one address.</strong></p>
+</li>
+<li>
+<p><strong>A port MUST NOT specify any binding information other than address information.</strong></p>
+</li>
+</ul>
+<p>Here is a piece of code from the Example chapter −</p>
+<pre><code>&lt;service name = &quot;Hello_Service&quot;&gt;
+   &lt;documentation&gt;WSDL File for HelloService&lt;/documentation&gt;
+   &lt;port binding = &quot;tns:Hello_Binding&quot; name = &quot;Hello_Port&quot;&gt;
+      &lt;soap:address
+         location = &quot;http://www.examples.com/SayHello/&quot;&gt;
+   &lt;/port&gt;
+&lt;/service&gt;
+</code></pre>
+<h3><a id="wsdl-service-element" href="#wsdl-service-element" class="Permalink" aria-hidden="true" title="Permalink">#</a>WSDL - &lt;service&gt; Element</h3>
+<p>The <service> element defines the ports supported by the web service. For each of the supported protocols, there is one port element. The service element is a collection of ports.</p>
+<ul>
+<li>
+<p>Web service clients can learn the following from the service element −</p>
+<ul>
+<li>where to access the service,</li>
+<li>through which port to access the web service, and</li>
+<li>how the communication messages are defined.</li>
+</ul>
+</li>
+<li>
+<p>The service element includes a documentation element to provide human-readable documentation.</p>
+</li>
+</ul>
+<p>Here is a piece of code from the Example chapter −</p>
+<pre><code>&lt;service name = &quot;Hello_Service&quot;&gt;
+   &lt;documentation&gt;WSDL File for HelloService&lt;/documentation&gt;
+   &lt;port binding = &quot;tns:Hello_Binding&quot; name = &quot;Hello_Port&quot;&gt;
+      &lt;soap:address
+         location = &quot;http://www.examples.com/SayHello/&quot;&gt;
+   &lt;/port&gt;
+&lt;/service&gt;
+</code></pre>
+<p>The binding attributes of port element associate the address of the service with a binding element defined in the web service. In this example, this is Hello_Binding</p>
+<pre><code>&lt;binding name =&quot; Hello_Binding&quot; type = &quot;tns:Hello_PortType&quot;&gt;
+   &lt;soap:binding style = &quot;rpc&quot;
+      transport = &quot;http://schemas.xmlsoap.org/soap/http&quot;/&gt;
+   &lt;operation name = &quot;sayHello&quot;&gt;
+      &lt;soap:operation soapAction = &quot;sayHello&quot;/&gt;
+		
+      &lt;input&gt;
+         &lt;soap:body
+            encodingStyle = &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+            namespace = &quot;urn:examples:helloservice&quot; use = &quot;encoded&quot;/&gt;
+      &lt;/input&gt;
+			
+      &lt;output&gt;
+         &lt;soap:body
+            encodingStyle = &quot;http://schemas.xmlsoap.org/soap/encoding/&quot;
+            namespace = &quot;urn:examples:helloservice&quot; use = &quot;encoded&quot;/&gt;
+      &lt;/output&gt;
+   &lt;/operation&gt;
+&lt;/binding&gt;
+</code></pre>
     </div>
 
         <nav>
