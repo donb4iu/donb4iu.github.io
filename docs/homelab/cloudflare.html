@@ -122,8 +122,6 @@
 <li class='Nav__item Nav__item--active'><a href="../homelab/cloudflare.html">cloudflare</a></li>
 <li class='Nav__item '><a href="../homelab/no_ip.html">no-ip</a></li>
 <li class='Nav__item '><a href="../homelab/squarespace.html">squarespace</a></li></ul></li>
-<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>hosting homelab on internet</a><ul class='Nav'>
-<li class='Nav__item '><a href="../hosting_homelab_on_internet/cloudflare.html">cloudflare</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iac</a><ul class='Nav'>
 <li class='Nav__item '><a href="../iac/pulumi.html">pulumi</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'>
@@ -131,6 +129,8 @@
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'>
 <li class='Nav__item '><a href="../ideas/AI_ideas.html">AI ideas</a></li>
 <li class='Nav__item '><a href="../ideas/sources.html">sources</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>kubernetes</a><ul class='Nav'>
+<li class='Nav__item '><a href="../kubernetes/shell_operator_demo.html">shell-operator-demo</a></li></ul></li>
 <li class='Nav__item '><a href="../microk8s.html">microk8s</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>observability</a><ul class='Nav'>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>grafana</a><ul class='Nav'>
@@ -216,23 +216,93 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#cloudflare">Cloudflare</a>
+<a href="#cloudflare">CloudFlare</a>
 <ul>
 <li>
 <a href="#references">References</a>
+</li>
+<li>
+<a href="#add-tunnel">Add tunnel</a>
+</li>
+<li>
+<a href="#install-on-fileserver">Install on FileServer</a>
+<ul>
+<li>
+<a href="#dbuddenbaum-donb-ms7821">dbuddenbaum@donb-ms7821:~$</a>
+</li>
+<li>
+<a href="#dbuddenbaum-donb-ms7821-1">dbuddenbaum@donb-ms7821:~$</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#check-cloud-flared-status">Check Cloud Flared Status</a>
+</li>
+<li>
+<a href="#linkedin-authorization">LinkedIn Authorization</a>
 </li>
 </ul>
 </li>
 </ul>    </div>
 </div>
-<h1><a id="cloudflare" href="#cloudflare" class="Permalink" aria-hidden="true" title="Permalink">#</a>Cloudflare</h1>
+<h1><a id="cloudflare" href="#cloudflare" class="Permalink" aria-hidden="true" title="Permalink">#</a>CloudFlare</h1>
 <p><img src="image-2.png" alt="alt text" /></p>
 <h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
 <li>
-<a href="https://dash.cloudflare.com/" class="Link--external" rel="noopener noreferrer">Cloudflare</a>
+<a href="https://youtu.be/ey4u7OUAF3c?si=pG8kaM5rGudSARnF" class="Link--external" rel="noopener noreferrer">EXPOSE your home network to the INTERNET!! (it’s safe)</a>
+</li>
+<li>
+<a href="https://account.squarespace.com/domains/managed/donb4iu.com" class="Link--external" rel="noopener noreferrer">donb4iu.com - squarespace</a>
+</li>
+<li>
+<a href="https://dash.cloudflare.com/64f1cb9607a2e06c58a36f507317a457" class="Link--external" rel="noopener noreferrer">cloudflare dashboard</a>
+</li>
+<li>
+<a href="https://developers.cloudflare.com/" class="Link--external" rel="noopener noreferrer">cloudflare docs</a>
+</li>
+<li>
+<a href="https://learnubuntu.com/enable-disable-systemd-services/" class="Link--external" rel="noopener noreferrer">Enable or Disable systemd Services in Ubuntu</a>
 </li>
 </ul>
+<h2><a id="add-tunnel" href="#add-tunnel" class="Permalink" aria-hidden="true" title="Permalink">#</a><a href="https://one.dash.cloudflare.com/64f1cb9607a2e06c58a36f507317a457/networks/tunnels" class="Link--external" rel="noopener noreferrer">Add tunnel</a></h2>
+<h2><a id="install-on-fileserver" href="#install-on-fileserver" class="Permalink" aria-hidden="true" title="Permalink">#</a>Install on FileServer</h2>
+<h3><a id="dbuddenbaum-donb-ms7821" href="#dbuddenbaum-donb-ms7821" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@donb-ms7821:~$</h3>
+<p>curl -L –output cloudflared.deb <a href="https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb" class="Link--external" rel="noopener noreferrer">https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb</a> &amp;&amp;  sudo dpkg -i cloudflared.deb &amp;&amp;  sudo</p>
+<pre><code>cloudflared service install eyJhIjoiNjRmMWNiOTYwN2EyZTA2YzU4YTM2ZjUwNzMxN2E0NTciLCJ0IjoiZDliZGU5OTUtZjVhMy00MDVmLWJhZGYtM2ZhYWNkZGFhMDlhIiwicyI6IllUUTNNR1E1TVdJdE4yUTFOeTAwTjJSa0xUZ3lOemd0WkdNME1HSmtNR00xTURabCJ9
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 16.9M  100 16.9M    0     0  8224k      0  0:00:02  0:00:02 --:--:-- 10.6M
+[sudo] password for dbuddenbaum:
+(Reading database ... 189635 files and directories currently installed.)
+Preparing to unpack cloudflared.deb ...
+Unpacking cloudflared (2024.4.1) over (2024.4.1) ...
+Setting up cloudflared (2024.4.1) ...
+Processing triggers for man-db (2.9.1-1) ...
+2024-05-01T00:26:31Z INF Using Systemd
+2024-05-01T00:26:31Z ERR error generating service template error=&quot;cloudflared service is already installed at /etc/systemd/system/cloudflared.service; if you are running a cloudflared tunnel, you can point it to multiple origins, avoiding the need to run more than one cloudflared service in the same machine; otherwise if you are really sure, you can do `cloudflared service uninstall` to clean up the existing service and then try again this command&quot;
+cloudflared service is already installed at /etc/systemd/system/cloudflared.service; if you are running a cloudflared tunnel, you can point it to multiple origins, avoiding the need to run more than one cloudflared service in the same machine; otherwise if you are really sure, you can do `cloudflared service uninstall` to clean up the existing service and then try again this command
+</code></pre>
+<h3><a id="dbuddenbaum-donb-ms7821-1" href="#dbuddenbaum-donb-ms7821-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>dbuddenbaum@donb-ms7821:~$</h3>
+<p>systemctl enable cloudflared</p>
+<pre><code>==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-unit-files ===
+Authentication is required to manage system service or unit files.
+Authenticating as: Don Buddenbaum,,, (dbuddenbaum)
+Password:
+==== AUTHENTICATION COMPLETE ===
+Created symlink /etc/systemd/system/multi-user.target.wants/cloudflared.service → /etc/systemd/system/cloudflared.service.
+==== AUTHENTICATING FOR org.freedesktop.systemd1.reload-daemon ===
+Authentication is required to reload the systemd state.
+Authenticating as: Don Buddenbaum,,, (dbuddenbaum)
+Password:
+==== AUTHENTICATION COMPLETE ===
+</code></pre>
+<h2><a id="check-cloud-flared-status" href="#check-cloud-flared-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Check Cloud Flared Status</h2>
+<p>385  systemctl status cloudflared
+386  sudo cloudflared service uninstall</p>
+<h2><a id="linkedin-authorization" href="#linkedin-authorization" class="Permalink" aria-hidden="true" title="Permalink">#</a>LinkedIn Authorization</h2>
     </div>
 
         <nav>
