@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>backup - Kalaxy2 Cluster</title>
+    <title>shell operator - Kalaxy2 Cluster</title>
     <meta name="description" content="Arm64/Amd64 cluster research">
     <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
@@ -108,8 +108,8 @@
 <li class='Nav__item '><a href="../databases/mongodb.html">mongodb</a></li>
 <li class='Nav__item '><a href="../databases/mysql.html">mysql</a></li>
 <li class='Nav__item '><a href="../databases/performant_datamodels.html">performant datamodels</a></li></ul></li>
-<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
-<li class='Nav__item Nav__item--active'><a href="../file_system/backup.html">backup</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
+<li class='Nav__item '><a href="../file_system/backup.html">backup</a></li>
 <li class='Nav__item '><a href="../file_system/ceph.html">ceph</a></li>
 <li class='Nav__item '><a href="../file_system/crd.html">crd</a></li>
 <li class='Nav__item '><a href="../file_system/deltalake_vs_parquet.html">deltalake vs parquet</a></li>
@@ -142,8 +142,8 @@
 <li class='Nav__item '><a href="../observability/grafana/grafana.html">grafana</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>prometheus</a><ul class='Nav'>
 <li class='Nav__item '><a href="../observability/prometheus/prometheus.html">prometheus</a></li></ul></li></ul></li>
-<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
-<li class='Nav__item '><a href="../operations/shell_operator.html">shell operator</a></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../operations/shell_operator.html">shell operator</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>programming</a><ul class='Nav'>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>java</a><ul class='Nav'>
 <li class='Nav__item '><a href="../programming/java/java.html">java</a></li>
@@ -215,7 +215,7 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../file_system/backup.html">file system</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../file_system/backup.html">backup</a></h1>
+        <h1><a href="../operations/shell_operator.html">operations</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../operations/shell_operator.html">shell operator</a></h1>
                     </div>
 
     <div class="s-content">
@@ -224,30 +224,132 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#backup">Backup</a>
+<a href="#shell-operator">Shell Operator</a>
+<ul>
+<li>
+<a href="#references">References</a>
+</li>
+<li>
+<a href="#build-docker-image-for-operator">Build Docker image for operator</a>
+<ul>
+<li>
+<a href="#07-16-24-7-15pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main">#( 07/16/24@ 7:15PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</a>
+</li>
+<li>
+<a href="#07-16-24-7-16pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main">#( 07/16/24@ 7:16PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#setup-operator">Setup Operator</a>
+<ul>
+<li>
+<a href="#07-16-24-7-53pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main">#( 07/16/24@ 7:53PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</a>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>    </div>
 </div>
-<h1><a id="backup" href="#backup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Backup</h1>
+<h1><a id="shell-operator" href="#shell-operator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Shell Operator</h1>
+<p><img src="image.png" alt="alt text" /></p>
+<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
 <li>
-<a href="https://discuss.kubernetes.io/t/backup-a-cluster-with-velero/19034" class="Link--external" rel="noopener noreferrer">Backup a cluster with Velero</a>
+<a href="https://itnext.io/automate-kubernetes-with-shell-operator-1ae5b50408ae" class="Link--external" rel="noopener noreferrer">Automate Kubernetes with Shell-Operator</a>
 </li>
 <li>
-<a href="https://itnext.io/files-upload-from-kubeless-on-microk8s-to-minio-607e06598a4b" class="Link--external" rel="noopener noreferrer">Files upload from Kubeless on MicroK8s to Minio</a>
+<a href="https://github.com/Piotr1215/shell-operator-demo" class="Link--external" rel="noopener noreferrer">Piotr1215/shell-operator-demo</a>
 </li>
 <li>
-<a href="https://min.io/" class="Link--external" rel="noopener noreferrer">minio</a>
-</li>
-<li>
-<a href="https://github.com/kubernetes/examples/tree/master/staging/storage/minio#cloud-native-deployment-of-minio-using-kubernetes" class="Link--external" rel="noopener noreferrer">Cloud Native Deployment of Minio using Kubernetes</a>
+<a href="https://github.com/crossplane-contrib/provider-http" class="Link--external" rel="noopener noreferrer">provider-http</a>
 </li>
 </ul>
+<h2><a id="build-docker-image-for-operator" href="#build-docker-image-for-operator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Build Docker image for operator</h2>
+<pre><code>docker buildx create --use
+
+docker buildx build --platform linux/amd64,linux/arm64 -f yaml/shell_operator/Dockerfile -t donb4iu/shell-operator-hooks:latest --push .
+</code></pre>
+<h3><a id="07-16-24-7-15pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" href="#07-16-24-7-15pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/16/24@ 7:15PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</h3>
+<p>docker buildx create –use</p>
+<pre><code>ecstatic_cray
+</code></pre>
+<h3><a id="07-16-24-7-16pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" href="#07-16-24-7-16pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/16/24@ 7:16PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</h3>
+<p>docker buildx build –platform linux/amd64,linux/arm64 -f yaml/shell_operator/Dockerfile -t donb4iu/shell-operator-hooks:latest –push .</p>
+<pre><code>[+] Building 59.4s (15/15) FINISHED                                                                                                                 docker-container:ecstatic_cray
+ =&gt; [internal] booting buildkit                                                                                                                                              16.1s
+ =&gt; =&gt; pulling image moby/buildkit:buildx-stable-1                                                                                                                           14.2s
+ =&gt; =&gt; creating container buildx_buildkit_ecstatic_cray0                                                                                                                      1.9s
+ =&gt; [internal] load build definition from Dockerfile                                                                                                                          0.1s
+ =&gt; =&gt; transferring dockerfile: 152B                                                                                                                                          0.0s
+ =&gt; [linux/arm64 internal] load metadata for docker.io/flant/shell-operator:latest                                                                                            1.6s
+ =&gt; [linux/amd64 internal] load metadata for docker.io/flant/shell-operator:latest                                                                                            1.4s
+ =&gt; [auth] flant/shell-operator:pull token for registry-1.docker.io                                                                                                           0.0s
+ =&gt; [internal] load .dockerignore                                                                                                                                             0.0s
+ =&gt; =&gt; transferring context: 2B                                                                                                                                               0.0s
+ =&gt; [internal] load build context                                                                                                                                             0.2s
+ =&gt; =&gt; transferring context: 3.55kB                                                                                                                                           0.0s
+ =&gt; [linux/amd64 1/3] FROM docker.io/flant/shell-operator:latest@sha256:78badc3b889781e4b74d465936688dd9ce56211d3200409e7d9e7bdd30e81562                                      9.7s
+ =&gt; =&gt; resolve docker.io/flant/shell-operator:latest@sha256:78badc3b889781e4b74d465936688dd9ce56211d3200409e7d9e7bdd30e81562                                                  0.0s
+ =&gt; =&gt; sha256:8ea74afb5906ad96cd567632bb02367f0ced919ac31418429825893e7443fc6b 331.80kB / 331.80kB                                                                            0.6s
+ =&gt; =&gt; sha256:fb0eb53e5ca2d71cdb1cfee432e18ba63ff058da64955976113730c1c7a72108 13.90MB / 13.90MB                                                                              4.9s
+ =&gt; =&gt; sha256:dd79b5b6ba20162a1e8e8d290ce410037b8a697154bafb98f6c802b885563cbe 16.68MB / 16.68MB                                                                              3.8s
+ =&gt; =&gt; sha256:82b00235610d160010c61f0c272b3e83ba7973da54f16e2be449c45d13ed5865 1.84kB / 1.84kB                                                                                0.2s
+ =&gt; =&gt; sha256:ec99f8b99825a742d50fb3ce173d291378a46ab54b8ef7dd75e5654e2a296e99 3.62MB / 3.62MB                                                                                1.5s
+ =&gt; =&gt; extracting sha256:ec99f8b99825a742d50fb3ce173d291378a46ab54b8ef7dd75e5654e2a296e99                                                                                     0.5s
+ =&gt; =&gt; extracting sha256:dd79b5b6ba20162a1e8e8d290ce410037b8a697154bafb98f6c802b885563cbe                                                                                     1.7s
+ =&gt; =&gt; extracting sha256:82b00235610d160010c61f0c272b3e83ba7973da54f16e2be449c45d13ed5865                                                                                     0.0s
+ =&gt; =&gt; extracting sha256:ad658c28cd77506acfcd495fef1970e3dd5cb06be4fd12cac59d1e6c3625b122                                                                                     0.0s
+ =&gt; =&gt; extracting sha256:8ea74afb5906ad96cd567632bb02367f0ced919ac31418429825893e7443fc6b                                                                                     0.1s
+ =&gt; =&gt; extracting sha256:fb0eb53e5ca2d71cdb1cfee432e18ba63ff058da64955976113730c1c7a72108                                                                                     1.5s
+ =&gt; [linux/arm64 1/3] FROM docker.io/flant/shell-operator:latest@sha256:78badc3b889781e4b74d465936688dd9ce56211d3200409e7d9e7bdd30e81562                                     11.3s
+ =&gt; =&gt; resolve docker.io/flant/shell-operator:latest@sha256:78badc3b889781e4b74d465936688dd9ce56211d3200409e7d9e7bdd30e81562                                                  0.0s
+ =&gt; =&gt; sha256:fcc14534468ff49db2060cd52eb22c5e72c771860741d4789522d54665df418e 12.58MB / 12.58MB                                                                              2.2s
+ =&gt; =&gt; sha256:d7fb639546e19a61a0ea5d5e6bd4103920420820580b6ac68655045c5b5a19ba 322.29kB / 322.29kB                                                                            0.4s
+ =&gt; =&gt; sha256:ad658c28cd77506acfcd495fef1970e3dd5cb06be4fd12cac59d1e6c3625b122 496B / 496B                                                                                    0.4s
+ =&gt; =&gt; sha256:b4c2b5c3a7b1649e0f19c68a492de9579297a57c53cd65e1f6db06354ac6f232 1.84kB / 1.84kB                                                                                0.5s
+ =&gt; =&gt; sha256:fbbcca973eda7a5b37f8c47f28a5febec30f2f44bd2768dd63dbf4820585388b 15.36MB / 15.36MB                                                                              6.0s
+ =&gt; =&gt; sha256:a258b2a6b59a7aa244d8ceab095c7f8df726f27075a69fca7ad8490f3f63148a 4.09MB / 4.09MB                                                                                2.0s
+ =&gt; =&gt; extracting sha256:a258b2a6b59a7aa244d8ceab095c7f8df726f27075a69fca7ad8490f3f63148a                                                                                     0.6s
+ =&gt; =&gt; extracting sha256:fbbcca973eda7a5b37f8c47f28a5febec30f2f44bd2768dd63dbf4820585388b                                                                                     1.8s
+ =&gt; =&gt; extracting sha256:b4c2b5c3a7b1649e0f19c68a492de9579297a57c53cd65e1f6db06354ac6f232                                                                                     0.0s
+ =&gt; =&gt; extracting sha256:ad658c28cd77506acfcd495fef1970e3dd5cb06be4fd12cac59d1e6c3625b122                                                                                     0.0s
+ =&gt; =&gt; extracting sha256:d7fb639546e19a61a0ea5d5e6bd4103920420820580b6ac68655045c5b5a19ba                                                                                     0.1s
+ =&gt; =&gt; extracting sha256:fcc14534468ff49db2060cd52eb22c5e72c771860741d4789522d54665df418e                                                                                     2.6s
+ =&gt; [linux/amd64 2/3] COPY yaml/shell_operator/documentation_operator/hooks /hooks                                                                                            1.6s
+ =&gt; [linux/arm64 2/3] COPY yaml/shell_operator/documentation_operator/hooks /hooks                                                                                            0.3s
+ =&gt; [linux/amd64 3/3] RUN chmod +x /hooks/*                                                                                                                                   0.4s
+ =&gt; [linux/arm64 3/3] RUN chmod +x /hooks/*                                                                                                                                   0.2s
+ =&gt; exporting to image                                                                                                                                                       28.1s
+ =&gt; =&gt; exporting layers                                                                                                                                                       0.2s
+ =&gt; =&gt; exporting manifest sha256:ccd62ec5cf91eaf0c81e4d39f29df1d7638a8c59cc5b5747982649030b51da25                                                                             0.0s
+ =&gt; =&gt; exporting config sha256:6892e6523ea659a7963164e2e21234be58597b3ba10d7cb31e4e59e444750afa                                                                               0.0s
+ =&gt; =&gt; exporting attestation manifest sha256:6c69e7d4b98afbdb33411dae0d5a667d929cc9286dcd96a6c6874163680e130a                                                                 0.0s
+ =&gt; =&gt; exporting manifest sha256:148bbc1cc78799a189f7f8d1fdbdf20297ca6aed92c5ada22b19866b194692cd                                                                             0.0s
+ =&gt; =&gt; exporting config sha256:458ba3a5ec90eed730e27c8c25fae5d96d3a06f5a359ae3e2f7aa441df986182                                                                               0.0s
+ =&gt; =&gt; exporting attestation manifest sha256:542e648e1e465d0bb8dfdade89e5bdc21d18f89888880dce61032f59879ce927                                                                 0.0s
+ =&gt; =&gt; exporting manifest list sha256:762a8bdf7203431411c70d6d461a5bc1b9d2fafdd32249a6af9c48ba1bdc6a77                                                                        0.0s
+ =&gt; =&gt; pushing layers                                                                                                                                                        26.1s
+ =&gt; =&gt; pushing manifest for docker.io/donb4iu/shell-operator-hooks:latest@sha256:762a8bdf7203431411c70d6d461a5bc1b9d2fafdd32249a6af9c48ba1bdc6a77                             1.5s
+ =&gt; [auth] donb4iu/shell-operator-hooks:pull,push token for registry-1.docker.io
+</code></pre>
+<h2><a id="setup-operator" href="#setup-operator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup Operator</h2>
+<h3><a id="07-16-24-7-53pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" href="#07-16-24-7-53pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/16/24@ 7:53PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</h3>
+<p>kubectl apply -f yaml/shell_operator/documentation_operator/service-account.yaml</p>
+<p>kubectl apply -f yaml/shell_operator/documentation_operator/cluster-role.yaml</p>
+<p>kubectl apply -f yaml/shell_operator/documentation_operator/cluster-role-binding.yaml</p>
+<p>kubectl apply -f yaml/shell_operator/documentation_operator/shell-operator-pod.yaml</p>
+<pre><code>serviceaccount/monitor-pods-acc created
+clusterrole.rbac.authorization.k8s.io/pod-manager-clusterrole created
+clusterrolebinding.rbac.authorization.k8s.io/monitor-pods-acc-clusterrolebinding created
+pod/shell-operator created
+</code></pre>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../databases/performant_datamodels.html">Previous</a></li>            <li class=Pager--next><a href="../file_system/ceph.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../observability/prometheus/prometheus.html">Previous</a></li>            <li class=Pager--next><a href="../programming/java/java.html">Next</a></li>        </ul>
     </nav>
     </article>
 
