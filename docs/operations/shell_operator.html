@@ -253,6 +253,23 @@
 </li>
 </ul>
 </li>
+<li>
+<a href="#update-crossplane">Update Crossplane</a>
+<ul>
+<li>
+<a href="#07-20-24-1-11am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main">#( 07/20/24@ 1:11AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/shell_operator/crossplane_provider/old@main✗✗✗</a>
+</li>
+<li>
+<a href="#07-20-24-1-13am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main">#( 07/20/24@ 1:13AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/shell_operator/crossplane_provider/old@main✗✗✗</a>
+</li>
+<li>
+<a href="#07-20-24-1-16am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main">#( 07/20/24@ 1:16AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/shell_operator/crossplane_provider/old@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#shell-operator-log">shell-operator Log</a>
+</li>
 </ul>
 </li>
 </ul>    </div>
@@ -352,6 +369,100 @@ docker buildx build --platform linux/amd64,linux/arm64 -f yaml/shell_operator/Do
 clusterrole.rbac.authorization.k8s.io/pod-manager-clusterrole created
 clusterrolebinding.rbac.authorization.k8s.io/monitor-pods-acc-clusterrolebinding created
 pod/shell-operator created
+</code></pre>
+<h2><a id="update-crossplane" href="#update-crossplane" class="Permalink" aria-hidden="true" title="Permalink">#</a>Update Crossplane</h2>
+<h3><a id="07-20-24-1-11am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main" href="#07-20-24-1-11am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/20/24@ 1:11AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/shell_operator/crossplane_provider/old@main✗✗✗</h3>
+<p>kubectl apply -f providers.yaml</p>
+<pre><code>provider.pkg.crossplane.io/provider-helm created
+deploymentruntimeconfig.pkg.crossplane.io/provider-helm created
+clusterrolebinding.rbac.authorization.k8s.io/provider-helm-cluster-admin unchanged
+provider.pkg.crossplane.io/provider-http created
+provider.pkg.crossplane.io/provider-kubernetes created
+deploymentruntimeconfig.pkg.crossplane.io/provider-kubernetes created
+clusterrolebinding.rbac.authorization.k8s.io/provider-kubernetes-cluster-admin unchanged
+</code></pre>
+<h3><a id="07-20-24-1-13am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main" href="#07-20-24-1-13am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/20/24@ 1:13AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/shell_operator/crossplane_provider/old@main✗✗✗</h3>
+<p>kubectl apply -f functions.yaml</p>
+<pre><code>function.pkg.crossplane.io/function-patch-and-transform created
+function.pkg.crossplane.io/function-auto-ready created
+function.pkg.crossplane.io/function-sequencer created
+</code></pre>
+<h3><a id="07-20-24-1-16am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main" href="#07-20-24-1-16am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-shell-operator-crossplane-provider-old-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/20/24@ 1:16AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/shell_operator/crossplane_provider/old@main✗✗✗</h3>
+<p>kubectl apply -f provider-configs.yaml</p>
+<pre><code>providerconfig.http.crossplane.io/default created
+providerconfig.kubernetes.crossplane.io/default created
+providerconfig.helm.crossplane.io/default created
+</code></pre>
+<h2><a id="shell-operator-log" href="#shell-operator-log" class="Permalink" aria-hidden="true" title="Permalink">#</a>shell-operator Log</h2>
+<pre><code>{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;shell-operator v1.4.10&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Debug endpoint listen on /var/run/shell-operator/debug.socket&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_live_ticks&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_tasks_queue_action_duration_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_tasks_queue_length&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_kube_snapshot_objects&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_kube_jq_filter_duration_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_kube_event_duration_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_kubernetes_client_watch_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_kubernetes_client_request_latency_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_kubernetes_client_request_result_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Kubernetes client is configured successfully with 'out-of-cluster' config&quot;,&quot;operator.component&quot;:&quot;KubernetesAPIClient&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Kubernetes client is configured successfully with 'out-of-cluster' config&quot;,&quot;operator.component&quot;:&quot;KubernetesAPIClient&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_hook_enable_kubernetes_bindings_seconds&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_enable_kubernetes_bindings_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_hook_enable_kubernetes_bindings_success&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_hook_run_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_hook_run_user_cpu_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_hook_run_sys_cpu_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_hook_run_max_rss_bytes&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_run_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_run_allowed_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_run_success_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_task_wait_in_queue_seconds_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Initialize hooks manager. Search for and load all hooks.&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Load config from '/hooks/pods-create-call-slack.sh'&quot;,&quot;phase&quot;:&quot;config&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Loaded config: Watch k8s kinds: 'Pod'&quot;,&quot;phase&quot;:&quot;config&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Load config from '/hooks/pods-delete-call-slack.sh'&quot;,&quot;phase&quot;:&quot;config&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Loaded config: Watch k8s kinds: 'Pod'&quot;,&quot;phase&quot;:&quot;config&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;start shell-operator&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;base http server started at 0.0.0.0:9115&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;queue task EnableKubernetesBindings:::pods-create-call-slack.sh:EnableKubernetesBindings for hook pods-create-call-slack.sh&quot;,&quot;operator.component&quot;:&quot;initMainQueue&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;queue task EnableKubernetesBindings:::pods-delete-call-slack.sh:EnableKubernetesBindings for hook pods-delete-call-slack.sh&quot;,&quot;operator.component&quot;:&quot;initMainQueue&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;binding&quot;:&quot;&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Enable kubernetes binding for hook&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;EnableKubernetesBindings&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_kubernetes_client_rate_limiter_latency_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:23Z&quot;}
+{&quot;binding&quot;:&quot;&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Kubernetes bindings for hook are enabled successfully, 1 tasks generated&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;EnableKubernetesBindings&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:24Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_enable_kubernetes_bindings_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:24Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_hook_enable_kubernetes_bindings_success&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:24Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_hook_enable_kubernetes_bindings_seconds&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:24Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_task_wait_in_queue_seconds_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:24Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Execute hook&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:24Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;disposablerequest.http.crossplane.io/slack-webhook-creation-null configured&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;CRD created for created pod 'null' with webhook URL.&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_hook_run_sys_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_hook_run_user_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric gauge shell_operator_hook_run_max_rss_bytes&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Hook executed successfully&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_run_allowed_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_run_errors_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric counter shell_operator_hook_run_success_total&quot;,&quot;operator.component&quot;:&quot;metricStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Unlock kubernetes.Event tasks&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Create metric histogram shell_operator_hook_run_seconds&quot;,&quot;operator.component&quot;:&quot;metricsStorage&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;binding&quot;:&quot;&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Enable kubernetes binding for hook&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;EnableKubernetesBindings&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:29Z&quot;}
+{&quot;binding&quot;:&quot;&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Kubernetes bindings for hook are enabled successfully, 1 tasks generated&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;EnableKubernetesBindings&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:30Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Execute hook&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:30Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;disposablerequest.http.crossplane.io/slack-webhook-deletion-null configured&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:34Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;CRD created for deleted pod 'null' with webhook URL.&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:34Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Hook executed successfully&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:34Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Unlock kubernetes.Event tasks&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:27:34Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event.id&quot;:&quot;c794832f-e147-4b39-8248-127bdfa011eb&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;queue task HookRun:main:kubernetes:pods-delete-call-slack.sh:kubernetes&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:12Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Execute hook&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:12Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;disposablerequest.http.crossplane.io/slack-webhook-deletion-nginx-5f5795b7df-q854q created&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:13Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;CRD created for deleted pod 'nginx-5f5795b7df-q854q' with webhook URL.&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:13Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-delete-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Hook executed successfully&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:13Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event.id&quot;:&quot;fe83e06a-2d21-4edb-be89-e33a0dce6fd1&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;queue task HookRun:main:kubernetes:pods-create-call-slack.sh:kubernetes&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:29Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Execute hook&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:29Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;disposablerequest.http.crossplane.io/slack-webhook-creation-nginx-5f5795b7df-dpns5 created&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:30Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;CRD created for created pod 'nginx-5f5795b7df-dpns5' with webhook URL.&quot;,&quot;output&quot;:&quot;stdout&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:30Z&quot;}
+{&quot;binding&quot;:&quot;kubernetes&quot;,&quot;event&quot;:&quot;kubernetes&quot;,&quot;hook&quot;:&quot;pods-create-call-slack.sh&quot;,&quot;level&quot;:&quot;info&quot;,&quot;msg&quot;:&quot;Hook executed successfully&quot;,&quot;queue&quot;:&quot;main&quot;,&quot;task&quot;:&quot;HookRun&quot;,&quot;time&quot;:&quot;2024-07-20T05:28:30Z&quot;}
 </code></pre>
     </div>
 
