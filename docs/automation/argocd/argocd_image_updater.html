@@ -249,38 +249,14 @@
 </li>
 <li>
 <a href="#strategy">Strategy</a>
-<ul>
-<li>
-<a href="#add-image-updater">Add Image updater</a>
-<ul>
-<li>
-<a href="#07-08-24-1-43pm-donbuddenbaum-donbs-imac">#( 07/08/24@ 1:43PM )( donbuddenbaum@donbs-imac ):~</a>
-</li>
-<li>
-<a href="#update-configmaps">update configmaps</a>
-</li>
-<li>
-<a href="#07-08-24-5-35pm-donbuddenbaum-donbs-imac">#( 07/08/24@ 5:35PM )( donbuddenbaum@donbs-imac ):~</a>
-</li>
-<li>
-<a href="#07-08-24-5-37pm-donbuddenbaum-donbs-imac">#( 07/08/24@ 5:37PM )( donbuddenbaum@donbs-imac ):~</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#07-23-24-12-28am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-k8s-doc-to-nginx-main">#( 07/23/24@12:28AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs/k8s-doc-to-nginx@main✗✗✗</a>
-</li>
-</ul>
+<a href="#log-level-can-be-one-of-trace-debug-info-warn-or-error">log.level can be one of trace, debug, info, warn or error</a>
 </li>
 <li>
-<a href="#logs">Logs</a>
-<ul>
-<li>
-<a href="#07-22-24-11-32pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-k8s-doc-to-nginx-main">#( 07/22/24@11:32PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs/k8s-doc-to-nginx@main✗✗✗</a>
-</li>
-</ul>
-</li>
-</ul>
+<a href="#">…</a>
 </li>
 </ul>    </div>
 </div>
@@ -309,85 +285,90 @@
 </ul>
 <h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
 <h2><a id="strategy" href="#strategy" class="Permalink" aria-hidden="true" title="Permalink">#</a>Strategy</h2>
-<pre><code>latest - Update to the most recently built image¶
-Warning
+<pre><code>annotations:
+  argocd-image-updater.argoproj.io/image-list: docker.io/donb4iu/mynginx_docs:latest
+  argocd-image-updater.argoproj.io/api.update-strategy: digest
+  argocd-image-updater.argoproj.io/myapp.force-update: &quot;true&quot;
+  argocd-image-updater.argoproj.io/api.pull-secret: pullsecret:argocd/argocd-image-updater-secret
+  ```
 
-As of November 2020, Docker Hub has introduced pull limits for accounts on the free plan and unauthenticated requests. The latest update strategy will perform manifest pulls for determining the most recently pushed tags, and these will count into your pull limits. So unless you are not affected by these pull limits, it is not recommended to use the latest update strategy with images hosted on Docker Hub.
 </code></pre>
-<pre><code>Tags and digests
-
-Note that the digest update strategy will use image digests for updating the image tags in your applications, so the image running in your application will appear as some/image@sha256:&lt;somelonghashstring&gt; instead of some/image:latest. So in your running system, the tag information will be effectively lost.
-
-For example, the following specification would always update the image for an application on each new push of the image some/image with the tag latest:
-
-
-argocd-image-updater.argoproj.io/image-list: myimage=some/image:latest
-argocd-image-updater.argoproj.io/myimage.update-strategy: digest
+<p>latest - Update to the most recently built image¶
+Warning</p>
+<p>As of November 2020, Docker Hub has introduced pull limits for accounts on the free plan and unauthenticated requests. The latest update strategy will perform manifest pulls for determining the most recently pushed tags, and these will count into your pull limits. So unless you are not affected by these pull limits, it is not recommended to use the latest update strategy with images hosted on Docker Hub.</p>
+<pre><code>
 </code></pre>
-<h3><a id="add-image-updater" href="#add-image-updater" class="Permalink" aria-hidden="true" title="Permalink">#</a>Add Image updater</h3>
-<h4><a id="07-08-24-1-43pm-donbuddenbaum-donbs-imac" href="#07-08-24-1-43pm-donbuddenbaum-donbs-imac" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/08/24@ 1:43PM )( donbuddenbaum@donbs-imac ):~</h4>
-<p>kubectl apply -n argocd -f <a href="https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml" class="Link--external" rel="noopener noreferrer">https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml</a></p>
-<pre><code>serviceaccount/argocd-image-updater created
+<p>Tags and digests</p>
+<p>Note that the digest update strategy will use image digests for updating the image tags in your applications, so the image running in your application will appear as some/image@sha256:<somelonghashstring> instead of some/image:latest. So in your running system, the tag information will be effectively lost.</p>
+<p>For example, the following specification would always update the image for an application on each new push of the image some/image with the tag latest:</p>
+<p>argocd-image-updater.argoproj.io/image-list: myimage=some/image:latest
+argocd-image-updater.argoproj.io/myimage.update-strategy: digest</p>
+<pre><code>
+### Add Image updater
+#### #( 07/08/24@ 1:43PM )( donbuddenbaum@donbs-imac ):~
+   kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj-labs/argocd-image-updater/stable/manifests/install.yaml
+
+</code></pre>
+<p>serviceaccount/argocd-image-updater created
 role.rbac.authorization.k8s.io/argocd-image-updater created
 rolebinding.rbac.authorization.k8s.io/argocd-image-updater created
 configmap/argocd-image-updater-config created
 configmap/argocd-image-updater-ssh-config created
 secret/argocd-image-updater-secret created
-deployment.apps/argocd-image-updater created
+deployment.apps/argocd-image-updater created</p>
+<pre><code>
+#### update configmaps
+
+- argocd-image-updater-config
 </code></pre>
-<h4><a id="update-configmaps" href="#update-configmaps" class="Permalink" aria-hidden="true" title="Permalink">#</a>update configmaps</h4>
-<ul>
-<li>argocd-image-updater-config</li>
-</ul>
-<pre><code>data:
-  # log.level can be one of trace, debug, info, warn or error
-  log.level: debug
+<p>data:</p>
+<h1><a id="log-level-can-be-one-of-trace-debug-info-warn-or-error" href="#log-level-can-be-one-of-trace-debug-info-warn-or-error" class="Permalink" aria-hidden="true" title="Permalink">#</a>log.level can be one of trace, debug, info, warn or error</h1>
+<p>log.level: debug</p>
+<pre><code>- argocd-cm
 </code></pre>
-<ul>
-<li>argocd-cm</li>
-</ul>
-<pre><code>data:
-  # ...
-  accounts.image-updater: apiKey
+<p>data:</p>
+<h1><a id="" href="#" class="Permalink" aria-hidden="true" title="Permalink">#</a>…</h1>
+<p>accounts.image-updater: apiKey</p>
+<pre><code>- argocd-rbac-cm
 </code></pre>
-<ul>
-<li>argocd-rbac-cm</li>
-</ul>
-<pre><code>p, role:image-updater, applications, get, */*, allow
-p, role:image-updater, applications, update, */*, allow
-g, image-updater, role:image-updater
+<p>p, role:image-updater, applications, get, <em>/</em>, allow
+p, role:image-updater, applications, update, <em>/</em>, allow
+g, image-updater, role:image-updater</p>
+<pre><code>- argocd.token in a secret named argocd-image-updater-secret
+    - echo -n 'super-secret-password' | base64
+    - printf instead: var=$(printf '%s:%s' &quot;$username&quot; &quot;$password&quot; | base64)
+
+
+#### #( 07/08/24@ 5:35PM )( donbuddenbaum@donbs-imac ):~
+  kubectl create secret generic argocd-image-updater-secret --from-literal argocd.token=$var --dry-run -o yaml |
+  
+  kubectl -n argocd apply -f -
 </code></pre>
-<ul>
-<li>argocd.token in a secret named argocd-image-updater-secret
-<ul>
-<li>echo -n ‘super-secret-password’ | base64</li>
-<li>printf instead: var=$(printf ‘%s:%s’ “$username” “$password” | base64)</li>
-</ul>
-</li>
-</ul>
-<h4><a id="07-08-24-5-35pm-donbuddenbaum-donbs-imac" href="#07-08-24-5-35pm-donbuddenbaum-donbs-imac" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/08/24@ 5:35PM )( donbuddenbaum@donbs-imac ):~</h4>
-<p>kubectl create secret generic argocd-image-updater-secret –from-literal argocd.token=$var –dry-run -o yaml |</p>
-<p>kubectl -n argocd apply -f -</p>
-<pre><code>W0708 17:37:04.010061   15122 helpers.go:704] --dry-run is deprecated and can be replaced with --dry-run=client.
-secret/argocd-image-updater-secret configured
+<p>W0708 17:37:04.010061   15122 helpers.go:704] –dry-run is deprecated and can be replaced with –dry-run=client.
+secret/argocd-image-updater-secret configured</p>
+<pre><code>
+#### #( 07/08/24@ 5:37PM )( donbuddenbaum@donbs-imac ):~
+   kubectl -n argocd rollout restart deployment argocd-image-updater
+
+    deployment.apps/argocd-image-updater restarted
+
+### #( 07/23/24@12:28AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs/k8s-doc-to-nginx@main✗✗✗
+   kubectl apply -f argocd-image-updater.yaml
+
+    application.argoproj.io/kalaxy2 configured
+
+## Logs
+
+### #( 07/22/24@11:32PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs/k8s-doc-to-nginx@main✗✗✗
+   kubectl logs --selector app.kubernetes.io/name=argocd-image-updater \
+        --namespace argocd \
+        --follow
+
+
 </code></pre>
-<h4><a id="07-08-24-5-37pm-donbuddenbaum-donbs-imac" href="#07-08-24-5-37pm-donbuddenbaum-donbs-imac" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/08/24@ 5:37PM )( donbuddenbaum@donbs-imac ):~</h4>
-<p>kubectl -n argocd rollout restart deployment argocd-image-updater</p>
-<pre><code>deployment.apps/argocd-image-updater restarted
-</code></pre>
-<h3><a id="07-23-24-12-28am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-k8s-doc-to-nginx-main" href="#07-23-24-12-28am-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-k8s-doc-to-nginx-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/23/24@12:28AM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs/k8s-doc-to-nginx@main✗✗✗</h3>
-<p>kubectl apply -f argocd-image-updater.yaml</p>
-<pre><code>application.argoproj.io/kalaxy2 configured
-</code></pre>
-<h2><a id="logs" href="#logs" class="Permalink" aria-hidden="true" title="Permalink">#</a>Logs</h2>
-<h3><a id="07-22-24-11-32pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-k8s-doc-to-nginx-main" href="#07-22-24-11-32pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-k8s-doc-to-nginx-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/22/24@11:32PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs/k8s-doc-to-nginx@main✗✗✗</h3>
-<p>kubectl logs –selector app.kubernetes.io/name=argocd-image-updater <br />
-–namespace argocd <br />
-–follow</p>
-<pre><code>time=&quot;2024-07-23T03:43:35Z&quot; level=info msg=&quot;Starting image update cycle, considering 0 annotated application(s) for update&quot;
-time=&quot;2024-07-23T03:43:35Z&quot; level=info msg=&quot;Processing results: applications=0 images_considered=0 images_skipped=0 images_updated=0 errors=0&quot;
-time=&quot;2024-07-23T03:45:35Z&quot; level=warning msg=&quot;skipping app 'kalaxy2' of type 'Directory' because it's not of supported source type&quot; application=kalaxy2
-</code></pre>
+<p>time=“2024-07-23T03:43:35Z” level=info msg=“Starting image update cycle, considering 0 annotated application(s) for update”
+time=“2024-07-23T03:43:35Z” level=info msg=“Processing results: applications=0 images_considered=0 images_skipped=0 images_updated=0 errors=0”
+time=“2024-07-23T03:45:35Z” level=warning msg=“skipping app ‘kalaxy2’ of type ‘Directory’ because it’s not of supported source type” application=kalaxy2</p>
     </div>
 
         <nav>
