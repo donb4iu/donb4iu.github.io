@@ -247,10 +247,18 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#dauxio-resume-website-generation">DauxIO Resume Website Generation</a>
+<a href="#resume-website-generation">Resume Website Generation</a>
 <ul>
 <li>
-<a href="#build">Build</a>
+<a href="#automated-build">Automated Build</a>
+<ul>
+<li>
+<a href="#07-26-24-2-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-main">#( 07/26/24@ 2:17PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#manual-build">Manual Build</a>
 <ul>
 <li>
 <a href="#04-30-24-8-18pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main">#( 04/30/24@ 8:18PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</a>
@@ -264,8 +272,16 @@
 </li>
 </ul>    </div>
 </div>
-<h1><a id="dauxio-resume-website-generation" href="#dauxio-resume-website-generation" class="Permalink" aria-hidden="true" title="Permalink">#</a>DauxIO Resume Website Generation</h1>
-<h2><a id="build" href="#build" class="Permalink" aria-hidden="true" title="Permalink">#</a>Build</h2>
+<h1><a id="resume-website-generation" href="#resume-website-generation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Resume Website Generation</h1>
+<h2><a id="automated-build" href="#automated-build" class="Permalink" aria-hidden="true" title="Permalink">#</a>Automated Build</h2>
+<p><a href="../automation/github/actions.html">git actions</a></p>
+<h3><a id="07-26-24-2-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-main" href="#07-26-24-2-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-nginx-docs-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/26/24@ 2:17PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/nginx-docs@main✗✗✗</h3>
+<p>helm create k8s-resume-to-nginx</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+Creating k8s-resume-to-nginx
+</code></pre>
+<h2><a id="manual-build" href="#manual-build" class="Permalink" aria-hidden="true" title="Permalink">#</a>Manual Build</h2>
 <h3><a id="04-30-24-8-18pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" href="#04-30-24-8-18pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 04/30/24@ 8:18PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</h3>
 <p>docker buildx create –use</p>
 <p>docker buildx build –platform linux/amd64,linux/arm64 -f yaml/nginx-docs/k8s-resume-to-nginx/nginx/Dockerfile -t donb4iu/mynginx_resume –push .</p>
