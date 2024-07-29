@@ -243,7 +243,7 @@
     <div class="Page__header">
         <h1><a href="../websites_generation/dauxio_kalaxy2.html">websites generation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../websites_generation/dauxio_kalaxy2.html">dauxio kalaxy2</a></h1>
                 <span class="ModifiedDate">
-            July 28, 2024 at 8:38 PM        </span>
+            July 28, 2024 at 11:59 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -412,8 +412,9 @@ Generating ...
 <h2><a id="hosting-site-in-a-file-in-nginx" href="#hosting-site-in-a-file-in-nginx" class="Permalink" aria-hidden="true" title="Permalink">#</a>Hosting site in a file in NGINX</h2>
 <h3><a id="multi-arc-build-nginx-with-static-site" href="#multi-arc-build-nginx-with-static-site" class="Permalink" aria-hidden="true" title="Permalink">#</a>Multi Arc Build NGINX with static site</h3>
 <h4><a id="01-10-23-3-50pm-donbuddenbaum-donbs-imac-documents-rpi4-kalaxy-main" href="#01-10-23-3-50pm-donbuddenbaum-donbs-imac-documents-rpi4-kalaxy-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 01/10/23@ 3:50PM )( donbuddenbaum@donbs-imac ):~/Documents/rPi4/kalaxy@main✗✗✗</h4>
-<p>docker buildx create –use</p>
+<p>docker buildx create –use –name temp-builder</p>
 <p>docker buildx build –platform linux/amd64,linux/arm64 -f yaml/nginx-docs/k8s-doc-to-nginx/nginx/Dockerfile -t donb4iu/mynginx_docs –push .</p>
+<p>docker buildx rm temp-builder</p>
 <pre><code>[+] Building 92.2s (12/12) FINISHED
 =&gt; [internal] load build definition from Dockerfile                                                                                               0.0s
 =&gt; =&gt; transferring dockerfile: 80B                                                                                                                0.0s
