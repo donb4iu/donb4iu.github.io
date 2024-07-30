@@ -118,7 +118,9 @@
 <li class='Nav__item '><a href="../databases/iris/restapi.html">restapi</a></li></ul></li>
 <li class='Nav__item '><a href="../databases/mongodb.html">mongodb</a></li>
 <li class='Nav__item '><a href="../databases/mysql.html">mysql</a></li>
-<li class='Nav__item '><a href="../databases/performant_datamodels.html">performant datamodels</a></li></ul></li>
+<li class='Nav__item '><a href="../databases/options.html">options</a></li>
+<li class='Nav__item '><a href="../databases/performant_datamodels.html">performant datamodels</a></li>
+<li class='Nav__item '><a href="../databases/starrocks.html">starrocks</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>etl</a><ul class='Nav'>
 <li class='Nav__item '><a href="../etl/mage_etl.html">mage etl</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
@@ -243,7 +245,7 @@
     <div class="Page__header">
         <h1><a href="../operations/crossplane.html">operations</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../operations/shell_operator.html">shell operator</a></h1>
                 <span class="ModifiedDate">
-            July 29, 2024 at 9:30 PM        </span>
+            July 29, 2024 at 10:57 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -318,9 +320,11 @@
 </li>
 </ul>
 <h2><a id="build-docker-image-for-operator" href="#build-docker-image-for-operator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Build Docker image for operator</h2>
-<pre><code>docker buildx create --use
+<pre><code>docker buildx create --use --name temp-builder
 
 docker buildx build --platform linux/amd64,linux/arm64 -f yaml/shell_operator/Dockerfile -t donb4iu/shell-operator-hooks:latest --push .
+
+docker buildx rm temp-builder
 </code></pre>
 <h3><a id="07-16-24-7-15pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" href="#07-16-24-7-15pm-donbuddenbaum-donbs-imac-documents-kalaxy2-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 07/16/24@ 7:15PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2@main✗✗✗</h3>
 <p>docker buildx create –use</p>
