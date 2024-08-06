@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>operators - Kalaxy2 MicroK8s Cluster</title>
+    <title>hooks - Kalaxy2 MicroK8s Cluster</title>
     <meta name="description" content="Arm64/Amd64 cluster research">
     <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
@@ -167,8 +167,8 @@
 <li class='Nav__item '><a href="../observability/prometheus/prometheus.html">prometheus</a></li></ul></li></ul></li>
 <li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
 <li class='Nav__item '><a href="../operations/crossplane.html">crossplane</a></li>
-<li class='Nav__item '><a href="../operations/hooks.html">hooks</a></li>
-<li class='Nav__item Nav__item--active'><a href="../operations/operators.html">operators</a></li>
+<li class='Nav__item Nav__item--active'><a href="../operations/hooks.html">hooks</a></li>
+<li class='Nav__item '><a href="../operations/operators.html">operators</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>registries</a><ul class='Nav'>
 <li class='Nav__item '><a href="../operations/registries/ghcrIO.html">ghcrIO</a></li></ul></li>
 <li class='Nav__item '><a href="../operations/shell_operator_demo.html">shell-operator-demo</a></li>
@@ -256,7 +256,7 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../operations/crossplane.html">operations</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../operations/operators.html">operators</a></h1>
+        <h1><a href="../operations/crossplane.html">operations</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../operations/hooks.html">hooks</a></h1>
                 <span class="ModifiedDate">
             August 6, 2024 at 4:08 PM        </span>
                     </div>
@@ -267,28 +267,103 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#kubernetes-operators">Kubernetes Operators</a>
+<a href="#crossplane-hooks">Crossplane Hooks</a>
 <ul>
 <li>
 <a href="#references">References</a>
+</li>
+<li>
+<a href="#implementations">Implementations</a>
 </li>
 </ul>
 </li>
 </ul>    </div>
 </div>
-<h1><a id="kubernetes-operators" href="#kubernetes-operators" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes Operators</h1>
-<p><img src="image-4.png" alt="alt text" /></p>
+<h1><a id="crossplane-hooks" href="#crossplane-hooks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Crossplane Hooks</h1>
 <h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
 <li>
-<a href="https://medium.com/itnext/5-advanced-kubernetes-operators-every-devops-engineer-should-know-about-ab46bdc1c7d5" class="Link--external" rel="noopener noreferrer">5 Advanced Kubernetes Operators Every DevOps Engineer Should Know About</a>
+<a href="https://blog.crossplane.io/introducing-provider-http-empowering-crossplane-with-http-interactions/" class="Link--external" rel="noopener noreferrer">Introducing provider-http: Empowering Crossplane with HTTP Interactions</a>
 </li>
 </ul>
+<h2><a id="implementations" href="#implementations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementations</h2>
+<ul>
+<li>node-status-call-slask</li>
+<li>pod-create-call-slack</li>
+<li>pod-delete-call-stack</li>
+<li>pv-status-call-slack</li>
+<li>pvc-status-call-slack</li>
+<li>sc-status-call-slack</li>
+</ul>
+<p>#!/usr/bin/env bash</p>
+<pre><code># Define the secret details
+SECRET_NAMESPACE=&quot;SECRET_NAMESPACE&quot;
+SECRET_NAME=&quot;SECRET_NAME&quot;
+SECRET_KEY=&quot;SECRET_KEY&quot;
+KIND=&quot;KIND&quot;
+
+
+if [[ $1 == &quot;--config&quot; ]]; then
+    cat &lt;&lt;EOF
+configVersion: v1
+kubernetes:
+- apiVersion: v1
+  kind: $KIND
+  executeHookOnEvent: [&quot;Modified&quot;]
+EOF
+else
+    # Retrieve the webhook URL from the secret
+    WEBHOOK_URL=$(kubectl get secret $SECRET_NAME -n $SECRET_NAMESPACE -o jsonpath=&quot;{.data.$SECRET_KEY}&quot; | base64 -d)
+
+    if [[ -z &quot;$WEBHOOK_URL&quot; ]]; then
+        echo &quot;Error: WEBHOOK_URL is empty or the secret does not exist.&quot;
+        exit 1
+    fi
+
+    # Iterate over all events in the binding context
+    for i in $(seq 0 $(($(jq length $BINDING_CONTEXT_PATH) - 1))); do
+        nodeName=$(jq -r .[$i].object.metadata.name $BINDING_CONTEXT_PATH)
+        conditions=$(jq -r .[$i].object.status.conditions $BINDING_CONTEXT_PATH)
+
+        # Check if the node is in a NotReady state
+        nodeStatus=$(echo &quot;$conditions&quot; | jq -r '.[] | select(.type == &quot;Ready&quot;) | .status')
+
+        if [[ &quot;$nodeStatus&quot; != &quot;True&quot; ]]; then
+            reason=$(echo &quot;$conditions&quot; | jq -r '.[] | select(.type == &quot;Ready&quot;) | .reason')
+            message=$(echo &quot;$conditions&quot; | jq -r '.[] | select(.type == &quot;Ready&quot;) | .message')
+
+            # Create a YAML for the CRD to notify via webhook
+            cat &lt;&lt;EOF | kubectl apply -f -
+apiVersion: http.crossplane.io/v1alpha1
+kind: DisposableRequest
+metadata:
+  name: slack-webhook-$KIND-error-$nodeName
+spec:
+  deletionPolicy: Orphan
+  forProvider:
+    url: $WEBHOOK_URL
+    method: POST
+    headers:
+      Content-Type:
+        - application/json
+    body: '{
+      &quot;channel&quot;: &quot;#kalaxy2&quot;,
+      &quot;username&quot;: &quot;webhookbot&quot;,
+      &quot;text&quot;: &quot;Error detected on '${KIND}'.\n\nNode Name: $nodeName\nStatus: $nodeStatus\nReason: $reason\nMessage: $message&quot;,
+      &quot;icon_url&quot;: &quot;https://icons8.com/icon/100414/bot&quot;
+    }'
+EOF
+
+            echo &quot;CRD created for '${KIND}' error on '${nodeName}' with webhook URL.&quot;
+        fi
+    done
+fi
+</code></pre>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../operations/hooks.html">Previous</a></li>            <li class=Pager--next><a href="../operations/registries/ghcrIO.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../operations/crossplane.html">Previous</a></li>            <li class=Pager--next><a href="../operations/operators.html">Next</a></li>        </ul>
     </nav>
     </article>
 
