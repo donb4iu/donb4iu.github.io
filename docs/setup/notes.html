@@ -147,8 +147,10 @@
 <li class='Nav__item '><a href="../generativeAI/agent.html">agent</a></li>
 <li class='Nav__item '><a href="../generativeAI/chatbot_langchain.html">chatbot langchain</a></li>
 <li class='Nav__item '><a href="../generativeAI/chatbot_ollama.html">chatbot ollama</a></li>
+<li class='Nav__item '><a href="../generativeAI/cloudflare_workerAI.html">cloudflare workerAI</a></li>
 <li class='Nav__item '><a href="../generativeAI/contianerize.html">contianerize</a></li>
 <li class='Nav__item '><a href="../generativeAI/embeddings.html">embeddings</a></li>
+<li class='Nav__item '><a href="../generativeAI/jupyter.html">jupyter</a></li>
 <li class='Nav__item '><a href="../generativeAI/prompt_engineering.html">prompt engineering</a></li>
 <li class='Nav__item '><a href="../generativeAI/rag.html">rag</a></li>
 <li class='Nav__item '><a href="../generativeAI/specklebot.html">specklebot</a></li>
@@ -160,6 +162,7 @@
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iac</a><ul class='Nav'>
 <li class='Nav__item '><a href="../iac/pulumi.html">pulumi</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'>
+<li class='Nav__item '><a href="../id_auth/basic_auth.html">basic auth</a></li>
 <li class='Nav__item '><a href="../id_auth/zitadel.html">zitadel</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'>
 <li class='Nav__item '><a href="../ideas/AI_ideas.html">AI ideas</a></li>
@@ -200,6 +203,7 @@
 <li class='Nav__item '><a href="../programming/python/frameworks/django.html">django</a></li></ul></li>
 <li class='Nav__item '><a href="../programming/python/nicegui.html">nicegui</a></li>
 <li class='Nav__item '><a href="../programming/python/pollapp.html">pollapp</a></li>
+<li class='Nav__item '><a href="../programming/python/pyenv.html">pyenv</a></li>
 <li class='Nav__item '><a href="../programming/python/streamlit.html">streamlit</a></li></ul></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>project management</a><ul class='Nav'>
 <li class='Nav__item '><a href="../project_management/open_project.html">open project</a></li></ul></li>
@@ -264,7 +268,7 @@
     <div class="Page__header">
         <h1><a href="../setup/microk8s.html">setup</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../setup/notes.html">notes</a></h1>
                 <span class="ModifiedDate">
-            August 9, 2024 at 9:08 PM        </span>
+            August 10, 2024 at 9:34 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -276,6 +280,12 @@
 <a href="#installation-notes">Installation Notes</a>
 <ul>
 <li>
+<a href="#prompt-for-amd64-and-arm64">Prompt for AMD64 and ARM64</a>
+</li>
+<li>
+<a href="#arm64">Arm64</a>
+<ul>
+<li>
 <a href="#raspberry-pi-monitoring">Raspberry Pi Monitoring</a>
 </li>
 <li>
@@ -283,6 +293,8 @@
 </li>
 <li>
 <a href="#flash">Flash</a>
+</li>
+</ul>
 </li>
 <li>
 <a href="#amd64">AMD64</a>
@@ -361,14 +373,22 @@
 <p><a href="https://blog.palark.com/installing-fully-fledged-vanilla-kubernetes-on-raspberry-pi/" class="Link--external" rel="noopener noreferrer">Installing fully-fledged vanilla Kubernetes on Raspberry Pi</a></p>
 </li>
 </ul>
-<h2><a id="raspberry-pi-monitoring" href="#raspberry-pi-monitoring" class="Permalink" aria-hidden="true" title="Permalink">#</a>Raspberry Pi Monitoring</h2>
+<h2><a id="prompt-for-amd64-and-arm64" href="#prompt-for-amd64-and-arm64" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prompt for AMD64 and ARM64</h2>
+<pre><code>if [ &quot;$color_prompt&quot; = yes ]; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\e[32m\](\D{%m/%d/%y}@\t)\[\033[01;32m\](\u@\h)\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+        PS1='${debian_chroot:+($debian_chroot)}(\D{%m/%d/%y}@\t)(\u@\h)\w\$ '
+fi
+</code></pre>
+<h2><a id="arm64" href="#arm64" class="Permalink" aria-hidden="true" title="Permalink">#</a>Arm64</h2>
+<h3><a id="raspberry-pi-monitoring" href="#raspberry-pi-monitoring" class="Permalink" aria-hidden="true" title="Permalink">#</a>Raspberry Pi Monitoring</h3>
 <pre><code>sudo apt-get update &amp;&amp; sudo apt-get install htop -y
 </code></pre>
-<h2><a id="make-up" href="#make-up" class="Permalink" aria-hidden="true" title="Permalink">#</a>make up</h2>
+<h3><a id="make-up" href="#make-up" class="Permalink" aria-hidden="true" title="Permalink">#</a>make up</h3>
 <pre><code>xcode-select --install
 </code></pre>
 <p><img src="../images/cluster_initial_up.png" alt="clusterUp" /></p>
-<h2><a id="flash" href="#flash" class="Permalink" aria-hidden="true" title="Permalink">#</a>Flash</h2>
+<h3><a id="flash" href="#flash" class="Permalink" aria-hidden="true" title="Permalink">#</a>Flash</h3>
 <pre><code class="hljs bash">flash --userdata setup/cloud-config.yml ~/Downloads/ubuntu-20.04-preinstalled-server-arm64+raspi.img
     
 </code></pre>
@@ -447,7 +467,7 @@ dbuddenbaum     ALL=(ALL) NOPASSWD:ALL
 ssh-copy-id <a href="mailto:dbuddenbaum@192.168.2.58" class="Link--external" rel="noopener noreferrer">dbuddenbaum@192.168.2.58</a></p>
 <pre><code>/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: &quot;/Users/donbuddenbaum/.ssh/id_rsa.pub&quot;
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
-/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now its is to install the new keys
 dbuddenbaum@192.168.2.58's password:
 
 Number of key(s) added:        1
