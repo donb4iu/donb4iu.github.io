@@ -281,7 +281,7 @@
     <div class="Page__header">
         <h1><a href="../generativeAI/agent.html">generativeAI</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../generativeAI/gpu.html">gpu </a></h1>
                 <span class="ModifiedDate">
-            August 19, 2024 at 9:31 AM        </span>
+            August 19, 2024 at 10:04 AM        </span>
                     </div>
 
     <div class="s-content">
@@ -315,8 +315,24 @@
 </li>
 </ul>
 </li>
+</ul>
+</li>
 <li>
-<a href="#gpu-load">GPU Load</a>
+<a href="#gpu-test">GPU Test</a>
+<ul>
+<li>
+<a href="#host-test">Host Test</a>
+</li>
+<li>
+<a href="#kubernetes-test">Kubernetes Test</a>
+<ul>
+<li>
+<a href="#08-19-24-12-44pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-gpu-main">#( 08/19/24@12:44PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/gpu@main✗✗✗</a>
+</li>
+<li>
+<a href="#08-19-24-12-46pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-gpu-main">#( 08/19/24@12:46PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/gpu@main✗✗✗</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -336,6 +352,9 @@
 </li>
 <li>
 <p><a href="https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/latest/gpu-operator-mig.html" class="Link--external" rel="noopener noreferrer">GPU Operator with MIG</a></p>
+</li>
+<li>
+<p><a href="https://www.jimangel.io/posts/nvidia-rtx-gpu-kubernetes-setup/" class="Link--external" rel="noopener noreferrer">A Practical Guide to Running NVIDIA GPUs on Kubernetes</a></p>
 </li>
 </ul>
 <h2><a id="example" href="#example" class="Permalink" aria-hidden="true" title="Permalink">#</a>Example</h2>
@@ -1174,9 +1193,38 @@ No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
 </code></pre>
-<h3><a id="gpu-load" href="#gpu-load" class="Permalink" aria-hidden="true" title="Permalink">#</a>GPU Load</h3>
+<h2><a id="gpu-test" href="#gpu-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>GPU Test</h2>
+<h3><a id="host-test" href="#host-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Host Test</h3>
 <p>dbuddenbaum@amd64-03:~$ nvtop</p>
 <p><img src="image-21.png" alt="alt text" /></p>
+<h3><a id="kubernetes-test" href="#kubernetes-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes Test</h3>
+<h4><a id="08-19-24-12-44pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-gpu-main" href="#08-19-24-12-44pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-gpu-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 08/19/24@12:44PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/gpu@main✗✗✗</h4>
+<p>kubectl apply -f gpu-test-job.yaml</p>
+<pre><code>job.batch/gpu-test-job created
+</code></pre>
+<h4><a id="08-19-24-12-46pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-gpu-main" href="#08-19-24-12-46pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-gpu-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 08/19/24@12:46PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/gpu@main✗✗✗</h4>
+<p>kubectl logs job/gpu-test-job</p>
+<pre><code>Mon Aug 19 16:44:59 2024
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.01             Driver Version: 535.183.01   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA GeForce GTX 1050 Ti     Off | 00000000:01:00.0 Off |                  N/A |
+|  0%   34C    P8              N/A / 120W |      2MiB /  4096MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+</code></pre>
     </div>
 
         <nav>
