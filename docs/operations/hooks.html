@@ -156,6 +156,7 @@
 <li class='Nav__item '><a href="../generativeAI/cloudflare_workerAI.html">cloudflare workerAI</a></li>
 <li class='Nav__item '><a href="../generativeAI/contianerize.html">contianerize</a></li>
 <li class='Nav__item '><a href="../generativeAI/embeddings.html">embeddings</a></li>
+<li class='Nav__item '><a href="../generativeAI/gpu.html">gpu </a></li>
 <li class='Nav__item '><a href="../generativeAI/jupyter.html">jupyter</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>llm services</a><ul class='Nav'>
 <li class='Nav__item '><a href="../generativeAI/llm_services/search.html">search</a></li></ul></li>
@@ -279,7 +280,7 @@
     <div class="Page__header">
         <h1><a href="../operations/crossplane.html">operations</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../operations/hooks.html">hooks</a></h1>
                 <span class="ModifiedDate">
-            August 18, 2024 at 11:51 AM        </span>
+            August 19, 2024 at 6:57 AM        </span>
                     </div>
 
     <div class="s-content">
@@ -292,6 +293,9 @@
 <ul>
 <li>
 <a href="#references">References</a>
+</li>
+<li>
+<a href="#notes">Notes</a>
 </li>
 <li>
 <a href="#implementations">Implementations</a>
@@ -308,6 +312,42 @@
 <a href="https://blog.crossplane.io/introducing-provider-http-empowering-crossplane-with-http-interactions/" class="Link--external" rel="noopener noreferrer">Introducing provider-http: Empowering Crossplane with HTTP Interactions</a>
 </li>
 </ul>
+<h2><a id="notes" href="#notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Notes</h2>
+<p>In Kubernetes, nodes can have various conditions that describe their current state. Here’s a list of common node conditions and their meanings:</p>
+<p>Ready:</p>
+<pre><code>Type: Ready
+Description: Indicates whether the node is healthy and ready to accept pods. It is the most critical condition for a node. A True status means the node is healthy and can run pods, while False means the node is not ready.
+
+OutOfDisk:
+
+Type: OutOfDisk
+Description: Indicates whether the node is running out of disk space. If True, the node is out of disk space.
+
+MemoryPressure:
+
+Type: MemoryPressure
+Description: Indicates whether the node is under memory pressure. If True, the node is running low on memory.
+
+DiskPressure:
+
+Type: DiskPressure
+Description: Indicates whether the node is under disk pressure. If True, the node is running low on disk space.
+
+NetworkUnavailable:
+
+Type: NetworkUnavailable
+Description: Indicates whether the node’s network is unavailable. If True, the node’s network is not properly configured or is down.
+
+SchedulingDisabled:
+
+Type: SchedulingDisabled
+Description: Indicates whether scheduling of new pods to the node is disabled. If True, new pods will not be scheduled to the node.
+
+Unschedulable (Deprecated):
+
+Type: Unschedulable
+Description: An older condition that was used to indicate if a node was unschedulable. It has been replaced by SchedulingDisabled.
+</code></pre>
 <h2><a id="implementations" href="#implementations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementations</h2>
 <ul>
 <li>node-status-call-slask</li>
