@@ -68,6 +68,8 @@
 <li class='Nav__item '><a href="../../ai/jupyter_tensorflow/jupyter_tensorflow.html">jupyter tensorflow</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>language models</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../ai/language_models/ollama.html">ollama</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ml</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../ai/ml/mathematics.html">mathematics</a></li></ul></li>
 <li class='Nav__item '><a href="../../ai/neural_network.html">neural network</a></li>
 <li class='Nav__item '><a href="../../ai/ollama_server.html">ollama server</a></li>
 <li class='Nav__item '><a href="../../ai/openai.html">openai</a></li>
@@ -117,6 +119,7 @@
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>data engineering</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../data_engineering/deltalake.html">deltalake</a></li>
 <li class='Nav__item '><a href="../../data_engineering/mageAI.html">mageAI</a></li>
+<li class='Nav__item '><a href="../../data_engineering/pdfparsing.html">pdfparsing</a></li>
 <li class='Nav__item '><a href="../../data_engineering/pipelines.html">pipelines</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>databases</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../databases/chromadb.html">chromadb</a></li>
@@ -201,6 +204,7 @@
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../operations/crossplane.html">crossplane</a></li>
 <li class='Nav__item '><a href="../../operations/hooks.html">hooks</a></li>
+<li class='Nav__item '><a href="../../operations/monitor_gpu.html">monitor gpu</a></li>
 <li class='Nav__item '><a href="../../operations/monitorllm.html">monitorllm</a></li>
 <li class='Nav__item '><a href="../../operations/operations.html">operations</a></li>
 <li class='Nav__item '><a href="../../operations/operators.html">operators</a></li>
@@ -297,7 +301,7 @@
     <div class="Page__header">
         <h1><a href="../../observability/grafana/grafana.html">observability</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../observability/prometheus/prometheus.html">prometheus</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../observability/prometheus/prometheus.html">prometheus</a></h1>
                 <span class="ModifiedDate">
-            August 22, 2024 at 11:33 AM        </span>
+            August 26, 2024 at 1:52 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -316,12 +320,21 @@
 </li>
 <li>
 <a href="#updating-config">Updating Config</a>
+<ul>
+<li>
+<a href="#08-22-24-5-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-prometheus-monitoring-main">#( 08/22/24@ 5:17PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/prometheus_monitoring@main✗✗✗</a>
+</li>
+<li>
+<a href="#08-22-24-5-26pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-prometheus-monitoring-main">#( 08/22/24@ 5:26PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/prometheus_monitoring@main✗✗✗</a>
+</li>
+</ul>
 </li>
 </ul>
 </li>
 </ul>    </div>
 </div>
 <h1><a id="prometheus" href="#prometheus" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prometheus</h1>
+<p><img src="image-2.png" alt="alt text" /></p>
 <h2><a id="achitecture" href="#achitecture" class="Permalink" aria-hidden="true" title="Permalink">#</a>Achitecture</h2>
 <p><img src="image.png" alt="alt text" />
 architecture</p>
@@ -338,8 +351,34 @@ kubernetes architecture</p>
 <li>
 <p><a href="https://nuculabs.dev/p/how-to-create-a-servicemonitor-in-microk8s-observability-tutorial" class="Link--external" rel="noopener noreferrer">How to create a ServiceMonitor in Microk8s: Observability Tutorial</a></p>
 </li>
+<li>
+<p><a href="https://medium.com/@joudwawad/comprehensive-beginners-guide-to-kube-prometheus-in-kubernetes-monitoring-alerts-integration-4ade4fa8fa8c" class="Link--external" rel="noopener noreferrer">Comprehensive Beginner’s Guide to Kube-Prometheus in Kubernetes: Monitoring, Alerts, &amp; Integration</a></p>
+</li>
 </ul>
 <h2><a id="updating-config" href="#updating-config" class="Permalink" aria-hidden="true" title="Permalink">#</a>Updating Config</h2>
+<h3><a id="08-22-24-5-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-prometheus-monitoring-main" href="#08-22-24-5-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-prometheus-monitoring-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 08/22/24@ 5:17PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/prometheus_monitoring@main✗✗✗</h3>
+<p>helm list –all-namespaces</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+NAME           	NAMESPACE             	REVISION	UPDATED                                	STATUS  	CHART                       	APP VERSION
+crossplane     	crossplane-system     	1       	2024-07-17 18:33:10.697757 -0400 EDT   	deployed	crossplane-1.16.0           	1.16.0
+csi-driver-nfs 	kube-system           	1       	2024-04-09 22:37:39.312209084 -0400 EDT	deployed	csi-driver-nfs-v4.6.0       	v4.6.0
+gpu-operator   	gpu-operator-resources	1       	2024-08-22 13:18:13.167784687 -0400 EDT	deployed	gpu-operator-v23.9.1        	v23.9.1
+kube-prom-stack	observability         	1       	2024-03-08 19:55:55.297727979 -0500 EST	deployed	kube-prometheus-stack-45.5.0	v0.63.0
+loki           	observability         	1       	2024-03-08 19:56:53.469804886 -0500 EST	deployed	loki-stack-2.9.9            	v2.6.1
+ollama-release 	default               	1       	2024-08-14 18:36:58.034887 -0400 EDT   	deployed	server-0.1.0                	1.1.0
+tempo          	observability         	1       	2024-03-08 19:56:56.360463135 -0500 EST	deployed	tempo-1.0.0                 	2.0.0
+</code></pre>
+<h3><a id="08-22-24-5-26pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-prometheus-monitoring-main" href="#08-22-24-5-26pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-prometheus-monitoring-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 08/22/24@ 5:26PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/prometheus_monitoring@main✗✗✗</h3>
+<p>helm upgrade -f values.yaml kube-prom-stack prometheus-community/kube-prometheus-stack -n observability</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+W0822 17:26:59.003470    2069 warnings.go:70] unknown field &quot;spec.automountServiceAccountToken&quot;
+W0822 17:26:59.363267    2069 warnings.go:70] unknown field &quot;spec.automountServiceAccountToken&quot;
+W0822 17:26:59.363291    2069 warnings.go:70] unknown field &quot;spec.scrapeConfigNamespaceSelector&quot;
+W0822 17:26:59.363296    2069 warnings.go:70] unknown field &quot;spec.scrapeConfigSelector&quot;
+Error: UPGRADE FAILED: cannot patch &quot;kube-prom-stack-kube-prome-kube-controller-manager&quot; with kind Service: Service &quot;kube-prom-stack-kube-prome-kube-controller-manager&quot; is invalid: [spec.ipFamilyPolicy: Invalid value: &quot;RequireDualStack&quot;: this cluster is not configured for dual-stack services, spec.ipFamilies[1]: Invalid value: &quot;IPv6&quot;: not configured on this cluster] &amp;&amp; cannot patch &quot;kube-prom-stack-kube-prome-kube-scheduler&quot; with kind Service: Service &quot;kube-prom-stack-kube-prome-kube-scheduler&quot; is invalid: [spec.ipFamilyPolicy: Invalid value: &quot;RequireDualStack&quot;: this cluster is not configured for dual-stack services, spec.ipFamilies[1]: Invalid value: &quot;IPv6&quot;: not configured on this cluster]
+</code></pre>
     </div>
 
         <nav>
