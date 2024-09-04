@@ -77,6 +77,8 @@
 <li class='Nav__item '><a href="../../ai/private_copilot.html">private copilot</a></li>
 <li class='Nav__item '><a href="../../ai/search.html">search</a></li>
 <li class='Nav__item '><a href="../../ai/usecases.html">usecases</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>visual</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../ai/visual/search.html">search</a></li></ul></li>
 <li class='Nav__item '><a href="../../ai/voice.html">voice</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ansible</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../ansible/ansible_automation.html">ansible automation</a></li>
@@ -304,7 +306,7 @@
     <div class="Page__header">
         <h1><a href="../../automation/argocd/argocd.html">automation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../automation/helm/helm.html">helm</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../automation/helm/helm.html">helm</a></h1>
                 <span class="ModifiedDate">
-            September 3, 2024 at 8:00 AM        </span>
+            September 4, 2024 at 12:35 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -317,6 +319,71 @@
 <ul>
 <li>
 <a href="#references">References</a>
+</li>
+<li>
+<a href="#commands">Commands</a>
+<ul>
+<li>
+<a href="#package-the-chart"># Package the chart</a>
+</li>
+<li>
+<a href="#create-a-directory-for-the-local-repo"># Create a directory for the local repo</a>
+</li>
+<li>
+<a href="#move-the-package-to-the-local-repo-directory"># Move the package to the local repo directory</a>
+</li>
+<li>
+<a href="#create-an-index-file-for-the-repo"># Create an index file for the repo</a>
+<ul>
+<li>
+<a href="#09-04-24-3-12pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-main">#( 09/04/24@ 3:12PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#start-a-local-web-server-to-serve-the-repo"># Start a local web server to serve the repo</a>
+</li>
+<li>
+<a href="#add-the-local-repo-to-helm"># Add the local repo to Helm</a>
+<ul>
+<li>
+<a href="#09-04-24-3-16pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main">#( 09/04/24@ 3:16PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#update-helm-to-recognize-the-new-repo"># Update Helm to recognize the new repo</a>
+<ul>
+<li>
+<a href="#09-04-24-3-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main">#( 09/04/24@ 3:17PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#install-the-chart-from-the-local-repo"># Install the chart from the local repo</a>
+<ul>
+<li>
+<a href="#09-04-24-3-22pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main">#( 09/04/24@ 3:22PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#list-installed-charts"># List Installed Charts</a>
+<ul>
+<li>
+<a href="#09-04-24-3-24pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main">#( 09/04/24@ 3:24PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#uninstall-charts"># Uninstall Charts</a>
+<ul>
+<li>
+<a href="#09-04-24-3-28pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main">#( 09/04/24@ 3:28PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</a>
+</li>
+</ul>
+</li>
+</ul>
 </li>
 </ul>
 </li>
@@ -336,6 +403,77 @@
 <a href="https://medium.com/swlh/getting-started-with-helm-v3-3c07ba63c9f8" class="Link--external" rel="noopener noreferrer">Getting Started With Helm v3</a>
 </li>
 </ul>
+<h2><a id="commands" href="#commands" class="Permalink" aria-hidden="true" title="Permalink">#</a>Commands</h2>
+<h3><a id="package-the-chart" href="#package-the-chart" class="Permalink" aria-hidden="true" title="Permalink">#</a># Package the chart</h3>
+<p>helm package mychart</p>
+<h3><a id="create-a-directory-for-the-local-repo" href="#create-a-directory-for-the-local-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a># Create a directory for the local repo</h3>
+<p>mkdir -p ~/my-helm-repo</p>
+<h3><a id="move-the-package-to-the-local-repo-directory" href="#move-the-package-to-the-local-repo-directory" class="Permalink" aria-hidden="true" title="Permalink">#</a># Move the package to the local repo directory</h3>
+<p>mv mychart-0.1.0.tgz ~/my-helm-repo/</p>
+<h3><a id="create-an-index-file-for-the-repo" href="#create-an-index-file-for-the-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a># Create an index file for the repo</h3>
+<p>helm repo index ~/my-helm-repo –url <a href="http://127.0.0.1:8080/" class="Link--external" rel="noopener noreferrer">http://127.0.0.1:8080/</a></p>
+<h4><a id="09-04-24-3-12pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-main" href="#09-04-24-3-12pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 09/04/24@ 3:12PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm@main✗✗✗</h4>
+<p>helm repo index ~/Documents/Kalaxy2/helm/kalaxy2_charts  –url <a href="http://127.0.0.1:8080/" class="Link--external" rel="noopener noreferrer">http://127.0.0.1:8080/</a></p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+</code></pre>
+<h3><a id="start-a-local-web-server-to-serve-the-repo" href="#start-a-local-web-server-to-serve-the-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a># Start a local web server to serve the repo</h3>
+<p>cd ~/my-helm-repo
+python3 -m http.server 8080</p>
+<h3><a id="add-the-local-repo-to-helm" href="#add-the-local-repo-to-helm" class="Permalink" aria-hidden="true" title="Permalink">#</a># Add the local repo to Helm</h3>
+<p>helm repo add my-local-repo <a href="http://127.0.0.1:8080/" class="Link--external" rel="noopener noreferrer">http://127.0.0.1:8080/</a></p>
+<h4><a id="09-04-24-3-16pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" href="#09-04-24-3-16pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 09/04/24@ 3:16PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</h4>
+<p>helm repo add kalaxy2-charts <a href="http://127.0.0.1:8081/" class="Link--external" rel="noopener noreferrer">http://127.0.0.1:8081/</a></p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+&quot;kalaxy2-charts&quot; has been added to your repositories
+</code></pre>
+<h3><a id="update-helm-to-recognize-the-new-repo" href="#update-helm-to-recognize-the-new-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a># Update Helm to recognize the new repo</h3>
+<p>helm repo update</p>
+<h4><a id="09-04-24-3-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" href="#09-04-24-3-17pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 09/04/24@ 3:17PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</h4>
+<p>helm repo update</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the &quot;kalaxy2-charts&quot; chart repository
+...Successfully got an update from the &quot;my-local-repo&quot; chart repository
+...Successfully got an update from the &quot;gatekeeper&quot; chart repository
+...Successfully got an update from the &quot;traefik&quot; chart repository
+...Successfully got an update from the &quot;jetstack&quot; chart repository
+...Successfully got an update from the &quot;kubernetes-dashboard&quot; chart repository
+...Successfully got an update from the &quot;prometheus-community&quot; chart repository
+...Successfully got an update from the &quot;stable&quot; chart repository
+</code></pre>
+<h3><a id="install-the-chart-from-the-local-repo" href="#install-the-chart-from-the-local-repo" class="Permalink" aria-hidden="true" title="Permalink">#</a># Install the chart from the local repo</h3>
+<p>helm install my-release my-local-repo/mychart</p>
+<h4><a id="09-04-24-3-22pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" href="#09-04-24-3-22pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 09/04/24@ 3:22PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</h4>
+<p>helm install fakenews-release ~/Documents/Kalaxy2/helm/kalaxy2_charts/app-fakenews-flask-0.1.0.tgz</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+W0904 15:23:24.793878   14427 warnings.go:70] unknown field &quot;spec.affinity&quot;
+NAME: fakenews-release
+LAST DEPLOYED: Wed Sep  4 15:23:24 2024
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+</code></pre>
+<h3><a id="list-installed-charts" href="#list-installed-charts" class="Permalink" aria-hidden="true" title="Permalink">#</a># List Installed Charts</h3>
+<h4><a id="09-04-24-3-24pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" href="#09-04-24-3-24pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 09/04/24@ 3:24PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</h4>
+<p>helm list</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+NAME            	NAMESPACE	REVISION	UPDATED                             	STATUS  	CHART                   	APP VERSION
+fakenews-release	default  	1       	2024-09-04 15:23:24.463069 -0400 EDT	deployed	app-fakenews-flask-0.1.0	1.16.0
+ollama-release  	default  	1       	2024-08-14 18:36:58.034887 -0400 EDT	deployed	server-0.1.0            	1.1.0
+</code></pre>
+<h3><a id="uninstall-charts" href="#uninstall-charts" class="Permalink" aria-hidden="true" title="Permalink">#</a># Uninstall Charts</h3>
+<h4><a id="09-04-24-3-28pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" href="#09-04-24-3-28pm-donbuddenbaum-donbs-imac-documents-kalaxy2-helm-kalaxy2-charts-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 09/04/24@ 3:28PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/helm/kalaxy2_charts@main✗✗✗</h4>
+<p>helm uninstall fakenews-release</p>
+<pre><code>WARNING: Kubernetes configuration file is group-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+WARNING: Kubernetes configuration file is world-readable. This is insecure. Location: /Users/donbuddenbaum/.kube/config
+release &quot;fakenews-release&quot; uninstalled
+</code></pre>
     </div>
 
         <nav>
