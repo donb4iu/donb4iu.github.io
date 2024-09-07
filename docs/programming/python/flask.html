@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>pollapp - Kalaxy2 MicroK8s Cluster</title>
+    <title>flask - Kalaxy2 MicroK8s Cluster</title>
     <meta name="description" content="Arm64/Amd64 cluster research">
     <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
@@ -237,12 +237,12 @@
 <li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>python</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../programming/python/django_cicd_ecom_k8s.html">django cicd ecom k8s</a></li>
 <li class='Nav__item '><a href="../../programming/python/environment.html">environment</a></li>
-<li class='Nav__item '><a href="../../programming/python/flask.html">flask</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../programming/python/flask.html">flask</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>frameworks</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../programming/python/frameworks/click.html">click</a></li>
 <li class='Nav__item '><a href="../../programming/python/frameworks/django.html">django</a></li></ul></li>
 <li class='Nav__item '><a href="../../programming/python/nicegui.html">nicegui</a></li>
-<li class='Nav__item Nav__item--active'><a href="../../programming/python/pollapp.html">pollapp</a></li>
+<li class='Nav__item '><a href="../../programming/python/pollapp.html">pollapp</a></li>
 <li class='Nav__item '><a href="../../programming/python/pyenv.html">pyenv</a></li>
 <li class='Nav__item '><a href="../../programming/python/solution_references.html">solution references</a></li>
 <li class='Nav__item '><a href="../../programming/python/streamlit.html">streamlit</a></li></ul></li></ul></li>
@@ -307,7 +307,7 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../../programming/java/java.html">programming</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../programming/python/django_cicd_ecom_k8s.html">python</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../programming/python/pollapp.html">pollapp</a></h1>
+        <h1><a href="../../programming/java/java.html">programming</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../programming/python/django_cicd_ecom_k8s.html">python</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../programming/python/flask.html">flask</a></h1>
                 <span class="ModifiedDate">
             September 7, 2024 at 3:43 PM        </span>
                     </div>
@@ -318,333 +318,32 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#python-polling-app">Python Polling App</a>
+<a href="#flask">Flask</a>
 <ul>
 <li>
 <a href="#references">References</a>
-</li>
-<li>
-<a href="#setup">Setup</a>
-<ul>
-<li>
-<a href="#project-and-pages">Project and pages</a>
-</li>
-<li>
-<a href="#run-project-and-pages">Run project and pages</a>
-<ul>
-<li>
-<a href="#05-17-24-10-18pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main">#( 05/17/24@10:18PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#setup-database">Setup database</a>
-<ul>
-<li>
-<a href="#edit-the-polls-models-py-file-so-it-looks-like-this">Edit the polls/models.py file so it looks like this:</a>
-</li>
-<li>
-<a href="#edit-the-mysite-settings-py-file">Edit the mysite/settings.py file</a>
-</li>
-<li>
-<a href="#include-the-polls-app-in-database-tables">include the polls app in database tables</a>
-<ul>
-<li>
-<a href="#3-12-0-venv-05-17-24-11-49pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main">(3.12.0-venv) #( 05/17/24@11:49PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#run-the-migrations-and-manage-database-schema-automatically">run the migrations and manage database schema automatically</a>
-<ul>
-<li>
-<a href="#3-12-0-venv-05-17-24-11-49pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main-1">(3.12.0-venv) #( 05/17/24@11:49PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#create-those-model-tables-in-database">create those model tables in database:</a>
-<ul>
-<li>
-<a href="#3-12-0-venv-05-17-24-11-51pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main">(3.12.0-venv) #( 05/17/24@11:51PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</a>
-</li>
-</ul>
-</li>
-<li>
-<a href="#query-database-with-shell">query database with shell</a>
-<ul>
-<li>
-<a href="#3-12-0-venv-05-17-24-11-57pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main">(3.12.0-venv) #( 05/17/24@11:57PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</a>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
 </li>
 </ul>
 </li>
 </ul>    </div>
 </div>
-<h1><a id="python-polling-app" href="#python-polling-app" class="Permalink" aria-hidden="true" title="Permalink">#</a>Python Polling App</h1>
+<h1><a id="flask" href="#flask" class="Permalink" aria-hidden="true" title="Permalink">#</a>Flask</h1>
+<p><img src="image-2.png" alt="alt text" /></p>
 <h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
 <li>
-<a href="https://github.com/donb4iu/pollapp" class="Link--external" rel="noopener noreferrer">https://github.com/donb4iu/pollapp</a>
+<p><a href="https://medium.com/@mysteryweevil/demystifying-authentication-and-authorization-in-flask-a-practical-guide-ee9d1699376e" class="Link--external" rel="noopener noreferrer">Demystifying Authentication and Authorization in Flask: A Practical Guide
+Securing Your Flask App with Simple and Effective Techniques</a></p>
 </li>
 <li>
-<a href="https://docs.djangoproject.com/en/5.0/intro/tutorial01/" class="Link--external" rel="noopener noreferrer">Writing your first Django app</a>
+<p><a href="https://flask.palletsprojects.com/en/3.0.x/" class="Link--external" rel="noopener noreferrer">Flask</a></p>
 </li>
 </ul>
-<h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
-<h3><a id="project-and-pages" href="#project-and-pages" class="Permalink" aria-hidden="true" title="Permalink">#</a>Project and pages</h3>
-<pre><code>django-admin startproject mysite
-
-mysite/
-    manage.py
-    mysite/
-        __init__.py
-        settings.py
-        urls.py
-        asgi.py
-        wsgi.py
-</code></pre>
-<p>In the polls/urls.py file include the following code:</p>
-<pre><code>from django.urls import path
-
-from . import views
-
-urlpatterns = [
-    path(&quot;&quot;, views.index, name=&quot;index&quot;),
-]
-</code></pre>
-<p>In mysite/urls.py</p>
-<pre><code>from django.contrib import admin
-from django.urls import include, path
-
-urlpatterns = [
-    path(&quot;polls/&quot;, include(&quot;polls.urls&quot;)),
-    path(&quot;admin/&quot;, admin.site.urls),
-]
-</code></pre>
-<h3><a id="run-project-and-pages" href="#run-project-and-pages" class="Permalink" aria-hidden="true" title="Permalink">#</a>Run project and pages</h3>
-<h4><a id="05-17-24-10-18pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" href="#05-17-24-10-18pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#( 05/17/24@10:18PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</h4>
-<pre><code>python manage.py runserver
-</code></pre>
-<pre><code>Watching for file changes with StatReloader
-Performing system checks...
-
-System check identified no issues (0 silenced).
-
-You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
-Run 'python manage.py migrate' to apply them.
-May 18, 2024 - 02:18:44
-Django version 5.0.4, using settings 'mysite.settings'
-Starting development server at http://127.0.0.1:8000/
-Quit the server with CONTROL-C.
-
-Not Found: /
-[18/May/2024 02:19:08] &quot;GET / HTTP/1.1&quot; 404 2165
-Not Found: /po//s
-[18/May/2024 02:19:57] &quot;GET /po//s HTTP/1.1&quot; 404 2198
-[18/May/2024 02:20:09] &quot;GET /polls HTTP/1.1&quot; 301 0
-[18/May/2024 02:20:09] &quot;GET /polls/ HTTP/1.1&quot; 200 40
-</code></pre>
-<h3><a id="setup-database" href="#setup-database" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup database</h3>
-<h4><a id="edit-the-polls-models-py-file-so-it-looks-like-this" href="#edit-the-polls-models-py-file-so-it-looks-like-this" class="Permalink" aria-hidden="true" title="Permalink">#</a>Edit the polls/models.py file so it looks like this:</h4>
-<pre><code>from django.db import models
-
-
-class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField(&quot;date published&quot;)
-
-
-class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-</code></pre>
-<h4><a id="edit-the-mysite-settings-py-file" href="#edit-the-mysite-settings-py-file" class="Permalink" aria-hidden="true" title="Permalink">#</a>Edit the mysite/settings.py file</h4>
-<pre><code>INSTALLED_APPS = [
-    &quot;polls.apps.PollsConfig&quot;,
-    &quot;django.contrib.admin&quot;,
-    &quot;django.contrib.auth&quot;,
-    &quot;django.contrib.contenttypes&quot;,
-    &quot;django.contrib.sessions&quot;,
-    &quot;django.contrib.messages&quot;,
-    &quot;django.contrib.staticfiles&quot;,
-]
-</code></pre>
-<h4><a id="include-the-polls-app-in-database-tables" href="#include-the-polls-app-in-database-tables" class="Permalink" aria-hidden="true" title="Permalink">#</a>include the polls app in database tables</h4>
-<h5><a id="3-12-0-venv-05-17-24-11-49pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" href="#3-12-0-venv-05-17-24-11-49pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>(3.12.0-venv) #( 05/17/24@11:49PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</h5>
-<p>python manage.py makemigrations polls</p>
-<pre><code>Migrations for 'polls':
-  polls/migrations/0001_initial.py
-    - Create model Question
-    - Create model Choice
-</code></pre>
-<h4><a id="run-the-migrations-and-manage-database-schema-automatically" href="#run-the-migrations-and-manage-database-schema-automatically" class="Permalink" aria-hidden="true" title="Permalink">#</a>run the migrations and manage database schema automatically</h4>
-<h5><a id="3-12-0-venv-05-17-24-11-49pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main-1" href="#3-12-0-venv-05-17-24-11-49pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>(3.12.0-venv) #( 05/17/24@11:49PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</h5>
-<p>python manage.py sqlmigrate polls 0001</p>
-<pre><code>BEGIN;
---
--- Create model Question
---
-CREATE TABLE &quot;polls_question&quot; (&quot;id&quot; integer NOT NULL PRIMARY KEY AUTOINCREMENT, &quot;question_text&quot; varchar(200) NOT NULL, &quot;pub_date&quot; datetime NOT NULL);
---
--- Create model Choice
---
-CREATE TABLE &quot;polls_choice&quot; (&quot;id&quot; integer NOT NULL PRIMARY KEY AUTOINCREMENT, &quot;choice_text&quot; varchar(200) NOT NULL, &quot;votes&quot; integer NOT NULL, &quot;question_id&quot; bigint NOT NULL REFERENCES &quot;polls_question&quot; (&quot;id&quot;) DEFERRABLE INITIALLY DEFERRED);
-CREATE INDEX &quot;polls_choice_question_id_c5b4b260&quot; ON &quot;polls_choice&quot; (&quot;question_id&quot;);
-COMMIT;
-</code></pre>
-<h4><a id="create-those-model-tables-in-database" href="#create-those-model-tables-in-database" class="Permalink" aria-hidden="true" title="Permalink">#</a>create those model tables in database:</h4>
-<h5><a id="3-12-0-venv-05-17-24-11-51pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" href="#3-12-0-venv-05-17-24-11-51pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>(3.12.0-venv) #( 05/17/24@11:51PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</h5>
-<p>python manage.py migrate</p>
-<pre><code>Operations to perform:
-  Apply all migrations: admin, auth, contenttypes, polls, sessions
-Running migrations:
-  Applying polls.0001_initial... OK
-</code></pre>
-<h4><a id="query-database-with-shell" href="#query-database-with-shell" class="Permalink" aria-hidden="true" title="Permalink">#</a>query database with shell</h4>
-<pre><code>&gt;&gt;&gt; from polls.models import Choice, Question  # Import the model classes we just wrote.
-
-# No questions are in the system yet.
-&gt;&gt;&gt; Question.objects.all()
-&lt;QuerySet []&gt;
-
-# Create a new Question.
-# Support for time zones is enabled in the default settings file, so
-# Django expects a datetime with tzinfo for pub_date. Use timezone.now()
-# instead of datetime.datetime.now() and it will do the right thing.
-&gt;&gt;&gt; from django.utils import timezone
-&gt;&gt;&gt; q = Question(question_text=&quot;What's new?&quot;, pub_date=timezone.now())
-
-# Save the object into the database. You have to call save() explicitly.
-&gt;&gt;&gt; q.save()
-
-# Now it has an ID.
-&gt;&gt;&gt; q.id
-1
-
-# Access model field values via Python attributes.
-&gt;&gt;&gt; q.question_text
-&quot;What's new?&quot;
-&gt;&gt;&gt; q.pub_date
-datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=datetime.timezone.utc)
-
-# Change values by changing the attributes, then calling save().
-&gt;&gt;&gt; q.question_text = &quot;What's up?&quot;
-&gt;&gt;&gt; q.save()
-
-# objects.all() displays all the questions in the database.
-&gt;&gt;&gt; Question.objects.all()
-&lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;
-</code></pre>
-<h5><a id="3-12-0-venv-05-17-24-11-57pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" href="#3-12-0-venv-05-17-24-11-57pm-donbuddenbaum-donbs-imac-documents-pollapp-mysite-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>(3.12.0-venv) #( 05/17/24@11:57PM )( donbuddenbaum@donbs-imac ):~/Documents/pollapp/mysite@main✗✗✗</h5>
-<p>python manage.py shell</p>
-<pre><code>Python 3.12.0 (main, Apr 22 2024, 18:13:12) [Clang 15.0.0 (clang-1500.1.0.2.5)] on darwin
-Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
-(InteractiveConsole)
-</code></pre>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>from polls.models import Choice, Question</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>Question.objects.all()</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>&lt;QuerySet []&gt;
-</code></pre>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>from django.utils import timezone</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q = Question(question_text=“What’s new?”, pub_date=timezone.now())</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q.save()</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q.id</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>1
-</code></pre>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q.question_text
-“What’s new?”</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q.pub_date</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>    datetime.datetime(2024, 5, 18, 4, 9, 55, 562224, tzinfo=datetime.timezone.utc)
-</code></pre>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q.question_text = “What’s up?”</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>q.save()</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>Question.objects.all()</p>
-</blockquote>
-</blockquote>
-</blockquote>
-<pre><code>&lt;QuerySet [&lt;Question: Question object (1)&gt;]&gt;
-</code></pre>
-<blockquote>
-<blockquote>
-<blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../../programming/python/nicegui.html">Previous</a></li>            <li class=Pager--next><a href="../../programming/python/pyenv.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../../programming/python/environment.html">Previous</a></li>            <li class=Pager--next><a href="../../programming/python/frameworks/click.html">Next</a></li>        </ul>
     </nav>
     </article>
 
