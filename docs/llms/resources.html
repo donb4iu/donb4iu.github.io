@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>samba - Kalaxy2 MicroK8s Cluster</title>
+    <title>resources - Kalaxy2 MicroK8s Cluster</title>
     <meta name="description" content="Arm64/Amd64 cluster research">
     <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
@@ -147,7 +147,7 @@
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>etl</a><ul class='Nav'>
 <li class='Nav__item '><a href="../etl/document_parsing.html">document parsing</a></li>
 <li class='Nav__item '><a href="../etl/mage_etl.html">mage etl</a></li></ul></li>
-<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
 <li class='Nav__item '><a href="../file_system/backup.html">backup</a></li>
 <li class='Nav__item '><a href="../file_system/ceph.html">ceph</a></li>
 <li class='Nav__item '><a href="../file_system/crd.html">crd</a></li>
@@ -161,7 +161,7 @@
 <li class='Nav__item '><a href="../file_system/object_storage/minio.html">minio</a></li></ul></li>
 <li class='Nav__item '><a href="../file_system/openebs.html">openebs</a></li>
 <li class='Nav__item '><a href="../file_system/rook_ceph.html">rook ceph</a></li>
-<li class='Nav__item Nav__item--active'><a href="../file_system/samba.html">samba</a></li></ul></li>
+<li class='Nav__item '><a href="../file_system/samba.html">samba</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>generativeAI</a><ul class='Nav'>
 <li class='Nav__item '><a href="../generativeAI/agent.html">agent</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>chatbots</a><ul class='Nav'>
@@ -204,9 +204,9 @@
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'>
 <li class='Nav__item '><a href="../ideas/AI_ideas.html">AI ideas</a></li>
 <li class='Nav__item '><a href="../ideas/sources.html">sources</a></li></ul></li>
-<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>llms</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>llms</a><ul class='Nav'>
 <li class='Nav__item '><a href="../llms/building.html">building</a></li>
-<li class='Nav__item '><a href="../llms/resources.html">resources</a></li></ul></li>
+<li class='Nav__item Nav__item--active'><a href="../llms/resources.html">resources</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>machine learning</a><ul class='Nav'>
 <li class='Nav__item '><a href="../machine_learning/ml_models.html">ml models</a></li></ul></li>
 <li class='Nav__item '><a href="../microk8s.html">microk8s</a></li>
@@ -326,7 +326,7 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../file_system/backup.html">file system</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../file_system/samba.html">samba</a></h1>
+        <h1><a href="../llms/building.html">llms</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../llms/resources.html">resources</a></h1>
                 <span class="ModifiedDate">
             September 15, 2024 at 8:01 PM        </span>
                     </div>
@@ -337,17 +337,29 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#samba">Samba</a>
+<a href="#resources">Resources</a>
+<ul>
+<li>
+<a href="#references">References</a>
+</li>
+</ul>
 </li>
 </ul>    </div>
 </div>
-<h1><a id="samba" href="#samba" class="Permalink" aria-hidden="true" title="Permalink">#</a>Samba</h1>
-<p><a href="https://linuxconfig.org/how-to-configure-samba-server-share-on-ubuntu-20-04-focal-fossa-linux" class="Link--external" rel="noopener noreferrer">How to configure Samba Server share on Ubuntu 20.04 Focal Fossa Linux</a></p>
+<h1><a id="resources" href="#resources" class="Permalink" aria-hidden="true" title="Permalink">#</a>Resources</h1>
+<p><img src="image-1.png" alt="alt text" />
+<img src="image-2.png" alt="alt text" /></p>
+<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
+<ul>
+<li>
+<a href="https://medium.com/@masteringllm/how-much-gpu-memory-is-needed-to-serve-a-large-languagemodel-llm-b1899bb2ab5d" class="Link--external" rel="noopener noreferrer">How Much GPU Memory is Needed to Serve a Large Language Model (LLM)?</a>
+</li>
+</ul>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../file_system/rook_ceph.html">Previous</a></li>            <li class=Pager--next><a href="../generativeAI/agent.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../llms/building.html">Previous</a></li>            <li class=Pager--next><a href="../machine_learning/ml_models.html">Next</a></li>        </ul>
     </nav>
     </article>
 
