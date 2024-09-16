@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>search - Kalaxy2 MicroK8s Cluster</title>
+    <meta name="description" content="Arm64/Amd64 cluster research">
+    <meta name="author" content="Don Buddenbaum">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../../index.html">Kalaxy2 MicroK8s Cluster</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ai</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/convolutional_neural_network.html">convolutional neural network</a></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>generativeAI</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/generativeAI/agent.html">agent</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>chatbots</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/generativeAI/chatbots/chatbot_langchain.html">chatbot langchain</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/chatbots/chatbot_langgraph.html">chatbot langgraph</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/chatbots/chatbot_ollama.html">chatbot ollama</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/chatbots/usecases.html">usecases</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/chunking.html">chunking</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/cloudflare_workerAI.html">cloudflare workerAI</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/contianerize.html">contianerize</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>embeddings</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/generativeAI/embeddings/selection.html">selection</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/embeddings/using.html">using</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/evaluation.html">evaluation</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/gpu.html">gpu</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/jupyter.html">jupyter</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/llamaindex.html">llamaindex</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/llm.html">llm</a></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>llm services</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../../../ai/generativeAI/llm_services/search.html">search</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/open_source_solution.html">open source solution</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/overfitting.html">overfitting</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/productionreadyLLM.html">productionreadyLLM</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/prometheus_llm.html">prometheus llm</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/prompt_engineering.html">prompt engineering</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/rag.html">rag</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/servings.html">servings</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/similarity.html">similarity</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/specklebot.html">specklebot</a></li>
+<li class='Nav__item '><a href="../../../ai/generativeAI/vector.html">vector</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>hosting</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/hosting/ollama_server.html">ollama server</a></li>
+<li class='Nav__item '><a href="../../../ai/hosting/openrouter.html">openrouter</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>jupyter tensorflow</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/jupyter_tensorflow/jupyter_tensorflow.html">jupyter tensorflow</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>large language models</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>llms</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/large_language_models/llms/building.html">building</a></li>
+<li class='Nav__item '><a href="../../../ai/large_language_models/llms/resources.html">resources</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/large_language_models/ollama.html">ollama</a></li>
+<li class='Nav__item '><a href="../../../ai/large_language_models/openai.html">openai</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/learning.html">learning</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>machine learning</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>algorithms</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/machine_learning/algorithms/mathematics.html">mathematics</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/machine_learning/ml_models.html">ml models</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/neural_network.html">neural network</a></li>
+<li class='Nav__item '><a href="../../../ai/openwebUI.html">openwebUI</a></li>
+<li class='Nav__item '><a href="../../../ai/private_copilot.html">private copilot</a></li>
+<li class='Nav__item '><a href="../../../ai/search.html">search</a></li>
+<li class='Nav__item '><a href="../../../ai/techstack.html">techstack</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>visual</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ai/visual/search.html">search</a></li></ul></li>
+<li class='Nav__item '><a href="../../../ai/voice.html">voice</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ansible</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ansible/ansible_automation.html">ansible automation</a></li>
+<li class='Nav__item '><a href="../../../ansible/microk8s_setup.html">microk8s setup</a></li>
+<li class='Nav__item '><a href="../../../ansible/storage.html">storage</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>apis</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../apis/apidog.html">apidog</a></li>
+<li class='Nav__item '><a href="../../../apis/design_patterns.html">design patterns</a></li>
+<li class='Nav__item '><a href="../../../apis/management.html">management</a></li>
+<li class='Nav__item '><a href="../../../apis/microks.html">microks</a></li>
+<li class='Nav__item '><a href="../../../apis/postman.html">postman</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>web services</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../apis/web_services/soap.html">soap</a></li>
+<li class='Nav__item '><a href="../../../apis/web_services/webservices.html">webservices</a></li>
+<li class='Nav__item '><a href="../../../apis/web_services/wsdl.html">wsdl</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>authentication authorization</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../authentication_authorization/ssh.html">ssh</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>automation</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argocd</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../automation/argocd/argocd.html">argocd</a></li>
+<li class='Nav__item '><a href="../../../automation/argocd/argocd_image_updater.html">argocd image updater</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>bpms</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../automation/bpms/activiti.html">activiti</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>github</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../automation/github/actions.html">actions</a></li>
+<li class='Nav__item '><a href="../../../automation/github/settings.html">settings</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>helm</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../automation/helm/helm.html">helm</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>microk8s</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../automation/microk8s/microk8s_add_ons.html">microk8s add ons</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>slack</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../automation/slack/slack.html">slack</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>cicd</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argo gitsctions crossplane</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../cicd/argo_gitsctions_crossplane/implementation.html">implementation</a></li></ul></li>
+<li class='Nav__item '><a href="../../../cicd/argocd.html">argocd</a></li>
+<li class='Nav__item '><a href="../../../cicd/automation.html">automation</a></li>
+<li class='Nav__item '><a href="../../../cicd/jenkins_argocd.html">jenkins argocd</a></li>
+<li class='Nav__item '><a href="../../../cicd/maven.html">maven</a></li>
+<li class='Nav__item '><a href="../../../cicd/testing.html">testing</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>cloud</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../cloud/next_cloud.html">next cloud</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>data engineering</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../data_engineering/deltalake.html">deltalake</a></li>
+<li class='Nav__item '><a href="../../../data_engineering/mageAI.html">mageAI</a></li>
+<li class='Nav__item '><a href="../../../data_engineering/pdfparsing.html">pdfparsing</a></li>
+<li class='Nav__item '><a href="../../../data_engineering/pipelines.html">pipelines</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>databases</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../databases/chromadb.html">chromadb</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>clickhouse</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../databases/clickhouse/docker.html">docker</a></li>
+<li class='Nav__item '><a href="../../../databases/clickhouse/documentation.html">documentation</a></li>
+<li class='Nav__item '><a href="../../../databases/clickhouse/kubernetes_operator.html">kubernetes operator</a></li></ul></li>
+<li class='Nav__item '><a href="../../../databases/cockroachDB.html">cockroachDB</a></li>
+<li class='Nav__item '><a href="../../../databases/faiss.html">faiss</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iris</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../databases/iris/restapi.html">restapi</a></li></ul></li>
+<li class='Nav__item '><a href="../../../databases/mongodb.html">mongodb</a></li>
+<li class='Nav__item '><a href="../../../databases/mysql.html">mysql</a></li>
+<li class='Nav__item '><a href="../../../databases/options.html">options</a></li>
+<li class='Nav__item '><a href="../../../databases/performant_datamodels.html">performant datamodels</a></li>
+<li class='Nav__item '><a href="../../../databases/starrocks.html">starrocks</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>etl</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../etl/document_parsing.html">document parsing</a></li>
+<li class='Nav__item '><a href="../../../etl/mage_etl.html">mage etl</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>file system</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../file_system/backup.html">backup</a></li>
+<li class='Nav__item '><a href="../../../file_system/ceph.html">ceph</a></li>
+<li class='Nav__item '><a href="../../../file_system/crd.html">crd</a></li>
+<li class='Nav__item '><a href="../../../file_system/deltalake_vs_parquet.html">deltalake vs parquet</a></li>
+<li class='Nav__item '><a href="../../../file_system/longhorn.html">longhorn</a></li>
+<li class='Nav__item '><a href="../../../file_system/minio.html">minio</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nfs</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../file_system/nfs/nfs.html">nfs</a></li>
+<li class='Nav__item '><a href="../../../file_system/nfs/nfs_csi.html">nfs-csi</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>object storage</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../file_system/object_storage/minio.html">minio</a></li></ul></li>
+<li class='Nav__item '><a href="../../../file_system/openebs.html">openebs</a></li>
+<li class='Nav__item '><a href="../../../file_system/rook_ceph.html">rook ceph</a></li>
+<li class='Nav__item '><a href="../../../file_system/samba.html">samba</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../homelab/cloudflare.html">cloudflare</a></li>
+<li class='Nav__item '><a href="../../../homelab/no_ip.html">no-ip</a></li>
+<li class='Nav__item '><a href="../../../homelab/squarespace.html">squarespace</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iac</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../iac/pulumi.html">pulumi</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../id_auth/basic_auth.html">basic auth</a></li>
+<li class='Nav__item '><a href="../../../id_auth/zitadel.html">zitadel</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../ideas/AI_ideas.html">AI ideas</a></li>
+<li class='Nav__item '><a href="../../../ideas/sources.html">sources</a></li></ul></li>
+<li class='Nav__item '><a href="../../../microk8s.html">microk8s</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>observability</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>grafana</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../observability/grafana/grafana.html">grafana</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>monitoring</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../observability/monitoring/k8s.html">k8s</a></li>
+<li class='Nav__item '><a href="../../../observability/monitoring/nvidia_gpu.html">nvidia gpu</a></li></ul></li>
+<li class='Nav__item '><a href="../../../observability/nodes.html">nodes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>prometheus</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../observability/prometheus/prometheus.html">prometheus</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../operations/crossplane.html">crossplane</a></li>
+<li class='Nav__item '><a href="../../../operations/hooks.html">hooks</a></li>
+<li class='Nav__item '><a href="../../../operations/monitor_gpu.html">monitor gpu</a></li>
+<li class='Nav__item '><a href="../../../operations/monitorllm.html">monitorllm</a></li>
+<li class='Nav__item '><a href="../../../operations/operations.html">operations</a></li>
+<li class='Nav__item '><a href="../../../operations/operators.html">operators</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>policy</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../operations/policy/gatekeeper.html">gatekeeper</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>registries</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../operations/registries/ghcrIO.html">ghcrIO</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>security</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../operations/security/certificates.html">certificates</a></li>
+<li class='Nav__item '><a href="../../../operations/security/dashboard.html">dashboard</a></li></ul></li>
+<li class='Nav__item '><a href="../../../operations/shell_operator_demo.html">shell-operator-demo</a></li>
+<li class='Nav__item '><a href="../../../operations/shell_operator.html">shell operator</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>programming</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>java</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../programming/java/java.html">java</a></li>
+<li class='Nav__item '><a href="../../../programming/java/knotes.html">knotes</a></li>
+<li class='Nav__item '><a href="../../../programming/java/spring.html">spring</a></li>
+<li class='Nav__item '><a href="../../../programming/java/springcloud.html">springcloud</a></li>
+<li class='Nav__item '><a href="../../../programming/java/swagger.html">swagger</a></li>
+<li class='Nav__item '><a href="../../../programming/java/webservices.html">webservices</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>nodejs</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../programming/nodejs/face_recognition.html">face recognition</a></li>
+<li class='Nav__item '><a href="../../../programming/nodejs/frameworks.html">frameworks</a></li>
+<li class='Nav__item '><a href="../../../programming/nodejs/node.html">node</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>playgrounds</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../programming/playgrounds/kllrcoda.html">kllrcoda</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>python</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../programming/python/django_cicd_ecom_k8s.html">django cicd ecom k8s</a></li>
+<li class='Nav__item '><a href="../../../programming/python/environment.html">environment</a></li>
+<li class='Nav__item '><a href="../../../programming/python/flask.html">flask</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>frameworks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../programming/python/frameworks/click.html">click</a></li>
+<li class='Nav__item '><a href="../../../programming/python/frameworks/django.html">django</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>frontends</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../programming/python/frontends.md/nicegui.html">nicegui</a></li>
+<li class='Nav__item '><a href="../../../programming/python/frontends.md/streamlit.html">streamlit</a></li>
+<li class='Nav__item '><a href="../../../programming/python/frontends.md/top5.html">top5</a></li></ul></li>
+<li class='Nav__item '><a href="../../../programming/python/pollapp.html">pollapp</a></li>
+<li class='Nav__item '><a href="../../../programming/python/pyenv.html">pyenv</a></li>
+<li class='Nav__item '><a href="../../../programming/python/solution_references.html">solution references</a></li>
+<li class='Nav__item '><a href="../../../programming/python/sphinx.html">sphinx</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>project management</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../project_management/open_project.html">open project</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>references</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../references/glossary.html">glossary</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>remove</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>microk8s</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../remove/microk8s/microk8s_node.html">microk8s node</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>repositories</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../repositories/generativeAI.html">generativeAI</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>setup</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>argocd</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../setup/argocd/argocd.html">argocd</a></li></ul></li>
+<li class='Nav__item '><a href="../../../setup/microk8s.html">microk8s</a></li>
+<li class='Nav__item '><a href="../../../setup/minio.html">minio</a></li>
+<li class='Nav__item '><a href="../../../setup/notes.html">notes</a></li>
+<li class='Nav__item '><a href="../../../setup/podnodeselector.html">podnodeselector</a></li>
+<li class='Nav__item '><a href="../../../setup/README.html">README</a></li>
+<li class='Nav__item '><a href="../../../setup/rpi_usb_ubuntu.html">rpi usb ubuntu</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>standards</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>apis</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../standards/apis/rest_standards.html">rest standards</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>usecases</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../usecases/machine_learning.html">machine learning</a></li>
+<li class='Nav__item '><a href="../../../usecases/nutrition_image_recognition.html">nutrition image recognition</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>utilities</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../utilities/justfile.html">justfile</a></li>
+<li class='Nav__item '><a href="../../../utilities/k8s_cmd_ref.html">k8s cmd ref</a></li>
+<li class='Nav__item '><a href="../../../utilities/k8s_troubleshooting.html">k8s troubleshooting</a></li>
+<li class='Nav__item '><a href="../../../utilities/k9s.html">k9s</a></li>
+<li class='Nav__item '><a href="../../../utilities/kube_shark.html">kube shark</a></li>
+<li class='Nav__item '><a href="../../../utilities/pvc_backup.html">pvc backup</a></li>
+<li class='Nav__item '><a href="../../../utilities/taskfile.html">taskfile</a></li>
+<li class='Nav__item '><a href="../../../utilities/utilities.html">utilities</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>websites generation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../../websites_generation/dauxio_kalaxy2.html">dauxio kalaxy2</a></li>
+<li class='Nav__item '><a href="../../../websites_generation/resume.html">resume</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../../ai/convolutional_neural_network.html">ai</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../ai/generativeAI/agent.html">generativeAI</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../ai/generativeAI/llm_services/search.html">llm services</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../ai/generativeAI/llm_services/search.html">search</a></h1>
+                <span class="ModifiedDate">
+            September 15, 2024 at 8:36 PM        </span>
+                    </div>
+
+    <div class="s-content">
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li>
+<a href="#llm-search-service">LLM Search Service</a>
+<ul>
+<li>
+<a href="#references">References</a>
+</li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h1><a id="llm-search-service" href="#llm-search-service" class="Permalink" aria-hidden="true" title="Permalink">#</a>LLM Search Service</h1>
+<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
+<ul>
+<li>
+<a href="https://docs.tavily.com/" class="Link--external" rel="noopener noreferrer">Tavily AI is the leading search engine optimized for LLMs</a>
+</li>
+</ul>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../../ai/generativeAI/llm.html">Previous</a></li>            <li class=Pager--next><a href="../../../ai/generativeAI/open_source_solution.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../../themes/daux/js/main.mjs"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../../'})
+    </script>
+</body>
+</html>
