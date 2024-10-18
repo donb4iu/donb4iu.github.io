@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>zitadel - Kalaxy2 MicroK8s Cluster</title>
+    <title>milvus - Kalaxy2 MicroK8s Cluster</title>
     <meta name="description" content="Arm64/Amd64 cluster research">
     <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
@@ -173,7 +173,7 @@
 <li class='Nav__item '><a href="../data_engineering/mageAI.html">mageAI</a></li>
 <li class='Nav__item '><a href="../data_engineering/pdfparsing.html">pdfparsing</a></li>
 <li class='Nav__item '><a href="../data_engineering/pipelines.html">pipelines</a></li></ul></li>
-<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>databases</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>databases</a><ul class='Nav'>
 <li class='Nav__item '><a href="../databases/chromadb.html">chromadb</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>clickhouse</a><ul class='Nav'>
 <li class='Nav__item '><a href="../databases/clickhouse/docker.html">docker</a></li>
@@ -183,7 +183,7 @@
 <li class='Nav__item '><a href="../databases/faiss.html">faiss</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iris</a><ul class='Nav'>
 <li class='Nav__item '><a href="../databases/iris/restapi.html">restapi</a></li></ul></li>
-<li class='Nav__item '><a href="../databases/milvus.html">milvus</a></li>
+<li class='Nav__item Nav__item--active'><a href="../databases/milvus.html">milvus</a></li>
 <li class='Nav__item '><a href="../databases/mongodb.html">mongodb</a></li>
 <li class='Nav__item '><a href="../databases/mysql.html">mysql</a></li>
 <li class='Nav__item '><a href="../databases/options.html">options</a></li>
@@ -213,9 +213,9 @@
 <li class='Nav__item '><a href="../homelab/squarespace.html">squarespace</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>iac</a><ul class='Nav'>
 <li class='Nav__item '><a href="../iac/pulumi.html">pulumi</a></li></ul></li>
-<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>id auth</a><ul class='Nav'>
 <li class='Nav__item '><a href="../id_auth/basic_auth.html">basic auth</a></li>
-<li class='Nav__item Nav__item--active'><a href="../id_auth/zitadel.html">zitadel</a></li></ul></li>
+<li class='Nav__item '><a href="../id_auth/zitadel.html">zitadel</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>ideas</a><ul class='Nav'>
 <li class='Nav__item '><a href="../ideas/AI_ideas.html">AI ideas</a></li>
 <li class='Nav__item '><a href="../ideas/sources.html">sources</a></li></ul></li>
@@ -341,7 +341,7 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../id_auth/basic_auth.html">id auth</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../id_auth/zitadel.html">zitadel</a></h1>
+        <h1><a href="../databases/chromadb.html">databases</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../databases/milvus.html">milvus</a></h1>
                 <span class="ModifiedDate">
             October 18, 2024 at 8:36 AM        </span>
                     </div>
@@ -352,28 +352,39 @@
     <div class="TableOfContentsContainer__content">
         <ul class="TableOfContents">
 <li>
-<a href="#zitadel">Zitadel</a>
+<a href="#milvus">Milvus</a>
 <ul>
 <li>
-<a href="#references">References</a>
+<a href="#reference">Reference</a>
 </li>
 </ul>
 </li>
 </ul>    </div>
 </div>
-<h1><a id="zitadel" href="#zitadel" class="Permalink" aria-hidden="true" title="Permalink">#</a>Zitadel</h1>
-<p><img src="image.png" alt="alt text" /></p>
-<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
+<h1><a id="milvus" href="#milvus" class="Permalink" aria-hidden="true" title="Permalink">#</a>Milvus</h1>
+<p><img src="image-17.png" alt="alt text" /></p>
+<h2><a id="reference" href="#reference" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reference</h2>
 <ul>
 <li>
-<a href="https://zitadel.com/" class="Link--external" rel="noopener noreferrer">Zitadel</a>
+<p><a href="https://milvus.io/" class="Link--external" rel="noopener noreferrer">The High-Performance
+Vector Database Built for Scale
+Milvus is an open-source vector database built for GenAI applications. Install with pip, perform high-speed searches, and scale to tens of billions of vectors with minimal performance loss.</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/@tonylixu/milvus-vector-db-key-differences-and-components-c1f19ef2e829" class="Link--external" rel="noopener noreferrer">Milvus — Vector DB Key Differences and Components</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/@tonylixu/building-a-milvus-connector-for-nifi-307b654d232c" class="Link--external" rel="noopener noreferrer">Building a Milvus Connector For NiFi</a></p>
+</li>
+<li>
+<p><a href="https://medium.com/devops-techable/run-a-milvus-vector-database-inside-your-amazon-eks-elastic-kubernetes-service-in-cluster-mode-680fc5dfa3ae" class="Link--external" rel="noopener noreferrer">Run a Milvus vector database inside your Amazon EKS (Elastic Kubernetes Service) in cluster mode</a></p>
 </li>
 </ul>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../id_auth/basic_auth.html">Previous</a></li>            <li class=Pager--next><a href="../ideas/AI_ideas.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../databases/iris/restapi.html">Previous</a></li>            <li class=Pager--next><a href="../databases/mongodb.html">Next</a></li>        </ul>
     </nav>
     </article>
 
