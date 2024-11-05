@@ -348,7 +348,7 @@
     <div class="Page__header">
         <h1><a href="../../ai/cloudflare_workerAI.html">ai</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../ai/generativeAI/agent.html">generativeAI</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../ai/generativeAI/fine_tuning.html">fine tuning</a></h1>
                 <span class="ModifiedDate">
-            November 4, 2024 at 8:55 PM        </span>
+            November 5, 2024 at 3:42 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -362,11 +362,31 @@
 <li>
 <a href="#references">References</a>
 </li>
+<li>
+<a href="#image-build">Image Build</a>
+<ul>
+<li>
+<a href="#cuda-12-2-0">cuda 12.2.0</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#setup">Setup</a>
+<ul>
+<li>
+<a href="#base-11-05-24-6-18pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-llm-finetuning-gemma-main">(base) #( 11/05/24@ 6:18PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/llm-finetuning-gemma@main✗✗✗</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#execution">Execution</a>
+</li>
 </ul>
 </li>
 </ul>    </div>
 </div>
 <h1><a id="fine-tuning" href="#fine-tuning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Fine Tuning</h1>
+<p><img src="image-25.png" alt="alt text" /></p>
 <h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
 <li>
@@ -375,7 +395,82 @@
 <li>
 <p><a href="https://medium.com/@alibaba-cloud/genai-model-optimization-guide-to-fine-tuning-and-quantization-431d10db332a" class="Link--external" rel="noopener noreferrer">GenAI Model Optimization: Guide to Fine-Tuning and Quantization</a></p>
 </li>
+<li>
+<p><a href="https://medium.com/@cobusgreyling/a-new-study-compares-rag-fine-tuning-for-knowledge-base-use-cases-fa2383357fba" class="Link--external" rel="noopener noreferrer">A New Study Compares RAG &amp; Fine-Tuning For Knowledge Base Use-Cases</a></p>
+</li>
 </ul>
+<h2><a id="image-build" href="#image-build" class="Permalink" aria-hidden="true" title="Permalink">#</a>Image Build</h2>
+<h3><a id="cuda-12-2-0" href="#cuda-12-2-0" class="Permalink" aria-hidden="true" title="Permalink">#</a>cuda 12.2.0</h3>
+<p>docker build -t donb4iu/finetune-gemma-gpu:cuda12.2.0 –push .</p>
+<p>(base) #( 11/05/24@ 5:37PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/llm-finetuning-gemma@main✗✗✗
+docker build -t donb4iu/finetune-gemma-gpu:cuda12.2.0 –push .</p>
+<pre><code>[+] Building 1871.9s (11/11) FINISHED                                                                               docker:desktop-linux
+ =&gt; [internal] load build definition from Dockerfile                                                                                0.0s
+ =&gt; =&gt; transferring dockerfile: 1.17kB                                                                                              0.0s
+ =&gt; [internal] load metadata for docker.io/nvidia/cuda:12.2.0-runtime-ubuntu22.04                                                   1.3s
+ =&gt; [auth] nvidia/cuda:pull token for registry-1.docker.io                                                                          0.0s
+ =&gt; [internal] load .dockerignore                                                                                                   0.0s
+ =&gt; =&gt; transferring context: 2B                                                                                                     0.0s
+ =&gt; [1/4] FROM docker.io/nvidia/cuda:12.2.0-runtime-ubuntu22.04@sha256:739e0bde7bafdb2ed9057865f53085539f51cbf8bd6bf719f2e114bab  142.5s
+ =&gt; =&gt; resolve docker.io/nvidia/cuda:12.2.0-runtime-ubuntu22.04@sha256:739e0bde7bafdb2ed9057865f53085539f51cbf8bd6bf719f2e114bab32  0.0s
+ =&gt; =&gt; sha256:739e0bde7bafdb2ed9057865f53085539f51cbf8bd6bf719f2e114bab321e70e 743B / 743B                                          0.0s
+ =&gt; =&gt; sha256:370f16e473527763fc5f78bb8bb06c76c13b692c7255405e8497df022527281d 2.21kB / 2.21kB                                      0.0s
+ =&gt; =&gt; sha256:5f87b1ee9f9af968f84779dd3166023fb545818e0e8d572f5ca7dbc2499377d2 12.17kB / 12.17kB                                    0.0s
+ =&gt; =&gt; sha256:8054e9d6e8d6718cc3461aa4172ad048564cdf9f552c8f9820bd127859aa007c 56.08MB / 56.08MB                                   25.4s
+ =&gt; =&gt; sha256:aece8493d3972efa43bfd4ee3cdba659c0f787f8f59c82fb3e48c87cbb22a12e 29.54MB / 29.54MB                                   12.8s
+ =&gt; =&gt; sha256:9fe5ccccae45d6811769206667e494085cb511666be47b8e659087c249083c3f 4.62MB / 4.62MB                                      1.8s
+ =&gt; =&gt; sha256:bdddd5cb92f6b4613055bcbcd3226df9821c7facd5af9a998ba12dae080ef134 185B / 185B                                          1.9s
+ =&gt; =&gt; sha256:5324914b447286e0e6512290373af079a25f94499a379e642774245376e60885 6.89kB / 6.89kB                                      2.0s
+ =&gt; =&gt; sha256:9a9dd462fc4c5ca1dd29994385be60a5bb359843fc93447331b8c97dfec99bf9 1.10GB / 1.10GB                                    107.8s
+ =&gt; =&gt; sha256:95eef45e00fabd2bce97586bfe26be456b0e4b3ef3d88d07a8b334ee05cc603c 63.35kB / 63.35kB                                   13.0s
+ =&gt; =&gt; extracting sha256:aece8493d3972efa43bfd4ee3cdba659c0f787f8f59c82fb3e48c87cbb22a12e                                           7.4s
+ =&gt; =&gt; sha256:e2554c2d377e1176c0b8687b17aa7cbe2c48746857acc11686281a4adee35a0a 1.69kB / 1.69kB                                     13.2s
+ =&gt; =&gt; sha256:4640d022dbb8eb47da53ccc2de59f8f5e780ea046289ba3cffdf0a5bd8d19810 1.52kB / 1.52kB                                     13.4s
+ =&gt; =&gt; extracting sha256:9fe5ccccae45d6811769206667e494085cb511666be47b8e659087c249083c3f                                           1.3s
+ =&gt; =&gt; extracting sha256:8054e9d6e8d6718cc3461aa4172ad048564cdf9f552c8f9820bd127859aa007c                                           5.2s
+ =&gt; =&gt; extracting sha256:bdddd5cb92f6b4613055bcbcd3226df9821c7facd5af9a998ba12dae080ef134                                           0.0s
+ =&gt; =&gt; extracting sha256:5324914b447286e0e6512290373af079a25f94499a379e642774245376e60885                                           0.0s
+ =&gt; =&gt; extracting sha256:9a9dd462fc4c5ca1dd29994385be60a5bb359843fc93447331b8c97dfec99bf9                                          34.0s
+ =&gt; =&gt; extracting sha256:95eef45e00fabd2bce97586bfe26be456b0e4b3ef3d88d07a8b334ee05cc603c                                           0.0s
+ =&gt; =&gt; extracting sha256:e2554c2d377e1176c0b8687b17aa7cbe2c48746857acc11686281a4adee35a0a                                           0.0s
+ =&gt; =&gt; extracting sha256:4640d022dbb8eb47da53ccc2de59f8f5e780ea046289ba3cffdf0a5bd8d19810                                           0.0s
+ =&gt; [internal] load build context                                                                                                   0.0s
+ =&gt; =&gt; transferring context: 33B                                                                                                    0.0s
+ =&gt; [2/4] RUN apt-get update &amp;&amp;     apt-get -y --no-install-recommends install python3-dev gcc python3-pip git &amp;&amp;     rm -rf /var  40.7s
+ =&gt; [3/4] RUN pip3 install --no-cache-dir     accelerate==0.30.1 bitsandbytes==0.43.1     datasets==2.19.1 transformers==4.41.0   419.1s
+ =&gt; [4/4] COPY finetune.py /finetune.py                                                                                             0.1s
+ =&gt; exporting to image                                                                                                             54.4s
+ =&gt; =&gt; exporting layers                                                                                                            54.3s
+ =&gt; =&gt; writing image sha256:ccc3051d94c13b6e5a1a78ba5115d1623cb7b201b51cede21dea6d397d0c03d0                                        0.0s
+ =&gt; =&gt; naming to docker.io/donb4iu/finetune-gemma-gpu:cuda12.2.0                                                                    0.0s
+ =&gt; pushing donb4iu/finetune-gemma-gpu:cuda12.2.0 with docker                                                                    1212.3s
+ =&gt; =&gt; pushing layer d9620b935b94                                                                                                1211.7s
+ =&gt; =&gt; pushing layer e5554561df61                                                                                                1209.8s
+ =&gt; =&gt; pushing layer 0c311111544d                                                                                                 102.0s
+ =&gt; =&gt; pushing layer d7ea66469795                                                                                                1211.7s
+ =&gt; =&gt; pushing layer cd08f63effcf                                                                                                1211.7s
+ =&gt; =&gt; pushing layer 3afff21308c2                                                                                                1211.7s
+ =&gt; =&gt; pushing layer fdfb7cb43648                                                                                                1211.7s
+ =&gt; =&gt; pushing layer 863984995e20                                                                                                1211.7s
+ =&gt; =&gt; pushing layer f6922d7436ee                                                                                                1211.7s
+ =&gt; =&gt; pushing layer 2468321ae51b                                                                                                1211.7s
+ =&gt; =&gt; pushing layer c0d9ea20683b                                                                                                1211.7s
+ =&gt; =&gt; pushing layer 256d88da4185                                                                                                1211.7s
+
+ 2 warnings found (use docker --debug to expand):
+ - JSONArgsRecommended: JSON arguments recommended for CMD to prevent unintended behavior related to OS signals (line 31)
+ - LegacyKeyValueFormat: &quot;ENV key=value&quot; should be used instead of legacy &quot;ENV key value&quot; format (line 29)
+</code></pre>
+<p>(base) #( 11/05/24@ 6:18PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/llm-finetuning-gemma@main✗✗✗
+kubectl apply -f finetune.yaml
+job.batch/finetune-job created</p>
+<h2><a id="setup" href="#setup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Setup</h2>
+<h3><a id="base-11-05-24-6-18pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-llm-finetuning-gemma-main" href="#base-11-05-24-6-18pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-llm-finetuning-gemma-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>(base) #( 11/05/24@ 6:18PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/llm-finetuning-gemma@main✗✗✗</h3>
+<p>kubectl apply -f finetune.yaml</p>
+<pre><code>job.batch/finetune-job created
+</code></pre>
+<h2><a id="execution" href="#execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Execution</h2>
+<p><img src="image-26.png" alt="alt text" /></p>
     </div>
 
         <nav>
