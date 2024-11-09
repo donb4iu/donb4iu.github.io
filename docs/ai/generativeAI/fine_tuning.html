@@ -348,7 +348,7 @@
     <div class="Page__header">
         <h1><a href="../../ai/cloudflare_workerAI.html">ai</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../ai/generativeAI/agent.html">generativeAI</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../ai/generativeAI/fine_tuning.html">fine tuning</a></h1>
                 <span class="ModifiedDate">
-            November 5, 2024 at 4:43 PM        </span>
+            November 8, 2024 at 7:00 PM        </span>
                     </div>
 
     <div class="s-content">
@@ -380,6 +380,28 @@
 </li>
 <li>
 <a href="#execution">Execution</a>
+</li>
+<li>
+<a href="#dataset">Dataset</a>
+</li>
+<li>
+<a href="#serving">Serving</a>
+<ul>
+<li>
+<a href="#base-11-06-24-7-09pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-llm-finetuning-gemma-main">#(base) #( 11/06/24@ 7:09PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/llm-finetuning-gemma@main✗✗✗</a>
+</li>
+<li>
+<a href="#curling">Curling</a>
+<ul>
+<li>
+<a href="#base-11-08-24-5-53pm-donbuddenbaum-donbs-imac">#(base) #( 11/08/24@ 5:53PM )( donbuddenbaum@donbs-imac ):~</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#gradio-chat">Gradio Chat</a>
 </li>
 <li>
 <a href="#notes">Notes</a>
@@ -416,6 +438,9 @@
 <p><img src="image-25.png" alt="alt text" /></p>
 <h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
 <ul>
+<li>
+<p><a href="../hosting/vllm.html">Kalaxy2 Hosting vLLM</a></p>
+</li>
 <li>
 <p><a href="https://cloud.google.com/kubernetes-engine/docs/tutorials/finetune-gemma-gpu" class="Link--external" rel="noopener noreferrer">Fine-tune Gemma open models using multiple GPUs on GKE</a></p>
 </li>
@@ -498,6 +523,33 @@ job.batch/finetune-job created</p>
 </code></pre>
 <h2><a id="execution" href="#execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Execution</h2>
 <p><img src="image-26.png" alt="alt text" /></p>
+<h2><a id="dataset" href="#dataset" class="Permalink" aria-hidden="true" title="Permalink">#</a>Dataset</h2>
+<p><img src="image-27.png" alt="alt text" /></p>
+<h2><a id="serving" href="#serving" class="Permalink" aria-hidden="true" title="Permalink">#</a>Serving</h2>
+<h3><a id="base-11-06-24-7-09pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-llm-finetuning-gemma-main" href="#base-11-06-24-7-09pm-donbuddenbaum-donbs-imac-documents-kalaxy2-yaml-llm-finetuning-gemma-main" class="Permalink" aria-hidden="true" title="Permalink">#</a>#(base) #( 11/06/24@ 7:09PM )( donbuddenbaum@donbs-imac ):~/Documents/Kalaxy2/yaml/llm-finetuning-gemma@main✗✗✗</h3>
+<p>kubectl create -f deployment.yaml</p>
+<pre><code>deployment.apps/vllm-gemma-deployment created
+service/llm-service created
+</code></pre>
+<p><img src="image-29.png" alt="alt text" /></p>
+<h3><a id="curling" href="#curling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Curling</h3>
+<h4><a id="base-11-08-24-5-53pm-donbuddenbaum-donbs-imac" href="#base-11-08-24-5-53pm-donbuddenbaum-donbs-imac" class="Permalink" aria-hidden="true" title="Permalink">#</a>#(base) #( 11/08/24@ 5:53PM )( donbuddenbaum@donbs-imac ):~</h4>
+<pre><code>   USER_PROMPT=&quot;Question: What is the total number of attendees with age over 30 at kubecon eu? Context: CREATE TABLE attendees (name VARCHAR, age INTEGER, kubecon VARCHAR)&quot;
+
+curl -X POST http://192.168.2.41:8000/generate \
+  -H &quot;Content-Type: application/json&quot; \
+  -d @- &lt;&lt;EOF
+{
+    &quot;prompt&quot;: &quot;${USER_PROMPT}&quot;,
+    &quot;temperature&quot;: 0.1,
+    &quot;top_p&quot;: 1.0,
+    &quot;max_tokens&quot;: 24
+}
+EOF
+</code></pre>
+<pre><code>{&quot;predictions&quot;:[&quot;Prompt:\nQuestion: What is the total number of attendees with age over 30 at kubecon eu? Context: CREATE TABLE attendees (name VARCHAR, age INTEGER, kubecon VARCHAR)\nOutput:\nAnswer: SELECT COUNT(age) FROM attendees WHERE kubecon = \&quot;kubecon eu\&quot; AND age &gt; 3&quot;]}%
+</code></pre>
+<h2><a id="gradio-chat" href="#gradio-chat" class="Permalink" aria-hidden="true" title="Permalink">#</a>Gradio Chat</h2>
 <h2><a id="notes" href="#notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Notes</h2>
 <h3><a id="1" href="#1" class="Permalink" aria-hidden="true" title="Permalink">#</a>1</h3>
 <h4><a id="error" href="#error" class="Permalink" aria-hidden="true" title="Permalink">#</a>Error</h4>
