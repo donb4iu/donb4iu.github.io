@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+    >
+    <meta
+        name="description"
+        content="Kalaxy homelab and Kubernetes documentation"
+    >
+    <meta name="author" content="Don Buddenbaum">
+
+    <title>Kalaxy Documentation</title>
+
+    <style>
+        :root {
+            color-scheme: light dark;
+            font-family:
+                Inter, ui-sans-serif, system-ui, -apple-system,
+                BlinkMacSystemFont, "Segoe UI", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background:
+                linear-gradient(135deg, #0f172a, #1e3a5f);
+            color: #f8fafc;
+        }
+
+        main {
+            width: min(960px, calc(100% - 2rem));
+            margin: 0 auto;
+            padding: 5rem 0;
+        }
+
+        header {
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            margin: 0 0 0.75rem;
+            font-size: clamp(2.4rem, 7vw, 4.5rem);
+        }
+
+        .subtitle {
+            max-width: 680px;
+            margin: 0;
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            line-height: 1.6;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project {
+            display: block;
+            padding: 2rem;
+            border: 1px solid rgb(255 255 255 / 18%);
+            border-radius: 1rem;
+            background: rgb(255 255 255 / 8%);
+            color: inherit;
+            text-decoration: none;
+            transition:
+                transform 150ms ease,
+                background 150ms ease;
+        }
+
+        .project:hover,
+        .project:focus-visible {
+            transform: translateY(-4px);
+            background: rgb(255 255 255 / 14%);
+        }
+
+        .project h2 {
+            margin: 0 0 0.75rem;
+            font-size: 1.8rem;
+        }
+
+        .project p {
+            margin: 0 0 1.5rem;
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
+
+        .open {
+            font-weight: 700;
+        }
+
+        .future {
+            opacity: 0.65;
+            pointer-events: none;
+        }
+
+        footer {
+            margin-top: 3rem;
+            color: #94a3b8;
+        }
+
+        footer a {
+            color: #bfdbfe;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Kalaxy Documentation</h1>
+
+            <p class="subtitle">
+                Documentation for the Kalaxy Kubernetes, homelab,
+                storage, observability, and automation projects.
+            </p>
+        </header>
+
+        <section class="projects" aria-label="Documentation projects">
+            <a class="project" href="./Kalaxy2/">
+                <h2>Kalaxy2</h2>
+
+                <p>
+                    MicroK8s cluster research, ARM64 and AMD64
+                    infrastructure, applications, and operations.
+                </p>
+
+                <span class="open">Open Kalaxy2 documentation →</span>
+            </a>
+
+            <div class="project future" aria-disabled="true">
+                <h2>Kalaxy3</h2>
+
+                <p>
+                    K3s homelab architecture, phased deployment,
+                    storage, networking, and operational runbooks.
+                </p>
+
+                <span class="open">Coming soon</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>
+                Source repositories:
+                <a href="https://github.com/donb4iu/Kalaxy2">
+                    Kalaxy2
+                </a>
+                and
+                <a href="https://github.com/donb4iu/Kalaxy3">
+                    Kalaxy3
+                </a>
+            </p>
+        </footer>
+    </main>
+</body>
+</html>
