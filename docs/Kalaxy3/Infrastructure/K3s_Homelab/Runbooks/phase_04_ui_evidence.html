@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>Storage Separation - My Project</title>
+    <title>phase-04-ui-evidence - My Project</title>
     <meta name="description" content="My Stylish Documentation">
     <meta name="author" content="I, Me & Myself">
     <meta charset="UTF-8">
@@ -68,16 +68,16 @@
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
-<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
-<li class='Nav__item Nav__item--active'><a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
-<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
-<li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
 <li class='Nav__item '><a href="../../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
@@ -115,23 +115,115 @@
                 <article class="Page">
 
     <div class="Page__header">
-        <h1><a href="../../../Infrastructure/K3s_Homelab/Architecture.html">Infrastructure</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../Infrastructure/K3s_Homelab/Architecture.html">K3s Homelab</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Architecture Decisions</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></h1>
+        <h1><a href="../../../Infrastructure/K3s_Homelab/Architecture.html">Infrastructure</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../Infrastructure/K3s_Homelab/Architecture.html">K3s Homelab</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Runbooks</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></h1>
                     </div>
 
     <div class="s-content">
-        <h1><a id="adr-0003-separate-shared-nfs-and-minio-local-storage" href="#adr-0003-separate-shared-nfs-and-minio-local-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>ADR 0003: Separate Shared NFS and MinIO Local Storage</h1>
-<p>Status: Accepted</p>
-<h2><a id="decision" href="#decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision</h2>
-<p>Use NFS subdirectory provisioners for shared persistent volumes and dedicated local
-HDD mounts for MinIO.</p>
-<h2><a id="consequences" href="#consequences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Consequences</h2>
-<p>NFS and MinIO require separate backup strategies. MinIO data must never silently fall
-back to the boot SSD when <code>/mnt/minio</code> is absent.</p>
+        <h1><a id="kalaxy3-phase-04-ui-evidence" href="#kalaxy3-phase-04-ui-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 Phase 04 UI Evidence</h1>
+<p><strong>Evidence date:</strong> July 13, 2026<br />
+<strong>Cluster:</strong> <code>kalaxy3</code><br />
+<strong>Phase:</strong> Phase 04 — Cluster user interface<br />
+<strong>Application:</strong> Headlamp<br />
+<strong>Kubeconfig:</strong> <code>kubeconfig-kalaxy3.yaml</code></p>
+<h2><a id="validation-commands" href="#validation-commands" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation Commands</h2>
+<pre><code class="hljs bash"><span class="hljs-built_in">export</span> KUBECONFIG=<span class="hljs-string">"<span class="hljs-variable">$PWD</span>/kubeconfig-kalaxy3.yaml"</span>
+
+kubectl get pods -A | grep -i headlamp
+kubectl get svc -A | grep -i headlamp
+</code></pre>
+<h2><a id="headlamp-pod-status" href="#headlamp-pod-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Headlamp Pod Status</h2>
+<pre><code class="language-text">headlamp   headlamp-9f5b76c67-c27rw   1/1   Running   0   42s
+</code></pre>
+<p>The Headlamp pod reported:</p>
+<ul>
+<li>Namespace: <code>headlamp</code></li>
+<li>Pod: <code>headlamp-9f5b76c67-c27rw</code></li>
+<li>Ready containers: <code>1/1</code></li>
+<li>Status: <code>Running</code></li>
+<li>Restarts: <code>0</code></li>
+</ul>
+<p>This confirms that the Headlamp workload started successfully and is
+operational.</p>
+<h2><a id="headlamp-service-status" href="#headlamp-service-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Headlamp Service Status</h2>
+<pre><code class="language-text">headlamp   headlamp   LoadBalancer   10.43.167.2   192.168.2.22   80:31210/TCP   42s
+</code></pre>
+<p>The Headlamp service reported:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Namespace</td>
+<td><code>headlamp</code></td>
+</tr>
+<tr>
+<td>Service</td>
+<td><code>headlamp</code></td>
+</tr>
+<tr>
+<td>Type</td>
+<td><code>LoadBalancer</code></td>
+</tr>
+<tr>
+<td>Cluster IP</td>
+<td><code>10.43.167.2</code></td>
+</tr>
+<tr>
+<td>External IP</td>
+<td><code>192.168.2.22</code></td>
+</tr>
+<tr>
+<td>Service port</td>
+<td><code>80</code></td>
+</tr>
+<tr>
+<td>NodePort</td>
+<td><code>31210</code></td>
+</tr>
+</tbody>
+</table>
+<p>MetalLB assigned the configured external address:</p>
+<pre><code class="language-text">192.168.2.22
+</code></pre>
+<h2><a id="access-url" href="#access-url" class="Permalink" aria-hidden="true" title="Permalink">#</a>Access URL</h2>
+<p>Headlamp is available on the local network at:</p>
+<pre><code class="language-text">http://192.168.2.22
+</code></pre>
+<p>Optional HTTP validation:</p>
+<pre><code class="hljs bash">curl -I http://192.168.2.22
+</code></pre>
+<h2><a id="phase-04-result" href="#phase-04-result" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 04 Result</h2>
+<p>Phase 04 completed successfully with the following results:</p>
+<ul>
+<li>Headlamp was installed in the <code>headlamp</code> namespace.</li>
+<li>The Headlamp pod reached the <code>Running</code> state.</li>
+<li>The pod reported <code>1/1</code> containers ready.</li>
+<li>No pod restarts were reported.</li>
+<li>A Kubernetes <code>LoadBalancer</code> service was created.</li>
+<li>MetalLB assigned the external IP address <code>192.168.2.22</code>.</li>
+<li>Headlamp is reachable over HTTP on port <code>80</code>.</li>
+</ul>
+<h2><a id="recommended-additional-validation" href="#recommended-additional-validation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended Additional Validation</h2>
+<pre><code class="hljs bash">kubectl get deployment -n headlamp
+kubectl describe pod -n headlamp -l app.kubernetes.io/name=headlamp
+kubectl describe svc -n headlamp headlamp
+kubectl get endpoints -n headlamp headlamp
+</code></pre>
+<h2><a id="conclusion" href="#conclusion" class="Permalink" aria-hidden="true" title="Permalink">#</a>Conclusion</h2>
+<p>The Kalaxy3 cluster administration UI is operational. Headlamp is running
+successfully and is exposed on the local network through MetalLB at
+<code>192.168.2.22</code>.</p>
+<p>The cluster is ready for the next deployment phase: observability and cost
+monitoring.</p>
     </div>
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">Previous</a></li>            <li class=Pager--next><a href="../../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../../../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">Previous</a></li>            <li class=Pager--next><a href="../../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Next</a></li>        </ul>
     </nav>
     </article>
 
