@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Ubuntu Node Provisioning - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../Architecture.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item Nav__item--active'><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../installation/ubuntu_node_provisioning_fixed.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="ubuntu-node-provisioning-for-the-new-k3s-cluster" href="#ubuntu-node-provisioning-for-the-new-k3s-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ubuntu Node Provisioning for the New k3s Cluster</h1>
+<p>This guide provisions five Raspberry Pi <code>arm64</code> nodes and three Intel <code>amd64</code>
+nodes for a new k3s Kubernetes cluster.</p>
+<p>The important split is:</p>
+<pre><code class="language-text">arm64 Raspberry Pi nodes -&gt; Ubuntu Raspberry Pi image + cloud-init
+amd64 Intel nodes        -&gt; Ubuntu Server ISO + Ansible after first boot
+</code></pre>
+<p>The Intel machines are intentionally <strong>not</strong> using Ubuntu ISO autoinstall seed
+media here. Install Ubuntu Server normally from the ISO, get SSH working, then
+run Ansible from your Mac or admin workstation.</p>
+<p>All commands are in fenced blocks so browser-rendered Markdown keeps them easy
+to swipe-copy.</p>
+<hr />
+<h2><a id="1-final-node-map" href="#1-final-node-map" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Final Node Map</h2>
+<pre><code class="language-text">arm64-01  192.168.2.51  Raspberry Pi
+arm64-02  192.168.2.52  Raspberry Pi
+arm64-03  192.168.2.53  Raspberry Pi
+arm64-04  192.168.2.54  Raspberry Pi
+arm64-05  192.168.2.55  Raspberry Pi
+
+amd64-01  192.168.2.61  Intel / AMD bare metal
+amd64-02  192.168.2.62  Intel / AMD bare metal
+amd64-03  192.168.2.63  Intel / AMD bare metal
+
+nfs-server 192.168.2.7
+</code></pre>
+<p>Expected OS:</p>
+<pre><code class="language-text">Ubuntu 24.04 LTS Server
+</code></pre>
+<p>Cluster prep common to both architectures:</p>
+<pre><code class="language-text">SSH key login only
+root SSH login disabled
+password SSH login disabled
+users pi and dbuddenbaum created with passwordless sudo
+open-iscsi installed and enabled
+nfs-common installed
+parted and xfsprogs installed
+/etc/hosts populated with every cluster node
+/mnt/minio prepared only when exactly one safe non-root rotational data disk is detected
+</code></pre>
+<hr />
+<h2><a id="2-repository-layout" href="#2-repository-layout" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. Repository Layout</h2>
+<p>Use this layout:</p>
+<pre><code class="language-text">setup/
+  cloud-config-arm64-01.yml
+  cloud-config-arm64-02.yml
+  cloud-config-arm64-03.yml
+  cloud-config-arm64-04.yml
+  cloud-config-arm64-05.yml
+
+ansible/
+  inventory.yml
+  configure-amd64-nodes.yml
+  files/
+    prepare-minio-disk.sh
+  templates/
+    50-k3s-uplink.yaml.j2
+    hosts.j2
+</code></pre>
+<hr />
+<h2><a id="3-raspberry-pi-arm64-provisioning" href="#3-raspberry-pi-arm64-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Raspberry Pi arm64 Provisioning</h2>
+<p>Use cloud-init for the Raspberry Pi nodes because the Ubuntu Raspberry Pi image
+is a preinstalled image and the <code>flash --userdata</code> flow works cleanly.</p>
+<h3><a id="3-1-install-the-flash-tool-on-macos" href="#3-1-install-the-flash-tool-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.1 Install the flash Tool on macOS</h3>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://github.com/hypriot/flash/releases/download/2.5.1/flash"</span>
+</code></pre>
+<pre><code class="hljs bash">chmod +x flash
+</code></pre>
+<pre><code class="hljs bash">sudo mv flash /usr/<span class="hljs-built_in">local</span>/bin/flash
+</code></pre>
+<pre><code class="hljs bash">flash --version
+</code></pre>
+<hr />
+<h3><a id="3-2-download-the-ubuntu-raspberry-pi-image" href="#3-2-download-the-ubuntu-raspberry-pi-image" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.2 Download the Ubuntu Raspberry Pi Image</h3>
+<pre><code class="hljs bash">mkdir -p ~/Downloads/ubuntu-rpi
+</code></pre>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Downloads/ubuntu-rpi
+</code></pre>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://cdimage.ubuntu.com/releases/noble/release/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz"</span>
+</code></pre>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://cdimage.ubuntu.com/releases/noble/release/SHA256SUMS"</span>
+</code></pre>
+<hr />
+<h3><a id="3-3-verify-the-raspberry-pi-image" href="#3-3-verify-the-raspberry-pi-image" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.3 Verify the Raspberry Pi Image</h3>
+<pre><code class="hljs bash">shasum -a 256 ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<pre><code class="hljs bash">grep <span class="hljs-string">"ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz"</span> SHA256SUMS
+</code></pre>
+<p>The two checksums must match before flashing.</p>
+<hr />
+<h3><a id="3-4-identify-the-target-boot-device-on-macos" href="#3-4-identify-the-target-boot-device-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.4 Identify the Target Boot Device on macOS</h3>
+<p>List disks before inserting the SD card or USB SSD.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Insert the target boot device and list disks again.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>The new disk is the target. Do not assume it is <code>/dev/disk3</code>.</p>
+<hr />
+<h3><a id="3-5-use-the-correct-arm64-cloud-init-file" href="#3-5-use-the-correct-arm64-cloud-init-file" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.5 Use the Correct arm64 Cloud-Init File</h3>
+<pre><code class="language-text">setup/cloud-config-arm64-01.yml -&gt; arm64-01 -&gt; 192.168.2.51
+setup/cloud-config-arm64-02.yml -&gt; arm64-02 -&gt; 192.168.2.52
+setup/cloud-config-arm64-03.yml -&gt; arm64-03 -&gt; 192.168.2.53
+setup/cloud-config-arm64-04.yml -&gt; arm64-04 -&gt; 192.168.2.54
+setup/cloud-config-arm64-05.yml -&gt; arm64-05 -&gt; 192.168.2.55
+</code></pre>
+<p>Before flashing, check the file identity.</p>
+<pre><code class="hljs bash">grep -E <span class="hljs-string">"hostname|192\.168\.2|ssh_authorized_keys"</span> setup/cloud-config-arm64-01.yml
+</code></pre>
+<hr />
+<h3><a id="3-6-flash-arm64-01" href="#3-6-flash-arm64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.6 Flash arm64-01</h3>
+<pre><code class="hljs bash">flash \
+  --userdata ~/dvlp/Kalaxy3/cloud-init-setup/nodes/arm64-01.yml \
+  ~/Downloads/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<p>Only answer <code>y</code> when the displayed target disk is definitely the Pi boot device.</p>
+<hr />
+<h3><a id="3-7-flash-arm64-02" href="#3-7-flash-arm64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.7 Flash arm64-02</h3>
+<pre><code class="hljs bash">flash \
+  --userdata ~/dvlp/Kalaxy3/cloud-init-setup/nodes/arm64-02.yml \
+  ~/Downloads/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<hr />
+<h3><a id="3-8-flash-arm64-03" href="#3-8-flash-arm64-03" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.8 Flash arm64-03</h3>
+<pre><code class="hljs bash">flash \
+  --userdata ~/dvlp/Kalaxy3/cloud-init-setup/nodes/arm64-03.yml \
+  ~/Downloads/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<hr />
+<h3><a id="3-9-flash-arm64-04" href="#3-9-flash-arm64-04" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.9 Flash arm64-04</h3>
+<pre><code class="hljs bash">flash \
+  --userdata ~/dvlp/Kalaxy3/cloud-init-setup/nodes/arm64-04.yml \
+  ~/Downloads/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<hr />
+<h3><a id="3-10-flash-arm64-05" href="#3-10-flash-arm64-05" class="Permalink" aria-hidden="true" title="Permalink">#</a>3.10 Flash arm64-05</h3>
+<pre><code class="hljs bash">flash \
+  --userdata ~/dvlp/Kalaxy3/cloud-init-setup/nodes/arm65-01.yml \
+  ~/Downloads/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<hr />
+<h2><a id="4-intel-amd64-provisioning-with-ansible" href="#4-intel-amd64-provisioning-with-ansible" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Intel amd64 Provisioning with Ansible</h2>
+<p>Use this flow for the three Intel machines:</p>
+<pre><code class="language-text">Install Ubuntu Server from ISO manually
+Create temporary dbuddenbaum sudo user if the installer did not create it
+Enable SSH
+Confirm the machine is reachable
+Run Ansible from your Mac or admin workstation
+</code></pre>
+<p>Ansible applies the same effective configuration as the uploaded <code>amd64-01</code>,
+<code>amd64-02</code>, and <code>amd64-03</code> cloud-init examples, but without requiring NoCloud
+seed media.</p>
+<hr />
+<h3><a id="4-1-install-ubuntu-server-on-each-intel-node" href="#4-1-install-ubuntu-server-on-each-intel-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.1 Install Ubuntu Server on Each Intel Node</h3>
+<p>Install Ubuntu Server 24.04 LTS from the normal ISO.</p>
+<p>During install, create this user when possible:</p>
+<pre><code class="language-text">dbuddenbaum
+</code></pre>
+<p>Enable OpenSSH Server during the install.</p>
+<p>Use DHCP during the ISO install if that is easier. Ansible will later set the
+final static IPs.</p>
+<hr />
+<h3><a id="4-2-if-needed-create-the-admin-user-from-the-console" href="#4-2-if-needed-create-the-admin-user-from-the-console" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.2 If Needed, Create the Admin User from the Console</h3>
+<p>Run this only if the ISO install did not create <code>dbuddenbaum</code>.</p>
+<pre><code class="hljs bash">sudo adduser dbuddenbaum
+</code></pre>
+<pre><code class="hljs bash">sudo usermod -aG sudo dbuddenbaum
+</code></pre>
+<pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> --now ssh
+</code></pre>
+<hr />
+<h3><a id="4-3-install-ansible-on-macos" href="#4-3-install-ansible-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.3 Install Ansible on macOS</h3>
+<pre><code class="hljs bash">python3 -m pip install --user ansible-core
+</code></pre>
+<pre><code class="hljs bash">ansible-galaxy collection install ansible.posix
+</code></pre>
+<p>If <code>ansible-playbook</code> is not found, add the Python user binary directory to your
+shell path.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">'export PATH="$HOME/Library/Python/3.12/bin:$PATH"'</span> &gt;&gt; ~/.zshrc
+</code></pre>
+<pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc
+</code></pre>
+<p>Install the Ansible collection used by the playbook.</p>
+<pre><code class="hljs bash">ansible-galaxy collection install -r ansible/requirements.yml
+</code></pre>
+<p>Check Ansible.</p>
+<pre><code class="hljs bash">ansible --version
+</code></pre>
+<hr />
+<h3><a id="4-4-put-your-ssh-key-on-each-fresh-intel-node" href="#4-4-put-your-ssh-key-on-each-fresh-intel-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.4 Put Your SSH Key on Each Fresh Intel Node</h3>
+<p>Replace the IPs below with the temporary DHCP IPs if the nodes are not already
+using <code>192.168.2.61</code>, <code>192.168.2.62</code>, and <code>192.168.2.63</code>.</p>
+<pre><code class="hljs bash">ssh-copy-id dbuddenbaum@192.168.2.61
+</code></pre>
+<pre><code class="hljs bash">ssh-copy-id dbuddenbaum@192.168.2.62
+</code></pre>
+<pre><code class="hljs bash">ssh-copy-id dbuddenbaum@192.168.2.63
+</code></pre>
+<p>Test SSH.</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 hostnamectl
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.62 hostnamectl
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.63 hostnamectl
+</code></pre>
+<hr />
+<h3><a id="4-5-if-dhcp-ips-are-different-edit-the-inventory-first" href="#4-5-if-dhcp-ips-are-different-edit-the-inventory-first" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.5 If DHCP IPs Are Different, Edit the Inventory First</h3>
+<p>Edit this file:</p>
+<pre><code class="language-text">ansible/inventory.yml
+</code></pre>
+<p>For each host, <code>ansible_host</code> is the address Ansible connects to now.
+<code>node_ip</code> is the final static address Ansible writes into netplan.</p>
+<p>Example when <code>amd64-01</code> is temporarily at <code>192.168.2.145</code>:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">amd64-01:</span>
+  <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.145</span>
+  <span class="hljs-attr">node_ip:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.61</span>
+  <span class="hljs-attr">node_hostname:</span> <span class="hljs-string">amd64-01</span>
+</code></pre>
+<p>After Ansible applies netplan, future SSH should use <code>192.168.2.61</code>.</p>
+<hr />
+<h3><a id="4-6-check-ansible-connectivity" href="#4-6-check-ansible-connectivity" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.6 Check Ansible Connectivity</h3>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ansible
+</code></pre>
+<pre><code class="hljs bash">ansible -i inventory.yml amd64_nodes -m ping
+</code></pre>
+<hr />
+<h3><a id="4-7-run-the-amd64-node-provisioning-playbook" href="#4-7-run-the-amd64-node-provisioning-playbook" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.7 Run the amd64 Node Provisioning Playbook</h3>
+<pre><code class="hljs bash">ansible-playbook -i inventory.yml configure-amd64-nodes.yml
+</code></pre>
+<p>The playbook runs one Intel node at a time because it changes networking.</p>
+<hr />
+<h3><a id="4-8-run-one-node-only" href="#4-8-run-one-node-only" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.8 Run One Node Only</h3>
+<p>Use this when testing the first Intel node.</p>
+<pre><code class="hljs bash">ansible-playbook -i inventory.yml configure-amd64-nodes.yml --<span class="hljs-built_in">limit</span> amd64-01
+</code></pre>
+<p>Then run the next node.</p>
+<pre><code class="hljs bash">ansible-playbook -i inventory.yml configure-amd64-nodes.yml --<span class="hljs-built_in">limit</span> amd64-02
+</code></pre>
+<p>Then run the third node.</p>
+<pre><code class="hljs bash">ansible-playbook -i inventory.yml configure-amd64-nodes.yml --<span class="hljs-built_in">limit</span> amd64-03
+</code></pre>
+<hr />
+<h2><a id="5-intel-amd64-ansible-inventory" href="#5-intel-amd64-ansible-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. Intel amd64 Ansible Inventory</h2>
+<p>Save this as:</p>
+<pre><code class="language-text">ansible/inventory.yml
+</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-attr">all:</span>
+  <span class="hljs-attr">children:</span>
+    <span class="hljs-attr">amd64_nodes:</span>
+      <span class="hljs-attr">hosts:</span>
+        <span class="hljs-attr">amd64-01:</span>
+          <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.61</span>
+          <span class="hljs-attr">node_ip:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.61</span>
+          <span class="hljs-attr">node_hostname:</span> <span class="hljs-string">amd64-01</span>
+        <span class="hljs-attr">amd64-02:</span>
+          <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.62</span>
+          <span class="hljs-attr">node_ip:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.62</span>
+          <span class="hljs-attr">node_hostname:</span> <span class="hljs-string">amd64-02</span>
+        <span class="hljs-attr">amd64-03:</span>
+          <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.63</span>
+          <span class="hljs-attr">node_ip:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.63</span>
+          <span class="hljs-attr">node_hostname:</span> <span class="hljs-string">amd64-03</span>
+      <span class="hljs-attr">vars:</span>
+        <span class="hljs-attr">ansible_user:</span> <span class="hljs-string">dbuddenbaum</span>
+        <span class="hljs-attr">ansible_become:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">ansible_python_interpreter:</span> <span class="hljs-string">/usr/bin/python3</span>
+        <span class="hljs-attr">node_gateway:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.1</span>
+        <span class="hljs-attr">node_dns:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.1</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-number">1.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.8</span><span class="hljs-number">.8</span>
+        <span class="hljs-attr">ethernet_match_name:</span> <span class="hljs-string">e*</span>
+        <span class="hljs-attr">prepare_minio_disk:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">k3s_users:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">pi</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">dbuddenbaum</span>
+        <span class="hljs-attr">k3s_ssh_authorized_keys:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-string">ssh-rsa</span> <span class="hljs-string">AAAAB3NzaC1yc2EAAAADAQABAAACAQCft3wmZVTlcGwUvg5SYRYUcpifwpV+lBX6gOV3qmn5Bj2tAHT03QtZe4qsxwMShiNkUihsULzMwtHZ1U07MPHOG+QOi17QsHM2V1il47AGTaI59GQhf07q0wi2dOONt+hyzbTSlej3S0W78tvIhLgXLcGXRJc76RUzL96Y2t3/0wcCo7XnZUNp3q2+Vwlgg3TtfF3y5/IZ7+1Uu8rqQgrmKyTRV58LKh8ChhClRBAY9wlxcoJByg0s1teOWMOoO0JDHeSXkLCV+YO1OUYs1z/L/w7nghf3Ap8Ghz0jrl2q1WkMfR625ptXnoowvtdDp3fziv9ry3TEJ+Yf2Yd5Q4YEj8KviF3zK1YWhIZLylIJRmhv33VYMKFAkCIz2AiBcpSGCzJZoMdWFxEG3n6tru451AoXtAyeVFSvXzBKOKdXZMtRGz6JaCX8XEy4soIHWlf/7xVqmsbrFTcAmy/UoQcqW/rlAv8NhXd6pHMZ+DMTLVIzUJ2BXUs+H5+2BAkWUCmhDfvOiQjWPxic5DgHGjHg66uJ4fknRGf228/3sIRUZNaehxXRoSYwhaXu0Gw57vMh7NsEyCNmBbAC/ZSLCU4j0TiCVa1VSf3YTtJlw+YTZroXe73r9qLKyVplBRhK1hMxgV5EsXXmMPxHtJqLWd1J66NyeYhn445h+/yVGvPeLw==</span> <span class="hljs-string">donbuddenbaum@donbs-iMac</span>
+</code></pre>
+<hr />
+<h2><a id="6-intel-amd64-ansible-playbook" href="#6-intel-amd64-ansible-playbook" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. Intel amd64 Ansible Playbook</h2>
+<p>Save this as:</p>
+<pre><code class="language-text">ansible/configure-amd64-nodes.yml
+</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Configure</span> <span class="hljs-string">Intel</span> <span class="hljs-string">amd64</span> <span class="hljs-string">nodes</span> <span class="hljs-string">for</span> <span class="hljs-string">the</span> <span class="hljs-string">k3s</span> <span class="hljs-string">cluster</span>
+  <span class="hljs-attr">hosts:</span> <span class="hljs-string">amd64_nodes</span>
+  <span class="hljs-attr">become:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">gather_facts:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">serial:</span> <span class="hljs-number">1</span>
+
+  <span class="hljs-attr">tasks:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Confirm</span> <span class="hljs-string">this</span> <span class="hljs-string">playbook</span> <span class="hljs-string">is</span> <span class="hljs-string">only</span> <span class="hljs-string">running</span> <span class="hljs-string">on</span> <span class="hljs-string">amd64</span> <span class="hljs-string">hosts</span>
+      <span class="hljs-attr">ansible.builtin.assert:</span>
+        <span class="hljs-attr">that:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">ansible_architecture</span> <span class="hljs-string">in</span> <span class="hljs-string">['x86_64',</span> <span class="hljs-string">'amd64'</span><span class="hljs-string">]</span>
+        <span class="hljs-attr">fail_msg:</span> <span class="hljs-string">"This host is not amd64/x86_64. Stop before applying Intel node settings."</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Set</span> <span class="hljs-string">hostname</span>
+      <span class="hljs-attr">ansible.builtin.hostname:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ node_hostname }}</span>"</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Set</span> <span class="hljs-string">timezone</span>
+      <span class="hljs-attr">ansible.builtin.command:</span> <span class="hljs-string">timedatectl</span> <span class="hljs-string">set-timezone</span> <span class="hljs-string">America/Chicago</span>
+      <span class="hljs-attr">changed_when:</span> <span class="hljs-literal">false</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Ensure</span> <span class="hljs-string">locale</span> <span class="hljs-string">exists</span>
+      <span class="hljs-attr">ansible.builtin.command:</span> <span class="hljs-string">locale-gen</span> <span class="hljs-string">en_US.UTF-8</span>
+      <span class="hljs-attr">changed_when:</span> <span class="hljs-literal">false</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Update</span> <span class="hljs-string">apt</span> <span class="hljs-string">cache</span> <span class="hljs-string">and</span> <span class="hljs-string">upgrade</span> <span class="hljs-string">packages</span>
+      <span class="hljs-attr">ansible.builtin.apt:</span>
+        <span class="hljs-attr">update_cache:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">upgrade:</span> <span class="hljs-string">dist</span>
+        <span class="hljs-attr">cache_valid_time:</span> <span class="hljs-number">3600</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">base</span> <span class="hljs-string">cluster</span> <span class="hljs-string">packages</span>
+      <span class="hljs-attr">ansible.builtin.apt:</span>
+        <span class="hljs-attr">name:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">open-iscsi</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">nfs-common</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">parted</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">xfsprogs</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">python3</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">sudo</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">openssh-server</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">present</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Ensure</span> <span class="hljs-string">local</span> <span class="hljs-string">users</span> <span class="hljs-string">exist</span>
+      <span class="hljs-attr">ansible.builtin.user:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ item }}</span>"</span>
+        <span class="hljs-attr">groups:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">users</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">sudo</span>
+        <span class="hljs-attr">append:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">shell:</span> <span class="hljs-string">/bin/bash</span>
+        <span class="hljs-attr">password_lock:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">create_home:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">loop:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ k3s_users }}</span>"</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">authorized</span> <span class="hljs-string">SSH</span> <span class="hljs-string">keys</span>
+      <span class="hljs-attr">ansible.posix.authorized_key:</span>
+        <span class="hljs-attr">user:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ item.0 }}</span>"</span>
+        <span class="hljs-attr">key:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ item.1 }}</span>"</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">present</span>
+      <span class="hljs-attr">loop:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ k3s_users | product(k3s_ssh_authorized_keys) | list }}</span>"</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Allow</span> <span class="hljs-string">passwordless</span> <span class="hljs-string">sudo</span> <span class="hljs-string">for</span> <span class="hljs-string">cluster</span> <span class="hljs-string">users</span>
+      <span class="hljs-attr">ansible.builtin.copy:</span>
+        <span class="hljs-attr">dest:</span> <span class="hljs-string">"/etc/sudoers.d/90-k3s-users"</span>
+        <span class="hljs-attr">owner:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">group:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">mode:</span> <span class="hljs-string">'0440'</span>
+        <span class="hljs-attr">validate:</span> <span class="hljs-string">'visudo -cf %s'</span>
+        <span class="hljs-attr">content:</span> <span class="hljs-string">|
+          pi ALL=(ALL) NOPASSWD:ALL
+          dbuddenbaum ALL=(ALL) NOPASSWD:ALL
+</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Disable</span> <span class="hljs-string">SSH</span> <span class="hljs-string">password</span> <span class="hljs-string">login</span> <span class="hljs-string">and</span> <span class="hljs-string">root</span> <span class="hljs-string">login</span>
+      <span class="hljs-attr">ansible.builtin.copy:</span>
+        <span class="hljs-attr">dest:</span> <span class="hljs-string">/etc/ssh/sshd_config.d/99-k3s-hardening.conf</span>
+        <span class="hljs-attr">owner:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">group:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">mode:</span> <span class="hljs-string">'0644'</span>
+        <span class="hljs-attr">content:</span> <span class="hljs-string">|
+          PasswordAuthentication no
+          PermitRootLogin no
+</span>      <span class="hljs-attr">notify:</span> <span class="hljs-string">Restart</span> <span class="hljs-string">ssh</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Write</span> <span class="hljs-string">cluster</span> <span class="hljs-string">hosts</span> <span class="hljs-string">file</span>
+      <span class="hljs-attr">ansible.builtin.template:</span>
+        <span class="hljs-attr">src:</span> <span class="hljs-string">hosts.j2</span>
+        <span class="hljs-attr">dest:</span> <span class="hljs-string">/etc/hosts</span>
+        <span class="hljs-attr">owner:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">group:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">mode:</span> <span class="hljs-string">'0644'</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Write</span> <span class="hljs-string">static</span> <span class="hljs-string">netplan</span> <span class="hljs-string">configuration</span>
+      <span class="hljs-attr">ansible.builtin.template:</span>
+        <span class="hljs-attr">src:</span> <span class="hljs-number">50</span><span class="hljs-string">-k3s-uplink.yaml.j2</span>
+        <span class="hljs-attr">dest:</span> <span class="hljs-string">/etc/netplan/50-k3s-uplink.yaml</span>
+        <span class="hljs-attr">owner:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">group:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">mode:</span> <span class="hljs-string">'0600'</span>
+      <span class="hljs-attr">notify:</span> <span class="hljs-string">Apply</span> <span class="hljs-string">netplan</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Enable</span> <span class="hljs-string">and</span> <span class="hljs-string">start</span> <span class="hljs-string">iSCSI</span> <span class="hljs-string">service</span>
+      <span class="hljs-attr">ansible.builtin.service:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">iscsid</span>
+        <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">started</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">safe</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">disk</span> <span class="hljs-string">preparation</span> <span class="hljs-string">script</span>
+      <span class="hljs-attr">ansible.builtin.copy:</span>
+        <span class="hljs-attr">src:</span> <span class="hljs-string">prepare-minio-disk.sh</span>
+        <span class="hljs-attr">dest:</span> <span class="hljs-string">/usr/local/sbin/prepare-minio-disk.sh</span>
+        <span class="hljs-attr">owner:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">group:</span> <span class="hljs-string">root</span>
+        <span class="hljs-attr">mode:</span> <span class="hljs-string">'0755'</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Prepare</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">disk</span> <span class="hljs-string">when</span> <span class="hljs-string">enabled</span>
+      <span class="hljs-attr">ansible.builtin.command:</span> <span class="hljs-string">/usr/local/sbin/prepare-minio-disk.sh</span>
+      <span class="hljs-attr">register:</span> <span class="hljs-string">minio_prepare</span>
+      <span class="hljs-attr">changed_when:</span> <span class="hljs-string">"'Formatting' in minio_prepare.stderr or 'Creating XFS partition' in minio_prepare.stderr"</span>
+      <span class="hljs-attr">when:</span> <span class="hljs-string">prepare_minio_disk</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Show</span> <span class="hljs-string">final</span> <span class="hljs-string">validation</span> <span class="hljs-string">summary</span>
+      <span class="hljs-attr">ansible.builtin.debug:</span>
+        <span class="hljs-attr">msg:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">"Configured <span class="hljs-template-variable">{{ node_hostname }}</span> at <span class="hljs-template-variable">{{ node_ip }}</span>"</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">"Run: ssh dbuddenbaum@<span class="hljs-template-variable">{{ node_ip }}</span> 'hostnamectl &amp;&amp; lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL'"</span>
+
+  <span class="hljs-attr">handlers:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Restart</span> <span class="hljs-string">ssh</span>
+      <span class="hljs-attr">ansible.builtin.service:</span>
+        <span class="hljs-attr">name:</span> <span class="hljs-string">ssh</span>
+        <span class="hljs-attr">state:</span> <span class="hljs-string">restarted</span>
+
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Apply</span> <span class="hljs-string">netplan</span>
+      <span class="hljs-attr">ansible.builtin.command:</span> <span class="hljs-string">netplan</span> <span class="hljs-string">apply</span>
+      <span class="hljs-attr">async:</span> <span class="hljs-number">45</span>
+      <span class="hljs-attr">poll:</span> <span class="hljs-number">0</span>
+      <span class="hljs-attr">changed_when:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<hr />
+<h2><a id="7-important-minio-disk-safety-rule" href="#7-important-minio-disk-safety-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. Important MinIO Disk Safety Rule</h2>
+<p>The MinIO prep script refuses to format when disk selection is ambiguous.</p>
+<p>It only proceeds when it finds exactly one disk that is:</p>
+<pre><code class="language-text">not the root disk
+not removable
+rotational
+at least 800 GB
+not already mounted as the OS filesystem
+</code></pre>
+<p>Before running provisioning, check each node from the console or SSH.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<pre><code class="hljs bash">findmnt /
+</code></pre>
+<pre><code class="hljs bash">df -h
+</code></pre>
+<p>If a node has more than one possible MinIO disk, set this in the inventory before
+running Ansible:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">prepare_minio_disk:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p>Then prepare the data disk manually after confirming the disk identity.</p>
+<hr />
+<h2><a id="8-first-boot-validation-for-every-node" href="#8-first-boot-validation-for-every-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. First-Boot Validation for Every Node</h2>
+<p>Run these after each Pi first boot and after each Intel Ansible run.</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.51 hostnamectl
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 hostnamectl
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 cloud-init status --long || <span class="hljs-literal">true</span>
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 ip addr
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 ip route
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 systemctl status ssh --no-pager
+</code></pre>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 systemctl status iscsid --no-pager
+</code></pre>
+<hr />
+<h2><a id="9-k3s-readiness-checks-before-joining-nodes" href="#9-k3s-readiness-checks-before-joining-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. k3s Readiness Checks Before Joining Nodes</h2>
+<p>Run these checks on all eight nodes before installing k3s.</p>
+<pre><code class="hljs bash">ansible -i ansible/inventory.yml amd64_nodes -m <span class="hljs-built_in">command</span> -a <span class="hljs-string">"hostnamectl"</span>
+</code></pre>
+<pre><code class="hljs bash">ansible -i ansible/inventory.yml amd64_nodes -m <span class="hljs-built_in">command</span> -a <span class="hljs-string">"lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL"</span>
+</code></pre>
+<pre><code class="hljs bash">ansible -i ansible/inventory.yml amd64_nodes -m <span class="hljs-built_in">command</span> -a <span class="hljs-string">"systemctl is-active ssh"</span>
+</code></pre>
+<pre><code class="hljs bash">ansible -i ansible/inventory.yml amd64_nodes -m <span class="hljs-built_in">command</span> -a <span class="hljs-string">"systemctl is-active iscsid"</span>
+</code></pre>
+<hr />
+<h2><a id="10-troubleshooting" href="#10-troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. Troubleshooting</h2>
+<h3><a id="10-1-ansible-cannot-connect" href="#10-1-ansible-cannot-connect" class="Permalink" aria-hidden="true" title="Permalink">#</a>10.1 Ansible Cannot Connect</h3>
+<pre><code class="hljs bash">ssh -v dbuddenbaum@192.168.2.61
+</code></pre>
+<pre><code class="hljs bash">nc -vz 192.168.2.61 22
+</code></pre>
+<p>If the node is still on DHCP, update <code>ansible_host</code> in <code>ansible/inventory.yml</code>.</p>
+<hr />
+<h3><a id="10-2-static-ip-did-not-apply" href="#10-2-static-ip-did-not-apply" class="Permalink" aria-hidden="true" title="Permalink">#</a>10.2 Static IP Did Not Apply</h3>
+<pre><code class="hljs bash">sudo netplan generate
+</code></pre>
+<pre><code class="hljs bash">sudo netplan apply
+</code></pre>
+<pre><code class="hljs bash">ip addr
+</code></pre>
+<pre><code class="hljs bash">ip route
+</code></pre>
+<hr />
+<h3><a id="10-3-minio-disk-prep-refused-to-run" href="#10-3-minio-disk-prep-refused-to-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>10.3 MinIO Disk Prep Refused to Run</h3>
+<p>This is usually good. It means disk selection was not safe enough.</p>
+<pre><code class="hljs bash">sudo /usr/<span class="hljs-built_in">local</span>/sbin/prepare-minio-disk.sh
+</code></pre>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<pre><code class="hljs bash">findmnt /
+</code></pre>
+<p>Set <code>prepare_minio_disk: false</code> until the disk is confirmed.</p>
+<hr />
+<h2><a id="appendix-a-arm64-cloud-init-files-generated-with-this-package" href="#appendix-a-arm64-cloud-init-files-generated-with-this-package" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendix A. arm64 Cloud-Init Files Generated With This Package</h2>
+<pre><code class="language-text">setup/cloud-config-arm64-01.yml
+setup/cloud-config-arm64-02.yml
+setup/cloud-config-arm64-03.yml
+setup/cloud-config-arm64-04.yml
+setup/cloud-config-arm64-05.yml
+</code></pre>
+<p>Each file sets the node hostname, static IP, SSH users, authorized keys, cluster
+hosts file, base packages, iSCSI service, and safe MinIO disk prep script.</p>
+<hr />
+<h2><a id="appendix-b-generated-amd64-files" href="#appendix-b-generated-amd64-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendix B. Generated amd64 Files</h2>
+<pre><code class="language-text">ansible/inventory.yml
+ansible/configure-amd64-nodes.yml
+ansible/templates/hosts.j2
+ansible/templates/50-k3s-uplink.yaml.j2
+ansible/files/prepare-minio-disk.sh
+ansible/requirements.yml
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Previous</a></li>                    </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>

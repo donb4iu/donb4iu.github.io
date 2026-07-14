@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Ubuntu Node Provisioning - My Project</title>
+    <meta name="description" content="Mixed arm64 Raspberry Pi and amd64 Ubuntu provisioning guide">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../Architecture.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../installation/ubuntu_node_provisioning_fixed.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/amd64_nocloud_seed_helper.html">old</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="ubuntu-installation-and-node-provisioning" href="#ubuntu-installation-and-node-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ubuntu Installation and Node Provisioning</h1>
+<p>This guide describes how to provision Ubuntu nodes for a mixed-architecture
+homelab or Kubernetes cluster. It supports both Raspberry Pi <code>arm64</code> machines
+and Intel/AMD <code>amd64</code> bare-metal machines.</p>
+<p>The goal is to produce repeatable Ubuntu installs while avoiding the two most
+common provisioning mistakes:</p>
+<ol>
+<li>Flashing or installing to the wrong disk.</li>
+<li>Assuming Linux disk ordering is stable.</li>
+</ol>
+<p>For new installs, prefer Ubuntu 24.04 LTS unless a specific project requires a
+different release. Raspberry Pi nodes use Ubuntu’s preinstalled Raspberry Pi
+server image. Bare-metal <code>amd64</code> nodes use the standard Ubuntu Server installer
+ISO.</p>
+<p>This document assumes the flashing workstation is macOS.</p>
+<p>All commands are shown in fenced code blocks so they can be selected and copied
+directly from a browser.</p>
+<hr />
+<h2><a id="table-of-contents" href="#table-of-contents" class="Permalink" aria-hidden="true" title="Permalink">#</a>Table of Contents</h2>
+<ul>
+<li><a href="#1-supported-node-types">1. Supported Node Types</a></li>
+<li><a href="#2-general-safety-rules">2. General Safety Rules</a></li>
+<li><a href="#3-recommended-repository-layout">3. Recommended Repository Layout</a></li>
+<li><a href="#4-raspberry-pi-arm64-provisioning">4. Raspberry Pi arm64 Provisioning</a></li>
+<li><a href="#5-amd64-bare-metal-provisioning">5. amd64 Bare-Metal Provisioning</a></li>
+<li><a href="#6-amd64-cloud-init-and-autoinstall-mapping">6. amd64 Cloud-Init and Autoinstall Mapping</a></li>
+<li><a href="#7-first-boot-validation-for-all-nodes">7. First-Boot Validation for All Nodes</a></li>
+<li><a href="#8-storage-validation-for-minio-nodes">8. Storage Validation for MinIO Nodes</a></li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a></li>
+<li><a href="#10-recommended-current-workflows">10. Recommended Current Workflows</a></li>
+<li><a href="#11-archived-historical-notes">11. Archived Historical Notes</a></li>
+<li><a href="#appendix-a-useful-validation-commands">Appendix A: Useful Validation Commands</a></li>
+<li><a href="#appendix-b-publishing-notes">Appendix B: Publishing Notes</a></li>
+</ul>
+<hr />
+<h1><a id="1-supported-node-types" href="#1-supported-node-types" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Supported Node Types</h1>
+<p>This provisioning guide supports two node families.</p>
+<table>
+<thead>
+<tr>
+<th>Node Type</th>
+<th align="right">Architecture</th>
+<th>Install Method</th>
+<th>Boot Media</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raspberry Pi 4 / Pi 5</td>
+<td align="right"><code>arm64</code></td>
+<td>Ubuntu Raspberry Pi preinstalled image plus cloud-init</td>
+<td>USB SSD or SD card</td>
+</tr>
+<tr>
+<td>Intel / AMD bare metal</td>
+<td align="right"><code>amd64</code></td>
+<td>Ubuntu Server ISO or autoinstall</td>
+<td>SSD or NVMe</td>
+</tr>
+</tbody>
+</table>
+<p>Example cluster layout:</p>
+<pre><code class="language-text">arm64-01  Raspberry Pi
+arm64-02  Raspberry Pi
+arm64-03  Raspberry Pi
+arm64-04  Raspberry Pi
+arm64-05  Raspberry Pi
+
+amd64-01  Intel / AMD bare metal
+amd64-02  Intel / AMD bare metal
+amd64-03  Intel / AMD bare metal
+</code></pre>
+<p>Recommended operating system:</p>
+<pre><code class="language-text">Ubuntu 24.04 LTS Server
+</code></pre>
+<hr />
+<h1><a id="2-general-safety-rules" href="#2-general-safety-rules" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. General Safety Rules</h1>
+<p>Provisioning writes directly to disks. Treat every flashing, imaging, and
+installer step as destructive until proven otherwise.</p>
+<p>Never assume any of the following device names are stable:</p>
+<pre><code class="language-text">/dev/disk3
+/dev/sda
+/dev/sdb
+/dev/nvme0n1
+</code></pre>
+<p>These names can change depending on boot order, attached USB devices, drive
+controllers, BIOS behavior, and kernel discovery order.</p>
+<p>Before writing an image, always identify the target disk by:</p>
+<pre><code class="language-text">size
+model
+vendor
+serial number
+connection type
+whether it appeared after insertion
+whether it is removable
+</code></pre>
+<p>For MinIO or other data disks, never rely only on <code>/dev/sda</code> or <code>/dev/sdb</code>.
+Identify the intended disk using durable characteristics such as:</p>
+<pre><code class="language-text">rotational status
+size
+model
+serial number
+existing filesystems
+mount status
+whether it contains the root filesystem
+operator confirmation
+</code></pre>
+<hr />
+<h1><a id="3-recommended-repository-layout" href="#3-recommended-repository-layout" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Recommended Repository Layout</h1>
+<p>A recommended repository layout is shown below.</p>
+<pre><code class="language-text">setup/
+  cloud-config-arm64-01.yml
+  cloud-config-arm64-02.yml
+  cloud-config-arm64-03.yml
+  cloud-config-arm64-04.yml
+  cloud-config-arm64-05.yml
+
+  autoinstall-amd64-01/
+    user-data
+    meta-data
+
+  autoinstall-amd64-02/
+    user-data
+    meta-data
+
+  autoinstall-amd64-03/
+    user-data
+    meta-data
+
+docs/
+  ubuntu-node-provisioning.md
+</code></pre>
+<p>The <code>arm64</code> files are intended for Raspberry Pi nodes. The <code>amd64</code> autoinstall
+directories are optional and should only be used once disk selection has been
+tested carefully.</p>
+<hr />
+<h1><a id="4-raspberry-pi-arm64-provisioning" href="#4-raspberry-pi-arm64-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Raspberry Pi arm64 Provisioning</h1>
+<p>Use this section for Raspberry Pi nodes.</p>
+<p>Raspberry Pi provisioning uses the Ubuntu preinstalled server image for
+Raspberry Pi. The cloud-init configuration is injected into the image during
+flashing.</p>
+<h2><a id="4-1-install-the-flash-tool-on-macos" href="#4-1-install-the-flash-tool-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.1 Install the Flash Tool on macOS</h2>
+<p>The Hypriot <code>flash</code> utility can write Ubuntu images and inject a cloud-init
+<code>user-data</code> file during the flashing process.</p>
+<p>Download the <code>flash</code> utility.</p>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://github.com/hypriot/flash/releases/download/2.5.1/flash"</span>
+</code></pre>
+<p>Make the downloaded file executable.</p>
+<pre><code class="hljs bash">chmod +x flash
+</code></pre>
+<p>Move the executable into <code>/usr/local/bin</code>.</p>
+<pre><code class="hljs bash">sudo mv flash /usr/<span class="hljs-built_in">local</span>/bin/flash
+</code></pre>
+<p>Verify that the tool is available.</p>
+<pre><code class="hljs bash">flash --version
+</code></pre>
+<p>If the command is not found, confirm that <code>/usr/local/bin</code> is in your shell
+<code>PATH</code>.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">"<span class="hljs-variable">$PATH</span>"</span>
+</code></pre>
+<hr />
+<h2><a id="4-2-download-the-ubuntu-raspberry-pi-image" href="#4-2-download-the-ubuntu-raspberry-pi-image" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.2 Download the Ubuntu Raspberry Pi Image</h2>
+<p>Create a local download directory for Raspberry Pi images.</p>
+<pre><code class="hljs bash">mkdir -p ~/Downloads/ubuntu-rpi
+</code></pre>
+<p>Move into the download directory.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Downloads/ubuntu-rpi
+</code></pre>
+<p>Download the Ubuntu Raspberry Pi <code>arm64</code> server image.</p>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://cdimage.ubuntu.com/releases/noble/release/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz"</span>
+</code></pre>
+<p>Download the checksum file from the same release directory.</p>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://cdimage.ubuntu.com/releases/noble/release/SHA256SUMS"</span>
+</code></pre>
+<p>The image file should remain compressed as <code>.img.xz</code>. The <code>flash</code> tool can use
+the compressed image directly.</p>
+<hr />
+<h2><a id="4-3-verify-the-raspberry-pi-image" href="#4-3-verify-the-raspberry-pi-image" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.3 Verify the Raspberry Pi Image</h2>
+<p>Generate the local SHA-256 checksum.</p>
+<pre><code class="hljs bash">shasum -a 256 ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<p>Show the expected checksum from Ubuntu’s <code>SHA256SUMS</code> file.</p>
+<pre><code class="hljs bash">grep <span class="hljs-string">"ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz"</span> SHA256SUMS
+</code></pre>
+<p>The value from <code>shasum</code> should match the value shown by <code>grep</code>.</p>
+<p>Do not flash the image if the checksum does not match.</p>
+<hr />
+<h2><a id="4-4-identify-the-target-disk-on-macos" href="#4-4-identify-the-target-disk-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.4 Identify the Target Disk on macOS</h2>
+<p>Before inserting the SD card or USB boot drive, list the disks currently attached
+to the Mac.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Insert the SD card or USB boot drive.</p>
+<p>Then list the disks again.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Identify the newly added disk by comparing the two command outputs.</p>
+<p>Example target disk:</p>
+<pre><code class="language-text">/dev/disk3
+</code></pre>
+<p>Do not assume your target disk is <code>/dev/disk3</code>. The correct disk may be
+<code>/dev/disk2</code>, <code>/dev/disk4</code>, or another value.</p>
+<p>The disk shown by <code>flash</code> must match the disk you identified with
+<code>diskutil list</code>.</p>
+<hr />
+<h2><a id="4-5-select-the-correct-arm64-cloud-init-file" href="#4-5-select-the-correct-arm64-cloud-init-file" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.5 Select the Correct arm64 Cloud-Init File</h2>
+<p>Use the cloud-init file that matches the Raspberry Pi node being provisioned.</p>
+<pre><code class="language-text">setup/cloud-config-arm64-01.yml  -&gt; arm64-01
+setup/cloud-config-arm64-02.yml  -&gt; arm64-02
+setup/cloud-config-arm64-03.yml  -&gt; arm64-03
+setup/cloud-config-arm64-04.yml  -&gt; arm64-04
+setup/cloud-config-arm64-05.yml  -&gt; arm64-05
+</code></pre>
+<p>Before flashing, inspect the selected file and confirm that the hostname,
+network settings, users, and SSH keys are correct.</p>
+<pre><code class="hljs bash">grep -E <span class="hljs-string">"hostname|fqdn|192\.168\.2|users|ssh_authorized_keys"</span> \
+  setup/cloud-config-arm64-01.yml
+</code></pre>
+<p>If this command does not show the expected node identity, stop and check the
+cloud-init file before flashing.</p>
+<hr />
+<h2><a id="4-6-flash-the-raspberry-pi-boot-device" href="#4-6-flash-the-raspberry-pi-boot-device" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.6 Flash the Raspberry Pi Boot Device</h2>
+<p>The following example flashes <code>arm64-01</code>.</p>
+<pre><code class="hljs bash">flash \
+  --userdata setup/cloud-config-arm64-01.yml \
+  ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<p>During flashing, the tool may prompt for confirmation.</p>
+<p>Example prompt:</p>
+<pre><code class="language-text">Is /dev/disk3 correct?
+</code></pre>
+<p>Only answer <code>y</code> if the displayed disk is definitely the intended SD card or USB
+boot drive.</p>
+<pre><code class="language-text">y
+</code></pre>
+<p>If the disk is not correct, answer <code>n</code> or terminate the command.</p>
+<hr />
+<h2><a id="4-7-boot-the-raspberry-pi" href="#4-7-boot-the-raspberry-pi" class="Permalink" aria-hidden="true" title="Permalink">#</a>4.7 Boot the Raspberry Pi</h2>
+<p>After flashing completes:</p>
+<ol>
+<li>Eject the boot device from macOS.</li>
+<li>Insert the SD card or USB drive into the Raspberry Pi.</li>
+<li>Connect Ethernet.</li>
+<li>Connect power.</li>
+<li>Wait for first boot and cloud-init to complete.</li>
+</ol>
+<p>The first boot may take several minutes because Ubuntu expands the filesystem,
+applies cloud-init, configures networking, creates users, installs packages, and
+starts services.</p>
+<hr />
+<h1><a id="5-amd64-bare-metal-provisioning" href="#5-amd64-bare-metal-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. amd64 Bare-Metal Provisioning</h1>
+<p>Use this section for Intel or AMD bare-metal machines.</p>
+<p>The <code>amd64</code> workflow uses the normal Ubuntu Server installer ISO plus the
+node-specific cloud-init/autoinstall file.</p>
+<p>For <code>amd64-01</code>, the provisioning file is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+</code></pre>
+<p>For <code>amd64-02</code>, the provisioning file is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-02.yml
+</code></pre>
+<p>For <code>amd64-03</code>, the provisioning file is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-03.yml
+</code></pre>
+<p>The <code>amd64</code> ISO is an installer ISO, not a preinstalled disk image. That means
+the Raspberry Pi command pattern below is not used for <code>amd64</code> machines:</p>
+<pre><code class="hljs bash">flash \
+  --userdata setup/cloud-config-amd64-01.yml \
+  ~/Downloads/ubuntu-amd64/ubuntu-24.04.4-live-server-amd64.iso
+</code></pre>
+<p>Instead, the matching <code>setup/cloud-config-amd64-NN.yml</code> file is copied to a
+NoCloud seed as <code>user-data</code>, and the Ubuntu installer consumes it during
+autoinstall.</p>
+<hr />
+<h2><a id="5-1-download-the-ubuntu-server-amd64-iso" href="#5-1-download-the-ubuntu-server-amd64-iso" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.1 Download the Ubuntu Server amd64 ISO</h2>
+<p>Create a local download directory for the Ubuntu Server ISO.</p>
+<pre><code class="hljs bash">mkdir -p ~/Downloads/ubuntu-amd64
+</code></pre>
+<p>Move into the download directory.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Downloads/ubuntu-amd64
+</code></pre>
+<p>Download the Ubuntu Server <code>amd64</code> ISO.</p>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://releases.ubuntu.com/noble/ubuntu-24.04.4-live-server-amd64.iso"</span>
+</code></pre>
+<p>Download the checksum file.</p>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://releases.ubuntu.com/noble/SHA256SUMS"</span>
+</code></pre>
+<p>Download the signed checksum file.</p>
+<pre><code class="hljs bash">curl -LO <span class="hljs-string">"https://releases.ubuntu.com/noble/SHA256SUMS.gpg"</span>
+</code></pre>
+<hr />
+<h2><a id="5-2-verify-the-amd64-iso" href="#5-2-verify-the-amd64-iso" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.2 Verify the amd64 ISO</h2>
+<p>Generate the local SHA-256 checksum.</p>
+<pre><code class="hljs bash">shasum -a 256 ubuntu-24.04.4-live-server-amd64.iso
+</code></pre>
+<p>Show the expected checksum from Ubuntu’s <code>SHA256SUMS</code> file.</p>
+<pre><code class="hljs bash">grep <span class="hljs-string">"ubuntu-24.04.4-live-server-amd64.iso"</span> SHA256SUMS
+</code></pre>
+<p>The value from <code>shasum</code> should match the value shown by <code>grep</code>.</p>
+<hr />
+<h2><a id="5-3-create-the-ubuntu-server-installer-usb" href="#5-3-create-the-ubuntu-server-installer-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.3 Create the Ubuntu Server Installer USB</h2>
+<p>Insert the USB drive that will become the Ubuntu installer.</p>
+<p>List attached disks before and after insertion.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Unmount the USB installer disk.</p>
+<p>Replace <code>/dev/disk3</code> with the disk you identified.</p>
+<pre><code class="hljs bash">diskutil unmountDisk /dev/disk3
+</code></pre>
+<p>Write the Ubuntu Server ISO to the USB drive.</p>
+<p>Replace <code>/dev/rdisk3</code> with the raw disk path that corresponds to your target
+disk. On macOS, <code>/dev/rdisk3</code> is the raw version of <code>/dev/disk3</code>.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Downloads/ubuntu-amd64
+</code></pre>
+<pre><code class="hljs bash">sudo dd \
+  <span class="hljs-keyword">if</span>=ubuntu-24.04.4-live-server-amd64.iso \
+  of=/dev/rdisk3 \
+  bs=4m \
+  status=progress
+</code></pre>
+<p>Flush pending writes.</p>
+<pre><code class="hljs bash">sync
+</code></pre>
+<p>Eject the USB installer.</p>
+<pre><code class="hljs bash">diskutil eject /dev/disk3
+</code></pre>
+<hr />
+<h2><a id="5-4-create-the-amd64-01-nocloud-seed-usb" href="#5-4-create-the-amd64-01-nocloud-seed-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.4 Create the amd64-01 NoCloud Seed USB</h2>
+<p>Use a second small USB drive as the NoCloud seed device.</p>
+<p>The seed USB must contain these two files at the root:</p>
+<pre><code class="language-text">user-data
+meta-data
+</code></pre>
+<p>For <code>amd64-01</code>, <code>user-data</code> is created from:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+</code></pre>
+<p>Create a local seed build directory.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-01
+</code></pre>
+<p>Copy the <code>amd64-01</code> cloud-init/autoinstall file as <code>user-data</code>.</p>
+<pre><code class="hljs bash">cp setup/cloud-config-amd64-01.yml build/nocloud/amd64-01/user-data
+</code></pre>
+<p>Create <code>meta-data</code>.</p>
+<pre><code class="hljs bash">cat &gt; build/nocloud/amd64-01/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-01
+<span class="hljs-built_in">local</span>-hostname: amd64-01
+EOF
+</code></pre>
+<p>Insert the seed USB and identify it.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Format the seed USB with the required NoCloud label.</p>
+<p>Replace <code>/dev/disk4</code> with the seed USB disk.</p>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<p>Copy the seed files to the USB.</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-01/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-01/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<hr />
+<h2><a id="5-5-create-the-amd64-02-nocloud-seed-usb" href="#5-5-create-the-amd64-02-nocloud-seed-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.5 Create the amd64-02 NoCloud Seed USB</h2>
+<p>Reuse the same seed USB, but replace the files with the <code>amd64-02</code> files.</p>
+<p>Create the seed directory.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-02
+</code></pre>
+<p>Copy the <code>amd64-02</code> cloud-init/autoinstall file as <code>user-data</code>.</p>
+<pre><code class="hljs bash">cp setup/cloud-config-amd64-02.yml build/nocloud/amd64-02/user-data
+</code></pre>
+<p>Create <code>meta-data</code>.</p>
+<pre><code class="hljs bash">cat &gt; build/nocloud/amd64-02/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-02
+<span class="hljs-built_in">local</span>-hostname: amd64-02
+EOF
+</code></pre>
+<p>Insert the seed USB and confirm it mounted as <code>CIDATA</code>.</p>
+<pre><code class="hljs bash">ls /Volumes/CIDATA
+</code></pre>
+<p>Copy the seed files to the USB.</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-02/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-02/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<hr />
+<h2><a id="5-6-create-the-amd64-03-nocloud-seed-usb" href="#5-6-create-the-amd64-03-nocloud-seed-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.6 Create the amd64-03 NoCloud Seed USB</h2>
+<p>Reuse the same seed USB, but replace the files with the <code>amd64-03</code> files.</p>
+<p>Create the seed directory.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-03
+</code></pre>
+<p>Copy the <code>amd64-03</code> cloud-init/autoinstall file as <code>user-data</code>.</p>
+<pre><code class="hljs bash">cp setup/cloud-config-amd64-03.yml build/nocloud/amd64-03/user-data
+</code></pre>
+<p>Create <code>meta-data</code>.</p>
+<pre><code class="hljs bash">cat &gt; build/nocloud/amd64-03/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-03
+<span class="hljs-built_in">local</span>-hostname: amd64-03
+EOF
+</code></pre>
+<p>Insert the seed USB and confirm it mounted as <code>CIDATA</code>.</p>
+<pre><code class="hljs bash">ls /Volumes/CIDATA
+</code></pre>
+<p>Copy the seed files to the USB.</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-03/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-03/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<hr />
+<h2><a id="5-7-boot-amd64-with-autoinstall" href="#5-7-boot-amd64-with-autoinstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.7 Boot amd64 with Autoinstall</h2>
+<p>For the target AMD64 node:</p>
+<ol>
+<li>Insert the Ubuntu Server AMD64 installer USB.</li>
+<li>Insert the NoCloud seed USB labeled <code>CIDATA</code>.</li>
+<li>Boot the machine from the Ubuntu Server installer USB.</li>
+<li>At the GRUB menu, edit the boot entry.</li>
+<li>Add the autoinstall argument to the Linux kernel command line.</li>
+</ol>
+<p>Use this boot argument first:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>If the installer does not find the seed, use the explicit seed path variant:</p>
+<pre><code class="language-text">autoinstall ds=nocloud;s=/cdrom/
+</code></pre>
+<p>The installer should read:</p>
+<pre><code class="language-text">/Volumes/CIDATA/user-data
+/Volumes/CIDATA/meta-data
+</code></pre>
+<p>from the seed USB and run the matching node config.</p>
+<p>For <code>amd64-01</code>, that means it runs:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+</code></pre>
+<p>as the NoCloud <code>user-data</code>.</p>
+<hr />
+<h2><a id="5-8-provision-amd64-01" href="#5-8-provision-amd64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.8 Provision amd64-01</h2>
+<p>Prepare the seed USB with the <code>amd64-01</code> files.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-01
+cp setup/cloud-config-amd64-01.yml build/nocloud/amd64-01/user-data
+cat &gt; build/nocloud/amd64-01/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-01
+<span class="hljs-built_in">local</span>-hostname: amd64-01
+EOF
+</code></pre>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<pre><code class="hljs bash">cp build/nocloud/amd64-01/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-01/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<p>Boot the target machine with the Ubuntu Server installer USB and this seed USB.</p>
+<p>At the installer GRUB line, include:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<hr />
+<h2><a id="5-9-provision-amd64-02" href="#5-9-provision-amd64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.9 Provision amd64-02</h2>
+<p>Prepare the seed USB with the <code>amd64-02</code> files.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-02
+cp setup/cloud-config-amd64-02.yml build/nocloud/amd64-02/user-data
+cat &gt; build/nocloud/amd64-02/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-02
+<span class="hljs-built_in">local</span>-hostname: amd64-02
+EOF
+</code></pre>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<pre><code class="hljs bash">cp build/nocloud/amd64-02/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-02/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<p>Boot the target machine with the Ubuntu Server installer USB and this seed USB.</p>
+<p>At the installer GRUB line, include:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<hr />
+<h2><a id="5-10-provision-amd64-03" href="#5-10-provision-amd64-03" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.10 Provision amd64-03</h2>
+<p>Prepare the seed USB with the <code>amd64-03</code> files.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-03
+cp setup/cloud-config-amd64-03.yml build/nocloud/amd64-03/user-data
+cat &gt; build/nocloud/amd64-03/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-03
+<span class="hljs-built_in">local</span>-hostname: amd64-03
+EOF
+</code></pre>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<pre><code class="hljs bash">cp build/nocloud/amd64-03/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-03/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<p>Boot the target machine with the Ubuntu Server installer USB and this seed USB.</p>
+<p>At the installer GRUB line, include:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<hr />
+<h1><a id="6-amd64-cloud-init-and-autoinstall-mapping" href="#6-amd64-cloud-init-and-autoinstall-mapping" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. amd64 Cloud-Init and Autoinstall Mapping</h1>
+<p>The <code>amd64</code> cloud-init files are part of the provisioning flow.</p>
+<p>They are not optional manual references. They are the node-specific
+autoinstall/NoCloud <code>user-data</code> inputs.</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml  -&gt; amd64-01 user-data
+setup/cloud-config-amd64-02.yml  -&gt; amd64-02 user-data
+setup/cloud-config-amd64-03.yml  -&gt; amd64-03 user-data
+</code></pre>
+<p>The generated NoCloud seed layout is:</p>
+<pre><code class="language-text">build/nocloud/amd64-01/
+  user-data
+  meta-data
+
+build/nocloud/amd64-02/
+  user-data
+  meta-data
+
+build/nocloud/amd64-03/
+  user-data
+  meta-data
+</code></pre>
+<p>The installer consumes the selected seed at boot time.</p>
+<p>For <code>amd64-01</code>, the effective provisioning path is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+  -&gt; build/nocloud/amd64-01/user-data
+  -&gt; CIDATA/user-data
+  -&gt; Ubuntu Server autoinstall
+  -&gt; provisioned amd64-01 machine
+</code></pre>
+<p>For <code>amd64-02</code>, the effective provisioning path is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-02.yml
+  -&gt; build/nocloud/amd64-02/user-data
+  -&gt; CIDATA/user-data
+  -&gt; Ubuntu Server autoinstall
+  -&gt; provisioned amd64-02 machine
+</code></pre>
+<p>For <code>amd64-03</code>, the effective provisioning path is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-03.yml
+  -&gt; build/nocloud/amd64-03/user-data
+  -&gt; CIDATA/user-data
+  -&gt; Ubuntu Server autoinstall
+  -&gt; provisioned amd64-03 machine
+</code></pre>
+<hr />
+<h1><a id="7-first-boot-validation-for-all-nodes" href="#7-first-boot-validation-for-all-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. First-Boot Validation for All Nodes</h1>
+<p>Run these checks after the first boot on both <code>arm64</code> and <code>amd64</code> machines.</p>
+<p>These steps confirm that the node is reachable, correctly named, running the
+expected OS, and using the expected disks.</p>
+<hr />
+<h2><a id="7-1-check-network-reachability" href="#7-1-check-network-reachability" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.1 Check Network Reachability</h2>
+<p>Ping the node by IP address.</p>
+<pre><code class="hljs bash">ping &lt;node-ip&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code class="hljs bash">ping 192.168.2.51
+</code></pre>
+<p>If the node does not respond, confirm Ethernet, DHCP or static IP configuration,
+switch connectivity, and whether the machine completed first boot.</p>
+<hr />
+<h2><a id="7-2-ssh-into-the-node" href="#7-2-ssh-into-the-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.2 SSH into the Node</h2>
+<p>Connect with SSH.</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@&lt;node-ip&gt;
+</code></pre>
+<p>Example:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.51
+</code></pre>
+<p>If SSH fails, confirm that OpenSSH was installed and that cloud-init completed.</p>
+<hr />
+<h2><a id="7-3-check-cloud-init-status" href="#7-3-check-cloud-init-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.3 Check Cloud-Init Status</h2>
+<p>Wait for cloud-init to finish.</p>
+<pre><code class="hljs bash">cloud-init status --<span class="hljs-built_in">wait</span>
+</code></pre>
+<p>Show detailed cloud-init status.</p>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Cloud-init should report that it is done. If it reports an error, review the
+cloud-init logs before continuing.</p>
+<hr />
+<h2><a id="7-4-check-hostname" href="#7-4-check-hostname" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.4 Check Hostname</h2>
+<p>Show the active hostname and operating system identity.</p>
+<pre><code class="hljs bash">hostnamectl
+</code></pre>
+<p>Confirm that the hostname matches the expected node name.</p>
+<p>Examples:</p>
+<pre><code class="language-text">arm64-01
+arm64-02
+amd64-01
+amd64-02
+</code></pre>
+<hr />
+<h2><a id="7-5-check-ip-addresses-and-routes" href="#7-5-check-ip-addresses-and-routes" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.5 Check IP Addresses and Routes</h2>
+<p>Show assigned IP addresses.</p>
+<pre><code class="hljs bash">ip addr
+</code></pre>
+<p>Show the routing table.</p>
+<pre><code class="hljs bash">ip route
+</code></pre>
+<p>Confirm that the node has the expected static IP or DHCP-assigned IP and that a
+default route exists.</p>
+<hr />
+<h2><a id="7-6-check-os-version" href="#7-6-check-os-version" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.6 Check OS Version</h2>
+<p>Show the Ubuntu release.</p>
+<pre><code class="hljs bash">lsb_release -a
+</code></pre>
+<p>The release should match the expected Ubuntu version for the cluster.</p>
+<hr />
+<h2><a id="7-7-check-block-devices" href="#7-7-check-block-devices" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.7 Check Block Devices</h2>
+<p>List block devices with size, rotational status, filesystem, mountpoint, model,
+and serial number.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<p>This is one of the most important validation commands. Use it to confirm which
+disk is the boot disk and which disk is the candidate MinIO or data disk.</p>
+<hr />
+<h2><a id="7-8-check-mounted-filesystems" href="#7-8-check-mounted-filesystems" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.8 Check Mounted Filesystems</h2>
+<p>Show mounted filesystems and available space.</p>
+<pre><code class="hljs bash">df -h
+</code></pre>
+<p>Confirm that the root filesystem is mounted on the expected boot device.</p>
+<hr />
+<h2><a id="7-9-check-ssh-service" href="#7-9-check-ssh-service" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.9 Check SSH Service</h2>
+<p>Show the SSH service status.</p>
+<pre><code class="hljs bash">systemctl status ssh --no-pager
+</code></pre>
+<p>The service should be active and running.</p>
+<hr />
+<h1><a id="8-storage-validation-for-minio-nodes" href="#8-storage-validation-for-minio-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. Storage Validation for MinIO Nodes</h1>
+<p>Before formatting or mounting a MinIO disk, confirm that the selected disk is
+not the boot disk.</p>
+<p>This matters for both Raspberry Pi and <code>amd64</code> nodes.</p>
+<p>Expected storage pattern:</p>
+<pre><code class="language-text">Raspberry Pi nodes:
+  boot device: USB SSD or SD card
+  MinIO disk: 1 TB HDD
+
+amd64 nodes:
+  boot device: SSD or NVMe
+  MinIO disk: 1 TB HDD
+</code></pre>
+<hr />
+<h2><a id="8-1-identify-the-root-filesystem" href="#8-1-identify-the-root-filesystem" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.1 Identify the Root Filesystem</h2>
+<p>Show the mounted root filesystem.</p>
+<pre><code class="hljs bash">findmnt /
+</code></pre>
+<p>Example output:</p>
+<pre><code class="language-text">TARGET SOURCE         FSTYPE OPTIONS
+/      /dev/nvme0n1p2 ext4   rw,relatime
+</code></pre>
+<p>The parent disk of the root filesystem must not be used for MinIO.</p>
+<p>In this example, <code>/dev/nvme0n1</code> is the parent disk of <code>/dev/nvme0n1p2</code>, so
+<code>/dev/nvme0n1</code> is the boot disk.</p>
+<hr />
+<h2><a id="8-2-list-candidate-data-disks" href="#8-2-list-candidate-data-disks" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.2 List Candidate Data Disks</h2>
+<p>List whole disks without partitions.</p>
+<pre><code class="hljs bash">lsblk -dn -o NAME,SIZE,ROTA,TYPE,MODEL,SERIAL
+</code></pre>
+<p>Look for the expected MinIO disk by size, rotational status, model, and serial
+number.</p>
+<hr />
+<h2><a id="8-3-show-filesystems" href="#8-3-show-filesystems" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.3 Show Filesystems</h2>
+<p>Show existing filesystems.</p>
+<pre><code class="hljs bash">lsblk -f
+</code></pre>
+<p>A candidate MinIO disk should not contain the active root filesystem.</p>
+<p>If a disk already contains data, stop and confirm whether it should be reused,
+wiped, or excluded.</p>
+<hr />
+<h2><a id="8-4-safe-minio-disk-rule" href="#8-4-safe-minio-disk-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.4 Safe MinIO Disk Rule</h2>
+<p>A disk is a candidate MinIO disk only if all of the following are true:</p>
+<pre><code class="language-text">it is not the root disk
+it is the expected size
+it is not already mounted
+it does not contain the OS filesystem
+it matches expected rotational or model characteristics
+the operator confirms it
+</code></pre>
+<p>Do not format any disk unless these checks pass.</p>
+<hr />
+<h2><a id="8-5-example-manual-confirmation" href="#8-5-example-manual-confirmation" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.5 Example Manual Confirmation</h2>
+<p>Use <code>lsblk</code> to inspect the machine.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<p>Use <code>findmnt</code> to identify the root filesystem.</p>
+<pre><code class="hljs bash">findmnt /
+</code></pre>
+<p>Use <code>df</code> to confirm mounted filesystems.</p>
+<pre><code class="hljs bash">df -h
+</code></pre>
+<p>Only after the boot disk and MinIO disk are clearly identified should a
+formatting or mounting step be allowed.</p>
+<hr />
+<h1><a id="9-troubleshooting" href="#9-troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. Troubleshooting</h1>
+<p>This section covers common provisioning failures.</p>
+<hr />
+<h2><a id="9-1-cannot-ssh-into-the-node" href="#9-1-cannot-ssh-into-the-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>9.1 Cannot SSH into the Node</h2>
+<p>Check whether the node responds to ping.</p>
+<pre><code class="hljs bash">ping &lt;node-ip&gt;
+</code></pre>
+<p>Check whether port 22 is reachable.</p>
+<pre><code class="hljs bash">nc -vz &lt;node-ip&gt; 22
+</code></pre>
+<p>If ping works but SSH fails, check the SSH service from the node console.</p>
+<pre><code class="hljs bash">sudo systemctl status ssh --no-pager
+</code></pre>
+<p>Check SSH logs.</p>
+<pre><code class="hljs bash">sudo journalctl -u ssh --no-pager
+</code></pre>
+<p>Check cloud-init status.</p>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Common causes:</p>
+<pre><code class="language-text">cloud-init did not finish
+OpenSSH server was not installed
+wrong username
+wrong SSH key
+wrong static IP configuration
+node is on the wrong network
+</code></pre>
+<hr />
+<h2><a id="9-2-cloud-init-did-not-finish" href="#9-2-cloud-init-did-not-finish" class="Permalink" aria-hidden="true" title="Permalink">#</a>9.2 Cloud-Init Did Not Finish</h2>
+<p>Check cloud-init status.</p>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Check cloud-init service logs.</p>
+<pre><code class="hljs bash">sudo journalctl -u cloud-init --no-pager
+</code></pre>
+<p>Check final-stage cloud-init logs.</p>
+<pre><code class="hljs bash">sudo journalctl -u cloud-final --no-pager
+</code></pre>
+<p>Cloud-init issues usually come from YAML formatting errors, package install
+failures, network configuration errors, or commands in <code>runcmd</code> that failed.</p>
+<hr />
+<h2><a id="9-3-wrong-hostname-or-ip-address" href="#9-3-wrong-hostname-or-ip-address" class="Permalink" aria-hidden="true" title="Permalink">#</a>9.3 Wrong Hostname or IP Address</h2>
+<p>Check the active hostname.</p>
+<pre><code class="hljs bash">hostnamectl
+</code></pre>
+<p>Check IP addresses.</p>
+<pre><code class="hljs bash">ip addr
+</code></pre>
+<p>Check routes.</p>
+<pre><code class="hljs bash">ip route
+</code></pre>
+<p>Check netplan.</p>
+<pre><code class="hljs bash">cat /etc/netplan/*.yaml
+</code></pre>
+<p>On the provisioning workstation, check the cloud-init file that was used.</p>
+<pre><code class="hljs bash">grep -E <span class="hljs-string">"hostname|fqdn|addresses|gateway4|nameservers"</span> \
+  setup/cloud-config-arm64-01.yml
+</code></pre>
+<p>If the wrong cloud-init file was flashed, reflash the node with the correct file.</p>
+<hr />
+<h2><a id="9-4-wrong-disk-was-selected" href="#9-4-wrong-disk-was-selected" class="Permalink" aria-hidden="true" title="Permalink">#</a>9.4 Wrong Disk Was Selected</h2>
+<p>If the wrong disk may have been selected, stop immediately before formatting,
+mounting, or installing anything else.</p>
+<p>Inspect all block devices.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<p>Identify the mounted root filesystem.</p>
+<pre><code class="hljs bash">findmnt /
+</code></pre>
+<p>Check mounted filesystems.</p>
+<pre><code class="hljs bash">df -h
+</code></pre>
+<p>Do not continue until the root disk and intended data disk are clearly
+identified.</p>
+<hr />
+<h2><a id="9-5-raspberry-pi-does-not-boot-from-usb" href="#9-5-raspberry-pi-does-not-boot-from-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>9.5 Raspberry Pi Does Not Boot from USB</h2>
+<p>Check the following:</p>
+<ol>
+<li>The Raspberry Pi model supports USB boot.</li>
+<li>The EEPROM or bootloader is current.</li>
+<li>The USB drive is powered correctly.</li>
+<li>The image was flashed to the correct device.</li>
+<li>Ethernet is connected.</li>
+<li>Power is stable.</li>
+<li>A monitor shows boot activity.</li>
+</ol>
+<p>For Raspberry Pi 4 and newer, USB boot should be handled through the Raspberry
+Pi bootloader settings. Do not rely on disk-number tricks from the flashing host.</p>
+<hr />
+<h1><a id="10-recommended-current-workflows" href="#10-recommended-current-workflows" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. Recommended Current Workflows</h1>
+<p>This section summarizes the preferred provisioning path for each node type.</p>
+<hr />
+<h2><a id="10-1-raspberry-pi-arm64-node-workflow" href="#10-1-raspberry-pi-arm64-node-workflow" class="Permalink" aria-hidden="true" title="Permalink">#</a>10.1 Raspberry Pi arm64 Node Workflow</h2>
+<p>Use this workflow for each Raspberry Pi node.</p>
+<ol>
+<li>Select the correct <code>setup/cloud-config-arm64-NN.yml</code> file.</li>
+<li>Download the Ubuntu Raspberry Pi <code>arm64</code> image.</li>
+<li>Verify the image checksum.</li>
+<li>Identify the target boot device with <code>diskutil list</code>.</li>
+<li>Flash with <code>flash --userdata</code>.</li>
+<li>Boot the Raspberry Pi.</li>
+<li>Wait for cloud-init to finish.</li>
+<li>SSH into the node.</li>
+<li>Validate hostname, IP address, users, SSH, packages, and disks.</li>
+<li>Confirm MinIO disk identity before formatting or mounting.</li>
+<li>Add the node to the cluster only after validation succeeds.</li>
+</ol>
+<hr />
+<h2><a id="10-2-amd64-node-workflow" href="#10-2-amd64-node-workflow" class="Permalink" aria-hidden="true" title="Permalink">#</a>10.2 amd64 Node Workflow</h2>
+<p>Use this workflow for each Intel or AMD bare-metal node.</p>
+<ol>
+<li>Download the Ubuntu Server <code>amd64</code> ISO.</li>
+<li>Verify the ISO checksum.</li>
+<li>Create a bootable Ubuntu Server installer USB.</li>
+<li>Create a NoCloud seed USB from the matching node file.</li>
+<li>Boot the <code>amd64</code> machine with both USB devices attached.</li>
+<li>Add <code>autoinstall ds=nocloud</code> to the installer boot line.</li>
+<li>Let the installer consume the node-specific <code>user-data</code>.</li>
+<li>Reboot after the install completes.</li>
+<li>SSH into the node.</li>
+<li>Validate hostname, IP address, users, SSH, packages, and disks.</li>
+<li>Confirm MinIO disk identity before formatting or mounting.</li>
+<li>Add the node to the cluster only after validation succeeds.</li>
+</ol>
+<p>For <code>amd64-01</code>, use:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+</code></pre>
+<p>For <code>amd64-02</code>, use:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-02.yml
+</code></pre>
+<p>For <code>amd64-03</code>, use:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-03.yml
+</code></pre>
+<hr />
+<h2><a id="10-3-amd64-provisioning-summary" href="#10-3-amd64-provisioning-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>10.3 amd64 Provisioning Summary</h2>
+<p>The <code>amd64</code> flow is:</p>
+<pre><code class="language-text">Ubuntu Server amd64 ISO
+  + node-specific NoCloud seed USB
+  + autoinstall ds=nocloud
+  = provisioned amd64 node
+</code></pre>
+<p>The Raspberry Pi <code>flash --userdata</code> flow is not used for <code>amd64</code>.</p>
+<p>The <code>amd64</code> equivalent is:</p>
+<pre><code class="language-text">copy setup/cloud-config-amd64-01.yml to CIDATA/user-data
+boot Ubuntu Server installer with autoinstall ds=nocloud
+</code></pre>
+<hr />
+<h1><a id="11-archived-historical-notes" href="#11-archived-historical-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>11. Archived Historical Notes</h1>
+<p>This section preserves older notes for historical reference only.</p>
+<p>The following old command pattern was previously used.</p>
+<pre><code class="hljs bash">flash \
+  --userdata setup/cloud-config-5.yml \
+  ~/Downloads/ubuntu-20.04.2-preinstalled-server-arm64+raspi.img
+</code></pre>
+<p>Old Ubuntu 20.04 images and old <code>setup/cloud-config-N.yml</code> files should not be
+used for new provisioning unless there is a specific compatibility reason.</p>
+<p>Avoid old notes such as:</p>
+<pre><code class="language-text">switch to USB drive to trick flash
+remove the card, reboot, and then add the card
+</code></pre>
+<p>Those notes may describe a one-time workaround, but they are not reliable
+provisioning instructions.</p>
+<hr />
+<h1><a id="appendix-a-useful-validation-commands" href="#appendix-a-useful-validation-commands" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendix A: Useful Validation Commands</h1>
+<p>This appendix collects frequently used validation commands.</p>
+<p>Show attached disks on macOS.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Show Ubuntu block devices.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL
+</code></pre>
+<p>Show whole disks only.</p>
+<pre><code class="hljs bash">lsblk -dn -o NAME,SIZE,ROTA,TYPE,MODEL,SERIAL
+</code></pre>
+<p>Show filesystems.</p>
+<pre><code class="hljs bash">lsblk -f
+</code></pre>
+<p>Show the root filesystem.</p>
+<pre><code class="hljs bash">findmnt /
+</code></pre>
+<p>Show mounted filesystems.</p>
+<pre><code class="hljs bash">df -h
+</code></pre>
+<p>Show IP addresses.</p>
+<pre><code class="hljs bash">ip addr
+</code></pre>
+<p>Show routes.</p>
+<pre><code class="hljs bash">ip route
+</code></pre>
+<p>Show hostname and OS identity.</p>
+<pre><code class="hljs bash">hostnamectl
+</code></pre>
+<p>Show Ubuntu version.</p>
+<pre><code class="hljs bash">lsb_release -a
+</code></pre>
+<p>Show cloud-init status.</p>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Wait for cloud-init to finish.</p>
+<pre><code class="hljs bash">cloud-init status --<span class="hljs-built_in">wait</span>
+</code></pre>
+<p>Check SSH service.</p>
+<pre><code class="hljs bash">systemctl status ssh --no-pager
+</code></pre>
+<p>Check SSH port reachability.</p>
+<pre><code class="hljs bash">nc -vz &lt;node-ip&gt; 22
+</code></pre>
+<hr />
+<h1><a id="appendix-b-publishing-notes" href="#appendix-b-publishing-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendix B: Publishing Notes</h1>
+<p>This document is suitable for a GitHub Pages, MkDocs, or static site publishing
+pipeline.</p>
+<p>Recommended filename:</p>
+<pre><code class="language-text">docs/ubuntu-node-provisioning.md
+</code></pre>
+<p>For Jekyll-style GitHub Pages, this document already includes front matter.</p>
+<p>For MkDocs, a matching navigation entry could look like this:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nav:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">Ubuntu Node Provisioning:</span> <span class="hljs-string">ubuntu-node-provisioning.md</span>
+</code></pre>
+<p>For plain GitHub rendering, no additional metadata is required.</p>
+<hr />
+<h1><a id="appendix-c-source-urls" href="#appendix-c-source-urls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendix C: Source URLs</h1>
+<p>Ubuntu Raspberry Pi Noble release images:</p>
+<pre><code class="language-text">https://cdimage.ubuntu.com/releases/noble/release/
+</code></pre>
+<p>Ubuntu Server Noble amd64 ISO:</p>
+<pre><code class="language-text">https://releases.ubuntu.com/noble/
+</code></pre>
+<p>Hypriot flash releases:</p>
+<pre><code class="language-text">https://github.com/hypriot/flash/releases
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../installation/old/ubuntu_node_provisioning.html">Previous</a></li>            <li class=Pager--next><a href="../../installation/ubuntu_node_provisioning_fixed.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>

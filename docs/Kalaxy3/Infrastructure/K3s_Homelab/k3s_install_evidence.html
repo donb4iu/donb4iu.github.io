@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>k3s-install-evidence - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../Architecture.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item Nav__item--active'><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Infrastructure</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../Infrastructure/K3s_Homelab/Architecture.html">K3s Homelab</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="kalaxy3-k3s-installation-evidence" href="#kalaxy3-k3s-installation-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 K3s Installation Evidence</h1>
+<p><strong>Installation date:</strong> July 13, 2026<br />
+<strong>Cluster:</strong> <code>kalaxy3</code><br />
+<strong>Platform:</strong> Five Raspberry Pi 4B nodes running Ubuntu 24.04.4 LTS<br />
+<strong>K3s version:</strong> <code>v1.36.2+k3s1</code><br />
+<strong>Container runtime:</strong> <code>containerd://2.3.2-k3s2</code></p>
+<h2><a id="installation-result" href="#installation-result" class="Permalink" aria-hidden="true" title="Permalink">#</a>Installation Result</h2>
+<p>The Ansible deployment completed successfully across all five Raspberry Pi
+nodes. The resulting K3s cluster contains:</p>
+<ul>
+<li>Three control-plane and embedded-etcd nodes</li>
+<li>Two K3s agent nodes</li>
+<li>A healthy Kubernetes API</li>
+<li>A healthy embedded etcd datastore</li>
+<li>Running CoreDNS, metrics-server, local-path provisioner, and Traefik</li>
+<li>A generated kubeconfig for remote administration from the Mac mini</li>
+</ul>
+<h2><a id="validation-commands" href="#validation-commands" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation Commands</h2>
+<pre><code class="hljs bash"><span class="hljs-built_in">export</span> KUBECONFIG=<span class="hljs-string">"<span class="hljs-variable">$PWD</span>/kubeconfig-kalaxy3.yaml"</span>
+
+kubectl get nodes -o wide
+kubectl get pods -A
+kubectl get storageclass
+kubectl get svc -A
+kubectl get --raw=<span class="hljs-string">'/readyz?verbose'</span>
+</code></pre>
+<h2><a id="node-status" href="#node-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Node Status</h2>
+<pre><code class="language-text">NAME       STATUS   ROLES                AGE   VERSION        INTERNAL-IP    EXTERNAL-IP   OS-IMAGE             KERNEL-VERSION             CONTAINER-RUNTIME
+arm64-01   Ready    control-plane,etcd   18m   v1.36.2+k3s1   192.168.2.51   &lt;none&gt;        Ubuntu 24.04.4 LTS   6.8.0-1047-raspi (arm64)   containerd://2.3.2-k3s2
+arm64-02   Ready    control-plane,etcd   17m   v1.36.2+k3s1   192.168.2.52   &lt;none&gt;        Ubuntu 24.04.4 LTS   6.8.0-1047-raspi (arm64)   containerd://2.3.2-k3s2
+arm64-03   Ready    control-plane,etcd   15m   v1.36.2+k3s1   192.168.2.53   &lt;none&gt;        Ubuntu 24.04.4 LTS   6.8.0-1047-raspi (arm64)   containerd://2.3.2-k3s2
+arm64-04   Ready    &lt;none&gt;               14m   v1.36.2+k3s1   192.168.2.54   &lt;none&gt;        Ubuntu 24.04.4 LTS   6.8.0-1047-raspi (arm64)   containerd://2.3.2-k3s2
+arm64-05   Ready    &lt;none&gt;               14m   v1.36.2+k3s1   192.168.2.55   &lt;none&gt;        Ubuntu 24.04.4 LTS   6.8.0-1047-raspi (arm64)   containerd://2.3.2-k3s2
+</code></pre>
+<p>All five nodes reported <code>Ready</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th align="right">Address</th>
+<th>K3s role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arm64-01</code></td>
+<td align="right"><code>192.168.2.51</code></td>
+<td>Control plane and etcd</td>
+</tr>
+<tr>
+<td><code>arm64-02</code></td>
+<td align="right"><code>192.168.2.52</code></td>
+<td>Control plane and etcd</td>
+</tr>
+<tr>
+<td><code>arm64-03</code></td>
+<td align="right"><code>192.168.2.53</code></td>
+<td>Control plane and etcd</td>
+</tr>
+<tr>
+<td><code>arm64-04</code></td>
+<td align="right"><code>192.168.2.54</code></td>
+<td>Agent</td>
+</tr>
+<tr>
+<td><code>arm64-05</code></td>
+<td align="right"><code>192.168.2.55</code></td>
+<td>Agent</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="kubernetes-system-pods" href="#kubernetes-system-pods" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes System Pods</h2>
+<pre><code class="language-text">NAMESPACE     NAME                                      READY   STATUS      RESTARTS      AGE
+kube-system   coredns-5f5694d56b-94grj                  1/1     Running     0             18m
+kube-system   helm-install-traefik-9crp8                0/1     Completed   2 (17m ago)   18m
+kube-system   helm-install-traefik-crd-bcqtp            0/1     Completed   0             18m
+kube-system   local-path-provisioner-58d557dc48-4k9bb   1/1     Running     0             18m
+kube-system   metrics-server-7c86f97b8d-ctzq2           1/1     Running     0             18m
+kube-system   traefik-6cd8c7cd89-9js75                  1/1     Running     0             17m
+</code></pre>
+<p>The two <code>helm-install-traefik</code> pods are completed installation jobs. The
+long-running CoreDNS, local-path provisioner, metrics-server, and Traefik
+pods are all running.</p>
+<h2><a id="storage-class" href="#storage-class" class="Permalink" aria-hidden="true" title="Permalink">#</a>Storage Class</h2>
+<pre><code class="language-text">NAME                   PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+local-path (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  18m
+</code></pre>
+<p>The initial K3s <code>local-path</code> storage class is installed and marked as the
+default storage class. NFS-backed and MinIO-specific storage classes are not
+included in this initial installation evidence.</p>
+<h2><a id="kubernetes-services" href="#kubernetes-services" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes Services</h2>
+<pre><code class="language-text">NAMESPACE     NAME             TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)                      AGE
+default       kubernetes       ClusterIP      10.43.0.1       &lt;none&gt;        443/TCP                      18m
+kube-system   kube-dns         ClusterIP      10.43.0.10      &lt;none&gt;        53/UDP,53/TCP,9153/TCP       18m
+kube-system   metrics-server   ClusterIP      10.43.179.159   &lt;none&gt;        443/TCP                      18m
+kube-system   traefik          LoadBalancer   10.43.227.120   &lt;pending&gt;     80:32476/TCP,443:30462/TCP   17m
+</code></pre>
+<p>Traefik is running, but its external address is still <code>&lt;pending&gt;</code>. This is
+expected at this stage because MetalLB has not yet assigned a LAN address to
+the <code>LoadBalancer</code> service.</p>
+<h2><a id="kubernetes-api-readiness" href="#kubernetes-api-readiness" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes API Readiness</h2>
+<pre><code class="language-text">[+]ping ok
+[+]log ok
+[+]etcd ok
+[+]etcd-readiness ok
+[+]informer-sync ok
+[+]poststarthook/start-apiserver-admission-initializer ok
+[+]poststarthook/generic-apiserver-start-informers ok
+[+]poststarthook/priority-and-fairness-config-consumer ok
+[+]poststarthook/priority-and-fairness-filter ok
+[+]poststarthook/storage-object-count-tracker-hook ok
+[+]poststarthook/start-apiextensions-informers ok
+[+]poststarthook/start-apiextensions-controllers ok
+[+]poststarthook/crd-informer-synced ok
+[+]poststarthook/start-system-namespaces-controller ok
+[+]poststarthook/peer-endpoint-reconciler-controller ok
+[+]poststarthook/start-cluster-authentication-info-controller ok
+[+]poststarthook/start-kube-apiserver-identity-lease-controller ok
+[+]poststarthook/start-kube-apiserver-identity-lease-garbage-collector ok
+[+]poststarthook/storage-readiness ok
+[+]poststarthook/start-legacy-token-tracking-controller ok
+[+]poststarthook/start-service-ip-repair-controllers ok
+[+]poststarthook/rbac/bootstrap-roles ok
+[+]poststarthook/scheduling/bootstrap-system-priority-classes ok
+[+]poststarthook/priority-and-fairness-config-producer ok
+[+]poststarthook/bootstrap-controller ok
+[+]poststarthook/start-kubernetes-service-cidr-controller ok
+[+]poststarthook/aggregator-reload-proxy-client-cert ok
+[+]poststarthook/start-kube-aggregator-informers ok
+[+]poststarthook/apiservice-status-local-available-controller ok
+[+]poststarthook/apiservice-status-remote-available-controller ok
+[+]poststarthook/apiservice-registration-controller ok
+[+]poststarthook/apiservice-discovery-controller ok
+[+]poststarthook/kube-apiserver-autoregistration ok
+[+]autoregister-completion ok
+[+]poststarthook/apiservice-openapi-controller ok
+[+]poststarthook/apiservice-openapiv3-controller ok
+[+]shutdown ok
+readyz check passed
+</code></pre>
+<p>The readiness endpoint confirms that the Kubernetes API server and embedded
+etcd datastore passed all reported readiness checks.</p>
+<h2><a id="conclusion" href="#conclusion" class="Permalink" aria-hidden="true" title="Permalink">#</a>Conclusion</h2>
+<p>The initial Kalaxy3 K3s installation completed successfully. At the time this
+evidence was captured:</p>
+<ul>
+<li>All five nodes were connected and <code>Ready</code>.</li>
+<li>The three-server embedded-etcd control plane was operational.</li>
+<li>Both agent nodes were joined to the cluster.</li>
+<li>Core Kubernetes services were running.</li>
+<li>The Kubernetes API readiness check passed.</li>
+<li>Traefik was installed and waiting for MetalLB to provide an external IP.</li>
+<li>The default local-path storage class was available.</li>
+</ul>
+<p>The cluster is ready for the next deployment phase: MetalLB, network
+configuration, NFS-backed storage classes, dashboards, observability, and
+MinIO.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Previous</a></li>            <li class=Pager--next><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>

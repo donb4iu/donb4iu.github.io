@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>ubuntu-installation-and-node-provisioning-v2 - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../Architecture.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../installation/ubuntu_node_provisioning_fixed.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/amd64_nocloud_seed_helper.html">old</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="ubuntu-installation-and-node-provisioning" href="#ubuntu-installation-and-node-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ubuntu Installation and Node Provisioning</h1>
+<p>This document describes how to provision the Ubuntu nodes for the Kalaxy3 / homelab Kubernetes cluster.</p>
+<p>It supports both:</p>
+<ul>
+<li><strong>ARM64 Raspberry Pi nodes</strong>, using Ubuntu preinstalled Raspberry Pi server images and <code>flash --userdata</code></li>
+<li><strong>AMD64 bare-metal nodes</strong>, using Ubuntu Server autoinstall with NoCloud <code>user-data</code> and <code>meta-data</code></li>
+</ul>
+<p>The important distinction is that the Raspberry Pi image is a preinstalled disk image, while the normal AMD64 Ubuntu Server download is an installer ISO. That means the ARM and AMD workflows both use cloud-init-style YAML, but they are consumed differently.</p>
+<hr />
+<h2><a id="1-repository-layout" href="#1-repository-layout" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Repository layout</h2>
+<p>This document assumes the repository contains a <code>setup/</code> directory with one cloud-init file per node.</p>
+<pre><code class="language-text">setup/
+├── cloud-config-arm64-01.yml
+├── cloud-config-arm64-02.yml
+├── cloud-config-arm64-03.yml
+├── cloud-config-arm64-04.yml
+├── cloud-config-arm64-05.yml
+├── cloud-config-amd64-01.yml
+├── cloud-config-amd64-02.yml
+└── cloud-config-amd64-03.yml
+</code></pre>
+<p>The ARM64 files are used directly by the Raspberry Pi flashing process.</p>
+<p>The AMD64 files are used as Ubuntu autoinstall NoCloud <code>user-data</code> files.</p>
+<hr />
+<h2><a id="2-node-inventory" href="#2-node-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. Node inventory</h2>
+<p>Adjust names and IP addresses if the actual hardware differs.</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th align="right">Architecture</th>
+<th>Intended role</th>
+<th align="right">Example IP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>arm64-01</td>
+<td align="right">ARM64 Raspberry Pi</td>
+<td>Kubernetes worker/control candidate</td>
+<td align="right">192.168.2.51</td>
+</tr>
+<tr>
+<td>arm64-02</td>
+<td align="right">ARM64 Raspberry Pi</td>
+<td>Kubernetes worker</td>
+<td align="right">192.168.2.52</td>
+</tr>
+<tr>
+<td>arm64-03</td>
+<td align="right">ARM64 Raspberry Pi</td>
+<td>Kubernetes worker</td>
+<td align="right">192.168.2.53</td>
+</tr>
+<tr>
+<td>arm64-04</td>
+<td align="right">ARM64 Raspberry Pi</td>
+<td>Kubernetes worker</td>
+<td align="right">192.168.2.54</td>
+</tr>
+<tr>
+<td>arm64-05</td>
+<td align="right">ARM64 Raspberry Pi</td>
+<td>Kubernetes worker</td>
+<td align="right">192.168.2.55</td>
+</tr>
+<tr>
+<td>amd64-01</td>
+<td align="right">AMD64 bare metal</td>
+<td>Kubernetes node / GPU-capable</td>
+<td align="right">192.168.2.61</td>
+</tr>
+<tr>
+<td>amd64-02</td>
+<td align="right">AMD64 bare metal</td>
+<td>Kubernetes node / GPU-capable</td>
+<td align="right">192.168.2.62</td>
+</tr>
+<tr>
+<td>amd64-03</td>
+<td align="right">AMD64 bare metal</td>
+<td>Kubernetes node / GPU-capable</td>
+<td align="right">192.168.2.63</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2><a id="3-install-required-tools-on-macos" href="#3-install-required-tools-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Install required tools on macOS</h2>
+<p>The examples below assume the commands are being run from macOS.</p>
+<p>Install Homebrew if it is not already installed.</p>
+<pre><code class="hljs bash">/bin/bash -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)</span>"</span>
+</code></pre>
+<p>Install helper tools.</p>
+<pre><code class="hljs bash">brew install coreutils xz wget
+</code></pre>
+<p>Install the Raspberry Pi flashing tool.</p>
+<pre><code class="hljs bash">curl -L https://raw.githubusercontent.com/hypriot/flash/master/$(uname -s)/flash   -o /usr/<span class="hljs-built_in">local</span>/bin/flash
+</code></pre>
+<p>Make it executable.</p>
+<pre><code class="hljs bash">chmod +x /usr/<span class="hljs-built_in">local</span>/bin/flash
+</code></pre>
+<p>Confirm that <code>flash</code> is available.</p>
+<pre><code class="hljs bash">flash --<span class="hljs-built_in">help</span>
+</code></pre>
+<hr />
+<h2><a id="4-download-ubuntu-images" href="#4-download-ubuntu-images" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Download Ubuntu images</h2>
+<p>Create a local download directory.</p>
+<pre><code class="hljs bash">mkdir -p ~/Downloads/ubuntu-rpi
+mkdir -p ~/Downloads/ubuntu-amd64
+</code></pre>
+<p>Download the Ubuntu Raspberry Pi ARM64 preinstalled image.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Downloads/ubuntu-rpi
+</code></pre>
+<pre><code class="hljs bash">wget https://cdimage.ubuntu.com/releases/24.04.4/release/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<p>Download the Ubuntu Server AMD64 installer ISO.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/Downloads/ubuntu-amd64
+</code></pre>
+<pre><code class="hljs bash">wget https://releases.ubuntu.com/24.04.4/ubuntu-24.04.4-live-server-amd64.iso
+</code></pre>
+<p>The ARM64 file is a preinstalled disk image.</p>
+<p>The AMD64 file is an installer ISO.</p>
+<p>That difference is why the provisioning commands are different.</p>
+<hr />
+<h2><a id="5-arm64-raspberry-pi-provisioning-model" href="#5-arm64-raspberry-pi-provisioning-model" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. ARM64 Raspberry Pi provisioning model</h2>
+<p>For Raspberry Pi nodes, use the Ubuntu preinstalled server image and inject each node’s cloud-init file with <code>flash --userdata</code>.</p>
+<p>This works because the Raspberry Pi image is already a bootable installed operating system image. The <code>flash</code> tool writes the image to the target disk and injects the selected cloud-init config.</p>
+<h3><a id="5-1-list-disks-before-inserting-the-target-ssd-or-sd-card" href="#5-1-list-disks-before-inserting-the-target-ssd-or-sd-card" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.1 List disks before inserting the target SSD or SD card</h3>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Insert the target SSD or SD card, then list disks again.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Identify the new external disk.</p>
+<p>Example:</p>
+<pre><code class="language-text">/dev/disk3 (external, physical)
+</code></pre>
+<p>Do not use <code>/dev/disk0</code>. That is normally the Mac internal disk.</p>
+<h3><a id="5-2-flash-arm64-01" href="#5-2-flash-arm64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.2 Flash arm64-01</h3>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-arm64-01.yml   ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<h3><a id="5-3-flash-arm64-02" href="#5-3-flash-arm64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.3 Flash arm64-02</h3>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-arm64-02.yml   ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<h3><a id="5-4-flash-arm64-03" href="#5-4-flash-arm64-03" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.4 Flash arm64-03</h3>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-arm64-03.yml   ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<h3><a id="5-5-flash-arm64-04" href="#5-5-flash-arm64-04" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.5 Flash arm64-04</h3>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-arm64-04.yml   ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<h3><a id="5-6-flash-arm64-05" href="#5-6-flash-arm64-05" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.6 Flash arm64-05</h3>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-arm64-05.yml   ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<h3><a id="5-7-boot-each-raspberry-pi" href="#5-7-boot-each-raspberry-pi" class="Permalink" aria-hidden="true" title="Permalink">#</a>5.7 Boot each Raspberry Pi</h3>
+<p>After flashing:</p>
+<ol>
+<li>Eject the disk from macOS.</li>
+<li>Insert it into the Raspberry Pi.</li>
+<li>Connect Ethernet.</li>
+<li>Power on the Pi.</li>
+<li>Wait for first boot and cloud-init to complete.</li>
+</ol>
+<p>Cloud-init may take several minutes during first boot.</p>
+<hr />
+<h2><a id="6-amd64-bare-metal-provisioning-model" href="#6-amd64-bare-metal-provisioning-model" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. AMD64 bare-metal provisioning model</h2>
+<p>For AMD64 nodes, do <strong>not</strong> use the Raspberry Pi <code>flash --userdata</code> command against the AMD64 installer ISO.</p>
+<p>This is the wrong model:</p>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-amd64-01.yml   ~/Downloads/ubuntu-amd64/ubuntu-24.04.4-live-server-amd64.iso
+</code></pre>
+<p>The normal AMD64 Ubuntu Server image is an installer ISO, not a preinstalled disk image. The installer needs to consume cloud-init through Ubuntu autoinstall using the NoCloud datasource.</p>
+<p>The AMD64 files are still used, but they are used as NoCloud <code>user-data</code>.</p>
+<hr />
+<h2><a id="7-amd64-option-a-installer-iso-plus-seed-usb" href="#7-amd64-option-a-installer-iso-plus-seed-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. AMD64 option A: installer ISO plus seed USB</h2>
+<p>This is the simplest and clearest AMD64 method.</p>
+<p>You boot the machine from the normal Ubuntu Server ISO, and you attach a second USB drive containing the autoinstall seed data.</p>
+<p>The seed USB contains:</p>
+<pre><code class="language-text">user-data
+meta-data
+</code></pre>
+<p>For each AMD64 node, the <code>user-data</code> file is copied from the matching generated cloud config.</p>
+<h3><a id="7-1-create-a-seed-directory-for-amd64-01" href="#7-1-create-a-seed-directory-for-amd64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.1 Create a seed directory for amd64-01</h3>
+<p>Run this from the repository root.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-01
+</code></pre>
+<p>Copy the node-specific config into the NoCloud seed directory.</p>
+<pre><code class="hljs bash">cp setup/cloud-config-amd64-01.yml build/nocloud/amd64-01/user-data
+</code></pre>
+<p>Create the metadata file.</p>
+<pre><code class="hljs bash">cat &gt; build/nocloud/amd64-01/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-01
+<span class="hljs-built_in">local</span>-hostname: amd64-01
+EOF
+</code></pre>
+<h3><a id="7-2-create-a-seed-directory-for-amd64-02" href="#7-2-create-a-seed-directory-for-amd64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.2 Create a seed directory for amd64-02</h3>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-02
+</code></pre>
+<pre><code class="hljs bash">cp setup/cloud-config-amd64-02.yml build/nocloud/amd64-02/user-data
+</code></pre>
+<pre><code class="hljs bash">cat &gt; build/nocloud/amd64-02/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-02
+<span class="hljs-built_in">local</span>-hostname: amd64-02
+EOF
+</code></pre>
+<h3><a id="7-3-create-a-seed-directory-for-amd64-03" href="#7-3-create-a-seed-directory-for-amd64-03" class="Permalink" aria-hidden="true" title="Permalink">#</a>7.3 Create a seed directory for amd64-03</h3>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-03
+</code></pre>
+<pre><code class="hljs bash">cp setup/cloud-config-amd64-03.yml build/nocloud/amd64-03/user-data
+</code></pre>
+<pre><code class="hljs bash">cat &gt; build/nocloud/amd64-03/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-03
+<span class="hljs-built_in">local</span>-hostname: amd64-03
+EOF
+</code></pre>
+<hr />
+<h2><a id="8-write-a-nocloud-seed-usb-on-macos" href="#8-write-a-nocloud-seed-usb-on-macos" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. Write a NoCloud seed USB on macOS</h2>
+<p>Use a small USB drive for the seed media.</p>
+<p>The seed drive can be very small. It only needs to hold <code>user-data</code> and <code>meta-data</code>.</p>
+<h3><a id="8-1-identify-the-seed-usb" href="#8-1-identify-the-seed-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.1 Identify the seed USB</h3>
+<p>Before inserting the seed USB:</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Insert the seed USB and run:</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Identify the new external disk.</p>
+<p>Example:</p>
+<pre><code class="language-text">/dev/disk4 (external, physical)
+</code></pre>
+<h3><a id="8-2-erase-the-seed-usb" href="#8-2-erase-the-seed-usb" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.2 Erase the seed USB</h3>
+<p>Replace <code>/dev/disk4</code> with the actual seed USB device.</p>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<p>The volume name <code>CIDATA</code> is important. NoCloud commonly expects the seed volume label to be <code>CIDATA</code>.</p>
+<h3><a id="8-3-mount-location" href="#8-3-mount-location" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.3 Mount location</h3>
+<p>After formatting, macOS should mount it here:</p>
+<pre><code class="language-text">/Volumes/CIDATA
+</code></pre>
+<p>Confirm it mounted.</p>
+<pre><code class="hljs bash">ls /Volumes/CIDATA
+</code></pre>
+<h3><a id="8-4-copy-amd64-01-seed-files" href="#8-4-copy-amd64-01-seed-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.4 Copy amd64-01 seed files</h3>
+<p>To prepare the seed USB for <code>amd64-01</code>:</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-01/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-01/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<h3><a id="8-5-copy-amd64-02-seed-files" href="#8-5-copy-amd64-02-seed-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.5 Copy amd64-02 seed files</h3>
+<p>To reuse the same seed USB for <code>amd64-02</code>, reinsert it and replace the files.</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-02/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-02/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<h3><a id="8-6-copy-amd64-03-seed-files" href="#8-6-copy-amd64-03-seed-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>8.6 Copy amd64-03 seed files</h3>
+<p>To reuse the same seed USB for <code>amd64-03</code>, reinsert it and replace the files.</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-03/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-03/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<hr />
+<h2><a id="9-boot-amd64-installer-with-nocloud-autoinstall" href="#9-boot-amd64-installer-with-nocloud-autoinstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. Boot AMD64 installer with NoCloud autoinstall</h2>
+<p>For each AMD64 machine:</p>
+<ol>
+<li>Insert the Ubuntu Server AMD64 installer USB.</li>
+<li>Insert the NoCloud seed USB labeled <code>CIDATA</code>.</li>
+<li>Boot the machine from the Ubuntu Server installer USB.</li>
+<li>At the GRUB menu, edit the boot entry.</li>
+<li>Add the autoinstall datasource argument to the Linux command line.</li>
+</ol>
+<p>The kernel command line should include:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>Depending on the installer behavior, this variant may be needed:</p>
+<pre><code class="language-text">autoinstall ds=nocloud;s=/cdrom/
+</code></pre>
+<p>Or this variant if the seed is mounted separately:</p>
+<pre><code class="language-text">autoinstall ds=nocloud;s=file:///cdrom/
+</code></pre>
+<p>The exact mount path can vary depending on the machine and installer environment. The key idea is that the installer must see a NoCloud datasource containing:</p>
+<pre><code class="language-text">user-data
+meta-data
+</code></pre>
+<p>on the <code>CIDATA</code> volume.</p>
+<hr />
+<h2><a id="10-amd64-option-b-serve-nocloud-data-over-http" href="#10-amd64-option-b-serve-nocloud-data-over-http" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. AMD64 option B: serve NoCloud data over HTTP</h2>
+<p>Instead of using a second USB seed drive, you can serve each node’s <code>user-data</code> and <code>meta-data</code> over HTTP from another machine on the LAN.</p>
+<p>From the repository root, serve the NoCloud directory.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build/nocloud/amd64-01
+</code></pre>
+<pre><code class="hljs bash">python3 -m http.server 8080
+</code></pre>
+<p>Then boot the AMD64 installer with:</p>
+<pre><code class="language-text">autoinstall ds=nocloud-net;s=http://192.168.2.100:8080/
+</code></pre>
+<p>Replace <code>192.168.2.100</code> with the IP address of the machine running the HTTP server.</p>
+<p>For <code>amd64-02</code>:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build/nocloud/amd64-02
+</code></pre>
+<pre><code class="hljs bash">python3 -m http.server 8080
+</code></pre>
+<p>Use:</p>
+<pre><code class="language-text">autoinstall ds=nocloud-net;s=http://192.168.2.100:8080/
+</code></pre>
+<p>For <code>amd64-03</code>:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build/nocloud/amd64-03
+</code></pre>
+<pre><code class="hljs bash">python3 -m http.server 8080
+</code></pre>
+<p>Use:</p>
+<pre><code class="language-text">autoinstall ds=nocloud-net;s=http://192.168.2.100:8080/
+</code></pre>
+<p>Only run one of these simple HTTP servers at a time on the same port.</p>
+<hr />
+<h2><a id="11-amd64-option-c-build-a-custom-autoinstall-iso" href="#11-amd64-option-c-build-a-custom-autoinstall-iso" class="Permalink" aria-hidden="true" title="Permalink">#</a>11. AMD64 option C: build a custom autoinstall ISO</h2>
+<p>This option embeds the NoCloud data directly into a custom Ubuntu Server ISO.</p>
+<p>Use this if you want one bootable ISO per AMD64 node and do not want a second seed USB.</p>
+<p>High-level flow:</p>
+<ol>
+<li>Extract the Ubuntu Server ISO.</li>
+<li>Add <code>user-data</code> and <code>meta-data</code>.</li>
+<li>Modify the boot menu to include <code>autoinstall ds=nocloud</code>.</li>
+<li>Rebuild the ISO.</li>
+<li>Write the rebuilt ISO to USB.</li>
+</ol>
+<p>This is cleaner for repeat installs, but more work than the seed USB approach.</p>
+<p>For this cluster, the recommended path is:</p>
+<pre><code class="language-text">ARM64 Raspberry Pi nodes: flash --userdata
+AMD64 bare-metal nodes: Ubuntu autoinstall with NoCloud seed USB
+</code></pre>
+<hr />
+<h2><a id="12-verify-first-boot" href="#12-verify-first-boot" class="Permalink" aria-hidden="true" title="Permalink">#</a>12. Verify first boot</h2>
+<p>After a node boots, wait a few minutes for cloud-init to finish.</p>
+<p>Then SSH into the node.</p>
+<p>Example for <code>arm64-01</code>:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.51
+</code></pre>
+<p>Example for <code>amd64-01</code>:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61
+</code></pre>
+<p>Check hostname.</p>
+<pre><code class="hljs bash">hostnamectl
+</code></pre>
+<p>Check cloud-init status.</p>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Check storage devices.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINTS,MODEL
+</code></pre>
+<p>Check network address.</p>
+<pre><code class="hljs bash">ip addr
+</code></pre>
+<p>Check default route.</p>
+<pre><code class="hljs bash">ip route
+</code></pre>
+<hr />
+<h2><a id="13-validate-minio-data-disk-selection" href="#13-validate-minio-data-disk-selection" class="Permalink" aria-hidden="true" title="Permalink">#</a>13. Validate MinIO data disk selection</h2>
+<p>The node configs should avoid assuming that Linux drive order is stable.</p>
+<p>Do not assume:</p>
+<pre><code class="language-text">/dev/sda
+/dev/sdb
+/dev/nvme0n1
+</code></pre>
+<p>will always appear in the same order.</p>
+<p>The safer pattern is to detect the intended MinIO disk by durable characteristics such as:</p>
+<ul>
+<li>rotational HDD status</li>
+<li>size</li>
+<li>exclusion of the boot disk</li>
+<li>explicit operator confirmation where needed</li>
+</ul>
+<p>After first boot, confirm the intended MinIO disk.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINTS,MODEL,SERIAL
+</code></pre>
+<p>Look for the 1 TB HDD intended for MinIO.</p>
+<p>Check mounted filesystems.</p>
+<pre><code class="hljs bash">df -h
+</code></pre>
+<p>Check block IDs.</p>
+<pre><code class="hljs bash">sudo blkid
+</code></pre>
+<hr />
+<h2><a id="14-confirm-package-installation" href="#14-confirm-package-installation" class="Permalink" aria-hidden="true" title="Permalink">#</a>14. Confirm package installation</h2>
+<p>Check that common packages were installed.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">which</span> curl
+<span class="hljs-built_in">which</span> wget
+<span class="hljs-built_in">which</span> git
+<span class="hljs-built_in">which</span> jq
+<span class="hljs-built_in">which</span> yq
+</code></pre>
+<p>Check NFS and iSCSI support.</p>
+<pre><code class="hljs bash">systemctl status open-iscsi --no-pager
+</code></pre>
+<pre><code class="hljs bash">dpkg -l | grep -E <span class="hljs-string">'nfs-common|open-iscsi'</span>
+</code></pre>
+<hr />
+<h2><a id="15-confirm-ssh-access" href="#15-confirm-ssh-access" class="Permalink" aria-hidden="true" title="Permalink">#</a>15. Confirm SSH access</h2>
+<p>From the Mac or admin workstation, test each node.</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.51 hostname
+ssh dbuddenbaum@192.168.2.52 hostname
+ssh dbuddenbaum@192.168.2.53 hostname
+ssh dbuddenbaum@192.168.2.54 hostname
+ssh dbuddenbaum@192.168.2.55 hostname
+ssh dbuddenbaum@192.168.2.61 hostname
+ssh dbuddenbaum@192.168.2.62 hostname
+ssh dbuddenbaum@192.168.2.63 hostname
+</code></pre>
+<hr />
+<h2><a id="16-confirm-gpu-visibility-on-amd64-nodes" href="#16-confirm-gpu-visibility-on-amd64-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>16. Confirm GPU visibility on AMD64 nodes</h2>
+<p>On AMD64 nodes with NVIDIA GPUs, confirm PCI visibility first.</p>
+<pre><code class="hljs bash">lspci | grep -i nvidia
+</code></pre>
+<p>Check recommended Ubuntu drivers.</p>
+<pre><code class="hljs bash">ubuntu-drivers devices
+</code></pre>
+<p>Install the recommended driver if the cloud-init file did not already do it.</p>
+<p>Example:</p>
+<pre><code class="hljs bash">sudo apt update
+sudo apt install -y nvidia-driver-580
+sudo reboot
+</code></pre>
+<p>After reboot:</p>
+<pre><code class="hljs bash">nvidia-smi
+</code></pre>
+<hr />
+<h2><a id="17-troubleshooting" href="#17-troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>17. Troubleshooting</h2>
+<h3><a id="17-1-disk-utility-shows-only-esp-or-tiny-partitions" href="#17-1-disk-utility-shows-only-esp-or-tiny-partitions" class="Permalink" aria-hidden="true" title="Permalink">#</a>17.1 Disk Utility shows only ESP or tiny partitions</h3>
+<p>In macOS Disk Utility:</p>
+<ol>
+<li>Click <strong>View</strong>.</li>
+<li>Select <strong>Show All Devices</strong>.</li>
+<li>Select the top-level physical disk.</li>
+<li>Erase the whole device, not just the tiny <code>ESP</code> partition.</li>
+</ol>
+<p>Terminal is often clearer.</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Erase the correct external device only.</p>
+<p>Example:</p>
+<pre><code class="hljs bash">diskutil eraseDisk ExFAT USBSTICK GPT /dev/disk3
+</code></pre>
+<p>Do not erase <code>/dev/disk0</code>.</p>
+<h3><a id="17-2-cloud-init-still-running" href="#17-2-cloud-init-still-running" class="Permalink" aria-hidden="true" title="Permalink">#</a>17.2 Cloud-init still running</h3>
+<p>Check status.</p>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Watch logs.</p>
+<pre><code class="hljs bash">sudo tail -f /var/<span class="hljs-built_in">log</span>/cloud-init.log
+</code></pre>
+<pre><code class="hljs bash">sudo tail -f /var/<span class="hljs-built_in">log</span>/cloud-init-output.log
+</code></pre>
+<h3><a id="17-3-ssh-does-not-work" href="#17-3-ssh-does-not-work" class="Permalink" aria-hidden="true" title="Permalink">#</a>17.3 SSH does not work</h3>
+<p>Check whether the node responds.</p>
+<pre><code class="hljs bash">ping 192.168.2.51
+</code></pre>
+<p>Check SSH port.</p>
+<pre><code class="hljs bash">nc -vz 192.168.2.51 22
+</code></pre>
+<p>Try verbose SSH.</p>
+<pre><code class="hljs bash">ssh -vvv dbuddenbaum@192.168.2.51
+</code></pre>
+<h3><a id="17-4-amd64-installer-does-not-pick-up-autoinstall" href="#17-4-amd64-installer-does-not-pick-up-autoinstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>17.4 AMD64 installer does not pick up autoinstall</h3>
+<p>Confirm the seed USB has exactly these files at the root:</p>
+<pre><code class="language-text">user-data
+meta-data
+</code></pre>
+<p>Confirm the volume label is:</p>
+<pre><code class="language-text">CIDATA
+</code></pre>
+<p>On macOS, confirm with:</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Recreate the seed USB if needed.</p>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<p>Then copy files again.</p>
+<pre><code class="hljs bash">cp build/nocloud/amd64-01/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-01/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<h3><a id="17-5-amd64-installer-asks-questions-instead-of-running-unattended" href="#17-5-amd64-installer-asks-questions-instead-of-running-unattended" class="Permalink" aria-hidden="true" title="Permalink">#</a>17.5 AMD64 installer asks questions instead of running unattended</h3>
+<p>That usually means one of these is wrong:</p>
+<ul>
+<li><code>autoinstall</code> was not added to the boot command line</li>
+<li>the NoCloud datasource was not found</li>
+<li><code>user-data</code> is invalid</li>
+<li><code>meta-data</code> is missing</li>
+<li>the seed volume is not labeled <code>CIDATA</code></li>
+<li>the YAML file is cloud-init only but not valid Ubuntu autoinstall format</li>
+</ul>
+<p>Validate YAML before trying again.</p>
+<pre><code class="hljs bash">python3 - &lt;&lt;<span class="hljs-string">'PY'</span>
+from pathlib import Path
+import yaml
+
+<span class="hljs-keyword">for</span> path <span class="hljs-keyword">in</span> Path(<span class="hljs-string">"setup"</span>).glob(<span class="hljs-string">"cloud-config-*.yml"</span>):
+    with path.open(<span class="hljs-string">"r"</span>, encoding=<span class="hljs-string">"utf-8"</span>) as file:
+        yaml.safe_load(file)
+    <span class="hljs-built_in">print</span>(f<span class="hljs-string">"OK: {path}"</span>)
+PY
+</code></pre>
+<p>If <code>PyYAML</code> is missing:</p>
+<pre><code class="hljs bash">python3 -m pip install pyyaml
+</code></pre>
+<hr />
+<h2><a id="18-summary" href="#18-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>18. Summary</h2>
+<p>Use this workflow:</p>
+<pre><code class="language-text">ARM64 Raspberry Pi:
+  Ubuntu preinstalled Raspberry Pi image
+  flash --userdata setup/cloud-config-arm64-XX.yml image.img.xz
+
+AMD64 bare metal:
+  Ubuntu Server AMD64 installer ISO
+  Ubuntu autoinstall
+  NoCloud seed USB or NoCloud HTTP datasource
+  setup/cloud-config-amd64-XX.yml copied as user-data
+</code></pre>
+<p>The AMD64 cloud-init files are not unused. They are used differently because AMD64 installation normally starts from an installer ISO, while the Raspberry Pi installation starts from a preinstalled disk image.</p>
+<hr />
+<h2><a id="19-quick-command-reference" href="#19-quick-command-reference" class="Permalink" aria-hidden="true" title="Permalink">#</a>19. Quick command reference</h2>
+<h3><a id="arm64" href="#arm64" class="Permalink" aria-hidden="true" title="Permalink">#</a>ARM64</h3>
+<pre><code class="hljs bash">flash   --userdata setup/cloud-config-arm64-01.yml   ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<h3><a id="amd64-seed-usb-preparation" href="#amd64-seed-usb-preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>AMD64 seed USB preparation</h3>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-01
+cp setup/cloud-config-amd64-01.yml build/nocloud/amd64-01/user-data
+cat &gt; build/nocloud/amd64-01/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-01
+<span class="hljs-built_in">local</span>-hostname: amd64-01
+EOF
+</code></pre>
+<pre><code class="hljs bash">diskutil eraseDisk FAT32 CIDATA MBR /dev/disk4
+</code></pre>
+<pre><code class="hljs bash">cp build/nocloud/amd64-01/user-data /Volumes/CIDATA/user-data
+cp build/nocloud/amd64-01/meta-data /Volumes/CIDATA/meta-data
+sync
+diskutil eject /Volumes/CIDATA
+</code></pre>
+<h3><a id="amd64-installer-boot-argument" href="#amd64-installer-boot-argument" class="Permalink" aria-hidden="true" title="Permalink">#</a>AMD64 installer boot argument</h3>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>or:</p>
+<pre><code class="language-text">autoinstall ds=nocloud-net;s=http://192.168.2.100:8080/
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../installation/old/flash.html">Previous</a></li>            <li class=Pager--next><a href="../../installation/old/ubuntu_node_provisioning.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>

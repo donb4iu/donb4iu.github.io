@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>AMD64 NoCloud Seed USB Helper - My Project</title>
+    <meta name="description" content="Create a CIDATA NoCloud seed USB for Ubuntu Server amd64 autoinstall">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../Architecture.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../installation/ubuntu_node_provisioning_fixed.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/amd64_nocloud_seed_helper.html">old</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="amd64-nocloud-seed-usb-helper" href="#amd64-nocloud-seed-usb-helper" class="Permalink" aria-hidden="true" title="Permalink">#</a>AMD64 NoCloud Seed USB Helper</h1>
+<p>This guide creates one script that prepares the <code>amd64</code> NoCloud seed USB for Ubuntu Server autoinstall.</p>
+<p>The script takes a node name such as <code>amd64-01</code> and copies the matching file:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+</code></pre>
+<p>to the seed USB as:</p>
+<pre><code class="language-text">user-data
+</code></pre>
+<p>It also creates the required:</p>
+<pre><code class="language-text">meta-data
+</code></pre>
+<p>file and formats the seed USB with the required NoCloud label:</p>
+<pre><code class="language-text">CIDATA
+</code></pre>
+<p>The goal is to make the <code>amd64</code> workflow feel closer to the Raspberry Pi workflow.</p>
+<p>For Raspberry Pi:</p>
+<pre><code class="hljs bash">flash \
+  --userdata setup/cloud-config-arm64-01.yml \
+  ~/Downloads/ubuntu-rpi/ubuntu-24.04.4-preinstalled-server-arm64+raspi.img.xz
+</code></pre>
+<p>For <code>amd64</code>, the equivalent flow is:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+  -&gt; CIDATA/user-data
+  -&gt; Ubuntu Server installer booted with autoinstall ds=nocloud
+  -&gt; provisioned amd64-01
+</code></pre>
+<hr />
+<h2><a id="1-expected-repository-layout" href="#1-expected-repository-layout" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Expected repository layout</h2>
+<p>Run these commands from the root of your repository.</p>
+<p>Expected files:</p>
+<pre><code class="language-text">setup/
+  cloud-config-amd64-01.yml
+  cloud-config-amd64-02.yml
+  cloud-config-amd64-03.yml
+
+scripts/
+  make-amd64-nocloud-seed.sh
+</code></pre>
+<hr />
+<h2><a id="2-create-the-scripts-directory" href="#2-create-the-scripts-directory" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. Create the scripts directory</h2>
+<pre><code class="hljs bash">mkdir -p scripts
+</code></pre>
+<hr />
+<h2><a id="3-create-the-nocloud-seed-helper-script" href="#3-create-the-nocloud-seed-helper-script" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Create the NoCloud seed helper script</h2>
+<p>Create the script file.</p>
+<pre><code class="hljs bash">cat &gt; scripts/make-amd64-nocloud-seed.sh &lt;&lt;<span class="hljs-string">'EOF'</span>
+<span class="hljs-meta">#!/usr/bin/env bash</span>
+<span class="hljs-built_in">set</span> -euo pipefail
+
+<span class="hljs-function"><span class="hljs-title">usage</span></span>() {
+  cat &lt;&lt;<span class="hljs-string">'HELP'</span>
+Usage:
+  make-amd64-nocloud-seed.sh &lt;node-name&gt; &lt;seed-disk&gt;
+
+Examples:
+  ./scripts/make-amd64-nocloud-seed.sh amd64-01 /dev/disk4
+  ./scripts/make-amd64-nocloud-seed.sh amd64-02 /dev/disk4
+  ./scripts/make-amd64-nocloud-seed.sh amd64-03 /dev/disk4
+
+This script:
+  1. Uses setup/cloud-config-&lt;node-name&gt;.yml as NoCloud user-data
+  2. Creates matching meta-data
+  3. Formats the seed USB as FAT32 with label CIDATA
+  4. Copies user-data and meta-data to the seed USB
+
+The seed USB is used with the Ubuntu Server amd64 installer.
+At the Ubuntu installer GRUB boot line, add:
+
+  autoinstall ds=nocloud
+HELP
+}
+
+<span class="hljs-function"><span class="hljs-title">require_command</span></span>() {
+  <span class="hljs-built_in">local</span> command_name=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+
+  <span class="hljs-keyword">if</span> ! <span class="hljs-built_in">command</span> -v <span class="hljs-string">"<span class="hljs-variable">${command_name}</span>"</span> &gt;/dev/null 2&gt;&amp;1; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"ERROR: Required command not found: <span class="hljs-variable">${command_name}</span>"</span> &gt;&amp;2
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">get_repo_root</span></span>() {
+  git rev-parse --show-toplevel 2&gt;/dev/null || <span class="hljs-built_in">pwd</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">validate_node_name</span></span>() {
+  <span class="hljs-built_in">local</span> node_name=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+
+  <span class="hljs-keyword">if</span> [[ ! <span class="hljs-string">"<span class="hljs-variable">${node_name}</span>"</span> =~ ^amd64-[0-9][0-9]$ ]]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"ERROR: Node name must look like amd64-01, amd64-02, amd64-03."</span> &gt;&amp;2
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">validate_source_file</span></span>() {
+  <span class="hljs-built_in">local</span> source_user_data=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+
+  <span class="hljs-keyword">if</span> [[ ! -f <span class="hljs-string">"<span class="hljs-variable">${source_user_data}</span>"</span> ]]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"ERROR: Missing cloud-init file: <span class="hljs-variable">${source_user_data}</span>"</span> &gt;&amp;2
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">show_seed_disk</span></span>() {
+  <span class="hljs-built_in">local</span> seed_disk=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Selected seed USB disk:"</span>
+  <span class="hljs-built_in">echo</span>
+  diskutil info <span class="hljs-string">"<span class="hljs-variable">${seed_disk}</span>"</span> || {
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"ERROR: Could not inspect <span class="hljs-variable">${seed_disk}</span>"</span> &gt;&amp;2
+    <span class="hljs-built_in">exit</span> 1
+  }
+}
+
+<span class="hljs-function"><span class="hljs-title">confirm_seed_disk</span></span>() {
+  <span class="hljs-built_in">local</span> seed_disk=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+
+  show_seed_disk <span class="hljs-string">"<span class="hljs-variable">${seed_disk}</span>"</span>
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"This will erase <span class="hljs-variable">${seed_disk}</span> and recreate it as a CIDATA seed USB."</span>
+  <span class="hljs-built_in">read</span> -r -p <span class="hljs-string">"Type CIDATA to continue: "</span> answer
+
+  <span class="hljs-keyword">if</span> [[ <span class="hljs-string">"<span class="hljs-variable">${answer}</span>"</span> != <span class="hljs-string">"CIDATA"</span> ]]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"Aborted."</span>
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">create_seed_files</span></span>() {
+  <span class="hljs-built_in">local</span> node_name=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+  <span class="hljs-built_in">local</span> source_user_data=<span class="hljs-string">"<span class="hljs-variable">$2</span>"</span>
+  <span class="hljs-built_in">local</span> build_dir=<span class="hljs-string">"<span class="hljs-variable">$3</span>"</span>
+
+  mkdir -p <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>"</span>
+
+  cp <span class="hljs-string">"<span class="hljs-variable">${source_user_data}</span>"</span> <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>/user-data"</span>
+
+  cat &gt; <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>/meta-data"</span> &lt;&lt;META
+instance-id: <span class="hljs-variable">${node_name}</span>
+<span class="hljs-built_in">local</span>-hostname: <span class="hljs-variable">${node_name}</span>
+META
+}
+
+<span class="hljs-function"><span class="hljs-title">format_seed_usb</span></span>() {
+  <span class="hljs-built_in">local</span> seed_disk=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Formatting seed USB as FAT32 CIDATA..."</span>
+  diskutil eraseDisk FAT32 CIDATA MBR <span class="hljs-string">"<span class="hljs-variable">${seed_disk}</span>"</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">copy_seed_files</span></span>() {
+  <span class="hljs-built_in">local</span> build_dir=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+  <span class="hljs-built_in">local</span> cidata_volume=<span class="hljs-string">"/Volumes/CIDATA"</span>
+
+  <span class="hljs-keyword">if</span> [[ ! -d <span class="hljs-string">"<span class="hljs-variable">${cidata_volume}</span>"</span> ]]; <span class="hljs-keyword">then</span>
+    <span class="hljs-built_in">echo</span> <span class="hljs-string">"ERROR: Expected <span class="hljs-variable">${cidata_volume}</span> to be mounted."</span> &gt;&amp;2
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Copying NoCloud seed files..."</span>
+  cp <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>/user-data"</span> <span class="hljs-string">"<span class="hljs-variable">${cidata_volume}</span>/user-data"</span>
+  cp <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>/meta-data"</span> <span class="hljs-string">"<span class="hljs-variable">${cidata_volume}</span>/meta-data"</span>
+
+  sync
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Seed USB contents:"</span>
+  ls -la <span class="hljs-string">"<span class="hljs-variable">${cidata_volume}</span>"</span>
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Ejecting seed USB..."</span>
+  diskutil eject <span class="hljs-string">"<span class="hljs-variable">${cidata_volume}</span>"</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">main</span></span>() {
+  <span class="hljs-keyword">if</span> [[ <span class="hljs-string">"<span class="hljs-variable">$#</span>"</span> -ne 2 ]]; <span class="hljs-keyword">then</span>
+    usage
+    <span class="hljs-built_in">exit</span> 1
+  <span class="hljs-keyword">fi</span>
+
+  <span class="hljs-built_in">local</span> node_name=<span class="hljs-string">"<span class="hljs-variable">$1</span>"</span>
+  <span class="hljs-built_in">local</span> seed_disk=<span class="hljs-string">"<span class="hljs-variable">$2</span>"</span>
+  <span class="hljs-built_in">local</span> repo_root
+  <span class="hljs-built_in">local</span> source_user_data
+  <span class="hljs-built_in">local</span> build_dir
+
+  require_command diskutil
+  require_command cp
+  require_command sync
+
+  validate_node_name <span class="hljs-string">"<span class="hljs-variable">${node_name}</span>"</span>
+
+  repo_root=<span class="hljs-string">"<span class="hljs-variable">$(get_repo_root)</span>"</span>
+  source_user_data=<span class="hljs-string">"<span class="hljs-variable">${repo_root}</span>/setup/cloud-config-<span class="hljs-variable">${node_name}</span>.yml"</span>
+  build_dir=<span class="hljs-string">"<span class="hljs-variable">${repo_root}</span>/build/nocloud/<span class="hljs-variable">${node_name}</span>"</span>
+
+  validate_source_file <span class="hljs-string">"<span class="hljs-variable">${source_user_data}</span>"</span>
+
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Repository root: <span class="hljs-variable">${repo_root}</span>"</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Node name:       <span class="hljs-variable">${node_name}</span>"</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Source config:   <span class="hljs-variable">${source_user_data}</span>"</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Seed disk:       <span class="hljs-variable">${seed_disk}</span>"</span>
+
+  confirm_seed_disk <span class="hljs-string">"<span class="hljs-variable">${seed_disk}</span>"</span>
+  create_seed_files <span class="hljs-string">"<span class="hljs-variable">${node_name}</span>"</span> <span class="hljs-string">"<span class="hljs-variable">${source_user_data}</span>"</span> <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>"</span>
+  format_seed_usb <span class="hljs-string">"<span class="hljs-variable">${seed_disk}</span>"</span>
+  copy_seed_files <span class="hljs-string">"<span class="hljs-variable">${build_dir}</span>"</span>
+
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Done."</span>
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"Use this seed USB with the Ubuntu Server amd64 installer."</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"At the installer GRUB boot line, add:"</span>
+  <span class="hljs-built_in">echo</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"  autoinstall ds=nocloud"</span>
+  <span class="hljs-built_in">echo</span>
+}
+
+main <span class="hljs-string">"<span class="hljs-variable">$@</span>"</span>
+EOF
+</code></pre>
+<hr />
+<h2><a id="4-make-the-script-executable" href="#4-make-the-script-executable" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Make the script executable</h2>
+<pre><code class="hljs bash">chmod +x scripts/make-amd64-nocloud-seed.sh
+</code></pre>
+<hr />
+<h2><a id="5-confirm-your-amd64-cloud-init-files-exist" href="#5-confirm-your-amd64-cloud-init-files-exist" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. Confirm your AMD64 cloud-init files exist</h2>
+<pre><code class="hljs bash">ls -la setup/cloud-config-amd64-*.yml
+</code></pre>
+<p>Expected files:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+setup/cloud-config-amd64-02.yml
+setup/cloud-config-amd64-03.yml
+</code></pre>
+<hr />
+<h2><a id="6-insert-the-seed-usb-and-identify-it" href="#6-insert-the-seed-usb-and-identify-it" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. Insert the seed USB and identify it</h2>
+<p>Insert the small USB drive that will become the NoCloud seed USB.</p>
+<p>Then run:</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Find the USB disk.</p>
+<p>Example:</p>
+<pre><code class="language-text">/dev/disk4
+</code></pre>
+<p>Use the disk for the small seed USB, not the Ubuntu installer USB and not any external data disk.</p>
+<hr />
+<h2><a id="7-create-the-seed-usb-for-amd64-01" href="#7-create-the-seed-usb-for-amd64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. Create the seed USB for amd64-01</h2>
+<p>Replace <code>/dev/disk4</code> with the seed USB disk from <code>diskutil list</code>.</p>
+<pre><code class="hljs bash">./scripts/make-amd64-nocloud-seed.sh amd64-01 /dev/disk4
+</code></pre>
+<p>This creates a seed USB where:</p>
+<pre><code class="language-text">CIDATA/user-data  = setup/cloud-config-amd64-01.yml
+CIDATA/meta-data  = instance-id and hostname for amd64-01
+</code></pre>
+<hr />
+<h2><a id="8-boot-amd64-01-with-autoinstall" href="#8-boot-amd64-01-with-autoinstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. Boot amd64-01 with autoinstall</h2>
+<p>Insert both USB devices into the <code>amd64-01</code> machine:</p>
+<pre><code class="language-text">Ubuntu Server amd64 installer USB
+CIDATA NoCloud seed USB
+</code></pre>
+<p>Boot from the Ubuntu Server installer USB.</p>
+<p>At the Ubuntu installer GRUB menu, edit the boot command and add:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>Then continue booting.</p>
+<p>The installer should discover the <code>CIDATA</code> seed USB and run:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml
+</code></pre>
+<p>as its NoCloud <code>user-data</code>.</p>
+<hr />
+<h2><a id="9-create-the-seed-usb-for-amd64-02" href="#9-create-the-seed-usb-for-amd64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. Create the seed USB for amd64-02</h2>
+<p>Reinsert the same seed USB into the Mac.</p>
+<p>Then run:</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Replace <code>/dev/disk4</code> with the current seed USB disk.</p>
+<pre><code class="hljs bash">./scripts/make-amd64-nocloud-seed.sh amd64-02 /dev/disk4
+</code></pre>
+<p>This creates a seed USB where:</p>
+<pre><code class="language-text">CIDATA/user-data  = setup/cloud-config-amd64-02.yml
+CIDATA/meta-data  = instance-id and hostname for amd64-02
+</code></pre>
+<hr />
+<h2><a id="10-boot-amd64-02-with-autoinstall" href="#10-boot-amd64-02-with-autoinstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. Boot amd64-02 with autoinstall</h2>
+<p>Insert both USB devices into the <code>amd64-02</code> machine:</p>
+<pre><code class="language-text">Ubuntu Server amd64 installer USB
+CIDATA NoCloud seed USB
+</code></pre>
+<p>Boot from the Ubuntu Server installer USB.</p>
+<p>At the Ubuntu installer GRUB menu, edit the boot command and add:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>Then continue booting.</p>
+<p>The installer should discover the <code>CIDATA</code> seed USB and run:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-02.yml
+</code></pre>
+<p>as its NoCloud <code>user-data</code>.</p>
+<hr />
+<h2><a id="11-create-the-seed-usb-for-amd64-03" href="#11-create-the-seed-usb-for-amd64-03" class="Permalink" aria-hidden="true" title="Permalink">#</a>11. Create the seed USB for amd64-03</h2>
+<p>Reinsert the same seed USB into the Mac.</p>
+<p>Then run:</p>
+<pre><code class="hljs bash">diskutil list
+</code></pre>
+<p>Replace <code>/dev/disk4</code> with the current seed USB disk.</p>
+<pre><code class="hljs bash">./scripts/make-amd64-nocloud-seed.sh amd64-03 /dev/disk4
+</code></pre>
+<p>This creates a seed USB where:</p>
+<pre><code class="language-text">CIDATA/user-data  = setup/cloud-config-amd64-03.yml
+CIDATA/meta-data  = instance-id and hostname for amd64-03
+</code></pre>
+<hr />
+<h2><a id="12-boot-amd64-03-with-autoinstall" href="#12-boot-amd64-03-with-autoinstall" class="Permalink" aria-hidden="true" title="Permalink">#</a>12. Boot amd64-03 with autoinstall</h2>
+<p>Insert both USB devices into the <code>amd64-03</code> machine:</p>
+<pre><code class="language-text">Ubuntu Server amd64 installer USB
+CIDATA NoCloud seed USB
+</code></pre>
+<p>Boot from the Ubuntu Server installer USB.</p>
+<p>At the Ubuntu installer GRUB menu, edit the boot command and add:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>Then continue booting.</p>
+<p>The installer should discover the <code>CIDATA</code> seed USB and run:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-03.yml
+</code></pre>
+<p>as its NoCloud <code>user-data</code>.</p>
+<hr />
+<h2><a id="13-validate-first-boot" href="#13-validate-first-boot" class="Permalink" aria-hidden="true" title="Permalink">#</a>13. Validate first boot</h2>
+<p>After the machine reboots, SSH into the node.</p>
+<p>For <code>amd64-01</code>:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61
+</code></pre>
+<p>For <code>amd64-02</code>:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.62
+</code></pre>
+<p>For <code>amd64-03</code>:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.63
+</code></pre>
+<p>Check cloud-init status.</p>
+<pre><code class="hljs bash">cloud-init status --<span class="hljs-built_in">wait</span>
+</code></pre>
+<pre><code class="hljs bash">cloud-init status --long
+</code></pre>
+<p>Check hostname.</p>
+<pre><code class="hljs bash">hostnamectl
+</code></pre>
+<p>Check disks.</p>
+<pre><code class="hljs bash">lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINTS,MODEL,SERIAL
+</code></pre>
+<p>Check network.</p>
+<pre><code class="hljs bash">ip addr
+</code></pre>
+<pre><code class="hljs bash">ip route
+</code></pre>
+<hr />
+<h2><a id="14-quick-reference" href="#14-quick-reference" class="Permalink" aria-hidden="true" title="Permalink">#</a>14. Quick reference</h2>
+<p>Create seed for <code>amd64-01</code>:</p>
+<pre><code class="hljs bash">./scripts/make-amd64-nocloud-seed.sh amd64-01 /dev/disk4
+</code></pre>
+<p>Create seed for <code>amd64-02</code>:</p>
+<pre><code class="hljs bash">./scripts/make-amd64-nocloud-seed.sh amd64-02 /dev/disk4
+</code></pre>
+<p>Create seed for <code>amd64-03</code>:</p>
+<pre><code class="hljs bash">./scripts/make-amd64-nocloud-seed.sh amd64-03 /dev/disk4
+</code></pre>
+<p>Boot argument:</p>
+<pre><code class="language-text">autoinstall ds=nocloud
+</code></pre>
+<p>Effective mapping:</p>
+<pre><code class="language-text">setup/cloud-config-amd64-01.yml -&gt; CIDATA/user-data -&gt; amd64-01
+setup/cloud-config-amd64-02.yml -&gt; CIDATA/user-data -&gt; amd64-02
+setup/cloud-config-amd64-03.yml -&gt; CIDATA/user-data -&gt; amd64-03
+</code></pre>
+<hr />
+<h2><a id="15-troubleshooting" href="#15-troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>15. Troubleshooting</h2>
+<p>If the installer does not autoinstall, confirm that the seed USB volume is named:</p>
+<pre><code class="language-text">CIDATA
+</code></pre>
+<p>Confirm that the seed USB has these two files at the root:</p>
+<pre><code class="language-text">user-data
+meta-data
+</code></pre>
+<p>On macOS, after reinserting the seed USB, check:</p>
+<pre><code class="hljs bash">ls -la /Volumes/CIDATA
+</code></pre>
+<p>Expected output includes:</p>
+<pre><code class="language-text">user-data
+meta-data
+</code></pre>
+<p>If the installer still does not find the seed, try this boot argument instead:</p>
+<pre><code class="language-text">autoinstall ds=nocloud;s=/cdrom/
+</code></pre>
+<p>If that still does not work, use the HTTP NoCloud method instead of the seed USB method.</p>
+<hr />
+<h2><a id="16-http-nocloud-fallback" href="#16-http-nocloud-fallback" class="Permalink" aria-hidden="true" title="Permalink">#</a>16. HTTP NoCloud fallback</h2>
+<p>From the repository root, create the <code>amd64-01</code> seed files.</p>
+<pre><code class="hljs bash">mkdir -p build/nocloud/amd64-01
+cp setup/cloud-config-amd64-01.yml build/nocloud/amd64-01/user-data
+cat &gt; build/nocloud/amd64-01/meta-data &lt;&lt;<span class="hljs-string">'EOF'</span>
+instance-id: amd64-01
+<span class="hljs-built_in">local</span>-hostname: amd64-01
+EOF
+</code></pre>
+<p>Serve the seed directory over HTTP.</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> build/nocloud/amd64-01
+python3 -m http.server 8080
+</code></pre>
+<p>Boot the AMD64 installer and add this boot argument.</p>
+<p>Replace <code>192.168.2.100</code> with the IP address of the machine serving the files.</p>
+<pre><code class="language-text">autoinstall ds=nocloud-net;s=http://192.168.2.100:8080/
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Previous</a></li>            <li class=Pager--next><a href="../../installation/old/flash.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>

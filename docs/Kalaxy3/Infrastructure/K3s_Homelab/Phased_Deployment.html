@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Phased Deployment - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../Architecture.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Infrastructure</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../Infrastructure/K3s_Homelab/Architecture.html">K3s Homelab</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="phased-deployment-and-refinement-workflow" href="#phased-deployment-and-refinement-workflow" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phased deployment and refinement workflow</h1>
+<p>Do not run <code>make deploy</code> for the first installation. Complete each phase, run
+its validation target, record observations, and adjust variables before moving
+forward.</p>
+<h2><a id="phase-0-readiness-and-architecture-baseline" href="#phase-0-readiness-and-architecture-baseline" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 0 — Readiness and architecture baseline</h2>
+<p><strong>Purpose:</strong> Prove that the Mac, nodes, disks, NFS server, addressing, and SSH
+configuration are ready without changing the cluster.</p>
+<pre><code class="hljs bash">make install
+make phase-0
+</code></pre>
+<p><strong>Gate:</strong></p>
+<ul>
+<li>All five nodes answer Ansible ping.</li>
+<li>Nodes have unique hostnames and expected IP addresses.</li>
+<li><code>/mnt/minio</code> is a real mount on every Pi, not a directory on the boot SSD.</li>
+<li>Both NFS exports mount successfully from every node.</li>
+<li><code>192.168.2.20-49</code> is excluded from DHCP.</li>
+</ul>
+<p>Record decisions in <code>markdown/Infrastructure/K3s_Homelab/Phase_Notes.md</code> before proceeding.</p>
+<h2><a id="phase-1-operating-system-prerequisites" href="#phase-1-operating-system-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 1 — Operating-system prerequisites</h2>
+<p><strong>Purpose:</strong> Install host packages, kernel settings, time synchronization, and
+K3s prerequisites. This phase does not install Kubernetes.</p>
+<pre><code class="hljs bash">make phase-1
+make validate-1
+</code></pre>
+<p><strong>Gate:</strong> All hosts are reachable after reboot, swap/cgroup requirements are
+correct, NFS client access works, and <code>/mnt/minio</code> remains mounted.</p>
+<h2><a id="phase-2-k3s-core-cluster" href="#phase-2-k3s-core-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 2 — K3s core cluster</h2>
+<p><strong>Purpose:</strong> Create three K3s servers using embedded etcd and join two agents.
+Traefik remains bundled, while ServiceLB is disabled for later MetalLB use.</p>
+<pre><code class="hljs bash">make phase-2
+make validate-2
+</code></pre>
+<p><strong>Gate:</strong></p>
+<ul>
+<li>Exactly five nodes are <code>Ready</code>.</li>
+<li><code>.51-.53</code> are control-plane/etcd nodes.</li>
+<li><code>.54-.55</code> are workers.</li>
+<li>CoreDNS and metrics-server are healthy.</li>
+<li>Kubeconfig works from the Mac.</li>
+</ul>
+<p>Take the first etcd snapshot before adding platform services.</p>
+<h2><a id="phase-3-networking-and-persistent-storage" href="#phase-3-networking-and-persistent-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 3 — Networking and persistent storage</h2>
+<p><strong>Purpose:</strong> Install MetalLB, assign Traefik <code>192.168.2.20</code>, and create the
+<code>nfs-hdd</code> and <code>nfs-ssd</code> StorageClasses.</p>
+<pre><code class="hljs bash">make phase-3
+make validate-3
+</code></pre>
+<p><strong>Gate:</strong></p>
+<ul>
+<li>Traefik owns <code>192.168.2.20</code>.</li>
+<li>A test LoadBalancer receives an address from the MetalLB pool.</li>
+<li>Test PVCs for both NFS classes bind and survive pod recreation.</li>
+<li>No MetalLB address conflicts appear on the LAN.</li>
+</ul>
+<h2><a id="phase-4-administrative-ui" href="#phase-4-administrative-ui" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 4 — Administrative UI</h2>
+<p><strong>Purpose:</strong> Install Headlamp first. Kubernetes Dashboard remains optional.
+Neither service is exposed to the public Internet.</p>
+<pre><code class="hljs bash">make phase-4
+make validate-4
+</code></pre>
+<p><strong>Gate:</strong> Headlamp is reachable from the LAN and authentication/RBAC behavior
+is understood. Enable Dashboard only when its additional value is clear.</p>
+<h2><a id="phase-5-metrics-and-cost-observability" href="#phase-5-metrics-and-cost-observability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 5 — Metrics and cost observability</h2>
+<p><strong>Purpose:</strong> Install Prometheus, Grafana, Alertmanager, node-exporter,
+kube-state-metrics, and Kubecost. Loki and tracing remain disabled.</p>
+<pre><code class="hljs bash">make phase-5
+make validate-5
+</code></pre>
+<p><strong>Gate:</strong></p>
+<ul>
+<li>All five nodes appear in Grafana/Prometheus.</li>
+<li>Persistent volumes use <code>nfs-ssd</code>.</li>
+<li>CPU, memory, and disk pressure remain acceptable for 24-48 hours.</li>
+<li>Alertmanager and Kubecost are healthy.</li>
+</ul>
+<p>Do not add Loki or Tempo until this baseline is stable and Intel capacity is
+available or measurements show adequate headroom.</p>
+<h2><a id="phase-6-distributed-minio" href="#phase-6-distributed-minio" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 6 — Distributed MinIO</h2>
+<p><strong>Purpose:</strong> Deploy MinIO across the five dedicated one-terabyte HDD mounts.</p>
+<pre><code class="hljs bash">make phase-6
+make validate-6
+</code></pre>
+<p><strong>Gate:</strong></p>
+<ul>
+<li>Every MinIO pod is pinned to the intended node.</li>
+<li>Every volume resolves to <code>/mnt/minio</code> on the HDD.</li>
+<li>MinIO reports all drives online.</li>
+<li>Upload, download, and node-restart tests succeed.</li>
+<li>A separate backup target is identified; erasure coding is not a backup.</li>
+</ul>
+<h2><a id="phase-7-security-dns-and-cloudflare-design" href="#phase-7-security-dns-and-cloudflare-design" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 7 — Security, DNS, and Cloudflare design</h2>
+<p><strong>Purpose:</strong> Establish internal DNS names, TLS, RBAC boundaries, secret
+handling, backup policy, and Cloudflare Tunnel/Access design.</p>
+<p>This phase intentionally does not open router ports. Complete the design and
+then add Cloudflare credentials using encrypted variables or an external secret
+manager.</p>
+<pre><code class="hljs bash">make phase-7
+</code></pre>
+<p><strong>Gate:</strong> Internal names resolve locally; public services require Cloudflare
+Access MFA; no management service is directly port-forwarded.</p>
+<h2><a id="phase-8-intel-node-expansion" href="#phase-8-intel-node-expansion" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 8 — Intel node expansion</h2>
+<p>Add <code>.61-.63</code> to <code>k3s_agents</code>, initially as workers:</p>
+<pre><code class="hljs bash">make phase-8
+make validate-2
+</code></pre>
+<p>Label/taint Intel and GPU nodes before moving AI, databases, logging, tracing,
+or other heavy workloads. Do not add all Intel systems as extra etcd members.</p>
+<h2><a id="refinement-rule" href="#refinement-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>Refinement rule</h2>
+<p>At every gate, update <code>group_vars/all.yml</code>, inventory, Helm values, and
+<code>markdown/Infrastructure/K3s_Homelab/Phase_Notes.md</code>. Commit the working state before proceeding:</p>
+<pre><code class="hljs bash">git add .
+git commit -m <span class="hljs-string">"Complete phase N"</span>
+</code></pre>
+<p>Rollback should return to the most recent completed phase rather than trying to
+repair multiple unvalidated subsystems at once.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Previous</a></li>            <li class=Pager--next><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>
