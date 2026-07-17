@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>k3s-api-ha-kube-vip - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item Nav__item--active'><a href="k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="k3s-api-high-availability-with-kube-vip" href="#k3s-api-high-availability-with-kube-vip" class="Permalink" aria-hidden="true" title="Permalink">#</a>K3s API High Availability with kube-vip</h1>
+<p><strong>Project:</strong> Kalaxy3
+<strong>Cluster:</strong> Kalaxy3 K3s homelab
+<strong>Implemented:</strong> July 16, 2026
+<strong>Status:</strong> kube-vip deployed and API VIP verified
+<strong>Publication:</strong> Safe to commit and push</p>
+<h2><a id="purpose" href="#purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Purpose</h2>
+<p>Kalaxy3 already had a highly available embedded-etcd control plane:</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Address</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arm64-01</code></td>
+<td><code>192.168.2.51</code></td>
+<td><code>control-plane,etcd</code></td>
+</tr>
+<tr>
+<td><code>arm64-02</code></td>
+<td><code>192.168.2.52</code></td>
+<td><code>control-plane,etcd</code></td>
+</tr>
+<tr>
+<td><code>arm64-03</code></td>
+<td><code>192.168.2.53</code></td>
+<td><code>control-plane,etcd</code></td>
+</tr>
+<tr>
+<td><code>arm64-04</code></td>
+<td><code>192.168.2.54</code></td>
+<td>Agent</td>
+</tr>
+<tr>
+<td><code>arm64-05</code></td>
+<td><code>192.168.2.55</code></td>
+<td>Agent</td>
+</tr>
+</tbody>
+</table>
+<p>The cluster could tolerate the loss of one control-plane member, but the
+administration kubeconfig and K3s registration configuration used only:</p>
+<pre><code class="language-text">https://192.168.2.51:6443
+</code></pre>
+<p>That made <code>arm64-01</code> a single access-path dependency. The cluster could remain
+healthy after losing <code>arm64-01</code>, but clients using that kubeconfig would not
+automatically reconnect through <code>arm64-02</code> or <code>arm64-03</code>.</p>
+<p>kube-vip was added to provide a floating Kubernetes API endpoint:</p>
+<pre><code class="language-text">https://192.168.2.50:6443
+</code></pre>
+<p>One control-plane node advertises the VIP at a time. If that node becomes
+unavailable, kube-vip leader election allows another control-plane member to
+advertise the same address.</p>
+<h2><a id="network-allocation" href="#network-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Network Allocation</h2>
+<pre><code class="language-text">192.168.2.20-192.168.2.49   MetalLB service address pool
+192.168.2.50                Kubernetes API virtual IP
+192.168.2.51-192.168.2.53   K3s control-plane and etcd nodes
+192.168.2.54-192.168.2.55   K3s agent nodes
+</code></pre>
+<p>kube-vip is configured only for the control-plane API VIP. It does not manage
+Kubernetes <code>LoadBalancer</code> services. MetalLB remains responsible for those
+addresses.</p>
+<h2><a id="predeployment-validation" href="#predeployment-validation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Predeployment Validation</h2>
+<p>The control-plane LAN interface was confirmed as:</p>
+<pre><code class="language-text">eth0
+</code></pre>
+<p>Duplicate-address detection was performed from <code>arm64-01</code>:</p>
+<pre><code class="hljs bash">sudo arping \
+  -D \
+  -I eth0 \
+  -c 4 \
+  192.168.2.50
+</code></pre>
+<p>Captured result:</p>
+<pre><code class="language-text">Sent 4 probes (4 broadcast(s))
+Received 0 response(s)
+PASS: 192.168.2.50 appears unused.
+</code></pre>
+<p>The VIP must also remain outside the router DHCP allocation range.</p>
+<h2><a id="original-repository-configuration" href="#original-repository-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Original Repository Configuration</h2>
+<p>The repository originally defined:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_api_endpoint:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+</code></pre>
+<p>That one variable controlled:</p>
+<ol>
+<li>The K3s API certificate SAN.</li>
+<li>Remaining control-plane server registration.</li>
+<li>Agent registration.</li>
+<li>The exported kubeconfig endpoint.</li>
+</ol>
+<p>The server template originally contained:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tls-san:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ k3s_api_endpoint }}</span>"</span>
+</code></pre>
+<h2><a id="repository-changes" href="#repository-changes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository Changes</h2>
+<h3><a id="inventory-variables" href="#inventory-variables" class="Permalink" aria-hidden="true" title="Permalink">#</a>Inventory variables</h3>
+<p>The following variables were added to
+<code>infrastructure/k3s-homelab/inventory/group_vars/all.yml</code>:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_api_endpoint:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+<span class="hljs-attr">k3s_api_vip:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+<span class="hljs-attr">k3s_api_interface:</span> <span class="hljs-string">eth0</span>
+
+<span class="hljs-attr">k3s_tls_sans:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+</code></pre>
+<p>The endpoint remained <code>.51</code> during certificate preparation. The VIP was added
+as an additional certificate SAN before kube-vip advertised it.</p>
+<h3><a id="k3s-server-template" href="#k3s-server-template" class="Permalink" aria-hidden="true" title="Permalink">#</a>K3s server template</h3>
+<p>The original block in <code>templates/k3s-server-config.yml.j2</code>:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tls-san:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ k3s_api_endpoint }}</span>"</span>
+</code></pre>
+<p>was replaced with:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tls-san:</span>
+<span class="hljs-string">{%</span> <span class="hljs-string">for</span> <span class="hljs-string">san</span> <span class="hljs-string">in</span> <span class="hljs-string">k3s_tls_sans</span> <span class="hljs-string">%}</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ san }}</span>"</span>
+<span class="hljs-string">{%</span> <span class="hljs-string">endfor</span> <span class="hljs-string">%}</span>
+</code></pre>
+<p>This rendered both addresses into every K3s API certificate:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tls-san:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.51"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.50"</span>
+</code></pre>
+<h3><a id="rolling-restart-support" href="#rolling-restart-support" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rolling restart support</h3>
+<p>The server configuration template tasks notify a handler:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">notify:</span> <span class="hljs-string">Restart</span> <span class="hljs-string">K3s</span>
+</code></pre>
+<p>Each server play contains a handler at the same indentation level as <code>tasks:</code>:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">handlers:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Restart</span> <span class="hljs-string">K3s</span>
+    <span class="hljs-attr">ansible.builtin.systemd:</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">k3s</span>
+      <span class="hljs-attr">state:</span> <span class="hljs-string">restarted</span>
+</code></pre>
+<p>A handler flush was added inside the <code>tasks:</code> list after the install task and
+before the API readiness check:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Apply</span> <span class="hljs-string">pending</span> <span class="hljs-string">K3s</span> <span class="hljs-string">restart</span>
+  <span class="hljs-attr">ansible.builtin.meta:</span> <span class="hljs-string">flush_handlers</span>
+</code></pre>
+<p>The server plays retain:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">serial:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>This ensures that only one embedded-etcd/control-plane member restarts at a
+time.</p>
+<p>The remaining-server readiness check validates the local API before continuing:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Wait</span> <span class="hljs-string">for</span> <span class="hljs-string">the</span> <span class="hljs-string">Kubernetes</span> <span class="hljs-string">API</span>
+  <span class="hljs-attr">ansible.builtin.command:</span>
+    <span class="hljs-attr">cmd:</span> <span class="hljs-string">k3s</span> <span class="hljs-string">kubectl</span> <span class="hljs-string">get</span> <span class="hljs-string">--raw=/readyz</span>
+  <span class="hljs-attr">register:</span> <span class="hljs-string">server_ready</span>
+  <span class="hljs-attr">retries:</span> <span class="hljs-number">30</span>
+  <span class="hljs-attr">delay:</span> <span class="hljs-number">5</span>
+  <span class="hljs-attr">until:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">server_ready.rc</span> <span class="hljs-string">==</span> <span class="hljs-number">0</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">server_ready.stdout</span> <span class="hljs-string">==</span> <span class="hljs-string">"ok"</span>
+  <span class="hljs-attr">changed_when:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h2><a id="certificate-rollout" href="#certificate-rollout" class="Permalink" aria-hidden="true" title="Permalink">#</a>Certificate Rollout</h2>
+<p>The server-only rollout was performed while <code>.51</code> remained the active endpoint:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/k3s.yml \
+  --vault-id kalaxy3@prompt \
+  --<span class="hljs-built_in">limit</span> k3s_servers
+</code></pre>
+<p>The play completed successfully for all three control-plane nodes:</p>
+<pre><code class="language-text">arm64-01   unreachable=0   failed=0
+arm64-02   unreachable=0   failed=0
+arm64-03   unreachable=0   failed=0
+</code></pre>
+<p>All five nodes returned <code>Ready</code>, and all deployed workloads remained healthy.</p>
+<p>The live configuration on every control-plane node showed:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tls-san:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.51"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.50"</span>
+</code></pre>
+<p>The certificates served by <code>.51</code>, <code>.52</code>, and <code>.53</code> included:</p>
+<pre><code class="language-text">IP Address:192.168.2.50
+IP Address:192.168.2.51
+IP Address:192.168.2.52
+IP Address:192.168.2.53
+</code></pre>
+<h2><a id="kube-vip-manifest-generation" href="#kube-vip-manifest-generation" class="Permalink" aria-hidden="true" title="Permalink">#</a>kube-vip Manifest Generation</h2>
+<p>Docker was not installed on the administration Mac. The kube-vip DaemonSet was
+therefore generated using the containerd runtime bundled with K3s on
+<code>arm64-01</code>.</p>
+<p>The kube-vip image was pulled on <code>arm64-01</code>:</p>
+<pre><code class="hljs bash">KVVERSION=<span class="hljs-string">"v1.2.1"</span>
+
+ssh pi@192.168.2.51 \
+  <span class="hljs-string">"sudo k3s ctr images pull \
+  ghcr.io/kube-vip/kube-vip:<span class="hljs-variable">${KVVERSION}</span>"</span>
+</code></pre>
+<p>The manifest was generated remotely and saved in the repository:</p>
+<pre><code class="hljs bash">VIP=<span class="hljs-string">"192.168.2.50"</span>
+INTERFACE=<span class="hljs-string">"eth0"</span>
+
+ssh pi@192.168.2.51 \
+  <span class="hljs-string">"sudo k3s ctr run \
+    --rm \
+    --net-host \
+    ghcr.io/kube-vip/kube-vip:<span class="hljs-variable">${KVVERSION}</span> \
+    kube-vip-manifest \
+    /kube-vip manifest daemonset \
+      --interface <span class="hljs-variable">${INTERFACE}</span> \
+      --address <span class="hljs-variable">${VIP}</span> \
+      --inCluster \
+      --taint \
+      --controlplane \
+      --arp \
+      --leaderElection"</span> \
+  &gt; manifests/kube-vip/kube-vip-daemonset.yaml
+</code></pre>
+<p>Important options:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>--interface eth0</code></td>
+<td>Advertise the VIP on the control-plane LAN interface</td>
+</tr>
+<tr>
+<td><code>--address 192.168.2.50</code></td>
+<td>Define the Kubernetes API VIP</td>
+</tr>
+<tr>
+<td><code>--inCluster</code></td>
+<td>Use in-cluster Kubernetes authentication</td>
+</tr>
+<tr>
+<td><code>--taint</code></td>
+<td>Permit scheduling on tainted control-plane nodes</td>
+</tr>
+<tr>
+<td><code>--controlplane</code></td>
+<td>Enable control-plane VIP management</td>
+</tr>
+<tr>
+<td><code>--arp</code></td>
+<td>Advertise the VIP with layer-2 ARP</td>
+</tr>
+<tr>
+<td><code>--leaderElection</code></td>
+<td>Elect one active VIP owner</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>--services</code> option was intentionally omitted. This prevents kube-vip from
+competing with MetalLB.</p>
+<p>The generated manifest used:</p>
+<pre><code class="language-text">ghcr.io/kube-vip/kube-vip:v1.2.1
+</code></pre>
+<h2><a id="deployment" href="#deployment" class="Permalink" aria-hidden="true" title="Permalink">#</a>Deployment</h2>
+<p>The kube-vip RBAC and DaemonSet manifests were applied:</p>
+<pre><code class="hljs bash">kubectl apply \
+  -f manifests/kube-vip/kube-vip-rbac.yaml \
+  -f manifests/kube-vip/kube-vip-daemonset.yaml
+</code></pre>
+<p>The resulting DaemonSet status was:</p>
+<pre><code class="language-text">DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE
+3         3         3       3            3
+</code></pre>
+<p>One pod ran on each control-plane node:</p>
+<pre><code class="language-text">arm64-01   Running
+arm64-02   Running
+arm64-03   Running
+</code></pre>
+<h2><a id="vip-verification" href="#vip-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>VIP Verification</h2>
+<p>The VIP responded successfully:</p>
+<pre><code class="hljs bash">ping -c 3 192.168.2.50
+</code></pre>
+<p>Captured result:</p>
+<pre><code class="language-text">3 packets transmitted
+3 packets received
+0.0% packet loss
+</code></pre>
+<p>The Kubernetes API readiness endpoint succeeded:</p>
+<pre><code class="hljs bash">kubectl \
+  --server=https://192.168.2.50:6443 \
+  get --raw=/readyz
+</code></pre>
+<p>Captured result:</p>
+<pre><code class="language-text">ok
+</code></pre>
+<p>At verification time, <code>arm64-01</code> owned the VIP:</p>
+<pre><code class="language-text">arm64-01   192.168.2.50/32
+arm64-02   VIP not hosted here
+arm64-03   VIP not hosted here
+</code></pre>
+<p>The active owner is expected to change during leader failover.</p>
+<h2><a id="current-verified-state" href="#current-verified-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Current Verified State</h2>
+<pre><code class="language-text">Embedded-etcd HA:                 Enabled
+Control-plane members:            arm64-01, arm64-02, arm64-03
+API certificates include VIP:     Yes
+kube-vip DaemonSet:               3/3 Ready
+API VIP:                          192.168.2.50
+API VIP readiness:                ok
+VIP owner at verification time:   arm64-01
+MetalLB service handling:         Unchanged
+</code></pre>
+<p>At the point captured here, kube-vip was operational. Verify the repository
+endpoint and exported kubeconfig before claiming that every client has been cut
+over from <code>.51</code> to <code>.50</code>:</p>
+<pre><code class="hljs bash">grep <span class="hljs-string">'^k3s_api_endpoint:'</span> \
+  inventory/group_vars/all.yml
+
+kubectl config view --minify \
+  -o jsonpath=<span class="hljs-string">'{.clusters[0].cluster.server}{"\n"}'</span>
+</code></pre>
+<p>The final desired values are:</p>
+<pre><code class="language-text">k3s_api_endpoint: 192.168.2.50
+https://192.168.2.50:6443
+</code></pre>
+<h2><a id="final-endpoint-cutover" href="#final-endpoint-cutover" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final Endpoint Cutover</h2>
+<p>After kube-vip is healthy, update:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_api_endpoint:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+</code></pre>
+<p>Retain both SAN entries:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_tls_sans:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+</code></pre>
+<p>Run the complete playbook so servers, agents, and the exported kubeconfig use
+the VIP:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/k3s.yml \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>If the agent template task does not yet notify a restart handler, restart the
+agents one at a time after their configuration changes:</p>
+<pre><code class="hljs bash">ssh pi@192.168.2.54 \
+  <span class="hljs-string">'sudo systemctl restart k3s-agent'</span>
+
+kubectl <span class="hljs-built_in">wait</span> \
+  --<span class="hljs-keyword">for</span>=condition=Ready \
+  node/arm64-04 \
+  --timeout=120s
+
+ssh pi@192.168.2.55 \
+  <span class="hljs-string">'sudo systemctl restart k3s-agent'</span>
+
+kubectl <span class="hljs-built_in">wait</span> \
+  --<span class="hljs-keyword">for</span>=condition=Ready \
+  node/arm64-05 \
+  --timeout=120s
+</code></pre>
+<h2><a id="rebuilding-the-cluster" href="#rebuilding-the-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuilding the Cluster</h2>
+<p>A rebuild must handle this dependency:</p>
+<blockquote>
+<p>The VIP cannot be used before kube-vip is running, but kube-vip cannot run
+until at least one Kubernetes server exists.</p>
+</blockquote>
+<p>Do not configure a brand-new first server to depend exclusively on
+<code>192.168.2.50</code>.</p>
+<h3><a id="recommended-variable-separation" href="#recommended-variable-separation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended variable separation</h3>
+<p>Refactor the inventory so the initial bootstrap endpoint and permanent API
+endpoint are explicit:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_bootstrap_endpoint:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+<span class="hljs-attr">k3s_api_endpoint:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+<span class="hljs-attr">k3s_api_vip:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+<span class="hljs-attr">k3s_api_interface:</span> <span class="hljs-string">eth0</span>
+
+<span class="hljs-attr">k3s_tls_sans:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+</code></pre>
+<p>Use <code>k3s_bootstrap_endpoint</code> only to establish the first server. Use
+<code>k3s_api_endpoint</code> for the remaining servers, agents, and exported kubeconfig
+after kube-vip is operational.</p>
+<h3><a id="recommended-rebuild-phases" href="#recommended-rebuild-phases" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended rebuild phases</h3>
+<h4><a id="phase-1-bootstrap-arm64-01" href="#phase-1-bootstrap-arm64-01" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 1: Bootstrap <code>arm64-01</code></h4>
+<p>Render the first server with:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">cluster-init:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">tls-san:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.51"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.50"</span>
+</code></pre>
+<p>Do not add a <code>server:</code> entry to the first server.</p>
+<p>Install K3s and wait for:</p>
+<pre><code class="hljs bash">sudo k3s kubectl get --raw=/readyz
+</code></pre>
+<p>Expected:</p>
+<pre><code class="language-text">ok
+</code></pre>
+<h4><a id="phase-2-deploy-kube-vip-immediately" href="#phase-2-deploy-kube-vip-immediately" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 2: Deploy kube-vip immediately</h4>
+<p>Once the first server API is healthy, apply the retained kube-vip manifests
+through <code>.51</code>:</p>
+<pre><code class="hljs bash">kubectl \
+  --server=https://192.168.2.51:6443 \
+  apply \
+  -f manifests/kube-vip/kube-vip-rbac.yaml \
+  -f manifests/kube-vip/kube-vip-daemonset.yaml
+</code></pre>
+<p>Wait for the first kube-vip pod and verify:</p>
+<pre><code class="hljs bash">kubectl \
+  --server=https://192.168.2.50:6443 \
+  get --raw=/readyz
+</code></pre>
+<p>Do not continue until it returns:</p>
+<pre><code class="language-text">ok
+</code></pre>
+<h4><a id="phase-3-join-arm64-02-and-arm64-03-through-the-vip" href="#phase-3-join-arm64-02-and-arm64-03-through-the-vip" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 3: Join <code>arm64-02</code> and <code>arm64-03</code> through the VIP</h4>
+<p>Render remaining servers with:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">server:</span> <span class="hljs-string">"https://192.168.2.50:6443"</span>
+<span class="hljs-attr">token:</span> <span class="hljs-string">"&lt;retrieved securely during deployment&gt;"</span>
+<span class="hljs-attr">tls-san:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.51"</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">"192.168.2.50"</span>
+</code></pre>
+<p>Never store the real token in plain text or in documentation.</p>
+<p>Join one control-plane server at a time and verify readiness before continuing.</p>
+<h4><a id="phase-4-join-agents-through-the-vip" href="#phase-4-join-agents-through-the-vip" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 4: Join agents through the VIP</h4>
+<p>Render each agent with:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">server:</span> <span class="hljs-string">"https://192.168.2.50:6443"</span>
+<span class="hljs-attr">token:</span> <span class="hljs-string">"&lt;retrieved securely during deployment&gt;"</span>
+</code></pre>
+<p>Join <code>arm64-04</code> and <code>arm64-05</code> after the three-member control plane is healthy.</p>
+<h4><a id="phase-5-export-the-kubeconfig-with-the-vip" href="#phase-5-export-the-kubeconfig-with-the-vip" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 5: Export the kubeconfig with the VIP</h4>
+<p>Replace the loopback API address in the exported kubeconfig with:</p>
+<pre><code class="language-text">https://192.168.2.50:6443
+</code></pre>
+<p>Verify:</p>
+<pre><code class="hljs bash">kubectl config view --minify \
+  -o jsonpath=<span class="hljs-string">'{.clusters[0].cluster.server}{"\n"}'</span>
+</code></pre>
+<h4><a id="phase-6-test-failover" href="#phase-6-test-failover" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 6: Test failover</h4>
+<p>Identify the current VIP owner:</p>
+<pre><code class="hljs bash"><span class="hljs-keyword">for</span> ip <span class="hljs-keyword">in</span> 192.168.2.51 192.168.2.52 192.168.2.53; <span class="hljs-keyword">do</span>
+  <span class="hljs-built_in">echo</span> <span class="hljs-string">"=== <span class="hljs-variable">$ip</span> ==="</span>
+
+  ssh <span class="hljs-string">"pi@<span class="hljs-variable">$ip</span>"</span> \
+    <span class="hljs-string">"ip -4 address show dev eth0 |
+     grep '192.168.2.50' ||
+     echo 'VIP not hosted here'"</span>
+<span class="hljs-keyword">done</span>
+</code></pre>
+<p>Delete the kube-vip pod on the current owner or perform a controlled reboot of
+that node. Then verify:</p>
+<pre><code class="hljs bash">ping -c 3 192.168.2.50
+kubectl get --raw=/readyz
+kubectl get nodes
+</code></pre>
+<p>Confirm another control-plane node now owns <code>192.168.2.50</code>.</p>
+<h2><a id="what-must-be-retained" href="#what-must-be-retained" class="Permalink" aria-hidden="true" title="Permalink">#</a>What Must Be Retained</h2>
+<p>Keep these files in Git:</p>
+<pre><code class="language-text">inventory/group_vars/all.yml
+templates/k3s-server-config.yml.j2
+templates/k3s-agent-config.yml.j2
+playbooks/k3s.yml
+manifests/kube-vip/kube-vip-rbac.yaml
+manifests/kube-vip/kube-vip-daemonset.yaml
+</code></pre>
+<p>Keep these outside Git:</p>
+<pre><code class="language-text">K3s server token
+Ansible Vault password
+Kubeconfig containing credentials
+etcd snapshot binary files
+Private keys and certificates
+</code></pre>
+<p>The K3s server token must be backed up with the etcd snapshot because it is
+required to decrypt protected bootstrap data during disaster recovery.</p>
+<h2><a id="rebuild-acceptance-criteria" href="#rebuild-acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild Acceptance Criteria</h2>
+<p>A rebuilt cluster is back to the intended HA state only when these checks pass:</p>
+<pre><code class="hljs bash">kubectl get nodes -o wide
+
+kubectl -n kube-system get daemonset kube-vip-ds
+
+kubectl -n kube-system get pods \
+  -l app.kubernetes.io/name=kube-vip-ds \
+  -o wide
+
+kubectl \
+  --server=https://192.168.2.50:6443 \
+  get --raw=/readyz
+
+kubectl config view --minify \
+  -o jsonpath=<span class="hljs-string">'{.clusters[0].cluster.server}{"\n"}'</span>
+</code></pre>
+<p>Expected outcome:</p>
+<pre><code class="language-text">Five nodes Ready
+Three control-plane/etcd members
+Three kube-vip pods Ready
+VIP API readiness returns ok
+Kubeconfig endpoint is https://192.168.2.50:6443
+MetalLB remains responsible for service LoadBalancer addresses
+</code></pre>
+<h2><a id="security-notes" href="#security-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security Notes</h2>
+<p>This page intentionally excludes:</p>
+<ul>
+<li>The K3s server token</li>
+<li>Ansible Vault credentials</li>
+<li>Kubeconfig certificate data</li>
+<li>Private keys</li>
+<li>etcd snapshot contents</li>
+</ul>
+<p>The addresses shown are private RFC 1918 LAN addresses and do not expose the
+cluster directly to the public Internet.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="installation/ubuntu_node_provisioning_fixed.html">Previous</a></li>            <li class=Pager--next><a href="k3s_etcd_baseline_backup_evidence.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': ''})
+    </script>
+</body>
+</html>
