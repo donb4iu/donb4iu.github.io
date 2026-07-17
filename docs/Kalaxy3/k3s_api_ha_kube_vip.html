@@ -629,6 +629,106 @@ MetalLB remains responsible for service LoadBalancer addresses
 </ul>
 <p>The addresses shown are private RFC 1918 LAN addresses and do not expose the
 cluster directly to the public Internet.</p>
+<h2><a id="final-api-endpoint-cutover" href="#final-api-endpoint-cutover" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final API Endpoint Cutover</h2>
+<p>After kube-vip was verified at <code>192.168.2.50</code>, the repository API endpoint was changed from the first control-plane node to the floating VIP:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_api_endpoint:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+</code></pre>
+<p>The original node address remains in the TLS SAN list for transitional and direct-node administrative access:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_tls_sans:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.51</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.50</span>
+</code></pre>
+<p>The full K3s playbook was then reconciled so that the control-plane nodes, agents, and generated kubeconfig use the HA API endpoint.</p>
+<h3><a id="agent-restart-handling" href="#agent-restart-handling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Agent Restart Handling</h3>
+<p>The K3s agent play was updated so configuration changes restart each agent automatically:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Write</span> <span class="hljs-string">K3s</span> <span class="hljs-string">agent</span> <span class="hljs-string">configuration</span>
+  <span class="hljs-attr">ansible.builtin.template:</span>
+    <span class="hljs-attr">src:</span> <span class="hljs-string">../templates/k3s-agent-config.yml.j2</span>
+    <span class="hljs-attr">dest:</span> <span class="hljs-string">/etc/rancher/k3s/config.yaml</span>
+    <span class="hljs-attr">mode:</span> <span class="hljs-string">'0600'</span>
+  <span class="hljs-attr">no_log:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">notify:</span> <span class="hljs-string">Restart</span> <span class="hljs-string">K3s</span> <span class="hljs-string">agent</span>
+</code></pre>
+<p>The agent play now includes:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Apply</span> <span class="hljs-string">pending</span> <span class="hljs-string">K3s</span> <span class="hljs-string">agent</span> <span class="hljs-string">restart</span>
+  <span class="hljs-attr">ansible.builtin.meta:</span> <span class="hljs-string">flush_handlers</span>
+</code></pre>
+<p>and:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">handlers:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Restart</span> <span class="hljs-string">K3s</span> <span class="hljs-string">agent</span>
+    <span class="hljs-attr">ansible.builtin.systemd:</span>
+      <span class="hljs-attr">name:</span> <span class="hljs-string">k3s-agent</span>
+      <span class="hljs-attr">state:</span> <span class="hljs-string">restarted</span>
+</code></pre>
+<p>The agent play uses <code>serial: 1</code>, ensuring that agent nodes are updated one at a time.</p>
+<h3><a id="agent-endpoint-verification" href="#agent-endpoint-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Agent Endpoint Verification</h3>
+<p>The live configuration on both agents was verified:</p>
+<pre><code class="language-text">arm64-04:
+server: &quot;https://192.168.2.50:6443&quot;
+
+arm64-05:
+server: &quot;https://192.168.2.50:6443&quot;
+</code></pre>
+<p>This confirms that the agents no longer depend on <code>arm64-01</code> as their configured registration endpoint.</p>
+<h3><a id="generated-kubeconfig-protection" href="#generated-kubeconfig-protection" class="Permalink" aria-hidden="true" title="Permalink">#</a>Generated Kubeconfig Protection</h3>
+<p>The generated administrative kubeconfig contains cluster credentials and must not be stored in Git.</p>
+<p>The following ignore rule was added:</p>
+<pre><code class="language-gitignore">/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+</code></pre>
+<p>The existing tracked copy was removed from the Git index while remaining available locally:</p>
+<pre><code class="hljs bash">git rm --cached \
+  infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+</code></pre>
+<p>Git exclusion was verified:</p>
+<pre><code class="language-text">.gitignore:/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+</code></pre>
+<p>The repository working tree was clean after the kubeconfig protection change.</p>
+<h3><a id="repository-state" href="#repository-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository State</h3>
+<p>The kube-vip implementation and documentation were committed and pushed to the Kalaxy3 <code>main</code> branch.</p>
+<p>The implementation includes:</p>
+<pre><code class="language-text">inventory/group_vars/all.yml
+templates/k3s-server-config.yml.j2
+playbooks/k3s.yml
+manifests/kube-vip/kube-vip-rbac.yaml
+manifests/kube-vip/kube-vip-daemonset.yaml
+markdown/k3s-api-ha-kube-vip.md
+</code></pre>
+<p>The later agent restart-handler update was committed separately.</p>
+<h3><a id="current-k3s-foundation-status" href="#current-k3s-foundation-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Current K3s Foundation Status</h3>
+<pre><code class="language-text">Three-member embedded-etcd cluster:    Complete
+Three-member control plane:            Complete
+kube-vip DaemonSet:                    3/3 Ready
+Floating API VIP:                      192.168.2.50
+Control-plane certificates include VIP: Yes
+Server endpoint migration:             Complete
+Agent endpoint migration:              Complete
+Generated kubeconfig protection:       Complete
+MetalLB service handling:              Unchanged
+Observability deployment:              Not started
+MinIO deployment:                      Not started
+</code></pre>
+<h3><a id="remaining-kube-vip-validation" href="#remaining-kube-vip-validation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Remaining kube-vip Validation</h3>
+<p>A controlled failover test should still be performed before declaring API failover fully proven.</p>
+<p>The test should:</p>
+<ol>
+<li>Identify the current VIP owner.</li>
+<li>Delete the kube-vip pod on that node or perform a controlled node restart.</li>
+<li>Confirm another control-plane node acquires <code>192.168.2.50</code>.</li>
+<li>Confirm the API remains available through the VIP.</li>
+</ol>
+<pre><code class="hljs bash">ping -c 3 192.168.2.50
+
+kubectl \
+  --server=https://192.168.2.50:6443 \
+  get --raw=/readyz
+
+kubectl get nodes
+</code></pre>
+<p>Expected result:</p>
+<pre><code class="language-text">API readiness: ok
+All remaining nodes: Ready
+VIP owned by another control-plane node
+</code></pre>
     </div>
 
         <nav>
