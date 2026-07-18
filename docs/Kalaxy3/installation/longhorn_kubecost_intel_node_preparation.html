@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>longhorn-kubecost-intel-node-preparation - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item Nav__item--active'><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../installation/kalaxy3_observability_and_kubecost.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="longhorn-kubecost-and-intel-node-preparation" href="#longhorn-kubecost-and-intel-node-preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn, Kubecost, and Intel Node Preparation</h1>
+<p><strong>Project:</strong> Kalaxy3<br />
+<strong>Date:</strong> July 17, 2026<br />
+<strong>Status:</strong> Ansible design checkpoint before completing the MinIO changes<br />
+<strong>Document path:</strong> <code>markdown/installation/longhorn-kubecost-intel-node-preparation.md</code></p>
+<h2><a id="purpose" href="#purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Purpose</h2>
+<p>This document records the storage and scheduling changes made after the initial
+Kubecost deployment failed on the Raspberry Pi cluster.</p>
+<p>It is intended to provide enough information to reproduce the design when
+rebuilding the Kalaxy3 cluster.</p>
+<p>The key decisions were:</p>
+<ul>
+<li>Keep MinIO storage on the five Raspberry Pi nodes.</li>
+<li>Install Longhorn only on the three Intel/AMD64 nodes.</li>
+<li>Store Longhorn data on each Intel node’s dedicated 1 TB HDD.</li>
+<li>Mount each Intel HDD at <code>/mnt/longhorn</code>.</li>
+<li>Run Kubecost only on explicitly labeled AMD64 nodes.</li>
+<li>Store Kubecost’s active ClickHouse database on Longhorn block storage.</li>
+<li>Do not use NFS, MinIO, or K3s <code>local-path</code> for the active ClickHouse database.</li>
+<li>Configure MinIO separately as object storage after the Longhorn work is
+complete.</li>
+<li>Finish and validate the Ansible changes before adding Intel nodes to the
+inventory and cluster.</li>
+</ul>
+<h2><a id="existing-cluster" href="#existing-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>Existing cluster</h2>
+<p>The current K3s cluster contains five Raspberry Pi 4 nodes:</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Address</th>
+<th>K3s role</th>
+<th>Data mount</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>arm64-01</code></td>
+<td><code>192.168.2.51</code></td>
+<td>Server</td>
+<td><code>/mnt/minio</code></td>
+</tr>
+<tr>
+<td><code>arm64-02</code></td>
+<td><code>192.168.2.52</code></td>
+<td>Server</td>
+<td><code>/mnt/minio</code></td>
+</tr>
+<tr>
+<td><code>arm64-03</code></td>
+<td><code>192.168.2.53</code></td>
+<td>Server</td>
+<td><code>/mnt/minio</code></td>
+</tr>
+<tr>
+<td><code>arm64-04</code></td>
+<td><code>192.168.2.54</code></td>
+<td>Agent</td>
+<td><code>/mnt/minio</code></td>
+</tr>
+<tr>
+<td><code>arm64-05</code></td>
+<td><code>192.168.2.55</code></td>
+<td>Agent</td>
+<td><code>/mnt/minio</code></td>
+</tr>
+</tbody>
+</table>
+<p>Each Pi has a dedicated 1 TB HDD intended for MinIO.</p>
+<p>The future Intel nodes are expected to be:</p>
+<table>
+<thead>
+<tr>
+<th>Node</th>
+<th>Expected address</th>
+<th>Intended storage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>amd64-01</code></td>
+<td><code>192.168.2.61</code></td>
+<td>Longhorn</td>
+</tr>
+<tr>
+<td><code>amd64-02</code></td>
+<td><code>192.168.2.62</code></td>
+<td>Longhorn</td>
+</tr>
+<tr>
+<td><code>amd64-03</code></td>
+<td><code>192.168.2.63</code></td>
+<td>Longhorn</td>
+</tr>
+</tbody>
+</table>
+<p>Each Intel node has a dedicated 1 TB HDD that will be mounted at:</p>
+<pre><code class="language-text">/mnt/longhorn
+</code></pre>
+<h2><a id="storage-architecture" href="#storage-architecture" class="Permalink" aria-hidden="true" title="Permalink">#</a>Storage architecture</h2>
+<p>The eight 1 TB data disks are divided by workload:</p>
+<pre><code class="language-text">Five Raspberry Pi nodes
+└── 5 × 1 TB HDD
+    └── /mnt/minio
+        └── MinIO distributed object storage
+
+Three Intel/AMD64 nodes
+└── 3 × 1 TB HDD
+    └── /mnt/longhorn
+        └── Longhorn replicated Kubernetes block storage
+</code></pre>
+<p>The two storage systems must not use the same disk or mount path.</p>
+<h3><a id="minio-responsibilities" href="#minio-responsibilities" class="Permalink" aria-hidden="true" title="Permalink">#</a>MinIO responsibilities</h3>
+<p>MinIO is intended to provide S3-compatible object storage for:</p>
+<ul>
+<li>Kubecost federated and long-term cost data</li>
+<li>Longhorn backups</li>
+<li>Application object data</li>
+<li>Backup archives</li>
+</ul>
+<p>MinIO does not replace the active ClickHouse block-storage volume.</p>
+<h3><a id="longhorn-responsibilities" href="#longhorn-responsibilities" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn responsibilities</h3>
+<p>Longhorn is intended to provide persistent block volumes for:</p>
+<ul>
+<li>Kubecost’s embedded ClickHouse database</li>
+<li>Kubecost persistent configuration</li>
+<li>Future stateful Kubernetes workloads requiring block storage</li>
+</ul>
+<p>The Longhorn disks exist only on the Intel nodes.</p>
+<h2><a id="why-kubecost-was-changed" href="#why-kubecost-was-changed" class="Permalink" aria-hidden="true" title="Permalink">#</a>Why Kubecost was changed</h2>
+<p>The first Kubecost 3.2.1 installation was attempted on the Pi-only ARM64
+cluster.</p>
+<p>Helm created most Kubecost resources successfully, but the aggregator
+StatefulSet never became ready:</p>
+<pre><code class="language-text">kubecost-aggregator   0/1
+</code></pre>
+<p>The aggregator logs showed:</p>
+<pre><code class="language-text">starting embedded clickhouse server
+Illegal instruction (core dumped) clickhouse-server
+ERROR - CH server did not come up after 100 attempts
+</code></pre>
+<p>The Raspberry Pi 4 CPU could not execute an instruction used by the embedded
+ClickHouse binary.</p>
+<p>This was not caused by:</p>
+<ul>
+<li>Helm timeout duration</li>
+<li>MetalLB</li>
+<li>Service configuration</li>
+<li>Image pulling</li>
+<li>PVC provisioning</li>
+<li>NFS permissions</li>
+<li>Kubernetes readiness probes</li>
+</ul>
+<p>Increasing the Helm timeout would not correct the CPU incompatibility.</p>
+<h2><a id="why-nfs-and-local-path-were-rejected" href="#why-nfs-and-local-path-were-rejected" class="Permalink" aria-hidden="true" title="Permalink">#</a>Why NFS and local-path were rejected</h2>
+<p>The initial installation placed Kubecost persistent volumes on <code>nfs-ssd</code>.</p>
+<p>That was changed because the active ClickHouse database needs persistent
+block storage rather than NFS-backed file storage.</p>
+<p>K3s <code>local-path</code> was also rejected as the final design because it ties the
+volume to one machine without Longhorn replication or storage management.</p>
+<p>The final design is:</p>
+<pre><code class="language-text">Kubecost ClickHouse active database
+└── Longhorn ReadWriteOnce block volume
+
+Kubecost federated and long-term object data
+└── MinIO S3-compatible object storage
+</code></pre>
+<h2><a id="scheduling-design" href="#scheduling-design" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scheduling design</h2>
+<p>Labels separate the storage and application responsibilities.</p>
+<h3><a id="raspberry-pi-minio-nodes" href="#raspberry-pi-minio-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Raspberry Pi MinIO nodes</h3>
+<p>The five Pis use:</p>
+<pre><code class="language-text">kalaxy3.io/minio=true
+</code></pre>
+<p>MinIO workloads will also require:</p>
+<pre><code class="language-text">kubernetes.io/arch=arm64
+</code></pre>
+<p>The existing Ansible inventory already contains:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">minio_nodes:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">arm64-01:</span>
+    <span class="hljs-attr">arm64-02:</span>
+    <span class="hljs-attr">arm64-03:</span>
+    <span class="hljs-attr">arm64-04:</span>
+    <span class="hljs-attr">arm64-05:</span>
+</code></pre>
+<h3><a id="intel-longhorn-nodes" href="#intel-longhorn-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Intel Longhorn nodes</h3>
+<p>The Intel nodes will use:</p>
+<pre><code class="language-text">kalaxy3.io/longhorn=true
+node.longhorn.io/create-default-disk=true
+</code></pre>
+<p>Longhorn data will be created only on nodes carrying the Longhorn disk label.</p>
+<h3><a id="intel-kubecost-nodes" href="#intel-kubecost-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Intel Kubecost nodes</h3>
+<p>Kubecost workloads will require both:</p>
+<pre><code class="language-text">kubernetes.io/arch=amd64
+kalaxy3.io/kubecost=true
+</code></pre>
+<p>This prevents Kubecost components from being scheduled onto Raspberry Pi
+nodes.</p>
+<h2><a id="planned-intel-inventory-groups" href="#planned-intel-inventory-groups" class="Permalink" aria-hidden="true" title="Permalink">#</a>Planned Intel inventory groups</h2>
+<p>The Intel nodes should not be added to the active inventory until:</p>
+<ul>
+<li>Ubuntu is installed.</li>
+<li>Static addresses are assigned.</li>
+<li>SSH authentication works.</li>
+<li>The Ansible account works with privilege escalation.</li>
+<li>The dedicated HDD is mounted at <code>/mnt/longhorn</code>.</li>
+</ul>
+<p>Once those prerequisites are complete, add the following groups to:</p>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/hosts.yml
+</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-attr">longhorn_nodes:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">amd64-01:</span>
+    <span class="hljs-attr">amd64-02:</span>
+    <span class="hljs-attr">amd64-03:</span>
+
+<span class="hljs-attr">kubecost_nodes:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">amd64-01:</span>
+    <span class="hljs-attr">amd64-02:</span>
+    <span class="hljs-attr">amd64-03:</span>
+</code></pre>
+<p>The nodes must also be added under the appropriate <code>k3s_servers</code> or
+<code>k3s_agents</code> inventory group.</p>
+<p>The <code>minio_nodes</code> group remains unchanged and must contain only the five Pis.</p>
+<h2><a id="longhorn-host-prerequisites" href="#longhorn-host-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn host prerequisites</h2>
+<p>Every Intel node that stores Longhorn volumes must have the required host
+packages installed.</p>
+<p>The Ansible prerequisite task installs:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-string">open-iscsi</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">nfs-common</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">cryptsetup</span>
+<span class="hljs-bullet">-</span> <span class="hljs-string">dmsetup</span>
+</code></pre>
+<p>The iSCSI service must be enabled and running:</p>
+<pre><code class="hljs bash">sudo systemctl <span class="hljs-built_in">enable</span> --now iscsid
+sudo systemctl status iscsid
+</code></pre>
+<p>Before Longhorn installation, verify that <code>/mnt/longhorn</code> is the dedicated
+1 TB HDD and not the operating-system filesystem:</p>
+<pre><code class="hljs bash">findmnt /mnt/longhorn
+df -h /mnt/longhorn
+lsblk -f
+</code></pre>
+<h2><a id="longhorn-variables" href="#longhorn-variables" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn variables</h2>
+<p>The intended Longhorn variables are:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_longhorn:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">longhorn_data_path:</span> <span class="hljs-string">/mnt/longhorn</span>
+<span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>The Longhorn chart version must be pinned in the variables file rather than
+using an unversioned latest release.</p>
+<p>The initially discussed version was:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">longhorn_version:</span> <span class="hljs-string">"1.12.0"</span>
+</code></pre>
+<p>Verify that the pinned version exists in the configured Longhorn chart
+repository before the first installation.</p>
+<h3><a id="replica-progression" href="#replica-progression" class="Permalink" aria-hidden="true" title="Permalink">#</a>Replica progression</h3>
+<p>Use one replica when only the first Intel node is present:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>After all three Intel nodes are joined, healthy, and have registered
+Longhorn disks, change the default to:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">2</span>
+</code></pre>
+<p>Two replicas provide redundancy while reducing the write and rebuild overhead
+that three replicas would impose on spinning HDDs.</p>
+<p>Existing volumes may require a separate replica-count update after changing
+the default.</p>
+<h2><a id="longhorn-ansible-files" href="#longhorn-ansible-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn Ansible files</h2>
+<p>The Longhorn implementation uses these repository files:</p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/longhorn-prerequisites.yml
+infrastructure/k3s-homelab/playbooks/tasks/longhorn.yml
+infrastructure/k3s-homelab/playbooks/templates/longhorn-values.yml.j2
+infrastructure/k3s-homelab/playbooks/platform.yml
+</code></pre>
+<h3><a id="longhorn-prerequisites-yml" href="#longhorn-prerequisites-yml" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>longhorn-prerequisites.yml</code></h3>
+<p>This playbook prepares the AMD64 hosts before Longhorn installation.</p>
+<p>It must:</p>
+<ul>
+<li>Run with privilege escalation.</li>
+<li>Gather hardware architecture facts.</li>
+<li>Install Longhorn host prerequisites only on <code>x86_64</code> hosts.</li>
+<li>Enable and start <code>iscsid</code>.</li>
+</ul>
+<h3><a id="tasks-longhorn-yml" href="#tasks-longhorn-yml" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>tasks/longhorn.yml</code></h3>
+<p>This task file must:</p>
+<ol>
+<li>Detect eligible AMD64 Kubernetes nodes.</li>
+<li>Skip Longhorn when no Intel node is present.</li>
+<li>Label only intended Longhorn nodes.</li>
+<li>Apply <code>node.longhorn.io/create-default-disk=true</code>.</li>
+<li>Render the Longhorn values template.</li>
+<li>Install the pinned Longhorn chart.</li>
+<li>Wait for Longhorn to become ready.</li>
+<li>Verify that the <code>longhorn</code> StorageClass exists.</li>
+</ol>
+<h3><a id="longhorn-values-yml-j2" href="#longhorn-values-yml-j2" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>longhorn-values.yml.j2</code></h3>
+<p>The values template must configure:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">defaultSettings:</span>
+  <span class="hljs-attr">defaultDataPath:</span> <span class="hljs-string">/mnt/longhorn</span>
+</code></pre>
+<p>It must restrict Longhorn storage components and default disk creation to the
+intended Intel nodes.</p>
+<p>The <code>longhorn</code> StorageClass should not replace the existing default
+StorageClass globally. Workloads that need Longhorn should request it
+explicitly.</p>
+<h2><a id="platform-ordering" href="#platform-ordering" class="Permalink" aria-hidden="true" title="Permalink">#</a>Platform ordering</h2>
+<p>Edit:</p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/platform.yml
+</code></pre>
+<p>The required phase ordering is:</p>
+<pre><code class="language-text">K3s cluster
+    ↓
+MinIO on Raspberry Pi nodes
+    ↓
+Longhorn on Intel nodes
+    ↓
+Observability
+    ↓
+Kubecost on Intel nodes using Longhorn
+</code></pre>
+<p>The relevant task order should be:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">phase</span>
+  <span class="hljs-attr">ansible.builtin.include_tasks:</span> <span class="hljs-string">tasks/minio.yml</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">Longhorn</span> <span class="hljs-string">storage</span> <span class="hljs-string">phase</span>
+  <span class="hljs-attr">ansible.builtin.include_tasks:</span> <span class="hljs-string">tasks/longhorn.yml</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_longhorn</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Run</span> <span class="hljs-string">observability</span> <span class="hljs-string">phase</span>
+  <span class="hljs-attr">ansible.builtin.include_tasks:</span> <span class="hljs-string">tasks/observability.yml</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_observability</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+</code></pre>
+<p>Kubecost must never be installed before the <code>longhorn</code> StorageClass exists.</p>
+<h2><a id="kubecost-ansible-behavior" href="#kubecost-ansible-behavior" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost Ansible behavior</h2>
+<p>The Kubecost tasks are in:</p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+</code></pre>
+<p>The task sequence is:</p>
+<ol>
+<li>Install Prometheus and Grafana.</li>
+<li>Query Kubernetes for an eligible AMD64 Kubecost node.</li>
+<li>Skip Kubecost when no eligible Intel node exists.</li>
+<li>Render the Kubecost values template when a node exists.</li>
+<li>Install Kubecost using the rendered values.</li>
+<li>Wait for the Kubecost workloads to become ready.</li>
+</ol>
+<p>The node query requires:</p>
+<pre><code class="language-text">kubernetes.io/arch=amd64
+kalaxy3.io/kubecost=true
+</code></pre>
+<p>This allows:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_observability:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">install_kubecost:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>to remain enabled while the cluster is Pi-only.</p>
+<p>In that state, <code>install_kubecost: true</code> means:</p>
+<blockquote>
+<p>Install Kubecost when a compatible and explicitly labeled Intel node exists.</p>
+</blockquote>
+<h2><a id="kubecost-values" href="#kubecost-values" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost values</h2>
+<p>The Kubecost values template is:</p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/templates/kubecost-values.yml.j2
+</code></pre>
+<p>All Kubecost workloads are constrained to:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nodeSelector:</span>
+  <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+  <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+</code></pre>
+<p>The aggregator storage must use Longhorn:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">aggregator:</span>
+  <span class="hljs-attr">nodeSelector:</span>
+    <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+    <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+
+  <span class="hljs-attr">persistentConfigsStorage:</span>
+    <span class="hljs-attr">storageClass:</span> <span class="hljs-string">longhorn</span>
+    <span class="hljs-attr">storageRequest:</span> <span class="hljs-string">1Gi</span>
+
+  <span class="hljs-attr">aggregatorDbStorage:</span>
+    <span class="hljs-attr">storageClass:</span> <span class="hljs-string">longhorn</span>
+    <span class="hljs-attr">storageRequest:</span> <span class="hljs-string">128Gi</span>
+</code></pre>
+<p>The frontend LoadBalancer address remains:</p>
+<pre><code class="language-text">192.168.2.26
+</code></pre>
+<p>MinIO federated-storage integration will be configured separately after the
+MinIO deployment is finalized.</p>
+<h2><a id="failed-kubecost-cleanup" href="#failed-kubecost-cleanup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed Kubecost cleanup</h2>
+<p>The failed Pi-based Kubecost installation created PVCs using the previous
+storage configuration.</p>
+<p>Before reinstalling Kubecost with Longhorn, remove the failed release:</p>
+<pre><code class="hljs bash">ssh pi@192.168.2.51 \
+  <span class="hljs-string">'sudo helm \
+  --kubeconfig /etc/rancher/k3s/k3s.yaml \
+  uninstall kubecost \
+  --namespace kubecost || true'</span>
+</code></pre>
+<p>Remove the old namespace and PVCs:</p>
+<pre><code class="hljs bash">kubectl delete namespace kubecost --ignore-not-found
+</code></pre>
+<p>This is required because an existing PVC’s StorageClass cannot be changed from
+the old storage class to <code>longhorn</code>.</p>
+<h2><a id="required-deployment-sequence" href="#required-deployment-sequence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Required deployment sequence</h2>
+<h3><a id="phase-1-complete-the-repository-changes" href="#phase-1-complete-the-repository-changes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 1: Complete the repository changes</h3>
+<p>Before adding Intel nodes:</p>
+<ol>
+<li>Finish the Longhorn prerequisite playbook.</li>
+<li>Finish the Longhorn tasks.</li>
+<li>Finish the Longhorn values template.</li>
+<li>Confirm platform ordering.</li>
+<li>Confirm Kubecost uses <code>storageClass: longhorn</code>.</li>
+<li>Confirm Kubecost requires AMD64 and its explicit node label.</li>
+<li>Complete the MinIO Pi-only scheduling changes.</li>
+<li>Run the full Ansible syntax check.</li>
+<li>Commit the repository changes.</li>
+</ol>
+<h3><a id="phase-2-prepare-the-intel-machines" href="#phase-2-prepare-the-intel-machines" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 2: Prepare the Intel machines</h3>
+<p>For each Intel machine:</p>
+<ol>
+<li>Install Ubuntu.</li>
+<li>Configure its static address.</li>
+<li>Configure SSH and the Ansible account.</li>
+<li>Prepare the dedicated 1 TB HDD.</li>
+<li>Mount the HDD at <code>/mnt/longhorn</code>.</li>
+<li>Add the mount to <code>/etc/fstab</code>.</li>
+<li>Install or allow Ansible to install Longhorn prerequisites.</li>
+<li>Verify <code>iscsid</code>.</li>
+</ol>
+<h3><a id="phase-3-add-the-first-intel-node" href="#phase-3-add-the-first-intel-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 3: Add the first Intel node</h3>
+<ol>
+<li>Add <code>amd64-01</code> to the Ansible inventory.</li>
+<li>Join it to K3s.</li>
+<li>Confirm that Kubernetes reports <code>amd64</code>.</li>
+<li>Label it for Longhorn and Kubecost.</li>
+<li>Install Longhorn with one replica.</li>
+<li>Verify that <code>/mnt/longhorn</code> is registered.</li>
+<li>Verify that the <code>longhorn</code> StorageClass exists.</li>
+</ol>
+<h3><a id="phase-4-add-the-remaining-intel-nodes" href="#phase-4-add-the-remaining-intel-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 4: Add the remaining Intel nodes</h3>
+<ol>
+<li>Add <code>amd64-02</code>.</li>
+<li>Add <code>amd64-03</code>.</li>
+<li>Confirm both nodes are Ready.</li>
+<li>Confirm both Longhorn disks are schedulable.</li>
+<li>Change the default replica count from one to two.</li>
+<li>Verify replica placement across separate Intel nodes.</li>
+</ol>
+<h3><a id="phase-5-install-kubecost" href="#phase-5-install-kubecost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 5: Install Kubecost</h3>
+<p>Install Kubecost only after:</p>
+<pre><code class="hljs bash">kubectl get storageclass longhorn
+kubectl get nodes \
+  -L kubernetes.io/arch,kalaxy3.io/longhorn,kalaxy3.io/kubecost
+kubectl get nodes.longhorn.io \
+  --namespace longhorn-system
+</code></pre>
+<p>show the expected Longhorn and Kubecost nodes.</p>
+<h2><a id="validation-before-adding-intel-nodes" href="#validation-before-adding-intel-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation before adding Intel nodes</h2>
+<p>From:</p>
+<pre><code class="language-text">/Users/dbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab
+</code></pre>
+<p>run:</p>
+<pre><code class="hljs bash">ansible-inventory \
+  -i inventory/hosts.yml \
+  --graph
+</code></pre>
+<p>Run the complete syntax check:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/k3s.yml \
+  --syntax-check \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>Parse the YAML files:</p>
+<pre><code class="hljs bash">ruby -e <span class="hljs-string">'
+require "yaml"
+
+ARGV.each do |file|
+  YAML.safe_load(
+    File.read(file),
+    permitted_classes: [],
+    permitted_symbols: [],
+    aliases: true
+  )
+  puts "#{file}: YAML OK"
+end
+'</span> \
+  playbooks/tasks/longhorn.yml \
+  playbooks/templates/longhorn-values.yml.j2 \
+  playbooks/tasks/observability.yml \
+  playbooks/templates/kubecost-values.yml.j2
+</code></pre>
+<h2><a id="validation-after-longhorn-installation" href="#validation-after-longhorn-installation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation after Longhorn installation</h2>
+<p>Check the Longhorn pods:</p>
+<pre><code class="hljs bash">kubectl get pods \
+  --namespace longhorn-system \
+  --output=wide
+</code></pre>
+<p>Check the StorageClass:</p>
+<pre><code class="hljs bash">kubectl get storageclass longhorn
+</code></pre>
+<p>Check Longhorn’s node and disk records:</p>
+<pre><code class="hljs bash">kubectl get nodes.longhorn.io \
+  --namespace longhorn-system
+</code></pre>
+<p>Verify labels:</p>
+<pre><code class="hljs bash">kubectl get nodes \
+  -L kubernetes.io/arch,\
+kalaxy3.io/minio,\
+kalaxy3.io/longhorn,\
+kalaxy3.io/kubecost,\
+node.longhorn.io/create-default-disk
+</code></pre>
+<p>Expected responsibility split:</p>
+<pre><code class="language-text">arm64-01 through arm64-05
+├── kubernetes.io/arch=arm64
+├── kalaxy3.io/minio=true
+└── no Longhorn disk label
+
+amd64-01 through amd64-03
+├── kubernetes.io/arch=amd64
+├── kalaxy3.io/longhorn=true
+├── kalaxy3.io/kubecost=true
+├── node.longhorn.io/create-default-disk=true
+└── no MinIO label
+</code></pre>
+<h2><a id="validation-after-kubecost-installation" href="#validation-after-kubecost-installation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation after Kubecost installation</h2>
+<p>Confirm all Kubecost pods run on Intel nodes:</p>
+<pre><code class="hljs bash">kubectl get pods \
+  --namespace kubecost \
+  --output=wide
+</code></pre>
+<p>Confirm the aggregator database uses Longhorn:</p>
+<pre><code class="hljs bash">kubectl get pvc \
+  --namespace kubecost \
+  aggregator-db-storage-kubecost-aggregator-0
+</code></pre>
+<p>Expected StorageClass:</p>
+<pre><code class="language-text">longhorn
+</code></pre>
+<p>Confirm the frontend address:</p>
+<pre><code class="hljs bash">kubectl get service \
+  kubecost-frontend \
+  --namespace kubecost
+</code></pre>
+<p>Expected external address:</p>
+<pre><code class="language-text">192.168.2.26
+</code></pre>
+<h2><a id="rebuild-summary" href="#rebuild-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild summary</h2>
+<p>For a future cluster rebuild:</p>
+<ol>
+<li>Build the Pi K3s cluster.</li>
+<li>Mount the five Pi HDDs at <code>/mnt/minio</code>.</li>
+<li>Deploy MinIO only to the <code>minio_nodes</code> inventory group.</li>
+<li>Build and join the three Intel nodes.</li>
+<li>Mount each Intel HDD at <code>/mnt/longhorn</code>.</li>
+<li>Install Longhorn prerequisites on the Intel nodes.</li>
+<li>Label the Intel nodes for Longhorn and Kubecost.</li>
+<li>Install Longhorn before Kubecost.</li>
+<li>Use one Longhorn replica with one Intel node.</li>
+<li>Change to two replicas after all three Intel nodes are healthy.</li>
+<li>Install Kubecost only after the <code>longhorn</code> StorageClass is ready.</li>
+<li>Store ClickHouse on Longhorn.</li>
+<li>Configure MinIO separately for federated and backup object storage.</li>
+<li>Verify that no MinIO workload runs on Intel.</li>
+<li>Verify that no Kubecost workload runs on ARM.</li>
+</ol>
+<h2><a id="references" href="#references" class="Permalink" aria-hidden="true" title="Permalink">#</a>References</h2>
+<p>Official Longhorn documentation:</p>
+<pre><code class="language-text">https://longhorn.io/docs/latest/deploy/install/
+https://longhorn.io/docs/latest/concepts/
+https://longhorn.io/docs/latest/best-practices/
+</code></pre>
+<p>The repository files remain the source of truth for the exact chart versions,
+Ansible variables, labels, resource sizes, and Helm values used by Kalaxy3.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/kalaxy3_observability_and_kubecost.html">Previous</a></li>            <li class=Pager--next><a href="../installation/old/amd64_nocloud_seed_helper.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>

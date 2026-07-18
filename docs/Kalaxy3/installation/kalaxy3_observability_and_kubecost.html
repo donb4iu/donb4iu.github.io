@@ -84,6 +84,7 @@
 <li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
 <li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
 <li class='Nav__item Nav__item--active'><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
 <li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
 <li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
@@ -135,7 +136,7 @@
 <li>Their persistent data uses the <code>nfs-ssd</code> StorageClass.</li>
 <li>Kubecost is skipped until a suitable Intel node joins the cluster.</li>
 <li>Every Kubecost workload is constrained to a labeled <code>amd64</code> node.</li>
-<li>Kubecost’s embedded ClickHouse database uses <code>local-path</code>, not NFS.</li>
+<li>Kubecost’s embedded ClickHouse database uses a Longhorn-backed ReadWriteOnce block volume. MinIO provides S3-compatible federated storage for Kubecost ETL and long-term cost data; it does not replace the ClickHouse database volume.</li>
 <li>MetalLB assigns Kubecost the fixed address <code>192.168.2.26</code>.</li>
 </ul>
 <h2><a id="initial-observability-deployment" href="#initial-observability-deployment" class="Permalink" aria-hidden="true" title="Permalink">#</a>Initial observability deployment</h2>
@@ -583,7 +584,7 @@ end
 
         <nav>
         <ul class="Pager">
-            <li class=Pager--prev><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Previous</a></li>            <li class=Pager--next><a href="../installation/old/amd64_nocloud_seed_helper.html">Next</a></li>        </ul>
+            <li class=Pager--prev><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Previous</a></li>            <li class=Pager--next><a href="../installation/longhorn_kubecost_intel_node_preparation.html">Next</a></li>        </ul>
     </nav>
     </article>
 
