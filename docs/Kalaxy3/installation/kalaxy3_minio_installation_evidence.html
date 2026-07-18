@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>kalaxy3-minio-installation-evidence - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item Nav__item--active'><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../installation/k3s_api_ha_kube_vip.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="kalaxy3-minio-installation-evidence-and-rebuild-guide" href="#kalaxy3-minio-installation-evidence-and-rebuild-guide" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 MinIO Installation Evidence and Rebuild Guide</h1>
+<p><strong>Project:</strong> Kalaxy3<br />
+<strong>Validated:</strong> July 17, 2026<br />
+<strong>Target path:</strong> <code>markdown/installation/kalaxy3-minio-installation-evidence.md</code></p>
+<h2><a id="purpose" href="#purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Purpose</h2>
+<p>This page records how distributed MinIO was installed on the five Raspberry Pi
+nodes, why it is restricted to those nodes, and how to reproduce and validate
+the deployment during a future Kalaxy3 rebuild.</p>
+<h2><a id="final-storage-architecture" href="#final-storage-architecture" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final storage architecture</h2>
+<pre><code class="language-text">Five Raspberry Pi nodes
+└── 5 × 1 TB HDD
+    └── /mnt/minio
+        └── Distributed MinIO object storage
+
+Future Intel/AMD64 nodes
+└── 3 × 1 TB HDD
+    └── /mnt/longhorn
+        └── Longhorn replicated block storage
+</code></pre>
+<p>MinIO and Longhorn must not use the same disks or mount paths.</p>
+<p>MinIO will provide S3-compatible object storage for application data, backups,
+future Longhorn backups, and future Kubecost federated data. It does not replace
+the active Longhorn block volume required by Kubecost ClickHouse.</p>
+<h2><a id="minio-node-inventory" href="#minio-node-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>MinIO node inventory</h2>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/hosts.yml
+</code></pre>
+<p>The existing inventory group contains only the five Pi nodes:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">minio_nodes:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">arm64-01:</span>
+    <span class="hljs-attr">arm64-02:</span>
+    <span class="hljs-attr">arm64-03:</span>
+    <span class="hljs-attr">arm64-04:</span>
+    <span class="hljs-attr">arm64-05:</span>
+</code></pre>
+<p>Inventory validation:</p>
+<pre><code class="hljs bash">ansible-inventory   -i inventory/hosts.yml   --graph minio_nodes
+</code></pre>
+<p>Observed result:</p>
+<pre><code class="language-text">@minio_nodes:
+  |--arm64-01
+  |--arm64-02
+  |--arm64-03
+  |--arm64-04
+  |--arm64-05
+</code></pre>
+<h2><a id="minio-variables" href="#minio-variables" class="Permalink" aria-hidden="true" title="Permalink">#</a>MinIO variables</h2>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/group_vars/all.yml
+</code></pre>
+<p>Relevant values:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">minio_mount_path:</span> <span class="hljs-string">/mnt/minio</span>
+<span class="hljs-attr">minio_storage_class:</span> <span class="hljs-string">minio-local</span>
+<span class="hljs-attr">minio_volume_size:</span> <span class="hljs-string">900Gi</span>
+
+<span class="hljs-attr">install_longhorn:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">install_observability:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">install_kubecost:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">install_minio:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>Each nominal 1 TB disk exposes a 900 GiB Kubernetes volume, leaving filesystem
+and operational headroom.</p>
+<p>The root password is stored as an inline Ansible Vault value:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">minio_root_password:</span> <span class="hljs-type">!vault</span> <span class="hljs-string">|
+  $ANSIBLE_VAULT;...
+</span></code></pre>
+<p>It is not stored as plaintext.</p>
+<h2><a id="why-minio-is-restricted-to-the-pis" href="#why-minio-is-restricted-to-the-pis" class="Permalink" aria-hidden="true" title="Permalink">#</a>Why MinIO is restricted to the Pis</h2>
+<p>Future Intel nodes are reserved for <code>/mnt/longhorn</code>, Longhorn, and Kubecost.</p>
+<p>The final deployment uses three scheduling protections:</p>
+<ol>
+<li>PersistentVolumes are generated only for <code>groups['minio_nodes']</code>.</li>
+<li>MinIO pods require <code>kubernetes.io/arch: arm64</code>.</li>
+<li>MinIO pods require <code>kalaxy3.io/minio: &quot;true&quot;</code>.</li>
+</ol>
+<p>Required pod anti-affinity also ensures one MinIO pod per physical node.</p>
+<h2><a id="ansible-task-behavior" href="#ansible-task-behavior" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ansible task behavior</h2>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/tasks/minio.yml
+</code></pre>
+<p>The MinIO tasks:</p>
+<ol>
+<li>Validate the Vault-backed root password.</li>
+<li>Require at least eight password characters.</li>
+<li>Require exactly five hosts in <code>minio_nodes</code>.</li>
+<li>Verify all five inventory nodes joined Kubernetes.</li>
+<li>Label each inventory node <code>kalaxy3.io/minio=true</code>.</li>
+<li>Render <code>/tmp/minio.yml</code>.</li>
+<li>Apply the distributed MinIO resources.</li>
+</ol>
+<p>Representative configuration:</p>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Verify</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">password</span> <span class="hljs-string">was</span> <span class="hljs-string">changed</span>
+  <span class="hljs-attr">ansible.builtin.assert:</span>
+    <span class="hljs-attr">that:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">minio_root_password</span> <span class="hljs-string">is</span> <span class="hljs-string">defined</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">minio_root_password</span> <span class="hljs-string">|</span> <span class="hljs-string">length</span> <span class="hljs-string">&gt;=</span> <span class="hljs-number">8</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">minio_root_password</span> <span class="hljs-string">!=</span> <span class="hljs-string">'CHANGE_ME_WITH_ANSIBLE_VAULT'</span>
+    <span class="hljs-attr">fail_msg:</span> <span class="hljs-string">&gt;-
+      Set minio_root_password in an Ansible Vault encrypted vars file.
+</span>  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+  <span class="hljs-attr">no_log:</span> <span class="hljs-literal">true</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Verify</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">inventory</span> <span class="hljs-string">group</span> <span class="hljs-string">contains</span> <span class="hljs-string">five</span> <span class="hljs-string">nodes</span>
+  <span class="hljs-attr">ansible.builtin.assert:</span>
+    <span class="hljs-attr">that:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">groups['minio_nodes']</span> <span class="hljs-string">is</span> <span class="hljs-string">defined</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">groups['minio_nodes']</span> <span class="hljs-string">|</span> <span class="hljs-string">length</span> <span class="hljs-string">==</span> <span class="hljs-number">5</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Verify</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">nodes</span> <span class="hljs-string">joined</span> <span class="hljs-string">Kubernetes</span>
+  <span class="hljs-attr">ansible.builtin.command:</span>
+    <span class="hljs-attr">argv:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">k3s</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">kubectl</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">get</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">node</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ item }}</span>"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">--output=name</span>
+  <span class="hljs-attr">loop:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ groups['minio_nodes'] }}</span>"</span>
+  <span class="hljs-attr">changed_when:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Label</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">nodes</span>
+  <span class="hljs-attr">ansible.builtin.command:</span>
+    <span class="hljs-attr">argv:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">k3s</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">kubectl</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">label</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">node</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ item }}</span>"</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">kalaxy3.io/minio=true</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">--overwrite</span>
+  <span class="hljs-attr">loop:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ groups['minio_nodes'] }}</span>"</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Render</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">resources</span>
+  <span class="hljs-attr">ansible.builtin.template:</span>
+    <span class="hljs-attr">src:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ playbook_dir }}</span>/../manifests/minio.yml.j2"</span>
+    <span class="hljs-attr">dest:</span> <span class="hljs-string">/tmp/minio.yml</span>
+    <span class="hljs-attr">mode:</span> <span class="hljs-string">"0600"</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+  <span class="hljs-attr">no_log:</span> <span class="hljs-literal">true</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Install</span> <span class="hljs-string">distributed</span> <span class="hljs-string">MinIO</span>
+  <span class="hljs-attr">ansible.builtin.command:</span>
+    <span class="hljs-attr">argv:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">k3s</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">kubectl</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">apply</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">--filename</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">/tmp/minio.yml</span>
+  <span class="hljs-attr">when:</span> <span class="hljs-string">install_minio</span> <span class="hljs-string">|</span> <span class="hljs-string">bool</span>
+  <span class="hljs-attr">no_log:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<h2><a id="kubernetes-manifest-design" href="#kubernetes-manifest-design" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes manifest design</h2>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/manifests/minio.yml.j2
+</code></pre>
+<h3><a id="storageclass" href="#storageclass" class="Permalink" aria-hidden="true" title="Permalink">#</a>StorageClass</h3>
+<pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">storage.k8s.io/v1</span>
+<span class="hljs-attr">kind:</span> <span class="hljs-string">StorageClass</span>
+<span class="hljs-attr">metadata:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">{{</span> <span class="hljs-string">minio_storage_class</span> <span class="hljs-string">}}</span>
+<span class="hljs-attr">provisioner:</span> <span class="hljs-string">kubernetes.io/no-provisioner</span>
+<span class="hljs-attr">volumeBindingMode:</span> <span class="hljs-string">WaitForFirstConsumer</span>
+<span class="hljs-attr">reclaimPolicy:</span> <span class="hljs-string">Retain</span>
+</code></pre>
+<p>This is static local storage. Ansible generates the PersistentVolumes, and the
+underlying data remains retained if claims are removed.</p>
+<h3><a id="per-node-local-persistentvolumes" href="#per-node-local-persistentvolumes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Per-node local PersistentVolumes</h3>
+<pre><code class="hljs django"><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-name">for</span></span> host <span class="hljs-keyword">in</span> groups['minio_nodes'] %}</span><span class="xml">
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: minio-</span><span class="hljs-template-variable">{{ host }}</span><span class="xml">
+spec:
+  capacity:
+    storage: </span><span class="hljs-template-variable">{{ minio_volume_size }}</span><span class="xml">
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: </span><span class="hljs-template-variable">{{ minio_storage_class }}</span><span class="xml">
+  local:
+    path: </span><span class="hljs-template-variable">{{ minio_mount_path }}</span><span class="xml">
+  nodeAffinity:
+    required:
+      nodeSelectorTerms:
+        - matchExpressions:
+            - key: kubernetes.io/hostname
+              operator: In
+              values:
+                - </span><span class="hljs-template-variable">{{ host }}</span><span class="xml">
+---
+</span><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-name">endfor</span></span> %}</span><span class="xml">
+</span></code></pre>
+<p>Each PV is permanently associated with one Pi hostname and <code>/mnt/minio</code>.</p>
+<h3><a id="statefulset-placement" href="#statefulset-placement" class="Permalink" aria-hidden="true" title="Permalink">#</a>StatefulSet placement</h3>
+<pre><code class="hljs yaml"><span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span>
+<span class="hljs-attr">kind:</span> <span class="hljs-string">StatefulSet</span>
+<span class="hljs-attr">metadata:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">minio</span>
+  <span class="hljs-attr">namespace:</span> <span class="hljs-string">minio</span>
+<span class="hljs-attr">spec:</span>
+  <span class="hljs-attr">serviceName:</span> <span class="hljs-string">minio-headless</span>
+  <span class="hljs-attr">replicas:</span> <span class="hljs-number">5</span>
+  <span class="hljs-attr">podManagementPolicy:</span> <span class="hljs-string">Parallel</span>
+  <span class="hljs-attr">selector:</span>
+    <span class="hljs-attr">matchLabels:</span>
+      <span class="hljs-attr">app:</span> <span class="hljs-string">minio</span>
+  <span class="hljs-attr">template:</span>
+    <span class="hljs-attr">metadata:</span>
+      <span class="hljs-attr">labels:</span>
+        <span class="hljs-attr">app:</span> <span class="hljs-string">minio</span>
+    <span class="hljs-attr">spec:</span>
+      <span class="hljs-attr">nodeSelector:</span>
+        <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">arm64</span>
+        <span class="hljs-attr">kalaxy3.io/minio:</span> <span class="hljs-string">"true"</span>
+      <span class="hljs-attr">affinity:</span>
+        <span class="hljs-attr">podAntiAffinity:</span>
+          <span class="hljs-attr">requiredDuringSchedulingIgnoredDuringExecution:</span>
+            <span class="hljs-bullet">-</span> <span class="hljs-attr">labelSelector:</span>
+                <span class="hljs-attr">matchLabels:</span>
+                  <span class="hljs-attr">app:</span> <span class="hljs-string">minio</span>
+              <span class="hljs-attr">topologyKey:</span> <span class="hljs-string">kubernetes.io/hostname</span>
+</code></pre>
+<p>This means a MinIO pod must:</p>
+<ul>
+<li>Run on ARM64.</li>
+<li>Run on a node carrying the explicit MinIO label.</li>
+<li>Use a local PV tied to that node.</li>
+<li>Run on a different node from every other MinIO replica.</li>
+</ul>
+<h3><a id="distributed-server-configuration" href="#distributed-server-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Distributed server configuration</h3>
+<pre><code class="hljs yaml"><span class="hljs-attr">args:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">server</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">http://minio-{0...4}.minio-headless.minio.svc.cluster.local/data</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">--console-address</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">:9001</span>
+</code></pre>
+<p>Each of the five pods contributes one <code>/data</code> volume to the same distributed
+MinIO cluster.</p>
+<h2><a id="installation-command" href="#installation-command" class="Permalink" aria-hidden="true" title="Permalink">#</a>Installation command</h2>
+<p>The MinIO-only phase was applied with:</p>
+<pre><code class="hljs bash">ansible-playbook   -i inventory/hosts.yml   playbooks/platform.yml   --vault-id kalaxy3@prompt   --extra-vars platform_phase=minio
+</code></pre>
+<p>Successful task evidence:</p>
+<pre><code class="language-text">TASK [Verify MinIO password was changed]
+ok: [arm64-01]
+
+TASK [Verify MinIO inventory group contains five nodes]
+ok: [arm64-01]
+msg: All assertions passed
+
+TASK [Verify MinIO nodes joined Kubernetes]
+ok: [arm64-01] =&gt; (item=arm64-01)
+ok: [arm64-01] =&gt; (item=arm64-02)
+ok: [arm64-01] =&gt; (item=arm64-03)
+ok: [arm64-01] =&gt; (item=arm64-04)
+ok: [arm64-01] =&gt; (item=arm64-05)
+
+TASK [Label MinIO nodes]
+ok: [arm64-01] =&gt; (item=arm64-01)
+ok: [arm64-01] =&gt; (item=arm64-02)
+ok: [arm64-01] =&gt; (item=arm64-03)
+ok: [arm64-01] =&gt; (item=arm64-04)
+ok: [arm64-01] =&gt; (item=arm64-05)
+
+TASK [Render MinIO resources]
+changed: [arm64-01]
+
+TASK [Install distributed MinIO]
+changed: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=11 changed=2 unreachable=0 failed=0 skipped=4
+</code></pre>
+<h2><a id="rollout-evidence" href="#rollout-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rollout evidence</h2>
+<p>Command:</p>
+<pre><code class="hljs bash">kubectl rollout status   statefulset/minio   --namespace minio   --timeout=20m
+</code></pre>
+<p>Observed result:</p>
+<pre><code class="language-text">Waiting for 5 pods to be ready...
+Waiting for 4 pods to be ready...
+Waiting for 3 pods to be ready...
+Waiting for 2 pods to be ready...
+Waiting for 1 pods to be ready...
+partitioned roll out complete: 5 new pods have been updated...
+</code></pre>
+<h2><a id="pod-placement-evidence" href="#pod-placement-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pod placement evidence</h2>
+<pre><code class="language-text">NAME      READY   STATUS    RESTARTS   IP           NODE
+minio-0   1/1     Running   0          10.42.2.18   arm64-03
+minio-1   1/1     Running   0          10.42.5.7    arm64-05
+minio-2   1/1     Running   0          10.42.3.7    arm64-04
+minio-3   1/1     Running   0          10.42.1.8    arm64-02
+minio-4   1/1     Running   0          10.42.0.9    arm64-01
+</code></pre>
+<p>All five pods were healthy and every Pi hosted exactly one replica.</p>
+<h2><a id="pvc-evidence" href="#pvc-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>PVC evidence</h2>
+<pre><code class="language-text">NAME           STATUS   VOLUME           CAPACITY   STORAGECLASS
+data-minio-0   Bound    minio-arm64-03   900Gi      minio-local
+data-minio-1   Bound    minio-arm64-05   900Gi      minio-local
+data-minio-2   Bound    minio-arm64-04   900Gi      minio-local
+data-minio-3   Bound    minio-arm64-02   900Gi      minio-local
+data-minio-4   Bound    minio-arm64-01   900Gi      minio-local
+</code></pre>
+<p>Final pod-to-storage mapping:</p>
+<pre><code class="language-text">minio-0 → arm64-03 → minio-arm64-03 → /mnt/minio
+minio-1 → arm64-05 → minio-arm64-05 → /mnt/minio
+minio-2 → arm64-04 → minio-arm64-04 → /mnt/minio
+minio-3 → arm64-02 → minio-arm64-02 → /mnt/minio
+minio-4 → arm64-01 → minio-arm64-01 → /mnt/minio
+</code></pre>
+<p>StatefulSet ordinal numbers are not expected to match Pi node numbers.</p>
+<h2><a id="service-evidence" href="#service-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Service evidence</h2>
+<pre><code class="language-text">NAME             TYPE           EXTERNAL-IP    PORTS
+minio-api        LoadBalancer   192.168.2.23   9000
+minio-console    LoadBalancer   192.168.2.24   9001
+minio-headless   ClusterIP      none           9000,9001
+</code></pre>
+<p>Endpoints:</p>
+<pre><code class="language-text">MinIO API:      http://192.168.2.23:9000
+MinIO console:  http://192.168.2.24:9001
+</code></pre>
+<h2><a id="endpoint-health-evidence" href="#endpoint-health-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Endpoint health evidence</h2>
+<p>API check:</p>
+<pre><code class="hljs bash">curl -fsS   http://192.168.2.23:9000/minio/health/live   &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">"MinIO API healthy"</span>
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">MinIO API healthy
+</code></pre>
+<p>Console check:</p>
+<pre><code class="hljs bash">curl -I http://192.168.2.24:9001
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">HTTP/1.1 200 OK
+Server: MinIO Console
+Content-Type: text/html
+</code></pre>
+<h2><a id="overall-cluster-health-evidence" href="#overall-cluster-health-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Overall cluster health evidence</h2>
+<p>Command:</p>
+<pre><code class="hljs bash">kubectl get pods -A   --field-selector=status.phase!=Running,status.phase!=Succeeded
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">No resources found
+</code></pre>
+<h2><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h2>
+<h3><a id="1-prepare-each-pi-disk" href="#1-prepare-each-pi-disk" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Prepare each Pi disk</h3>
+<p>On every Pi:</p>
+<pre><code class="hljs bash">findmnt /mnt/minio
+df -h /mnt/minio
+lsblk -f
+</code></pre>
+<p>Confirm <code>/mnt/minio</code> is the dedicated 1 TB HDD and that the mount exists in
+<code>/etc/fstab</code>.</p>
+<h3><a id="2-build-the-five-node-k3s-cluster" href="#2-build-the-five-node-k3s-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. Build the five-node K3s cluster</h3>
+<pre><code class="hljs bash">kubectl get nodes -o wide
+</code></pre>
+<p>All five Pi nodes must report <code>Ready</code>.</p>
+<h3><a id="3-validate-inventory" href="#3-validate-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Validate inventory</h3>
+<pre><code class="hljs bash">ansible-inventory   -i inventory/hosts.yml   --graph minio_nodes
+</code></pre>
+<p>The group must contain exactly <code>arm64-01</code> through <code>arm64-05</code>.</p>
+<h3><a id="4-validate-configuration" href="#4-validate-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Validate configuration</h3>
+<pre><code class="hljs bash">git diff --check
+</code></pre>
+<pre><code class="hljs bash">ansible-playbook   -i inventory/hosts.yml   playbooks/platform.yml   --syntax-check   --vault-id kalaxy3@prompt
+</code></pre>
+<p>Confirm the manifest includes:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nodeSelector:</span>
+  <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">arm64</span>
+  <span class="hljs-attr">kalaxy3.io/minio:</span> <span class="hljs-string">"true"</span>
+</code></pre>
+<p>Confirm the PV loop uses:</p>
+<pre><code class="hljs django"><span class="hljs-template-tag">{% <span class="hljs-name"><span class="hljs-name">for</span></span> host <span class="hljs-keyword">in</span> groups['minio_nodes'] %}</span><span class="xml">
+</span></code></pre>
+<h3><a id="5-apply-minio" href="#5-apply-minio" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. Apply MinIO</h3>
+<pre><code class="hljs bash">ansible-playbook   -i inventory/hosts.yml   playbooks/platform.yml   --vault-id kalaxy3@prompt   --extra-vars platform_phase=minio
+</code></pre>
+<h3><a id="6-wait-for-readiness" href="#6-wait-for-readiness" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. Wait for readiness</h3>
+<pre><code class="hljs bash">kubectl rollout status   statefulset/minio   --namespace minio   --timeout=20m
+</code></pre>
+<h3><a id="7-verify-placement-and-storage" href="#7-verify-placement-and-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. Verify placement and storage</h3>
+<pre><code class="hljs bash">kubectl get pods -n minio -o wide
+kubectl get pvc -n minio -o wide
+kubectl get pv
+</code></pre>
+<p>Requirements:</p>
+<ul>
+<li>Five running pods</li>
+<li>One pod per Pi</li>
+<li>Five bound PVCs</li>
+<li>Local PV path <code>/mnt/minio</code></li>
+<li>No Intel node hosting MinIO</li>
+</ul>
+<h3><a id="8-verify-services" href="#8-verify-services" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. Verify services</h3>
+<pre><code class="hljs bash">kubectl get svc -n minio -o wide
+</code></pre>
+<p>Expected addresses:</p>
+<pre><code class="language-text">API:      192.168.2.23:9000
+Console:  192.168.2.24:9001
+</code></pre>
+<h3><a id="9-verify-endpoint-health" href="#9-verify-endpoint-health" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. Verify endpoint health</h3>
+<pre><code class="hljs bash">curl -fsS   http://192.168.2.23:9000/minio/health/live   &amp;&amp; <span class="hljs-built_in">echo</span> <span class="hljs-string">"MinIO API healthy"</span>
+
+curl -I http://192.168.2.24:9001
+</code></pre>
+<h3><a id="10-verify-cluster-health" href="#10-verify-cluster-health" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. Verify cluster health</h3>
+<pre><code class="hljs bash">kubectl get pods -A   --field-selector=status.phase!=Running,status.phase!=Succeeded
+</code></pre>
+<p>Expected:</p>
+<pre><code class="language-text">No resources found
+</code></pre>
+<h2><a id="troubleshooting-notes" href="#troubleshooting-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting notes</h2>
+<h3><a id="password-assertion-failure" href="#password-assertion-failure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Password assertion failure</h3>
+<p>The password is an inline <code>!vault</code> value in:</p>
+<pre><code class="language-text">inventory/group_vars/all.yml
+</code></pre>
+<p>The current assertion requires at least eight characters.</p>
+<h3><a id="duplicate-yaml-marker" href="#duplicate-yaml-marker" class="Permalink" aria-hidden="true" title="Permalink">#</a>Duplicate YAML marker</h3>
+<p><code>playbooks/tasks/minio.yml</code> must begin with exactly one marker:</p>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Verify</span> <span class="hljs-string">MinIO</span> <span class="hljs-string">password</span> <span class="hljs-string">was</span> <span class="hljs-string">changed</span>
+</code></pre>
+<h3><a id="invalid-node-selector-field" href="#invalid-node-selector-field" class="Permalink" aria-hidden="true" title="Permalink">#</a>Invalid node selector field</h3>
+<p>The correct Kubernetes field is:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nodeSelector:</span>
+</code></pre>
+<p>Do not use the earlier typo:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nodelSelectors:</span>
+</code></pre>
+<h3><a id="pending-pod" href="#pending-pod" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pending pod</h3>
+<p>Check:</p>
+<pre><code class="hljs bash">kubectl describe pod -n minio POD_NAME
+kubectl get pvc -n minio
+kubectl get pv
+kubectl get nodes -L kubernetes.io/arch,kalaxy3.io/minio
+</code></pre>
+<p>Common causes include a missing label, missing <code>/mnt/minio</code> mount, retained
+PV/PVC state, hostname mismatch, or insufficient eligible nodes for required
+anti-affinity.</p>
+<h2><a id="final-validated-state" href="#final-validated-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final validated state</h2>
+<pre><code class="language-text">K3s nodes:            5 Ready Raspberry Pi nodes
+MinIO replicas:       5
+MinIO placement:      one replica per Pi
+MinIO PVCs:           5 Bound
+Volume size:          900 GiB per node
+Mount path:           /mnt/minio
+StorageClass:         minio-local
+API address:          192.168.2.23:9000
+Console address:      192.168.2.24:9001
+API health:           passed
+Console response:     HTTP 200
+Unhealthy pods:       none
+Longhorn:             disabled until Intel nodes
+Kubecost:             disabled until Intel and Longhorn
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/k3s_etcd_baseline_backup_evidence.html">Previous</a></li>            <li class=Pager--next><a href="../installation/kalaxy3_observability_and_kubecost.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
