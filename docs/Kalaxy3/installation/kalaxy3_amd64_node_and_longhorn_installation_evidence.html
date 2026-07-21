@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>kalaxy3-amd64-node-and-longhorn-installation-evidence - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item Nav__item--active'><a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../installation/k3s_api_ha_kube_vip.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="kalaxy3-amd64-node-and-longhorn-installation-evidence-and-rebuild-guide" href="#kalaxy3-amd64-node-and-longhorn-installation-evidence-and-rebuild-guide" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide</h1>
+<p><strong>Project:</strong> Kalaxy3<br />
+<strong>Completed:</strong> July 19, 2026, America/Chicago<br />
+<strong>Kubernetes timestamps:</strong> July 20, 2026 UTC<br />
+<strong>Target path:</strong> <code>markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md</code><br />
+<strong>Node:</strong> <code>amd64-01</code><br />
+<strong>Node address:</strong> <code>192.168.2.61</code><br />
+<strong>K3s version:</strong> <code>v1.36.2+k3s1</code><br />
+<strong>Longhorn version:</strong> <code>v1.12.0</code></p>
+<h2><a id="purpose" href="#purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Purpose</h2>
+<p>This page records the addition of the first AMD64 node to Kalaxy3, the network
+recovery required after the Ubuntu installation, the storage decisions made for
+its three physical disks, the Ansible changes that safely prepared the dedicated
+Longhorn HDD, the K3s agent join, the Longhorn installation, and the evidence
+used to prove that dynamic block storage worked correctly.</p>
+<p>The document is intended to be sufficient for rebuilding this part of Kalaxy3
+without depending on memory or rediscovering why each disk and node restriction
+exists.</p>
+<h2><a id="final-validated-result" href="#final-validated-result" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final validated result</h2>
+<pre><code class="language-text">AMD64 node:             amd64-01
+Address:                192.168.2.61
+Architecture:           x86_64 / Kubernetes amd64
+K3s role:               agent
+K3s status:             Ready
+K3s version:            v1.36.2+k3s1
+
+Operating-system disk:  /dev/nvme0n1, Samsung SSD 990 EVO 1 TB
+Root mount:             /
+Longhorn disk:          /dev/sda, ST1000VM002-1SD1 1 TB HDD
+Longhorn mount:         /mnt/longhorn
+Longhorn filesystem:    ext4
+Future RAG cache disk:  /dev/nvme1n1, Samsung SSD 990 EVO Plus 4 TB
+
+Longhorn node:          Ready and schedulable
+Longhorn disk:          Ready and schedulable
+Longhorn StorageClass:  longhorn
+Reclaim policy:         Retain
+Replica count:          1 while only one AMD64 storage node exists
+Functional test:        PVC bound, volume attached, file written and read
+Test cleanup:           PVC, PV, and Longhorn volume removed
+</code></pre>
+<h2><a id="architecture-after-this-change" href="#architecture-after-this-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Architecture after this change</h2>
+<pre><code class="language-text">Kalaxy3 K3s cluster
+├── arm64-01  192.168.2.51  control-plane, etcd
+├── arm64-02  192.168.2.52  control-plane, etcd
+├── arm64-03  192.168.2.53  control-plane, etcd
+├── arm64-04  192.168.2.54  agent
+├── arm64-05  192.168.2.55  agent
+└── amd64-01  192.168.2.61  agent
+    ├── 1 TB NVMe  -&gt; Ubuntu and K3s root filesystem
+    ├── 1 TB HDD   -&gt; /mnt/longhorn
+    └── 4 TB NVMe  -&gt; reserved for future local RAG/PDF cache
+</code></pre>
+<p>The five Raspberry Pi HDDs remain dedicated to distributed MinIO at
+<code>/mnt/minio</code>. The AMD64 HDD is dedicated to Longhorn at <code>/mnt/longhorn</code>.
+MinIO and Longhorn must never be configured to use the same disk or mount path.</p>
+<h2><a id="key-design-decisions" href="#key-design-decisions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Key design decisions</h2>
+<h3><a id="amd64-nodes-use-normal-ubuntu-installation-plus-ansible" href="#amd64-nodes-use-normal-ubuntu-installation-plus-ansible" class="Permalink" aria-hidden="true" title="Permalink">#</a>AMD64 nodes use normal Ubuntu installation plus Ansible</h3>
+<p>The Raspberry Pi nodes use the Ubuntu preinstalled image and custom cloud-init
+files. The AMD64 nodes do not use that Pi flashing workflow.</p>
+<p>The intended AMD64 sequence is:</p>
+<pre><code class="language-text">Install Ubuntu Server normally from ISO
+→ establish working network connectivity
+→ enable SSH and install the administrator key
+→ run Ansible host preparation
+→ join the node to K3s
+→ install AMD64-only services
+</code></pre>
+<p>A hostname left with an installer-generated <code>new-*</code> prefix would not prove that
+an AMD64 cloud-init file failed, because custom cloud-init was not the selected
+AMD64 provisioning mechanism.</p>
+<h3><a id="the-hdd-is-the-only-longhorn-candidate" href="#the-hdd-is-the-only-longhorn-candidate" class="Permalink" aria-hidden="true" title="Permalink">#</a>The HDD is the only Longhorn candidate</h3>
+<p>The host contained three disks:</p>
+<pre><code class="language-text">NAME                        SIZE ROTA TYPE FSTYPE      MOUNTPOINT MODEL
+sda                       931.5G    1 disk ext4                  ST1000VM002-1SD1
+nvme1n1                     3.6T    0 disk                       Samsung SSD 990 EVO Plus 4TB
+├─nvme1n1p1                   1G    0 part vfat
+├─nvme1n1p2                   2G    0 part ext4
+└─nvme1n1p3                 3.6T    0 part LVM2_member
+  └─ubuntu--vg-ubuntu--lv   100G    0 lvm  ext4
+nvme0n1                   931.5G    0 disk                       Samsung SSD 990 EVO 1TB
+├─nvme0n1p1                   1G    0 part vfat        /boot/efi
+└─nvme0n1p2               930.5G    0 part ext4        /
+</code></pre>
+<p>The storage assignments are deliberate:</p>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Assignment</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/dev/nvme0n1</code></td>
+<td>Ubuntu root and K3s runtime</td>
+<td>It already contains <code>/</code> and <code>/boot/efi</code>; it must be protected from storage automation.</td>
+</tr>
+<tr>
+<td><code>/dev/sda</code></td>
+<td><code>/mnt/longhorn</code></td>
+<td>It is the dedicated rotational 1 TB HDD and already contains ext4.</td>
+</tr>
+<tr>
+<td><code>/dev/nvme1n1</code></td>
+<td>Reserved</td>
+<td>It is intended for a future high-speed local cache for PDF/RAG processing and currently contains an old LVM layout.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="the-4-tb-nvme-remains-untouched" href="#the-4-tb-nvme-remains-untouched" class="Permalink" aria-hidden="true" title="Permalink">#</a>The 4 TB NVMe remains untouched</h3>
+<p>The 4 TB NVMe is not blank. It contains GPT partitions and an LVM physical
+volume with a 100 GB logical volume. No Ansible task created, removed, formatted,
+or mounted anything on this device during the Longhorn work.</p>
+<p>Before using it for RAG caching in the future:</p>
+<ol>
+<li>Confirm that the existing LVM data is not needed.</li>
+<li>Record the disk model and serial.</li>
+<li>Remove the old LVM and partition layout only as a deliberate, separately
+reviewed operation.</li>
+<li>Create a dedicated filesystem and mount path such as <code>/mnt/rag-cache</code>.</li>
+<li>Expose it as node-local cache storage, not as part of the rotational Longhorn
+disk pool.</li>
+</ol>
+<p>The cache should contain rebuildable material such as downloaded PDFs,
+extracted text, OCR products, embeddings, indexes, model artifacts, and other
+performance-oriented data. Irreplaceable application state should remain on
+replicated or backed-up storage.</p>
+<h3><a id="one-longhorn-replica-is-correct-for-the-first-node" href="#one-longhorn-replica-is-correct-for-the-first-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>One Longhorn replica is correct for the first node</h3>
+<p>Only <code>amd64-01</code> currently provides Longhorn storage. The replica count was
+therefore changed from <code>2</code> to <code>1</code>.</p>
+<p>A replica count of two cannot provide two-node resilience when only one eligible
+storage node exists and can prevent new volumes from scheduling correctly.
+After <code>amd64-02</code> joins with its own independent <code>/mnt/longhorn</code> disk, increase
+the default to two and update existing important volumes to two replicas.</p>
+<h2><a id="network-recovery" href="#network-recovery" class="Permalink" aria-hidden="true" title="Permalink">#</a>Network recovery</h2>
+<h3><a id="symptom" href="#symptom" class="Permalink" aria-hidden="true" title="Permalink">#</a>Symptom</h3>
+<p>The add-in network adapter was active in BIOS but appeared inactive after Ubuntu
+started. Ubuntu detected two interfaces:</p>
+<pre><code class="language-text">enp4s0  DOWN
+enp5s0  DOWN
+</code></pre>
+<p>The installed Netplan configuration referenced <code>enp4s0</code>, while the connected
+physical adapter was <code>enp5s0</code>. Manually bringing up <code>enp5s0</code> restored carrier.</p>
+<h3><a id="permanent-network-configuration" href="#permanent-network-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Permanent network configuration</h3>
+<p>The cloud-init-generated Netplan file was removed from the active Netplan
+directory, cloud-init network regeneration was disabled, and a single manually
+managed file was retained:</p>
+<pre><code class="language-text">/etc/netplan/50-k3s-uplink.yaml
+</code></pre>
+<p>Representative configuration:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">network:</span>
+  <span class="hljs-attr">version:</span> <span class="hljs-number">2</span>
+  <span class="hljs-attr">renderer:</span> <span class="hljs-string">networkd</span>
+  <span class="hljs-attr">ethernets:</span>
+    <span class="hljs-attr">enp5s0:</span>
+      <span class="hljs-attr">dhcp4:</span> <span class="hljs-literal">false</span>
+      <span class="hljs-attr">addresses:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.61</span><span class="hljs-string">/24</span>
+      <span class="hljs-attr">routes:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">to:</span> <span class="hljs-string">default</span>
+          <span class="hljs-attr">via:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.1</span>
+      <span class="hljs-attr">nameservers:</span>
+        <span class="hljs-attr">addresses:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.1</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-number">1.1</span><span class="hljs-number">.1</span><span class="hljs-number">.1</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-number">8.8</span><span class="hljs-number">.8</span><span class="hljs-number">.8</span>
+      <span class="hljs-attr">optional:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>Cloud-init network regeneration was disabled with:</p>
+<pre><code class="language-text">/etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-attr">network:</span> <span class="hljs-string">{config:</span> <span class="hljs-string">disabled}</span>
+</code></pre>
+<h3><a id="network-validation" href="#network-validation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Network validation</h3>
+<p>After reboot, the static configuration persisted:</p>
+<pre><code class="language-text">enp5s0  UP  192.168.2.61/24
+</code></pre>
+<p>The node successfully reached the first K3s server:</p>
+<pre><code class="hljs bash">ping -c 3 192.168.2.51
+</code></pre>
+<h2><a id="ssh-and-sudo-bootstrap" href="#ssh-and-sudo-bootstrap" class="Permalink" aria-hidden="true" title="Permalink">#</a>SSH and sudo bootstrap</h2>
+<p>The Mac mini SSH key was installed with:</p>
+<pre><code class="hljs bash">ssh-copy-id dbuddenbaum@192.168.2.61
+</code></pre>
+<p>Observed result:</p>
+<pre><code class="language-text">Number of key(s) added: 1
+</code></pre>
+<p>Passwordless sudo was then configured for Ansible in:</p>
+<pre><code class="language-text">/etc/sudoers.d/90-k3s-admin
+</code></pre>
+<pre><code class="language-text">dbuddenbaum ALL=(ALL) NOPASSWD:ALL
+</code></pre>
+<p>Validation:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 \
+  <span class="hljs-string">'sudo -n true &amp;&amp; echo "sudo ready"'</span>
+</code></pre>
+<h2><a id="repository-changes" href="#repository-changes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository changes</h2>
+<p>The completed work was committed and pushed to <code>main</code> as commit:</p>
+<pre><code class="language-text">af6857f  Add amd64 Longhorn node and dedicated storage provisioning
+</code></pre>
+<p>The local commit was rebased over two generated-documentation commits before a
+normal, non-force push.</p>
+<h3><a id="inventory-membership" href="#inventory-membership" class="Permalink" aria-hidden="true" title="Permalink">#</a>Inventory membership</h3>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/hosts.yml
+</code></pre>
+<p><code>amd64-01</code> was added as a K3s agent with its own SSH user:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">k3s_agents:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">arm64-04:</span>
+      <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.54</span>
+    <span class="hljs-attr">arm64-05:</span>
+      <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.55</span>
+    <span class="hljs-attr">amd64-01:</span>
+      <span class="hljs-attr">ansible_host:</span> <span class="hljs-number">192.168</span><span class="hljs-number">.2</span><span class="hljs-number">.61</span>
+      <span class="hljs-attr">ansible_user:</span> <span class="hljs-string">dbuddenbaum</span>
+</code></pre>
+<p>A dedicated Longhorn inventory group was added:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">longhorn_nodes:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">amd64-01:</span>
+</code></pre>
+<p>This prevents the Longhorn disk preparation play from running on Raspberry Pi
+nodes or unrelated AMD64 nodes.</p>
+<h3><a id="host-specific-disk-safety-variables" href="#host-specific-disk-safety-variables" class="Permalink" aria-hidden="true" title="Permalink">#</a>Host-specific disk safety variables</h3>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/host_vars/amd64-01.yml
+</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">longhorn_disk_expected_model:</span> <span class="hljs-string">ST1000VM002-1SD1</span>
+<span class="hljs-attr">longhorn_disk_min_bytes:</span> <span class="hljs-number">800000000000</span>
+<span class="hljs-attr">longhorn_disk_max_bytes:</span> <span class="hljs-number">1200000000000</span>
+<span class="hljs-attr">longhorn_allowed_filesystems:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">ext4</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">xfs</span>
+
+<span class="hljs-comment"># Both NVMe devices are intentionally excluded by rotational-disk discovery.</span>
+</code></pre>
+<p>The model assertion makes the first node especially conservative. Future nodes
+may use different HDD models and should receive their own host-specific value.</p>
+<h3><a id="global-longhorn-variables" href="#global-longhorn-variables" class="Permalink" aria-hidden="true" title="Permalink">#</a>Global Longhorn variables</h3>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/group_vars/all.yml
+</code></pre>
+<p>Relevant values after this change:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_longhorn:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">longhorn_version:</span> <span class="hljs-string">"1.12.0"</span>
+<span class="hljs-attr">longhorn_data_path:</span> <span class="hljs-string">/mnt/longhorn</span>
+
+<span class="hljs-comment"># Use one replica until amd64-02 joins. Increase this to 2 afterward and</span>
+<span class="hljs-comment"># update existing Longhorn volumes to two replicas.</span>
+<span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p><code>install_longhorn</code> was initially left false while the node and mount were being
+validated, then changed to true immediately before the Longhorn platform phase.</p>
+<h3><a id="safe-longhorn-disk-preparation" href="#safe-longhorn-disk-preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Safe Longhorn disk preparation</h3>
+<p><strong>File:</strong></p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/longhorn-prerequisites.yml
+</code></pre>
+<p>The play now targets only <code>longhorn_nodes</code> and performs these operations:</p>
+<ol>
+<li>Assert that the host architecture is <code>x86_64</code>.</li>
+<li>Install <code>open-iscsi</code>, <code>nfs-common</code>, <code>cryptsetup</code>, and <code>dmsetup</code>.</li>
+<li>Enable <code>iscsid</code>.</li>
+<li>Read the complete block-device inventory with <code>lsblk --json --bytes</code>.</li>
+<li>Select only whole disks that are:
+<ul>
+<li>rotational;</li>
+<li>non-removable;</li>
+<li>between 800 GB and 1.2 TB.</li>
+</ul>
+</li>
+<li>Require exactly one candidate.</li>
+<li>Require the exact expected disk model.</li>
+<li>Discover and protect the physical root disk.</li>
+<li>Refuse a disk mounted at a different path.</li>
+<li>Require an existing ext4 or XFS filesystem and valid UUID.</li>
+<li>Refuse to format a disk.</li>
+<li>Create <code>/mnt/longhorn</code>.</li>
+<li>Mount the disk by UUID using <code>defaults,noatime</code>.</li>
+<li>Persist the mount in <code>/etc/fstab</code>.</li>
+<li>Verify the resulting mount.</li>
+</ol>
+<p>The architecture assertion was updated to avoid Ansible’s deprecated injected
+fact variables:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Confirm</span> <span class="hljs-string">Longhorn</span> <span class="hljs-string">nodes</span> <span class="hljs-string">use</span> <span class="hljs-string">the</span> <span class="hljs-string">AMD64</span> <span class="hljs-string">architecture</span>
+  <span class="hljs-attr">ansible.builtin.assert:</span>
+    <span class="hljs-attr">that:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">ansible_facts["architecture"]</span> <span class="hljs-string">==</span> <span class="hljs-string">"x86_64"</span>
+    <span class="hljs-attr">fail_msg:</span> <span class="hljs-string">&gt;-
+      {{ inventory_hostname }} is {{ ansible_facts["architecture"] }}, not x86_64.
+</span></code></pre>
+<h3><a id="why-the-playbook-refuses-to-format-disks" href="#why-the-playbook-refuses-to-format-disks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Why the playbook refuses to format disks</h3>
+<p>Automated discovery is useful for selecting the intended disk, but formatting
+is destructive. The playbook therefore stops when the selected disk does not
+already contain an approved filesystem.</p>
+<p>A future rebuild that uses a blank replacement HDD must include a separate,
+explicitly reviewed disk-initialization step before this playbook runs. The
+normal Longhorn prerequisite play must continue to refuse formatting.</p>
+<h2><a id="longhorn-disk-preparation-evidence" href="#longhorn-disk-preparation-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn disk preparation evidence</h2>
+<h3><a id="check-mode-run" href="#check-mode-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Check-mode run</h3>
+<p>Command:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/longhorn-prerequisites.yml \
+  --<span class="hljs-built_in">limit</span> amd64-01 \
+  --check \
+  --diff \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>Observed selection:</p>
+<pre><code class="language-text">Node: amd64-01
+Device: /dev/sda
+Model: ST1000VM002-1SD1
+Filesystem: ext4
+Mount: /mnt/longhorn
+</code></pre>
+<p>The check-mode recap was:</p>
+<pre><code class="language-text">amd64-01 : ok=20 changed=4 unreachable=0 failed=0 skipped=1
+</code></pre>
+<p>The apparent changes represented what Ansible would create or mount; check mode
+did not modify the node.</p>
+<h3><a id="real-run" href="#real-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Real run</h3>
+<p>The same playbook was run without <code>--check</code>.</p>
+<p>Observed result:</p>
+<pre><code class="language-text">amd64-01 : ok=21 changed=4 unreachable=0 failed=0 skipped=0
+</code></pre>
+<p>The mount verification passed and the play reported:</p>
+<pre><code class="language-text">Node: amd64-01
+Device: /dev/sda
+Model: ST1000VM002-1SD1
+Filesystem: ext4
+Mount: /mnt/longhorn
+</code></pre>
+<h3><a id="idempotency-evidence" href="#idempotency-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idempotency evidence</h3>
+<p>A later check-mode run reported no changes:</p>
+<pre><code class="language-text">amd64-01 : ok=20 changed=0 unreachable=0 failed=0 skipped=1
+</code></pre>
+<p>This established that the package state, iSCSI service, disk selection,
+filesystem validation, mount directory, UUID-based fstab entry, and active mount
+were all stable.</p>
+<h2><a id="k3s-join-evidence" href="#k3s-join-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>K3s join evidence</h2>
+<p>The AMD64 node was joined using the existing Intel phase:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/phases/phase-08-intel.yml \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>The phase:</p>
+<ul>
+<li>reran common K3s prerequisites idempotently across all six nodes;</li>
+<li>validated all five Pi MinIO mounts without involving <code>amd64-01</code>;</li>
+<li>reran the dedicated Longhorn disk preparation on <code>amd64-01</code>;</li>
+<li>read the existing cluster token from <code>arm64-01</code>;</li>
+<li>wrote the K3s agent configuration on <code>amd64-01</code>;</li>
+<li>installed and started <code>k3s-agent</code>;</li>
+<li>exported the kubeconfig back to the Mac.</li>
+</ul>
+<p>Relevant observed tasks:</p>
+<pre><code class="language-text">TASK [Create K3s configuration directory]
+changed: [amd64-01]
+
+TASK [Write K3s agent configuration]
+changed: [amd64-01]
+
+TASK [Install and join K3s agent]
+changed: [amd64-01]
+
+RUNNING HANDLER [Restart K3s agent]
+changed: [amd64-01]
+
+TASK [Wait for K3s agent service]
+ok: [amd64-01]
+</code></pre>
+<p>Final recap:</p>
+<pre><code class="language-text">amd64-01 : ok=34 changed=7 unreachable=0 failed=0 skipped=0
+</code></pre>
+<p>Kubernetes validation showed:</p>
+<pre><code class="language-text">NAME       STATUS   ROLES                VERSION        ARCH
+amd64-01   Ready    &lt;none&gt;               v1.36.2+k3s1   amd64
+arm64-01   Ready    control-plane,etcd   v1.36.2+k3s1   arm64
+arm64-02   Ready    control-plane,etcd   v1.36.2+k3s1   arm64
+arm64-03   Ready    control-plane,etcd   v1.36.2+k3s1   arm64
+arm64-04   Ready    &lt;none&gt;               v1.36.2+k3s1   arm64
+arm64-05   Ready    &lt;none&gt;               v1.36.2+k3s1   arm64
+</code></pre>
+<h2><a id="longhorn-installation" href="#longhorn-installation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn installation</h2>
+<h3><a id="initial-skipped-run" href="#initial-skipped-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Initial skipped run</h3>
+<p>The first Longhorn-only platform command skipped the phase because
+<code>install_longhorn</code> was still false:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars platform_phase=longhorn \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>This was correct feature-flag behavior rather than an installation failure.</p>
+<h3><a id="enabled-installation" href="#enabled-installation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Enabled installation</h3>
+<p>After setting:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_longhorn:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>The same normal command was run without an override:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars platform_phase=longhorn \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>Successful tasks included:</p>
+<pre><code class="language-text">TASK [Run Longhorn storage phase]
+included: playbooks/tasks/longhorn.yml for arm64-01
+
+TASK [Find AMD64 Kubernetes nodes]
+ok: [arm64-01]
+
+TASK [Label AMD64 nodes for Longhorn and Kubecost]
+changed: [arm64-01]
+
+TASK [Write Longhorn Helm values]
+changed: [arm64-01]
+
+TASK [Install Longhorn]
+changed: [arm64-01]
+
+TASK [Verify the Longhorn StorageClass]
+ok: [arm64-01]
+</code></pre>
+<p>Final recap:</p>
+<pre><code class="language-text">arm64-01 : ok=12 changed=3 unreachable=0 failed=0 skipped=5
+</code></pre>
+<p>Although Helm was executed from <code>arm64-01</code>, the generated Longhorn values and
+node labels restricted Longhorn workloads and default disk creation to the
+eligible AMD64 node.</p>
+<h2><a id="longhorn-placement-and-health-evidence" href="#longhorn-placement-and-health-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn placement and health evidence</h2>
+<h3><a id="pod-placement" href="#pod-placement" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pod placement</h3>
+<p>All Longhorn pods were running on <code>amd64-01</code>:</p>
+<pre><code class="language-text">csi-attacher-*             1/1  Running  amd64-01
+csi-provisioner-*          1/1  Running  amd64-01
+csi-resizer-*              1/1  Running  amd64-01
+csi-snapshotter-*          1/1  Running  amd64-01
+engine-image-*             1/1  Running  amd64-01
+instance-manager-*         1/1  Running  amd64-01
+longhorn-csi-plugin-*      3/3  Running  amd64-01
+longhorn-driver-deployer-* 1/1  Running  amd64-01
+longhorn-manager-*         2/2  Running  amd64-01
+longhorn-ui-*              1/1  Running  amd64-01
+</code></pre>
+<p>No Longhorn pod was scheduled on an ARM64 node.</p>
+<h3><a id="kubernetes-node-labels" href="#kubernetes-node-labels" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubernetes node labels</h3>
+<pre><code class="language-text">NAME       STATUS   ARCH    CREATE-DEFAULT-DISK   LONGHORN
+amd64-01   Ready    amd64   true                  true
+arm64-01   Ready    arm64
+arm64-02   Ready    arm64
+arm64-03   Ready    arm64
+arm64-04   Ready    arm64
+arm64-05   Ready    arm64
+</code></pre>
+<h3><a id="longhorn-node-state" href="#longhorn-node-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn node state</h3>
+<pre><code class="language-text">NAME       READY   ALLOWSCHEDULING   SCHEDULABLE
+amd64-01   True    true              True
+</code></pre>
+<p>The Longhorn node object registered one filesystem disk:</p>
+<pre><code class="language-text">Path:                 /mnt/longhorn
+Allow scheduling:     true
+Disk type:            filesystem
+Storage maximum:      983351140352 bytes
+Storage available:    983249715200 bytes at validation
+Storage scheduled:    0 bytes before the functional test
+</code></pre>
+<p>The disk conditions were:</p>
+<pre><code class="language-text">Ready:        True
+Schedulable:  True
+</code></pre>
+<h3><a id="storageclasses" href="#storageclasses" class="Permalink" aria-hidden="true" title="Permalink">#</a>StorageClasses</h3>
+<p>The cluster contained:</p>
+<pre><code class="language-text">NAME                   PROVISIONER                                             RECLAIMPOLICY   VOLUMEBINDINGMODE
+local-path (default)   rancher.io/local-path                                   Delete          WaitForFirstConsumer
+longhorn               driver.longhorn.io                                      Retain          Immediate
+longhorn-static        driver.longhorn.io                                      Delete          Immediate
+minio-local            kubernetes.io/no-provisioner                            Retain          WaitForFirstConsumer
+nfs-hdd                cluster.local/nfs-hdd-nfs-subdir-external-provisioner   Retain          Immediate
+nfs-ssd                cluster.local/nfs-ssd-nfs-subdir-external-provisioner   Retain          Immediate
+</code></pre>
+<p><code>local-path</code> intentionally remained the cluster default. Workloads that need
+Longhorn must request <code>storageClassName: longhorn</code> explicitly unless a future
+architecture decision changes the default.</p>
+<h2><a id="functional-volume-test" href="#functional-volume-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Functional volume test</h2>
+<h3><a id="create-the-test-claim" href="#create-the-test-claim" class="Permalink" aria-hidden="true" title="Permalink">#</a>Create the test claim</h3>
+<pre><code class="hljs bash">kubectl apply -f - &lt;&lt;<span class="hljs-string">'EOF'</span>
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: longhorn-test
+  namespace: default
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: longhorn
+  resources:
+    requests:
+      storage: 1Gi
+EOF
+</code></pre>
+<p>The claim initially appeared <code>Pending</code> when checked at age zero, then bound
+normally:</p>
+<pre><code class="language-text">NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS
+longhorn-test   Bound    pvc-9ae54f0e-9849-414a-9369-4d277f4447ed   1Gi        RWO            longhorn
+</code></pre>
+<p>Before a pod used it, the Longhorn volume correctly appeared detached:</p>
+<pre><code class="language-text">STATE      ROBUSTNESS   NODE
+detached   unknown
+</code></pre>
+<h3><a id="create-a-pod-and-write-data" href="#create-a-pod-and-write-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Create a pod and write data</h3>
+<pre><code class="hljs bash">kubectl apply -f - &lt;&lt;<span class="hljs-string">'EOF'</span>
+apiVersion: v1
+kind: Pod
+metadata:
+  name: longhorn-test
+  namespace: default
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: amd64-01
+  containers:
+    - name: <span class="hljs-built_in">test</span>
+      image: busybox:1.36
+      <span class="hljs-built_in">command</span>:
+        - sh
+        - -c
+        - |
+          <span class="hljs-built_in">echo</span> <span class="hljs-string">"Longhorn test <span class="hljs-variable">$(date)</span>"</span> &gt; /data/test.txt
+          cat /data/test.txt
+          sleep 3600
+      volumeMounts:
+        - name: storage
+          mountPath: /data
+  volumes:
+    - name: storage
+      persistentVolumeClaim:
+        claimName: longhorn-test
+EOF
+</code></pre>
+<p>The pod became ready:</p>
+<pre><code class="language-text">NAME            READY   STATUS    RESTARTS
+longhorn-test   1/1     Running   0
+</code></pre>
+<p>The log and direct file read both returned:</p>
+<pre><code class="language-text">Longhorn test Mon Jul 20 02:38:04 UTC 2026
+</code></pre>
+<h3><a id="attached-volume-evidence" href="#attached-volume-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Attached-volume evidence</h3>
+<p>While the pod was running:</p>
+<pre><code class="language-text">NAME                                       STATE      ROBUSTNESS   SIZE         NODE
+pvc-9ae54f0e-9849-414a-9369-4d277f4447ed   attached   healthy      1073741824   amd64-01
+</code></pre>
+<p>Longhorn created one running replica on the intended disk:</p>
+<pre><code class="language-text">NAME                                                  STATE     NODE       DISK
+pvc-9ae54f0e-9849-414a-9369-4d277f4447ed-r-2133cd4d   running   amd64-01   35f9c7ca-fc4e-427f-8e56-213f26c1d821
+</code></pre>
+<p>The instance manager and engine image were both the expected Longhorn v1.12.0
+components.</p>
+<h3><a id="test-cleanup" href="#test-cleanup" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test cleanup</h3>
+<p>The test pod and PVC were deleted. Because the <code>longhorn</code> StorageClass uses the
+<code>Retain</code> reclaim policy, the PV became <code>Released</code> and the detached Longhorn
+volume remained until explicitly removed.</p>
+<p>Cleanup commands:</p>
+<pre><code class="hljs bash">TEST_VOLUME=<span class="hljs-string">"pvc-9ae54f0e-9849-414a-9369-4d277f4447ed"</span>
+
+kubectl delete pv <span class="hljs-string">"<span class="hljs-variable">${TEST_VOLUME}</span>"</span>
+
+kubectl delete volumes.longhorn.io \
+  -n longhorn-system \
+  <span class="hljs-string">"<span class="hljs-variable">${TEST_VOLUME}</span>"</span>
+</code></pre>
+<p>Final result:</p>
+<pre><code class="language-text">No resources found in longhorn-system namespace.
+</code></pre>
+<p>This final message referred to Longhorn volume resources, not the Longhorn
+installation itself. The Longhorn pods, node object, disk, CRDs, and
+StorageClasses remained installed.</p>
+<h2><a id="test-interpretation" href="#test-interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Test interpretation</h2>
+<p>The successful test proved all of the following:</p>
+<ul>
+<li>The Longhorn CSI provisioner created a 1 GiB volume.</li>
+<li>Kubernetes bound the claim to a Longhorn PV.</li>
+<li>Longhorn attached the volume to <code>amd64-01</code>.</li>
+<li>A replica was created on the registered <code>/mnt/longhorn</code> disk.</li>
+<li>The pod mounted the volume.</li>
+<li>The container wrote a file.</li>
+<li>The container read the same file.</li>
+<li>The volume reported <code>healthy</code> while attached.</li>
+<li>The volume detached when the consuming pod was removed.</li>
+<li>Retain-policy cleanup behavior was understood and handled deliberately.</li>
+</ul>
+<p>The test did not complete a pod-delete-and-recreate persistence check because
+the PVC was deleted before the pod was recreated. The successful write/read,
+attachment, healthy replica, and clean detach were sufficient to validate the
+installation. A later workload deployment will provide ongoing persistence
+evidence.</p>
+<h2><a id="known-warnings-and-outstanding-hardening" href="#known-warnings-and-outstanding-hardening" class="Permalink" aria-hidden="true" title="Permalink">#</a>Known warnings and outstanding hardening</h2>
+<p>The Longhorn node reported two non-blocking conditions during validation.
+Longhorn remained ready and schedulable, and the functional volume test passed.</p>
+<h3><a id="multipathd-warning" href="#multipathd-warning" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>multipathd</code> warning</h3>
+<p>Observed condition:</p>
+<pre><code class="language-text">Multipathd: False
+Reason: MultipathdIsRunning
+Message: multipathd is running with a known issue that affects Longhorn.
+</code></pre>
+<p>This node uses local disks and does not currently need multipath SAN support.
+The intended remediation is to stop, disable, and mask <code>multipathd.service</code> and
+<code>multipathd.socket</code>, then persist that behavior in Ansible.</p>
+<p>Do not mark this remediation complete until the commands have actually been run
+and the Longhorn condition has been rechecked.</p>
+<h3><a id="dm-crypt-warning" href="#dm-crypt-warning" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>dm_crypt</code> warning</h3>
+<p>Observed condition:</p>
+<pre><code class="language-text">KernelModulesLoaded: False
+Reason: KernelModulesNotLoaded
+Message: Kernel modules [dm_crypt] are not loaded
+</code></pre>
+<p>Unencrypted test volumes worked. Loading and persisting <code>dm_crypt</code> is still
+recommended so the node passes all Longhorn prerequisite checks and can support
+encrypted Longhorn volumes later.</p>
+<p>Recommended Ansible tasks after validation:</p>
+<pre><code class="hljs yaml"><span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Load</span> <span class="hljs-string">the</span> <span class="hljs-string">dm_crypt</span> <span class="hljs-string">kernel</span> <span class="hljs-string">module</span>
+  <span class="hljs-attr">ansible.builtin.command:</span>
+    <span class="hljs-attr">argv:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">modprobe</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">dm_crypt</span>
+  <span class="hljs-attr">changed_when:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Load</span> <span class="hljs-string">dm_crypt</span> <span class="hljs-string">after</span> <span class="hljs-string">reboot</span>
+  <span class="hljs-attr">ansible.builtin.copy:</span>
+    <span class="hljs-attr">dest:</span> <span class="hljs-string">/etc/modules-load.d/longhorn.conf</span>
+    <span class="hljs-attr">owner:</span> <span class="hljs-string">root</span>
+    <span class="hljs-attr">group:</span> <span class="hljs-string">root</span>
+    <span class="hljs-attr">mode:</span> <span class="hljs-string">"0644"</span>
+    <span class="hljs-attr">content:</span> <span class="hljs-string">|
+      dm_crypt
+</span>
+<span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Disable</span> <span class="hljs-string">multipathd</span> <span class="hljs-string">services</span>
+  <span class="hljs-attr">ansible.builtin.systemd_service:</span>
+    <span class="hljs-attr">name:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ item }}</span>"</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">state:</span> <span class="hljs-string">stopped</span>
+    <span class="hljs-attr">masked:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">loop:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">multipathd.service</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-string">multipathd.socket</span>
+</code></pre>
+<h2><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h2>
+<h3><a id="1-install-ubuntu-server-on-the-amd64-node" href="#1-install-ubuntu-server-on-the-amd64-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Install Ubuntu Server on the AMD64 node</h3>
+<p>Install Ubuntu Server 24.04 LTS from the normal ISO. Create the
+<code>dbuddenbaum</code> administrator account and enable OpenSSH Server.</p>
+<p>Do not use the Raspberry Pi image-flashing workflow for AMD64 nodes.</p>
+<h3><a id="2-identify-the-active-nic" href="#2-identify-the-active-nic" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. Identify the active NIC</h3>
+<p>From the console:</p>
+<pre><code class="hljs bash">ip -br link
+lspci -nnk | sed -n <span class="hljs-string">'/Ethernet controller/,+5p'</span>
+sudo netplan get
+</code></pre>
+<p>Bring candidate interfaces up and check carrier when necessary:</p>
+<pre><code class="hljs bash">sudo ip link <span class="hljs-built_in">set</span> enp4s0 up
+sudo ip link <span class="hljs-built_in">set</span> enp5s0 up
+</code></pre>
+<p>Use the interface that reports carrier. On the validated <code>amd64-01</code> build, that
+interface was <code>enp5s0</code>.</p>
+<h3><a id="3-create-the-permanent-netplan-file" href="#3-create-the-permanent-netplan-file" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Create the permanent Netplan file</h3>
+<p>Retain one manually managed file:</p>
+<pre><code class="language-text">/etc/netplan/50-k3s-uplink.yaml
+</code></pre>
+<p>Assign:</p>
+<pre><code class="language-text">Address:  192.168.2.61/24
+Gateway:  192.168.2.1
+DNS:      192.168.2.1, 1.1.1.1, 8.8.8.8
+</code></pre>
+<p>Disable cloud-init network regeneration, apply Netplan, reboot, and verify the
+address survives.</p>
+<h3><a id="4-bootstrap-ssh-access" href="#4-bootstrap-ssh-access" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Bootstrap SSH access</h3>
+<pre><code class="hljs bash">ssh-copy-id dbuddenbaum@192.168.2.61
+</code></pre>
+<p>Create the passwordless sudo file and validate it with <code>visudo</code>.</p>
+<h3><a id="5-confirm-disk-identity-before-ansible" href="#5-confirm-disk-identity-before-ansible" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. Confirm disk identity before Ansible</h3>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 \
+  <span class="hljs-string">'sudo lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL'</span>
+</code></pre>
+<p>Requirements for this node:</p>
+<pre><code class="language-text">/dev/nvme0n1 -&gt; root filesystem
+/dev/sda     -&gt; ST1000VM002-1SD1, ext4, Longhorn candidate
+/dev/nvme1n1 -&gt; reserved; no automated changes
+</code></pre>
+<p>Stop if the device model, size, filesystem, or root-disk mapping differs.
+Update the host variables only after physically confirming the replacement
+hardware.</p>
+<h3><a id="6-validate-inventory" href="#6-validate-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. Validate inventory</h3>
+<pre><code class="hljs bash">ansible-inventory \
+  -i inventory/hosts.yml \
+  --graph \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p><code>amd64-01</code> must appear in both:</p>
+<pre><code class="language-text">k3s_agents
+longhorn_nodes
+</code></pre>
+<h3><a id="7-dry-run-longhorn-preparation" href="#7-dry-run-longhorn-preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. Dry-run Longhorn preparation</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/longhorn-prerequisites.yml \
+  --<span class="hljs-built_in">limit</span> amd64-01 \
+  --check \
+  --diff \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>The selected device must be <code>/dev/sda</code>. Stop immediately if either NVMe appears
+as the candidate.</p>
+<h3><a id="8-mount-the-longhorn-hdd" href="#8-mount-the-longhorn-hdd" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. Mount the Longhorn HDD</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/longhorn-prerequisites.yml \
+  --<span class="hljs-built_in">limit</span> amd64-01 \
+  --diff \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>Validate:</p>
+<pre><code class="hljs bash">ssh dbuddenbaum@192.168.2.61 <span class="hljs-string">'
+  findmnt /mnt/longhorn
+  df -h /mnt/longhorn
+  grep -F /mnt/longhorn /etc/fstab
+  lsblk -o NAME,SIZE,ROTA,FSTYPE,MOUNTPOINTS,MODEL
+'</span>
+</code></pre>
+<p>Reboot once and confirm <code>/mnt/longhorn</code> mounts automatically.</p>
+<h3><a id="9-join-k3s" href="#9-join-k3s" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. Join K3s</h3>
+<p>Run the complete Intel phase rather than limiting the full K3s join play to one
+host. The play needs access to the existing server group and cluster token.</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/phases/phase-08-intel.yml \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>Validate:</p>
+<pre><code class="hljs bash">kubectl get nodes -o wide
+kubectl get node amd64-01 \
+  -L kubernetes.io/arch,kalaxy3.io/longhorn,kalaxy3.io/kubecost
+</code></pre>
+<h3><a id="10-enable-and-install-longhorn" href="#10-enable-and-install-longhorn" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. Enable and install Longhorn</h3>
+<p>Use:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_longhorn:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>Then run:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars platform_phase=longhorn \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<h3><a id="11-validate-longhorn" href="#11-validate-longhorn" class="Permalink" aria-hidden="true" title="Permalink">#</a>11. Validate Longhorn</h3>
+<pre><code class="hljs bash">kubectl get pods -n longhorn-system -o wide
+kubectl get storageclass
+kubectl get nodes \
+  -L kubernetes.io/arch,node.longhorn.io/create-default-disk,kalaxy3.io/longhorn
+kubectl get nodes.longhorn.io -n longhorn-system
+kubectl get nodes.longhorn.io amd64-01 -n longhorn-system -o yaml
+</code></pre>
+<p>Required conditions:</p>
+<pre><code class="language-text">amd64-01 Kubernetes node: Ready
+Longhorn node Ready: True
+Longhorn node Schedulable: True
+/mnt/longhorn disk Ready: True
+/mnt/longhorn disk Schedulable: True
+ARM64 Longhorn storage nodes: none
+</code></pre>
+<h3><a id="12-run-a-functional-pvc-test" href="#12-run-a-functional-pvc-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>12. Run a functional PVC test</h3>
+<p>Create an explicitly Longhorn-backed PVC and a pod that writes and reads a file.
+Confirm the volume becomes <code>attached</code> and <code>healthy</code>, and confirm one replica is
+running on <code>amd64-01</code>.</p>
+<p>When deleting a test PVC, remember that the StorageClass uses <code>Retain</code>. Remove
+the released PV and Longhorn volume explicitly when the test data is no longer
+needed.</p>
+<h2><a id="operational-checks" href="#operational-checks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational checks</h2>
+<h3><a id="node-and-mount" href="#node-and-mount" class="Permalink" aria-hidden="true" title="Permalink">#</a>Node and mount</h3>
+<pre><code class="hljs bash">kubectl get node amd64-01 -o wide
+
+ssh dbuddenbaum@192.168.2.61 <span class="hljs-string">'
+  systemctl is-active k3s-agent
+  systemctl is-active iscsid
+  findmnt /mnt/longhorn
+  df -h /mnt/longhorn
+'</span>
+</code></pre>
+<h3><a id="longhorn-health" href="#longhorn-health" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn health</h3>
+<pre><code class="hljs bash">kubectl get pods -n longhorn-system -o wide
+kubectl get nodes.longhorn.io -n longhorn-system
+kubectl get volumes.longhorn.io -n longhorn-system
+kubectl get replicas.longhorn.io -n longhorn-system -o wide
+</code></pre>
+<h3><a id="conditions-requiring-attention" href="#conditions-requiring-attention" class="Permalink" aria-hidden="true" title="Permalink">#</a>Conditions requiring attention</h3>
+<pre><code class="hljs bash">kubectl get nodes.longhorn.io amd64-01 \
+  -n longhorn-system \
+  -o jsonpath=<span class="hljs-string">'{range .status.conditions[*]}{.type}: {.status} {.reason}{"\n"}{end}'</span>
+</code></pre>
+<h2><a id="expansion-procedure-for-amd64-02" href="#expansion-procedure-for-amd64-02" class="Permalink" aria-hidden="true" title="Permalink">#</a>Expansion procedure for <code>amd64-02</code></h2>
+<p>When the second AMD64 node is available:</p>
+<ol>
+<li>Give it <code>192.168.2.62</code>.</li>
+<li>Add it to <code>k3s_agents</code> and <code>longhorn_nodes</code>.</li>
+<li>Add host-specific disk model and safety limits.</li>
+<li>Prepare and validate its independent <code>/mnt/longhorn</code> HDD.</li>
+<li>Join it to K3s.</li>
+<li>Rerun the Longhorn platform phase.</li>
+<li>Verify both Longhorn nodes and both disks are schedulable.</li>
+<li>Change <code>longhorn_replica_count</code> from <code>1</code> to <code>2</code>.</li>
+<li>Update existing important Longhorn volumes to two replicas.</li>
+<li>Test replica placement across both physical hosts.</li>
+</ol>
+<p>Two replicas on two separate nodes provide node-level redundancy. Two replicas
+on the same physical node do not.</p>
+<h2><a id="kubecost-next-step" href="#kubecost-next-step" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost next step</h2>
+<p>The original Kubecost ClickHouse workload failed on ARM64 with an illegal
+instruction. <code>amd64-01</code> and Longhorn now provide the required architecture and
+persistent block storage foundation.</p>
+<p>Before reinstalling Kubecost:</p>
+<ol>
+<li>
+<p>Confirm all Kubecost workloads require both:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nodeSelector:</span>
+  <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+  <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+</code></pre>
+</li>
+<li>
+<p>Change Kubecost stateful storage from the earlier NFS or local-path values to
+the <code>longhorn</code> StorageClass where appropriate.</p>
+</li>
+<li>
+<p>Remove or deliberately handle the old released Kubecost NFS PVs.</p>
+</li>
+<li>
+<p>Keep the Longhorn replica count at one until <code>amd64-02</code> joins.</p>
+</li>
+<li>
+<p>Reinstall Kubecost and capture separate deployment evidence.</p>
+</li>
+</ol>
+<h2><a id="final-rebuild-checklist" href="#final-rebuild-checklist" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final rebuild checklist</h2>
+<pre><code class="language-text">[ ] Ubuntu Server installed normally on AMD64 hardware
+[ ] Correct NIC identified by carrier
+[ ] /etc/netplan/50-k3s-uplink.yaml is the only active intended Netplan file
+[ ] Static address 192.168.2.61 survives reboot
+[ ] SSH key authentication works
+[ ] Passwordless sudo works for Ansible
+[ ] /dev/nvme0n1 confirmed as root disk
+[ ] /dev/sda confirmed as the dedicated 1 TB rotational HDD
+[ ] /dev/nvme1n1 preserved for future RAG cache
+[ ] amd64-01 is in k3s_agents and longhorn_nodes
+[ ] Host disk-model safety variable matches the physical HDD
+[ ] Longhorn preparation dry run selects only /dev/sda
+[ ] /dev/sda is mounted by UUID at /mnt/longhorn
+[ ] Mount survives reboot
+[ ] amd64-01 joins K3s as Ready amd64 agent
+[ ] Longhorn labels exist only on intended AMD64 nodes
+[ ] Longhorn pods are Running
+[ ] Longhorn node and disk are Ready and schedulable
+[ ] StorageClass longhorn exists with replica count 1
+[ ] Test PVC binds
+[ ] Test pod attaches the volume and writes/reads data
+[ ] Test volume reports healthy
+[ ] Retained test resources are removed deliberately
+[ ] multipathd warning reviewed and remediated
+[ ] dm_crypt module loaded and persisted
+[ ] Changes committed and pushed
+</code></pre>
+<h2><a id="final-status" href="#final-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final status</h2>
+<p><strong>PASS — first AMD64 Longhorn storage node installed and functionally validated.</strong></p>
+<p>As of July 19, 2026:</p>
+<ul>
+<li><code>amd64-01</code> is a Ready K3s agent.</li>
+<li>The operating-system NVMe is protected.</li>
+<li>The 4 TB future RAG-cache NVMe is untouched.</li>
+<li>The dedicated 1 TB HDD is persistently mounted at <code>/mnt/longhorn</code>.</li>
+<li>Longhorn 1.12.0 is installed on the AMD64 node.</li>
+<li>The Longhorn node and disk are ready and schedulable.</li>
+<li>Dynamic PVC provisioning succeeded.</li>
+<li>Volume attachment and replica creation succeeded.</li>
+<li>Container-level write and read verification succeeded.</li>
+<li>Test resources were cleaned up.</li>
+<li>The repository changes were committed and pushed.</li>
+</ul>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/k3s_etcd_baseline_backup_evidence.html">Previous</a></li>            <li class=Pager--next><a href="../installation/kalaxy3_minio_installation_evidence.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
