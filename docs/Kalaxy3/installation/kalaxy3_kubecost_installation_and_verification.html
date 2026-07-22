@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>kalaxy3-kubecost-installation-and-verification - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item Nav__item--active'><a href="../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../installation/k3s_api_ha_kube_vip.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="kalaxy3-kubecost-installation-and-verification" href="#kalaxy3-kubecost-installation-and-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 Kubecost Installation and Verification</h1>
+<h2><a id="purpose" href="#purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Purpose</h2>
+<p>This document records the installation, configuration, correction, and
+verification of Kubecost on the Kalaxy3 K3s cluster.</p>
+<p>It is intended to provide enough detail to:</p>
+<ul>
+<li>understand why Kubecost was added;</li>
+<li>reproduce the installation after a complete Kalaxy3 rebuild;</li>
+<li>keep Kubecost compute workloads away from the primary LLM node;</li>
+<li>restore the required Longhorn-backed persistent storage;</li>
+<li>expose the Kubecost UI through MetalLB;</li>
+<li>recognize the known nonfatal LoadBalancer-pricing warning;</li>
+<li>verify that the installation is healthy.</li>
+</ul>
+<h2><a id="installation-date" href="#installation-date" class="Permalink" aria-hidden="true" title="Permalink">#</a>Installation Date</h2>
+<p>The installation and verification described here were completed on
+July 21, 2026, local time.</p>
+<p>Kubecost logs use UTC timestamps, so log entries immediately after the
+installation show July 22, 2026.</p>
+<h2><a id="result-summary" href="#result-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Result Summary</h2>
+<p>Kubecost is operational on Kalaxy3 with the following state:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubecost chart</td>
+<td><code>kubecost/kubecost</code></td>
+</tr>
+<tr>
+<td>Chart version</td>
+<td><code>3.2.1</code></td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td><code>kubecost</code></td>
+</tr>
+<tr>
+<td>Primary workload node</td>
+<td><code>amd64-02</code></td>
+</tr>
+<tr>
+<td>LLM node preserved</td>
+<td><code>amd64-01</code></td>
+</tr>
+<tr>
+<td>Persistent storage</td>
+<td>Longhorn</td>
+</tr>
+<tr>
+<td>Longhorn replica count</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>Frontend service type</td>
+<td><code>LoadBalancer</code></td>
+</tr>
+<tr>
+<td>Frontend MetalLB address</td>
+<td><code>192.168.2.26</code></td>
+</tr>
+<tr>
+<td>Frontend port</td>
+<td><code>9090</code></td>
+</tr>
+<tr>
+<td>FinOps Agent image</td>
+<td><code>icr.io/ibm-finops/agent:v1.0.20</code></td>
+</tr>
+<tr>
+<td>Pod health</td>
+<td>All pods running</td>
+</tr>
+<tr>
+<td>Pod restarts at verification</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Known warning</td>
+<td>Nonfatal LoadBalancer pricing warning</td>
+</tr>
+</tbody>
+</table>
+<p>The Kubecost user interface is available on the Kalaxy3 LAN at:</p>
+<pre><code class="language-text">http://192.168.2.26:9090
+</code></pre>
+<h2><a id="why-kubecost-was-added" href="#why-kubecost-was-added" class="Permalink" aria-hidden="true" title="Permalink">#</a>Why Kubecost Was Added</h2>
+<p>Kalaxy3 already had Prometheus and Grafana for cluster metrics and
+observability. Kubecost adds Kubernetes resource-cost and allocation analysis.</p>
+<p>Kubecost provides visibility into:</p>
+<ul>
+<li>CPU allocation and utilization;</li>
+<li>memory allocation and utilization;</li>
+<li>namespace and workload cost allocation;</li>
+<li>pod and container allocation;</li>
+<li>persistent-volume allocation;</li>
+<li>node resource allocation;</li>
+<li>idle and shared cluster resources;</li>
+<li>historical allocation data retained in persistent storage.</li>
+</ul>
+<p>Kalaxy3 is a bare-metal homelab rather than an AWS, Azure, or Google Cloud
+cluster. Kubecost therefore cannot automatically obtain cloud-provider billing
+rates. The deployment is still useful for resource allocation and relative cost
+analysis, but accurate dollar values require a separate Kalaxy3 custom cost
+model.</p>
+<h2><a id="placement-decision" href="#placement-decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Placement Decision</h2>
+<h3><a id="preserve-amd64-01-for-the-llm" href="#preserve-amd64-01-for-the-llm" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preserve <code>amd64-01</code> for the LLM</h3>
+<p><code>amd64-01</code> is intended to host the primary Kalaxy3 LLM and RAG workloads.</p>
+<p>Kubecost includes database, aggregation, local-storage, frontend, and collection
+components that consume CPU, memory, storage I/O, and network bandwidth.
+Therefore, Kubecost compute workloads were placed on <code>amd64-02</code>.</p>
+<h3><a id="longhorn-still-uses-both-amd64-nodes" href="#longhorn-still-uses-both-amd64-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn still uses both AMD64 nodes</h3>
+<p>Although Kubecost application pods run on <code>amd64-02</code>, its Longhorn volumes use
+two replicas.</p>
+<p>This means:</p>
+<ul>
+<li>Kubecost CPU and memory consumption stays on <code>amd64-02</code>;</li>
+<li>Kubecost persistent data remains redundant;</li>
+<li>one Longhorn replica may reside on <code>amd64-01</code>;</li>
+<li><code>amd64-01</code> can still see Longhorn disk and replication traffic;</li>
+<li>loss of one Longhorn node does not immediately destroy Kubecost data.</li>
+</ul>
+<p>This is the intended tradeoff between preserving LLM compute resources and
+maintaining storage resilience.</p>
+<h2><a id="prerequisites" href="#prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites</h2>
+<p>Before rebuilding Kubecost, verify the following Kalaxy3 components.</p>
+<h3><a id="k3s-cluster" href="#k3s-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>K3s cluster</h3>
+<pre><code class="hljs bash">kubectl get nodes -o wide
+</code></pre>
+<p>Expected relevant nodes:</p>
+<pre><code class="language-text">amd64-01   Ready
+amd64-02   Ready
+</code></pre>
+<h3><a id="longhorn" href="#longhorn" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn</h3>
+<pre><code class="hljs bash">kubectl get pods \
+  -n longhorn-system
+
+kubectl get storageclass longhorn
+</code></pre>
+<p>The Longhorn StorageClass must exist before Kubecost is installed.</p>
+<h3><a id="prometheus-and-grafana" href="#prometheus-and-grafana" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prometheus and Grafana</h3>
+<pre><code class="hljs bash">kubectl get pods \
+  -n observability
+</code></pre>
+<p>Kubecost was installed through the Kalaxy3 observability phase, which also
+reconciles Prometheus and Grafana.</p>
+<h3><a id="metallb" href="#metallb" class="Permalink" aria-hidden="true" title="Permalink">#</a>MetalLB</h3>
+<p>The address <code>192.168.2.26</code> must be within the configured Kalaxy3 MetalLB address
+pool and must not be assigned to another service.</p>
+<pre><code class="hljs bash">kubectl get svc -A \
+  -o wide
+</code></pre>
+<h3><a id="amd64-kubecost-label" href="#amd64-kubecost-label" class="Permalink" aria-hidden="true" title="Permalink">#</a>AMD64 Kubecost label</h3>
+<p>Only the intended Kubecost compute node should carry the Kubecost scheduling
+label.</p>
+<pre><code class="hljs bash">kubectl get nodes \
+  -L kubernetes.io/arch,kalaxy3.io/kubecost,kalaxy3.io/longhorn
+</code></pre>
+<p>Expected intent:</p>
+<pre><code class="language-text">amd64-01   amd64   &lt;none&gt;   true
+amd64-02   amd64   true     true
+</code></pre>
+<p>The exact column order depends on the <code>kubectl</code> command, but
+<code>kalaxy3.io/kubecost=true</code> should be present only on <code>amd64-02</code>.</p>
+<h2><a id="inventory-configuration" href="#inventory-configuration" class="Permalink" aria-hidden="true" title="Permalink">#</a>Inventory Configuration</h2>
+<p>The Kalaxy3 Ansible inventory should identify <code>amd64-02</code> as the Kubecost node.</p>
+<p>Example:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">kubecost_nodes:</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-attr">amd64-02:</span>
+</code></pre>
+<p>The node must also remain a member of the appropriate K3s agent and Longhorn
+inventory groups.</p>
+<h2><a id="node-labels" href="#node-labels" class="Permalink" aria-hidden="true" title="Permalink">#</a>Node Labels</h2>
+<p>The desired Kubernetes labels are:</p>
+<pre><code class="language-text">amd64-01:
+  kalaxy3.io/longhorn=true
+  node.longhorn.io/create-default-disk=true
+
+amd64-02:
+  kalaxy3.io/longhorn=true
+  kalaxy3.io/kubecost=true
+  node.longhorn.io/create-default-disk=true
+</code></pre>
+<p>Apply or repair the Kubecost label with:</p>
+<pre><code class="hljs bash">kubectl label node amd64-02 \
+  kalaxy3.io/kubecost=<span class="hljs-literal">true</span> \
+  --overwrite
+</code></pre>
+<p>Remove the Kubecost label from <code>amd64-01</code> with:</p>
+<pre><code class="hljs bash">kubectl label node amd64-01 \
+  kalaxy3.io/kubecost-
+</code></pre>
+<p>Verify:</p>
+<pre><code class="hljs bash">kubectl get nodes \
+  -L kubernetes.io/arch,kalaxy3.io/kubecost,kalaxy3.io/longhorn
+</code></pre>
+<p>The Ansible Longhorn/platform tasks should own these labels so a full rebuild
+does not depend on manual commands.</p>
+<h2><a id="kalaxy3-variables" href="#kalaxy3-variables" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 Variables</h2>
+<p>The relevant Kalaxy3 variables include:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_observability:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">install_kubecost:</span> <span class="hljs-literal">true</span>
+
+<span class="hljs-attr">kubecost_storage_size:</span> <span class="hljs-string">32Gi</span>
+
+<span class="hljs-attr">longhorn_replica_count:</span> <span class="hljs-number">2</span>
+</code></pre>
+<p>During the initial installation, Kubecost was enabled explicitly on the command
+line:</p>
+<pre><code class="hljs bash">--extra-vars <span class="hljs-string">'install_kubecost=true'</span>
+</code></pre>
+<p>For a fully automatic rebuild, set <code>install_kubecost: true</code> in the intended
+Kalaxy3 group variables after the deployment has been accepted.</p>
+<h2><a id="kubecost-helm-values" href="#kubecost-helm-values" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost Helm Values</h2>
+<p>The Kubecost values template is:</p>
+<pre><code class="language-text">infrastructure/k3s-homelab/playbooks/templates/kubecost-values.yml.j2
+</code></pre>
+<p>The effective design is represented by the following values:</p>
+<pre><code class="hljs yaml"><span class="hljs-meta">---</span>
+<span class="hljs-attr">global:</span>
+  <span class="hljs-attr">clusterId:</span> <span class="hljs-string">kalaxy3</span>
+  <span class="hljs-attr">defaultStorageClass:</span> <span class="hljs-string">longhorn</span>
+
+<span class="hljs-attr">frontend:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">nodeSelector:</span>
+    <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+    <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+
+  <span class="hljs-attr">service:</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">LoadBalancer</span>
+    <span class="hljs-attr">annotations:</span>
+      <span class="hljs-attr">metallb.io/loadBalancerIPs:</span> <span class="hljs-string">"192.168.2.26"</span>
+
+<span class="hljs-attr">aggregator:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">nodeSelector:</span>
+    <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+    <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+
+  <span class="hljs-attr">persistentConfigsStorage:</span>
+    <span class="hljs-attr">storageClass:</span> <span class="hljs-string">longhorn</span>
+    <span class="hljs-attr">storageRequest:</span> <span class="hljs-string">1Gi</span>
+
+  <span class="hljs-attr">aggregatorDbStorage:</span>
+    <span class="hljs-attr">storageClass:</span> <span class="hljs-string">longhorn</span>
+    <span class="hljs-attr">storageRequest:</span> <span class="hljs-string">128Gi</span>
+
+  <span class="hljs-attr">resources:</span>
+    <span class="hljs-attr">requests:</span>
+      <span class="hljs-attr">cpu:</span> <span class="hljs-string">100m</span>
+      <span class="hljs-attr">memory:</span> <span class="hljs-string">3Gi</span>
+
+<span class="hljs-attr">finopsagent:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">image:</span>
+    <span class="hljs-attr">registry:</span> <span class="hljs-string">icr.io</span>
+    <span class="hljs-attr">repository:</span> <span class="hljs-string">ibm-finops/agent</span>
+    <span class="hljs-attr">tag:</span> <span class="hljs-string">v1.0.20</span>
+
+  <span class="hljs-attr">nodeSelector:</span>
+    <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+    <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+
+<span class="hljs-attr">localStore:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">nodeSelector:</span>
+    <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+    <span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+
+  <span class="hljs-attr">persistentVolume:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">storageClass:</span> <span class="hljs-string">longhorn</span>
+    <span class="hljs-attr">size:</span> <span class="hljs-string">"<span class="hljs-template-variable">{{ kubecost_storage_size }}</span>"</span>
+    <span class="hljs-attr">annotations:</span>
+      <span class="hljs-attr">helm.sh/resource-policy:</span> <span class="hljs-string">keep</span>
+
+<span class="hljs-attr">forecasting:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-attr">cloudCost:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-attr">clusterController:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+
+<span class="hljs-attr">networkCosts:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<h2><a id="important-finops-agent-image-correction" href="#important-finops-agent-image-correction" class="Permalink" aria-hidden="true" title="Permalink">#</a>Important FinOps Agent Image Correction</h2>
+<h3><a id="failure-observed" href="#failure-observed" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failure observed</h3>
+<p>The Kubecost chart initially rendered this image:</p>
+<pre><code class="language-text">icr.io/kubecost/agent:v1.0.20
+</code></pre>
+<p>The Kubernetes event showed:</p>
+<pre><code class="language-text">Failed to pull image &quot;icr.io/kubecost/agent:v1.0.20&quot;:
+failed to resolve reference:
+icr.io/kubecost/agent:v1.0.20: not found
+</code></pre>
+<p>The pod entered:</p>
+<pre><code class="language-text">ImagePullBackOff
+</code></pre>
+<h3><a id="correct-image" href="#correct-image" class="Permalink" aria-hidden="true" title="Permalink">#</a>Correct image</h3>
+<p>The working image is:</p>
+<pre><code class="language-text">icr.io/ibm-finops/agent:v1.0.20
+</code></pre>
+<p>The permanent correction belongs in
+<code>playbooks/templates/kubecost-values.yml.j2</code>:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">finopsagent:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+
+  <span class="hljs-attr">image:</span>
+    <span class="hljs-attr">registry:</span> <span class="hljs-string">icr.io</span>
+    <span class="hljs-attr">repository:</span> <span class="hljs-string">ibm-finops/agent</span>
+    <span class="hljs-attr">tag:</span> <span class="hljs-string">v1.0.20</span>
+</code></pre>
+<h3><a id="immediate-repair-command" href="#immediate-repair-command" class="Permalink" aria-hidden="true" title="Permalink">#</a>Immediate repair command</h3>
+<p>If a rebuilt cluster still renders the wrong image, repair it immediately with:</p>
+<pre><code class="hljs bash">kubectl <span class="hljs-built_in">set</span> image \
+  deployment/kubecost-finopsagent \
+  finops-agent=icr.io/ibm-finops/agent:v1.0.20 \
+  -n kubecost
+</code></pre>
+<p>Then reconcile the Helm release through Ansible so the repair is persistent.</p>
+<h2><a id="ansible-installation-workflow" href="#ansible-installation-workflow" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ansible Installation Workflow</h2>
+<p>Run from:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+</code></pre>
+<h3><a id="syntax-check" href="#syntax-check" class="Permalink" aria-hidden="true" title="Permalink">#</a>Syntax check</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --syntax-check
+</code></pre>
+<h3><a id="install-or-reconcile-kubecost" href="#install-or-reconcile-kubecost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Install or reconcile Kubecost</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars <span class="hljs-string">'platform_phase=observability'</span> \
+  --extra-vars <span class="hljs-string">'install_kubecost=true'</span> \
+  --ask-become-pass \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>The play performs the following work:</p>
+<ol>
+<li>gathers facts from <code>arm64-01</code>;</li>
+<li>verifies or installs Helm on the controller;</li>
+<li>reconciles the configured Helm repositories;</li>
+<li>selects only the observability platform phase;</li>
+<li>reconciles Prometheus and Grafana;</li>
+<li>finds eligible labeled AMD64 Kubecost nodes;</li>
+<li>renders the Kubecost values template;</li>
+<li>installs or upgrades Kubecost;</li>
+<li>waits for the Helm deployment to complete.</li>
+</ol>
+<p><code>arm64-01</code> acts as the Ansible and Helm controller. That does not mean Kubecost
+application pods run on <code>arm64-01</code>.</p>
+<h2><a id="successful-ansible-evidence" href="#successful-ansible-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Successful Ansible Evidence</h2>
+<p>The successful reconciliation completed with:</p>
+<pre><code class="language-text">PLAY RECAP
+arm64-01 : ok=9 changed=2 unreachable=0 failed=0 skipped=6
+</code></pre>
+<p>The following phases were correctly skipped:</p>
+<ul>
+<li>networking and storage;</li>
+<li>administrative UI;</li>
+<li>Longhorn;</li>
+<li>protected UI;</li>
+<li>MinIO.</li>
+</ul>
+<p>Only the observability phase was included.</p>
+<h2><a id="installed-workloads" href="#installed-workloads" class="Permalink" aria-hidden="true" title="Permalink">#</a>Installed Workloads</h2>
+<p>The healthy Kubecost deployment contains:</p>
+<pre><code class="language-text">kubecost-aggregator-0
+kubecost-finopsagent-...
+kubecost-frontend-...
+kubecost-local-store-...
+</code></pre>
+<p>Verification showed all four pods:</p>
+<ul>
+<li>ready;</li>
+<li>running;</li>
+<li>scheduled on <code>amd64-02</code>;</li>
+<li>reporting zero restarts.</li>
+</ul>
+<p>Use:</p>
+<pre><code class="hljs bash">kubectl get pods \
+  -n kubecost \
+  -o custom-columns=<span class="hljs-string">'NAME:.metadata.name,READY:.status.containerStatuses[*].ready,RESTARTS:.status.containerStatuses[*].restartCount,NODE:.spec.nodeName'</span>
+</code></pre>
+<p>Expected form:</p>
+<pre><code class="language-text">NAME                                    READY   RESTARTS   NODE
+kubecost-aggregator-0                   true    0          amd64-02
+kubecost-finopsagent-...                true    0          amd64-02
+kubecost-frontend-...                   true    0          amd64-02
+kubecost-local-store-...                true    0          amd64-02
+</code></pre>
+<h2><a id="persistent-storage" href="#persistent-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Persistent Storage</h2>
+<p>Kubecost created three Longhorn-backed PVCs.</p>
+<table>
+<thead>
+<tr>
+<th>PVC</th>
+<th align="right">Capacity</th>
+<th>Access mode</th>
+<th>StorageClass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregator-db-storage-kubecost-aggregator-0</code></td>
+<td align="right"><code>128Gi</code></td>
+<td><code>RWO</code></td>
+<td><code>longhorn</code></td>
+</tr>
+<tr>
+<td><code>kubecost-local-store</code></td>
+<td align="right"><code>32Gi</code></td>
+<td><code>RWO</code></td>
+<td><code>longhorn</code></td>
+</tr>
+<tr>
+<td><code>persistent-configs-kubecost-aggregator-0</code></td>
+<td align="right"><code>1Gi</code></td>
+<td><code>RWO</code></td>
+<td><code>longhorn</code></td>
+</tr>
+</tbody>
+</table>
+<p>Verify:</p>
+<pre><code class="hljs bash">kubectl get pvc \
+  -n kubecost
+</code></pre>
+<p>Every PVC must be:</p>
+<pre><code class="language-text">STATUS: Bound
+STORAGECLASS: longhorn
+</code></pre>
+<h3><a id="verify-longhorn-health-and-replicas" href="#verify-longhorn-health-and-replicas" class="Permalink" aria-hidden="true" title="Permalink">#</a>Verify Longhorn health and replicas</h3>
+<pre><code class="hljs bash">kubectl get volumes.longhorn.io \
+  -n longhorn-system \
+  -o custom-columns=<span class="hljs-string">'NAME:.metadata.name,STATE:.status.state,HEALTH:.status.robustness,REPLICAS:.spec.numberOfReplicas'</span>
+</code></pre>
+<p>For the Kubecost volumes, the desired state is:</p>
+<pre><code class="language-text">STATE: attached
+HEALTH: healthy
+REPLICAS: 2
+</code></pre>
+<p>A volume may be detached when its consuming pod is stopped. That is not itself
+an error.</p>
+<h2><a id="network-exposure" href="#network-exposure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Network Exposure</h2>
+<p>The Kubecost frontend service is:</p>
+<pre><code class="language-text">TYPE: LoadBalancer
+EXTERNAL-IP: 192.168.2.26
+PORT: 9090
+</code></pre>
+<p>Verify:</p>
+<pre><code class="hljs bash">kubectl get svc kubecost-frontend \
+  -n kubecost
+</code></pre>
+<p>Expected form:</p>
+<pre><code class="language-text">NAME                TYPE           EXTERNAL-IP    PORT(S)
+kubecost-frontend   LoadBalancer   192.168.2.26   9090:...
+</code></pre>
+<p>Test from a LAN host:</p>
+<pre><code class="hljs bash">curl -I \
+  http://192.168.2.26:9090
+</code></pre>
+<p>Open in a browser:</p>
+<pre><code class="language-text">http://192.168.2.26:9090
+</code></pre>
+<h2><a id="application-log-verification" href="#application-log-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Application Log Verification</h2>
+<h3><a id="aggregator" href="#aggregator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Aggregator</h3>
+<pre><code class="hljs bash">kubectl logs \
+  -n kubecost \
+  statefulset/kubecost-aggregator \
+  --tail=100
+</code></pre>
+<p>Immediately after installation, messages referring to zero file windows may be
+normal because the system has not collected enough historical data.</p>
+<h3><a id="finops-agent" href="#finops-agent" class="Permalink" aria-hidden="true" title="Permalink">#</a>FinOps Agent</h3>
+<pre><code class="hljs bash">kubectl logs \
+  -n kubecost \
+  deployment/kubecost-finopsagent \
+  --tail=100
+</code></pre>
+<p>Successful startup included:</p>
+<pre><code class="language-text">Starting IBM Finops Agent version v1.0.20
+Found configmap pricing-configs, watching...
+Successfully created bucket storage
+</code></pre>
+<p><code>Successfully created bucket storage</code> confirms that the agent established its
+local storage path.</p>
+<h2><a id="known-loadbalancer-pricing-warning" href="#known-loadbalancer-pricing-warning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Known LoadBalancer Pricing Warning</h2>
+<p>The FinOps Agent currently logs the following warning approximately once per
+minute:</p>
+<pre><code class="language-text">WRN Error getting LoadBalancer cost:
+strconv.ParseFloat: parsing &quot;&quot;: invalid syntax
+</code></pre>
+<h3><a id="interpretation" href="#interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Interpretation</h3>
+<p>Kalaxy3 uses MetalLB on bare metal. It does not use a cloud provider that
+supplies billed LoadBalancer pricing.</p>
+<p>The warning is nonfatal:</p>
+<ul>
+<li>the FinOps Agent remains ready;</li>
+<li>the pod does not restart;</li>
+<li>the frontend remains available;</li>
+<li>the aggregator and local store remain healthy;</li>
+<li>CPU, memory, storage, node, namespace, workload, and allocation collection
+can continue;</li>
+<li>cloud-style LoadBalancer dollar pricing is unavailable.</li>
+</ul>
+<h3><a id="unsuccessful-manual-pricing-experiments" href="#unsuccessful-manual-pricing-experiments" class="Permalink" aria-hidden="true" title="Permalink">#</a>Unsuccessful manual pricing experiments</h3>
+<p>Several manual <code>pricing-configs</code> ConfigMap structures were tested.</p>
+<p>The chart-managed ConfigMap originally had metadata but no populated pricing
+data. Attempts to place pricing JSON under <code>default.json</code> caused the agent to
+interpret <code>default.json</code> as a field name:</p>
+<pre><code class="language-text">error setting custom pricing field:
+no such field: Default.json in obj
+</code></pre>
+<p>Direct ConfigMap keys for the following values were also tested:</p>
+<pre><code class="language-text">loadBalancer
+LBIngressDataCost
+FirstFiveForwardingRulesCost
+AdditionalForwardingRuleCost
+</code></pre>
+<p>The warning continued.</p>
+<h3><a id="accepted-operational-decision" href="#accepted-operational-decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Accepted operational decision</h3>
+<p>Do not maintain a manual <code>pricing-configs</code> patch in Ansible.</p>
+<p>Allow Helm to own the ConfigMap and treat the recurring LoadBalancer-cost
+message as a known nonfatal limitation of the current on-premises deployment.</p>
+<p>Restore the Helm-managed ConfigMap after any experiment with:</p>
+<pre><code class="hljs bash">kubectl delete configmap pricing-configs \
+  -n kubecost
+</code></pre>
+<p>Then rerun the observability phase:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars <span class="hljs-string">'platform_phase=observability'</span> \
+  --extra-vars <span class="hljs-string">'install_kubecost=true'</span> \
+  --ask-become-pass \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<p>Verify that the restored ConfigMap is owned by Helm:</p>
+<pre><code class="hljs bash">kubectl get configmap pricing-configs \
+  -n kubecost \
+  -o yaml
+</code></pre>
+<p>Expected metadata includes:</p>
+<pre><code class="language-text">meta.helm.sh/release-name: kubecost
+meta.helm.sh/release-namespace: kubecost
+app.kubernetes.io/managed-by: Helm
+</code></pre>
+<h2><a id="region-warning" href="#region-warning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Region Warning</h2>
+<p>The agent may also report that it cannot determine a default region from node
+labels.</p>
+<p>For Kalaxy3, region and zone labels can be added as topology metadata:</p>
+<pre><code class="hljs bash">kubectl label nodes --all \
+  topology.kubernetes.io/region=kalaxy3-homelab \
+  topology.kubernetes.io/zone=kalaxy3-lan \
+  --overwrite
+</code></pre>
+<p>This topology labeling is optional and should be added to Ansible if Kalaxy3
+will rely on it after rebuilds.</p>
+<h2><a id="custom-kalaxy3-cost-model" href="#custom-kalaxy3-cost-model" class="Permalink" aria-hidden="true" title="Permalink">#</a>Custom Kalaxy3 Cost Model</h2>
+<p>The Kubecost deployment is complete, but actual homelab dollar calibration is
+a separate task.</p>
+<p>Kubecost does not yet know Kalaxy3’s actual:</p>
+<ul>
+<li>hardware purchase cost;</li>
+<li>expected equipment lifetime;</li>
+<li>electricity rate;</li>
+<li>measured power consumption;</li>
+<li>CPU cost;</li>
+<li>memory cost;</li>
+<li>disk cost;</li>
+<li>NFS storage cost;</li>
+<li>Longhorn storage overhead;</li>
+<li>network cost.</li>
+</ul>
+<p>Until those values are modeled, Kubecost provides useful allocation and
+relative-cost information but not a complete accounting-grade operating cost.</p>
+<p>MetalLB itself has no separately billed cloud LoadBalancer fee. Infrastructure,
+power, hardware, and network costs should be represented through the broader
+Kalaxy3 cost model instead.</p>
+<h2><a id="complete-rebuild-sequence" href="#complete-rebuild-sequence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Complete Rebuild Sequence</h2>
+<p>After rebuilding the Kalaxy3 cluster, use the following order.</p>
+<h3><a id="1-rebuild-and-verify-the-base-cluster" href="#1-rebuild-and-verify-the-base-cluster" class="Permalink" aria-hidden="true" title="Permalink">#</a>1. Rebuild and verify the base cluster</h3>
+<pre><code class="hljs bash">kubectl get nodes -o wide
+kubectl get pods -A
+</code></pre>
+<h3><a id="2-verify-both-amd64-nodes" href="#2-verify-both-amd64-nodes" class="Permalink" aria-hidden="true" title="Permalink">#</a>2. Verify both AMD64 nodes</h3>
+<pre><code class="hljs bash">kubectl get nodes amd64-01 amd64-02 \
+  -o wide
+</code></pre>
+<h3><a id="3-verify-longhorn-prerequisites-and-mounts" href="#3-verify-longhorn-prerequisites-and-mounts" class="Permalink" aria-hidden="true" title="Permalink">#</a>3. Verify Longhorn prerequisites and mounts</h3>
+<pre><code class="hljs bash">ssh pi@192.168.2.61 \
+  <span class="hljs-string">'findmnt /mnt/longhorn'</span>
+
+ssh pi@192.168.2.62 \
+  <span class="hljs-string">'findmnt /mnt/longhorn'</span>
+</code></pre>
+<h3><a id="4-install-or-reconcile-longhorn" href="#4-install-or-reconcile-longhorn" class="Permalink" aria-hidden="true" title="Permalink">#</a>4. Install or reconcile Longhorn</h3>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars <span class="hljs-string">'platform_phase=longhorn'</span> \
+  --ask-become-pass \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<h3><a id="5-verify-longhorn" href="#5-verify-longhorn" class="Permalink" aria-hidden="true" title="Permalink">#</a>5. Verify Longhorn</h3>
+<pre><code class="hljs bash">kubectl get pods \
+  -n longhorn-system
+
+kubectl get storageclass longhorn
+</code></pre>
+<h3><a id="6-verify-kubecost-node-labels" href="#6-verify-kubecost-node-labels" class="Permalink" aria-hidden="true" title="Permalink">#</a>6. Verify Kubecost node labels</h3>
+<pre><code class="hljs bash">kubectl get nodes \
+  -L kubernetes.io/arch,kalaxy3.io/kubecost,kalaxy3.io/longhorn
+</code></pre>
+<p>Correct labels if required:</p>
+<pre><code class="hljs bash">kubectl label node amd64-02 \
+  kalaxy3.io/kubecost=<span class="hljs-literal">true</span> \
+  --overwrite
+
+kubectl label node amd64-01 \
+  kalaxy3.io/kubecost-
+</code></pre>
+<h3><a id="7-install-observability-and-kubecost" href="#7-install-observability-and-kubecost" class="Permalink" aria-hidden="true" title="Permalink">#</a>7. Install observability and Kubecost</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --extra-vars <span class="hljs-string">'platform_phase=observability'</span> \
+  --extra-vars <span class="hljs-string">'install_kubecost=true'</span> \
+  --ask-become-pass \
+  --vault-id kalaxy3@prompt
+</code></pre>
+<h3><a id="8-watch-the-kubecost-pods" href="#8-watch-the-kubecost-pods" class="Permalink" aria-hidden="true" title="Permalink">#</a>8. Watch the Kubecost pods</h3>
+<pre><code class="hljs bash">kubectl get pods \
+  -n kubecost \
+  -o wide \
+  --watch
+</code></pre>
+<h3><a id="9-repair-the-finops-agent-image-if-necessary" href="#9-repair-the-finops-agent-image-if-necessary" class="Permalink" aria-hidden="true" title="Permalink">#</a>9. Repair the FinOps Agent image if necessary</h3>
+<p>First inspect:</p>
+<pre><code class="hljs bash">kubectl get deployment kubecost-finopsagent \
+  -n kubecost \
+  -o jsonpath=<span class="hljs-string">'{.spec.template.spec.containers[0].image}{"\n"}'</span>
+</code></pre>
+<p>It must return:</p>
+<pre><code class="language-text">icr.io/ibm-finops/agent:v1.0.20
+</code></pre>
+<p>Repair if required:</p>
+<pre><code class="hljs bash">kubectl <span class="hljs-built_in">set</span> image \
+  deployment/kubecost-finopsagent \
+  finops-agent=icr.io/ibm-finops/agent:v1.0.20 \
+  -n kubecost
+</code></pre>
+<p>Then correct the Helm values template and rerun Ansible.</p>
+<h3><a id="10-verify-pods-pvcs-and-service" href="#10-verify-pods-pvcs-and-service" class="Permalink" aria-hidden="true" title="Permalink">#</a>10. Verify pods, PVCs, and service</h3>
+<pre><code class="hljs bash">kubectl get pods \
+  -n kubecost \
+  -o custom-columns=<span class="hljs-string">'NAME:.metadata.name,READY:.status.containerStatuses[*].ready,RESTARTS:.status.containerStatuses[*].restartCount,NODE:.spec.nodeName'</span>
+
+kubectl get pvc \
+  -n kubecost
+
+kubectl get svc kubecost-frontend \
+  -n kubecost
+</code></pre>
+<h3><a id="11-verify-logs" href="#11-verify-logs" class="Permalink" aria-hidden="true" title="Permalink">#</a>11. Verify logs</h3>
+<pre><code class="hljs bash">kubectl logs \
+  -n kubecost \
+  statefulset/kubecost-aggregator \
+  --tail=100
+
+kubectl logs \
+  -n kubecost \
+  deployment/kubecost-finopsagent \
+  --tail=100
+</code></pre>
+<h3><a id="12-open-the-ui" href="#12-open-the-ui" class="Permalink" aria-hidden="true" title="Permalink">#</a>12. Open the UI</h3>
+<pre><code class="language-text">http://192.168.2.26:9090
+</code></pre>
+<h2><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h2>
+<h3><a id="imagepullbackoff" href="#imagepullbackoff" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>ImagePullBackOff</code></h3>
+<p>Inspect the image and events:</p>
+<pre><code class="hljs bash">POD=<span class="hljs-string">"<span class="hljs-variable">$(
+  kubectl get pods \
+    -n kubecost \
+    -l app.kubernetes.io/name=finopsagent \
+    -o jsonpath='{.items[0].metadata.name}'
+)</span>"</span>
+
+kubectl get pod <span class="hljs-string">"<span class="hljs-variable">${POD}</span>"</span> \
+  -n kubecost \
+  -o jsonpath=<span class="hljs-string">'Image: {.spec.containers[0].image}{"\n"}'</span>
+
+kubectl describe pod <span class="hljs-string">"<span class="hljs-variable">${POD}</span>"</span> \
+  -n kubecost |
+  sed -n <span class="hljs-string">'/Events:/,$p'</span>
+</code></pre>
+<p>The known bad image is:</p>
+<pre><code class="language-text">icr.io/kubecost/agent:v1.0.20
+</code></pre>
+<p>The working image is:</p>
+<pre><code class="language-text">icr.io/ibm-finops/agent:v1.0.20
+</code></pre>
+<h3><a id="pod-scheduled-on-the-wrong-node" href="#pod-scheduled-on-the-wrong-node" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pod scheduled on the wrong node</h3>
+<p>Inspect labels:</p>
+<pre><code class="hljs bash">kubectl get nodes \
+  -L kalaxy3.io/kubecost
+</code></pre>
+<p>Inspect the pod’s selector and assigned node:</p>
+<pre><code class="hljs bash">kubectl get pod \
+  -n kubecost \
+  -o wide
+
+kubectl get deployment kubecost-finopsagent \
+  -n kubecost \
+  -o jsonpath=<span class="hljs-string">'{.spec.template.spec.nodeSelector}{"\n"}'</span>
+</code></pre>
+<p>The Kubecost selector must include:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+<span class="hljs-attr">kalaxy3.io/kubecost:</span> <span class="hljs-string">"true"</span>
+</code></pre>
+<p>Only <code>amd64-02</code> should match both labels.</p>
+<h3><a id="pvc-remains-pending" href="#pvc-remains-pending" class="Permalink" aria-hidden="true" title="Permalink">#</a>PVC remains pending</h3>
+<p>Check:</p>
+<pre><code class="hljs bash">kubectl describe pvc \
+  -n kubecost
+
+kubectl get storageclass
+
+kubectl get nodes.longhorn.io \
+  -n longhorn-system
+</code></pre>
+<p>Confirm:</p>
+<ul>
+<li>the <code>longhorn</code> StorageClass exists;</li>
+<li>Longhorn nodes are schedulable;</li>
+<li>both Longhorn disks have usable capacity;</li>
+<li>the requested replica count can be satisfied.</li>
+</ul>
+<h3><a id="frontend-has-no-external-ip" href="#frontend-has-no-external-ip" class="Permalink" aria-hidden="true" title="Permalink">#</a>Frontend has no external IP</h3>
+<p>Check:</p>
+<pre><code class="hljs bash">kubectl describe svc kubecost-frontend \
+  -n kubecost
+
+kubectl get ipaddresspools.metallb.io \
+  -n metallb-system
+
+kubectl get l2advertisements.metallb.io \
+  -n metallb-system
+</code></pre>
+<p>Confirm that <code>192.168.2.26</code> is available and part of the advertised pool.</p>
+<h3><a id="frontend-is-unreachable" href="#frontend-is-unreachable" class="Permalink" aria-hidden="true" title="Permalink">#</a>Frontend is unreachable</h3>
+<p>Check:</p>
+<pre><code class="hljs bash">kubectl get endpoints kubecost-frontend \
+  -n kubecost
+
+curl -v \
+  http://192.168.2.26:9090
+</code></pre>
+<p>Also verify LAN routing and host firewall rules.</p>
+<h3><a id="repeated-loadbalancer-warning" href="#repeated-loadbalancer-warning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repeated LoadBalancer warning</h3>
+<p>This is currently accepted:</p>
+<pre><code class="language-text">Error getting LoadBalancer cost:
+strconv.ParseFloat: parsing &quot;&quot;: invalid syntax
+</code></pre>
+<p>Do not repeatedly patch <code>pricing-configs</code> unless a later Kubecost or FinOps Agent
+release documents a supported on-premises LoadBalancer pricing configuration.</p>
+<h2><a id="final-acceptance-checklist" href="#final-acceptance-checklist" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final Acceptance Checklist</h2>
+<ul>
+<li>[x] Kubecost chart installed.</li>
+<li>[x] Kubecost namespace created.</li>
+<li>[x] Aggregator running.</li>
+<li>[x] FinOps Agent running.</li>
+<li>[x] Frontend running.</li>
+<li>[x] Local store running.</li>
+<li>[x] Correct FinOps Agent image configured.</li>
+<li>[x] All Kubecost pods scheduled on <code>amd64-02</code>.</li>
+<li>[x] <code>amd64-01</code> preserved for LLM compute.</li>
+<li>[x] Aggregator database PVC bound.</li>
+<li>[x] Local-store PVC bound.</li>
+<li>[x] Persistent-config PVC bound.</li>
+<li>[x] All Kubecost PVCs use Longhorn.</li>
+<li>[x] Longhorn replica target set to two.</li>
+<li>[x] Frontend exposed through MetalLB.</li>
+<li>[x] Frontend assigned <code>192.168.2.26</code>.</li>
+<li>[x] Ansible observability phase completes without failure.</li>
+<li>[x] Helm owns the final <code>pricing-configs</code> ConfigMap.</li>
+<li>[x] LoadBalancer pricing warning documented as nonfatal.</li>
+<li>[ ] Kalaxy3 custom hardware and electricity pricing calibrated.</li>
+<li>[ ] Final repository changes committed and pushed.</li>
+</ul>
+<h2><a id="operational-status" href="#operational-status" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational Status</h2>
+<p>At the completion of this work:</p>
+<pre><code class="language-text">Deployment:          Complete
+Scheduling:          Complete
+Persistent storage: Complete
+Network access:      Complete
+Data collection:     Operational
+Pod stability:       Healthy
+Ansible rebuild:     Documented
+Custom cost model:   Not calibrated
+Known warning:       LoadBalancer pricing only
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">Previous</a></li>            <li class=Pager--next><a href="../installation/kalaxy3_minio_installation_evidence.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
