@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>kalaxy3-cost-model-architecture-and-finops-analysis - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="I, Me & Myself">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">research</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="kalaxy3-cost-model-architecture-and-finops-analysis" href="#kalaxy3-cost-model-architecture-and-finops-analysis" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 Cost Model Architecture and FinOps Analysis</h1>
+<h2><a id="document-purpose" href="#document-purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Document purpose</h2>
+<p>This research document defines what Kalaxy3 should be able to accomplish by
+building a cost model around its Kubecost installation, how that model should
+work, what data it requires, how it should compare Kalaxy3 with AWS, and how it
+can show the impact of individual projects on the cost and capacity of the
+cluster.</p>
+<p>It combines:</p>
+<ul>
+<li>the verified Kalaxy3 architecture and Kubecost deployment;</li>
+<li>the OpenCost cost-allocation model used by Kubecost;</li>
+<li>the AWS Well-Architected Framework;</li>
+<li>the AWS Cloud Adoption Framework;</li>
+<li>AWS cost-allocation and pricing practices;</li>
+<li>software-architecture and FinOps principles;</li>
+<li>a nontechnical explanation for readers who do not operate Kubernetes.</li>
+</ul>
+<p>This is a research and design document. It does not assert that the current
+Kubecost installation already contains every cost required for a complete
+Kalaxy3 total-cost-of-ownership model.</p>
+<h2><a id="table-of-contents" href="#table-of-contents" class="Permalink" aria-hidden="true" title="Permalink">#</a>Table of contents</h2>
+<ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#research-basis">Research basis</a></li>
+<li><a href="#current-kalaxy3-cost-architecture">Current Kalaxy3 cost architecture</a>
+<ul>
+<li><a href="#relevant-kalaxy3-components">Relevant Kalaxy3 components</a></li>
+<li><a href="#what-kubecost-currently-provides">What Kubecost currently provides</a></li>
+<li><a href="#what-kubecost-does-not-provide-by-itself">What Kubecost does not provide by itself</a></li>
+</ul>
+</li>
+<li><a href="#what-the-kalaxy3-cost-model-should-accomplish">What the Kalaxy3 cost model should accomplish</a>
+<ul>
+<li><a href="#measure-total-cost-of-ownership">Measure total cost of ownership</a></li>
+<li><a href="#measure-project-and-workload-impact">Measure project and workload impact</a></li>
+<li><a href="#compare-kalaxy3-with-aws">Compare Kalaxy3 with AWS</a></li>
+<li><a href="#support-capacity-and-investment-decisions">Support capacity and investment decisions</a></li>
+<li><a href="#support-showback-and-chargeback">Support showback and chargeback</a></li>
+<li><a href="#measure-unit-economics">Measure unit economics</a></li>
+<li><a href="#identify-waste-and-optimization-opportunities">Identify waste and optimization opportunities</a></li>
+<li><a href="#quantify-business-and-engineering-value">Quantify business and engineering value</a></li>
+</ul>
+</li>
+<li><a href="#cost-model-principles">Cost model principles</a>
+<ul>
+<li><a href="#separate-cost-from-price">Separate cost from price</a></li>
+<li><a href="#separate-fixed-variable-direct-shared-idle-and-overhead-costs">Separate fixed variable direct shared idle and overhead costs</a></li>
+<li><a href="#maintain-actual-forecast-and-comparison-views">Maintain actual forecast and comparison views</a></li>
+<li><a href="#compare-equivalent-outcomes-rather-than-isolated-resources">Compare equivalent outcomes rather than isolated resources</a></li>
+<li><a href="#preserve-traceability">Preserve traceability</a></li>
+</ul>
+</li>
+<li><a href="#proposed-kalaxy3-cost-taxonomy">Proposed Kalaxy3 cost taxonomy</a>
+<ul>
+<li><a href="#compute">Compute</a></li>
+<li><a href="#gpu-and-accelerated-computing">GPU and accelerated computing</a></li>
+<li><a href="#longhorn-block-storage">Longhorn block storage</a></li>
+<li><a href="#nfs-shared-storage">NFS shared storage</a></li>
+<li><a href="#minio-object-storage">MinIO object storage</a></li>
+<li><a href="#network-and-ingress">Network and ingress</a></li>
+<li><a href="#control-plane-and-shared-platform-services">Control plane and shared platform services</a></li>
+<li><a href="#power-cooling-ups-and-facilities">Power cooling UPS and facilities</a></li>
+<li><a href="#operations-labor-and-engineering-effort">Operations labor and engineering effort</a></li>
+<li><a href="#maintenance-replacement-backup-and-risk">Maintenance replacement backup and risk</a></li>
+</ul>
+</li>
+<li><a href="#project-allocation-architecture">Project allocation architecture</a>
+<ul>
+<li><a href="#required-kubernetes-metadata">Required Kubernetes metadata</a></li>
+<li><a href="#recommended-label-dictionary">Recommended label dictionary</a></li>
+<li><a href="#namespace-policy">Namespace policy</a></li>
+<li><a href="#direct-cost-allocation">Direct cost allocation</a></li>
+<li><a href="#shared-platform-cost-allocation">Shared platform cost allocation</a></li>
+<li><a href="#idle-cost-policy">Idle cost policy</a></li>
+<li><a href="#storage-replication-policy">Storage replication policy</a></li>
+<li><a href="#project-lifecycle-policy">Project lifecycle policy</a></li>
+</ul>
+</li>
+<li><a href="#data-required-for-the-kalaxy3-model">Data required for the Kalaxy3 model</a>
+<ul>
+<li><a href="#kubecost-and-kubernetes-allocation-data">Kubecost and Kubernetes allocation data</a></li>
+<li><a href="#prometheus-operational-telemetry">Prometheus operational telemetry</a></li>
+<li><a href="#hardware-inventory-and-purchase-data">Hardware inventory and purchase data</a></li>
+<li><a href="#power-and-electricity-data">Power and electricity data</a></li>
+<li><a href="#storage-data">Storage data</a></li>
+<li><a href="#network-data">Network data</a></li>
+<li><a href="#operations-and-labor-data">Operations and labor data</a></li>
+<li><a href="#project-and-business-metadata">Project and business metadata</a></li>
+<li><a href="#aws-comparison-data">AWS comparison data</a></li>
+</ul>
+</li>
+<li><a href="#proposed-analytical-data-model">Proposed analytical data model</a>
+<ul>
+<li><a href="#core-dimensions">Core dimensions</a></li>
+<li><a href="#core-fact-tables">Core fact tables</a></li>
+<li><a href="#data-retention-and-granularity">Data retention and granularity</a></li>
+<li><a href="#data-flow">Data flow</a></li>
+</ul>
+</li>
+<li><a href="#cost-formulas">Cost formulas</a>
+<ul>
+<li><a href="#hardware-depreciation">Hardware depreciation</a></li>
+<li><a href="#power">Power</a></li>
+<li><a href="#node-cost">Node cost</a></li>
+<li><a href="#cpu-memory-and-gpu-rates">CPU memory and GPU rates</a></li>
+<li><a href="#storage">Storage</a></li>
+<li><a href="#project-cost">Project cost</a></li>
+<li><a href="#marginal-cost">Marginal cost</a></li>
+<li><a href="#avoided-aws-cost">Avoided AWS cost</a></li>
+</ul>
+</li>
+<li><a href="#aws-comparison-methodology">AWS comparison methodology</a>
+<ul>
+<li><a href="#comparison-scenarios">Comparison scenarios</a></li>
+<li><a href="#kalaxy3-to-aws-service-mapping">Kalaxy3 to AWS service mapping</a></li>
+<li><a href="#aws-cost-inputs">AWS cost inputs</a></li>
+<li><a href="#normalize-nonprice-differences">Normalize nonprice differences</a></li>
+<li><a href="#aws-break-even-analysis">AWS break-even analysis</a></li>
+<li><a href="#hybrid-placement-decisions">Hybrid placement decisions</a></li>
+</ul>
+</li>
+<li><a href="#aws-well-architected-alignment">AWS Well-Architected alignment</a>
+<ul>
+<li><a href="#operational-excellence">Operational excellence</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#reliability">Reliability</a></li>
+<li><a href="#performance-efficiency">Performance efficiency</a></li>
+<li><a href="#cost-optimization">Cost optimization</a></li>
+<li><a href="#sustainability">Sustainability</a></li>
+</ul>
+</li>
+<li><a href="#aws-cloud-adoption-framework-alignment">AWS Cloud Adoption Framework alignment</a>
+<ul>
+<li><a href="#business-perspective">Business perspective</a></li>
+<li><a href="#people-perspective">People perspective</a></li>
+<li><a href="#governance-perspective">Governance perspective</a></li>
+<li><a href="#platform-perspective">Platform perspective</a></li>
+<li><a href="#security-perspective">Security perspective</a></li>
+<li><a href="#operations-perspective">Operations perspective</a></li>
+</ul>
+</li>
+<li><a href="#recommended-reports-and-dashboards">Recommended reports and dashboards</a>
+<ul>
+<li><a href="#executive-cost-dashboard">Executive cost dashboard</a></li>
+<li><a href="#project-cost-dashboard">Project cost dashboard</a></li>
+<li><a href="#capacity-and-efficiency-dashboard">Capacity and efficiency dashboard</a></li>
+<li><a href="#aws-comparison-dashboard">AWS comparison dashboard</a></li>
+<li><a href="#storage-economics-dashboard">Storage economics dashboard</a></li>
+<li><a href="#llm-and-ai-economics-dashboard">LLM and AI economics dashboard</a></li>
+<li><a href="#finops-control-dashboard">FinOps control dashboard</a></li>
+</ul>
+</li>
+<li><a href="#implementation-roadmap">Implementation roadmap</a>
+<ul>
+<li><a href="#phase-0-governance-and-definitions">Phase 0 governance and definitions</a></li>
+<li><a href="#phase-1-metadata-and-measurement">Phase 1 metadata and measurement</a></li>
+<li><a href="#phase-2-kalaxy3-rate-model">Phase 2 Kalaxy3 rate model</a></li>
+<li><a href="#phase-3-project-allocation-and-reporting">Phase 3 project allocation and reporting</a></li>
+<li><a href="#phase-4-aws-comparison-engine">Phase 4 AWS comparison engine</a></li>
+<li><a href="#phase-5-automation-and-optimization">Phase 5 automation and optimization</a></li>
+</ul>
+</li>
+<li><a href="#validation-and-control-framework">Validation and control framework</a>
+<ul>
+<li><a href="#cost-reconciliation">Cost reconciliation</a></li>
+<li><a href="#metadata-coverage">Metadata coverage</a></li>
+<li><a href="#model-versioning">Model versioning</a></li>
+<li><a href="#review-cadence">Review cadence</a></li>
+<li><a href="#acceptance-criteria">Acceptance criteria</a></li>
+</ul>
+</li>
+<li><a href="#risks-limitations-and-cautions">Risks limitations and cautions</a></li>
+<li><a href="#recommended-initial-decisions">Recommended initial decisions</a></li>
+<li><a href="#nontechnical-explanation">Nontechnical explanation</a>
+<ul>
+<li><a href="#what-we-are-building">What we are building</a></li>
+<li><a href="#why-it-matters">Why it matters</a></li>
+<li><a href="#how-it-works">How it works</a></li>
+<li><a href="#what-it-will-tell-us">What it will tell us</a></li>
+<li><a href="#what-it-will-not-claim">What it will not claim</a></li>
+</ul>
+</li>
+<li><a href="#conclusion">Conclusion</a></li>
+<li><a href="#authoritative-source-basis">Authoritative source basis</a></li>
+</ul>
+<h2><a id="executive-summary" href="#executive-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive summary</h2>
+<p>Kalaxy3 now has the core technical foundation for a useful FinOps capability:
+Kubecost is running on <code>amd64-02</code>, its persistent data is stored on Longhorn,
+Prometheus supplies cluster telemetry, and the frontend is available through
+MetalLB.</p>
+<p>That installation is the beginning of a cost model, not the completed model.</p>
+<p>Kubecost can allocate measured Kubernetes resources to containers, pods,
+controllers, namespaces, labels, and other Kubernetes dimensions. It can
+identify requested resources, used resources, persistent volumes, shared
+resources, and idle capacity. This provides the workload-consumption layer of
+the model.</p>
+<p>A complete Kalaxy3 cost model must add the economic layer:</p>
+<ul>
+<li>hardware purchase and replacement cost;</li>
+<li>depreciation or amortization policy;</li>
+<li>electricity and measured power consumption;</li>
+<li>UPS, network, storage, backup, and maintenance cost;</li>
+<li>the economic cost of Longhorn replication;</li>
+<li>the cost of NFS and MinIO services outside a workload’s immediate pod;</li>
+<li>platform engineering and operations effort;</li>
+<li>project ownership and business metadata;</li>
+<li>current AWS pricing and equivalent AWS architecture scenarios;</li>
+<li>differences in availability, durability, elasticity, support, and operational
+responsibility.</li>
+</ul>
+<p>The finished model should answer questions such as:</p>
+<ol>
+<li>What does Kalaxy3 cost per day, month, and year?</li>
+<li>What is the fully loaded cost of each node, storage tier, and platform
+service?</li>
+<li>Which projects consume the cluster’s CPU, memory, GPU, storage, and network
+capacity?</li>
+<li>What portion of the platform is idle, reserved, shared, or unavailable?</li>
+<li>What does a specific project cost when direct and shared costs are included?</li>
+<li>What is the marginal cost of adding one more workload to existing spare
+capacity?</li>
+<li>When will a workload require another node, disk, GPU, switch, or UPS?</li>
+<li>What would the same workload cost on AWS under on-demand, committed, Spot,
+managed-service, and elastic operating models?</li>
+<li>Is Kalaxy3 cheaper because it is genuinely efficient, or because labor,
+availability, backup, and hardware replacement have not been counted?</li>
+<li>Which workloads should remain on Kalaxy3, move to AWS, or operate in a
+hybrid model?</li>
+</ol>
+<p>The most important architectural decision is to maintain at least three views:</p>
+<ul>
+<li><strong>Cash view:</strong> actual money paid during the reporting period.</li>
+<li><strong>Economic view:</strong> amortized hardware, power, labor, replacement, and shared
+platform cost.</li>
+<li><strong>AWS-equivalent view:</strong> the cost of delivering a defined equivalent outcome
+on AWS.</li>
+</ul>
+<p>These views should not be collapsed into a single number because they answer
+different questions.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="research-basis" href="#research-basis" class="Permalink" aria-hidden="true" title="Permalink">#</a>Research basis</h2>
+<p>This analysis is based on the following verified Kalaxy3 state:</p>
+<ul>
+<li>Kubecost chart version <code>3.2.1</code>;</li>
+<li>Kubecost workloads scheduled on <code>amd64-02</code>;</li>
+<li><code>amd64-01</code> preserved for the primary LLM workload;</li>
+<li>Kubecost aggregator, FinOps Agent, frontend, and local store running;</li>
+<li>Longhorn-backed Kubecost PVCs of <code>128Gi</code>, <code>32Gi</code>, and <code>1Gi</code>;</li>
+<li>Longhorn configured for two replicas;</li>
+<li>Kubecost frontend exposed through MetalLB at <code>192.168.2.26:9090</code>;</li>
+<li>Prometheus and Grafana installed in the observability platform phase;</li>
+<li>a known nonfatal LoadBalancer-pricing warning in the current on-premises
+FinOps Agent path;</li>
+<li>Ansible and Helm used as the reproducible installation mechanism.</li>
+</ul>
+<p>The model also uses these external architectural principles:</p>
+<ul>
+<li>The OpenCost specification defines total cluster cost as asset cost plus
+cluster overhead and distinguishes allocation, usage, shared, and idle cost.</li>
+<li>OpenCost supports allocation by Kubernetes concepts including namespace,
+pod, controller, label, and annotation.</li>
+<li>The AWS Well-Architected Framework treats cost optimization as a continuous
+process and organizes it around financial management, expenditure awareness,
+cost-effective resources, demand and supply, and ongoing optimization.</li>
+<li>AWS CAF organizes transformation capabilities into Business, People,
+Governance, Platform, Security, and Operations perspectives.</li>
+<li>AWS cost allocation relies on a deliberate tagging dictionary and consistent
+cost categories.</li>
+<li>AWS Pricing Calculator and AWS billing data exports provide the basis for
+AWS estimates and actual-cloud comparisons.</li>
+</ul>
+<p>No AWS prices should be permanently hard-coded into the Kalaxy3 model. AWS
+prices, discounts, service features, and transfer rules change. Each comparison
+run should record its source date, region, pricing model, and assumptions.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="current-kalaxy3-cost-architecture" href="#current-kalaxy3-cost-architecture" class="Permalink" aria-hidden="true" title="Permalink">#</a>Current Kalaxy3 cost architecture</h2>
+<h3><a id="relevant-kalaxy3-components" href="#relevant-kalaxy3-components" class="Permalink" aria-hidden="true" title="Permalink">#</a>Relevant Kalaxy3 components</h3>
+<p>The current architecture includes cost-bearing resources in several layers.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Kalaxy3 components</th>
+<th>Cost relevance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control plane</td>
+<td>Three Raspberry Pi K3s server nodes</td>
+<td>Hardware, power, boot storage, cluster overhead</td>
+</tr>
+<tr>
+<td>General workers</td>
+<td>Raspberry Pi and Intel K3s agents</td>
+<td>CPU, RAM, disk, power, workload capacity</td>
+</tr>
+<tr>
+<td>LLM compute</td>
+<td><code>amd64-01</code>, RTX 3090-class GPU resources</td>
+<td>High capital cost, high power cost, scarce capacity</td>
+</tr>
+<tr>
+<td>Secondary AMD64 compute</td>
+<td><code>amd64-02</code></td>
+<td>Kubecost, Longhorn, general x86 workload capacity</td>
+</tr>
+<tr>
+<td>Distributed block storage</td>
+<td>Longhorn on AMD64 disks</td>
+<td>Media, replication, I/O, network, capacity overhead</td>
+</tr>
+<tr>
+<td>Shared file storage</td>
+<td>NFS server and exported SSD/HDD storage</td>
+<td>Server, disks, power, network, backup</td>
+</tr>
+<tr>
+<td>Object storage</td>
+<td>MinIO on Raspberry Pi data disks</td>
+<td>Disk capacity, replication, power, network</td>
+</tr>
+<tr>
+<td>Networking</td>
+<td>2.5 GbE and 10 GbE switching, router, MetalLB, Traefik</td>
+<td>Hardware, power, shared service, ingress</td>
+</tr>
+<tr>
+<td>Observability</td>
+<td>Prometheus, Grafana, Kubecost</td>
+<td>Shared CPU, memory, storage, operational overhead</td>
+</tr>
+<tr>
+<td>Resilience</td>
+<td>UPS devices, backups, redundant storage</td>
+<td>Hardware, battery replacement, energy loss, capacity</td>
+</tr>
+<tr>
+<td>Automation</td>
+<td>Ansible, Helm, GitHub, generated documentation</td>
+<td>Engineering effort, risk reduction, rebuild efficiency</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="what-kubecost-currently-provides" href="#what-kubecost-currently-provides" class="Permalink" aria-hidden="true" title="Permalink">#</a>What Kubecost currently provides</h3>
+<p>Kubecost can serve as the allocation engine for in-cluster resources. It should
+be able to provide or derive:</p>
+<ul>
+<li>CPU requested and consumed;</li>
+<li>memory requested and consumed;</li>
+<li>pod, container, controller, and namespace allocation;</li>
+<li>node attribution;</li>
+<li>persistent-volume capacity attribution;</li>
+<li>idle resources;</li>
+<li>shared cluster-resource allocation;</li>
+<li>time-windowed historical cost and usage;</li>
+<li>aggregation by Kubernetes labels and annotations;</li>
+<li>relative efficiency and rightsizing signals.</li>
+</ul>
+<p>This is enough to identify which Kubernetes workloads consume capacity.</p>
+<h3><a id="what-kubecost-does-not-provide-by-itself" href="#what-kubecost-does-not-provide-by-itself" class="Permalink" aria-hidden="true" title="Permalink">#</a>What Kubecost does not provide by itself</h3>
+<p>The current installation does not automatically know:</p>
+<ul>
+<li>the purchase price of each Kalaxy3 machine;</li>
+<li>whether to value donated, reused, or previously depreciated equipment at
+historical cost, book value, or replacement cost;</li>
+<li>actual electricity rates;</li>
+<li>real-time watts consumed by each node and device;</li>
+<li>UPS losses and cooling overhead;</li>
+<li>hardware maintenance and expected failure rates;</li>
+<li>operator and engineering labor;</li>
+<li>the cost of internet service or shared network equipment;</li>
+<li>the full cost of NFS, MinIO, backup, and off-cluster services;</li>
+<li>the business owner and outcome of every workload;</li>
+<li>a current equivalent AWS architecture;</li>
+<li>AWS discounts, commitments, support, transfer, NAT, logging, and managed
+service charges;</li>
+<li>the business value produced by a project.</li>
+</ul>
+<p>Kubecost should therefore be treated as one component of the Kalaxy3 FinOps
+architecture, not as the complete accounting system.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="what-the-kalaxy3-cost-model-should-accomplish" href="#what-the-kalaxy3-cost-model-should-accomplish" class="Permalink" aria-hidden="true" title="Permalink">#</a>What the Kalaxy3 cost model should accomplish</h2>
+<h3><a id="measure-total-cost-of-ownership" href="#measure-total-cost-of-ownership" class="Permalink" aria-hidden="true" title="Permalink">#</a>Measure total cost of ownership</h3>
+<p>The model should produce a complete Kalaxy3 TCO that includes:</p>
+<ul>
+<li>amortized hardware;</li>
+<li>power;</li>
+<li>storage media;</li>
+<li>networking;</li>
+<li>UPS and battery replacement;</li>
+<li>backup;</li>
+<li>software and support where applicable;</li>
+<li>operations labor;</li>
+<li>expected maintenance and replacement;</li>
+<li>shared cluster overhead.</li>
+</ul>
+<p>It should report both monthly and annual cost and retain the assumptions used.</p>
+<h3><a id="measure-project-and-workload-impact" href="#measure-project-and-workload-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Measure project and workload impact</h3>
+<p>Each project should receive a view of:</p>
+<ul>
+<li>direct CPU, memory, GPU, storage, and network consumption;</li>
+<li>reserved resources;</li>
+<li>actual usage;</li>
+<li>project-attributable persistent volumes;</li>
+<li>direct external services;</li>
+<li>its portion of shared platform services;</li>
+<li>its portion of idle capacity under the selected policy;</li>
+<li>the capacity threshold it is moving Kalaxy3 toward.</li>
+</ul>
+<p>The model should distinguish a project that merely uses otherwise-idle capacity
+from a project that triggers the purchase of another GPU, disk, node, switch,
+or UPS.</p>
+<h3><a id="compare-kalaxy3-with-aws" href="#compare-kalaxy3-with-aws" class="Permalink" aria-hidden="true" title="Permalink">#</a>Compare Kalaxy3 with AWS</h3>
+<p>The model should generate AWS-equivalent scenarios using the same measured
+workload demand and service objectives.</p>
+<p>The comparison should include:</p>
+<ul>
+<li>an EKS-based Kubernetes rehost;</li>
+<li>an AWS-managed-services alternative;</li>
+<li>an elastic AWS design that shuts down or scales down when unused;</li>
+<li>on-demand pricing;</li>
+<li>commitment-adjusted pricing;</li>
+<li>Spot pricing for interruptible work;</li>
+<li>storage, backup, monitoring, support, load-balancing, public IPv4, and data
+transfer;</li>
+<li>labor and operational responsibility differences.</li>
+</ul>
+<p>The comparison should show a range rather than a single false-precision number.</p>
+<h3><a id="support-capacity-and-investment-decisions" href="#support-capacity-and-investment-decisions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Support capacity and investment decisions</h3>
+<p>The model should forecast:</p>
+<ul>
+<li>when CPU, RAM, GPU, storage, network, or power becomes constrained;</li>
+<li>the incremental cost of the next capacity addition;</li>
+<li>which project is driving the threshold;</li>
+<li>whether it is cheaper to add local capacity or burst to AWS;</li>
+<li>whether replacing old hardware reduces power and support cost;</li>
+<li>whether a Raspberry Pi, general x86 node, GPU node, or managed AWS service is
+the best fit.</li>
+</ul>
+<h3><a id="support-showback-and-chargeback" href="#support-showback-and-chargeback" class="Permalink" aria-hidden="true" title="Permalink">#</a>Support showback and chargeback</h3>
+<p><strong>Showback</strong> reports the cost associated with a project, owner, or service
+without requiring actual money transfer.</p>
+<p><strong>Chargeback</strong> assigns or recovers that cost from the responsible budget.</p>
+<p>Kalaxy3 should begin with showback. Chargeback should only be considered after
+the allocation model is stable, accepted, and reconciled.</p>
+<h3><a id="measure-unit-economics" href="#measure-unit-economics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Measure unit economics</h3>
+<p>A strong cost model should move beyond infrastructure totals and calculate
+cost per useful outcome.</p>
+<p>Potential Kalaxy3 units include:</p>
+<ul>
+<li>cost per CI build;</li>
+<li>cost per deployment;</li>
+<li>cost per data-pipeline run;</li>
+<li>cost per document indexed;</li>
+<li>cost per gigabyte processed;</li>
+<li>cost per one million tokens generated;</li>
+<li>cost per LLM request;</li>
+<li>cost per GPU-hour;</li>
+<li>cost per training or fine-tuning run;</li>
+<li>cost per database transaction;</li>
+<li>cost per retained terabyte-month;</li>
+<li>cost per active development project.</li>
+</ul>
+<p>Unit economics allow Kalaxy3 and AWS to be compared on outcomes rather than
+hardware labels.</p>
+<h3><a id="identify-waste-and-optimization-opportunities" href="#identify-waste-and-optimization-opportunities" class="Permalink" aria-hidden="true" title="Permalink">#</a>Identify waste and optimization opportunities</h3>
+<p>The model should identify:</p>
+<ul>
+<li>excessive CPU or memory requests;</li>
+<li>low-utilization nodes;</li>
+<li>underused GPU capacity;</li>
+<li>stale PVCs;</li>
+<li>unnecessary data replication;</li>
+<li>retained data with no owner;</li>
+<li>projects that run continuously but could be scheduled;</li>
+<li>services using expensive storage tiers without need;</li>
+<li>duplicated observability or platform components;</li>
+<li>workloads suited to ARM instead of x86;</li>
+<li>workloads suited to AWS Spot or short-lived cloud execution.</li>
+</ul>
+<h3><a id="quantify-business-and-engineering-value" href="#quantify-business-and-engineering-value" class="Permalink" aria-hidden="true" title="Permalink">#</a>Quantify business and engineering value</h3>
+<p>Cost is only half of the decision.</p>
+<p>The model should also record benefits such as:</p>
+<ul>
+<li>faster experimentation;</li>
+<li>privacy and local data control;</li>
+<li>reduced AWS data-egress exposure;</li>
+<li>practical Kubernetes learning;</li>
+<li>architecture validation before cloud deployment;</li>
+<li>offline availability;</li>
+<li>LLM data locality;</li>
+<li>reusable automation and documentation;</li>
+<li>reduced rebuild and recovery time;</li>
+<li>avoidance of cloud commitment before a project proves value.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="cost-model-principles" href="#cost-model-principles" class="Permalink" aria-hidden="true" title="Permalink">#</a>Cost model principles</h2>
+<h3><a id="separate-cost-from-price" href="#separate-cost-from-price" class="Permalink" aria-hidden="true" title="Permalink">#</a>Separate cost from price</h3>
+<p>Kalaxy3 has costs even when no new invoice is generated.</p>
+<p>A server purchased two years ago may have zero current cash expense but still
+has:</p>
+<ul>
+<li>economic value;</li>
+<li>replacement cost;</li>
+<li>power cost;</li>
+<li>failure risk;</li>
+<li>capacity opportunity cost.</li>
+</ul>
+<p>The model should maintain these distinct concepts:</p>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Cash cost</td>
+<td>Money paid during the period</td>
+</tr>
+<tr>
+<td>Historical cost</td>
+<td>Original purchase cost</td>
+</tr>
+<tr>
+<td>Book cost</td>
+<td>Remaining value under a depreciation policy</td>
+</tr>
+<tr>
+<td>Replacement cost</td>
+<td>Current cost to replace equivalent capability</td>
+</tr>
+<tr>
+<td>Marginal cost</td>
+<td>Additional cost caused by one more unit of work</td>
+</tr>
+<tr>
+<td>Fully loaded cost</td>
+<td>Direct plus shared plus overhead cost</td>
+</tr>
+<tr>
+<td>Opportunity cost</td>
+<td>Value of the best alternative use of scarce capacity</td>
+</tr>
+<tr>
+<td>AWS-equivalent price</td>
+<td>Estimated AWS charge for an equivalent outcome</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="separate-fixed-variable-direct-shared-idle-and-overhead-costs" href="#separate-fixed-variable-direct-shared-idle-and-overhead-costs" class="Permalink" aria-hidden="true" title="Permalink">#</a>Separate fixed variable direct shared idle and overhead costs</h3>
+<table>
+<thead>
+<tr>
+<th>Cost class</th>
+<th>Kalaxy3 example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fixed</td>
+<td>Purchased server, switch, UPS</td>
+</tr>
+<tr>
+<td>Variable</td>
+<td>Electricity, replacement disks, cloud bursting</td>
+</tr>
+<tr>
+<td>Direct</td>
+<td>A project’s dedicated GPU hours or PVC</td>
+</tr>
+<tr>
+<td>Shared</td>
+<td>Prometheus, Traefik, CoreDNS, control plane</td>
+</tr>
+<tr>
+<td>Idle</td>
+<td>Purchased CPU or RAM not assigned to useful work</td>
+</tr>
+<tr>
+<td>Overhead</td>
+<td>Platform engineering, backups, documentation</td>
+</tr>
+<tr>
+<td>Step cost</td>
+<td>Another node required after capacity threshold</td>
+</tr>
+<tr>
+<td>Sunk cost</td>
+<td>Historical expense that cannot be recovered</td>
+</tr>
+</tbody>
+</table>
+<p>The categories must remain visible so a decision-maker can choose the
+appropriate view.</p>
+<h3><a id="maintain-actual-forecast-and-comparison-views" href="#maintain-actual-forecast-and-comparison-views" class="Permalink" aria-hidden="true" title="Permalink">#</a>Maintain actual forecast and comparison views</h3>
+<p>The model should preserve three separate datasets:</p>
+<ol>
+<li><strong>Actual:</strong> measured Kalaxy3 usage and incurred cost.</li>
+<li><strong>Forecast:</strong> projected Kalaxy3 usage and planned capacity cost.</li>
+<li><strong>Comparison:</strong> hypothetical AWS architecture and price.</li>
+</ol>
+<p>Mixing them would make reconciliation and decision-making unreliable.</p>
+<h3><a id="compare-equivalent-outcomes-rather-than-isolated-resources" href="#compare-equivalent-outcomes-rather-than-isolated-resources" class="Permalink" aria-hidden="true" title="Permalink">#</a>Compare equivalent outcomes rather than isolated resources</h3>
+<p>A Raspberry Pi should not be compared directly with an arbitrary EC2 instance
+solely because both have four cores.</p>
+<p>The comparison must account for:</p>
+<ul>
+<li>architecture;</li>
+<li>CPU performance;</li>
+<li>memory;</li>
+<li>storage throughput;</li>
+<li>network throughput;</li>
+<li>GPU capability;</li>
+<li>availability;</li>
+<li>backup;</li>
+<li>support;</li>
+<li>elasticity;</li>
+<li>operating hours;</li>
+<li>operational labor;</li>
+<li>data locality.</li>
+</ul>
+<p>Benchmark-equivalent service delivery is the correct comparison target.</p>
+<h3><a id="preserve-traceability" href="#preserve-traceability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preserve traceability</h3>
+<p>Every calculated number should be traceable to:</p>
+<ul>
+<li>a measured usage record;</li>
+<li>a cost-rate record;</li>
+<li>a project-allocation rule;</li>
+<li>an AWS price source;</li>
+<li>a model version;</li>
+<li>an effective date;</li>
+<li>an assumption owner.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="proposed-kalaxy3-cost-taxonomy" href="#proposed-kalaxy3-cost-taxonomy" class="Permalink" aria-hidden="true" title="Permalink">#</a>Proposed Kalaxy3 cost taxonomy</h2>
+<h3><a id="compute" href="#compute" class="Permalink" aria-hidden="true" title="Permalink">#</a>Compute</h3>
+<p>Compute cost should include:</p>
+<ul>
+<li>chassis, motherboard, CPU, RAM, boot storage, NIC, and PSU;</li>
+<li>useful life;</li>
+<li>expected replacement cost;</li>
+<li>measured or estimated power;</li>
+<li>maintenance reserve;</li>
+<li>node-specific capacity;</li>
+<li>operating schedule;</li>
+<li>allocated and idle CPU/RAM.</li>
+</ul>
+<p>ARM and x86 should have separate rate families because their performance,
+power, and workload compatibility differ.</p>
+<h3><a id="gpu-and-accelerated-computing" href="#gpu-and-accelerated-computing" class="Permalink" aria-hidden="true" title="Permalink">#</a>GPU and accelerated computing</h3>
+<p>GPU cost should include:</p>
+<ul>
+<li>GPU purchase or replacement value;</li>
+<li>host-system share;</li>
+<li>incremental GPU power;</li>
+<li>cooling and UPS overhead;</li>
+<li>memory capacity;</li>
+<li>measured utilization;</li>
+<li>reserved versus active GPU time;</li>
+<li>driver and operational effort;</li>
+<li>scarce-capacity opportunity cost.</li>
+</ul>
+<p>For the primary LLM node, the model should distinguish:</p>
+<ul>
+<li>base host cost;</li>
+<li>GPU cost;</li>
+<li>storage/cache cost;</li>
+<li>LLM service overhead;</li>
+<li>project-specific inference or training use;</li>
+<li>idle GPU time retained for responsiveness.</li>
+</ul>
+<h3><a id="longhorn-block-storage" href="#longhorn-block-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn block storage</h3>
+<p>Longhorn cost must reflect physical replication rather than only logical PVC
+size.</p>
+<p>For a logical <code>100Gi</code> PVC with two replicas, the model should recognize
+approximately <code>200Gi</code> of raw replica capacity before filesystem and operational
+overhead.</p>
+<p>Longhorn cost includes:</p>
+<ul>
+<li>disk depreciation;</li>
+<li>storage-node share;</li>
+<li>replication traffic;</li>
+<li>I/O;</li>
+<li>backup or snapshot storage;</li>
+<li>failed-replica rebuild overhead;</li>
+<li>reserved free-space policy;</li>
+<li>operational monitoring.</li>
+</ul>
+<h3><a id="nfs-shared-storage" href="#nfs-shared-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>NFS shared storage</h3>
+<p>NFS is outside the immediate Kubecost workload allocation path and requires a
+separate service model.</p>
+<p>NFS cost should include:</p>
+<ul>
+<li>NFS server depreciation;</li>
+<li>disk depreciation by tier;</li>
+<li>server and disk power;</li>
+<li>network equipment share;</li>
+<li>backup;</li>
+<li>filesystem administration;</li>
+<li>used capacity;</li>
+<li>reserved capacity;</li>
+<li>project directory ownership;</li>
+<li>read/write traffic where measurable.</li>
+</ul>
+<p>NFS cost may be allocated by:</p>
+<ul>
+<li>owned bytes;</li>
+<li>average retained bytes over time;</li>
+<li>I/O volume;</li>
+<li>a blended capacity and activity formula.</li>
+</ul>
+<p>Capacity should be the primary driver unless I/O materially affects hardware
+or performance.</p>
+<h3><a id="minio-object-storage" href="#minio-object-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>MinIO object storage</h3>
+<p>MinIO should be treated as an internal object-storage service.</p>
+<p>The model should include:</p>
+<ul>
+<li>raw disk capacity;</li>
+<li>erasure coding or replication overhead;</li>
+<li>Raspberry Pi host share;</li>
+<li>power;</li>
+<li>network;</li>
+<li>backup or secondary copy;</li>
+<li>retained object bytes;</li>
+<li>request volume if material;</li>
+<li>project bucket ownership.</li>
+</ul>
+<p>For AWS comparison, MinIO should generally map to S3, but durability,
+availability, request pricing, lifecycle tiers, and data-transfer rules must be
+normalized.</p>
+<h3><a id="network-and-ingress" href="#network-and-ingress" class="Permalink" aria-hidden="true" title="Permalink">#</a>Network and ingress</h3>
+<p>Kalaxy3 network cost includes:</p>
+<ul>
+<li>switches;</li>
+<li>router share;</li>
+<li>NICs and optics;</li>
+<li>cabling;</li>
+<li>power;</li>
+<li>internet service share where appropriate;</li>
+<li>ingress services such as Traefik and MetalLB;</li>
+<li>monitoring and administration.</li>
+</ul>
+<p>MetalLB does not create a separately billed cloud load balancer, but it is not
+economically free. It consumes shared network and operational resources.</p>
+<p>AWS comparisons must include:</p>
+<ul>
+<li>load-balancer hourly and capacity-unit charges;</li>
+<li>public IPv4;</li>
+<li>NAT where required;</li>
+<li>cross-AZ transfer;</li>
+<li>internet egress;</li>
+<li>private connectivity if included.</li>
+</ul>
+<h3><a id="control-plane-and-shared-platform-services" href="#control-plane-and-shared-platform-services" class="Permalink" aria-hidden="true" title="Permalink">#</a>Control plane and shared platform services</h3>
+<p>Shared platform services include:</p>
+<ul>
+<li>K3s control-plane nodes;</li>
+<li>etcd;</li>
+<li>CoreDNS;</li>
+<li>Traefik;</li>
+<li>MetalLB;</li>
+<li>Longhorn control components;</li>
+<li>Prometheus;</li>
+<li>Grafana;</li>
+<li>Kubecost;</li>
+<li>Headlamp;</li>
+<li>logging and backup components;</li>
+<li>GitOps and automation components.</li>
+</ul>
+<p>These should normally be treated as shared cluster overhead and distributed
+under an explicit policy.</p>
+<h3><a id="power-cooling-ups-and-facilities" href="#power-cooling-ups-and-facilities" class="Permalink" aria-hidden="true" title="Permalink">#</a>Power cooling UPS and facilities</h3>
+<p>Power cost should include:</p>
+<ul>
+<li>measured node watts;</li>
+<li>disk and switch watts;</li>
+<li>UPS conversion loss;</li>
+<li>battery charging and replacement;</li>
+<li>cooling overhead if material;</li>
+<li>local electricity rate;</li>
+<li>time-of-use pricing if applicable.</li>
+</ul>
+<p>A simplified model can begin with average watts and a single electricity rate.
+A mature model should use NUT/UPS measurements and device-specific telemetry.</p>
+<h3><a id="operations-labor-and-engineering-effort" href="#operations-labor-and-engineering-effort" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operations labor and engineering effort</h3>
+<p>Ignoring labor creates a biased comparison with managed cloud services.</p>
+<p>Track at least:</p>
+<ul>
+<li>cluster installation and upgrades;</li>
+<li>incident response;</li>
+<li>backup testing;</li>
+<li>hardware replacement;</li>
+<li>security patching;</li>
+<li>storage administration;</li>
+<li>network administration;</li>
+<li>observability maintenance;</li>
+<li>FinOps model maintenance;</li>
+<li>documentation and automation.</li>
+</ul>
+<p>Two labor views are useful:</p>
+<ul>
+<li><strong>Cash labor:</strong> actual paid or contracted labor.</li>
+<li><strong>Economic labor:</strong> hours valued at an agreed internal rate, even when the
+work is performed as part of learning or personal development.</li>
+</ul>
+<h3><a id="maintenance-replacement-backup-and-risk" href="#maintenance-replacement-backup-and-risk" class="Permalink" aria-hidden="true" title="Permalink">#</a>Maintenance replacement backup and risk</h3>
+<p>The model should include policy reserves for:</p>
+<ul>
+<li>disk failures;</li>
+<li>UPS batteries;</li>
+<li>fans and power supplies;</li>
+<li>node replacement;</li>
+<li>backup media;</li>
+<li>disaster recovery;</li>
+<li>security incidents;</li>
+<li>downtime.</li>
+</ul>
+<p>Risk cost should not be invented as false precision. It can be represented as
+scenario ranges or expected-loss estimates.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="project-allocation-architecture" href="#project-allocation-architecture" class="Permalink" aria-hidden="true" title="Permalink">#</a>Project allocation architecture</h2>
+<h3><a id="required-kubernetes-metadata" href="#required-kubernetes-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Required Kubernetes metadata</h3>
+<p>Project cost cannot be reliable unless workloads identify their owner and
+purpose.</p>
+<p>Every application namespace and workload should have enough metadata to answer:</p>
+<ul>
+<li>Who owns it?</li>
+<li>Which project or product does it support?</li>
+<li>Is it development, test, staging, production, research, or shared platform?</li>
+<li>What service does it provide?</li>
+<li>Is it temporary or permanent?</li>
+<li>What is its criticality?</li>
+<li>What cost center or budget applies?</li>
+<li>When should it expire?</li>
+</ul>
+<h3><a id="recommended-label-dictionary" href="#recommended-label-dictionary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended label dictionary</h3>
+<p>Use a common dictionary on namespaces and, where needed, workloads.</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">metadata:</span>
+  <span class="hljs-attr">labels:</span>
+    <span class="hljs-attr">kalaxy3.io/project:</span> <span class="hljs-string">project-name</span>
+    <span class="hljs-attr">kalaxy3.io/product:</span> <span class="hljs-string">product-name</span>
+    <span class="hljs-attr">kalaxy3.io/service:</span> <span class="hljs-string">service-name</span>
+    <span class="hljs-attr">kalaxy3.io/owner:</span> <span class="hljs-string">owner-name</span>
+    <span class="hljs-attr">kalaxy3.io/team:</span> <span class="hljs-string">team-name</span>
+    <span class="hljs-attr">kalaxy3.io/environment:</span> <span class="hljs-string">dev</span>
+    <span class="hljs-attr">kalaxy3.io/cost-center:</span> <span class="hljs-string">research</span>
+    <span class="hljs-attr">kalaxy3.io/workload-class:</span> <span class="hljs-string">batch</span>
+    <span class="hljs-attr">kalaxy3.io/criticality:</span> <span class="hljs-string">low</span>
+    <span class="hljs-attr">kalaxy3.io/data-classification:</span> <span class="hljs-string">internal</span>
+    <span class="hljs-attr">kalaxy3.io/lifecycle:</span> <span class="hljs-string">persistent</span>
+</code></pre>
+<p>Useful optional annotations:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">metadata:</span>
+  <span class="hljs-attr">annotations:</span>
+    <span class="hljs-attr">kalaxy3.io/expires-on:</span> <span class="hljs-string">"2026-12-31"</span>
+    <span class="hljs-attr">kalaxy3.io/business-purpose:</span> <span class="hljs-string">"Document RAG evaluation"</span>
+    <span class="hljs-attr">kalaxy3.io/aws-comparison-profile:</span> <span class="hljs-string">"eks-managed"</span>
+</code></pre>
+<p>Do not place secrets or sensitive personal data in labels or annotations.</p>
+<h3><a id="namespace-policy" href="#namespace-policy" class="Permalink" aria-hidden="true" title="Permalink">#</a>Namespace policy</h3>
+<p>Preferred policy:</p>
+<ul>
+<li>one namespace per project and environment;</li>
+<li>shared services in clearly identified platform namespaces;</li>
+<li>project ownership inherited from namespace labels;</li>
+<li>workload overrides only when a namespace contains multiple cost owners;</li>
+<li>admission-policy enforcement after the label dictionary stabilizes.</li>
+</ul>
+<h3><a id="direct-cost-allocation" href="#direct-cost-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Direct cost allocation</h3>
+<p>Directly allocate:</p>
+<ul>
+<li>container CPU and memory;</li>
+<li>dedicated GPU use;</li>
+<li>project PVCs;</li>
+<li>project MinIO buckets;</li>
+<li>project NFS directories;</li>
+<li>dedicated load balancers or ingress resources;</li>
+<li>project-specific backup;</li>
+<li>project-specific AWS burst resources;</li>
+<li>project-specific software licenses.</li>
+</ul>
+<h3><a id="shared-platform-cost-allocation" href="#shared-platform-cost-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Shared platform cost allocation</h3>
+<p>Shared costs should be reported separately first, then optionally distributed.</p>
+<p>Recommended default policies:</p>
+<table>
+<thead>
+<tr>
+<th>Shared cost</th>
+<th>Initial policy</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K3s control plane</td>
+<td>Proportionate to direct project cost</td>
+</tr>
+<tr>
+<td>CoreDNS and CNI</td>
+<td>Proportionate to pod CPU and network activity</td>
+</tr>
+<tr>
+<td>Traefik and MetalLB</td>
+<td>Proportionate to ingress traffic or service count</td>
+</tr>
+<tr>
+<td>Prometheus and Grafana</td>
+<td>Proportionate to monitored workload volume</td>
+</tr>
+<tr>
+<td>Kubecost</td>
+<td>Uniform platform overhead or proportionate to direct cost</td>
+</tr>
+<tr>
+<td>Longhorn controllers</td>
+<td>Proportionate to logical Longhorn storage</td>
+</tr>
+<tr>
+<td>NFS server base cost</td>
+<td>Proportionate to retained project capacity</td>
+</tr>
+<tr>
+<td>Backup platform</td>
+<td>Proportionate to protected data</td>
+</tr>
+<tr>
+<td>Platform labor</td>
+<td>Proportionate to direct cost or tracked service effort</td>
+</tr>
+</tbody>
+</table>
+<p>The report should always show the undistributed amount and the allocation rule.</p>
+<h3><a id="idle-cost-policy" href="#idle-cost-policy" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idle cost policy</h3>
+<p>Idle cost is economically important and politically sensitive.</p>
+<p>Maintain these views:</p>
+<ol>
+<li><strong>Unallocated idle:</strong> idle remains a platform cost.</li>
+<li><strong>Proportional idle:</strong> idle is distributed according to direct resource cost.</li>
+<li><strong>Reserved idle:</strong> idle capacity explicitly reserved for a project is charged
+to that project.</li>
+<li><strong>Growth reserve:</strong> strategic headroom remains a platform investment.</li>
+</ol>
+<p>Do not use a single idle allocation policy for every decision.</p>
+<h3><a id="storage-replication-policy" href="#storage-replication-policy" class="Permalink" aria-hidden="true" title="Permalink">#</a>Storage replication policy</h3>
+<p>For project reporting, show both:</p>
+<ul>
+<li>logical project storage;</li>
+<li>physical storage consumed after replication and protection.</li>
+</ul>
+<p>Example:</p>
+<pre><code class="language-text">Logical PVC:                 128 GiB
+Longhorn replica count:     2
+Raw replica capacity:       approximately 256 GiB
+Additional overhead:        measured separately
+</code></pre>
+<p>This avoids presenting replicated storage as if only one copy exists.</p>
+<h3><a id="project-lifecycle-policy" href="#project-lifecycle-policy" class="Permalink" aria-hidden="true" title="Permalink">#</a>Project lifecycle policy</h3>
+<p>Each project should have:</p>
+<ul>
+<li>start date;</li>
+<li>owner;</li>
+<li>expected end or review date;</li>
+<li>minimum service requirement;</li>
+<li>namespace and storage ownership;</li>
+<li>archive and deletion policy;</li>
+<li>AWS comparison profile;</li>
+<li>monthly budget or capacity target.</li>
+</ul>
+<p>Expired projects should be reviewed for workload shutdown and data retention.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="data-required-for-the-kalaxy3-model" href="#data-required-for-the-kalaxy3-model" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data required for the Kalaxy3 model</h2>
+<h3><a id="kubecost-and-kubernetes-allocation-data" href="#kubecost-and-kubernetes-allocation-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost and Kubernetes allocation data</h3>
+<p>Collect from Kubecost/OpenCost-compatible allocation and asset interfaces:</p>
+<ul>
+<li>timestamp and query window;</li>
+<li>cluster;</li>
+<li>node;</li>
+<li>namespace;</li>
+<li>controller and controller type;</li>
+<li>pod;</li>
+<li>container;</li>
+<li>labels and annotations;</li>
+<li>CPU request;</li>
+<li>CPU usage;</li>
+<li>memory request;</li>
+<li>memory usage;</li>
+<li>GPU request and usage where available;</li>
+<li>PVC allocation;</li>
+<li>network allocation where available;</li>
+<li>direct cost;</li>
+<li>shared cost;</li>
+<li>idle cost;</li>
+<li>efficiency.</li>
+</ul>
+<p>Useful aggregation dimensions include:</p>
+<ul>
+<li>namespace;</li>
+<li>node;</li>
+<li>project label;</li>
+<li>owner label;</li>
+<li>environment label;</li>
+<li>service label;</li>
+<li>controller;</li>
+<li>pod;</li>
+<li>container.</li>
+</ul>
+<h3><a id="prometheus-operational-telemetry" href="#prometheus-operational-telemetry" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prometheus operational telemetry</h3>
+<p>Collect or derive:</p>
+<ul>
+<li>node CPU usage;</li>
+<li>node load;</li>
+<li>memory use;</li>
+<li>filesystem capacity and use;</li>
+<li>disk I/O;</li>
+<li>network bytes;</li>
+<li>container CPU and memory;</li>
+<li>pod requests and limits;</li>
+<li>GPU utilization and memory;</li>
+<li>GPU power where exporters support it;</li>
+<li>Longhorn capacity, replicas, health, and traffic;</li>
+<li>NFS server capacity and I/O;</li>
+<li>MinIO capacity, requests, and traffic;</li>
+<li>UPS load and power;</li>
+<li>temperatures;</li>
+<li>availability and restarts.</li>
+</ul>
+<p>Prometheus provides the operational measurements that support rate allocation,
+capacity forecasting, and model validation.</p>
+<h3><a id="hardware-inventory-and-purchase-data" href="#hardware-inventory-and-purchase-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Hardware inventory and purchase data</h3>
+<p>Create a version-controlled inventory table with:</p>
+<ul>
+<li>asset ID;</li>
+<li>hostname;</li>
+<li>component;</li>
+<li>manufacturer and model;</li>
+<li>architecture;</li>
+<li>CPU;</li>
+<li>RAM;</li>
+<li>GPU;</li>
+<li>disk;</li>
+<li>NIC;</li>
+<li>acquisition date;</li>
+<li>purchase cost;</li>
+<li>tax and shipping;</li>
+<li>upgrade cost;</li>
+<li>current replacement cost;</li>
+<li>expected useful life;</li>
+<li>residual value;</li>
+<li>warranty expiration;</li>
+<li>expected retirement date;</li>
+<li>assigned platform role.</li>
+</ul>
+<p>Track components separately when they have different useful lives, especially
+GPUs, disks, UPS batteries, and network switches.</p>
+<h3><a id="power-and-electricity-data" href="#power-and-electricity-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Power and electricity data</h3>
+<p>Required data:</p>
+<ul>
+<li>electricity price per kWh;</li>
+<li>effective date;</li>
+<li>node idle watts;</li>
+<li>node typical watts;</li>
+<li>node peak watts;</li>
+<li>GPU incremental watts;</li>
+<li>disk and switch watts;</li>
+<li>NFS server watts;</li>
+<li>UPS input and output where available;</li>
+<li>cooling or power-usage-effectiveness factor if material;</li>
+<li>operating schedule.</li>
+</ul>
+<p>Preferred source hierarchy:</p>
+<ol>
+<li>measured UPS or smart-plug data;</li>
+<li>device telemetry;</li>
+<li>measured sample;</li>
+<li>vendor specification;</li>
+<li>documented estimate.</li>
+</ol>
+<p>Record the source and confidence.</p>
+<h3><a id="storage-data" href="#storage-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Storage data</h3>
+<p>For every storage service and tier:</p>
+<ul>
+<li>physical device capacity;</li>
+<li>usable capacity;</li>
+<li>reserved free-space policy;</li>
+<li>logical allocated capacity;</li>
+<li>actual used capacity;</li>
+<li>replica or erasure-coding factor;</li>
+<li>snapshots;</li>
+<li>backups;</li>
+<li>read/write activity;</li>
+<li>retention;</li>
+<li>owner;</li>
+<li>media cost;</li>
+<li>expected media life;</li>
+<li>power;</li>
+<li>failure and replacement history.</li>
+</ul>
+<h3><a id="network-data" href="#network-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Network data</h3>
+<p>Collect:</p>
+<ul>
+<li>bytes by node;</li>
+<li>bytes by project where available;</li>
+<li>ingress and egress;</li>
+<li>LAN versus internet traffic;</li>
+<li>switch port utilization;</li>
+<li>cross-node Longhorn replication traffic;</li>
+<li>NFS and MinIO traffic;</li>
+<li>internet service cost;</li>
+<li>network hardware cost;</li>
+<li>public service count;</li>
+<li>MetalLB service count.</li>
+</ul>
+<p>For AWS comparison, identify which traffic would become:</p>
+<ul>
+<li>same-AZ;</li>
+<li>cross-AZ;</li>
+<li>inter-region;</li>
+<li>internet egress;</li>
+<li>NAT-processed;</li>
+<li>load-balanced.</li>
+</ul>
+<h3><a id="operations-and-labor-data" href="#operations-and-labor-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operations and labor data</h3>
+<p>Track monthly hours by category:</p>
+<pre><code class="language-text">platform-build
+cluster-upgrade
+security-patching
+storage-administration
+backup-and-recovery
+incident-response
+network-administration
+observability
+finops
+documentation
+project-support
+</code></pre>
+<p>Record:</p>
+<ul>
+<li>person or role;</li>
+<li>hours;</li>
+<li>activity category;</li>
+<li>project where direct;</li>
+<li>shared platform where indirect;</li>
+<li>cash rate or economic rate;</li>
+<li>incident or change reference.</li>
+</ul>
+<h3><a id="project-and-business-metadata" href="#project-and-business-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Project and business metadata</h3>
+<p>Required project data:</p>
+<ul>
+<li>project ID;</li>
+<li>name;</li>
+<li>owner;</li>
+<li>team;</li>
+<li>business purpose;</li>
+<li>environment;</li>
+<li>criticality;</li>
+<li>start date;</li>
+<li>expected end date;</li>
+<li>budget;</li>
+<li>service-level target;</li>
+<li>data classification;</li>
+<li>namespace;</li>
+<li>storage locations;</li>
+<li>Git repository;</li>
+<li>deployment name;</li>
+<li>expected growth;</li>
+<li>unit-of-work definition;</li>
+<li>AWS comparison profile.</li>
+</ul>
+<h3><a id="aws-comparison-data" href="#aws-comparison-data" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS comparison data</h3>
+<p>For each modeled AWS scenario, capture:</p>
+<ul>
+<li>pricing date;</li>
+<li>region;</li>
+<li>currency;</li>
+<li>operating hours;</li>
+<li>instance types;</li>
+<li>CPU architecture;</li>
+<li>GPU type;</li>
+<li>EKS mode and version support tier;</li>
+<li>EBS type, capacity, IOPS, and throughput;</li>
+<li>EFS capacity and activity;</li>
+<li>S3 storage classes, requests, and lifecycle;</li>
+<li>load balancer type and capacity units;</li>
+<li>public IPv4 count;</li>
+<li>NAT processing;</li>
+<li>data transfer;</li>
+<li>snapshots and backups;</li>
+<li>managed Prometheus and Grafana if selected;</li>
+<li>CloudWatch logs and metrics;</li>
+<li>support plan;</li>
+<li>commitment term;</li>
+<li>Savings Plan or Reserved Instance assumptions;</li>
+<li>Spot interruption assumptions;</li>
+<li>taxes where relevant.</li>
+</ul>
+<p>Use AWS Pricing Calculator for modeled estimates and AWS Data Exports or CUR 2.0
+for actual AWS usage when workloads are tested in AWS.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="proposed-analytical-data-model" href="#proposed-analytical-data-model" class="Permalink" aria-hidden="true" title="Permalink">#</a>Proposed analytical data model</h2>
+<h3><a id="core-dimensions" href="#core-dimensions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Core dimensions</h3>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dim_time</code></td>
+<td>Hour, day, month, fiscal period</td>
+</tr>
+<tr>
+<td><code>dim_asset</code></td>
+<td>Server, GPU, disk, switch, UPS</td>
+</tr>
+<tr>
+<td><code>dim_node</code></td>
+<td>Kubernetes node and hardware mapping</td>
+</tr>
+<tr>
+<td><code>dim_project</code></td>
+<td>Project ownership and business purpose</td>
+</tr>
+<tr>
+<td><code>dim_workload</code></td>
+<td>Namespace, controller, pod, container</td>
+</tr>
+<tr>
+<td><code>dim_storage</code></td>
+<td>PVC, Longhorn volume, NFS path, MinIO bucket</td>
+</tr>
+<tr>
+<td><code>dim_service</code></td>
+<td>Platform service such as Prometheus or Traefik</td>
+</tr>
+<tr>
+<td><code>dim_cost_rate</code></td>
+<td>Electricity, depreciation, labor, AWS price</td>
+</tr>
+<tr>
+<td><code>dim_scenario</code></td>
+<td>Actual Kalaxy3, forecast, AWS on-demand, AWS committed</td>
+</tr>
+<tr>
+<td><code>dim_model_version</code></td>
+<td>Assumptions and effective dates</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="core-fact-tables" href="#core-fact-tables" class="Permalink" aria-hidden="true" title="Permalink">#</a>Core fact tables</h3>
+<table>
+<thead>
+<tr>
+<th>Fact</th>
+<th>Example measurements</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fact_resource_allocation</code></td>
+<td>Requested and used CPU, RAM, GPU</td>
+</tr>
+<tr>
+<td><code>fact_storage_allocation</code></td>
+<td>Logical bytes, physical bytes, replicas</td>
+</tr>
+<tr>
+<td><code>fact_network_usage</code></td>
+<td>Bytes by project, service, and traffic class</td>
+</tr>
+<tr>
+<td><code>fact_power_usage</code></td>
+<td>Watts and kWh by asset</td>
+</tr>
+<tr>
+<td><code>fact_asset_cost</code></td>
+<td>Depreciation, maintenance, power</td>
+</tr>
+<tr>
+<td><code>fact_labor_cost</code></td>
+<td>Hours and cost by activity and project</td>
+</tr>
+<tr>
+<td><code>fact_project_cost</code></td>
+<td>Direct, shared, idle, overhead</td>
+</tr>
+<tr>
+<td><code>fact_unit_economics</code></td>
+<td>Cost per token, build, job, or GB</td>
+</tr>
+<tr>
+<td><code>fact_aws_estimate</code></td>
+<td>AWS service quantities and estimated price</td>
+</tr>
+<tr>
+<td><code>fact_capacity_forecast</code></td>
+<td>Exhaustion date and next-step cost</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="data-retention-and-granularity" href="#data-retention-and-granularity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data retention and granularity</h3>
+<p>Recommended retention:</p>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Granularity</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Operational metrics</td>
+<td>1 to 5 minutes</td>
+<td>Based on Prometheus capacity</td>
+</tr>
+<tr>
+<td>Cost allocation</td>
+<td>Hourly</td>
+<td>At least 13 months</td>
+</tr>
+<tr>
+<td>Daily project summary</td>
+<td>Daily</td>
+<td>Indefinite</td>
+</tr>
+<tr>
+<td>Finance summary</td>
+<td>Monthly</td>
+<td>Indefinite</td>
+</tr>
+<tr>
+<td>AWS scenario</td>
+<td>Per model run</td>
+<td>Indefinite</td>
+</tr>
+<tr>
+<td>Assumption versions</td>
+<td>Effective-dated</td>
+<td>Indefinite</td>
+</tr>
+</tbody>
+</table>
+<p>Hourly cost data is usually sufficient for FinOps analysis while preserving
+higher-frequency metrics for operational troubleshooting.</p>
+<h3><a id="data-flow" href="#data-flow" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data flow</h3>
+<pre><code class="language-text">Kubernetes metrics ───────┐
+Kubecost allocations ─────┤
+Prometheus telemetry ─────┤
+Longhorn metrics ─────────┤
+NFS and MinIO metrics ────┤
+UPS and power data ───────┼──&gt; Kalaxy3 cost data pipeline
+Asset inventory ──────────┤            |
+Purchase ledger ──────────┤            v
+Labor records ────────────┤      normalized cost facts
+Project metadata ─────────┤            |
+AWS pricing inputs ───────┘            v
+                                  reports and scenarios
+                                         |
+                  ┌──────────────────────┼──────────────────────┐
+                  v                      v                      v
+             Kalaxy3 actual        Project showback       AWS comparison
+</code></pre>
+<p>The data pipeline should be reproducible from code and preserve raw source
+records before transformation.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="cost-formulas" href="#cost-formulas" class="Permalink" aria-hidden="true" title="Permalink">#</a>Cost formulas</h2>
+<h3><a id="hardware-depreciation" href="#hardware-depreciation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Hardware depreciation</h3>
+<p>A straightforward economic rate is:</p>
+<pre><code class="language-text">Depreciable value =
+    purchase cost
+  + acquisition cost
+  + upgrades
+  - residual value
+
+Hourly depreciation =
+  depreciable value / expected useful-life hours
+</code></pre>
+<p>For equipment that already exists, report both historical-cost and
+replacement-cost views.</p>
+<h3><a id="power" href="#power" class="Permalink" aria-hidden="true" title="Permalink">#</a>Power</h3>
+<pre><code class="language-text">Hourly power cost =
+  average watts / 1000
+  × electricity price per kWh
+  × power overhead factor
+</code></pre>
+<p>The power overhead factor may include UPS loss and cooling.</p>
+<h3><a id="node-cost" href="#node-cost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Node cost</h3>
+<pre><code class="language-text">Node hourly cost =
+    hourly depreciation
+  + hourly power
+  + maintenance reserve
+  + network share
+  + UPS share
+  + software and support
+  + operations share
+</code></pre>
+<h3><a id="cpu-memory-and-gpu-rates" href="#cpu-memory-and-gpu-rates" class="Permalink" aria-hidden="true" title="Permalink">#</a>CPU memory and GPU rates</h3>
+<p>The node cost can be distributed among resources using a documented weighting
+model.</p>
+<p>Example:</p>
+<pre><code class="language-text">Allocatable node cost =
+  CPU rate × allocatable cores
+  + RAM rate × allocatable GiB
+  + GPU rate × allocatable GPU units
+</code></pre>
+<p>Weights should reflect scarcity and replacement economics. The rates must
+reconcile back to the fully loaded node cost.</p>
+<h3><a id="storage" href="#storage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Storage</h3>
+<pre><code class="language-text">Storage tier monthly cost =
+    media depreciation
+  + host share
+  + power
+  + network share
+  + backup
+  + operations
+  + maintenance reserve
+</code></pre>
+<pre><code class="language-text">Logical GB-month rate =
+  storage tier monthly cost / billable logical GB
+</code></pre>
+<p>For Longhorn:</p>
+<pre><code class="language-text">Physical consumption =
+  logical allocation × replica factor + measured overhead
+</code></pre>
+<h3><a id="project-cost" href="#project-cost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Project cost</h3>
+<pre><code class="language-text">Project fully loaded cost =
+    direct compute
+  + direct GPU
+  + direct storage
+  + direct network
+  + direct external services
+  + allocated shared platform cost
+  + allocated idle cost under selected policy
+  + allocated operations overhead
+</code></pre>
+<h3><a id="marginal-cost" href="#marginal-cost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Marginal cost</h3>
+<p>The marginal cost of a project is not always its fully loaded cost.</p>
+<pre><code class="language-text">Marginal cost =
+  additional power
+  + consumables
+  + external services
+  + incremental labor
+  + step cost triggered by capacity exhaustion
+</code></pre>
+<p>A project using spare capacity may have low short-term marginal cost but still
+consume scarce capacity and bring forward the next purchase.</p>
+<h3><a id="avoided-aws-cost" href="#avoided-aws-cost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Avoided AWS cost</h3>
+<pre><code class="language-text">Avoided AWS cost =
+  AWS equivalent cost
+  - Kalaxy3 incremental cost
+</code></pre>
+<p>For strategic comparisons, also calculate:</p>
+<pre><code class="language-text">Net economic advantage =
+  AWS equivalent cost
+  - Kalaxy3 fully loaded economic cost
+  - risk and service-level adjustment
+</code></pre>
+<p>Do not label the entire AWS estimate as savings when the Kalaxy3 cost basis
+excludes labor, resilience, or replacement.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="aws-comparison-methodology" href="#aws-comparison-methodology" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS comparison methodology</h2>
+<h3><a id="comparison-scenarios" href="#comparison-scenarios" class="Permalink" aria-hidden="true" title="Permalink">#</a>Comparison scenarios</h3>
+<p>Each significant project should be evaluated against at least these scenarios.</p>
+<h4><a id="scenario-a-kalaxy3-actual" href="#scenario-a-kalaxy3-actual" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scenario A Kalaxy3 actual</h4>
+<p>Measured Kalaxy3 usage with current cash cost.</p>
+<h4><a id="scenario-b-kalaxy3-fully-loaded" href="#scenario-b-kalaxy3-fully-loaded" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scenario B Kalaxy3 fully loaded</h4>
+<p>Measured usage with depreciation, replacement, power, labor, backup, and shared
+cost.</p>
+<h4><a id="scenario-c-aws-kubernetes-rehost" href="#scenario-c-aws-kubernetes-rehost" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scenario C AWS Kubernetes rehost</h4>
+<p>A close functional rehost using:</p>
+<ul>
+<li>EKS;</li>
+<li>EC2 worker nodes;</li>
+<li>EBS;</li>
+<li>EFS where shared POSIX storage is required;</li>
+<li>S3 for object storage;</li>
+<li>ALB or NLB;</li>
+<li>AWS observability or self-managed equivalents;</li>
+<li>backups and transfer.</li>
+</ul>
+<h4><a id="scenario-d-aws-managed-service-redesign" href="#scenario-d-aws-managed-service-redesign" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scenario D AWS managed-service redesign</h4>
+<p>Replace self-managed components with appropriate managed services where that
+changes cost or operational responsibility.</p>
+<h4><a id="scenario-e-aws-elastic-execution" href="#scenario-e-aws-elastic-execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scenario E AWS elastic execution</h4>
+<p>Use:</p>
+<ul>
+<li>autoscaling;</li>
+<li>schedule-based shutdown;</li>
+<li>Spot for interruptible work;</li>
+<li>serverless or managed batch where appropriate;</li>
+<li>object storage lifecycle;</li>
+<li>ephemeral environments.</li>
+</ul>
+<h4><a id="scenario-f-hybrid" href="#scenario-f-hybrid" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scenario F Hybrid</h4>
+<p>Keep data-intensive or continuously used workloads on Kalaxy3 and use AWS for:</p>
+<ul>
+<li>burst;</li>
+<li>disaster recovery;</li>
+<li>public delivery;</li>
+<li>globally distributed access;</li>
+<li>short-lived high-capacity jobs;</li>
+<li>services that benefit from managed operations.</li>
+</ul>
+<h3><a id="kalaxy3-to-aws-service-mapping" href="#kalaxy3-to-aws-service-mapping" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 to AWS service mapping</h3>
+<table>
+<thead>
+<tr>
+<th>Kalaxy3 capability</th>
+<th>AWS comparison candidates</th>
+<th>Important normalization</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K3s control plane</td>
+<td>EKS standard control plane</td>
+<td>Managed HA, support, version lifecycle</td>
+</tr>
+<tr>
+<td>ARM worker nodes</td>
+<td>Graviton EC2</td>
+<td>Benchmark equivalent, operating hours</td>
+</tr>
+<tr>
+<td>x86 worker nodes</td>
+<td>General-purpose or compute EC2</td>
+<td>CPU generation, RAM, local versus EBS</td>
+</tr>
+<tr>
+<td>RTX GPU node</td>
+<td>GPU EC2 family</td>
+<td>GPU model, VRAM, availability, hourly use</td>
+</tr>
+<tr>
+<td>Longhorn RWO storage</td>
+<td>EBS plus snapshots</td>
+<td>AZ scope, replica semantics, IOPS</td>
+</tr>
+<tr>
+<td>NFS</td>
+<td>EFS or self-managed NFS on EC2</td>
+<td>Throughput, storage class, HA</td>
+</tr>
+<tr>
+<td>MinIO</td>
+<td>S3</td>
+<td>Durability, request cost, lifecycle, egress</td>
+</tr>
+<tr>
+<td>MetalLB</td>
+<td>ALB or NLB</td>
+<td>Hourly charge, capacity units, IPv4</td>
+</tr>
+<tr>
+<td>Traefik</td>
+<td>ALB Controller or self-managed ingress</td>
+<td>Managed versus self-managed responsibility</td>
+</tr>
+<tr>
+<td>Prometheus</td>
+<td>Amazon Managed Service for Prometheus or self-managed</td>
+<td>Ingestion, retention, query charges</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>Amazon Managed Grafana or self-managed</td>
+<td>Users, workspace, operations</td>
+</tr>
+<tr>
+<td>Local backups</td>
+<td>EBS snapshots, S3, Glacier classes</td>
+<td>Retention, retrieval, transfer</td>
+</tr>
+<tr>
+<td>LAN network</td>
+<td>VPC, AZ traffic, NAT, internet egress</td>
+<td>Traffic classification</td>
+</tr>
+<tr>
+<td>Home power and cooling</td>
+<td>Included in AWS service price</td>
+<td>No separate customer electricity charge</td>
+</tr>
+<tr>
+<td>Hardware operations</td>
+<td>AWS-managed infrastructure</td>
+<td>Internal platform labor still remains</td>
+</tr>
+</tbody>
+</table>
+<p>No mapping is automatically correct. The project service objective determines
+the appropriate AWS design.</p>
+<h3><a id="aws-cost-inputs" href="#aws-cost-inputs" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS cost inputs</h3>
+<p>The AWS model must include all material services, not only EC2:</p>
+<ul>
+<li>EKS cluster charge;</li>
+<li>EC2 compute;</li>
+<li>EBS storage, IOPS, and snapshots;</li>
+<li>EFS storage and activity;</li>
+<li>S3 storage, requests, replication, and retrieval;</li>
+<li>load balancers;</li>
+<li>public IPv4;</li>
+<li>NAT gateway;</li>
+<li>data transfer;</li>
+<li>CloudWatch;</li>
+<li>managed Prometheus and Grafana where used;</li>
+<li>backup;</li>
+<li>support;</li>
+<li>commitments;</li>
+<li>taxes where applicable.</li>
+</ul>
+<h3><a id="normalize-nonprice-differences" href="#normalize-nonprice-differences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Normalize nonprice differences</h3>
+<p>The comparison must state differences in:</p>
+<ul>
+<li>availability;</li>
+<li>durability;</li>
+<li>backup and recovery;</li>
+<li>geographic resilience;</li>
+<li>elasticity;</li>
+<li>deployment speed;</li>
+<li>security controls;</li>
+<li>auditability;</li>
+<li>support;</li>
+<li>hardware access;</li>
+<li>data locality;</li>
+<li>privacy;</li>
+<li>internet dependency;</li>
+<li>operator effort;</li>
+<li>performance consistency.</li>
+</ul>
+<p>An AWS solution may cost more while providing capabilities Kalaxy3 does not
+currently provide. Kalaxy3 may cost less while providing local control and
+predictable capacity.</p>
+<h3><a id="aws-break-even-analysis" href="#aws-break-even-analysis" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS break-even analysis</h3>
+<p>For each workload, calculate:</p>
+<ul>
+<li>minimum and maximum monthly AWS estimate;</li>
+<li>Kalaxy3 cash cost;</li>
+<li>Kalaxy3 fully loaded cost;</li>
+<li>utilization level where local hardware breaks even;</li>
+<li>operating hours where AWS elasticity becomes advantageous;</li>
+<li>date when another Kalaxy3 purchase is required;</li>
+<li>payback period for that purchase;</li>
+<li>sensitivity to electricity, hardware life, AWS discounts, and labor.</li>
+</ul>
+<h3><a id="hybrid-placement-decisions" href="#hybrid-placement-decisions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Hybrid placement decisions</h3>
+<p>Good hybrid candidates include workloads with:</p>
+<ul>
+<li>low steady utilization but occasional high peaks;</li>
+<li>public internet delivery;</li>
+<li>disaster-recovery needs;</li>
+<li>short-lived large compute demand;</li>
+<li>data that can move economically;</li>
+<li>managed-service operational benefit.</li>
+</ul>
+<p>Good Kalaxy3 candidates include workloads with:</p>
+<ul>
+<li>high continuous utilization;</li>
+<li>large local datasets;</li>
+<li>high cloud-egress exposure;</li>
+<li>privacy or local-control requirements;</li>
+<li>experimentation that would otherwise leave cloud resources running;</li>
+<li>available local capacity;</li>
+<li>tolerance for Kalaxy3’s service level.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="aws-well-architected-alignment" href="#aws-well-architected-alignment" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS Well-Architected alignment</h2>
+<h3><a id="operational-excellence" href="#operational-excellence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational excellence</h3>
+<p>The cost model supports operational excellence by:</p>
+<ul>
+<li>making ownership explicit;</li>
+<li>versioning infrastructure and cost assumptions;</li>
+<li>automating collection and reports;</li>
+<li>measuring the operational cost of platform services;</li>
+<li>linking incidents and changes to cost;</li>
+<li>documenting rebuild procedures;</li>
+<li>establishing regular workload reviews.</li>
+</ul>
+<h3><a id="security" href="#security" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security</h3>
+<p>The model should include the cost of security rather than treating it as free.</p>
+<p>Measure:</p>
+<ul>
+<li>patching effort;</li>
+<li>secrets and identity services;</li>
+<li>vulnerability management;</li>
+<li>backup and recovery;</li>
+<li>audit and logging;</li>
+<li>segmentation;</li>
+<li>encryption;</li>
+<li>security incidents.</li>
+</ul>
+<p>Project labels must not contain secrets or sensitive personal information.</p>
+<h3><a id="reliability" href="#reliability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reliability</h3>
+<p>Reliability has an economic cost.</p>
+<p>The model should identify the cost of:</p>
+<ul>
+<li>three-node control plane;</li>
+<li>Longhorn replication;</li>
+<li>backups;</li>
+<li>spare capacity;</li>
+<li>UPS protection;</li>
+<li>replacement hardware;</li>
+<li>monitoring;</li>
+<li>recovery testing.</li>
+</ul>
+<p>AWS comparisons must use the same availability and durability target rather
+than comparing a resilient AWS design with an unprotected local workload, or
+the reverse.</p>
+<h3><a id="performance-efficiency" href="#performance-efficiency" class="Permalink" aria-hidden="true" title="Permalink">#</a>Performance efficiency</h3>
+<p>The model supports performance efficiency through:</p>
+<ul>
+<li>rightsizing;</li>
+<li>ARM versus x86 placement;</li>
+<li>GPU utilization;</li>
+<li>storage tier selection;</li>
+<li>performance-per-watt;</li>
+<li>performance-per-dollar;</li>
+<li>workload scheduling;</li>
+<li>benchmark-based AWS instance selection.</li>
+</ul>
+<h3><a id="cost-optimization" href="#cost-optimization" class="Permalink" aria-hidden="true" title="Permalink">#</a>Cost optimization</h3>
+<p>The Kalaxy3 model directly implements the cost-optimization focus areas:</p>
+<ul>
+<li>financial ownership;</li>
+<li>expenditure and usage awareness;</li>
+<li>cost-effective resource selection;</li>
+<li>demand and supply management;</li>
+<li>continuous optimization.</li>
+</ul>
+<p>The model should establish monthly reviews rather than act as a one-time
+calculator.</p>
+<h3><a id="sustainability" href="#sustainability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Sustainability</h3>
+<p>The model can add energy and carbon-oriented measures:</p>
+<ul>
+<li>kWh by asset;</li>
+<li>kWh by project;</li>
+<li>useful work per kWh;</li>
+<li>performance per watt;</li>
+<li>idle energy;</li>
+<li>equipment life extension;</li>
+<li>avoided hardware purchases;</li>
+<li>comparison with AWS sustainability data where available.</li>
+</ul>
+<p>Sustainability should not be reduced to power alone. Hardware manufacture,
+utilization, lifetime, and retirement also matter.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="aws-cloud-adoption-framework-alignment" href="#aws-cloud-adoption-framework-alignment" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS Cloud Adoption Framework alignment</h2>
+<h3><a id="business-perspective" href="#business-perspective" class="Permalink" aria-hidden="true" title="Permalink">#</a>Business perspective</h3>
+<p>The model connects infrastructure decisions to outcomes by providing:</p>
+<ul>
+<li>project unit economics;</li>
+<li>investment cases;</li>
+<li>AWS-versus-Kalaxy3 comparisons;</li>
+<li>budget forecasts;</li>
+<li>capacity funding decisions;</li>
+<li>value and cost-avoidance reporting.</li>
+</ul>
+<h3><a id="people-perspective" href="#people-perspective" class="Permalink" aria-hidden="true" title="Permalink">#</a>People perspective</h3>
+<p>The model clarifies:</p>
+<ul>
+<li>ownership;</li>
+<li>FinOps responsibilities;</li>
+<li>platform skills;</li>
+<li>training value;</li>
+<li>operational effort;</li>
+<li>decision rights;</li>
+<li>collaboration between architecture, engineering, operations, and finance.</li>
+</ul>
+<h3><a id="governance-perspective" href="#governance-perspective" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governance perspective</h3>
+<p>The model provides:</p>
+<ul>
+<li>cost policy;</li>
+<li>metadata standards;</li>
+<li>budget and forecast controls;</li>
+<li>model versioning;</li>
+<li>review cadence;</li>
+<li>exceptions;</li>
+<li>evidence for investment and architecture decisions;</li>
+<li>risk-aware cost reporting.</li>
+</ul>
+<h3><a id="platform-perspective" href="#platform-perspective" class="Permalink" aria-hidden="true" title="Permalink">#</a>Platform perspective</h3>
+<p>The model evaluates:</p>
+<ul>
+<li>node architecture;</li>
+<li>workload placement;</li>
+<li>storage tiers;</li>
+<li>standard platform services;</li>
+<li>automation;</li>
+<li>hybrid AWS integration;</li>
+<li>service catalogs;</li>
+<li>reusable deployment patterns.</li>
+</ul>
+<h3><a id="security-perspective" href="#security-perspective" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security perspective</h3>
+<p>The model includes security as a required service quality and cost category.
+It avoids choosing a cheaper architecture that fails the required security
+outcome.</p>
+<h3><a id="operations-perspective" href="#operations-perspective" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operations perspective</h3>
+<p>The model measures:</p>
+<ul>
+<li>service health;</li>
+<li>capacity;</li>
+<li>incidents;</li>
+<li>operational effort;</li>
+<li>reliability investment;</li>
+<li>backup and recovery;</li>
+<li>observability overhead;</li>
+<li>continuous improvement.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="recommended-reports-and-dashboards" href="#recommended-reports-and-dashboards" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended reports and dashboards</h2>
+<h3><a id="executive-cost-dashboard" href="#executive-cost-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive cost dashboard</h3>
+<p>Show:</p>
+<ul>
+<li>monthly Kalaxy3 cash cost;</li>
+<li>monthly fully loaded cost;</li>
+<li>annual forecast;</li>
+<li>AWS-equivalent range;</li>
+<li>utilization;</li>
+<li>idle cost;</li>
+<li>largest projects;</li>
+<li>next capacity constraint;</li>
+<li>key assumptions and model version.</li>
+</ul>
+<h3><a id="project-cost-dashboard" href="#project-cost-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>Project cost dashboard</h3>
+<p>For each project:</p>
+<ul>
+<li>direct cost;</li>
+<li>shared cost;</li>
+<li>idle allocation;</li>
+<li>total cost;</li>
+<li>CPU, RAM, GPU, storage, and network;</li>
+<li>trend;</li>
+<li>budget;</li>
+<li>unit economics;</li>
+<li>AWS-equivalent range;</li>
+<li>owner;</li>
+<li>lifecycle date.</li>
+</ul>
+<h3><a id="capacity-and-efficiency-dashboard" href="#capacity-and-efficiency-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity and efficiency dashboard</h3>
+<p>Show:</p>
+<ul>
+<li>node CPU and memory saturation;</li>
+<li>GPU utilization;</li>
+<li>allocatable versus requested;</li>
+<li>physical versus logical storage;</li>
+<li>Longhorn replica overhead;</li>
+<li>NFS and MinIO growth;</li>
+<li>power;</li>
+<li>forecast exhaustion date;</li>
+<li>next purchase trigger.</li>
+</ul>
+<h3><a id="aws-comparison-dashboard" href="#aws-comparison-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>AWS comparison dashboard</h3>
+<p>Show:</p>
+<ul>
+<li>Kalaxy3 actual;</li>
+<li>Kalaxy3 fully loaded;</li>
+<li>AWS on-demand;</li>
+<li>AWS committed;</li>
+<li>AWS Spot or elastic;</li>
+<li>hybrid;</li>
+<li>service-level differences;</li>
+<li>sensitivity ranges;</li>
+<li>break-even utilization.</li>
+</ul>
+<h3><a id="storage-economics-dashboard" href="#storage-economics-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>Storage economics dashboard</h3>
+<p>Show:</p>
+<ul>
+<li>logical and physical bytes;</li>
+<li>Longhorn replica factor;</li>
+<li>NFS retained bytes;</li>
+<li>MinIO retained bytes;</li>
+<li>cost per GB-month;</li>
+<li>stale volumes and buckets;</li>
+<li>backup capacity;</li>
+<li>growth forecast.</li>
+</ul>
+<h3><a id="llm-and-ai-economics-dashboard" href="#llm-and-ai-economics-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>LLM and AI economics dashboard</h3>
+<p>Show:</p>
+<ul>
+<li>GPU hours;</li>
+<li>GPU utilization;</li>
+<li>GPU power;</li>
+<li>tokens;</li>
+<li>requests;</li>
+<li>latency;</li>
+<li>documents indexed;</li>
+<li>vector-store growth;</li>
+<li>cost per million tokens;</li>
+<li>cost per document indexed;</li>
+<li>AWS GPU comparison;</li>
+<li>break-even utilization.</li>
+</ul>
+<h3><a id="finops-control-dashboard" href="#finops-control-dashboard" class="Permalink" aria-hidden="true" title="Permalink">#</a>FinOps control dashboard</h3>
+<p>Show:</p>
+<ul>
+<li>percentage of workloads with required labels;</li>
+<li>unallocated cost;</li>
+<li>unknown owner cost;</li>
+<li>stale projects;</li>
+<li>model reconciliation difference;</li>
+<li>expired cost rates;</li>
+<li>AWS price-data age;</li>
+<li>missing power measurements;</li>
+<li>missing asset values.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="implementation-roadmap" href="#implementation-roadmap" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation roadmap</h2>
+<h3><a id="phase-0-governance-and-definitions" href="#phase-0-governance-and-definitions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 0 governance and definitions</h3>
+<p>Deliverables:</p>
+<ul>
+<li>cost-model charter;</li>
+<li>owner;</li>
+<li>cost taxonomy;</li>
+<li>showback policy;</li>
+<li>idle policy;</li>
+<li>shared-cost policy;</li>
+<li>useful-life policy;</li>
+<li>labor-rate policy;</li>
+<li>AWS comparison profiles;</li>
+<li>model versioning rules.</li>
+</ul>
+<p>Decisions:</p>
+<ul>
+<li>historical versus replacement-cost primary view;</li>
+<li>monthly reporting date;</li>
+<li>electricity source;</li>
+<li>treatment of donated equipment;</li>
+<li>treatment of personal learning labor;</li>
+<li>minimum materiality threshold.</li>
+</ul>
+<h3><a id="phase-1-metadata-and-measurement" href="#phase-1-metadata-and-measurement" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 1 metadata and measurement</h3>
+<p>Actions:</p>
+<ol>
+<li>Apply the project label dictionary.</li>
+<li>Establish one project-and-environment namespace pattern.</li>
+<li>Measure label coverage.</li>
+<li>Export Kubecost allocation and asset data.</li>
+<li>Add GPU metrics.</li>
+<li>Add NFS metrics.</li>
+<li>Add MinIO metrics.</li>
+<li>collect Longhorn physical capacity and replica data.</li>
+<li>Collect UPS and power data.</li>
+<li>Build the hardware inventory.</li>
+<li>Record purchase and replacement values.</li>
+</ol>
+<p>Exit criteria:</p>
+<ul>
+<li>at least 95 percent of nonplatform workload cost has an owner;</li>
+<li>all storage has an owner or is marked shared;</li>
+<li>all nodes have inventory and cost records;</li>
+<li>electricity and useful-life assumptions are versioned.</li>
+</ul>
+<h3><a id="phase-2-kalaxy3-rate-model" href="#phase-2-kalaxy3-rate-model" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 2 Kalaxy3 rate model</h3>
+<p>Actions:</p>
+<ol>
+<li>Calculate hourly depreciation by asset.</li>
+<li>Calculate power rates.</li>
+<li>Calculate node fully loaded hourly rates.</li>
+<li>Define CPU, RAM, and GPU allocation weights.</li>
+<li>Calculate Longhorn, NFS, and MinIO storage rates.</li>
+<li>Calculate shared platform monthly cost.</li>
+<li>Add labor and maintenance scenarios.</li>
+<li>Reconcile rates to total Kalaxy3 cost.</li>
+</ol>
+<p>Exit criteria:</p>
+<ul>
+<li>allocated plus shared plus idle cost reconciles to modeled total cost;</li>
+<li>every rate has an effective date and source;</li>
+<li>cash and economic views are separate.</li>
+</ul>
+<h3><a id="phase-3-project-allocation-and-reporting" href="#phase-3-project-allocation-and-reporting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 3 project allocation and reporting</h3>
+<p>Actions:</p>
+<ol>
+<li>Aggregate Kubecost by project labels.</li>
+<li>Join external NFS, MinIO, labor, and asset costs.</li>
+<li>Implement shared and idle allocation policies.</li>
+<li>Produce daily and monthly project reports.</li>
+<li>Define initial unit economics.</li>
+<li>Create Grafana or generated Markdown reports.</li>
+<li>Review results with project owners.</li>
+</ol>
+<p>Exit criteria:</p>
+<ul>
+<li>each project has direct and fully loaded cost;</li>
+<li>unknown ownership is below threshold;</li>
+<li>reports can be reproduced from source data.</li>
+</ul>
+<h3><a id="phase-4-aws-comparison-engine" href="#phase-4-aws-comparison-engine" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 4 AWS comparison engine</h3>
+<p>Actions:</p>
+<ol>
+<li>Define AWS region and service-level profiles.</li>
+<li>Map Kalaxy3 resources to AWS services.</li>
+<li>Benchmark representative workloads.</li>
+<li>Create AWS Pricing Calculator estimates.</li>
+<li>Store service quantities and assumptions.</li>
+<li>Implement on-demand, committed, Spot, managed, and hybrid scenarios.</li>
+<li>Include transfer, monitoring, backup, support, and IPv4.</li>
+<li>Validate with an AWS pilot where practical.</li>
+</ol>
+<p>Exit criteria:</p>
+<ul>
+<li>each comparison identifies date, region, pricing model, and architecture;</li>
+<li>comparisons normalize availability, durability, and operating hours;</li>
+<li>no comparison relies only on EC2 price.</li>
+</ul>
+<h3><a id="phase-5-automation-and-optimization" href="#phase-5-automation-and-optimization" class="Permalink" aria-hidden="true" title="Permalink">#</a>Phase 5 automation and optimization</h3>
+<p>Actions:</p>
+<ol>
+<li>Schedule cost-data exports.</li>
+<li>Add metadata-policy checks to CI or admission control.</li>
+<li>Alert on missing ownership.</li>
+<li>Alert on project budget or capacity thresholds.</li>
+<li>Detect stale PVCs and namespaces.</li>
+<li>Refresh AWS price assumptions.</li>
+<li>Generate monthly FinOps reports.</li>
+<li>Track optimization actions and realized savings.</li>
+<li>Add capacity-purchase recommendations.</li>
+<li>Add AWS burst recommendations.</li>
+</ol>
+<p>Exit criteria:</p>
+<ul>
+<li>monthly reports require minimal manual work;</li>
+<li>optimization recommendations have owners and outcomes;</li>
+<li>the model is used in architecture and investment reviews.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="validation-and-control-framework" href="#validation-and-control-framework" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation and control framework</h2>
+<h3><a id="cost-reconciliation" href="#cost-reconciliation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Cost reconciliation</h3>
+<p>Every period should satisfy:</p>
+<pre><code class="language-text">Direct project cost
++ shared cost
++ idle cost
++ unallocated cost
++ overhead
+= total modeled Kalaxy3 cost
+</code></pre>
+<p>Differences must be reported rather than silently discarded.</p>
+<h3><a id="metadata-coverage" href="#metadata-coverage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Metadata coverage</h3>
+<p>Measure:</p>
+<pre><code class="language-text">Owned workload cost / total nonplatform workload cost
+</code></pre>
+<p>Target at least 95 percent before using chargeback.</p>
+<h3><a id="model-versioning" href="#model-versioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Model versioning</h3>
+<p>Each rate set should include:</p>
+<ul>
+<li>version;</li>
+<li>effective date;</li>
+<li>owner;</li>
+<li>source;</li>
+<li>method;</li>
+<li>confidence;</li>
+<li>replacement date.</li>
+</ul>
+<p>Never overwrite historical rates used for closed periods.</p>
+<h3><a id="review-cadence" href="#review-cadence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Review cadence</h3>
+<p>Recommended cadence:</p>
+<table>
+<thead>
+<tr>
+<th>Review</th>
+<th>Frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Data-quality check</td>
+<td>Weekly</td>
+</tr>
+<tr>
+<td>Project showback</td>
+<td>Monthly</td>
+</tr>
+<tr>
+<td>Capacity forecast</td>
+<td>Monthly</td>
+</tr>
+<tr>
+<td>Rate review</td>
+<td>Quarterly</td>
+</tr>
+<tr>
+<td>AWS price refresh</td>
+<td>Quarterly or before major decisions</td>
+</tr>
+<tr>
+<td>Hardware replacement values</td>
+<td>Semiannually</td>
+</tr>
+<tr>
+<td>Architecture review</td>
+<td>Before major project or purchase</td>
+</tr>
+<tr>
+<td>Full model policy review</td>
+<td>Annually</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="acceptance-criteria" href="#acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Acceptance criteria</h3>
+<p>The model is ready for decision support when:</p>
+<ul>
+<li>total modeled cost reconciles;</li>
+<li>projects are consistently identified;</li>
+<li>shared and idle policies are documented;</li>
+<li>physical storage overhead is included;</li>
+<li>power and hardware rates have sources;</li>
+<li>AWS scenarios include all material services;</li>
+<li>results include uncertainty ranges;</li>
+<li>unit economics are defined for major workloads;</li>
+<li>reports identify model version and assumptions.</li>
+</ul>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="risks-limitations-and-cautions" href="#risks-limitations-and-cautions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Risks limitations and cautions</h2>
+<ol>
+<li><strong>Kubecost is not the full ledger.</strong> It allocates Kubernetes resources but
+requires external cost and ownership data for complete TCO.</li>
+<li><strong>The current LoadBalancer warning is nonfatal but informative.</strong> MetalLB
+does not have native cloud-provider pricing, so load-balancer economics
+should be modeled separately.</li>
+<li><strong>NFS and MinIO need explicit allocation.</strong> Kubernetes pod metrics alone do
+not fully attribute their infrastructure cost.</li>
+<li><strong>Longhorn logical capacity understates physical capacity.</strong> Replication must
+be included.</li>
+<li><strong>GPU cost can be distorted by low utilization.</strong> Separate active,
+reserved, and idle GPU cost.</li>
+<li><strong>Historical purchase cost may understate replacement economics.</strong> Report
+both when material.</li>
+<li><strong>Labor is difficult but cannot be ignored.</strong> Use scenario rates when cash
+labor is not directly recorded.</li>
+<li><strong>AWS price comparisons become stale.</strong> Refresh before decisions.</li>
+<li><strong>AWS service equivalence is architectural, not purely numerical.</strong>
+Reliability and managed responsibility must be normalized.</li>
+<li><strong>Sunk cost should not justify future waste.</strong> Use marginal cost for
+short-term placement and replacement cost for strategic decisions.</li>
+<li><strong>Chargeback can create bad incentives.</strong> Begin with showback.</li>
+<li><strong>False precision is dangerous.</strong> Use ranges and confidence ratings.</li>
+<li><strong>Local capacity can appear free until a threshold is crossed.</strong> Step costs
+must be forecast.</li>
+<li><strong>Unused resilience is not automatically waste.</strong> Some idle capacity is
+intentional recovery or growth reserve.</li>
+<li><strong>Cost optimization must not override safety, security, or reliability
+requirements.</strong></li>
+</ol>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="recommended-initial-decisions" href="#recommended-initial-decisions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended initial decisions</h2>
+<p>Adopt these initial Kalaxy3 policies:</p>
+<ol>
+<li>Use Kubecost as the Kubernetes workload-allocation engine.</li>
+<li>Use a separate Kalaxy3 cost pipeline for hardware, power, labor, NFS,
+MinIO, and AWS scenarios.</li>
+<li>Start with showback rather than chargeback.</li>
+<li>Make <code>kalaxy3.io/project</code>, <code>kalaxy3.io/owner</code>, and
+<code>kalaxy3.io/environment</code> mandatory.</li>
+<li>Keep shared and idle costs visible before distributing them.</li>
+<li>Report both cash and fully loaded economic cost.</li>
+<li>Use two-replica physical capacity for Longhorn economics.</li>
+<li>Preserve <code>amd64-01</code> GPU and LLM capacity as a scarce resource with an
+explicit opportunity cost.</li>
+<li>Compare AWS under at least rehost, managed, elastic, and hybrid scenarios.</li>
+<li>Use benchmark-equivalent AWS resources.</li>
+<li>Refresh AWS prices before major decisions.</li>
+<li>Produce monthly project reports and quarterly architecture reviews.</li>
+<li>Treat the nonfatal MetalLB pricing warning as a documented limitation,
+not as a reason to repeatedly patch the Helm-managed ConfigMap.</li>
+<li>Defer detailed chargeback until ownership and reconciliation exceed the
+acceptance thresholds.</li>
+<li>Define one or two unit-economic measures for each major project.</li>
+</ol>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="nontechnical-explanation" href="#nontechnical-explanation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nontechnical explanation</h2>
+<h3><a id="what-we-are-building" href="#what-we-are-building" class="Permalink" aria-hidden="true" title="Permalink">#</a>What we are building</h3>
+<p>We are building a fair and understandable way to answer:</p>
+<blockquote>
+<p>What does Kalaxy3 really cost, who is using it, what value are they getting,
+and would the same work be cheaper or better on AWS?</p>
+</blockquote>
+<p>Kubecost is the meter inside Kubernetes. It observes which applications use
+processor time, memory, storage, and other shared resources.</p>
+<p>The complete Kalaxy3 cost model adds the bills and economic facts that the
+meter cannot know, such as:</p>
+<ul>
+<li>what the computers cost;</li>
+<li>how much electricity they use;</li>
+<li>how long they are expected to last;</li>
+<li>how much storage protection uses;</li>
+<li>how much work is required to operate them;</li>
+<li>what equivalent AWS services would cost.</li>
+</ul>
+<h3><a id="why-it-matters" href="#why-it-matters" class="Permalink" aria-hidden="true" title="Permalink">#</a>Why it matters</h3>
+<p>Without a cost model, local hardware often looks free after it has been
+purchased. AWS often looks expensive because every service appears on a bill.</p>
+<p>That comparison is incomplete.</p>
+<p>Kalaxy3 has costs that do not arrive as a monthly cloud invoice. AWS includes
+services and responsibilities that Kalaxy3 may provide differently or may not
+provide at the same level.</p>
+<p>The model makes both sides visible so decisions are based on the same outcome.</p>
+<h3><a id="how-it-works" href="#how-it-works" class="Permalink" aria-hidden="true" title="Permalink">#</a>How it works</h3>
+<p>Each Kalaxy3 project will be given an identity.</p>
+<p>The system will measure what that project uses:</p>
+<ul>
+<li>processor;</li>
+<li>memory;</li>
+<li>GPU;</li>
+<li>storage;</li>
+<li>network;</li>
+<li>shared platform services.</li>
+</ul>
+<p>It will then assign a reasonable portion of shared costs such as monitoring,
+the Kubernetes control plane, storage replication, backups, electricity, and
+operations.</p>
+<p>A separate calculation will describe what equivalent work would require on
+AWS, including the parts that are easy to overlook, such as storage,
+load balancers, monitoring, backup, public addresses, and data transfer.</p>
+<h3><a id="what-it-will-tell-us" href="#what-it-will-tell-us" class="Permalink" aria-hidden="true" title="Permalink">#</a>What it will tell us</h3>
+<p>The model should be able to say:</p>
+<ul>
+<li>Project A costs about this much per month.</li>
+<li>Project B is using very little but has reserved a large amount of memory.</li>
+<li>Project C will cause another disk or node purchase in three months.</li>
+<li>The LLM saves money locally only when the GPU is used above a certain level.</li>
+<li>A short, irregular job is cheaper on AWS because it can stop when finished.</li>
+<li>A continuous data-heavy service is cheaper on Kalaxy3 because the hardware
+is already available and cloud transfer would be expensive.</li>
+<li>Some spare capacity is intentional protection, while some is unnecessary
+waste.</li>
+<li>A proposed hardware purchase will pay for itself only under certain usage.</li>
+<li>A hybrid design is better than choosing only Kalaxy3 or only AWS.</li>
+</ul>
+<h3><a id="what-it-will-not-claim" href="#what-it-will-not-claim" class="Permalink" aria-hidden="true" title="Permalink">#</a>What it will not claim</h3>
+<p>The model will not claim that one platform is always cheaper.</p>
+<p>It will not treat an old computer as economically free.</p>
+<p>It will not claim that an AWS estimate provides the same reliability unless
+the architecture actually does.</p>
+<p>It will not pretend that every cost is known with perfect precision.</p>
+<p>It will show assumptions, ranges, and confidence so the result can support a
+decision rather than merely produce an impressive number.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="conclusion" href="#conclusion" class="Permalink" aria-hidden="true" title="Permalink">#</a>Conclusion</h2>
+<p>Kalaxy3 now has the technical basis for meaningful Kubernetes FinOps:
+Kubecost, Prometheus, Longhorn-backed retention, project-capable Kubernetes
+metadata, and reproducible Ansible deployment.</p>
+<p>The next step is not another Kubecost installation change. It is the
+construction of a governed economic model around the data Kubecost already
+collects.</p>
+<p>The resulting capability should provide:</p>
+<ul>
+<li>Kalaxy3 total cost of ownership;</li>
+<li>project showback;</li>
+<li>shared and idle cost visibility;</li>
+<li>capacity forecasts;</li>
+<li>storage and GPU economics;</li>
+<li>unit economics;</li>
+<li>AWS-equivalent scenarios;</li>
+<li>break-even analysis;</li>
+<li>hybrid-placement guidance;</li>
+<li>evidence-based hardware and architecture decisions.</li>
+</ul>
+<p>The model will be most valuable when it is treated as a recurring operating
+process rather than a one-time spreadsheet.</p>
+<p><a href="#table-of-contents">Back to table of contents</a></p>
+<h2><a id="authoritative-source-basis" href="#authoritative-source-basis" class="Permalink" aria-hidden="true" title="Permalink">#</a>Authoritative source basis</h2>
+<p>This document was informed by the following authoritative sources, reviewed in
+July 2026:</p>
+<ul>
+<li>Kalaxy3 Kubecost installation and verification evidence.</li>
+<li>OpenCost Specification.</li>
+<li>OpenCost API documentation.</li>
+<li>OpenCost on-premises and Kubernetes documentation.</li>
+<li>AWS Well-Architected Framework.</li>
+<li>AWS Well-Architected Cost Optimization Pillar.</li>
+<li>AWS Cloud Adoption Framework overview and its Business, People, Governance,
+Platform, Security, and Operations perspectives.</li>
+<li>AWS Pricing Calculator documentation.</li>
+<li>AWS Data Exports and Cost and Usage Report 2.0 documentation.</li>
+<li>AWS cost-allocation tagging and Cost Categories guidance.</li>
+<li>Amazon EKS architecture and pricing documentation.</li>
+<li>Amazon EC2, EBS, EFS, S3, and Elastic Load Balancing pricing documentation.</li>
+</ul>
+<p>AWS prices and product capabilities are time-sensitive. This document defines a
+method for collecting them but intentionally does not make permanent cost
+decisions from a static price list.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/ubuntu_node_provisioning_fixed.html">Previous</a></li>                    </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
