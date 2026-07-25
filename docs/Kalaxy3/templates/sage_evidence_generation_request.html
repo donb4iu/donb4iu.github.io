@@ -106,6 +106,7 @@
 <li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
 <li class='Nav__item '><a href="../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
 <li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
@@ -149,15 +150,20 @@
 <p>Use this exact request after a Kalaxy3 working session:</p>
 <blockquote>
 <p>Generate the SAGE evidence package for the most recent Kalaxy3 working
-session using the repository SAGE evidence-record standard, evidence-record
-template, and evidence-publication process. Include all available terminal
-and repository evidence, the final accepted state, failed attempts, decision
-rationale, limitations, evidence gaps, rollback and rebuild guidance,
-idempotency evidence, and security review. Produce one valid ZIP package with
-<code>sage-package.json</code> and <code>payload/</code>. Return the package and only the standard
-check and publication commands; do not invent a different Git workflow.</p>
+session using the repository SAGE evidence-record standard, canonical
+metadata contract, evidence-record template, and evidence-publication
+process. Use schema 1.1. Populate every canonical front-matter field in exact
+order; distinguish work completion, evidence collection, record timestamps,
+local timezone, and system timestamp timezone; normalize nodes and addresses,
+endpoints, and component versions; generate the exact Record metadata table
+from front matter; and keep the Five Ws consistent with it. Include all
+available terminal and repository evidence, final state, failed attempts,
+rationale, limitations, evidence gaps, rollback, rebuild, idempotency, and
+security review. Produce one valid ZIP with <code>sage-package.json</code> and
+<code>payload/</code>. Return the package and only the standard check and publication
+commands. Do not invent another metadata format or Git workflow.</p>
 </blockquote>
-<p>The expected response contains:</p>
+<p>Expected response:</p>
 <ol>
 <li>
 <p>one ZIP package;</p>
@@ -175,8 +181,9 @@ check and publication commands; do not invent a different Git workflow.</p>
 </code></pre>
 </li>
 </ol>
-<p>The evidence generator must not provide an ad hoc sequence of <code>unzip</code>, <code>git add</code>, <code>git commit</code>, <code>pull</code>, or <code>push</code> commands. Those operations belong to the
-repository publication script.</p>
+<p>The generator must not provide an ad hoc static header, <code>unzip</code>, <code>git add</code>,
+<code>git commit</code>, <code>pull</code>, or <code>push</code> workflow. Canonical metadata and Git publication
+belong to the repository contracts and publisher.</p>
     </div>
 
         <nav>

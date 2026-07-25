@@ -106,6 +106,7 @@
 <li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
 <li class='Nav__item '><a href="../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
 <li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
@@ -147,142 +148,172 @@
     <div class="s-content">
         <h1><a id="kalaxy3-sage-evidence-generation-and-git-publication-process" href="#kalaxy3-sage-evidence-generation-and-git-publication-process" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 SAGE Evidence Generation and Git Publication Process</h1>
 <h2><a id="purpose" href="#purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>Purpose</h2>
-<p>This process removes variation from working-session evidence publication. The
-evidence generator is responsible for synthesizing a SAGE-compliant package.
-The repository publisher is responsible for deterministic validation, file
-placement, checksums, Git commits, remote synchronization, and push.</p>
-<p>The workflow intentionally separates reasoning from repository mutation:</p>
+<p>This process makes every working-session evidence publication deterministic.
+The evidence generator synthesizes one package. The repository publisher
+enforces metadata, structure, checksums, placement, Git lineage, commit
+separation, synchronization, and push.</p>
 <pre><code class="language-text">working session and observed evidence
         |
         v
-SAGE evidence generator
-  - standard and template conformance
-  - record and artifact synthesis
-  - package manifest and file hashes
-        |
-        v
-one immutable ZIP package
+SAGE package generator
+  - schema 1.1 front matter
+  - canonical Record metadata table
+  - Five Ws and How
+  - claims and evidence
+  - raw artifact package
         |
         v
 scripts/sage/sage-publish.py
-  - package validation
+  - contract validation
+  - exact file placement
   - implementation commit
-  - implementation SHA injection
-  - evidence checksum and publication manifest
+  - SHA injection
+  - record checksum
   - evidence commit
-  - upstream synchronization
-  - push and final status
+  - safe synchronization and push
 </code></pre>
-<h2><a id="governing-sources" href="#governing-sources" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governing sources</h2>
-<p>Every package must be generated from the versions present in the target
-repository:</p>
+<h2><a id="authoritative-inputs" href="#authoritative-inputs" class="Permalink" aria-hidden="true" title="Permalink">#</a>Authoritative inputs</h2>
+<p>The generator and publisher MUST use these repository files:</p>
 <pre><code class="language-text">markdown/standards/kalaxy3-sage-evidence-record-standard.md
+markdown/standards/sage-evidence-metadata-contract-v1.1.json
 markdown/templates/sage-evidence-record-template.md
-markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/templates/sage-evidence-package-manifest-template.json
+markdown/templates/sage-evidence-generation-request.md
 </code></pre>
-<p>The evidence-record standard defines identity, lifecycle, evidence classes,
-mandatory sections, acceptance rules, repository organization, and security
-boundaries. The template defines the concrete record structure and evidence
-fields. This process defines the package contract and the only supported Git
-publication sequence.</p>
-<h2><a id="canonical-invocation" href="#canonical-invocation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Canonical invocation</h2>
-<p>After a working session, say:</p>
-<blockquote>
-<p>Generate the SAGE evidence package for the most recent Kalaxy3 working
-session using the SAGE standard, SAGE template, and SAGE publication process.</p>
-</blockquote>
-<p>The expanded reusable wording is stored in:</p>
-<pre><code class="language-text">markdown/templates/sage-evidence-generation-request.md
-</code></pre>
-<h2><a id="responsibilities" href="#responsibilities" class="Permalink" aria-hidden="true" title="Permalink">#</a>Responsibilities</h2>
-<h3><a id="evidence-generator" href="#evidence-generator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence generator</h3>
-<p>The generator must:</p>
-<ol>
-<li>use the most recent working-session conversation and supplied terminal
-evidence as the primary observation source;</li>
-<li>use repository diffs, statuses, commits, manifests, and checksums as
-repository evidence;</li>
-<li>read the current SAGE standard, template, and publication process;</li>
-<li>preserve exact commands and material output while trimming unrelated noise;</li>
-<li>separate direct observation, repository evidence, generated artifacts,
-derived conclusions, assumptions, plans, and negative evidence;</li>
-<li>use a permanent evidence ID in the standard form;</li>
-<li>use all template sections in template order;</li>
-<li>include explicit limitations, nonclaims, evidence gaps, failure paths,
-rollback, rebuild, operations, and revalidation triggers;</li>
-<li>use <code>__SAGE_IMPLEMENTATION_COMMIT__</code> wherever the implementation SHA belongs;</li>
-<li>use <code>__SAGE_PUBLISHED_AT__</code> for the publication timestamp when needed;</li>
-<li>generate a valid <code>sage-package.json</code>;</li>
-<li>hash every packaged payload file;</li>
-<li>create one ZIP and return only the standard check and publish commands.</li>
-</ol>
-<p>The generator must not:</p>
+<p>The JSON metadata contract is the machine-readable authority for:</p>
 <ul>
-<li>silently convert assumptions into observed facts;</li>
-<li>omit failed attempts that explain the accepted design;</li>
+<li>record schema version;</li>
+<li>exact front-matter fields and order;</li>
+<li>list-valued fields;</li>
+<li>exact Record metadata table rows and order;</li>
+<li>exact Five-W table row names;</li>
+<li>canonical list separator;</li>
+<li>unavailable-value vocabulary;</li>
+<li>timestamp and timezone requirements.</li>
+</ul>
+<p>The publisher MUST reject drift between the JSON contract and its enforcement
+constants.</p>
+<h2><a id="division-of-responsibility" href="#division-of-responsibility" class="Permalink" aria-hidden="true" title="Permalink">#</a>Division of responsibility</h2>
+<h3><a id="evidence-generator" href="#evidence-generator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence generator</h3>
+<p>The generator MUST:</p>
+<ol>
+<li>identify the most recent Kalaxy3 working session and its boundaries;</li>
+<li>use a permanent evidence ID;</li>
+<li>use record schema <code>1.1</code>;</li>
+<li>populate every canonical front-matter field in exact order;</li>
+<li>distinguish work, evidence, record, and validity timestamps;</li>
+<li>use <code>America/Chicago</code> as the canonical local timezone unless the session
+evidence proves another location/timezone;</li>
+<li>record Kubernetes and other system timestamp zones separately, normally
+<code>UTC</code>;</li>
+<li>normalize components as <code>component=version</code>;</li>
+<li>normalize node addresses as <code>node=address</code>;</li>
+<li>normalize endpoints as <code>purpose=address-or-hostname</code>;</li>
+<li>use <code>not-applicable</code>, <code>not-captured</code>, or <code>pending</code> exactly rather than
+inventing synonyms;</li>
+<li>generate the exact Record metadata table from front matter;</li>
+<li>use the exact Five Ws and How rows and keep their facts consistent with
+canonical metadata;</li>
+<li>include all mandatory template sections in order;</li>
+<li>create atomic claims and map them to evidence IDs;</li>
+<li>distinguish direct observation, repository evidence, generated artifacts,
+derived conclusions, assumptions, plans, and negative evidence;</li>
+<li>separate failed paths from accepted state;</li>
+<li>document limitations, nonclaims, gaps, rollback, rebuild, operations,
+security, and revalidation;</li>
+<li>use <code>__SAGE_IMPLEMENTATION_COMMIT__</code> wherever the implementation SHA belongs;</li>
+<li>use <code>__SAGE_PUBLISHED_AT__</code> wherever publication time belongs;</li>
+<li>create one valid package manifest;</li>
+<li>hash every payload file;</li>
+<li>return one ZIP and only the standard check and publish commands.</li>
+</ol>
+<p>The generator MUST NOT:</p>
+<ul>
+<li>create an informal static header with different field names;</li>
+<li>reformat canonical timestamps in the Record metadata table;</li>
+<li>abbreviate timezones or commit SHAs;</li>
+<li>put version numbers only in prose;</li>
+<li>omit node-address relationships;</li>
+<li>introduce a front-matter field not defined by the contract;</li>
+<li>silently convert assumptions into facts;</li>
+<li>omit a failed attempt that materially explains the accepted design;</li>
 <li>include credentials, tokens, private keys, secret values, or unredacted
 Kubernetes Secrets;</li>
 <li>place raw artifacts outside the evidence ID directory;</li>
-<li>tell the operator to stage files manually;</li>
-<li>invent a session-specific Git sequence.</li>
+<li>provide a custom Git workflow.</li>
 </ul>
 <h3><a id="repository-publisher" href="#repository-publisher" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository publisher</h3>
-<p><code>scripts/sage/sage-publish.py</code> must:</p>
+<p><code>scripts/sage/sage-publish.py</code> MUST:</p>
 <ul>
-<li>reject unsafe ZIP paths and symbolic links;</li>
-<li>verify the package manifest and every payload SHA-256;</li>
-<li>verify the evidence ID and canonical paths;</li>
-<li>verify required front matter and template headings;</li>
-<li>verify claim-to-evidence references;</li>
+<li>reject unsafe ZIP paths, symbolic links, undeclared files, and checksum
+mismatches;</li>
+<li>require package schema <code>1.1</code> and record schema <code>1.1</code>;</li>
+<li>verify the repository standard, template, metadata contract, and process;</li>
+<li>enforce exact front-matter field order;</li>
+<li>validate RFC3339 timestamps and IANA timezone names;</li>
+<li>validate canonical unavailable values;</li>
+<li>validate node/address, endpoint, component/version, and artifact-root formats;</li>
+<li>require the exact Record metadata table and compare every value with front
+matter;</li>
+<li>require the exact Five-W row order;</li>
+<li>detect material conflicts between Five Ws and metadata;</li>
+<li>validate claims and evidence references;</li>
 <li>scan for high-confidence secret patterns;</li>
 <li>require a clean Git index;</li>
-<li>synchronize with <code>origin/main</code> before commits;</li>
-<li>stage only manifest-declared implementation files;</li>
+<li>synchronize safely with <code>origin/main</code>;</li>
+<li>stage only manifest-declared implementation paths;</li>
 <li>create a separate implementation commit when implementation changed;</li>
-<li>inject the immutable implementation commit SHA into the record;</li>
-<li>copy only manifest-declared evidence files;</li>
-<li>generate the final record SHA-256;</li>
-<li>write a publication manifest containing the standard and template hashes;</li>
-<li>stage only declared evidence files;</li>
-<li>create the evidence commit;</li>
-<li>repair the recorded implementation SHA if an upstream rebase rewrites it;</li>
+<li>inject the full immutable implementation SHA;</li>
+<li>copy only declared evidence files;</li>
+<li>generate the final record checksum;</li>
+<li>write a publication manifest containing standard, template, process, and
+metadata-contract hashes;</li>
+<li>stage only declared evidence paths;</li>
+<li>create a separate evidence commit;</li>
+<li>repair the recorded implementation SHA after a safe rebase if necessary;</li>
 <li>push without force;</li>
-<li>display final commits, paths, and working-tree state.</li>
+<li>report final commits, paths, and actual working-tree state.</li>
 </ul>
 <h2><a id="package-format" href="#package-format" class="Permalink" aria-hidden="true" title="Permalink">#</a>Package format</h2>
-<p>A package is a ZIP with this exact top-level structure:</p>
+<p>A package is a ZIP with exactly:</p>
 <pre><code class="language-text">sage-package.json
 payload/
   markdown/&lt;category&gt;/&lt;record&gt;.md
   markdown/evidence-artifacts/&lt;evidence-id&gt;/&lt;artifact files&gt;
 </code></pre>
-<p>The record checksum is not packaged as final evidence because publication
-replaces the implementation SHA token. The publisher generates the final:</p>
+<p>The packaged record does not include its final checksum because publication
+replaces tokens. The publisher creates:</p>
 <pre><code class="language-text">markdown/&lt;category&gt;/&lt;record&gt;.md.sha256
+markdown/evidence-artifacts/&lt;evidence-id&gt;/publication-manifest.json
 </code></pre>
-<p>The publisher also creates:</p>
-<pre><code class="language-text">markdown/evidence-artifacts/&lt;evidence-id&gt;/publication-manifest.json
-</code></pre>
-<h3><a id="manifest-fields" href="#manifest-fields" class="Permalink" aria-hidden="true" title="Permalink">#</a>Manifest fields</h3>
+<h2><a id="package-manifest-schema-1-1" href="#package-manifest-schema-1-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>Package manifest schema 1.1</h2>
 <table>
 <thead>
 <tr>
 <th>Field</th>
-<th>Purpose</th>
+<th>Requirement</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>schema_version</code></td>
-<td>Package contract version; currently <code>1.0</code>.</td>
+<td>Exactly <code>1.1</code>.</td>
+</tr>
+<tr>
+<td><code>record_schema_version</code></td>
+<td>Exactly <code>1.1</code>.</td>
+</tr>
+<tr>
+<td><code>metadata_contract_path</code></td>
+<td>Exactly <code>markdown/standards/sage-evidence-metadata-contract-v1.1.json</code>.</td>
 </tr>
 <tr>
 <td><code>repository</code></td>
-<td>Must be <code>donb4iu/Kalaxy3</code>.</td>
+<td>Exactly <code>donb4iu/Kalaxy3</code>.</td>
 </tr>
 <tr>
 <td><code>branch</code></td>
-<td>Target branch; normally <code>main</code>.</td>
+<td>Target branch, normally <code>main</code>.</td>
 </tr>
 <tr>
 <td><code>evidence_id</code></td>
@@ -290,19 +321,19 @@ replaces the implementation SHA token. The publisher generates the final:</p>
 </tr>
 <tr>
 <td><code>record_path</code></td>
-<td>Canonical repository path for the record.</td>
+<td>Canonical repository path.</td>
 </tr>
 <tr>
 <td><code>record_checksum_path</code></td>
-<td>Must be <code>record_path + .sha256</code>.</td>
+<td>Exactly <code>record_path + .sha256</code>.</td>
 </tr>
 <tr>
 <td><code>artifact_paths</code></td>
-<td>Files under <code>markdown/evidence-artifacts/&lt;evidence-id&gt;/</code>.</td>
+<td>Files under the exact evidence ID artifact root.</td>
 </tr>
 <tr>
 <td><code>implementation_paths</code></td>
-<td>Exact working-tree paths belonging to the implementation.</td>
+<td>Exact implementation paths changed during the session.</td>
 </tr>
 <tr>
 <td><code>publication_mode</code></td>
@@ -310,36 +341,30 @@ replaces the implementation SHA token. The publisher generates the final:</p>
 </tr>
 <tr>
 <td><code>implementation_commit_message</code></td>
-<td>Commit subject for implementation files.</td>
+<td>Imperative implementation commit subject.</td>
 </tr>
 <tr>
 <td><code>evidence_commit_message</code></td>
-<td>Commit subject for evidence files.</td>
+<td>Imperative evidence commit subject.</td>
 </tr>
 <tr>
 <td><code>files</code></td>
-<td>Packaged payload paths and their SHA-256 values.</td>
+<td>Every packaged payload file and its SHA-256.</td>
 </tr>
 </tbody>
 </table>
-<p>The machine-readable template is:</p>
-<pre><code class="language-text">markdown/templates/sage-evidence-package-manifest-template.json
-</code></pre>
 <h2><a id="publication-modes" href="#publication-modes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Publication modes</h2>
-<h3><a id="split-publication" href="#split-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Split publication</h3>
-<p>Use when the working session changed implementation or configuration files.
-The publisher creates:</p>
-<pre><code class="language-text">commit 1: implementation files only
-commit 2: evidence record, checksum, raw artifacts, publication manifest
+<h3><a id="split" href="#split" class="Permalink" aria-hidden="true" title="Permalink">#</a>Split</h3>
+<p>Use when implementation or configuration changed:</p>
+<pre><code class="language-text">commit 1: implementation paths only
+commit 2: evidence record, checksum, artifacts, publication manifest
 </code></pre>
-<p>The evidence record references commit 1.</p>
-<h3><a id="evidence-only-publication" href="#evidence-only-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence-only publication</h3>
-<p>Use when the working session only verified an existing implementation or
-created documentation. <code>implementation_paths</code> must be empty. The manifest may
-provide <code>evidence_only_implementation_commit</code>; otherwise the publisher uses the
-current <code>HEAD</code> as the implementation lineage.</p>
+<h3><a id="evidence-only" href="#evidence-only" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence-only</h3>
+<p>Use when the session only validates or documents an existing implementation.
+<code>implementation_paths</code> must be empty. The manifest may name an existing full
+implementation SHA; otherwise the publisher uses current <code>HEAD</code>.</p>
 <h2><a id="standard-commands" href="#standard-commands" class="Permalink" aria-hidden="true" title="Permalink">#</a>Standard commands</h2>
-<h3><a id="validate-without-changing-the-repository" href="#validate-without-changing-the-repository" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validate without changing the repository</h3>
+<h3><a id="check" href="#check" class="Permalink" aria-hidden="true" title="Permalink">#</a>Check</h3>
 <pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
 
 python3 scripts/sage/sage-publish.py check \
@@ -352,119 +377,109 @@ python3 scripts/sage/sage-publish.py publish \
   ~/Downloads/&lt;sage-package&gt;.zip \
   --push
 </code></pre>
-<p>No manual <code>unzip</code>, <code>git add</code>, <code>git commit</code>, <code>pull</code>, or <code>push</code> step is part of
-the normal process.</p>
-<h3><a id="publisher-self-test" href="#publisher-self-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Publisher self-test</h3>
+<p>No manual unzip, stage, commit, rebase, or push step belongs to the normal
+process.</p>
+<h3><a id="self-test" href="#self-test" class="Permalink" aria-hidden="true" title="Permalink">#</a>Self-test</h3>
 <pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
 python3 scripts/sage/sage-publish.py self-test
 </code></pre>
 <p>The self-test creates a temporary bare remote and working repository, publishes
-a synthetic split package, pushes it, validates the two commits, and requires a
-clean final tree. It does not modify Kalaxy3.</p>
+a synthetic schema 1.1 split package, validates both commits and metadata
+mirroring, pushes, and requires a clean final tree.</p>
 <h2><a id="validation-gates" href="#validation-gates" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation gates</h2>
-<p>A package is rejected when any of these conditions holds:</p>
+<p>The publisher rejects:</p>
 <ul>
-<li>invalid or unsafe ZIP structure;</li>
-<li>missing or invalid manifest;</li>
-<li>payload checksum mismatch;</li>
-<li>evidence ID format violation;</li>
-<li>record or artifact path outside canonical directories;</li>
+<li>package schema other than <code>1.1</code>;</li>
+<li>record schema other than <code>1.1</code>;</li>
+<li>invalid ZIP structure or hash inventory;</li>
+<li>missing repository contract files;</li>
+<li>drift between contract JSON and publisher constants;</li>
+<li>missing, extra, or reordered front-matter fields;</li>
+<li>noncanonical timestamp, timezone, unavailable-value, component, address, or
+endpoint formats;</li>
+<li>a Record metadata row that is missing, extra, reordered, or inconsistent;</li>
+<li>a Five-W row that is missing, extra, reordered, or materially inconsistent;</li>
 <li>unsupported lifecycle status or record type;</li>
-<li>missing mandatory front matter;</li>
-<li>missing or out-of-order template section;</li>
-<li>unresolved template placeholder;</li>
-<li>missing evidence item referenced by a claim;</li>
-<li>incomplete Five-W gate on a validated or accepted record;</li>
-<li>accepted record with a pending reviewer;</li>
-<li>publication token missing in a split package;</li>
-<li>high-confidence secret pattern;</li>
-<li>existing staged Git changes;</li>
-<li>wrong branch or repository remote;</li>
-<li>diverged local and remote branch;</li>
+<li>missing required section or unresolved template marker;</li>
+<li>missing evidence referenced by a claim;</li>
+<li>incomplete Five-W or final checklist in a validated/accepted record;</li>
+<li>an accepted record with a pending reviewer;</li>
+<li>a split package without the implementation token;</li>
+<li>a high-confidence secret pattern;</li>
+<li>preexisting staged changes;</li>
+<li>wrong branch or remote;</li>
+<li>diverged local and remote history;</li>
 <li>no implementation change in split mode;</li>
-<li>unexpected staged file;</li>
+<li>unexpected staged files;</li>
 <li>final checksum mismatch;</li>
-<li>Git command failure or push rejection that cannot be repaired safely.</li>
+<li>unsafe Git or push failure.</li>
 </ul>
-<p>Warnings do not silently disappear. Possible low-confidence secret assignments
-are printed for operator review.</p>
-<h2><a id="git-consistency-rules" href="#git-consistency-rules" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git consistency rules</h2>
+<p>Warnings are printed and require review; they do not silently disappear.</p>
+<h2><a id="consistency-rules" href="#consistency-rules" class="Permalink" aria-hidden="true" title="Permalink">#</a>Consistency rules</h2>
 <ol>
-<li>Fetch and synchronize before creating commits.</li>
-<li>Never stage by directory wildcard when the manifest can enumerate files.</li>
-<li>Never combine implementation and evidence in one commit when implementation
+<li>Front matter is authoritative.</li>
+<li>Record metadata mirrors front matter exactly.</li>
+<li>Five Ws explain metadata and may not redefine it.</li>
+<li>Components and versions always use <code>name=version</code>.</li>
+<li>Nodes and addresses always use <code>node=address</code>.</li>
+<li>Endpoints always use <code>purpose=value</code>.</li>
+<li>Lists use semicolon-space in the human-readable metadata table.</li>
+<li>Timestamps remain RFC3339 in canonical displays.</li>
+<li>Local timezone uses an IANA name; system timestamp zones remain separate.</li>
+<li>Missing concepts use only canonical unavailable values.</li>
+<li>Implementation and evidence commits remain separate when implementation
 changed.</li>
-<li>Never record a short or provisional implementation SHA.</li>
-<li>Never use force push.</li>
-<li>If a rebase changes the implementation SHA, update the record, checksum, and
-publication manifest, then amend only the evidence commit.</li>
-<li>Do not claim a clean tree when unrelated files remain.</li>
-<li>Preserve historical evidence IDs and supersession relationships.</li>
+<li>Historical evidence IDs never change.</li>
 </ol>
 <h2><a id="evidence-package-generation-checklist" href="#evidence-package-generation-checklist" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence-package generation checklist</h2>
-<h3><a id="record" href="#record" class="Permalink" aria-hidden="true" title="Permalink">#</a>Record</h3>
+<h3><a id="canonical-metadata" href="#canonical-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Canonical metadata</h3>
 <ul>
-<li>[ ] Permanent evidence ID selected.</li>
-<li>[ ] Current standard and template used.</li>
-<li>[ ] All mandatory headings present in order.</li>
-<li>[ ] Five Ws and How complete or gaps explicit.</li>
-<li>[ ] Scope, exclusions, and nonclaims explicit.</li>
-<li>[ ] Atomic claims mapped to evidence items.</li>
-<li>[ ] Expected and observed results separated.</li>
-<li>[ ] Failed paths separated from accepted state.</li>
-<li>[ ] Idempotency proven or marked not applicable.</li>
-<li>[ ] Security and secret review complete.</li>
-<li>[ ] Rollback, rebuild, operations, troubleshooting, and revalidation complete.</li>
-<li>[ ] Implementation SHA token present.</li>
+<li>[ ] Schema version is 1.1.</li>
+<li>[ ] Every front-matter field exists in exact order.</li>
+<li>[ ] Work completion and evidence collection timestamps are distinct.</li>
+<li>[ ] Local and system timestamp timezones are explicit.</li>
+<li>[ ] Nodes, addresses, endpoints, and components use canonical formats.</li>
+<li>[ ] The artifact root matches the evidence ID.</li>
+<li>[ ] No ad hoc front-matter keys exist.</li>
+<li>[ ] Record metadata exactly mirrors front matter.</li>
+<li>[ ] Five Ws agree with metadata.</li>
 </ul>
-<h3><a id="artifacts" href="#artifacts" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifacts</h3>
+<h3><a id="evidence-record" href="#evidence-record" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence record</h3>
 <ul>
-<li>[ ] Material terminal evidence preserved.</li>
-<li>[ ] Large raw output stored outside the main record.</li>
-<li>[ ] Artifact paths use the evidence ID directory.</li>
-<li>[ ] Sensitive data removed or redacted.</li>
-<li>[ ] Every payload file hashed in the manifest.</li>
+<li>[ ] All mandatory headings exist in order.</li>
+<li>[ ] Scope, exclusions, and nonclaims are explicit.</li>
+<li>[ ] Atomic claims map to evidence items.</li>
+<li>[ ] Expected and observed results are separated.</li>
+<li>[ ] Failed paths are separated from accepted state.</li>
+<li>[ ] Idempotency is proven or not applicable.</li>
+<li>[ ] Security and secret review is complete.</li>
+<li>[ ] Rollback, rebuild, operations, troubleshooting, and revalidation are
+complete.</li>
+<li>[ ] Implementation and publication tokens are present where required.</li>
 </ul>
-<h3><a id="publication" href="#publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Publication</h3>
+<h3><a id="artifacts-and-publication" href="#artifacts-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifacts and publication</h3>
 <ul>
-<li>[ ] Exact implementation paths listed.</li>
+<li>[ ] Material terminal evidence is preserved.</li>
+<li>[ ] Raw artifacts use the evidence ID directory.</li>
+<li>[ ] Sensitive data is removed or redacted.</li>
+<li>[ ] Every payload file is hashed.</li>
+<li>[ ] Exact implementation paths are listed.</li>
 <li>[ ] Commit messages are imperative and specific.</li>
-<li>[ ] Correct publication mode selected.</li>
 <li>[ ] Package passes <code>check</code>.</li>
-<li>[ ] Package is published through the script.</li>
-<li>[ ] Final commits and push are recorded in terminal output.</li>
+<li>[ ] Package is published only through the script.</li>
 </ul>
 <h2><a id="limitations" href="#limitations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Limitations</h2>
 <ul>
-<li>The publisher validates structure and traceability, not the truth of every
-technical statement. Human or AI evidence synthesis must remain grounded in
-the working session.</li>
-<li>The publisher cannot recover terminal evidence that was never captured or
-supplied.</li>
-<li>Secret scanning is conservative but cannot guarantee that every sensitive
-value is detected.</li>
-<li>A Git commit proves repository lineage, not operational correctness.</li>
-<li>Reviewer acceptance remains a governance action outside automatic
-publication.</li>
-<li>External evidence and images require separate provenance and retention rules.</li>
-<li>The current implementation expects a normal non-bare Git working tree and
-Python 3 with the standard library.</li>
+<li>Structural validation cannot prove that every factual statement is true.</li>
+<li>Exact metadata prevents naming drift but cannot supply evidence that was not
+captured.</li>
+<li>Secret scanning is conservative and cannot guarantee absence of all sensitive
+material.</li>
+<li>Legacy schema 1.0 records remain valid historical artifacts but are not
+accepted as templates for new records.</li>
+<li>A process update that replaces the publisher itself requires a reviewed
+bootstrap extraction before the new publisher can validate its own update.</li>
 </ul>
-<h2><a id="revalidation-and-change-control" href="#revalidation-and-change-control" class="Permalink" aria-hidden="true" title="Permalink">#</a>Revalidation and change control</h2>
-<p>Revalidate this publication process when:</p>
-<ul>
-<li>the SAGE record standard or template changes;</li>
-<li>package schema <code>1.0</code> changes;</li>
-<li>repository organization changes;</li>
-<li>Git branch policy changes;</li>
-<li>evidence IDs or lifecycle rules change;</li>
-<li>the publisher script changes;</li>
-<li>a package passes validation but produces an incorrect commit or path;</li>
-<li>a secret escapes detection;</li>
-<li>a Git rebase or remote race is not handled correctly.</li>
-</ul>
-<p>Changes to this process should include a successful publisher self-test and a
-SAGE evidence record describing the change.</p>
     </div>
 
         <nav>

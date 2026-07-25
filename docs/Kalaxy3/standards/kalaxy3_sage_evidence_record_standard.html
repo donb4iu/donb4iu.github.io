@@ -106,6 +106,7 @@
 <li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
 <li class='Nav__item '><a href="../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
 <li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
@@ -146,189 +147,442 @@
 
     <div class="s-content">
         <h1><a id="kalaxy3-sage-evidence-record-standard" href="#kalaxy3-sage-evidence-record-standard" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kalaxy3 SAGE Evidence Record Standard</h1>
-<h2><a id="sage-meaning" href="#sage-meaning" class="Permalink" aria-hidden="true" title="Permalink">#</a>SAGE meaning</h2>
-<p><strong>SAGE</strong> stands for <strong>Systems Architecture &amp; Governance through Evidence</strong>.</p>
-<p>SAGE is the Kalaxy3 evidence-driven engineering methodology. It treats
-architecture decisions, implementation records, observed verification, known
-limitations, rebuild instructions, and operational outcomes as linked evidence
-rather than as isolated narrative documents.</p>
-<p>The goal is to create durable engineering memory that can be used by humans,
-automation, and future AI services without trusting recollection or unsupported
-summaries.</p>
-<p>A SAGE record should make it possible to answer:</p>
+<h2><a id="sage-meaning-and-purpose" href="#sage-meaning-and-purpose" class="Permalink" aria-hidden="true" title="Permalink">#</a>SAGE meaning and purpose</h2>
+<p><strong>SAGE</strong> means <strong>Systems Architecture &amp; Governance through Evidence</strong>.</p>
+<p>SAGE is the Kalaxy3 evidence-driven engineering method. It preserves decisions,
+implementation state, observed verification, failed attempts, limitations,
+rebuild instructions, operational consequences, and Git lineage as durable,
+linked evidence.</p>
+<p>A SAGE record must let a future operator answer:</p>
 <ul>
-<li>What claim or system state is being asserted?</li>
-<li>What direct evidence supports it?</li>
-<li>Who performed, owns, and reviewed the work?</li>
-<li>When and where was the evidence collected?</li>
-<li>Why was this design selected?</li>
-<li>How can the result be reproduced, verified, repaired, or superseded?</li>
-<li>Which earlier and later records are related?</li>
-<li>How strong, current, and complete is the evidence?</li>
+<li>what state or claim is being asserted;</li>
+<li>who performed, owns, authored, and reviewed the work;</li>
+<li>when the work completed and when evidence was collected;</li>
+<li>where the work ran and which systems, nodes, addresses, namespaces, and
+repository paths it affected;</li>
+<li>why the accepted approach was selected;</li>
+<li>how the result can be reproduced, validated, repaired, rolled back, rebuilt,
+revalidated, or superseded;</li>
+<li>which direct observations and repository changes prove each claim;</li>
+<li>what the record does not prove.</li>
 </ul>
-<h2><a id="evaluation-of-the-current-kalaxy3-evidence-records" href="#evaluation-of-the-current-kalaxy3-evidence-records" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evaluation of the current Kalaxy3 evidence records</h2>
-<h3><a id="overall-assessment" href="#overall-assessment" class="Permalink" aria-hidden="true" title="Permalink">#</a>Overall assessment</h3>
-<p>The current Kalaxy3 installation records are technically strong. They preserve
-important details that are commonly lost:</p>
+<h2><a id="normative-language" href="#normative-language" class="Permalink" aria-hidden="true" title="Permalink">#</a>Normative language</h2>
+<p>The words <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>REQUIRED</strong>, <strong>SHOULD</strong>, <strong>SHOULD NOT</strong>, and
+<strong>MAY</strong> are normative.</p>
 <ul>
-<li>design rationale and rejected alternatives;</li>
-<li>exact repository paths and configuration fragments;</li>
-<li>installation and reconciliation commands;</li>
-<li>observed terminal output;</li>
-<li>functional verification;</li>
-<li>security and credential-handling restrictions;</li>
-<li>rebuild and troubleshooting procedures;</li>
-<li>idempotency evidence in several records;</li>
-<li>known limitations and future work.</li>
+<li><strong>MUST/MUST NOT</strong> define a publication gate enforced by the SAGE publisher or
+mandatory reviewer action.</li>
+<li><strong>SHOULD/SHOULD NOT</strong> define a strong default that may be overridden only with
+an explicit rationale.</li>
+<li><strong>MAY</strong> identifies optional content.</li>
 </ul>
-<p>They already function as useful rebuild guides and institutional memory.</p>
-<p>The weakness is consistency, not substance. Each record organizes evidence
-differently, and several governance facts are implicit rather than
-machine-readable. That limits cross-record search, automated freshness checks,
-claim-to-proof traceability, and future Capability Lineage Graph ingestion.</p>
-<h3><a id="strong-patterns-to-preserve" href="#strong-patterns-to-preserve" class="Permalink" aria-hidden="true" title="Permalink">#</a>Strong patterns to preserve</h3>
+<h2><a id="authoritative-metadata-principle" href="#authoritative-metadata-principle" class="Permalink" aria-hidden="true" title="Permalink">#</a>Authoritative metadata principle</h2>
+<p>Every SAGE record has two metadata representations:</p>
 <ol>
-<li>
-<p><strong>Purpose and rationale</strong></p>
-<p>Existing records usually explain both what was installed and why the design
-was selected. This is essential SAGE content and must remain mandatory.</p>
-</li>
-<li>
-<p><strong>Final validated state</strong></p>
-<p>The strongest records summarize the accepted result before presenting the
-implementation history. This lets a reader distinguish the final design
-from failed attempts.</p>
-</li>
-<li>
-<p><strong>Commands paired with observed results</strong></p>
-<p>The records generally distinguish commands from the output actually seen.
-SAGE should formalize this into evidence items rather than lose it in prose.</p>
-</li>
-<li>
-<p><strong>Rebuild and troubleshooting guidance</strong></p>
-<p>The records are written to make Kalaxy3 reproducible rather than merely to
-chronicle work. This remains a core requirement.</p>
-</li>
-<li>
-<p><strong>Security boundaries</strong></p>
-<p>Protected-UI and administrative-access records explicitly identify material
-that must not enter Git, including secrets, password hashes, and private
-keys. Every SAGE record must include a data-handling review, even when the
-answer is “no sensitive material involved.”</p>
-</li>
-<li>
-<p><strong>Idempotency and functional verification</strong></p>
-<p>Several records prove that automation converges and that the deployed
-service performs its intended function. Both are stronger than installation
-success alone and should be independent acceptance criteria.</p>
-</li>
+<li><strong>YAML front matter</strong>, which is the machine-readable source of truth.</li>
+<li><strong>Record metadata table</strong>, which is the mandatory human-readable mirror.</li>
 </ol>
-<h3><a id="gaps-the-standard-must-correct" href="#gaps-the-standard-must-correct" class="Permalink" aria-hidden="true" title="Permalink">#</a>Gaps the standard must correct</h3>
+<p>The Five Ws and How are explanatory evidence. They do not replace metadata.
+They must explain the significance and context of the canonical facts without
+changing those facts.</p>
+<p>The authoritative metadata contract is:</p>
+<pre><code class="language-text">markdown/standards/sage-evidence-metadata-contract-v1.1.json
+</code></pre>
+<p>The publisher MUST reject a new record when:</p>
+<ul>
+<li>a required front-matter field is absent;</li>
+<li>front-matter fields are not in canonical order;</li>
+<li>a field uses a noncanonical name for the same concept;</li>
+<li>a required list is omitted instead of using <code>not-applicable</code>;</li>
+<li>a timestamp does not follow the required format;</li>
+<li>the human-readable metadata table is absent, reordered, incomplete, or
+inconsistent with front matter;</li>
+<li>the Five Ws introduce conflicting dates, hosts, paths, versions, or owners.</li>
+</ul>
+<h2><a id="metadata-schema-version-1-1" href="#metadata-schema-version-1-1" class="Permalink" aria-hidden="true" title="Permalink">#</a>Metadata schema version 1.1</h2>
+<h3><a id="exact-front-matter-order" href="#exact-front-matter-order" class="Permalink" aria-hidden="true" title="Permalink">#</a>Exact front-matter order</h3>
+<p>All new records MUST use these top-level fields in this exact order:</p>
 <ol>
-<li>
-<p><strong>No consistent evidence identity</strong></p>
-<p>Records do not consistently have an immutable evidence ID, schema version,
-record type, lifecycle status, or evidence owner.</p>
-</li>
-<li>
-<p><strong>The five Ws are present but scattered</strong></p>
-<p>What, when, where, and why are often discoverable, but who performed,
-reviewed, or owns the result is usually absent. The five Ws must be explicit
-and complete near the beginning of every record.</p>
-</li>
-<li>
-<p><strong>Claims are not formally connected to proof</strong></p>
-<p>A command and output may be present, but the specific claim that the output
-proves is not always identified. SAGE requires claim IDs and an evidence
-matrix.</p>
-</li>
-<li>
-<p><strong>Planned, inferred, and observed information can be mixed</strong></p>
-<p>Future work, intended design, inferred meaning, and directly observed state
-sometimes appear in the same narrative. Every material statement must be
-distinguishable as direct evidence, generated evidence, derived conclusion,
-assumption, or planned work.</p>
-</li>
-<li>
-<p><strong>Freshness and supersession are not governed</strong></p>
-<p>Records rarely say when they must be revalidated or which later record
-supersedes them. This is already material in Kalaxy3: older records refer to
-paths, flags, node counts, replica counts, or Kubecost behavior that later
-work changed.</p>
-</li>
-<li>
-<p><strong>Repository lineage is inconsistent</strong></p>
-<p>Some records include a commit ID, while others provide only filenames or a
-proposed commit. Every accepted record should identify the implementation
-commit or explicitly state that it is not yet committed.</p>
-</li>
-<li>
-<p><strong>Acceptance criteria are often implicit</strong></p>
-<p>Checklists are helpful, but a formal expected-versus-observed pass/fail table
-is easier to review and automate.</p>
-</li>
-<li>
-<p><strong>Evidence capture context is incomplete</strong></p>
-<p>Commands should identify execution host, target cluster or node, namespace,
-local timezone, relevant system timestamp timezone, tool version, and exit
-status when material.</p>
-</li>
-<li>
-<p><strong>Record completion is not always reflected in status</strong></p>
-<p>A record may contain unchecked requirements such as missing second-run
-idempotency evidence while still reading like a final record. Lifecycle
-status must make incompleteness visible.</p>
-</li>
-<li>
-<p><strong>Large records mix distinct concerns</strong></p>
-<p>A record may contain architecture decisions, installation history,
-troubleshooting, raw logs, and future plans in one long stream. The new
-standard keeps these sections but gives them a predictable order and allows
-large raw evidence to move into appendices or linked artifacts.</p>
-</li>
+<li><code>evidence_id</code></li>
+<li><code>schema_version</code></li>
+<li><code>title</code></li>
+<li><code>project</code></li>
+<li><code>record_type</code></li>
+<li><code>status</code></li>
+<li><code>classification</code></li>
+<li><code>work_session</code></li>
+<li><code>work_started_at</code></li>
+<li><code>work_completed_at</code></li>
+<li><code>evidence_collected_at</code></li>
+<li><code>created_at</code></li>
+<li><code>updated_at</code></li>
+<li><code>valid_as_of</code></li>
+<li><code>review_due</code></li>
+<li><code>local_timezone</code></li>
+<li><code>system_timestamp_timezones</code></li>
+<li><code>owner</code></li>
+<li><code>author</code></li>
+<li><code>operator</code></li>
+<li><code>reviewer</code></li>
+<li><code>environment</code></li>
+<li><code>system</code></li>
+<li><code>cluster</code></li>
+<li><code>execution_host</code></li>
+<li><code>controller_host</code></li>
+<li><code>nodes</code></li>
+<li><code>node_addresses</code></li>
+<li><code>namespaces</code></li>
+<li><code>endpoints</code></li>
+<li><code>components</code></li>
+<li><code>repository</code></li>
+<li><code>branch</code></li>
+<li><code>implementation_commit</code></li>
+<li><code>record_path</code></li>
+<li><code>artifact_root</code></li>
+<li><code>confidence</code></li>
+<li><code>tags</code></li>
+<li><code>relationships</code></li>
 </ol>
-<h2><a id="mandatory-five-w-and-one-h-requirements" href="#mandatory-five-w-and-one-h-requirements" class="Permalink" aria-hidden="true" title="Permalink">#</a>Mandatory five-W and one-H requirements</h2>
-<p>Every SAGE evidence record must explicitly answer all five Ws. <strong>How</strong> is also
-mandatory because evidence without reproducible execution and validation is
-not sufficient for Kalaxy3.</p>
+<p>Additional top-level fields are prohibited in schema 1.1 unless this standard,
+the metadata contract, and the publisher are updated together. Record-specific
+facts belong in evidence items, the final-state table, or artifacts rather than
+new ad hoc front-matter keys.</p>
+<h3><a id="field-semantics" href="#field-semantics" class="Permalink" aria-hidden="true" title="Permalink">#</a>Field semantics</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Required meaning and format</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>evidence_id</code></td>
+<td>Permanent <code>SAGE-K3-&lt;DOMAIN&gt;-&lt;YYYYMMDD&gt;-&lt;NNN&gt;</code> identifier. It never changes when the file is renamed.</td>
+</tr>
+<tr>
+<td><code>schema_version</code></td>
+<td>Exactly <code>&quot;1.1&quot;</code> for records generated after adoption of this revision.</td>
+</tr>
+<tr>
+<td><code>title</code></td>
+<td>Concise title describing the evidenced result, not a planned task.</td>
+</tr>
+<tr>
+<td><code>project</code></td>
+<td>Exactly <code>Kalaxy3</code>.</td>
+</tr>
+<tr>
+<td><code>record_type</code></td>
+<td>One allowed lifecycle domain: <code>installation</code>, <code>architecture-decision</code>, <code>change</code>, <code>verification</code>, <code>incident</code>, <code>experiment</code>, <code>benchmark</code>, <code>operations</code>, <code>security</code>, or <code>finops</code>.</td>
+</tr>
+<tr>
+<td><code>status</code></td>
+<td>One allowed lifecycle status defined below.</td>
+</tr>
+<tr>
+<td><code>classification</code></td>
+<td>Data-handling classification, normally <code>internal</code>.</td>
+</tr>
+<tr>
+<td><code>work_session</code></td>
+<td>Stable short name for the working session, capability, incident, or validation run.</td>
+</tr>
+<tr>
+<td><code>work_started_at</code></td>
+<td>RFC3339 timestamp with numeric offset, or <code>not-captured</code> when genuinely unavailable. Never infer a start time.</td>
+</tr>
+<tr>
+<td><code>work_completed_at</code></td>
+<td>RFC3339 timestamp with numeric offset for the completed implementation or validation. <code>validated</code> and <code>accepted</code> records require a captured value.</td>
+</tr>
+<tr>
+<td><code>evidence_collected_at</code></td>
+<td>RFC3339 timestamp with numeric offset for the final material evidence capture. <code>validated</code> and <code>accepted</code> records require a captured value.</td>
+</tr>
+<tr>
+<td><code>created_at</code></td>
+<td>RFC3339 timestamp with numeric offset for creation of the record.</td>
+</tr>
+<tr>
+<td><code>updated_at</code></td>
+<td>RFC3339 timestamp with numeric offset. A package may use the publisher token until publication.</td>
+</tr>
+<tr>
+<td><code>valid_as_of</code></td>
+<td><code>YYYY-MM-DD</code>, representing the date through which the final claim is known to hold.</td>
+</tr>
+<tr>
+<td><code>review_due</code></td>
+<td><code>YYYY-MM-DD</code> or exactly <code>event-based</code>. Detailed triggers belong in the freshness section.</td>
+</tr>
+<tr>
+<td><code>local_timezone</code></td>
+<td>IANA timezone name such as <code>America/Chicago</code>; never an abbreviation such as <code>CST</code> or <code>CDT</code>.</td>
+</tr>
+<tr>
+<td><code>system_timestamp_timezones</code></td>
+<td>Nonempty list of timezones used by Kubernetes, APIs, logs, devices, or other evidence. Use <code>UTC</code> when applicable or <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>owner</code></td>
+<td>Accountable person or stable role.</td>
+</tr>
+<tr>
+<td><code>author</code></td>
+<td>Person or automation that assembled the record.</td>
+</tr>
+<tr>
+<td><code>operator</code></td>
+<td>Person or automation that performed the implementation or validation.</td>
+</tr>
+<tr>
+<td><code>reviewer</code></td>
+<td>Named reviewer, <code>pending</code>, or <code>not-applicable</code> only when the standard permits no review. <code>accepted</code> requires a named reviewer.</td>
+</tr>
+<tr>
+<td><code>environment</code></td>
+<td>Canonical environment name: <code>homelab</code>, <code>development</code>, <code>test</code>, <code>production</code>, <code>research</code>, or <code>shared-platform</code>.</td>
+</tr>
+<tr>
+<td><code>system</code></td>
+<td>Exactly <code>Kalaxy3</code>.</td>
+</tr>
+<tr>
+<td><code>cluster</code></td>
+<td>Cluster name or <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>execution_host</code></td>
+<td>Host from which the primary commands were executed, or <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>controller_host</code></td>
+<td>Automation controller or target through which changes were applied, or <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>nodes</code></td>
+<td>Nonempty list of node names or one item <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>node_addresses</code></td>
+<td>Nonempty list using <code>node-name=address</code>, or one item <code>not-applicable</code>. Node names must exist in <code>nodes</code>.</td>
+</tr>
+<tr>
+<td><code>namespaces</code></td>
+<td>Nonempty list of Kubernetes namespaces or one item <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>endpoints</code></td>
+<td>Nonempty list using <code>purpose=address-or-hostname</code>, or one item <code>not-applicable</code>.</td>
+</tr>
+<tr>
+<td><code>components</code></td>
+<td>Nonempty list using <code>component=version</code>; use <code>version-not-captured</code> only when the version is unavailable and identify the gap.</td>
+</tr>
+<tr>
+<td><code>repository</code></td>
+<td>Exactly <code>donb4iu/Kalaxy3</code>.</td>
+</tr>
+<tr>
+<td><code>branch</code></td>
+<td>Target Git branch, normally <code>main</code>.</td>
+</tr>
+<tr>
+<td><code>implementation_commit</code></td>
+<td>Full 40-character Git SHA, publisher token before split publication, or <code>not-applicable</code> for evidence-only records where no implementation exists.</td>
+</tr>
+<tr>
+<td><code>record_path</code></td>
+<td>Canonical repository-relative Markdown path.</td>
+</tr>
+<tr>
+<td><code>artifact_root</code></td>
+<td>Exactly <code>markdown/evidence-artifacts/&lt;evidence_id&gt;</code>.</td>
+</tr>
+<tr>
+<td><code>confidence</code></td>
+<td><code>high</code>, <code>medium</code>, <code>low</code>, or <code>unknown</code>; <code>unknown</code> is allowed only in <code>draft</code>.</td>
+</tr>
+<tr>
+<td><code>tags</code></td>
+<td>Nonempty list of stable search terms.</td>
+</tr>
+<tr>
+<td><code>relationships</code></td>
+<td>Required lineage map using the relationship types defined below.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="canonical-unavailable-values" href="#canonical-unavailable-values" class="Permalink" aria-hidden="true" title="Permalink">#</a>Canonical unavailable values</h3>
+<p>Use only:</p>
+<ul>
+<li><code>not-applicable</code> when the concept does not apply;</li>
+<li><code>not-captured</code> when it applied but was not recorded;</li>
+<li><code>pending</code> for an unresolved governance role or action.</li>
+</ul>
+<p>Do not use variants such as <code>N/A</code>, <code>none</code>, <code>unknown</code>, <code>TBD</code>, <code>later</code>, blank
+strings, omitted list fields, or prose explanations in place of these values.
+Any <code>not-captured</code> value MUST be represented as an evidence gap with an owner
+and revalidation trigger.</p>
+<h3><a id="timestamp-rules" href="#timestamp-rules" class="Permalink" aria-hidden="true" title="Permalink">#</a>Timestamp rules</h3>
+<ul>
+<li>All timestamps MUST use RFC3339 with a numeric UTC offset.</li>
+<li>The local timezone MUST separately use an IANA name.</li>
+<li>Human-friendly dates MAY appear in prose, but the canonical timestamp MUST
+also be present.</li>
+<li>Kubernetes and most cluster API timestamps SHOULD be recorded as <code>UTC</code> in
+<code>system_timestamp_timezones</code>.</li>
+<li>A local work date and a UTC system date may differ. This is not a conflict
+when both timezone contexts are explicit.</li>
+<li><code>created_at</code> and <code>updated_at</code> describe the record, not the work.</li>
+<li><code>work_completed_at</code> describes the implementation or validation event.</li>
+<li><code>evidence_collected_at</code> describes the final material evidence capture.</li>
+<li><code>valid_as_of</code> describes claim freshness and is not a substitute for a
+completion timestamp.</li>
+</ul>
+<h3><a id="components-and-versions" href="#components-and-versions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Components and versions</h3>
+<p>Component versions MUST be represented in the front matter as exact list items:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">components:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">K3s=v1.36.2+k3s1</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">Longhorn=v1.12.0</span>
+</code></pre>
+<p>Do not use free-form variants such as:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">components:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">K3s</span> <span class="hljs-string">version</span> <span class="hljs-number">1.36</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">current</span> <span class="hljs-string">Longhorn</span>
+</code></pre>
+<p>When a version is material but unavailable:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">components:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">Ansible=version-not-captured</span>
+</code></pre>
+<p>and create an explicit evidence gap.</p>
+<h3><a id="targets-addresses-namespaces-and-endpoints" href="#targets-addresses-namespaces-and-endpoints" class="Permalink" aria-hidden="true" title="Permalink">#</a>Targets, addresses, namespaces, and endpoints</h3>
+<p>Targets MUST remain relational rather than split into ambiguous unlabeled
+values:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">nodes:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">amd64-01</span>
+<span class="hljs-attr">node_addresses:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">amd64-01=192.168.2.61</span>
+<span class="hljs-attr">namespaces:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">longhorn-system</span>
+<span class="hljs-attr">endpoints:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">kubernetes-api=https://192.168.2.50:6443</span>
+</code></pre>
+<p>When the record covers several nodes, every captured address MUST identify its
+node. When a node address is not material or not captured, use:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">node_addresses:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">not-applicable</span>
+</code></pre>
+<p>or:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">node_addresses:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">amd64-01=not-captured</span>
+</code></pre>
+<p>and document the gap when appropriate.</p>
+<h2><a id="mandatory-record-metadata-table" href="#mandatory-record-metadata-table" class="Permalink" aria-hidden="true" title="Permalink">#</a>Mandatory record metadata table</h2>
+<p>Every record MUST contain <code>## Record metadata</code> immediately after the executive
+summary and before <code>## Five Ws and How</code>.</p>
+<p>The table is a deterministic mirror of front matter. It MUST use the exact row
+names and exact row order defined in the metadata contract. List values MUST be
+joined using semicolon-space (<code>; </code>). Values MUST be identical to front matter;
+no date reformatting, abbreviations, alternate hostnames, or shortened commit
+SHAs are allowed.</p>
+<p>Example:</p>
+<pre><code class="hljs markdown"><span class="hljs-section">## Record metadata</span>
+
+| Field | Value |
+|---|---|
+| <span class="hljs-strong">**Evidence ID**</span> | SAGE-K3-STORAGE-20260719-001 |
+| <span class="hljs-strong">**Schema version**</span> | 1.1 |
+| <span class="hljs-strong">**Project**</span> | Kalaxy3 |
+| <span class="hljs-strong">**Title**</span> | AMD64 node and Longhorn installation |
+| <span class="hljs-strong">**Record type**</span> | installation |
+| <span class="hljs-strong">**Status**</span> | validated |
+| <span class="hljs-strong">**Classification**</span> | internal |
+| <span class="hljs-strong">**Work session**</span> | Add amd64-01 and Longhorn storage |
+| <span class="hljs-strong">**Started**</span> | not-captured |
+| <span class="hljs-strong">**Completed**</span> | 2026-07-19T21:30:00-05:00 |
+| <span class="hljs-strong">**Evidence collected**</span> | 2026-07-19T22:15:00-05:00 |
+| <span class="hljs-strong">**Record created**</span> | 2026-07-19T22:30:00-05:00 |
+| <span class="hljs-strong">**Record updated**</span> | 2026-07-19T22:30:00-05:00 |
+| <span class="hljs-strong">**Local timezone**</span> | America/Chicago |
+| <span class="hljs-strong">**System timestamp timezone(s)**</span> | UTC |
+| <span class="hljs-strong">**Valid as of**</span> | 2026-07-19 |
+| <span class="hljs-strong">**Review due**</span> | event-based |
+| <span class="hljs-strong">**Target record path**</span> | markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md |
+| <span class="hljs-strong">**Artifact root**</span> | markdown/evidence-artifacts/SAGE-K3-STORAGE-20260719-001 |
+| <span class="hljs-strong">**Repository**</span> | donb4iu/Kalaxy3 |
+| <span class="hljs-strong">**Branch**</span> | main |
+| <span class="hljs-strong">**Implementation commit**</span> | pending |
+| <span class="hljs-strong">**Environment**</span> | homelab |
+| <span class="hljs-strong">**System**</span> | Kalaxy3 |
+| <span class="hljs-strong">**Cluster**</span> | kalaxy3 |
+| <span class="hljs-strong">**Execution host**</span> | donb-mac-mini |
+| <span class="hljs-strong">**Controller host**</span> | arm64-01 |
+| <span class="hljs-strong">**Nodes**</span> | amd64-01 |
+| <span class="hljs-strong">**Node addresses**</span> | amd64-01=192.168.2.61 |
+| <span class="hljs-strong">**Namespaces**</span> | longhorn-system |
+| <span class="hljs-strong">**Endpoints**</span> | kubernetes-api=https://192.168.2.50:6443 |
+| <span class="hljs-strong">**Components and versions**</span> | K3s=v1.36.2+k3s1; Longhorn=v1.12.0 |
+| <span class="hljs-strong">**Owner**</span> | Don Buddenbaum |
+| <span class="hljs-strong">**Author**</span> | Don Buddenbaum |
+| <span class="hljs-strong">**Operator**</span> | Don Buddenbaum |
+| <span class="hljs-strong">**Reviewer**</span> | pending |
+| <span class="hljs-strong">**Confidence**</span> | high |
+</code></pre>
+<p>This table replaces informal, record-specific static headers. A record MAY add
+a concise final-state table later, but it MUST NOT create a competing metadata
+header with different labels or values.</p>
+<h2><a id="mandatory-five-ws-and-how" href="#mandatory-five-ws-and-how" class="Permalink" aria-hidden="true" title="Permalink">#</a>Mandatory Five Ws and How</h2>
+<p>Every record MUST include the exact six table rows in this order:</p>
+<ol>
+<li>Who</li>
+<li>What</li>
+<li>When</li>
+<li>Where</li>
+<li>Why</li>
+<li>How</li>
+</ol>
+<p>The Five Ws and How MUST use the canonical metadata rather than restating it
+in a different format.</p>
 <table>
 <thead>
 <tr>
 <th>Requirement</th>
-<th>Required content</th>
+<th>Required explanatory content</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><strong>Who</strong></td>
-<td>Author or evidence collector, implementation operator, accountable owner, reviewer or approver, and affected teams or users when relevant.</td>
+<td>Explain author, evidence collector, operator, owner, reviewer, and affected users. Names and roles must agree with metadata.</td>
 </tr>
 <tr>
 <td><strong>What</strong></td>
-<td>The change, incident, decision, capability, claim, final state, and boundaries of what is and is not covered.</td>
+<td>Explain the change, incident, decision, capability, final claim, and boundaries.</td>
 </tr>
 <tr>
 <td><strong>When</strong></td>
-<td>Implementation time, evidence-collection time, timezone, system timestamp timezone when different, valid-as-of date, and revalidation trigger or review date.</td>
+<td>Explain work completion, evidence collection, local timezone, system timestamp timezone, valid-as-of date, and review timing. The canonical timestamps must appear unchanged.</td>
 </tr>
 <tr>
 <td><strong>Where</strong></td>
-<td>Project, environment, cluster, nodes, namespaces, endpoints, repository paths, branches, and execution host.</td>
+<td>Explain environment, cluster, execution host, controller, nodes, addresses, namespaces, endpoints, and repository paths. Canonical values must appear unchanged.</td>
 </tr>
 <tr>
 <td><strong>Why</strong></td>
-<td>Problem or opportunity, decision drivers, alternatives considered, tradeoffs, risks, and expected value.</td>
+<td>Explain the problem, decision drivers, alternatives, tradeoffs, risk, and expected value.</td>
 </tr>
 <tr>
 <td><strong>How</strong></td>
-<td>Implementation sequence, source changes, commands, observed results, acceptance tests, rollback, rebuild, and troubleshooting.</td>
+<td>Explain implementation sequence, source changes, commands, validation, rollback, rebuild, troubleshooting, and artifact locations.</td>
 </tr>
 </tbody>
 </table>
-<p>A record that cannot answer one of the five Ws must identify the missing fact as
-an evidence gap. It must not silently omit it.</p>
+<p>A static metadata block answers <strong>which facts</strong> apply. The Five Ws and How
+explain <strong>what those facts mean and why they matter</strong>. Both are required.</p>
 <h2><a id="evidence-classifications" href="#evidence-classifications" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence classifications</h2>
-<p>Every evidence item should use one of these classifications:</p>
+<p>Every evidence item MUST use one classification:</p>
 <table>
 <thead>
 <tr>
@@ -339,11 +593,11 @@ an evidence gap. It must not silently omit it.</p>
 <tbody>
 <tr>
 <td><code>direct-observation</code></td>
-<td>Output observed from the target system, tool, API, hardware, or user-visible behavior.</td>
+<td>Output observed from the target system, API, hardware, or user-visible behavior.</td>
 </tr>
 <tr>
 <td><code>generated-artifact</code></td>
-<td>A rendered manifest, report, package, checksum, test result, or other deterministic output.</td>
+<td>Deterministically rendered report, manifest, package, checksum, or test output.</td>
 </tr>
 <tr>
 <td><code>repository-evidence</code></td>
@@ -351,29 +605,29 @@ an evidence gap. It must not silently omit it.</p>
 </tr>
 <tr>
 <td><code>derived-conclusion</code></td>
-<td>A conclusion calculated or reasoned from identified evidence.</td>
+<td>Calculation or inference based on identified evidence IDs.</td>
 </tr>
 <tr>
 <td><code>external-authority</code></td>
-<td>Vendor documentation, standards, specifications, or authoritative external sources.</td>
+<td>Vendor documentation, standards, specifications, or other authoritative external source.</td>
 </tr>
 <tr>
 <td><code>assumption</code></td>
-<td>A fact believed for the purpose of the work but not yet proven.</td>
+<td>Material fact believed for the work but not proven.</td>
 </tr>
 <tr>
 <td><code>planned</code></td>
-<td>Intended future state that has not yet been implemented or validated.</td>
+<td>Intended future state not yet implemented or validated.</td>
 </tr>
 <tr>
 <td><code>negative-evidence</code></td>
-<td>A failed test, absent resource, rejected response, or other observation showing that a condition did not hold.</td>
+<td>Failed test, absent resource, rejected response, or observation that a condition did not hold.</td>
 </tr>
 </tbody>
 </table>
-<p>Direct observations and repository evidence should support all critical claims.
-Derived conclusions must identify their supporting evidence IDs. Assumptions and
-planned statements cannot be used to mark an acceptance criterion as passed.</p>
+<p>Direct observations and repository evidence SHOULD support every critical
+configuration claim. Assumptions and planned statements cannot satisfy an
+acceptance criterion.</p>
 <h2><a id="confidence-levels" href="#confidence-levels" class="Permalink" aria-hidden="true" title="Permalink">#</a>Confidence levels</h2>
 <table>
 <thead>
@@ -389,7 +643,7 @@ planned statements cannot be used to mark an acceptance criterion as passed.</p>
 </tr>
 <tr>
 <td><code>medium</code></td>
-<td>Credible evidence exists but measurement precision, coverage, or repeatability is limited.</td>
+<td>Credible evidence exists, but precision, coverage, freshness, or repeatability is limited.</td>
 </tr>
 <tr>
 <td><code>low</code></td>
@@ -397,7 +651,7 @@ planned statements cannot be used to mark an acceptance criterion as passed.</p>
 </tr>
 <tr>
 <td><code>unknown</code></td>
-<td>Confidence has not been assessed. This is allowed only in draft records.</td>
+<td>Confidence has not been assessed; allowed only in <code>draft</code>.</td>
 </tr>
 </tbody>
 </table>
@@ -413,23 +667,23 @@ planned statements cannot be used to mark an acceptance criterion as passed.</p>
 <tbody>
 <tr>
 <td><code>draft</code></td>
-<td>Record is being assembled; required facts or evidence may be missing.</td>
+<td>Record assembly is incomplete.</td>
 </tr>
 <tr>
 <td><code>implemented</code></td>
-<td>Change exists, but full acceptance evidence or review is incomplete.</td>
+<td>Change exists, but validation or governance evidence is incomplete.</td>
 </tr>
 <tr>
 <td><code>validated</code></td>
-<td>Acceptance criteria passed and evidence is recorded.</td>
+<td>Technical acceptance criteria passed and material evidence is recorded.</td>
 </tr>
 <tr>
 <td><code>accepted</code></td>
-<td>Validated and reviewed as the current Kalaxy3 source of truth.</td>
+<td>Validated, reviewed, and designated the current Kalaxy3 source of truth.</td>
 </tr>
 <tr>
 <td><code>superseded</code></td>
-<td>A newer record replaces some or all of this record.</td>
+<td>A newer record replaces some or all claims.</td>
 </tr>
 <tr>
 <td><code>retired</code></td>
@@ -437,101 +691,117 @@ planned statements cannot be used to mark an acceptance criterion as passed.</p>
 </tr>
 <tr>
 <td><code>rejected</code></td>
-<td>The attempted design was evaluated and intentionally not accepted.</td>
+<td>An attempted design was evaluated and intentionally not accepted.</td>
 </tr>
 </tbody>
 </table>
-<p>A record with an unchecked mandatory acceptance criterion cannot be <code>validated</code>
-or <code>accepted</code>.</p>
-<h2><a id="required-evidence-lineage" href="#required-evidence-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Required evidence lineage</h2>
-<p>Every record must define relationships where applicable:</p>
+<p>A <code>validated</code> or <code>accepted</code> record MUST have:</p>
 <ul>
-<li><code>verifies</code>: decision, capability, requirement, or claim proved by this record;</li>
-<li><code>depends_on</code>: records or system states required for this result;</li>
-<li><code>supersedes</code>: earlier records or claims replaced by this result;</li>
-<li><code>superseded_by</code>: later accepted record replacing this one;</li>
-<li><code>related_to</code>: relevant but nondependent records;</li>
-<li><code>conflicts_with</code>: evidence that materially contradicts this record;</li>
-<li><code>generated_by</code>: automation, workflow, or tool that produced the record;</li>
-<li><code>implemented_by</code>: Git commit, pull request, playbook, manifest, or change set;</li>
-<li><code>revalidated_by</code>: later evidence showing the record still holds.</li>
+<li>captured <code>work_completed_at</code> and <code>evidence_collected_at</code> timestamps;</li>
+<li>a complete metadata table;</li>
+<li>a complete Five-W gate;</li>
+<li>no unchecked mandatory final-checklist item;</li>
+<li>an implementation commit or an explicitly valid evidence-only lineage;</li>
+<li>all critical claims supported by evidence.</li>
 </ul>
-<p>Use repository-relative paths and stable evidence IDs rather than only prose
-references.</p>
+<p>An <code>accepted</code> record additionally requires a named reviewer and recorded review
+decision.</p>
+<h2><a id="required-evidence-lineage" href="#required-evidence-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Required evidence lineage</h2>
+<p>Every record MUST define these relationship keys, using <code>none</code> when no
+relationship exists:</p>
+<ul>
+<li><code>verifies</code></li>
+<li><code>depends_on</code></li>
+<li><code>supersedes</code></li>
+<li><code>superseded_by</code></li>
+<li><code>related_to</code></li>
+<li><code>conflicts_with</code></li>
+<li><code>generated_by</code></li>
+<li><code>implemented_by</code></li>
+<li><code>revalidated_by</code></li>
+</ul>
+<p>Use evidence IDs and repository-relative paths. Avoid prose-only lineage.</p>
 <h2><a id="mandatory-record-sections" href="#mandatory-record-sections" class="Permalink" aria-hidden="true" title="Permalink">#</a>Mandatory record sections</h2>
-<p>Every accepted SAGE evidence record must contain these sections, in this order:</p>
+<p>All schema 1.1 records MUST contain these sections in this order:</p>
 <ol>
 <li>Machine-readable front matter.</li>
-<li>Title and one-paragraph executive summary.</li>
+<li>Title and executive summary.</li>
+<li>Record metadata.</li>
 <li>Five Ws and How.</li>
 <li>Scope and boundaries.</li>
 <li>Final accepted state.</li>
 <li>Claims and evidence matrix.</li>
 <li>Problem and decision rationale.</li>
-<li>Alternatives and tradeoffs.</li>
 <li>Architecture or change description.</li>
-<li>Source-of-truth files and implementation lineage.</li>
+<li>Source of truth and implementation lineage.</li>
 <li>Prerequisites and assumptions.</li>
 <li>Implementation procedure.</li>
+<li>Evidence items.</li>
 <li>Verification and acceptance criteria.</li>
-<li>Idempotency or repeatability evidence.</li>
-<li>Security, privacy, and secret-handling review.</li>
-<li>Reliability, recovery, rollback, and rebuild procedure.</li>
+<li>Idempotency and repeatability.</li>
+<li>Security, privacy, and evidence handling.</li>
+<li>Reliability, recovery, rollback, and rebuild.</li>
 <li>Operational considerations and observability.</li>
 <li>Known limitations, evidence gaps, and risks.</li>
-<li>Freshness, revalidation, and supersession rules.</li>
-<li>Final checklist and reviewer acceptance.</li>
-<li>Appendices or linked raw artifacts.</li>
+<li>Troubleshooting.</li>
+<li>Freshness, revalidation, and supersession.</li>
+<li>Final completion checklist and reviewer acceptance.</li>
+<li>Git review and publication.</li>
+<li>Appendices and raw artifacts.</li>
 </ol>
-<p>A section may state “not applicable,” but it must not disappear silently.</p>
+<p>A section may state <code>not-applicable</code>, but it MUST NOT disappear.</p>
 <h2><a id="evidence-item-minimum-fields" href="#evidence-item-minimum-fields" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence item minimum fields</h2>
-<p>Each material evidence item must identify:</p>
+<p>Each material evidence item MUST identify:</p>
 <ul>
 <li>evidence ID;</li>
 <li>classification;</li>
-<li>claim supported or contradicted;</li>
-<li>command, query, file, API, test, or observation;</li>
-<li>execution source and target;</li>
+<li>claims supported or contradicted;</li>
+<li>collector;</li>
 <li>collection timestamp and timezone;</li>
+<li>execution source;</li>
+<li>target;</li>
+<li>tool and exact version or <code>version-not-captured</code>;</li>
+<li>command, query, file, API, test, or observation;</li>
+<li>expected result;</li>
 <li>observed result;</li>
-<li>expected result when testing;</li>
-<li>pass, fail, partial, or informational status;</li>
+<li>result state: pass, fail, partial, or informational;</li>
 <li>confidence;</li>
-<li>redactions or omitted sensitive material;</li>
-<li>artifact path or checksum when evidence is stored separately.</li>
+<li>sensitive-data review and redactions;</li>
+<li>artifact path and checksum when externalized.</li>
 </ul>
 <h2><a id="acceptance-rules" href="#acceptance-rules" class="Permalink" aria-hidden="true" title="Permalink">#</a>Acceptance rules</h2>
-<p>A SAGE record is acceptable only when:</p>
+<p>A SAGE record is publishable only when:</p>
 <ul>
-<li>all five Ws and How are answered;</li>
-<li>every critical claim has at least one evidence item;</li>
-<li>direct system evidence and repository evidence agree;</li>
-<li>expected and observed results are distinguished;</li>
-<li>failed attempts are separated from the accepted final state;</li>
+<li>metadata schema and order are valid;</li>
+<li>the metadata table exactly mirrors front matter;</li>
+<li>all Five Ws and How are complete and nonconflicting;</li>
+<li>every critical claim has identified evidence;</li>
+<li>direct evidence and repository evidence agree where configuration is involved;</li>
+<li>expected and observed results are separated;</li>
+<li>failed attempts are separated from the accepted state;</li>
 <li>idempotency or repeatability is tested when automation is involved;</li>
-<li>rollback or rebuild consequences are documented;</li>
-<li>credentials and sensitive material are excluded or redacted;</li>
-<li>limitations and assumptions are explicit;</li>
-<li>the implementation commit is recorded or marked pending;</li>
-<li>the record has an owner and reviewer;</li>
+<li>rollback, rebuild, and data-durability consequences are documented;</li>
+<li>secrets and sensitive material are excluded or redacted;</li>
+<li>limitations, assumptions, and evidence gaps are explicit;</li>
+<li>source-of-truth paths and implementation lineage are recorded;</li>
 <li>freshness and supersession rules are defined.</li>
 </ul>
-<h2><a id="recommended-evidence-record-identifier" href="#recommended-evidence-record-identifier" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended evidence-record identifier</h2>
-<p>Use this format:</p>
+<h2><a id="evidence-record-identifier" href="#evidence-record-identifier" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence-record identifier</h2>
+<p>Use:</p>
 <pre><code class="language-text">SAGE-K3-&lt;DOMAIN&gt;-&lt;YYYYMMDD&gt;-&lt;NNN&gt;
 </code></pre>
-<p>Examples:</p>
-<pre><code class="language-text">SAGE-K3-STORAGE-20260724-001
-SAGE-K3-FINOPS-20260724-001
-SAGE-K3-NETWORK-20260724-001
-</code></pre>
-<p>The ID is permanent. Renaming a Markdown file does not change the evidence ID.</p>
-<h2><a id="recommended-repository-organization" href="#recommended-repository-organization" class="Permalink" aria-hidden="true" title="Permalink">#</a>Recommended repository organization</h2>
+<p>The date represents the working session or material event date in the canonical
+local timezone. The ID is permanent.</p>
+<h2><a id="repository-organization" href="#repository-organization" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository organization</h2>
 <pre><code class="language-text">markdown/
 ├── standards/
-│   └── kalaxy3-sage-evidence-record-standard.md
+│   ├── kalaxy3-sage-evidence-record-standard.md
+│   ├── sage-evidence-metadata-contract-v1.1.json
+│   └── kalaxy3-sage-evidence-publication-process.md
 ├── templates/
-│   └── sage-evidence-record-template.md
+│   ├── sage-evidence-record-template.md
+│   ├── sage-evidence-generation-request.md
+│   └── sage-evidence-package-manifest-template.json
 ├── installation/
 ├── operations/
 ├── architecture/
@@ -539,28 +809,27 @@ SAGE-K3-NETWORK-20260724-001
 └── evidence-artifacts/
     └── &lt;evidence-id&gt;/
 </code></pre>
-<p>The Markdown record should contain concise, reviewable evidence. Very large raw
-logs, generated YAML, screenshots, benchmark output, or archives should be
-stored under <code>markdown/evidence-artifacts/&lt;evidence-id&gt;/</code> or another durable
-artifact store and referenced by path and checksum.</p>
-<p>Do not commit secrets, private keys, authentication hashes, unredacted Secret
-manifests, tokens, credentials, or sensitive personal information.</p>
-<h2><a id="migration-guidance-for-existing-records" href="#migration-guidance-for-existing-records" class="Permalink" aria-hidden="true" title="Permalink">#</a>Migration guidance for existing records</h2>
-<p>Existing records do not need immediate full rewrites. Apply SAGE incrementally:</p>
+<p>Large raw logs, rendered YAML, screenshots, benchmark output, and archives MUST
+be stored under the evidence ID artifact root and referenced by checksum.</p>
+<h2><a id="migration-from-schema-1-0" href="#migration-from-schema-1-0" class="Permalink" aria-hidden="true" title="Permalink">#</a>Migration from schema 1.0</h2>
+<p>Existing schema 1.0 records remain historical evidence and do not require
+immediate rewriting. When a 1.0 record is modified, revalidated, or
+superseded, migrate it to 1.1:</p>
 <ol>
-<li>Add front matter with an evidence ID, status, owner, valid-as-of date, and
-lineage.</li>
-<li>Add a Five Ws and How table.</li>
-<li>Add a concise claims-and-evidence matrix referencing existing sections.</li>
-<li>Add implementation commit and source-of-truth paths.</li>
-<li>Add revalidation triggers and supersession links.</li>
-<li>Change incomplete records to <code>draft</code> or <code>implemented</code> rather than presenting
-them as final.</li>
-<li>Mark stale records <code>superseded</code> and link to the accepted replacement instead
-of deleting historical evidence.</li>
+<li>preserve the evidence ID;</li>
+<li>change <code>schema_version</code> to <code>1.1</code>;</li>
+<li>add the exact canonical metadata fields in order;</li>
+<li>distinguish work, evidence, record, and validity timestamps;</li>
+<li>normalize node addresses, endpoints, and component versions;</li>
+<li>add the mandatory Record metadata table;</li>
+<li>reconcile the Five Ws to canonical metadata;</li>
+<li>add missing lineage keys;</li>
+<li>run the publisher check;</li>
+<li>record migration as implementation and evidence when material.</li>
 </ol>
+<p>Do not mass-edit old records solely for appearance. Migrate when the record is
+next relied upon as current evidence.</p>
 <h2><a id="sage-quality-score" href="#sage-quality-score" class="Permalink" aria-hidden="true" title="Permalink">#</a>SAGE quality score</h2>
-<p>A lightweight review score may be used for existing and new records:</p>
 <table>
 <thead>
 <tr>
@@ -570,11 +839,15 @@ of deleting historical evidence.</li>
 </thead>
 <tbody>
 <tr>
-<td>Five Ws and How complete</td>
+<td>Canonical metadata and static table</td>
 <td align="right">15</td>
 </tr>
 <tr>
-<td>Final claim and scope clear</td>
+<td>Five Ws and How</td>
+<td align="right">10</td>
+</tr>
+<tr>
+<td>Final claim and scope</td>
 <td align="right">10</td>
 </tr>
 <tr>
@@ -606,12 +879,8 @@ of deleting historical evidence.</li>
 <td align="right">5</td>
 </tr>
 <tr>
-<td>Risks, limitations, and assumptions</td>
-<td align="right">5</td>
-</tr>
-<tr>
-<td>Freshness and supersession</td>
-<td align="right">5</td>
+<td>Risks, limitations, freshness, and supersession</td>
+<td align="right">10</td>
 </tr>
 <tr>
 <td><strong>Total</strong></td>
@@ -619,19 +888,10 @@ of deleting historical evidence.</li>
 </tr>
 </tbody>
 </table>
-<p>Suggested interpretation:</p>
-<ul>
-<li><code>90–100</code>: accepted SAGE-grade record;</li>
-<li><code>75–89</code>: validated but requires governance completion;</li>
-<li><code>60–74</code>: useful implementation record with material evidence gaps;</li>
-<li>below <code>60</code>: narrative or working notes, not an accepted evidence record.</li>
-</ul>
+<p>A quality score does not override lifecycle status or missing review.</p>
 <h2><a id="adoption-decision" href="#adoption-decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Adoption decision</h2>
-<p>All new Kalaxy3 evidence records should begin from
-<code>markdown/templates/sage-evidence-record-template.md</code>.</p>
-<p>Existing records remain valuable historical evidence. They should be upgraded
-when they are next modified, revalidated, or superseded rather than rewritten
-all at once.</p>
+<p>All newly generated Kalaxy3 SAGE records MUST use schema 1.1, the canonical
+metadata contract, the schema 1.1 template, and the repository publisher.</p>
     </div>
 
         <nav>

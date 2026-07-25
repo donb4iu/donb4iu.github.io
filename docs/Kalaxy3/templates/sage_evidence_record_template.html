@@ -106,6 +106,7 @@
 <li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
 <li class='Nav__item '><a href="../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
 <li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
@@ -147,9 +148,170 @@
     <div class="s-content">
         <h1><a id="evidence-record-title" href="#evidence-record-title" class="Permalink" aria-hidden="true" title="Permalink">#</a>&lt;Evidence Record Title&gt;</h1>
 <h2><a id="executive-summary" href="#executive-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive summary</h2>
-<p>&lt;State the accepted result in one concise paragraph. Identify whether the
-record is complete, provisional, failed, or superseded. Do not describe a
-planned state as an observed result.&gt;</p>
+<p>&lt;State the final observed result in one concise paragraph. Identify whether the
+record is complete, provisional, failed, rejected, or superseded. Do not present
+planned state as observed state.&gt;</p>
+<h2><a id="record-metadata" href="#record-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Record metadata</h2>
+<p>The values in this table MUST exactly mirror front matter. List fields use
+semicolon-space (<code>; </code>). Do not reformat timestamps or shorten commit SHAs.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-&lt;DOMAIN&gt;-&lt;YYYYMMDD&gt;-&lt;NNN&gt;</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.1</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>&lt;Concise evidence-record title&gt;</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td><record type></td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td><status></td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>&lt;Stable working-session name&gt;</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td><same as work_started_at></td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td><same as work_completed_at></td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td><same as evidence_collected_at></td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td><same as created_at></td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td><strong>SAGE_PUBLISHED_AT</strong></td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td><semicolon-joined system_timestamp_timezones></td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td><same as valid_as_of></td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td><same as review_due></td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/<category>/<filename>.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-&lt;DOMAIN&gt;-&lt;YYYYMMDD&gt;-&lt;NNN&gt;</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>main</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td><strong>SAGE_IMPLEMENTATION_COMMIT</strong></td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td><same as environment></td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td><same as cluster></td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td><same as execution_host></td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td><same as controller_host></td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td><semicolon-joined nodes></td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td><semicolon-joined node_addresses></td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td><semicolon-joined namespaces></td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td><semicolon-joined endpoints></td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td><semicolon-joined components></td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td><same as owner></td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td><same as author></td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td><same as operator></td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td><same as reviewer></td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td><same as confidence></td>
+</tr>
+</tbody>
+</table>
 <h2><a id="five-ws-and-how" href="#five-ws-and-how" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five Ws and How</h2>
 <table>
 <thead>
@@ -161,37 +323,37 @@ planned state as an observed result.&gt;</p>
 <tbody>
 <tr>
 <td><strong>Who</strong></td>
-<td><strong>Author:</strong> <code>&lt;name&gt;</code>; <strong>operator:</strong> <code>&lt;name or automation&gt;</code>; <strong>owner:</strong> <code>&lt;name or role&gt;</code>; <strong>reviewer:</strong> <code>&lt;name, pending, or not required&gt;</code>; <strong>affected users/teams:</strong> <code>&lt;list or none&gt;</code>.</td>
+<td><strong>Author:</strong> <code>&lt;exact author&gt;</code>; <strong>operator:</strong> <code>&lt;exact operator&gt;</code>; <strong>owner:</strong> <code>&lt;exact owner&gt;</code>; <strong>reviewer:</strong> <code>&lt;exact reviewer&gt;</code>; <strong>affected users/teams:</strong> <code>&lt;list or none&gt;</code>. Explain responsibilities without changing canonical names.</td>
 </tr>
 <tr>
 <td><strong>What</strong></td>
-<td>&lt;Exactly what changed, was decided, failed, or was verified. Include the final claim and the main boundary.&gt;</td>
+<td>&lt;Exactly what changed, was decided, failed, or was verified. Include the final claim and primary boundary.&gt;</td>
 </tr>
 <tr>
 <td><strong>When</strong></td>
-<td><strong>Implemented:</strong> <code>&lt;timestamp and timezone&gt;</code>; <strong>evidence collected:</strong> <code>&lt;timestamp and timezone&gt;</code>; <strong>system timestamps:</strong> <code>&lt;timezone if different&gt;</code>; <strong>valid as of:</strong> <code>&lt;date&gt;</code>; <strong>review due:</strong> <code>&lt;date or trigger&gt;</code>.</td>
+<td><strong>Completed:</strong> <code>&lt;exact work_completed_at&gt;</code>; <strong>evidence collected:</strong> <code>&lt;exact evidence_collected_at&gt;</code>; <strong>local timezone:</strong> <code>&lt;exact local_timezone&gt;</code>; <strong>system timestamps:</strong> <code>&lt;exact semicolon-joined system_timestamp_timezones&gt;</code>; <strong>valid as of:</strong> <code>&lt;exact valid_as_of&gt;</code>; <strong>review due:</strong> <code>&lt;exact review_due&gt;</code>. Explain any local/UTC date difference.</td>
 </tr>
 <tr>
 <td><strong>Where</strong></td>
-<td><strong>Environment:</strong> <code>&lt;environment&gt;</code>; <strong>cluster:</strong> <code>&lt;cluster&gt;</code>; <strong>nodes:</strong> <code>&lt;nodes&gt;</code>; <strong>namespaces:</strong> <code>&lt;namespaces&gt;</code>; <strong>endpoints:</strong> <code>&lt;addresses/hostnames&gt;</code>; <strong>repository paths:</strong> <code>&lt;paths&gt;</code>; <strong>execution host:</strong> <code>&lt;host&gt;</code>.</td>
+<td><strong>Environment:</strong> <code>&lt;exact environment&gt;</code>; <strong>cluster:</strong> <code>&lt;exact cluster&gt;</code>; <strong>execution host:</strong> <code>&lt;exact execution_host&gt;</code>; <strong>controller:</strong> <code>&lt;exact controller_host&gt;</code>; <strong>nodes:</strong> <code>&lt;canonical nodes&gt;</code>; <strong>addresses:</strong> <code>&lt;canonical node_addresses&gt;</code>; <strong>namespaces:</strong> <code>&lt;canonical namespaces&gt;</code>; <strong>endpoints:</strong> <code>&lt;canonical endpoints&gt;</code>; <strong>record:</strong> <code>&lt;exact record_path&gt;</code>.</td>
 </tr>
 <tr>
 <td><strong>Why</strong></td>
-<td>&lt;Problem, opportunity, decision drivers, expected value, safety or governance need, and why the accepted approach was selected.&gt;</td>
+<td>&lt;Problem, opportunity, decision drivers, expected value, alternatives, tradeoffs, safety, and governance rationale.&gt;</td>
 </tr>
 <tr>
 <td><strong>How</strong></td>
-<td>&lt;Implementation method, automation, validation approach, rollback/rebuild path, and where supporting evidence is stored.&gt;</td>
+<td>&lt;Implementation method, source files, automation, validation, artifacts, rollback, rebuild, and troubleshooting path.&gt;</td>
 </tr>
 </tbody>
 </table>
 <h3><a id="five-w-completeness-gate" href="#five-w-completeness-gate" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five-W completeness gate</h3>
 <ul>
-<li>[ ] Who is complete.</li>
+<li>[ ] Who is complete and agrees with metadata.</li>
 <li>[ ] What is complete.</li>
-<li>[ ] When is complete and includes timezone.</li>
-<li>[ ] Where is complete at both repository and runtime levels.</li>
-<li>[ ] Why includes rationale and tradeoffs.</li>
+<li>[ ] When is complete, uses canonical timestamps, and includes timezone context.</li>
+<li>[ ] Where is complete at repository and runtime levels and agrees with metadata.</li>
+<li>[ ] Why includes rationale, alternatives, and tradeoffs.</li>
 <li>[ ] How is reproducible and verifiable.</li>
 </ul>
 <p>Any unchecked item is an explicit evidence gap and prevents <code>validated</code> or
@@ -204,18 +366,18 @@ planned state as an observed result.&gt;</p>
 <h3><a id="out-of-scope" href="#out-of-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>Out of scope</h3>
 <ul>
 <li>
-<Explicit exclusions>
+<Explicit exclusion>
 </li>
 </ul>
 <h3><a id="nonclaims" href="#nonclaims" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nonclaims</h3>
 <p>This record does <strong>not</strong> claim:</p>
 <ul>
 <li>
-<A tempting conclusion that the evidence does not support>
+<Tempting conclusion not supported by the evidence>
 </li>
 </ul>
 <h2><a id="final-accepted-state" href="#final-accepted-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final accepted state</h2>
-<pre><code class="language-text">&lt;Component/state summary&gt;
+<pre><code class="language-text">&lt;Concise component and state summary&gt;
 </code></pre>
 <table>
 <thead>
@@ -246,7 +408,7 @@ planned state as an observed result.&gt;</p>
 <tbody>
 <tr>
 <td><code>CLM-001</code></td>
-<td>&lt;Atomic, testable claim&gt;</td>
+<td>&lt;Atomic testable claim&gt;</td>
 <td>&lt;critical</td>
 <td>high</td>
 <td>normal</td>
@@ -256,16 +418,16 @@ planned state as an observed result.&gt;</p>
 </table>
 <p>Rules:</p>
 <ul>
-<li>Each claim must be atomic and testable.</li>
-<li>Every critical claim requires direct observation or generated evidence plus
-repository evidence when configuration is involved.</li>
+<li>Every claim is atomic and testable.</li>
+<li>Every critical configuration claim requires direct or generated evidence and
+repository evidence.</li>
 <li>Assumptions and planned work cannot prove a claim.</li>
 </ul>
 <h2><a id="problem-and-decision-rationale" href="#problem-and-decision-rationale" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem and decision rationale</h2>
 <h3><a id="problem-or-opportunity" href="#problem-or-opportunity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem or opportunity</h3>
-<Describe the condition that required action.>
+<Condition requiring action.>
 <h3><a id="decision" href="#decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision</h3>
-<State the accepted decision plainly.>
+<Accepted decision.>
 <h3><a id="decision-drivers" href="#decision-drivers" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision drivers</h3>
 <ul>
 <li>
@@ -286,7 +448,7 @@ repository evidence when configuration is involved.</li>
 <tr>
 <td><option></td>
 <td><benefit></td>
-<td>&lt;cost/risk&gt;</td>
+<td><cost or risk></td>
 <td>&lt;accepted</td>
 </tr>
 </tbody>
@@ -294,28 +456,29 @@ repository evidence when configuration is involved.</li>
 <h3><a id="tradeoffs-and-consequences" href="#tradeoffs-and-consequences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tradeoffs and consequences</h3>
 <ul>
 <li>
-<Positive consequence>
+<positive consequence>
 </li>
 <li>
-<Negative consequence>
+<negative consequence>
 </li>
 <li>
-<Operational consequence>
+<operational consequence>
 </li>
 </ul>
 <h2><a id="architecture-or-change-description" href="#architecture-or-change-description" class="Permalink" aria-hidden="true" title="Permalink">#</a>Architecture or change description</h2>
-<pre><code class="language-text">&lt;Architecture, sequence, topology, or before/after diagram&gt;
+<pre><code class="language-text">&lt;Architecture, topology, sequence, or before/after diagram&gt;
 </code></pre>
 <h3><a id="before" href="#before" class="Permalink" aria-hidden="true" title="Permalink">#</a>Before</h3>
-<Previous state or not applicable.>
+<Previous state or not-applicable.>
 <h3><a id="after" href="#after" class="Permalink" aria-hidden="true" title="Permalink">#</a>After</h3>
-<Accepted state.>
+<Final evidenced state.>
 <h2><a id="source-of-truth-and-implementation-lineage" href="#source-of-truth-and-implementation-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source of truth and implementation lineage</h2>
 <h3><a id="repository-files" href="#repository-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository files</h3>
 <pre><code class="language-text">&lt;repository-relative path&gt;
 </code></pre>
 <h3><a id="implementation-commit" href="#implementation-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation commit</h3>
-<pre><code class="language-text">&lt;Git SHA, commit subject, pull request, or pending&gt;
+<pre><code class="language-text">__SAGE_IMPLEMENTATION_COMMIT__
+&lt;commit subject or pending before publication&gt;
 </code></pre>
 <h3><a id="versioned-dependencies" href="#versioned-dependencies" class="Permalink" aria-hidden="true" title="Permalink">#</a>Versioned dependencies</h3>
 <table>
@@ -328,9 +491,9 @@ repository evidence when configuration is involved.</li>
 </thead>
 <tbody>
 <tr>
-<td><component></td>
-<td align="right"><version></td>
-<td>&lt;repository, image, chart, package, or device&gt;</td>
+<td><component matching front matter></td>
+<td align="right"><exact version></td>
+<td>&lt;repository, image, chart, package, device, or observation&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -363,21 +526,23 @@ repository evidence when configuration is involved.</li>
 </tr>
 </tbody>
 </table>
-<p>A material assumption prevents <code>accepted</code> status unless the residual risk is
-explicitly accepted by the owner and reviewer.</p>
+<p>A material assumption prevents <code>accepted</code> status unless the owner and reviewer
+explicitly accept the residual risk.</p>
 <h2><a id="implementation-procedure" href="#implementation-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation procedure</h2>
 <h3><a id="preparation" href="#preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preparation</h3>
 <pre><code class="hljs bash">&lt;preparation commands&gt;
 </code></pre>
 <h3><a id="execution" href="#execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Execution</h3>
-<pre><code class="hljs bash">&lt;implementation <span class="hljs-built_in">command</span>&gt;
+<pre><code class="hljs bash">&lt;implementation commands&gt;
 </code></pre>
 <h3><a id="expected-change" href="#expected-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Expected change</h3>
-<Describe what should change.>
+<Expected state transition.>
 <h3><a id="observed-change" href="#observed-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Observed change</h3>
-<Describe what actually changed. Reference evidence IDs.>
+<Actual state transition with evidence IDs.>
+<h3><a id="failed-or-superseded-paths" href="#failed-or-superseded-paths" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed or superseded paths</h3>
+<Separate failed attempts from the final accepted implementation.>
 <h2><a id="evidence-items" href="#evidence-items" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence items</h2>
-<p>Repeat this subsection for every material evidence item.</p>
+<p>Repeat for every material evidence item.</p>
 <h3><a id="ev-001-evidence-title" href="#ev-001-evidence-title" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-001</code> — &lt;Evidence title&gt;</h3>
 <table>
 <thead>
@@ -401,19 +566,19 @@ explicitly accepted by the owner and reviewer.</p>
 </tr>
 <tr>
 <td>Collected at</td>
-<td><timestamp and timezone></td>
+<td>&lt;RFC3339 timestamp with offset&gt;</td>
 </tr>
 <tr>
 <td>Execution source</td>
-<td>&lt;Mac mini, CI runner, arm64-01, browser, device, etc.&gt;</td>
+<td>&lt;host, runner, browser, device, or repository&gt;</td>
 </tr>
 <tr>
 <td>Target</td>
-<td>&lt;cluster/node/namespace/service/file&gt;</td>
+<td>&lt;cluster, node, namespace, service, endpoint, or file&gt;</td>
 </tr>
 <tr>
 <td>Tool and version</td>
-<td><tool and version></td>
+<td>&lt;tool=version or version-not-captured&gt;</td>
 </tr>
 <tr>
 <td>Expected result</td>
@@ -433,7 +598,7 @@ explicitly accepted by the owner and reviewer.</p>
 </tr>
 <tr>
 <td>Artifact</td>
-<td>&lt;repository path, external artifact URI, checksum, or inline&gt;</td>
+<td>&lt;repository path, URI, checksum, or inline&gt;</td>
 </tr>
 </tbody>
 </table>
@@ -441,11 +606,11 @@ explicitly accepted by the owner and reviewer.</p>
 <pre><code class="hljs bash">&lt;exact <span class="hljs-built_in">command</span> or <span class="hljs-built_in">source</span> reference&gt;
 </code></pre>
 <p><strong>Observed result</strong></p>
-<pre><code class="language-text">&lt;exact relevant output; trim unrelated noise and identify omissions&gt;
+<pre><code class="language-text">&lt;exact relevant output; identify trimmed noise&gt;
 </code></pre>
 <p><strong>Interpretation</strong></p>
-<p>&lt;Explain exactly what this proves and what it does not prove. Derived claims
-must cite the evidence IDs used.&gt;</p>
+<p>&lt;What the evidence proves and does not prove. Derived conclusions cite evidence
+IDs.&gt;</p>
 <h2><a id="verification-and-acceptance-criteria" href="#verification-and-acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Verification and acceptance criteria</h2>
 <table>
 <thead>
@@ -476,9 +641,7 @@ must cite the evidence IDs used.&gt;</p>
 <pre><code class="language-text">&lt;result&gt;
 </code></pre>
 <h3><a id="negative-verification" href="#negative-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Negative verification</h3>
-<p>&lt;Record security rejection, failed access, absent scheduling, destructive-action
-refusal, or another condition that must not occur.&gt;</p>
-<pre><code class="hljs bash">&lt;negative <span class="hljs-built_in">test</span>&gt;
+<pre><code class="hljs bash">&lt;<span class="hljs-built_in">test</span> of a condition that must not occur&gt;
 </code></pre>
 <p>Observed:</p>
 <pre><code class="language-text">&lt;expected rejection or absence&gt;
@@ -488,11 +651,11 @@ refusal, or another condition that must not occur.&gt;</p>
 <pre><code class="language-text">&lt;recap or result&gt;
 </code></pre>
 <h3><a id="steady-state-rerun" href="#steady-state-rerun" class="Permalink" aria-hidden="true" title="Permalink">#</a>Steady-state rerun</h3>
-<pre><code class="language-text">&lt;changed=0 or equivalent repeatability proof&gt;
+<pre><code class="language-text">&lt;changed=0 or equivalent proof&gt;
 </code></pre>
 <h3><a id="interpretation" href="#interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Interpretation</h3>
-<p>&lt;State whether automation is idempotent, a command is intentionally imperative,
-or repeatability is not applicable.&gt;</p>
+<p>&lt;State whether automation is idempotent, intentionally imperative, or not
+applicable.&gt;</p>
 <h2><a id="security-privacy-and-evidence-handling" href="#security-privacy-and-evidence-handling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security, privacy, and evidence handling</h2>
 <h3><a id="security-controls" href="#security-controls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security controls</h3>
 <ul>
@@ -511,12 +674,12 @@ or repeatability is not applicable.&gt;</p>
 </ul>
 <h3><a id="redactions-and-omissions" href="#redactions-and-omissions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Redactions and omissions</h3>
 <ul>
-<li>&lt;What was redacted and why, or “none.”&gt;</li>
+<li>&lt;redaction and reason, or none&gt;</li>
 </ul>
 <h3><a id="residual-security-risk" href="#residual-security-risk" class="Permalink" aria-hidden="true" title="Permalink">#</a>Residual security risk</h3>
 <ul>
 <li>
-<risk and accepted mitigation>
+<risk and mitigation>
 </li>
 </ul>
 <h2><a id="reliability-recovery-rollback-and-rebuild" href="#reliability-recovery-rollback-and-rebuild" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reliability, recovery, rollback, and rebuild</h2>
@@ -540,7 +703,7 @@ or repeatability is not applicable.&gt;</p>
 </tbody>
 </table>
 <h3><a id="rollback" href="#rollback" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rollback</h3>
-<pre><code class="hljs bash">&lt;rollback <span class="hljs-built_in">command</span> or procedure&gt;
+<pre><code class="hljs bash">&lt;rollback procedure&gt;
 </code></pre>
 <h3><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h3>
 <ol>
@@ -555,17 +718,17 @@ or repeatability is not applicable.&gt;</p>
 </li>
 </ol>
 <h3><a id="data-durability-and-backup-impact" href="#data-durability-and-backup-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data durability and backup impact</h3>
-<p>&lt;Describe affected persistent data, reclaim policy, backup requirements, and
-recovery point limitations.&gt;</p>
+<p>&lt;Affected persistent data, reclaim policy, backups, recovery point, and
+recovery-time limitations.&gt;</p>
 <h2><a id="operational-considerations-and-observability" href="#operational-considerations-and-observability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational considerations and observability</h2>
 <h3><a id="health-signals" href="#health-signals" class="Permalink" aria-hidden="true" title="Permalink">#</a>Health signals</h3>
 <ul>
-<li>&lt;metric, log, event, endpoint, or command&gt;</li>
+<li>&lt;metric, log, event, endpoint, command, or user-visible behavior&gt;</li>
 </ul>
 <h3><a id="routine-verification" href="#routine-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Routine verification</h3>
 <pre><code class="hljs bash">&lt;health check&gt;
 </code></pre>
-<h3><a id="capacity-performance-and-cost-impact" href="#capacity-performance-and-cost-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity, performance, and cost impact</h3>
+<h3><a id="capacity-performance-cost-and-sustainability" href="#capacity-performance-cost-and-sustainability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity, performance, cost, and sustainability</h3>
 <ul>
 <li><strong>Capacity:</strong> <impact></li>
 <li><strong>Performance:</strong> <impact></li>
@@ -595,6 +758,7 @@ recovery point limitations.&gt;</p>
 </tr>
 </tbody>
 </table>
+<p>Every <code>not-captured</code> metadata value must appear here.</p>
 <h2><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h2>
 <h3><a id="symptom" href="#symptom" class="Permalink" aria-hidden="true" title="Permalink">#</a>&lt;Symptom&gt;</h3>
 <p><strong>Meaning</strong></p>
@@ -608,11 +772,11 @@ recovery point limitations.&gt;</p>
 <h2><a id="freshness-revalidation-and-supersession" href="#freshness-revalidation-and-supersession" class="Permalink" aria-hidden="true" title="Permalink">#</a>Freshness, revalidation, and supersession</h2>
 <h3><a id="revalidate-when" href="#revalidate-when" class="Permalink" aria-hidden="true" title="Permalink">#</a>Revalidate when</h3>
 <ul>
-<li>a referenced component or chart version changes;</li>
+<li>a component version changes;</li>
+<li>a canonical metadata value changes;</li>
 <li>a source-of-truth path changes;</li>
-<li>the node, namespace, endpoint, replica count, or architecture changes;</li>
-<li>the relevant playbook or manifest changes;</li>
-<li>a security control changes;</li>
+<li>a node, address, namespace, endpoint, replica count, or architecture changes;</li>
+<li>a relevant playbook, manifest, or security control changes;</li>
 <li>an acceptance test no longer passes;</li>
 <li>a conflicting evidence record is accepted;</li>
 <li><record-specific trigger>.</li>
@@ -621,36 +785,40 @@ recovery point limitations.&gt;</p>
 <pre><code class="language-text">&lt;date, cadence, or event-based review&gt;
 </code></pre>
 <h3><a id="supersession-rule" href="#supersession-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>Supersession rule</h3>
-<p>When replaced, set <code>status: superseded</code>, populate <code>superseded_by</code>, preserve this
-record for lineage, and identify which claims remain valid.</p>
-<h2><a id="final-completion-checklist" href="#final-completion-checklist" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final completion checklist</h2>
+<p>When replaced, set <code>status: superseded</code>, populate <code>superseded_by</code>, preserve the
+record and evidence ID, and state which claims remain valid.</p>
+<h2><a id="final-completion-checklist-and-reviewer-acceptance" href="#final-completion-checklist-and-reviewer-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final completion checklist and reviewer acceptance</h2>
 <h3><a id="governance" href="#governance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governance</h3>
 <ul>
 <li>[ ] Evidence ID is unique and permanent.</li>
+<li>[ ] Schema version is 1.1.</li>
+<li>[ ] Front matter follows the exact metadata contract and order.</li>
+<li>[ ] Record metadata exactly mirrors front matter.</li>
 <li>[ ] Status accurately reflects completeness.</li>
-<li>[ ] Owner, author/operator, and reviewer are identified.</li>
-<li>[ ] Five Ws and How are complete.</li>
+<li>[ ] Owner, author, operator, and reviewer are identified.</li>
+<li>[ ] Five Ws and How agree with canonical metadata.</li>
 <li>[ ] Scope and nonclaims are explicit.</li>
-<li>[ ] Implementation commit is recorded.</li>
+<li>[ ] Implementation commit is recorded or validly not-applicable.</li>
 <li>[ ] Relationships and supersession fields are complete.</li>
 </ul>
 <h3><a id="evidence" href="#evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence</h3>
 <ul>
 <li>[ ] Every critical claim has supporting evidence.</li>
 <li>[ ] Expected and observed results are separated.</li>
-<li>[ ] Direct observations identify source, target, time, and tool.</li>
+<li>[ ] Direct observations identify source, target, time, and tool version.</li>
 <li>[ ] Derived conclusions reference evidence IDs.</li>
 <li>[ ] Assumptions and planned work are marked.</li>
-<li>[ ] Failed attempts are separated from the accepted final state.</li>
-<li>[ ] Idempotency or repeatability is proven or marked not applicable.</li>
+<li>[ ] Failed attempts are separated from final state.</li>
+<li>[ ] Idempotency or repeatability is proven or not-applicable.</li>
+<li>[ ] Every not-captured value has an evidence gap.</li>
 </ul>
 <h3><a id="safety-and-operations" href="#safety-and-operations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Safety and operations</h3>
 <ul>
 <li>[ ] Secrets and sensitive data are excluded or redacted.</li>
 <li>[ ] Security limitations and residual risks are recorded.</li>
-<li>[ ] Rollback and rebuild are documented.</li>
+<li>[ ] Rollback, rebuild, and data-durability impacts are documented.</li>
 <li>[ ] Operational health checks are documented.</li>
-<li>[ ] Known limitations and evidence gaps have owners or triggers.</li>
+<li>[ ] Known limitations and gaps have owners or triggers.</li>
 <li>[ ] Revalidation criteria are defined.</li>
 </ul>
 <h3><a id="review-acceptance" href="#review-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Review acceptance</h3>
@@ -670,35 +838,29 @@ record for lineage, and identify which claims remain valid.</p>
 <td><name></td>
 <td>&lt;accept</td>
 <td>reject</td>
-<td>conditional&gt;</td>
+<td>conditional</td>
 </tr>
 <tr>
 <td>Reviewer</td>
-<td><name></td>
+<td><name or pending></td>
 <td>&lt;accept</td>
 <td>reject</td>
-<td>conditional&gt;</td>
+<td>conditional</td>
 </tr>
 </tbody>
 </table>
 <h2><a id="git-review-and-publication" href="#git-review-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git review and publication</h2>
+<p>Use only the repository publication process:</p>
 <pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
 
-git diff --check
-git status --short
-git diff -- &lt;implementation paths&gt; &lt;this evidence record&gt;
+python3 scripts/sage/sage-publish.py check \
+  ~/Downloads/&lt;sage-package&gt;.zip
+
+python3 scripts/sage/sage-publish.py publish \
+  ~/Downloads/&lt;sage-package&gt;.zip \
+  --push
 </code></pre>
-<p>Stage only intentional source and evidence files:</p>
-<pre><code class="hljs bash">git add -- \
-  &lt;implementation paths&gt; \
-  markdown/&lt;category&gt;/&lt;this-record&gt;.md
-</code></pre>
-<p>Commit and publish:</p>
-<pre><code class="hljs bash">git commit -m <span class="hljs-string">"&lt;imperative summary&gt;"</span>
-git pull --rebase origin main
-git push origin main
-git status
-</code></pre>
+<p>Do not invent a session-specific unzip, stage, commit, rebase, or push sequence.</p>
 <h2><a id="appendices-and-raw-artifacts" href="#appendices-and-raw-artifacts" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendices and raw artifacts</h2>
 <h3><a id="artifact-inventory" href="#artifact-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifact inventory</h3>
 <table>
@@ -715,14 +877,14 @@ git status
 <tr>
 <td><artifact></td>
 <td><code>markdown/evidence-artifacts/&lt;evidence-id&gt;/&lt;file&gt;</code></td>
-<td><code>&lt;checksum&gt;</code></td>
-<td>&lt;yes/no/redacted&gt;</td>
-<td><policy></td>
+<td><checksum></td>
+<td>&lt;yes</td>
+<td>no</td>
 </tr>
 </tbody>
 </table>
 <h3><a id="additional-notes" href="#additional-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Additional notes</h3>
-<Optional context that does not belong in the accepted-state narrative.>
+<Context that does not belong in the final-state narrative.>
     </div>
 
         <nav>
