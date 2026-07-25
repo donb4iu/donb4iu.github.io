@@ -1,0 +1,2800 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Kubecost Homelab Cost Calibration and Idempotent Helm Reconciliation - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="ChatGPT, drafted from terminal evidence collected by Don Buddenbaum">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item Nav__item--active'><a href="../installation/kalaxy3_kubecost_calibration_sage_evidence.html">Kubecost Homelab Cost Calibration and Idempotent Helm Reconciliation</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
+<li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../installation/k3s_api_ha_kube_vip.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/kalaxy3_kubecost_calibration_sage_evidence.html">Kubecost Homelab Cost Calibration and Idempotent Helm Reconciliation</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="kubecost-homelab-cost-calibration-and-idempotent-helm-reconciliation" href="#kubecost-homelab-cost-calibration-and-idempotent-helm-reconciliation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost Homelab Cost Calibration and Idempotent Helm Reconciliation</h1>
+<h2><a id="executive-summary" href="#executive-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive summary</h2>
+<p>Kalaxy3 Kubecost 3.2.1 was changed from an installed but uncalibrated state to a
+validated homelab cost model driven by version-controlled node, storage, power,
+and shared-infrastructure inputs. Ansible now calculates blended monthly CPU,
+RAM, and storage rates, renders Kubecost custom pricing, applies persistent
+hardware and cost-profile labels to all seven Kubernetes nodes, includes shared
+infrastructure power as monthly overhead, and reconciles the Helm release using
+the idempotent <code>kubernetes.core.helm</code> module with Helm Diff 3.15.10. The live
+release is deployed and healthy, all four Kubecost workloads run on <code>amd64-02</code>,
+and the final steady-state Ansible run completed with <code>changed=0</code> and
+<code>failed=0</code>. This record is <code>validated</code>; acceptance remains pending because the
+implementation commit and independent review have not yet been recorded.</p>
+<h2><a id="five-ws-and-how" href="#five-ws-and-how" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five Ws and How</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td><strong>Owner and operator:</strong> Don Buddenbaum. <strong>Evidence-record author:</strong> ChatGPT, using terminal evidence supplied by Don Buddenbaum. <strong>Reviewer:</strong> pending. <strong>Affected users:</strong> the Kalaxy3 operator and future users of Kubecost engineering-cost evidence.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Added an inventory-driven Kubecost cost-calibration model; persistent node metadata; shared-power allocation; generated custom CPU, RAM, storage, GPU, network, and shared-overhead values; tagged Kubecost-only Ansible execution; idempotent Helm management; and Helm Diff installation. Applied the calibrated values to the live Kubecost release.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td><strong>Implementation and evidence collection:</strong> July 24, 2026, approximately 22:08-23:40 CDT (<code>UTC-05:00</code>). <strong>Final idempotency proof:</strong> July 24, 2026 at approximately 23:38 CDT. <strong>Record created:</strong> July 25, 2026 at 00:03:40 CDT. <strong>Valid as of:</strong> July 24, 2026. <strong>Review due:</strong> on material hardware, power, electricity-rate, storage, Kubecost-chart, or calibration-code change.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td><strong>Environment:</strong> Kalaxy3 homelab. <strong>Cluster:</strong> <code>kalaxy3</code>. <strong>Execution host:</strong> <code>donb-mac-mini</code>. <strong>Ansible/Helm controller:</strong> <code>arm64-01</code>. <strong>Kubecost workload node:</strong> <code>amd64-02</code>. <strong>Namespace:</strong> <code>kubecost</code>. <strong>Frontend address:</strong> <code>192.168.2.26</code>. <strong>Repository:</strong> <code>donb4iu/Kalaxy3</code>, branch <code>main</code>. <strong>Source paths:</strong> <code>infrastructure/k3s-homelab/inventory</code>, <code>playbooks</code>, and <code>playbooks/templates</code>.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>Kubecost was healthy but its custom prices were disabled and empty, so it could not represent Kalaxy3 hardware amortization, electricity, storage, or shared-infrastructure cost. The roadmap requires useful engineering-cost evidence to compare low-power ARM and Intel platforms and guide architecture decisions. The model also had to be rebuildable, reviewable, and idempotent rather than maintained through manual UI changes.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>Hardware, lifecycle, storage, and power inputs were stored in Ansible inventory; calibration tasks validate and aggregate those inputs; a Jinja template renders Kubecost values; node labels are reconciled with <code>kubectl label --overwrite</code>; the observability phase discovers eligible Kubecost nodes; and <code>kubernetes.core.helm</code> applies the base and calibration values. Helm Diff 3.15.10 provides reliable change detection. Validation included syntax checks, rendered-value inspection, live Helm-value inspection, node-label verification, workload health, normal rollout events, Helm release status, and a final no-change reconciliation.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="five-w-completeness-gate" href="#five-w-completeness-gate" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five-W completeness gate</h3>
+<ul>
+<li>[x] Who is complete.</li>
+<li>[x] What is complete.</li>
+<li>[x] When is complete and includes timezone.</li>
+<li>[x] Where is complete at both repository and runtime levels.</li>
+<li>[x] Why includes rationale and tradeoffs.</li>
+<li>[x] How is reproducible and verifiable.</li>
+</ul>
+<h2><a id="scope-and-boundaries" href="#scope-and-boundaries" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scope and boundaries</h2>
+<h3><a id="in-scope" href="#in-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>In scope</h3>
+<ul>
+<li>The Kalaxy3 homelab Kubecost custom-pricing model.</li>
+<li>Seven priced Kubernetes nodes: five Raspberry Pi 4 nodes and two Intel nodes.</li>
+<li>Hardware amortization, electricity allocation, logical storage cost, and
+shared-infrastructure electricity.</li>
+<li>Persistent Kubernetes labels describing hardware class, cost profile, node
+role, power class, storage role, and GPU metadata.</li>
+<li>Generated Helm values and live Kubecost reconciliation.</li>
+<li>Ansible tag behavior required for Kubecost-only execution.</li>
+<li>Idempotent Helm management and Helm Diff installation.</li>
+<li>The material failed attempts that led to the accepted implementation.</li>
+</ul>
+<h3><a id="out-of-scope" href="#out-of-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>Out of scope</h3>
+<ul>
+<li>Utility-bill reconciliation or accounting-grade cost certification.</li>
+<li>Direct per-device power-meter measurements.</li>
+<li>AWS, Azure, or other public-cloud billing integration.</li>
+<li>GPU scheduling or GPU cost allocation to Kubernetes workloads.</li>
+<li>Nonzero internet, region, or zone network-egress pricing.</li>
+<li>Historical validation of Kubecost allocation reports after a full reporting
+window.</li>
+<li>Commit and push of the implementation and this evidence record.</li>
+<li>Independent architecture or FinOps review.</li>
+</ul>
+<h3><a id="nonclaims" href="#nonclaims" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nonclaims</h3>
+<p>This record does <strong>not</strong> claim:</p>
+<ul>
+<li>that the current power allocations are precision electrical measurements;</li>
+<li>that the blended cluster-wide rates represent distinct per-node marginal
+prices;</li>
+<li>that Kubecost results have been reconciled to an electric bill or purchase
+ledger;</li>
+<li>that GPUs are available to Kubernetes or separately priced;</li>
+<li>that zero network-egress rates mean network traffic has no operational cost;</li>
+<li>that Helm revision numbers 4 through 6 were failed releases; they were
+intermediate successful reconciliations during idempotency correction;</li>
+<li>that the implementation is accepted governance policy before review and Git
+lineage are completed.</li>
+</ul>
+<h2><a id="final-accepted-state" href="#final-accepted-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final accepted state</h2>
+<pre><code class="language-text">Kubecost chart:                 3.2.1
+Helm status:                    deployed
+Final observed Helm revision:   7
+CPU custom price:               0.95500000 per core-month
+RAM custom price:               0.12074713 per GiB-month
+GPU custom price:               0.00000000
+Storage custom price:           0.00076190 per GB-month
+Shared overhead:                8.41 per month
+Network-cost component:         enabled
+Network egress rates:           0.0
+Kubecost workload placement:    amd64-02
+Kubecost pods ready:            4 of 4
+Kubecost pod restarts:          0
+Helm Diff version:              3.15.10
+Steady-state Ansible result:    ok=30 changed=0 failed=0
+Implementation commit:          pending
+Reviewer:                       pending
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Custom pricing</td>
+<td>Enabled in the live Kubecost release.</td>
+</tr>
+<tr>
+<td>CPU price</td>
+<td><code>0.95500000</code> per core-month.</td>
+</tr>
+<tr>
+<td>RAM price</td>
+<td><code>0.12074713</code> per GiB-month.</td>
+</tr>
+<tr>
+<td>Storage price</td>
+<td><code>0.00076190</code> per logical GB-month.</td>
+</tr>
+<tr>
+<td>GPU price</td>
+<td><code>0.00000000</code>; GPU scheduling and separate GPU pricing remain disabled.</td>
+</tr>
+<tr>
+<td>Shared overhead</td>
+<td><code>$8.41</code> per month, derived from <code>72 W</code>, <code>730</code> hours/month, and <code>$0.16/kWh</code>.</td>
+</tr>
+<tr>
+<td>Network costs</td>
+<td>Component enabled with on-prem affinity override; all configured egress rates remain <code>0.0</code>.</td>
+</tr>
+<tr>
+<td>Node metadata</td>
+<td>All seven nodes carry persistent Kalaxy3 hardware and cost labels.</td>
+</tr>
+<tr>
+<td>Workload health</td>
+<td>Aggregator, FinOps Agent, frontend, and local store are ready on <code>amd64-02</code> with zero restarts.</td>
+</tr>
+<tr>
+<td>Helm reconciliation</td>
+<td>Managed by <code>kubernetes.core.helm</code>; Helm Diff 3.15.10 prevents false-positive changes.</td>
+</tr>
+<tr>
+<td>Repeatability</td>
+<td>Final targeted run completed with <code>changed=0</code> and did not require a new Helm revision.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="claims-and-evidence-matrix" href="#claims-and-evidence-matrix" class="Permalink" aria-hidden="true" title="Permalink">#</a>Claims and evidence matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>The calibration inputs are populated and pass Ansible validation for all seven priced nodes and four storage profiles.</td>
+<td>high</td>
+<td><code>EV-001</code>, <code>EV-002</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>The generated Kubecost values contain the intended CPU, RAM, storage, GPU, shared-overhead, and network settings with correct YAML types.</td>
+<td>critical</td>
+<td><code>EV-003</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>The live Kubecost release uses the generated custom prices and shared overhead.</td>
+<td>critical</td>
+<td><code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>Persistent Kalaxy3 node labels describe all seven nodes and survive repeat reconciliation.</td>
+<td>high</td>
+<td><code>EV-005</code>, <code>EV-008</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>Kubecost remained healthy after the calibrated rollout and all workloads ran on <code>amd64-02</code>.</td>
+<td>critical</td>
+<td><code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>Kubecost-only Ansible execution now reaches the required eligibility, calibration, and Helm tasks.</td>
+<td>high</td>
+<td><code>EV-007</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>Helm reconciliation is idempotent after installing Helm Diff 3.15.10.</td>
+<td>critical</td>
+<td><code>EV-008</code>, <code>EV-009</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-008</code></td>
+<td>The power and shared-cost inputs are useful engineering estimates but are not precision measurements.</td>
+<td>high</td>
+<td><code>EV-001</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>medium</td>
+</tr>
+<tr>
+<td><code>CLM-009</code></td>
+<td>The implementation is ready for Git commit but the commit SHA and review are not yet available.</td>
+<td>normal</td>
+<td><code>EV-011</code></td>
+<td>partially-supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="problem-and-decision-rationale" href="#problem-and-decision-rationale" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem and decision rationale</h2>
+<h3><a id="problem-or-opportunity" href="#problem-or-opportunity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem or opportunity</h3>
+<p>Before this work, the installed Kubecost release was healthy but the effective
+Helm values showed:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">customPrices:</span>
+  <span class="hljs-attr">CPU:</span> <span class="hljs-string">""</span>
+  <span class="hljs-attr">GPU:</span> <span class="hljs-string">""</span>
+  <span class="hljs-attr">RAM:</span> <span class="hljs-string">""</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">storage:</span> <span class="hljs-string">""</span>
+
+<span class="hljs-attr">sharedNamespaces:</span> <span class="hljs-string">""</span>
+<span class="hljs-attr">sharedOverhead:</span> <span class="hljs-number">0</span>
+
+<span class="hljs-attr">networkCosts:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">false</span>
+</code></pre>
+<p>Kubecost could therefore report Kubernetes allocation and relative utilization,
+but it did not have Kalaxy3-specific dollar values for hardware amortization,
+electricity, storage, or shared infrastructure. This was a direct gap against
+the Kalaxy3 roadmap requirement to produce useful engineering cost evidence
+before comparing future control-plane and compute platforms.</p>
+<h3><a id="decision" href="#decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision</h3>
+<p>Use Ansible inventory as the source of truth for Kalaxy3 cost inputs, calculate
+blended cluster-wide Kubecost rates deterministically, render those rates into a
+separate Helm values file, and apply the values through an idempotent Helm
+module. Keep provisional power assumptions explicit and separate from directly
+observed runtime evidence.</p>
+<h3><a id="decision-drivers" href="#decision-drivers" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision drivers</h3>
+<ul>
+<li>Rebuildability from Git and Ansible.</li>
+<li>Traceability from hardware assumptions to generated prices.</li>
+<li>Explicit validation of missing or malformed values.</li>
+<li>No dependence on manual Kubecost UI configuration.</li>
+<li>Compatibility with the existing Kubecost 3.2.1 deployment.</li>
+<li>Ability to refine purchase, residual, power, and lifecycle assumptions later
+without rewriting the deployment workflow.</li>
+<li>Persistent node metadata for architecture, capacity, storage, and future
+FinOps grouping.</li>
+<li>True Ansible and Helm idempotency.</li>
+</ul>
+<h3><a id="alternatives-considered" href="#alternatives-considered" class="Permalink" aria-hidden="true" title="Permalink">#</a>Alternatives considered</h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Leave custom pricing disabled</td>
+<td>No additional implementation work</td>
+<td>Kubecost cannot provide Kalaxy3-specific dollar evidence</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Maintain prices manually in the Kubecost UI</td>
+<td>Fast initial entry</td>
+<td>Not rebuildable, not reviewable in Git, and vulnerable to drift</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Patch Kubecost pricing ConfigMaps directly</td>
+<td>Direct runtime control</td>
+<td>Conflicts with Helm ownership and had already produced invalid-field behavior in earlier work</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Use public-cloud list prices</td>
+<td>Easy external reference</td>
+<td>Does not represent owned homelab hardware, residual values, or local electricity</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Measure every device with dedicated power meters</td>
+<td>Highest measurement quality</td>
+<td>Additional hardware and collection process were not available during this work</td>
+<td>deferred</td>
+</tr>
+<tr>
+<td>Use shell <code>helm upgrade</code> with forced <code>changed_when: true</code></td>
+<td>Familiar and simple</td>
+<td>Every run reports changed and creates unnecessary revisions</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Use <code>kubernetes.core.helm</code> without Helm Diff</td>
+<td>Declarative module</td>
+<td>Module warned that default idempotency detection could still report false changes</td>
+<td>superseded</td>
+</tr>
+<tr>
+<td>Use <code>kubernetes.core.helm</code> with Helm Diff 3.15.10</td>
+<td>Declarative, version-pinned, and idempotent</td>
+<td>Adds a managed Helm plugin dependency</td>
+<td>accepted</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="tradeoffs-and-consequences" href="#tradeoffs-and-consequences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tradeoffs and consequences</h3>
+<ul>
+<li>The model is transparent and reproducible but depends on the quality of its
+inventory assumptions.</li>
+<li>Blended prices fit the current deployment but hide per-node cost differences.</li>
+<li>Shared overhead captures non-Kubernetes infrastructure without falsely
+assigning it to a single node, but the allocation is approximate.</li>
+<li>GPU hardware is included in whole-node acquisition and power assumptions,
+while separate GPU pricing remains zero because Kubernetes GPU scheduling is
+not enabled.</li>
+<li>Enabling the network-cost component improves future visibility, but configured
+egress rates remain zero and therefore do not create dollar network charges.</li>
+<li>Applying Helm values restarted Kubecost workloads. The rollout was healthy,
+but reconciliation should still be treated as a controlled operational
+change.</li>
+</ul>
+<h2><a id="architecture-or-change-description" href="#architecture-or-change-description" class="Permalink" aria-hidden="true" title="Permalink">#</a>Architecture or change description</h2>
+<pre><code class="language-text">Version-controlled cost inputs
+
+inventory/group_vars/all/kubecost-calibration.yml
+inventory/host_vars/arm64-01.yml ... arm64-05.yml
+inventory/host_vars/amd64-01.yml ... amd64-02.yml
+                 |
+                 v
+playbooks/tasks/kubecost-calibration.yml
+  - validate node and storage inputs
+  - aggregate monthly compute cost
+  - aggregate logical storage cost
+  - calculate blended CPU/RAM/storage prices
+  - calculate shared monthly overhead
+  - apply persistent node labels
+                 |
+                 v
+/tmp/kalaxy3-kubecost-calibration-values.yaml
+                 |
+      base values + calibration values
+                 |
+                 v
+kubernetes.core.helm + Helm Diff 3.15.10
+                 |
+                 v
+Kubecost release in namespace kubecost
+  - aggregator      -&gt; amd64-02
+  - finopsagent     -&gt; amd64-02
+  - frontend        -&gt; amd64-02
+  - local-store     -&gt; amd64-02
+  - Longhorn-backed persistent storage
+  - MetalLB frontend address 192.168.2.26
+</code></pre>
+<h3><a id="before" href="#before" class="Permalink" aria-hidden="true" title="Permalink">#</a>Before</h3>
+<ul>
+<li>Custom prices were disabled and empty.</li>
+<li>Shared namespaces were empty and shared overhead was zero.</li>
+<li>Network costs were disabled.</li>
+<li>Cost metadata and power inputs were not consistently represented for all
+nodes.</li>
+<li>Targeted <code>--tags kubecost</code> execution initially did not reach the complete task
+chain.</li>
+<li>The Helm command always reported changed.</li>
+</ul>
+<h3><a id="after" href="#after" class="Permalink" aria-hidden="true" title="Permalink">#</a>After</h3>
+<ul>
+<li>Inventory contains node, storage, power, lifecycle, residual-value, and label
+inputs.</li>
+<li>Calibration tasks validate and calculate all required Kubecost values.</li>
+<li>Custom pricing is enabled in the live release.</li>
+<li>Shared namespaces and <code>$8.41</code> monthly shared overhead are configured.</li>
+<li>Network-cost collection is enabled with an on-prem affinity override.</li>
+<li>Persistent labels are present on all seven nodes.</li>
+<li>Targeted Kubecost runs execute only the required observability subpath.</li>
+<li>Helm Diff provides a no-change steady state.</li>
+</ul>
+<h2><a id="source-of-truth-and-implementation-lineage" href="#source-of-truth-and-implementation-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source of truth and implementation lineage</h2>
+<h3><a id="repository-files" href="#repository-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository files</h3>
+<pre><code class="language-text">infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+infrastructure/k3s-homelab/inventory/group_vars/all/kubecost-calibration.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-01.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-02.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-03.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-04.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-05.yml
+infrastructure/k3s-homelab/inventory/host_vars/amd64-01.yml
+infrastructure/k3s-homelab/inventory/host_vars/amd64-02.yml
+infrastructure/k3s-homelab/playbooks/platform.yml
+infrastructure/k3s-homelab/playbooks/kubecost-calibration-only.yml
+infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+infrastructure/k3s-homelab/playbooks/tasks/kubecost-calibration.yml
+infrastructure/k3s-homelab/playbooks/tasks/kubecost-node-label.yml
+infrastructure/k3s-homelab/playbooks/templates/kubecost-calibration-values.yml.j2
+markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md
+</code></pre>
+<p>The original global variable file was moved so Ansible could load multiple
+files for the <code>all</code> group without a file/directory collision:</p>
+<pre><code class="language-text">inventory/group_vars/all.yml
+  -&gt; inventory/group_vars/all/main.yml
+</code></pre>
+<h3><a id="implementation-commit" href="#implementation-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation commit</h3>
+<pre><code class="language-text">Pending. The working tree contained the intended Kubecost calibration changes,
+but no commit SHA was captured before this record was generated.
+</code></pre>
+<h3><a id="versioned-dependencies" href="#versioned-dependencies" class="Permalink" aria-hidden="true" title="Permalink">#</a>Versioned dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th align="right">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubecost chart</td>
+<td align="right"><code>3.2.1</code></td>
+<td><code>oci://public.ecr.aws/kubecost/kubecost</code></td>
+</tr>
+<tr>
+<td>Helm Diff</td>
+<td align="right"><code>3.15.10</code></td>
+<td><code>https://github.com/databus23/helm-diff</code></td>
+</tr>
+<tr>
+<td>K3s/Kubernetes</td>
+<td align="right"><code>v1.36.2+k3s1</code></td>
+<td>observed node output</td>
+</tr>
+<tr>
+<td>FinOps Agent image</td>
+<td align="right"><code>v1.0.20</code></td>
+<td><code>icr.io/ibm-finops/agent</code> from existing Kubecost base values</td>
+</tr>
+<tr>
+<td>Ansible</td>
+<td align="right">not captured</td>
+<td>evidence gap</td>
+</tr>
+<tr>
+<td>Helm client</td>
+<td align="right">not captured</td>
+<td>evidence gap</td>
+</tr>
+<tr>
+<td><code>kubernetes.core</code> collection</td>
+<td align="right">not captured</td>
+<td>evidence gap</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="configuration-excerpt" href="#configuration-excerpt" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration excerpt</h3>
+<pre><code class="hljs yaml"><span class="hljs-attr">kubecost_calibration:</span>
+  <span class="hljs-attr">electricity_rate_usd_per_kwh:</span> <span class="hljs-number">0.16</span>
+  <span class="hljs-attr">hours_per_month:</span> <span class="hljs-number">730</span>
+
+  <span class="hljs-attr">compute:</span>
+    <span class="hljs-attr">cpu_cost_share:</span> <span class="hljs-number">0.60</span>
+    <span class="hljs-attr">ram_cost_share:</span> <span class="hljs-number">0.40</span>
+    <span class="hljs-attr">fixed_monthly_overhead_usd:</span> <span class="hljs-number">0.00</span>
+
+  <span class="hljs-attr">gpu:</span>
+    <span class="hljs-attr">pricing_enabled:</span> <span class="hljs-literal">false</span>
+
+  <span class="hljs-attr">shared:</span>
+    <span class="hljs-attr">monthly_overhead_usd:</span> <span class="hljs-number">0.00</span>
+    <span class="hljs-attr">average_watts:</span> <span class="hljs-number">72.00</span>
+    <span class="hljs-attr">power_accounting:</span>
+      <span class="hljs-attr">method:</span> <span class="hljs-string">ups-load-allocation</span>
+      <span class="hljs-attr">confidence:</span> <span class="hljs-string">medium-low</span>
+      <span class="hljs-attr">measured:</span> <span class="hljs-literal">false</span>
+      <span class="hljs-attr">source_ups:</span> <span class="hljs-string">cyberpower1500</span>
+      <span class="hljs-attr">source_total_watts:</span> <span class="hljs-number">162.00</span>
+      <span class="hljs-attr">raspberry_pi_nodes_watts:</span> <span class="hljs-number">90.00</span>
+      <span class="hljs-attr">nfs_server_watts:</span> <span class="hljs-number">35.00</span>
+      <span class="hljs-attr">switch_2_5gbe_watts:</span> <span class="hljs-number">10.00</span>
+      <span class="hljs-attr">switch_10gbe_watts:</span> <span class="hljs-number">22.00</span>
+      <span class="hljs-attr">hdmi_kvm_watts:</span> <span class="hljs-number">5.00</span>
+    <span class="hljs-attr">namespaces:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">kube-system</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">kubecost</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">longhorn-system</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">metallb-system</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">observability</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">storage</span>
+
+  <span class="hljs-attr">network:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">internet_egress_usd_per_gb:</span> <span class="hljs-number">0.00</span>
+    <span class="hljs-attr">region_egress_usd_per_gb:</span> <span class="hljs-number">0.00</span>
+    <span class="hljs-attr">zone_egress_usd_per_gb:</span> <span class="hljs-number">0.00</span>
+</code></pre>
+<p>Representative node power inputs:</p>
+<pre><code class="hljs yaml"><span class="hljs-comment"># arm64-01 through arm64-05</span>
+<span class="hljs-attr">average_watts:</span> <span class="hljs-number">18</span>
+
+<span class="hljs-comment"># amd64-01</span>
+<span class="hljs-attr">average_watts:</span> <span class="hljs-number">92</span>
+
+<span class="hljs-comment"># amd64-02</span>
+<span class="hljs-attr">average_watts:</span> <span class="hljs-number">68</span>
+</code></pre>
+<p>Representative storage inputs:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">longhorn:</span>
+  <span class="hljs-attr">purchase_price_usd:</span> <span class="hljs-number">120.00</span>
+  <span class="hljs-attr">residual_value_usd:</span> <span class="hljs-number">60.00</span>
+  <span class="hljs-attr">useful_life_months:</span> <span class="hljs-number">60</span>
+  <span class="hljs-attr">average_watts:</span> <span class="hljs-number">0.00</span>
+  <span class="hljs-attr">raw_capacity_gb:</span> <span class="hljs-number">2000</span>
+  <span class="hljs-attr">replication_factor:</span> <span class="hljs-number">2</span>
+
+<span class="hljs-attr">minio_local:</span>
+  <span class="hljs-attr">purchase_price_usd:</span> <span class="hljs-number">120.00</span>
+  <span class="hljs-attr">residual_value_usd:</span> <span class="hljs-number">0.00</span>
+  <span class="hljs-attr">useful_life_months:</span> <span class="hljs-number">60</span>
+  <span class="hljs-attr">average_watts:</span> <span class="hljs-number">0.00</span>
+  <span class="hljs-attr">raw_capacity_gb:</span> <span class="hljs-number">5000</span>
+  <span class="hljs-attr">replication_factor:</span> <span class="hljs-number">1.25</span>
+
+<span class="hljs-attr">nfs_ssd:</span>
+  <span class="hljs-attr">purchase_price_usd:</span> <span class="hljs-number">120.00</span>
+  <span class="hljs-attr">residual_value_usd:</span> <span class="hljs-number">60.00</span>
+  <span class="hljs-attr">useful_life_months:</span> <span class="hljs-number">60</span>
+  <span class="hljs-attr">average_watts:</span> <span class="hljs-number">0</span>
+  <span class="hljs-attr">raw_capacity_gb:</span> <span class="hljs-number">1000</span>
+  <span class="hljs-attr">replication_factor:</span> <span class="hljs-number">1</span>
+
+<span class="hljs-attr">nfs_hdd:</span>
+  <span class="hljs-attr">purchase_price_usd:</span> <span class="hljs-number">1000.00</span>
+  <span class="hljs-attr">residual_value_usd:</span> <span class="hljs-number">600.00</span>
+  <span class="hljs-attr">useful_life_months:</span> <span class="hljs-number">60</span>
+  <span class="hljs-attr">average_watts:</span> <span class="hljs-number">0</span>
+  <span class="hljs-attr">raw_capacity_gb:</span> <span class="hljs-number">8000</span>
+  <span class="hljs-attr">replication_factor:</span> <span class="hljs-number">1</span>
+</code></pre>
+<p>Generated values excerpt:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">finopsagent:</span>
+  <span class="hljs-attr">kubecost:</span>
+    <span class="hljs-attr">customPrices:</span>
+      <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+      <span class="hljs-attr">CPU:</span> <span class="hljs-string">"0.95500000"</span>
+      <span class="hljs-attr">RAM:</span> <span class="hljs-string">"0.12074713"</span>
+      <span class="hljs-attr">GPU:</span> <span class="hljs-string">"0.00000000"</span>
+      <span class="hljs-attr">storage:</span> <span class="hljs-string">"0.00076190"</span>
+      <span class="hljs-attr">spotCPU:</span> <span class="hljs-string">"0.95500000"</span>
+      <span class="hljs-attr">spotRAM:</span> <span class="hljs-string">"0.12074713"</span>
+      <span class="hljs-attr">spotGPU:</span> <span class="hljs-string">"0.00000000"</span>
+      <span class="hljs-attr">zoneNetworkEgress:</span> <span class="hljs-string">"0.0"</span>
+      <span class="hljs-attr">regionNetworkEgress:</span> <span class="hljs-string">"0.0"</span>
+      <span class="hljs-attr">internetNetworkEgress:</span> <span class="hljs-string">"0.0"</span>
+
+<span class="hljs-attr">kubecostProductConfigs:</span>
+  <span class="hljs-attr">sharedNamespaces:</span> <span class="hljs-string">&gt;-
+    kube-system,kubecost,longhorn-system,metallb-system,observability,storage
+</span>  <span class="hljs-attr">sharedOverhead:</span> <span class="hljs-string">"8.41"</span>
+
+<span class="hljs-attr">networkCosts:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">affinity:</span> <span class="hljs-string">{}</span>
+</code></pre>
+<h2><a id="prerequisites-and-assumptions" href="#prerequisites-and-assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites and assumptions</h2>
+<h3><a id="proven-prerequisites" href="#proven-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Proven prerequisites</h3>
+<ul>
+<li>Kubecost 3.2.1 was already deployed in namespace <code>kubecost</code>.</li>
+<li>All Kubecost pods were already constrained to the eligible AMD64 node.</li>
+<li>Both Intel nodes and all five Pi nodes were <code>Ready</code>.</li>
+<li>Longhorn provided Kubecost persistent storage.</li>
+<li><code>arm64-01</code> could execute Ansible, <code>kubectl</code>, and Helm against the cluster.</li>
+<li>Node and storage calibration records were populated sufficiently for all
+validation assertions to pass.</li>
+<li>The <code>kubernetes.core</code> collection was available because both
+<code>kubernetes.core.helm</code> and <code>kubernetes.core.helm_plugin</code> executed
+successfully.</li>
+</ul>
+<h3><a id="assumptions" href="#assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Assumptions</h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>The electricity rate is <code>$0.16/kWh</code>.</td>
+<td>All electricity-derived costs are biased.</td>
+<td>Replace with the current blended utility rate and rerun calibration.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td><code>730</code> hours is an appropriate average month.</td>
+<td>Small monthly cost variance.</td>
+<td>Retain as an annualized average or use a reporting-period-specific hour count.</td>
+</tr>
+<tr>
+<td><code>ASM-003</code></td>
+<td>Five Pi systems consume an allocated <code>18 W</code> each, including attached boot and data enclosures.</td>
+<td>ARM compute power cost is overstated or understated.</td>
+<td>Measure each Pi system with a plug-level meter.</td>
+</tr>
+<tr>
+<td><code>ASM-004</code></td>
+<td>Intel UPS load can be allocated as <code>92 W</code> to <code>amd64-01</code> and <code>68 W</code> to <code>amd64-02</code>.</td>
+<td>Intel blended compute cost is biased.</td>
+<td>Capture per-node power under idle and representative load.</td>
+</tr>
+<tr>
+<td><code>ASM-005</code></td>
+<td>Shared rack power is reasonably represented by <code>72 W</code>.</td>
+<td>Shared overhead is biased.</td>
+<td>Measure NFS server, switches, and KVM independently.</td>
+</tr>
+<tr>
+<td><code>ASM-006</code></td>
+<td>Storage-device power is already included in node or shared allocations and must remain <code>0</code> in storage profiles to avoid double counting.</td>
+<td>Cost is double counted or omitted.</td>
+<td>Confirm electrical boundaries whenever storage hardware or UPS wiring changes.</td>
+</tr>
+<tr>
+<td><code>ASM-007</code></td>
+<td>Residual values and 60-month useful lives represent reasonable engineering depreciation assumptions.</td>
+<td>Monthly amortization is biased.</td>
+<td>Review against actual resale value and replacement history annually.</td>
+</tr>
+<tr>
+<td><code>ASM-008</code></td>
+<td>Separate GPU pricing should remain zero while GPUs are not Kubernetes-schedulable.</td>
+<td>Future GPU workloads may be underallocated.</td>
+<td>Enable GPU pricing only after the device plugin, scheduling, and workload requests are validated.</td>
+</tr>
+</tbody>
+</table>
+<p>The assumptions are material to dollar precision. They do not prevent the
+technical deployment from being validated, but they keep the overall cost-model
+confidence at <code>medium</code> rather than <code>high</code>.</p>
+<h2><a id="implementation-procedure" href="#implementation-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation procedure</h2>
+<h3><a id="preparation" href="#preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preparation</h3>
+<p>The existing live Helm state was backed up before applying calibration:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+mkdir -p /tmp/kalaxy3-kubecost-backup
+
+<span class="hljs-keyword">if</span> helm status kubecost -n kubecost &gt;/dev/null 2&gt;&amp;1; <span class="hljs-keyword">then</span>
+  helm get values kubecost \
+    -n kubecost \
+    --all \
+    &gt; /tmp/kalaxy3-kubecost-backup/values-before-calibration.yaml
+
+  helm status kubecost \
+    -n kubecost \
+    &gt; /tmp/kalaxy3-kubecost-backup/status-before-calibration.txt
+<span class="hljs-keyword">fi</span>
+</code></pre>
+<p>The backup is operationally useful but temporary because <code>/tmp</code> is not a
+durable evidence store.</p>
+<h3><a id="calibration-only-execution" href="#calibration-only-execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Calibration-only execution</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/kubecost-calibration-only.yml
+</code></pre>
+<p>This execution validated inputs, calculated prices, reconciled node labels, and
+rendered:</p>
+<pre><code class="language-text">/tmp/kalaxy3-kubecost-calibration-values.yaml
+</code></pre>
+<p>It intentionally did not perform a live Helm upgrade.</p>
+<h3><a id="rendered-value-inspection" href="#rendered-value-inspection" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rendered-value inspection</h3>
+<pre><code class="hljs bash">ansible arm64-01 \
+  -i inventory/hosts.yml \
+  --become \
+  --module-name ansible.builtin.fetch \
+  --args \
+  <span class="hljs-string">"src=/tmp/kalaxy3-kubecost-calibration-values.yaml \
+   dest=/tmp/kalaxy3-kubecost-calibration-values.yaml \
+   flat=yes"</span>
+</code></pre>
+<p>A Python YAML parse confirmed the generated values and the Boolean type of
+<code>networkCosts.enabled</code>.</p>
+<h3><a id="live-execution" href="#live-execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Live execution</h3>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --tags kubecost \
+  --extra-vars install_kubecost=<span class="hljs-literal">true</span>
+</code></pre>
+<p><code>install_kubecost=true</code> was provided as an execution-time override. The
+inventory value remained <code>false</code> at the time of evidence capture.</p>
+<h3><a id="expected-change" href="#expected-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Expected change</h3>
+<ul>
+<li>Validate all cost inputs.</li>
+<li>Render the same calibration values already inspected.</li>
+<li>Apply persistent node labels.</li>
+<li>Install Helm Diff when absent.</li>
+<li>Reconcile the Kubecost release.</li>
+<li>Restart workloads only when values materially changed.</li>
+<li>Converge with no changes on a later identical execution.</li>
+</ul>
+<h3><a id="observed-change" href="#observed-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Observed change</h3>
+<ul>
+<li>The first accepted calibration-only run applied missing node labels and
+rendered the values file.</li>
+<li>The live release changed from uncalibrated values to calibrated values.</li>
+<li>Kubecost workloads rolled and returned to <code>Ready</code> on <code>amd64-02</code>.</li>
+<li>Helm Diff 3.15.10 was installed.</li>
+<li>The final identical run completed with <code>changed=0</code>.</li>
+</ul>
+<h2><a id="evidence-items" href="#evidence-items" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence items</h2>
+<h3><a id="ev-001-node-storage-and-power-inputs-populated" href="#ev-001-node-storage-and-power-inputs-populated" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-001</code> — Node, storage, and power inputs populated</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code> and <code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 22:08-22:17 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Ansible inventory files</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td><code>grep</code>, version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Seven node watt values populated; no remaining null purchase or watt fields</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high for repository state; medium for power precision</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence and repository files</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Commands</strong></p>
+<pre><code class="hljs bash">grep -n <span class="hljs-string">'average_watts'</span> \
+  inventory/host_vars/arm64-*.yml \
+  inventory/host_vars/amd64-*.yml
+
+grep -RniE \
+  <span class="hljs-string">'purchase_price_usd: null|average_watts: null|average_incremental_watts: null'</span> \
+  inventory/host_vars \
+  inventory/group_vars/all/kubecost-calibration.yml
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">inventory/host_vars/arm64-01.yml:5:  average_watts: 18
+inventory/host_vars/arm64-02.yml:5:  average_watts: 18
+inventory/host_vars/arm64-03.yml:5:  average_watts: 18
+inventory/host_vars/arm64-04.yml:5:  average_watts: 18
+inventory/host_vars/arm64-05.yml:5:  average_watts: 18
+inventory/host_vars/amd64-01.yml:16:  average_watts: 92
+inventory/host_vars/amd64-02.yml:11:  average_watts: 68
+</code></pre>
+<p>The null-value search returned no output.</p>
+<p><strong>Interpretation</strong></p>
+<p>This proves the repository had complete values for the fields guarded by the
+search. It does not prove that the watt allocations are precision
+measurements.</p>
+<h3><a id="ev-002-calibration-input-validation-and-aggregation-passed" href="#ev-002-calibration-input-validation-and-aggregation-passed" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-002</code> — Calibration input validation and aggregation passed</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 22:43-22:47 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code>, targeting <code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Calibration-only Ansible workflow</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Ansible, version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>All seven nodes and four storage profiles validate and calculate</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command</strong></p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/kubecost-calibration-only.yml
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">TASK [Validate Kubecost allocation percentages]
+ok: [arm64-01]
+msg: All assertions passed
+
+TASK [Validate Kubecost node cost inventory]
+ok: [arm64-01] =&gt; (item=arm64-01)
+ok: [arm64-01] =&gt; (item=arm64-02)
+ok: [arm64-01] =&gt; (item=arm64-03)
+ok: [arm64-01] =&gt; (item=arm64-04)
+ok: [arm64-01] =&gt; (item=arm64-05)
+ok: [arm64-01] =&gt; (item=amd64-01)
+ok: [arm64-01] =&gt; (item=amd64-02)
+
+TASK [Validate Kubecost storage profiles]
+ok: [arm64-01] =&gt; (item=longhorn)
+ok: [arm64-01] =&gt; (item=minio_local)
+ok: [arm64-01] =&gt; (item=nfs_ssd)
+ok: [arm64-01] =&gt; (item=nfs_hdd)
+
+TASK [Calculate monthly storage totals]
+ok: [arm64-01] =&gt; (item=longhorn)
+ok: [arm64-01] =&gt; (item=minio_local)
+ok: [arm64-01] =&gt; (item=nfs_ssd)
+ok: [arm64-01] =&gt; (item=nfs_hdd)
+
+TASK [Calculate Kubecost blended prices]
+ok: [arm64-01]
+
+TASK [Calculate Kubecost shared monthly overhead]
+ok: [arm64-01]
+
+TASK [Render calibrated Kubecost Helm values]
+changed: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=24 changed=8 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The first complete calibration run proved that the model could validate all
+configured inputs and produce output. The <code>changed=8</code> result was expected
+because labels and the rendered file were being established.</p>
+<h3><a id="ev-003-generated-custom-prices-and-yaml-type" href="#ev-003-generated-custom-prices-and-yaml-type" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-003</code> — Generated custom prices and YAML type</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>generated-artifact</code> and <code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 22:57-22:58 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code>, fetched from <code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>/tmp/kalaxy3-kubecost-calibration-values.yaml</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Ansible fetch and Python/PyYAML, versions not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Nonzero CPU, RAM, and storage prices; zero GPU; nonzero shared overhead; Boolean network flag</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>fetched file checksum <code>0f6842e2bb480a74a41bdae26124c1f227f81fa2</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">arm64-01 | SUCCESS =&gt;
+    changed: false
+    checksum: 0f6842e2bb480a74a41bdae26124c1f227f81fa2
+    dest: /tmp/kalaxy3-kubecost-calibration-values.yaml
+    md5sum: 3dfee97b9a2f452d46c8f2cb8219f008
+
+CPU: 0.95500000
+RAM: 0.12074713
+Storage: 0.00076190
+GPU: 0.00000000
+Shared overhead: 8.41
+Network enabled: True bool
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>This proves the rendered file contained the intended values and that
+<code>networkCosts.enabled</code> parsed as a Boolean rather than a string. It does not
+prove Kubecost had yet consumed those values; live Helm evidence is separate.</p>
+<h3><a id="ev-004-live-helm-values-and-release-status" href="#ev-004-live-helm-values-and-release-status" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-004</code> — Live Helm values and release status</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:15-23:40 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Helm release <code>kubecost</code> in namespace <code>kubecost</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Helm, client version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Deployed release with calibrated user-supplied values</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Commands</strong></p>
+<pre><code class="hljs bash">helm status kubecost -n kubecost
+
+helm get values kubecost \
+  -n kubecost |
+grep -A35 -E \
+  <span class="hljs-string">'customPrices:|sharedNamespaces:|sharedOverhead:|networkCosts:'</span>
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">NAME: kubecost
+NAMESPACE: kubecost
+STATUS: deployed
+REVISION: 4
+</code></pre>
+<p>Immediately after the calibrated deployment, Helm user values showed:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">customPrices:</span>
+  <span class="hljs-attr">CPU:</span> <span class="hljs-string">"0.95500000"</span>
+  <span class="hljs-attr">GPU:</span> <span class="hljs-string">"0.00000000"</span>
+  <span class="hljs-attr">RAM:</span> <span class="hljs-string">"0.12074713"</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">internetNetworkEgress:</span> <span class="hljs-string">"0.0"</span>
+  <span class="hljs-attr">regionNetworkEgress:</span> <span class="hljs-string">"0.0"</span>
+  <span class="hljs-attr">spotCPU:</span> <span class="hljs-string">"0.95500000"</span>
+  <span class="hljs-attr">spotGPU:</span> <span class="hljs-string">"0.00000000"</span>
+  <span class="hljs-attr">spotRAM:</span> <span class="hljs-string">"0.12074713"</span>
+  <span class="hljs-attr">storage:</span> <span class="hljs-string">"0.00076190"</span>
+  <span class="hljs-attr">zoneNetworkEgress:</span> <span class="hljs-string">"0.0"</span>
+
+<span class="hljs-attr">sharedNamespaces:</span> <span class="hljs-string">kube-system,kubecost,longhorn-system,metallb-system,observability,storage</span>
+<span class="hljs-attr">sharedOverhead:</span> <span class="hljs-string">"8.41"</span>
+
+<span class="hljs-attr">networkCosts:</span>
+  <span class="hljs-attr">affinity:</span> <span class="hljs-string">{}</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+</code></pre>
+<p>After intermediate idempotency corrections, the final observed state was:</p>
+<pre><code class="language-text">LAST DEPLOYED: Fri Jul 24 23:29:46 2026
+STATUS: deployed
+REVISION: 7
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>This proves that the live release consumed the calibrated values. Revision 7 is
+the accepted final release. Revisions 4 through 6 were created by successful
+intermediate reconciliations while the Ansible Helm change-detection behavior
+was being corrected.</p>
+<h3><a id="ev-005-persistent-node-labels" href="#ev-005-persistent-node-labels" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-005</code> — Persistent node labels</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-004</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:00 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>All Kalaxy3 Kubernetes nodes</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td><code>kubectl</code>, version not separately captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Correct hardware, cost, role, power, storage, and GPU labels</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command</strong></p>
+<pre><code class="hljs bash">kubectl get nodes \
+  -L kalaxy3.io/hardware-class \
+  -L kalaxy3.io/cost-profile \
+  -L kalaxy3.io/node-role \
+  -L kalaxy3.io/power-class \
+  -L kalaxy3.io/storage-role \
+  -L kalaxy3.io/gpu-model
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">NAME       HARDWARE-CLASS         COST-PROFILE        NODE-ROLE       POWER-CLASS     STORAGE-ROLE   GPU-MODEL
+amd64-01   intel-i5-11600-128gb   amd64-high-memory   worker          high-capacity   longhorn       rtx-3090
+amd64-02   intel-i5-11600-64gb    amd64-standard      worker          high-capacity   longhorn       rtx-3060-ti
+arm64-01   raspberry-pi-4-8gb     arm64-low-power     control-plane   low-power       minio
+arm64-02   raspberry-pi-4-8gb     arm64-low-power     control-plane   low-power       minio
+arm64-03   raspberry-pi-4-8gb     arm64-low-power     control-plane   low-power       minio
+arm64-04   raspberry-pi-4-8gb     arm64-low-power     worker          low-power       minio
+arm64-05   raspberry-pi-4-8gb     arm64-low-power     worker          low-power       minio
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>This proves all seven nodes had the intended descriptive labels. The final
+Ansible run later reported every label operation as <code>ok</code>, proving steady-state
+convergence.</p>
+<h3><a id="ev-006-healthy-calibrated-workload-rollout" href="#ev-006-healthy-calibrated-workload-rollout" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-006</code> — Healthy calibrated workload rollout</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:17 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Namespace <code>kubecost</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td><code>kubectl</code>, version not separately captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Four ready workloads on <code>amd64-02</code>, zero restarts, no warning events</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Commands</strong></p>
+<pre><code class="hljs bash">kubectl get pods \
+  -n kubecost \
+  -o wide
+
+kubectl get deployments,statefulsets \
+  -n kubecost
+
+kubectl get events \
+  -n kubecost \
+  --sort-by=<span class="hljs-string">'.lastTimestamp'</span> |
+tail -30
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">NAME                                    READY   STATUS    RESTARTS   NODE
+kubecost-aggregator-0                   1/1     Running   0          amd64-02
+kubecost-finopsagent-576777b756-d5f6p   1/1     Running   0          amd64-02
+kubecost-frontend-67589b6bd4-ktdnf      1/1     Running   0          amd64-02
+kubecost-local-store-7bdf4dbdc9-2nrpz   1/1     Running   0          amd64-02
+</code></pre>
+<pre><code class="language-text">deployment.apps/kubecost-finopsagent   1/1
+ deployment.apps/kubecost-frontend      1/1
+ deployment.apps/kubecost-local-store   1/1
+ statefulset.apps/kubecost-aggregator   1/1
+</code></pre>
+<p>The captured event tail contained normal rollout events such as
+<code>SuccessfulCreate</code>, <code>Started</code>, <code>ScalingReplicaSet</code>, and MetalLB
+<code>nodeAssigned</code>. No warning event was shown.</p>
+<p><strong>Interpretation</strong></p>
+<p>This proves the calibrated rollout recovered successfully, remained pinned to
+<code>amd64-02</code>, and did not introduce immediate restart or readiness failures. It
+does not prove long-duration stability or cost-report accuracy.</p>
+<h3><a id="ev-007-kubecost-only-tag-path-and-variable-loading" href="#ev-007-kubecost-only-tag-path-and-variable-loading" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-007</code> — Kubecost-only tag path and variable loading</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code> and <code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-006</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:03-23:15 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>playbooks/platform.yml</code> and <code>playbooks/tasks/observability.yml</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Ansible, version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Targeted run reaches eligibility, calibration, and Helm tasks</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass after corrective changes</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence and repository files</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observed task sequence</strong></p>
+<pre><code class="language-text">TASK [Run observability phase]
+included: .../playbooks/tasks/observability.yml for arm64-01
+
+TASK [Find eligible Kubecost Intel nodes]
+ok: [arm64-01]
+
+TASK [Prepare calibrated Kubecost pricing]
+included: .../playbooks/tasks/kubecost-calibration.yml for arm64-01
+
+TASK [Install Kubecost]
+changed: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=29 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>This proves the targeted <code>--tags kubecost</code> command executes the full required
+path. The parent observability include and the eligibility task both require the
+<code>kubecost</code> tag because <code>include_tasks</code> is dynamic.</p>
+<h3><a id="ev-008-helm-diff-installation-and-helm-idempotency" href="#ev-008-helm-diff-installation-and-helm-idempotency" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-008</code> — Helm Diff installation and Helm idempotency</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-004</code>, <code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:29-23:35 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code>, targeting <code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Helm plugin installation and Kubecost release</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Helm Diff 3.15.10</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Plugin installed once; unchanged Kubecost release reports <code>ok</code></td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">TASK [Install Helm Diff plugin]
+changed: [arm64-01]
+
+TASK [Install Kubecost]
+ok: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=30 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p>Version verification:</p>
+<pre><code class="language-text">arm64-01 | CHANGED | rc=0 &gt;&gt;
+3.15.10
+</code></pre>
+<p>The ad-hoc Ansible <code>command</code> task reported <code>CHANGED</code> because the command module
+assumes a command changes state unless told otherwise. The command itself only
+printed the plugin version.</p>
+<p><strong>Interpretation</strong></p>
+<p>This proves Helm Diff 3.15.10 was available on the same controller where Helm
+reconciliation runs, and the Helm module already recognized that Kubecost did
+not need another upgrade.</p>
+<h3><a id="ev-009-final-steady-state-no-change-reconciliation" href="#ev-009-final-steady-state-no-change-reconciliation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-009</code> — Final steady-state no-change reconciliation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:35-23:38 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code>, targeting <code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Complete tagged Kubecost workflow</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Ansible, version not captured; Helm Diff 3.15.10</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>No changed tasks and no failure</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command</strong></p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --tags kubecost \
+  --extra-vars install_kubecost=<span class="hljs-literal">true</span>
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">TASK [Install Helm Diff plugin]
+ok: [arm64-01]
+
+TASK [Install Kubecost]
+ok: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=30 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p>All node-label operations, calculations, rendered values, plugin state, and the
+Helm release were also reported as <code>ok</code>.</p>
+<p><strong>Interpretation</strong></p>
+<p>This is the final idempotency proof. It demonstrates that the complete targeted
+workflow converges without modifying the cluster or creating another Helm
+revision when source inputs and runtime state already match.</p>
+<h3><a id="ev-010-derived-shared-power-and-monthly-overhead-calculation" href="#ev-010-derived-shared-power-and-monthly-overhead-calculation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-010</code> — Derived shared-power and monthly-overhead calculation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>derived-conclusion</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Ansible calibration logic</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 22:47-22:58 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Shared-infrastructure cost model</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Ansible/Jinja, versions not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Shared power converts to a deterministic monthly amount</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>medium</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>generated values file</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Calculation</strong></p>
+<pre><code class="language-text">Shared power:       72 W
+Hours per month:   730 h
+Electricity rate:  $0.16/kWh
+
+72 * 730 * 0.16 / 1000 = 8.4096
+Rendered monthly shared overhead = 8.41
+</code></pre>
+<p>A broader derived monthly model using the declared aggregate capacities is:</p>
+<pre><code class="language-text">CPU:      44 cores * 0.95500000          = 42.02
+RAM:     232 GiB   * 0.12074713          = 28.01333416
+Storage: 14,000 GB * 0.00076190          = 10.6666
+Shared:                                     8.4096
+                                            -----------
+Derived modeled total:                     89.10953416/month
+Rounded modeled total:                     89.11/month
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The arithmetic is deterministic, but the result inherits the uncertainty of
+purchase, useful-life, residual-value, and power assumptions. It is suitable
+for engineering comparison and trend evidence, not accounting certification.</p>
+<h3><a id="ev-011-repository-state-before-commit" href="#ev-011-repository-state-before-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-011</code> — Repository state before commit</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-009</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 23:40-23:41 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Git working tree</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git, version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Intended files visible and unrelated PDF unstaged</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>partial; files existed but were not yet fully staged or committed</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline terminal evidence</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text"> M inventory/group_vars/all/kubecost-calibration.yml
+R  inventory/group_vars/all.yml -&gt; inventory/group_vars/all/main.yml
+ M inventory/host_vars/amd64-01.yml
+ M inventory/host_vars/amd64-02.yml
+ M inventory/host_vars/arm64-01.yml
+ M inventory/host_vars/arm64-02.yml
+ M inventory/host_vars/arm64-03.yml
+ M inventory/host_vars/arm64-04.yml
+ M inventory/host_vars/arm64-05.yml
+ M playbooks/platform.yml
+ M playbooks/tasks/kubecost-calibration.yml
+ M playbooks/tasks/kubecost-node-label.yml
+ M playbooks/tasks/observability.yml
+ M playbooks/templates/kubecost-calibration-values.yml.j2
+?? playbooks/kubecost-calibration-only.yml
+?? ../../markdown/research/kubecost-on-aws-dev-account-kindle.pdf
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The implementation files were present in the working tree. The unrelated PDF
+was untracked and must not be staged with this evidence record. No implementation
+commit was captured, so repository lineage remains incomplete.</p>
+<h3><a id="ev-012-negative-evidence-and-failed-attempt-chronology" href="#ev-012-negative-evidence-and-failed-attempt-chronology" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-012</code> — Negative evidence and failed-attempt chronology</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>negative-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td>Troubleshooting and design rationale</td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-24 22:35-23:29 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code> and <code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Calibration and deployment workflow</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Ansible, Helm, kubectl; versions partially captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Failures identify incomplete task ordering, loop handling, tags, and idempotency dependencies</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>informative; each failure was corrected</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>inline excerpts below</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Observed failures and accepted corrections</strong></p>
+<ol>
+<li>
+<p><strong>Compute accumulator was undefined</strong></p>
+<pre><code class="language-text">'kubecost_compute_monthly_usd' is undefined
+</code></pre>
+<p>Correction: initialize compute totals before the node loop.</p>
+</li>
+<li>
+<p><strong>Outer and inner loops both used <code>item</code></strong></p>
+<pre><code class="language-text">The variable 'item' is already in use.
+</code></pre>
+<p>The malformed command passed a label dictionary as the node name.
+Correction: use <code>kubecost_node</code> for the outer loop and <code>kubecost_label</code> for
+the inner loop.</p>
+</li>
+<li>
+<p><strong>Storage Jinja expression had invalid syntax</strong></p>
+<pre><code class="language-text">Syntax error in template: expected token ')', got 'kubecost_calibration'
+</code></pre>
+<p>Correction: replace the monthly storage calculation with explicit,
+independently parenthesized amortization, electricity, and logical-capacity
+expressions.</p>
+</li>
+<li>
+<p><strong>Dynamic observability include was not tagged</strong></p>
+<p>The first targeted run performed only fact gathering:</p>
+<pre><code class="language-text">PLAY RECAP
+arm64-01 : ok=1 changed=0 unreachable=0 failed=0
+</code></pre>
+<p>Correction: add <code>observability</code> and <code>kubecost</code> tags to the parent dynamic
+include in <code>playbooks/platform.yml</code>.</p>
+</li>
+<li>
+<p><strong>Global variables were split across a file and same-named directory</strong></p>
+<pre><code class="language-text">'install_observability' is undefined
+</code></pre>
+<p>Correction: move <code>inventory/group_vars/all.yml</code> to
+<code>inventory/group_vars/all/main.yml</code> so both global variable files load.</p>
+</li>
+<li>
+<p><strong>Eligible-node discovery task was untagged</strong></p>
+<pre><code class="language-text">'kubecost_eligible_nodes' is undefined
+</code></pre>
+<p>Correction: add the <code>kubecost</code> tag to the task that registers
+<code>kubecost_eligible_nodes</code>.</p>
+</li>
+<li>
+<p><strong>Imperative Helm command forced every run to report changed</strong></p>
+<p>Correction: replace it with <code>kubernetes.core.helm</code>.</p>
+</li>
+<li>
+<p><strong>Helm module lacked reliable diff support</strong></p>
+<pre><code class="language-text">The default idempotency check can fail to report changes in certain cases.
+Install helm diff &gt;= 3.4.1 for better results.
+</code></pre>
+<p>Correction: manage Helm Diff <code>v3.15.10</code> through
+<code>kubernetes.core.helm_plugin</code>.</p>
+</li>
+</ol>
+<p><strong>Interpretation</strong></p>
+<p>These failures are not part of the final accepted state. They provide causal
+evidence for task ordering, variable layout, loop-variable isolation, dynamic
+include tagging, and Helm Diff as required elements of the final design.</p>
+<h2><a id="verification-and-acceptance-criteria" href="#verification-and-acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Verification and acceptance criteria</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion ID</th>
+<th>Requirement</th>
+<th>Test or evidence</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AC-001</code></td>
+<td>All node and storage inputs validate</td>
+<td><code>EV-001</code>, <code>EV-002</code></td>
+<td>Seven nodes and four storage profiles pass assertions</td>
+<td>All assertions passed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-002</code></td>
+<td>Generated values are complete and parse correctly</td>
+<td><code>EV-003</code></td>
+<td>Nonzero CPU/RAM/storage, zero GPU, shared overhead, Boolean network flag</td>
+<td>Exact expected values observed; Boolean type confirmed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-003</code></td>
+<td>Live Helm release uses calibrated values</td>
+<td><code>EV-004</code></td>
+<td><code>customPrices.enabled: true</code> and expected values</td>
+<td>Values present in Helm user values</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-004</code></td>
+<td>Node metadata is present on all nodes</td>
+<td><code>EV-005</code></td>
+<td>Seven nodes labeled according to hardware and role</td>
+<td>All seven rows matched intended metadata</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-005</code></td>
+<td>Kubecost remains healthy after rollout</td>
+<td><code>EV-006</code></td>
+<td>Four ready pods, zero restarts, correct node</td>
+<td>Four ready pods on <code>amd64-02</code>, zero restarts</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-006</code></td>
+<td>Targeted Kubecost run reaches all required tasks</td>
+<td><code>EV-007</code></td>
+<td>Eligibility, calibration, and install tasks execute</td>
+<td>Required sequence observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-007</code></td>
+<td>Helm reconciliation does not create false changes</td>
+<td><code>EV-008</code>, <code>EV-009</code></td>
+<td>Plugin installed; later install task reports <code>ok</code></td>
+<td>Helm Diff 3.15.10 installed; final run unchanged</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-008</code></td>
+<td>Complete workflow is idempotent</td>
+<td><code>EV-009</code></td>
+<td><code>changed=0</code>, <code>failed=0</code></td>
+<td><code>ok=30 changed=0 failed=0</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-009</code></td>
+<td>Implementation is committed and traceable</td>
+<td><code>EV-011</code></td>
+<td>Git commit SHA recorded</td>
+<td>Commit pending</td>
+<td>not-run</td>
+</tr>
+<tr>
+<td><code>AC-010</code></td>
+<td>Independent review is recorded</td>
+<td>front matter</td>
+<td>Reviewer decision recorded</td>
+<td>Reviewer pending</td>
+<td>not-run</td>
+</tr>
+<tr>
+<td><code>AC-011</code></td>
+<td>Kubecost allocation UI/API reflects calibrated dollar totals after collection window</td>
+<td>gap <code>GAP-003</code></td>
+<td>Reported allocation visibly uses custom prices</td>
+<td>Not captured</td>
+<td>not-run</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="functional-verification" href="#functional-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Functional verification</h3>
+<pre><code class="hljs bash">kubectl get pods \
+  -n kubecost \
+  -o wide
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">kubecost-aggregator-0                   1/1 Running 0 amd64-02
+kubecost-finopsagent-576777b756-d5f6p   1/1 Running 0 amd64-02
+kubecost-frontend-67589b6bd4-ktdnf      1/1 Running 0 amd64-02
+kubecost-local-store-7bdf4dbdc9-2nrpz   1/1 Running 0 amd64-02
+</code></pre>
+<h3><a id="negative-verification" href="#negative-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Negative verification</h3>
+<p>The final node-placement evidence showed no Kubecost workload on an ARM64 node.
+The final event tail contained no warning events. The final Ansible execution
+showed no changed or failed task.</p>
+<pre><code class="language-text">PLAY RECAP
+arm64-01 : ok=30 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<h2><a id="idempotency-and-repeatability" href="#idempotency-and-repeatability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idempotency and repeatability</h2>
+<h3><a id="first-accepted-live-run" href="#first-accepted-live-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>First accepted live run</h3>
+<pre><code class="language-text">TASK [Install Kubecost]
+changed: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=29 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p>This run applied the calibrated Helm values.</p>
+<h3><a id="helm-module-without-helm-diff" href="#helm-module-without-helm-diff" class="Permalink" aria-hidden="true" title="Permalink">#</a>Helm module without Helm Diff</h3>
+<pre><code class="language-text">TASK [Install Kubecost]
+changed: [arm64-01]
+
+WARNING: The default idempotency check can fail to report changes in certain
+cases. Install helm diff &gt;= 3.4.1 for better results.
+</code></pre>
+<h3><a id="helm-diff-installation-run" href="#helm-diff-installation-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Helm Diff installation run</h3>
+<pre><code class="language-text">TASK [Install Helm Diff plugin]
+changed: [arm64-01]
+
+TASK [Install Kubecost]
+ok: [arm64-01]
+</code></pre>
+<h3><a id="steady-state-rerun" href="#steady-state-rerun" class="Permalink" aria-hidden="true" title="Permalink">#</a>Steady-state rerun</h3>
+<pre><code class="language-text">TASK [Install Helm Diff plugin]
+ok: [arm64-01]
+
+TASK [Install Kubecost]
+ok: [arm64-01]
+
+PLAY RECAP
+arm64-01 : ok=30 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
+</code></pre>
+<h3><a id="interpretation" href="#interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Interpretation</h3>
+<p>The final automation is idempotent. Calculations, labels, rendered values,
+plugin installation, and the Helm release all converge without changes. The
+live Helm revision remained 7 after the final no-change run.</p>
+<h2><a id="security-privacy-and-evidence-handling" href="#security-privacy-and-evidence-handling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security, privacy, and evidence handling</h2>
+<h3><a id="security-controls" href="#security-controls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security controls</h3>
+<ul>
+<li>The calibration values contain no Kubernetes Secret values.</li>
+<li>The generated Helm values include cost and topology metadata only.</li>
+<li>Kubecost workloads remain pinned to explicitly eligible AMD64 nodes.</li>
+<li>The calibration workflow uses the existing K3s kubeconfig on <code>arm64-01</code> but
+does not record its contents.</li>
+<li>The evidence record is classified <code>internal</code> because it contains hostnames,
+internal IP addresses, hardware inventory, and cost assumptions.</li>
+</ul>
+<h3><a id="sensitive-material-excluded" href="#sensitive-material-excluded" class="Permalink" aria-hidden="true" title="Permalink">#</a>Sensitive material excluded</h3>
+<p>The record does not contain:</p>
+<ul>
+<li>kubeconfig contents;</li>
+<li>service-account tokens;</li>
+<li>passwords, private keys, or vault secrets;</li>
+<li>Kubernetes Secret manifests;</li>
+<li>UPS serial numbers;</li>
+<li>shell history unrelated to this implementation.</li>
+</ul>
+<h3><a id="redactions-and-omissions" href="#redactions-and-omissions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Redactions and omissions</h3>
+<ul>
+<li>Long terminal output was reduced to material task, error, value, health, and
+recap lines.</li>
+<li>Exact node acquisition prices are not repeated here because the captured
+terminal output did not include them; the inventory files remain the source
+of truth.</li>
+<li>The unrelated research PDF remained untracked and is intentionally excluded
+from the implementation commit scope.</li>
+</ul>
+<h3><a id="residual-security-risk" href="#residual-security-risk" class="Permalink" aria-hidden="true" title="Permalink">#</a>Residual security risk</h3>
+<ul>
+<li>Kubecost frontend exposure and authentication controls are governed by
+separate installation/access evidence and were not revalidated in this work.</li>
+<li>Hardware and cost metadata can reveal internal capacity and should not be
+published outside the intended documentation boundary without review.</li>
+</ul>
+<h2><a id="reliability-recovery-rollback-and-rebuild" href="#reliability-recovery-rollback-and-rebuild" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reliability, recovery, rollback, and rebuild</h2>
+<h3><a id="failure-modes" href="#failure-modes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failure modes</h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Detection</th>
+<th>Impact</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Missing or null cost input</td>
+<td>Ansible assertion failure</td>
+<td>Calibration stops before Helm</td>
+<td>Populate the specific inventory field and rerun calibration-only playbook</td>
+</tr>
+<tr>
+<td>Invalid Jinja expression</td>
+<td>Ansible template finalization error</td>
+<td>No rendered values</td>
+<td>Correct the calculation block; run syntax check and calibration-only playbook</td>
+</tr>
+<tr>
+<td>Loop-variable collision</td>
+<td>Warning plus malformed <code>kubectl label</code> command</td>
+<td>Labels fail</td>
+<td>Use distinct <code>loop_var</code> names for node and label loops</td>
+</tr>
+<tr>
+<td>Dynamic include not tagged</td>
+<td>Targeted run lists or executes only parent/facts</td>
+<td>Kubecost tasks skipped</td>
+<td>Add <code>kubecost</code> tag to parent include and required child tasks</td>
+</tr>
+<tr>
+<td>Global vars file/directory collision</td>
+<td>Variables such as <code>install_observability</code> undefined</td>
+<td>Targeted workflow fails</td>
+<td>Keep all <code>all</code> variables under <code>inventory/group_vars/all/</code></td>
+</tr>
+<tr>
+<td>Eligible-node variable undefined</td>
+<td><code>kubecost_eligible_nodes</code> undefined</td>
+<td>Calibration/install blocked</td>
+<td>Tag the discovery task and verify it runs first</td>
+</tr>
+<tr>
+<td>Helm false-positive change</td>
+<td>Helm task reports changed on identical input</td>
+<td>Unnecessary release revisions and pod restarts</td>
+<td>Install and pin Helm Diff; use <code>kubernetes.core.helm</code></td>
+</tr>
+<tr>
+<td>Kubecost rollout failure</td>
+<td>Pods not ready, warning events, Helm status failed</td>
+<td>Cost reporting unavailable</td>
+<td>Inspect pods/events/logs and roll back to a known-good revision</td>
+</tr>
+<tr>
+<td>Power estimate becomes stale</td>
+<td>Hardware or UPS wiring changes</td>
+<td>Cost model becomes inaccurate</td>
+<td>Update allocations and revalidate</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="rollback" href="#rollback" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rollback</h3>
+<p>Review history before selecting a target:</p>
+<pre><code class="hljs bash">helm <span class="hljs-built_in">history</span> kubecost -n kubecost
+</code></pre>
+<p>Revision 3 was the last observed pre-calibration deployed release. A rollback
+candidate is:</p>
+<pre><code class="hljs bash">helm rollback kubecost 3 \
+  -n kubecost \
+  --<span class="hljs-built_in">wait</span> \
+  --timeout 30m
+</code></pre>
+<p>Then verify:</p>
+<pre><code class="hljs bash">helm status kubecost -n kubecost
+kubectl get pods -n kubecost -o wide
+</code></pre>
+<p>Rollback to revision 3 would intentionally remove the new custom prices,
+shared overhead, and enabled network-cost settings. If later releases exist,
+select the appropriate known-good revision from <code>helm history</code> instead of
+blindly using revision 3.</p>
+<h3><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h3>
+<ol>
+<li>
+<p>Restore or clone the Kalaxy3 repository.</p>
+</li>
+<li>
+<p>Confirm the global variable layout:</p>
+<pre><code class="language-text">inventory/group_vars/all/main.yml
+inventory/group_vars/all/kubecost-calibration.yml
+</code></pre>
+</li>
+<li>
+<p>Confirm host cost metadata exists for all seven priced nodes.</p>
+</li>
+<li>
+<p>Verify Kubecost prerequisites and the eligible node:</p>
+<pre><code class="hljs bash">kubectl get nodes -L kubernetes.io/arch,kalaxy3.io/kubecost
+kubectl get storageclass longhorn
+</code></pre>
+</li>
+<li>
+<p>Validate syntax:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --syntax-check
+</code></pre>
+</li>
+<li>
+<p>Render and validate calibration without Helm:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/kubecost-calibration-only.yml
+</code></pre>
+</li>
+<li>
+<p>Inspect the generated values:</p>
+<pre><code class="hljs bash">ansible arm64-01 \
+  -i inventory/hosts.yml \
+  --become \
+  --module-name ansible.builtin.command \
+  --args <span class="hljs-string">'cat /tmp/kalaxy3-kubecost-calibration-values.yaml'</span>
+</code></pre>
+</li>
+<li>
+<p>Apply the live release:</p>
+<pre><code class="hljs bash">ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --tags kubecost \
+  --extra-vars install_kubecost=<span class="hljs-literal">true</span>
+</code></pre>
+</li>
+<li>
+<p>Verify Helm values, status, pods, labels, and events.</p>
+</li>
+<li>
+<p>Run the same command again and require <code>changed=0</code>.</p>
+</li>
+</ol>
+<h3><a id="data-durability-and-backup-impact" href="#data-durability-and-backup-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data durability and backup impact</h3>
+<ul>
+<li>The change reconciled Helm values and restarted Kubecost pods.</li>
+<li>Existing Longhorn-backed persistent volumes were retained by the release.</li>
+<li>No data-loss event was observed.</li>
+<li>PVC binding, Longhorn replica health, and historical-data continuity were not
+directly revalidated during this calibration session and remain evidence
+gaps.</li>
+<li>The pre-change Helm backup was written to <code>/tmp</code> on the Mac mini and is not a
+durable backup until copied into an approved evidence-artifact location.</li>
+</ul>
+<h2><a id="operational-considerations-and-observability" href="#operational-considerations-and-observability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational considerations and observability</h2>
+<h3><a id="health-signals" href="#health-signals" class="Permalink" aria-hidden="true" title="Permalink">#</a>Health signals</h3>
+<ul>
+<li><code>helm status kubecost -n kubecost</code></li>
+<li><code>kubectl get pods -n kubecost -o wide</code></li>
+<li><code>kubectl get deployments,statefulsets -n kubecost</code></li>
+<li><code>kubectl get events -n kubecost --sort-by=.lastTimestamp</code></li>
+<li><code>helm get values kubecost -n kubecost</code></li>
+<li>Ansible recap and changed count</li>
+<li>Helm revision number and last-deployed timestamp</li>
+<li>Kubecost frontend and allocation reports after collection windows</li>
+</ul>
+<h3><a id="routine-verification" href="#routine-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Routine verification</h3>
+<pre><code class="hljs bash">helm status kubecost -n kubecost |
+grep -E <span class="hljs-string">'LAST DEPLOYED:|STATUS:|REVISION:'</span>
+
+kubectl get pods -n kubecost -o wide
+
+helm get values kubecost -n kubecost |
+grep -A35 -E \
+  <span class="hljs-string">'customPrices:|sharedNamespaces:|sharedOverhead:|networkCosts:'</span>
+
+ansible-playbook \
+  -i inventory/hosts.yml \
+  playbooks/platform.yml \
+  --tags kubecost \
+  --extra-vars install_kubecost=<span class="hljs-literal">true</span>
+</code></pre>
+<p>The final Ansible command should produce <code>changed=0</code> unless inventory or runtime
+state has intentionally changed.</p>
+<h3><a id="capacity-performance-and-cost-impact" href="#capacity-performance-and-cost-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity, performance, and cost impact</h3>
+<ul>
+<li><strong>Capacity:</strong> The model covers seven nodes and approximately 14,000 logical GB
+represented by the four storage profiles. It does not add cluster capacity.</li>
+<li><strong>Performance:</strong> Calibration itself is lightweight. A material Helm-value
+change restarts Kubecost workloads; the observed rollout completed in roughly
+two minutes.</li>
+<li><strong>Cost:</strong> The derived engineering model is approximately <code>$89.11/month</code> using
+declared aggregate capacities and current assumptions. This is not a billed
+amount.</li>
+<li><strong>Sustainability/power:</strong> The model makes approximately <code>322 W</code> of allocated
+infrastructure power visible: <code>162 W</code> rack UPS allocation plus <code>160 W</code> Intel
+UPS allocation. The UPS load readings and allocations are approximate.</li>
+</ul>
+<h2><a id="known-limitations-evidence-gaps-and-risks" href="#known-limitations-evidence-gaps-and-risks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Known limitations, evidence gaps, and risks</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Due or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAP-001</code></td>
+<td>evidence-gap</td>
+<td>Implementation commit SHA is pending.</td>
+<td>Repository lineage is incomplete; status cannot become accepted.</td>
+<td>Don Buddenbaum</td>
+<td>before publication</td>
+</tr>
+<tr>
+<td><code>GAP-002</code></td>
+<td>evidence-gap</td>
+<td>Independent reviewer decision is pending.</td>
+<td>Governance acceptance is incomplete.</td>
+<td>Kalaxy3 architecture</td>
+<td>before status changes to accepted</td>
+</tr>
+<tr>
+<td><code>GAP-003</code></td>
+<td>evidence-gap</td>
+<td>No Kubecost UI or API allocation report was captured after the documented data-collection window.</td>
+<td>Values are proven in Helm, but end-user cost presentation is not yet directly proven.</td>
+<td>Don Buddenbaum</td>
+<td>after at least 25 minutes of stable collection</td>
+</tr>
+<tr>
+<td><code>GAP-004</code></td>
+<td>limitation</td>
+<td>Power is allocated from rounded UPS load readings rather than measured per device.</td>
+<td>Dollar precision is medium-low for electricity.</td>
+<td>Don Buddenbaum</td>
+<td>when plug-level meters are available or wiring changes</td>
+</tr>
+<tr>
+<td><code>GAP-005</code></td>
+<td>limitation</td>
+<td>CPU and RAM rates are blended cluster-wide.</td>
+<td>Per-node marginal-cost differences are hidden.</td>
+<td>Kalaxy3 architecture</td>
+<td>if Kubecost or a companion model supports node-specific pricing</td>
+</tr>
+<tr>
+<td><code>GAP-006</code></td>
+<td>limitation</td>
+<td>GPU pricing is zero and GPUs are not Kubernetes-schedulable.</td>
+<td>Future GPU workloads would require a new model.</td>
+<td>Kalaxy3 architecture</td>
+<td>before enabling Kubernetes GPU workloads</td>
+</tr>
+<tr>
+<td><code>GAP-007</code></td>
+<td>limitation</td>
+<td>Network-cost component is enabled but egress rates are zero.</td>
+<td>Traffic may be measured without dollar allocation.</td>
+<td>Kalaxy3 architecture</td>
+<td>when WAN or inter-site charges become material</td>
+</tr>
+<tr>
+<td><code>GAP-008</code></td>
+<td>evidence-gap</td>
+<td>PVC, Longhorn replica health, and historical-data continuity were not recaptured after the rollout.</td>
+<td>Immediate pod health is proven, but storage continuity evidence is incomplete.</td>
+<td>Don Buddenbaum</td>
+<td>before acceptance or after any storage alert</td>
+</tr>
+<tr>
+<td><code>GAP-009</code></td>
+<td>evidence-gap</td>
+<td>Ansible, Helm client, and <code>kubernetes.core</code> versions were not recorded.</td>
+<td>Toolchain reproducibility is incomplete.</td>
+<td>Don Buddenbaum</td>
+<td>next maintenance run</td>
+</tr>
+<tr>
+<td><code>GAP-010</code></td>
+<td>technical-debt</td>
+<td>Pre-change Helm backup remains under <code>/tmp</code>.</td>
+<td>Backup may disappear on reboot or cleanup.</td>
+<td>Don Buddenbaum</td>
+<td>before relying on it for rollback evidence</td>
+</tr>
+<tr>
+<td><code>GAP-011</code></td>
+<td>risk</td>
+<td>Acquisition prices, residual values, and useful lives can age without review.</td>
+<td>Cost evidence becomes stale while remaining technically valid.</td>
+<td>Kalaxy3 architecture</td>
+<td>annual review or hardware replacement</td>
+</tr>
+<tr>
+<td><code>GAP-012</code></td>
+<td>evidence-gap</td>
+<td>The unrelated research PDF was untracked and intentionally excluded; final staging/commit evidence was not captured.</td>
+<td>No risk to runtime; publication lineage is incomplete.</td>
+<td>Don Buddenbaum</td>
+<td>during Git commit</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h2>
+<h3><a id="calibration-fails-with-an-undefined-accumulator" href="#calibration-fails-with-an-undefined-accumulator" class="Permalink" aria-hidden="true" title="Permalink">#</a>Calibration fails with an undefined accumulator</h3>
+<p><strong>Meaning</strong></p>
+<p>A total is used before its initialization task.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">grep -n -A15 -B5 \
+  <span class="hljs-string">'Initialize Kubecost compute totals\|Calculate monthly compute totals'</span> \
+  playbooks/tasks/kubecost-calibration.yml
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Ensure the initialization task appears before the loop and defines:</p>
+<pre><code class="hljs yaml"><span class="hljs-string">kubecost_compute_monthly_usd</span>
+<span class="hljs-string">kubecost_total_cpu_cores</span>
+<span class="hljs-string">kubecost_total_memory_gib</span>
+</code></pre>
+<h3><a id="node-label-command-receives-a-dictionary-as-a-node-name" href="#node-label-command-receives-a-dictionary-as-a-node-name" class="Permalink" aria-hidden="true" title="Permalink">#</a>Node-label command receives a dictionary as a node name</h3>
+<p><strong>Meaning</strong></p>
+<p>Nested loops reused <code>item</code>.</p>
+<p><strong>Recovery</strong></p>
+<p>Use distinct loop variables:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">loop_control:</span>
+  <span class="hljs-attr">loop_var:</span> <span class="hljs-string">kubecost_node</span>
+</code></pre>
+<p>and:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">loop_control:</span>
+  <span class="hljs-attr">loop_var:</span> <span class="hljs-string">kubecost_label</span>
+</code></pre>
+<h3><a id="targeted-kubecost-run-performs-only-fact-gathering" href="#targeted-kubecost-run-performs-only-fact-gathering" class="Permalink" aria-hidden="true" title="Permalink">#</a>Targeted Kubecost run performs only fact gathering</h3>
+<p><strong>Meaning</strong></p>
+<p>The dynamic observability include is not tagged.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">sed -n <span class="hljs-string">'54,66p'</span> playbooks/platform.yml
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>The parent include must contain:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tags:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">observability</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">kubecost</span>
+</code></pre>
+<h3><a id="install-observability-is-undefined" href="#install-observability-is-undefined" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>install_observability</code> is undefined</h3>
+<p><strong>Meaning</strong></p>
+<p>Ansible is not loading the global variable file because both
+<code>group_vars/all.yml</code> and <code>group_vars/all/</code> exist.</p>
+<p><strong>Recovery</strong></p>
+<p>Use:</p>
+<pre><code class="language-text">inventory/group_vars/all/main.yml
+inventory/group_vars/all/kubecost-calibration.yml
+</code></pre>
+<p>Verify:</p>
+<pre><code class="hljs bash">ansible-inventory \
+  -i inventory/hosts.yml \
+  --host arm64-01 |
+grep -E \
+  <span class="hljs-string">'"install_observability"|"install_kubecost"|"kubecost_calibration"'</span>
+</code></pre>
+<h3><a id="kubecost-eligible-nodes-is-undefined" href="#kubecost-eligible-nodes-is-undefined" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>kubecost_eligible_nodes</code> is undefined</h3>
+<p><strong>Meaning</strong></p>
+<p>The discovery task was skipped during tagged execution.</p>
+<p><strong>Recovery</strong></p>
+<p>Add:</p>
+<pre><code class="hljs yaml"><span class="hljs-attr">tags:</span>
+  <span class="hljs-bullet">-</span> <span class="hljs-string">kubecost</span>
+</code></pre>
+<p>on the task that registers <code>kubecost_eligible_nodes</code>.</p>
+<h3><a id="helm-reports-changed-on-every-identical-run" href="#helm-reports-changed-on-every-identical-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>Helm reports changed on every identical run</h3>
+<p><strong>Meaning</strong></p>
+<p>Either an imperative Helm command is still used or Helm Diff is absent.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">ansible arm64-01 \
+  -i inventory/hosts.yml \
+  --become \
+  --module-name ansible.builtin.command \
+  --args <span class="hljs-string">'helm diff version'</span>
+</code></pre>
+<p>Expected:</p>
+<pre><code class="language-text">3.15.10
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Manage Helm with <code>kubernetes.core.helm</code> and install Helm Diff with
+<code>kubernetes.core.helm_plugin</code>.</p>
+<h3><a id="kubecost-pods-do-not-recover-after-a-values-change" href="#kubecost-pods-do-not-recover-after-a-values-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Kubecost pods do not recover after a values change</h3>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">helm status kubecost -n kubecost
+kubectl get pods -n kubecost -o wide
+kubectl get events -n kubecost --sort-by=<span class="hljs-string">'.lastTimestamp'</span> | tail -50
+kubectl logs -n kubecost kubecost-aggregator-0 --tail=200
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Correct the reported workload or storage problem, rerun the tagged Ansible
+workflow, or roll back to a known-good Helm revision.</p>
+<h2><a id="freshness-revalidation-and-supersession" href="#freshness-revalidation-and-supersession" class="Permalink" aria-hidden="true" title="Permalink">#</a>Freshness, revalidation, and supersession</h2>
+<h3><a id="revalidate-when" href="#revalidate-when" class="Permalink" aria-hidden="true" title="Permalink">#</a>Revalidate when</h3>
+<ul>
+<li>the Kubecost chart version changes from <code>3.2.1</code>;</li>
+<li>the Helm Diff version or Helm module behavior changes;</li>
+<li>a node is added, removed, replaced, or materially upgraded;</li>
+<li>RAM, CPU, GPU, disk, or storage-role metadata changes;</li>
+<li>UPS wiring or the set of powered devices changes;</li>
+<li>measured power replaces UPS allocation estimates;</li>
+<li>the electricity rate changes materially;</li>
+<li>acquisition price, residual value, or useful-life assumptions change;</li>
+<li>MinIO or Longhorn capacity or replication changes;</li>
+<li>network egress becomes chargeable;</li>
+<li>GPU scheduling is enabled;</li>
+<li>any source-of-truth file listed in this record moves or changes;</li>
+<li>the final Ansible run no longer converges with <code>changed=0</code>;</li>
+<li>Kubecost reports a different effective custom price;</li>
+<li>a conflicting SAGE record is accepted.</li>
+</ul>
+<h3><a id="scheduled-review" href="#scheduled-review" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scheduled review</h3>
+<pre><code class="language-text">Event-based, plus an annual review of acquisition, residual-value, useful-life,
+electricity-rate, and power assumptions.
+</code></pre>
+<h3><a id="supersession-rule" href="#supersession-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>Supersession rule</h3>
+<p>When replaced, set <code>status: superseded</code>, populate <code>superseded_by</code>, preserve this
+record for lineage, and identify whether the deployment claims, price claims,
+or both were replaced. A measurement-only update may supersede the cost values
+without invalidating the automation and idempotency evidence.</p>
+<h2><a id="final-completion-checklist" href="#final-completion-checklist" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final completion checklist</h2>
+<h3><a id="governance" href="#governance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governance</h3>
+<ul>
+<li>[x] Evidence ID is unique and permanent.</li>
+<li>[x] Status accurately reflects completeness.</li>
+<li>[x] Owner, author/operator, and reviewer state are identified.</li>
+<li>[x] Five Ws and How are complete.</li>
+<li>[x] Scope and nonclaims are explicit.</li>
+<li>[ ] Implementation commit is recorded.</li>
+<li>[x] Relationships and supersession fields are complete.</li>
+</ul>
+<h3><a id="evidence" href="#evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence</h3>
+<ul>
+<li>[x] Every critical technical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Direct observations identify source, target, time, and tool.</li>
+<li>[x] Derived conclusions reference evidence IDs.</li>
+<li>[x] Assumptions and planned work are marked.</li>
+<li>[x] Failed attempts are separated from the accepted final state.</li>
+<li>[x] Idempotency is proven.</li>
+<li>[ ] Kubecost UI/API allocation output after the collection window is captured.</li>
+<li>[ ] Post-rollout PVC and Longhorn replica health are recaptured.</li>
+</ul>
+<h3><a id="safety-and-operations" href="#safety-and-operations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Safety and operations</h3>
+<ul>
+<li>[x] Secrets and sensitive data are excluded or redacted.</li>
+<li>[x] Security limitations and residual risks are recorded.</li>
+<li>[x] Rollback and rebuild are documented.</li>
+<li>[x] Operational health checks are documented.</li>
+<li>[x] Known limitations and evidence gaps have owners or triggers.</li>
+<li>[x] Revalidation criteria are defined.</li>
+</ul>
+<h3><a id="review-acceptance" href="#review-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Review acceptance</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Don Buddenbaum</td>
+<td>pending</td>
+<td>pending</td>
+<td>Record must be reviewed after adding the implementation commit.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Independent SAGE review not yet performed.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="git-review-and-publication" href="#git-review-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git review and publication</h2>
+<p>From the repository root:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
+
+git diff --check
+git status --short
+
+git diff -- \
+  infrastructure/k3s-homelab/inventory/group_vars \
+  infrastructure/k3s-homelab/inventory/host_vars \
+  infrastructure/k3s-homelab/playbooks/platform.yml \
+  infrastructure/k3s-homelab/playbooks/kubecost-calibration-only.yml \
+  infrastructure/k3s-homelab/playbooks/tasks/observability.yml \
+  infrastructure/k3s-homelab/playbooks/tasks/kubecost-calibration.yml \
+  infrastructure/k3s-homelab/playbooks/tasks/kubecost-node-label.yml \
+  infrastructure/k3s-homelab/playbooks/templates/kubecost-calibration-values.yml.j2 \
+  markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md
+</code></pre>
+<p>Stage only the implementation and evidence record. Do not stage the unrelated
+research PDF:</p>
+<pre><code class="hljs bash">git add -- \
+  infrastructure/k3s-homelab/inventory/group_vars/all/main.yml \
+  infrastructure/k3s-homelab/inventory/group_vars/all/kubecost-calibration.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/arm64-01.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/arm64-02.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/arm64-03.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/arm64-04.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/arm64-05.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/amd64-01.yml \
+  infrastructure/k3s-homelab/inventory/host_vars/amd64-02.yml \
+  infrastructure/k3s-homelab/playbooks/platform.yml \
+  infrastructure/k3s-homelab/playbooks/kubecost-calibration-only.yml \
+  infrastructure/k3s-homelab/playbooks/tasks/observability.yml \
+  infrastructure/k3s-homelab/playbooks/tasks/kubecost-calibration.yml \
+  infrastructure/k3s-homelab/playbooks/tasks/kubecost-node-label.yml \
+  infrastructure/k3s-homelab/playbooks/templates/kubecost-calibration-values.yml.j2 \
+  markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md
+</code></pre>
+<p>Validate the staged change:</p>
+<pre><code class="hljs bash">git diff --cached --check
+git diff --cached --<span class="hljs-built_in">stat</span>
+git diff --cached --name-status
+</code></pre>
+<p>Commit and publish:</p>
+<pre><code class="hljs bash">git commit -m <span class="hljs-string">"Add calibrated Kubecost pricing and SAGE evidence"</span>
+git pull --rebase origin main
+git push origin main
+git status
+</code></pre>
+<p>After committing, update this record with the implementation commit SHA and
+change the owner decision when review is complete.</p>
+<h2><a id="appendices-and-raw-artifacts" href="#appendices-and-raw-artifacts" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendices and raw artifacts</h2>
+<h3><a id="artifact-inventory" href="#artifact-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifact inventory</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path or URI</th>
+<th>SHA-256</th>
+<th>Contains sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAGE evidence record</td>
+<td><code>markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md</code></td>
+<td>generated after file creation; see packaged artifact checksum</td>
+<td>no secrets; internal infrastructure metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td>Generated calibration values</td>
+<td><code>/tmp/kalaxy3-kubecost-calibration-values.yaml</code></td>
+<td><code>0f6842e2bb480a74a41bdae26124c1f227f81fa2</code> was the Ansible-reported checksum, not explicitly labeled SHA-256</td>
+<td>no</td>
+<td>temporary unless archived</td>
+</tr>
+<tr>
+<td>Pre-calibration Helm values</td>
+<td><code>/tmp/kalaxy3-kubecost-backup/values-before-calibration.yaml</code></td>
+<td>not captured</td>
+<td>potentially internal configuration; no secret observed</td>
+<td>temporary</td>
+</tr>
+<tr>
+<td>Pre-calibration Helm status</td>
+<td><code>/tmp/kalaxy3-kubecost-backup/status-before-calibration.txt</code></td>
+<td>not captured</td>
+<td>no secret observed</td>
+<td>temporary</td>
+</tr>
+<tr>
+<td>Terminal transcripts</td>
+<td>Captured in the implementation conversation; material excerpts are inline in this record</td>
+<td>not captured</td>
+<td>no secrets observed</td>
+<td>retain through this record or export to approved artifact storage</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="additional-notes" href="#additional-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Additional notes</h3>
+<ul>
+<li>Helm revision 7 is correct. The final no-change Ansible run demonstrated that
+no additional revision was created after idempotency was fixed.</li>
+<li>The inventory value <code>install_kubecost: false</code> remained unchanged during the
+live validation; <code>--extra-vars install_kubecost=true</code> enabled Kubecost for the
+targeted execution only. Decide separately whether automatic full-platform
+rebuilds should enable Kubecost by default.</li>
+<li>The existing Kubecost installation record remains useful for installation,
+storage, image, and compatibility history. This record supersedes only its
+statement that actual Kalaxy3 dollar calibration remained future work.</li>
+</ul>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">Previous</a></li>            <li class=Pager--next><a href="../installation/kalaxy3_kubecost_installation_and_verification.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
