@@ -1,0 +1,90 @@
+aggregator:
+  aggregatorDbStorage:
+    storageClass: longhorn
+    storageRequest: 128Gi
+  enabled: true
+  nodeSelector:
+    kalaxy3.io/kubecost: "true"
+    kubernetes.io/arch: amd64
+  persistentConfigsStorage:
+    storageClass: longhorn
+    storageRequest: 1Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 3Gi
+cloudCost:
+  enabled: false
+clusterController:
+  enabled: false
+finopsagent:
+  agent:
+    kubecost:
+      customPrices:
+        CPU: "0.95500000"
+        GPU: "0.00000000"
+        RAM: "0.12074713"
+        enabled: true
+        internetNetworkEgress: "0.00000000"
+        regionNetworkEgress: "0.00000000"
+        spotCPU: "0.95500000"
+        spotGPU: "0.00000000"
+        spotRAM: "0.12074713"
+        storage: "0.00076190"
+        zoneNetworkEgress: "0.00000000"
+  enabled: true
+  image:
+    registry: icr.io
+    repository: ibm-finops/agent
+    tag: v1.0.20
+  nodeSelector:
+    kalaxy3.io/kubecost: "true"
+    kubernetes.io/arch: amd64
+forecasting:
+  enabled: false
+frontend:
+  enabled: true
+  nodeSelector:
+    kalaxy3.io/kubecost: "true"
+    kubernetes.io/arch: amd64
+  service:
+    annotations:
+      metallb.io/loadBalancerIPs: 192.168.2.26
+    type: LoadBalancer
+global:
+  clusterId: kalaxy3
+  cspPricingApiKey:
+    useDefaultApiKey: false
+  defaultStorageClass: longhorn
+kubecostProductConfigs:
+  labelMappingConfigs:
+    department_label: kalaxy3.io/cost-center
+    enabled: true
+    environment_label: kalaxy3.io/environment
+    owner_label: kalaxy3.io/owner
+    product_label: kalaxy3.io/product
+    team_label: kalaxy3.io/team
+  sharedNamespaces: kube-system,kubecost,longhorn-system,metallb-system,observability,storage
+  sharedOverhead: "28.41"
+localStore:
+  enabled: true
+  nodeSelector:
+    kalaxy3.io/kubecost: "true"
+    kubernetes.io/arch: amd64
+  persistentVolume:
+    annotations:
+      helm.sh/resource-policy: keep
+    enabled: true
+    size: 32Gi
+    storageClass: longhorn
+networkCosts:
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: kubernetes.io/os
+            operator: In
+            values:
+            - linux
+  enabled: "true"

@@ -1,0 +1,67 @@
+{
+  "capture": {
+    "captured_local": "2026-07-25T20:59:49-05:00",
+    "local_timezone": "America/Chicago",
+    "repository_commit": "4388c30c5f3f4ceafd233377582cded704889b8f",
+    "shared_monthly_overhead_usd": 28.41,
+    "window_24h": "2026-07-25T01:59:00Z,2026-07-26T01:59:00Z",
+    "window_72h": "2026-07-23T01:59:00Z,2026-07-26T01:59:00Z"
+  },
+  "classification": "generated-evidence",
+  "comparison": {
+    "expected_fixed_share_delta_24h_usd": 0.9340274,
+    "expected_fixed_share_delta_72h_usd": 2.80208219,
+    "fully_burdened_24h_below_72h_daily_average_percent": 2.28636398,
+    "fully_burdened_24h_below_72h_daily_average_usd": 1.41409333,
+    "fully_burdened_shared_cost_share_24h_percent": 53.98717397,
+    "fully_burdened_shared_cost_share_72h_percent": 54.09770818,
+    "observed_fixed_share_delta_24h_usd": 0.93402,
+    "observed_fixed_share_delta_72h_usd": 2.80208,
+    "raw_24h_below_72h_daily_average_percent": 2.3214105,
+    "raw_24h_below_72h_daily_average_usd": 1.41408667
+  },
+  "evidence_id": "SAGE-K3-OBSERVABILITY-20260725-001",
+  "interpretation_limits": [
+    "This is a pre-centralized-logging control snapshot, not evidence that centralized logging is installed or operating.",
+    "The 24-hour and 72-hour windows overlap and are not independent samples.",
+    "The network-cost DaemonSet was only about five hours old at capture, so the windows do not represent a long steady-state period after all recent Kubecost changes.",
+    "Future post-logging comparison must use the same allocation parameters and explicit fixed windows."
+  ],
+  "purpose": "Derived comparison metrics for the checksum-verified pre-logging baseline.",
+  "totals_usd": {
+    "fully_burdened_24h": {
+      "cpuCost": 15.87244,
+      "networkCost": 0,
+      "pvCost": 4.83002,
+      "ramCost": 5.7783299999999995,
+      "sharedCost": 32.6271,
+      "totalCost": 60.43491
+    },
+    "fully_burdened_72h": {
+      "cpuCost": 49.709649999999996,
+      "networkCost": 0,
+      "pvCost": 17.28776,
+      "ramCost": 17.93074,
+      "sharedCost": 100.37668000000001,
+      "totalCost": 185.54701
+    },
+    "fully_burdened_72h_daily_average": 61.84900333,
+    "raw_24h": {
+      "cpuCost": 37.86911,
+      "networkCost": 0,
+      "pvCost": 5.05418,
+      "ramCost": 15.04534,
+      "sharedCost": 0,
+      "totalCost": 59.50089
+    },
+    "raw_72h": {
+      "cpuCost": 116.63095,
+      "networkCost": 1e-05,
+      "pvCost": 18.08229,
+      "ramCost": 46.234550000000006,
+      "sharedCost": 0,
+      "totalCost": 182.74493000000004
+    },
+    "raw_72h_daily_average": 60.91497667
+  }
+}

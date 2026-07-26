@@ -1,0 +1,2386 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison - My Project</title>
+    <meta name="description" content="My Stylish Documentation">
+    <meta name="author" content="ChatGPT using the Kalaxy3 SAGE process and evidence collected by Don Buddenbaum">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">My Project</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>benchmarks</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../benchmarks/kalaxy3_pre_logging_kubecost_baseline_evidence.html">Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../evidence/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>evidence</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/current.html">current</a></li>
+<li class='Nav__item '><a href="../evidence/legacy.html">legacy</a></li>
+<li class='Nav__item '><a href="../evidence/migration_report.html">migration-report</a></li>
+<li class='Nav__item  has-children'><a href="../evidence/sections/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>sections</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/sections/benchmarks.html">benchmarks</a></li>
+<li class='Nav__item '><a href="../evidence/sections/finops.html">finops</a></li>
+<li class='Nav__item '><a href="../evidence/sections/governance.html">governance</a></li>
+<li class='Nav__item '><a href="../evidence/sections/installation.html">installation</a></li>
+<li class='Nav__item '><a href="../evidence/sections/operations.html">operations</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../evidence/status/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>status</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/status/historical.html">historical</a></li>
+<li class='Nav__item '><a href="../evidence/status/validated.html">validated</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../evidence/subjects/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>subjects</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/subjects/amd64.html">amd64</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/amd64_nocloud_seed_usb_helper.html">amd64-nocloud-seed-usb-helper</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/amd64_node.html">amd64-node</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/centralized_logging_cost_baseline.html">centralized-logging-cost-baseline</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/intel_node_pi_administrative_access_evidence.html">intel-node-pi-administrative-access-evidence</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/k3s_api_high_availability.html">k3s-api-high-availability</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kalaxy3_sage_evidence_record_standard_1_0.html">kalaxy3-sage-evidence-record-standard-1-0</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kubecost_chart_3_2_1.html">kubecost-chart-3-2-1</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kubecost_installation.html">kubecost-installation</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/longhorn_kubecost.html">longhorn-kubecost</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/minio_installation_evidence.html">minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/observability.html">observability</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/protected_longhorn.html">protected-longhorn</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/protected_traefik_dashboard_installation.html">protected-traefik-dashboard-installation</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/sage_evidence_catalog.html">sage-evidence-catalog</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/sage_record_schema.html">sage-record-schema</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/ubuntu_installation.html">ubuntu-installation</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/ubuntu_node_provisioning.html">ubuntu-node-provisioning</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>evidence-artifacts</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-FINOPS-20260724-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_FINOPS_20260724_001/terminal_evidence_20260725.html">terminal-evidence-20260725</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_kubecost_calibration_sage_evidence.html">Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_legacy_evidence_navigation_evidence.html">Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
+<li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>standards</a><ul class='Nav'>
+<li class='Nav__item '><a href="../standards/kalaxy3_sage_evidence_publication_process.html">Kalaxy3 SAGE Evidence Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../standards/kalaxy3_sage_evidence_record_standard.html">Kalaxy3 SAGE Evidence Record Standard</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>templates</a><ul class='Nav'>
+<li class='Nav__item '><a href="../templates/sage_evidence_generation_request.html">sage-evidence-generation-request</a></li>
+<li class='Nav__item '><a href="../templates/sage_evidence_record_template.html"><Formal evidence-record title></a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../benchmarks/kalaxy3_pre_logging_kubecost_baseline_evidence.html">benchmarks</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../benchmarks/kalaxy3_pre_logging_kubecost_baseline_evidence.html">Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</a></h1>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="pre-logging-kubecost-cost-baseline-for-centralized-logging-comparison" href="#pre-logging-kubecost-cost-baseline-for-centralized-logging-comparison" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</h1>
+<h2><a id="executive-summary" href="#executive-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive summary</h2>
+<p>Kalaxy3 captured and checksum-verified a pre-centralized-logging cost and
+resource baseline using Kubecost, Kubernetes, Helm, and point-in-time resource
+observations. The retained evidence includes explicit 24-hour and 72-hour UTC
+allocation windows, raw and fully burdened cost results, seven-node cluster
+state, workload placement, storage state, Helm releases, live Kubecost values,
+and node and pod usage. This record validates the baseline capture only. It is
+not evidence that Fluent Bit, OpenTelemetry Collector, Loki, or another
+centralized logging implementation has been installed, configured, or tested.
+A later post-logging record must use the same comparison method and reference,
+extend, or supersede this baseline without deleting it.</p>
+<div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li><a href="#pre-logging-kubecost-cost-baseline-for-centralized-logging-comparison">Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</a>
+<ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#record-metadata">Record metadata</a></li>
+<li><a href="#navigation-contract">Navigation contract</a></li>
+<li><a href="#five-ws-and-how">Five Ws and How</a>
+<ul>
+<li><a href="#five-w-completeness-gate">Five-W completeness gate</a></li>
+</ul>
+</li>
+<li><a href="#scope-and-boundaries">Scope and boundaries</a>
+<ul>
+<li><a href="#in-scope">In scope</a></li>
+<li><a href="#out-of-scope">Out of scope</a></li>
+<li><a href="#nonclaims">Nonclaims</a></li>
+</ul>
+</li>
+<li><a href="#final-accepted-state">Final accepted state</a></li>
+<li><a href="#claims-and-evidence-matrix">Claims and evidence matrix</a></li>
+<li><a href="#problem-and-decision-rationale">Problem and decision rationale</a>
+<ul>
+<li><a href="#problem-or-opportunity">Problem or opportunity</a></li>
+<li><a href="#decision">Decision</a></li>
+<li><a href="#decision-drivers">Decision drivers</a></li>
+<li><a href="#alternatives-considered">Alternatives considered</a></li>
+<li><a href="#tradeoffs-and-consequences">Tradeoffs and consequences</a></li>
+</ul>
+</li>
+<li><a href="#architecture-or-change-description">Architecture or change description</a>
+<ul>
+<li><a href="#before">Before</a></li>
+<li><a href="#after">After</a></li>
+</ul>
+</li>
+<li><a href="#source-of-truth-and-implementation-lineage">Source of truth and implementation lineage</a>
+<ul>
+<li><a href="#repository-files">Repository files</a></li>
+<li><a href="#implementation-commit">Implementation commit</a></li>
+<li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#configuration-excerpt">Configuration excerpt</a></li>
+</ul>
+</li>
+<li><a href="#prerequisites-and-assumptions">Prerequisites and assumptions</a>
+<ul>
+<li><a href="#proven-prerequisites">Proven prerequisites</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-procedure">Implementation procedure</a>
+<ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#evidence-integrity">Evidence integrity</a></li>
+<li><a href="#expected-change">Expected change</a></li>
+<li><a href="#observed-change">Observed change</a></li>
+</ul>
+</li>
+<li><a href="#evidence-items">Evidence items</a>
+<ul>
+<li><a href="#ev-001-original-artifact-checksum-verification">EV-001 — Original artifact checksum verification</a></li>
+<li><a href="#ev-002-raw-24-hour-allocation">EV-002 — Raw 24-hour allocation</a></li>
+<li><a href="#ev-003-fully-burdened-24-hour-allocation">EV-003 — Fully burdened 24-hour allocation</a></li>
+<li><a href="#ev-004-raw-72-hour-allocation">EV-004 — Raw 72-hour allocation</a></li>
+<li><a href="#ev-005-fully-burdened-72-hour-allocation">EV-005 — Fully burdened 72-hour allocation</a></li>
+<li><a href="#ev-006-generated-summary-files">EV-006 — Generated summary files</a></li>
+<li><a href="#ev-007-seven-node-readiness-and-point-in-time-usage">EV-007 — Seven-node readiness and point-in-time usage</a></li>
+<li><a href="#ev-008-workload-and-helm-inventory-before-logging">EV-008 — Workload and Helm inventory before logging</a></li>
+<li><a href="#ev-009-storage-and-pod-usage-snapshot">EV-009 — Storage and pod-usage snapshot</a></li>
+<li><a href="#ev-010-live-kubecost-values">EV-010 — Live Kubecost values</a></li>
+<li><a href="#ev-011-derived-stability-and-proration-analysis">EV-011 — Derived stability and proration analysis</a></li>
+<li><a href="#ev-012-baseline-only-evidence-boundary">EV-012 — Baseline-only evidence boundary</a></li>
+</ul>
+</li>
+<li><a href="#verification-and-acceptance-criteria">Verification and acceptance criteria</a>
+<ul>
+<li><a href="#functional-verification">Functional verification</a></li>
+<li><a href="#negative-verification">Negative verification</a></li>
+</ul>
+</li>
+<li><a href="#idempotency-and-repeatability">Idempotency and repeatability</a>
+<ul>
+<li><a href="#first-accepted-run">First accepted run</a></li>
+<li><a href="#steady-state-rerun">Steady-state rerun</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#security-privacy-and-evidence-handling">Security, privacy, and evidence handling</a>
+<ul>
+<li><a href="#security-controls">Security controls</a></li>
+<li><a href="#sensitive-material-excluded">Sensitive material excluded</a></li>
+<li><a href="#redactions-and-omissions">Redactions and omissions</a></li>
+<li><a href="#residual-security-risk">Residual security risk</a></li>
+</ul>
+</li>
+<li><a href="#reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild</a>
+<ul>
+<li><a href="#failure-modes">Failure modes</a></li>
+<li><a href="#rollback">Rollback</a></li>
+<li><a href="#rebuild-procedure">Rebuild procedure</a></li>
+<li><a href="#data-durability-and-backup-impact">Data durability and backup impact</a></li>
+</ul>
+</li>
+<li><a href="#operational-considerations-and-observability">Operational considerations and observability</a>
+<ul>
+<li><a href="#health-signals">Health signals</a></li>
+<li><a href="#routine-verification">Routine verification</a></li>
+<li><a href="#capacity-performance-and-cost-impact">Capacity, performance, and cost impact</a></li>
+</ul>
+</li>
+<li><a href="#known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#package-validation-reports-a-checksum-mismatch">Package validation reports a checksum mismatch</a></li>
+<li><a href="#internal-checksum-validation-fails">Internal checksum validation fails</a></li>
+<li><a href="#post-logging-total-differs-unexpectedly">Post-logging total differs unexpectedly</a></li>
+</ul>
+</li>
+<li><a href="#freshness-revalidation-and-supersession">Freshness, revalidation, and supersession</a>
+<ul>
+<li><a href="#revalidate-when">Revalidate when</a></li>
+<li><a href="#scheduled-review">Scheduled review</a></li>
+<li><a href="#supersession-rule">Supersession rule</a></li>
+</ul>
+</li>
+<li><a href="#final-completion-checklist">Final completion checklist</a>
+<ul>
+<li><a href="#governance">Governance</a></li>
+<li><a href="#evidence">Evidence</a></li>
+<li><a href="#safety-and-operations">Safety and operations</a></li>
+<li><a href="#review-acceptance">Review acceptance</a></li>
+</ul>
+</li>
+<li><a href="#git-review-and-publication">Git review and publication</a></li>
+<li><a href="#appendices">Appendices</a>
+<ul>
+<li><a href="#artifact-inventory">Artifact inventory</a></li>
+<li><a href="#baseline-comparison-summary">Baseline comparison summary</a></li>
+<li><a href="#required-post-logging-comparison-plan">Required post-logging comparison plan</a></li>
+<li><a href="#next-engineering-task">Next engineering task</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h2><a id="record-metadata" href="#record-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Record metadata</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-OBSERVABILITY-20260725-001</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.2</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</td>
+</tr>
+<tr>
+<td><strong>Navigation title</strong></td>
+<td>Capture pre-logging Kubecost baseline</td>
+</tr>
+<tr>
+<td><strong>Navigation section</strong></td>
+<td>benchmarks</td>
+</tr>
+<tr>
+<td><strong>Navigation order</strong></td>
+<td>100</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Preserves checksum-verified 24-hour and 72-hour Kubecost control measurements before centralized logging changes cluster resource use and cost.</td>
+</tr>
+<tr>
+<td><strong>Primary subject</strong></td>
+<td>Centralized logging cost baseline</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td>benchmark</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>validated</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>Pre-centralized-logging Kubecost baseline capture</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td>2026-07-25T20:59:49-05:00</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>2026-07-25T21:01:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td>2026-07-25T21:01:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td>2026-07-25T21:15:14-05:00</td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td>2026-07-25T21:34:25-05:00</td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td>UTC; America/Chicago</td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td>2026-07-25</td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td>event-based</td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>main</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td>4388c30c5f3f4ceafd233377582cded704889b8f</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>homelab</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; amd64-01; amd64-02</td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td>arm64-01=192.168.2.51; arm64-02=192.168.2.52; arm64-03=192.168.2.53; arm64-04=192.168.2.54; arm64-05=192.168.2.55; amd64-01=192.168.2.61; amd64-02=192.168.2.62</td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td>headlamp; kube-system; kubecost; longhorn-system; metallb-system; minio; observability; storage</td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td>kubecost-frontend=http://192.168.2.26:9090; kubecost-allocation-api=http://192.168.2.26:9090/model/allocation</td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td>K3s=v1.36.2+k3s1; Kubecost=3.2.1; IBM-FinOps-Agent=v1.0.20; kube-prometheus-stack=87.19.0; Longhorn=v1.12.0; MetalLB=v0.16.1; Traefik=v3.7.1; Headlamp=0.43.0; NFS-subdir-external-provisioner=4.0.18</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>ChatGPT using the Kalaxy3 SAGE process and evidence collected by Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td>pending</td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="navigation-contract" href="#navigation-contract" class="Permalink" aria-hidden="true" title="Permalink">#</a>Navigation contract</h2>
+<ul>
+<li>The formal title identifies this as a cost baseline rather than a logging installation record.</li>
+<li>The navigation title is the concise human-facing label used in generated evidence indexes.</li>
+<li>The <code>benchmarks</code> section groups this record with controlled measurements.</li>
+<li>The primary subject distinguishes the planned centralized-logging comparison from general Kubecost calibration.</li>
+<li>The explicit <code>[TOC]</code> exposes the fixed SAGE sections in Daux.io and compatible renderers.</li>
+</ul>
+<h2><a id="five-ws-and-how" href="#five-ws-and-how" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five Ws and How</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td><strong>Author:</strong> ChatGPT using the Kalaxy3 SAGE process and evidence collected by Don Buddenbaum; <strong>operator:</strong> Don Buddenbaum; <strong>owner:</strong> Don Buddenbaum; <strong>reviewer:</strong> pending; <strong>affected users/teams:</strong> the Kalaxy3 operator and future consumers of observability-cost evidence.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Captured an immutable pre-logging benchmark consisting of 24-hour and 72-hour raw and fully burdened Kubecost allocations plus contemporaneous cluster, workload, storage, Helm, and resource-usage snapshots. The primary boundary is that this proves the control measurement, not centralized logging implementation or performance.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td><strong>Completed:</strong> 2026-07-25T21:01:00-05:00; <strong>evidence collected:</strong> 2026-07-25T21:01:00-05:00; <strong>local timezone:</strong> America/Chicago; <strong>system timestamps:</strong> UTC; America/Chicago; <strong>valid as of:</strong> 2026-07-25; <strong>review due:</strong> event-based. The Kubecost windows ended at 2026-07-26T01:59:00Z, the same instant as 2026-07-25T20:59:00-05:00.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td><strong>Environment:</strong> homelab; <strong>cluster:</strong> kalaxy3; <strong>execution host:</strong> donbs-imac; <strong>controller:</strong> not-applicable; <strong>nodes:</strong> arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; amd64-01; amd64-02; <strong>addresses:</strong> arm64-01=192.168.2.51; arm64-02=192.168.2.52; arm64-03=192.168.2.53; arm64-04=192.168.2.54; arm64-05=192.168.2.55; amd64-01=192.168.2.61; amd64-02=192.168.2.62; <strong>namespaces:</strong> headlamp; kube-system; kubecost; longhorn-system; metallb-system; minio; observability; storage; <strong>endpoints:</strong> kubecost-frontend=http://192.168.2.26:9090; kubecost-allocation-api=http://192.168.2.26:9090/model/allocation; <strong>record:</strong> markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>Centralized logging will add DaemonSets, collectors, storage, network traffic, and backend workloads. A before-state is required to quantify incremental CPU, RAM, persistent-volume, network, idle, and shared cost without delaying the project for a 30-day control period.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>Fixed UTC windows were queried through the Kubecost Allocation API for raw and fully burdened namespace allocations; cluster state was captured with <code>kubectl</code>, Helm state with <code>helm</code>, resource usage with <code>kubectl top</code>, and live Kubecost values with <code>helm get values</code>. Every retained source artifact was hashed, the source checksum file was verified, and this evidence-only package binds the record to repository commit <code>4388c30c5f3f4ceafd233377582cded704889b8f</code>.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="five-w-completeness-gate" href="#five-w-completeness-gate" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five-W completeness gate</h3>
+<ul>
+<li>[x] Who is complete and agrees with canonical metadata.</li>
+<li>[x] What is complete and states the baseline-only boundary.</li>
+<li>[x] When is complete and includes local and system timestamp timezones.</li>
+<li>[x] Where is complete at repository and runtime levels and agrees with metadata.</li>
+<li>[x] Why includes the decision to avoid a 30-day blocking wait.</li>
+<li>[x] How is reproducible and verifiable from retained artifacts.</li>
+</ul>
+<h2><a id="scope-and-boundaries" href="#scope-and-boundaries" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scope and boundaries</h2>
+<h3><a id="in-scope" href="#in-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>In scope</h3>
+<ul>
+<li>Kubecost raw allocation for fixed 24-hour and 72-hour windows.</li>
+<li>Kubecost fully burdened allocation using shared namespaces, shared idle, weighted splitting, and <code>$28.41/month</code> shared overhead.</li>
+<li>Seven-node readiness, addresses, K3s version, and point-in-time resource usage.</li>
+<li>Existing pod, workload, storage, and Helm-release inventory before centralized logging.</li>
+<li>Live Kubecost pricing and persistence values at capture time.</li>
+<li>Artifact integrity through both the original internal checksum file and the SAGE package manifest.</li>
+<li>Derived daily averages and fixed-share proration checks.</li>
+</ul>
+<h3><a id="out-of-scope" href="#out-of-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>Out of scope</h3>
+<ul>
+<li>Installation, configuration, or validation of Fluent Bit, OpenTelemetry Collector, Loki, OpenSearch, or another centralized log pipeline.</li>
+<li>Application-level log completeness, parsing quality, retention, querying, alerting, or recovery.</li>
+<li>Thirty-day trend stability or accounting-certified cost.</li>
+<li>Independent router, ISP, utility-bill, or hardware power-meter reconciliation.</li>
+<li>A causal claim that a future cost change was produced by logging; that requires a post-change matched comparison.</li>
+</ul>
+<h3><a id="nonclaims" href="#nonclaims" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nonclaims</h3>
+<p>This record does <strong>not</strong> claim:</p>
+<ul>
+<li>that centralized logging is installed or operational;</li>
+<li>that the 24-hour and 72-hour windows are independent samples;</li>
+<li>that the cluster was unchanged throughout both historical windows;</li>
+<li>that the observed values are long-term monthly averages;</li>
+<li>that <code>networkCost: 0</code> means no traffic occurred;</li>
+<li>that a later unmatched rolling window is a valid comparison;</li>
+<li>that the absence of logging-named Helm releases alone rules out every possible manually installed logger.</li>
+</ul>
+<h2><a id="final-accepted-state" href="#final-accepted-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final accepted state</h2>
+<pre><code class="language-text">Evidence state: validated pre-centralized-logging control snapshot
+Capture directory: markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging
+Repository state represented: 4388c30c5f3f4ceafd233377582cded704889b8f
+24-hour window: 2026-07-25T01:59:00Z to 2026-07-26T01:59:00Z
+72-hour window: 2026-07-23T01:59:00Z to 2026-07-26T01:59:00Z
+24-hour raw total: $59.50089
+24-hour fully burdened total: $60.43491
+72-hour raw total: $182.74493
+72-hour fully burdened total: $185.54701
+72-hour fully burdened daily average: $61.84900
+Logging implementation proof: not provided by this record
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source integrity</td>
+<td>Every original baseline file passed the retained SHA-256 checksum verification.</td>
+</tr>
+<tr>
+<td>Kubecost API</td>
+<td>All four retained allocation responses report HTTP-style <code>code: 200</code>.</td>
+</tr>
+<tr>
+<td>Nodes</td>
+<td>Seven nodes were <code>Ready</code> at capture.</td>
+</tr>
+<tr>
+<td>Kubecost configuration</td>
+<td>Shared overhead was <code>$28.41/month</code>; network unit prices were zero; Longhorn-backed Kubecost storage was configured.</td>
+</tr>
+<tr>
+<td>Logging baseline boundary</td>
+<td>No workload or Helm-release entry containing Loki, Fluent, OTel, or OpenTelemetry appeared in the retained snapshots.</td>
+</tr>
+<tr>
+<td>Comparison readiness</td>
+<td>The baseline is suitable as a preserved pre-change reference when the post-change record uses the same parameters and states the timing limitations.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="claims-and-evidence-matrix" href="#claims-and-evidence-matrix" class="Permalink" aria-hidden="true" title="Permalink">#</a>Claims and evidence matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>The pre-logging evidence directory is internally checksum-verifiable.</td>
+<td>critical</td>
+<td><code>EV-001</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>The retained 24-hour raw Kubecost total is <code>$59.50089</code>.</td>
+<td>high</td>
+<td><code>EV-002</code>, <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>The retained 24-hour fully burdened total is <code>$60.43491</code>.</td>
+<td>high</td>
+<td><code>EV-003</code>, <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>The retained 72-hour raw total is <code>$182.74493</code>.</td>
+<td>high</td>
+<td><code>EV-004</code>, <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>The retained 72-hour fully burdened total is <code>$185.54701</code>.</td>
+<td>high</td>
+<td><code>EV-005</code>, <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>All seven Kalaxy3 nodes were Ready at capture.</td>
+<td>critical</td>
+<td><code>EV-007</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>The snapshot contains no Loki, Fluent Bit, OTel, or OpenTelemetry workload or Helm-release name.</td>
+<td>critical</td>
+<td><code>EV-008</code></td>
+<td>supported within captured inventories</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-008</code></td>
+<td>The fully burdened total exceeds the raw total by the expected prorated <code>$28.41/month</code> fixed share cost.</td>
+<td>high</td>
+<td><code>EV-002</code>, <code>EV-003</code>, <code>EV-004</code>, <code>EV-005</code>, <code>EV-011</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-009</code></td>
+<td>The latest 24-hour fully burdened total is within approximately 2.29% of the 72-hour daily average.</td>
+<td>normal</td>
+<td><code>EV-011</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-010</code></td>
+<td>This record is a baseline only and does not prove centralized logging functionality.</td>
+<td>critical</td>
+<td><code>EV-008</code>, <code>EV-012</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="problem-and-decision-rationale" href="#problem-and-decision-rationale" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem and decision rationale</h2>
+<h3><a id="problem-or-opportunity" href="#problem-or-opportunity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem or opportunity</h3>
+<p>The next planned capability is centralized logging. Collectors on every node,
+a telemetry gateway, a log backend, object or persistent storage, and Grafana
+integration will alter the very costs Kubecost is intended to measure. Without
+a preserved control snapshot, later resource and cost changes could not be
+compared against a documented before-state.</p>
+<h3><a id="decision" href="#decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision</h3>
+<p>Capture and publish both 24-hour and 72-hour pre-change windows immediately,
+then proceed with logging implementation instead of making a 30-day baseline a
+project gate. Treat longer windows as later trend evidence, not prerequisites.</p>
+<h3><a id="decision-drivers" href="#decision-drivers" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision drivers</h3>
+<ul>
+<li>Avoid blocking engineering work for 30 days.</li>
+<li>Preserve a recent control window before logging workloads exist.</li>
+<li>Retain both short-window sensitivity and a modest multi-day average.</li>
+<li>Use fixed UTC timestamps rather than repeated moving-window comparisons.</li>
+<li>Preserve raw and fully burdened views because they answer different questions.</li>
+<li>Keep baseline evidence separate from implementation evidence.</li>
+</ul>
+<h3><a id="alternatives-considered" href="#alternatives-considered" class="Permalink" aria-hidden="true" title="Permalink">#</a>Alternatives considered</h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wait 30 days before proceeding</td>
+<td>Stronger long-term trend</td>
+<td>Unnecessary project delay and still vulnerable to unrelated cluster changes</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Capture only a 24-hour window</td>
+<td>Fast and recent</td>
+<td>More sensitive to daily workload variation</td>
+<td>rejected as sole evidence</td>
+</tr>
+<tr>
+<td>Capture only a 72-hour window</td>
+<td>Smoother average</td>
+<td>Blurs recent changes and overlaps multiple cluster states</td>
+<td>rejected as sole evidence</td>
+</tr>
+<tr>
+<td>Capture 24-hour and 72-hour windows now</td>
+<td>Immediate progress plus a short multi-day reference</td>
+<td>Windows overlap and are not independent</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td>Deploy logging without a baseline</td>
+<td>Fastest</td>
+<td>No defensible incremental-cost comparison</td>
+<td>rejected</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="tradeoffs-and-consequences" href="#tradeoffs-and-consequences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tradeoffs and consequences</h3>
+<ul>
+<li>Work can proceed immediately, but comparison confidence is below a stable 30-day study.</li>
+<li>The 72-hour daily average reduces some short-term noise, but recent Kubecost changes occurred within the historical windows.</li>
+<li>The baseline is durable and reproducible as evidence, but the exact historical API responses cannot be recaptured if lost.</li>
+<li>Future comparison must separate logging effects from unrelated workload changes.</li>
+</ul>
+<h2><a id="architecture-or-change-description" href="#architecture-or-change-description" class="Permalink" aria-hidden="true" title="Permalink">#</a>Architecture or change description</h2>
+<pre><code class="language-text">Current measured state
+  Kubernetes workloads without centralized logging
+        |
+        +--&gt; Kubecost Allocation API
+        |      +--&gt; raw 24h and 72h allocations
+        |      +--&gt; fully burdened 24h and 72h allocations
+        |
+        +--&gt; kubectl snapshots
+        |      +--&gt; nodes and point-in-time usage
+        |      +--&gt; pods and workload controllers
+        |      +--&gt; PVC and PV state
+        |
+        +--&gt; Helm snapshots
+               +--&gt; release inventory
+               +--&gt; live Kubecost values
+
+Future state, not implemented by this record
+  Fluent Bit -&gt; OpenTelemetry gateway -&gt; log backend -&gt; Grafana
+        |
+        +--&gt; matched post-change Kubecost comparison
+</code></pre>
+<h3><a id="before" href="#before" class="Permalink" aria-hidden="true" title="Permalink">#</a>Before</h3>
+<p>No durable, checksum-bound pre-centralized-logging benchmark package existed.</p>
+<h3><a id="after" href="#after" class="Permalink" aria-hidden="true" title="Permalink">#</a>After</h3>
+<p>The repository can preserve exact pre-change JSON and text artifacts plus a
+SAGE record that defines how they may and may not be used. Cluster runtime state
+was not changed by the capture.</p>
+<h2><a id="source-of-truth-and-implementation-lineage" href="#source-of-truth-and-implementation-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source of truth and implementation lineage</h2>
+<h3><a id="repository-files" href="#repository-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository files</h3>
+<pre><code class="language-text">markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/
+</code></pre>
+<h3><a id="implementation-commit" href="#implementation-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation commit</h3>
+<pre><code class="language-text">4388c30c5f3f4ceafd233377582cded704889b8f
+</code></pre>
+<p>This is an evidence-only publication. The commit is the exact repository state
+recorded in <code>baseline-metadata.txt</code>; it is not a claim that this record changed
+cluster implementation code.</p>
+<h3><a id="versioned-dependencies" href="#versioned-dependencies" class="Permalink" aria-hidden="true" title="Permalink">#</a>Versioned dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th align="right">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>K3s</td>
+<td align="right"><code>v1.36.2+k3s1</code></td>
+<td><code>nodes.txt</code></td>
+</tr>
+<tr>
+<td>Kubecost</td>
+<td align="right"><code>3.2.1</code></td>
+<td><code>helm-releases.txt</code></td>
+</tr>
+<tr>
+<td>IBM FinOps Agent</td>
+<td align="right"><code>v1.0.20</code></td>
+<td><code>kubecost-live-values.yaml</code></td>
+</tr>
+<tr>
+<td>kube-prometheus-stack</td>
+<td align="right"><code>87.19.0</code></td>
+<td><code>helm-releases.txt</code></td>
+</tr>
+<tr>
+<td>Longhorn</td>
+<td align="right"><code>v1.12.0</code></td>
+<td><code>helm-releases.txt</code></td>
+</tr>
+<tr>
+<td>MetalLB</td>
+<td align="right"><code>v0.16.1</code></td>
+<td><code>helm-releases.txt</code></td>
+</tr>
+<tr>
+<td>Traefik</td>
+<td align="right"><code>v3.7.1</code></td>
+<td><code>helm-releases.txt</code></td>
+</tr>
+<tr>
+<td>Headlamp</td>
+<td align="right"><code>0.43.0</code></td>
+<td><code>helm-releases.txt</code></td>
+</tr>
+<tr>
+<td><code>kubectl</code>, Helm, <code>jq</code>, <code>curl</code>, <code>shasum</code></td>
+<td align="right">version-not-captured</td>
+<td>command execution evidence</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="configuration-excerpt" href="#configuration-excerpt" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration excerpt</h3>
+<pre><code class="hljs yaml"><span class="hljs-attr">kubecostProductConfigs:</span>
+  <span class="hljs-attr">sharedNamespaces:</span> <span class="hljs-string">kube-system,kubecost,longhorn-system,metallb-system,observability,storage</span>
+  <span class="hljs-attr">sharedOverhead:</span> <span class="hljs-string">"28.41"</span>
+<span class="hljs-attr">networkCosts:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-string">"true"</span>
+<span class="hljs-attr">finopsagent:</span>
+  <span class="hljs-attr">agent:</span>
+    <span class="hljs-attr">kubecost:</span>
+      <span class="hljs-attr">customPrices:</span>
+        <span class="hljs-attr">internetNetworkEgress:</span> <span class="hljs-string">"0.00000000"</span>
+        <span class="hljs-attr">regionNetworkEgress:</span> <span class="hljs-string">"0.00000000"</span>
+        <span class="hljs-attr">zoneNetworkEgress:</span> <span class="hljs-string">"0.00000000"</span>
+</code></pre>
+<h2><a id="prerequisites-and-assumptions" href="#prerequisites-and-assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites and assumptions</h2>
+<h3><a id="proven-prerequisites" href="#proven-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Proven prerequisites</h3>
+<ul>
+<li><code>EV-001</code> proves the retained source directory is internally checksum-consistent.</li>
+<li><code>EV-002</code> through <code>EV-005</code> prove the Allocation API returned retained result structures for both windows and views.</li>
+<li><code>EV-007</code> proves seven Ready nodes were present at capture.</li>
+<li><code>EV-008</code> proves cluster, workload, and Helm inventories were captured.</li>
+<li><code>EV-010</code> proves the live Kubecost values used for the benchmark were retained.</li>
+</ul>
+<h3><a id="assumptions" href="#assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Assumptions</h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>Logging was not deployed under an unrelated name or unmanaged object omitted from the captured resource kinds.</td>
+<td>The before-state could already include some logging cost.</td>
+<td>Search all workload kinds, ConfigMaps, Services, and images before deployment.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td><code>$28.41/month</code> remains the appropriate shared-overhead input for the post-change comparison.</td>
+<td>A pricing change could be mistaken for logging cost.</td>
+<td>Freeze or explicitly normalize pricing inputs between compared queries.</td>
+</tr>
+<tr>
+<td><code>ASM-003</code></td>
+<td>Unrelated workloads remain reasonably comparable between windows.</td>
+<td>Workload drift could dominate the logging delta.</td>
+<td>Capture workload inventories and use namespace/workload-level comparisons.</td>
+</tr>
+<tr>
+<td><code>ASM-004</code></td>
+<td>Average-month proration uses 730 hours.</td>
+<td>Small difference from calendar-month accounting.</td>
+<td>Keep the same proration convention in post-change evidence.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="implementation-procedure" href="#implementation-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation procedure</h2>
+<h3><a id="preparation" href="#preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preparation</h3>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
+EVIDENCE_ID=<span class="hljs-string">"SAGE-K3-OBSERVABILITY-20260725-001"</span>
+BASELINE_DIR=<span class="hljs-string">"markdown/evidence-artifacts/<span class="hljs-variable">${EVIDENCE_ID}</span>/pre-logging"</span>
+mkdir -p <span class="hljs-string">"<span class="hljs-variable">$BASELINE_DIR</span>"</span>
+</code></pre>
+<h3><a id="execution" href="#execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Execution</h3>
+<p>The capture defined one common end instant and explicit 24-hour and 72-hour starts,
+retrieved live shared-cost inputs, queried raw and fully burdened allocations,
+and captured Kubernetes, Helm, storage, and resource-usage state.</p>
+<pre><code class="hljs bash">END_UTC=<span class="hljs-string">"<span class="hljs-variable">$(date -u '+%Y-%m-%dT%H:%M:00Z')</span>"</span>
+START_24H=<span class="hljs-string">"<span class="hljs-variable">$(date -u -v-24H '+%Y-%m-%dT%H:%M:00Z')</span>"</span>
+START_72H=<span class="hljs-string">"<span class="hljs-variable">$(date -u -v-72H '+%Y-%m-%dT%H:%M:00Z')</span>"</span>
+</code></pre>
+<p>Raw and fully burdened requests used:</p>
+<pre><code class="language-text">aggregate=namespace
+accumulate=true
+shareIdle=true                 fully burdened only
+shareNamespaces=&lt;live value&gt;  fully burdened only
+shareCost=28.41               fully burdened only
+shareSplit=weighted           fully burdened only
+</code></pre>
+<p>Cluster snapshots used <code>kubectl get</code>, <code>kubectl top</code>, <code>helm list -A</code>, and
+<code>helm get values kubecost -n kubecost -o yaml</code>.</p>
+<h3><a id="evidence-integrity" href="#evidence-integrity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence integrity</h3>
+<pre><code class="hljs bash">find <span class="hljs-string">"<span class="hljs-variable">$BASELINE_DIR</span>"</span> \
+  -<span class="hljs-built_in">type</span> f \
+  ! -name checksums.sha256 \
+  -print0 |
+sort -z |
+xargs -0 shasum -a 256 \
+  &gt; <span class="hljs-string">"<span class="hljs-variable">${BASELINE_DIR}</span>/checksums.sha256"</span>
+
+shasum -a 256 -c \
+  <span class="hljs-string">"<span class="hljs-variable">${BASELINE_DIR}</span>/checksums.sha256"</span>
+</code></pre>
+<h3><a id="expected-change" href="#expected-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Expected change</h3>
+<ul>
+<li>No Kubernetes or Helm implementation resource changes.</li>
+<li>One new untracked evidence directory before SAGE publication.</li>
+<li>Four successful Allocation API artifacts plus supporting snapshots.</li>
+<li>Every source artifact verifies against <code>checksums.sha256</code>.</li>
+</ul>
+<h3><a id="observed-change" href="#observed-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Observed change</h3>
+<ul>
+<li>The baseline directory contained the expected JSON, YAML, and text artifacts.</li>
+<li>All entries listed in the retained checksum file returned <code>OK</code>.</li>
+<li>Repository status showed only the new evidence-artifact directory as untracked before publication.</li>
+</ul>
+<h2><a id="evidence-items" href="#evidence-items" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence items</h2>
+<h3><a id="ev-001-original-artifact-checksum-verification" href="#ev-001-original-artifact-checksum-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-001</code> — Original artifact checksum verification</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td><code>shasum -a 256 -c markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256</code></td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; retained pre-logging artifact directory</td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:00:00-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Every listed file returns <code>OK</code></td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>All 18 original files returned <code>OK</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>none observed</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretation</strong></p>
+<p>The original capture directory was intact when packaged. The SAGE package adds
+a second manifest-level hash for every payload file.</p>
+<h3><a id="ev-002-raw-24-hour-allocation" href="#ev-002-raw-24-hour-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-002</code> — Raw 24-hour allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td>Kubecost Allocation API fixed 24-hour raw query</td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kubecost-allocation-api</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T20:59:49-05:00; API window in UTC</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Response code 200 and namespace allocation data</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td><code>code: 200</code>; total <code>$59.50089</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal namespace and cost data</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-003-fully-burdened-24-hour-allocation" href="#ev-003-fully-burdened-24-hour-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-003</code> — Fully burdened 24-hour allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td>Kubecost Allocation API fixed 24-hour fully burdened query</td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kubecost-allocation-api</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T20:59:49-05:00; API window in UTC</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Response code 200 with shared idle, namespaces, fixed share cost, and weighted split</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td><code>code: 200</code>; total <code>$60.43491</code>; shared cost <code>$32.62710</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal namespace and cost data</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-004-raw-72-hour-allocation" href="#ev-004-raw-72-hour-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-004</code> — Raw 72-hour allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-004</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td>Kubecost Allocation API fixed 72-hour raw query</td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kubecost-allocation-api</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T20:59:49-05:00; API window in UTC</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Response code 200 and namespace allocation data</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td><code>code: 200</code>; total <code>$182.74493</code>; network cost <code>$0.00001</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal namespace and cost data</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-005-fully-burdened-72-hour-allocation" href="#ev-005-fully-burdened-72-hour-allocation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-005</code> — Fully burdened 72-hour allocation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-005</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td>Kubecost Allocation API fixed 72-hour fully burdened query</td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kubecost-allocation-api</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T20:59:49-05:00; API window in UTC</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Response code 200 with shared-cost allocation</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td><code>code: 200</code>; total <code>$185.54701</code>; shared cost <code>$100.37668</code></td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal namespace and cost data</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-006-generated-summary-files" href="#ev-006-generated-summary-files" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-006</code> — Generated summary files</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>generated-evidence</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-004</code>, <code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td><code>jq</code> aggregation of retained Allocation API JSON</td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; four allocation artifacts</td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:00:00-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>CPU, RAM, PV, network, shared, and total fields for each view and window</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>Four summary JSON files retained and checksummed</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal cost data</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-*-summary.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-007-seven-node-readiness-and-point-in-time-usage" href="#ev-007-seven-node-readiness-and-point-in-time-usage" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-007</code> — Seven-node readiness and point-in-time usage</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-006</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td><code>kubectl get nodes -o wide</code>; <code>kubectl top nodes</code></td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kalaxy3</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:00:00-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Seven Ready nodes and resource-usage rows</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>Seven Ready nodes; all seven had CPU and memory observations</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal node names and IP addresses</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/nodes.txt</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/node-usage.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-008-workload-and-helm-inventory-before-logging" href="#ev-008-workload-and-helm-inventory-before-logging" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-008</code> — Workload and Helm inventory before logging</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-007</code>, <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td><code>kubectl get pods</code>; <code>kubectl get deploy,statefulset,daemonset</code>; <code>helm list -A</code></td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kalaxy3</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:00:00-05:00; America/Chicago and UTC release timestamps</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Complete retained snapshot of named workload controllers, pods, and Helm releases</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>Snapshots retained; no Loki, Fluent, OTel, or OpenTelemetry name appears</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass within captured resource kinds</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal topology and workload metadata</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pods.txt</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/workloads.txt</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/helm-releases.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-009-storage-and-pod-usage-snapshot" href="#ev-009-storage-and-pod-usage-snapshot" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-009</code> — Storage and pod-usage snapshot</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td>baseline context for <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td><code>kubectl get pvc,pv -A -o wide</code>; <code>kubectl top pods -A</code></td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; <code>kalaxy3</code></td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:00:00-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Durable storage mapping and point-in-time pod usage</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>Kubecost, MinIO, and observability claims plus pod CPU and memory rows retained</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal storage and workload metadata</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/storage.txt</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pod-usage.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-010-live-kubecost-values" href="#ev-010-live-kubecost-values" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-010</code> — Live Kubecost values</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>direct-observation</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td>configuration context for <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td><code>helm get values kubecost -n kubecost -o yaml</code></td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td><code>donbs-imac</code>; Kubecost Helm release</td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:00:00-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Retained live custom prices, shared settings, storage, and network settings</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td><code>$28.41</code> shared overhead; zero unit network prices; Longhorn persistence; network costs enabled</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>no credentials or secret values observed</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/kubecost-live-values.yaml</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-011-derived-stability-and-proration-analysis" href="#ev-011-derived-stability-and-proration-analysis" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-011</code> — Derived stability and proration analysis</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>derived-conclusion</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-008</code>, <code>CLM-009</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td>deterministic arithmetic over <code>EV-002</code> through <code>EV-005</code></td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td>package generation; retained summary JSON</td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:15:14-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Fixed share delta matches <code>$28.41 × hours / 730</code>; daily averages computed</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>24h delta <code>$0.93402</code> versus <code>$0.93402740</code>; 72h delta <code>$2.80208</code> versus <code>$2.80208219</code>; 24h fully burdened total is approximately <code>2.286%</code> below the 72h daily average</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>internal cost values</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-analysis.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-012-baseline-only-evidence-boundary" href="#ev-012-baseline-only-evidence-boundary" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-012</code> — Baseline-only evidence boundary</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td>derived-conclusion</td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Command or source</td>
+<td>evidence-scope review of all retained artifacts</td>
+</tr>
+<tr>
+<td>Execution source and target</td>
+<td>SAGE record generation; baseline artifact set</td>
+</tr>
+<tr>
+<td>Collection time and timezone</td>
+<td>2026-07-25T21:15:14-05:00; America/Chicago</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Planned logging work remains distinct from observed baseline state</td>
+</tr>
+<tr>
+<td>Observed result</td>
+<td>No logging deployment output, configuration, health test, log query, retention test, or recovery test exists in this record</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive material</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>this evidence record</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="verification-and-acceptance-criteria" href="#verification-and-acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Verification and acceptance criteria</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion ID</th>
+<th>Requirement</th>
+<th>Test or evidence</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AC-001</code></td>
+<td>Preserve original artifact integrity</td>
+<td><code>EV-001</code></td>
+<td>Every internal checksum passes</td>
+<td>All 18 original files returned <code>OK</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-002</code></td>
+<td>Capture a fixed 24-hour raw allocation</td>
+<td><code>EV-002</code></td>
+<td>Code 200 and total value</td>
+<td><code>$59.50089</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-003</code></td>
+<td>Capture a fixed 24-hour fully burdened allocation</td>
+<td><code>EV-003</code></td>
+<td>Code 200 and shared-cost result</td>
+<td><code>$60.43491</code> total</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-004</code></td>
+<td>Capture a fixed 72-hour raw allocation</td>
+<td><code>EV-004</code></td>
+<td>Code 200 and total value</td>
+<td><code>$182.74493</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-005</code></td>
+<td>Capture a fixed 72-hour fully burdened allocation</td>
+<td><code>EV-005</code></td>
+<td>Code 200 and shared-cost result</td>
+<td><code>$185.54701</code> total</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-006</code></td>
+<td>Preserve cluster context</td>
+<td><code>EV-007</code>, <code>EV-008</code>, <code>EV-009</code></td>
+<td>Nodes, workloads, storage, and usage retained</td>
+<td>present</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-007</code></td>
+<td>Preserve pricing context</td>
+<td><code>EV-010</code></td>
+<td>Live shared and unit-price values retained</td>
+<td>present</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-008</code></td>
+<td>Validate fixed share proration</td>
+<td><code>EV-011</code></td>
+<td>Observed and expected deltas agree within rounding</td>
+<td>agreement within less than <code>$0.00001</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-009</code></td>
+<td>Prevent scope overclaim</td>
+<td><code>EV-012</code></td>
+<td>Record states that logging is not implemented</td>
+<td>explicit</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-010</code></td>
+<td>Bind to repository state</td>
+<td><code>EV-001</code>, baseline metadata</td>
+<td>Commit equals <code>4388c30c5f3f4ceafd233377582cded704889b8f</code></td>
+<td>exact match</td>
+<td>pass</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="functional-verification" href="#functional-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Functional verification</h3>
+<pre><code class="hljs bash">shasum -a 256 -c \
+  markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">Every listed original baseline artifact: OK
+</code></pre>
+<h3><a id="negative-verification" href="#negative-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Negative verification</h3>
+<pre><code class="hljs bash">grep -Ei <span class="hljs-string">'loki|fluent|otel|opentelemetry'</span> \
+  markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/helm-releases.txt \
+  markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/workloads.txt \
+  markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pods.txt
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">No matching line in the retained snapshots.
+</code></pre>
+<p>This negative check is bounded to the captured names and resource kinds.</p>
+<h2><a id="idempotency-and-repeatability" href="#idempotency-and-repeatability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idempotency and repeatability</h2>
+<h3><a id="first-accepted-run" href="#first-accepted-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>First accepted run</h3>
+<pre><code class="language-text">Four allocation responses, four generated summaries, cluster snapshots, live
+values, and a checksum inventory were created under the evidence ID directory.
+</code></pre>
+<h3><a id="steady-state-rerun" href="#steady-state-rerun" class="Permalink" aria-hidden="true" title="Permalink">#</a>Steady-state rerun</h3>
+<pre><code class="language-text">Not applicable as byte-identical idempotency: the queries are time-dependent and
+a rerun at a later instant intentionally produces a different fixed window.
+Artifact verification is repeatable: the retained checksums returned OK.
+</code></pre>
+<h3><a id="interpretation" href="#interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Interpretation</h3>
+<p>The capture method is repeatable, but the measurements are intentionally
+time-bound. Future evidence must preserve exact windows and parameters rather
+than expect identical cost values. The artifact-integrity check is deterministic.</p>
+<h2><a id="security-privacy-and-evidence-handling" href="#security-privacy-and-evidence-handling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security, privacy, and evidence handling</h2>
+<h3><a id="security-controls" href="#security-controls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security controls</h3>
+<ul>
+<li>Evidence is classified <code>internal</code>.</li>
+<li>The package contains cluster addresses, workload names, storage mappings, and cost data but no authentication material.</li>
+<li>The publisher scans record and text artifacts for common private-key, bearer-token, GitHub-token, and password patterns.</li>
+<li>The original checksum file and package manifest provide two integrity layers.</li>
+</ul>
+<h3><a id="sensitive-material-excluded" href="#sensitive-material-excluded" class="Permalink" aria-hidden="true" title="Permalink">#</a>Sensitive material excluded</h3>
+<ul>
+<li>No kubeconfig was captured.</li>
+<li>No Kubernetes Secret manifest or decoded Secret value was captured.</li>
+<li>No password, token, private key, provider account identifier, or billing account number was captured.</li>
+<li>The <code>$20/month</code> provider allocation is represented indirectly inside the current <code>$28.41</code> shared overhead; no provider invoice is present.</li>
+</ul>
+<h3><a id="redactions-and-omissions" href="#redactions-and-omissions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Redactions and omissions</h3>
+<ul>
+<li>No redaction was required in the supplied baseline files.</li>
+<li>Command output was retained as text rather than screenshots.</li>
+</ul>
+<h3><a id="residual-security-risk" href="#residual-security-risk" class="Permalink" aria-hidden="true" title="Permalink">#</a>Residual security risk</h3>
+<p>Internal IP addresses and infrastructure names reveal Kalaxy3 topology. Publish
+only to the intended repository and documentation access boundary.</p>
+<h2><a id="reliability-recovery-rollback-and-rebuild" href="#reliability-recovery-rollback-and-rebuild" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reliability, recovery, rollback, and rebuild</h2>
+<h3><a id="failure-modes" href="#failure-modes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failure modes</h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Detection</th>
+<th>Impact</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Allocation API unavailable</td>
+<td><code>curl --fail</code> exits nonzero or JSON missing <code>code: 200</code></td>
+<td>Missing cost window</td>
+<td>Restore Kubecost service and rerun with a new documented window</td>
+</tr>
+<tr>
+<td>Window variables differ between raw and fully burdened queries</td>
+<td>Metadata or filenames disagree</td>
+<td>Invalid comparison</td>
+<td>Re-run all views from one captured end instant</td>
+</tr>
+<tr>
+<td>Shared pricing changes</td>
+<td>Live values differ from post-change record</td>
+<td>Cost delta confounded</td>
+<td>Normalize pricing or report pricing change separately</td>
+</tr>
+<tr>
+<td>Artifact corruption</td>
+<td><code>shasum -c</code> fails</td>
+<td>Evidence cannot be trusted</td>
+<td>Restore from Git or original archive and reverify</td>
+</tr>
+<tr>
+<td>Workload drift</td>
+<td>Pod or workload inventories differ materially</td>
+<td>Logging delta cannot be isolated</td>
+<td>Compare namespaces and document unrelated changes</td>
+</tr>
+<tr>
+<td>Missing metrics-server data</td>
+<td><code>kubectl top</code> contains errors</td>
+<td>Point-in-time usage context incomplete</td>
+<td>Restore metrics-server and capture a supplemental observation</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="rollback" href="#rollback" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rollback</h3>
+<p>The capture changed no cluster resources. Repository rollback is evidence-only:</p>
+<pre><code class="hljs bash">git revert &lt;evidence-commit-sha&gt;
+</code></pre>
+<p>Do not delete the record after it has been referenced; mark it superseded if a
+replacement is accepted.</p>
+<h3><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h3>
+<ol>
+<li>Confirm Kubecost is reachable and its live values are retained.</li>
+<li>Define one UTC end instant and exact 24-hour and 72-hour starts.</li>
+<li>Query raw and fully burdened namespace allocations with identical windows.</li>
+<li>Capture nodes, pods, controllers, PVCs, PVs, Helm releases, and resource usage.</li>
+<li>Write capture metadata including shared namespaces, overhead, and repository commit.</li>
+<li>Generate summaries from the raw JSON.</li>
+<li>Generate and verify the checksum inventory.</li>
+<li>Generate and publish a new evidence record; do not overwrite this historical window.</li>
+</ol>
+<h3><a id="data-durability-and-backup-impact" href="#data-durability-and-backup-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data durability and backup impact</h3>
+<p>The record and artifacts become durable through Git history and the remote
+repository. The capture does not modify workload data, PVCs, or backup policy.
+The historical API responses cannot be reconstructed exactly if both local and
+Git copies are lost.</p>
+<h2><a id="operational-considerations-and-observability" href="#operational-considerations-and-observability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational considerations and observability</h2>
+<h3><a id="health-signals" href="#health-signals" class="Permalink" aria-hidden="true" title="Permalink">#</a>Health signals</h3>
+<ul>
+<li>Allocation API response code and parseable JSON.</li>
+<li>Seven Ready nodes.</li>
+<li>Complete <code>kubectl top</code> output or documented errors.</li>
+<li>Kubecost Helm release status <code>deployed</code>.</li>
+<li>Internal and package SHA-256 validation.</li>
+<li>Stable shared-overhead and custom-price inputs across compared windows.</li>
+</ul>
+<h3><a id="routine-verification" href="#routine-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Routine verification</h3>
+<pre><code class="hljs bash">python3 scripts/sage/sage-publish.py check \
+  ~/Downloads/kalaxy3-pre-logging-kubecost-baseline-sage-package.zip
+</code></pre>
+<p>After publication:</p>
+<pre><code class="hljs bash">python3 scripts/sage/sage-index.py check
+shasum -a 256 -c \
+  markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md.sha256
+</code></pre>
+<h3><a id="capacity-performance-and-cost-impact" href="#capacity-performance-and-cost-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity, performance, and cost impact</h3>
+<ul>
+<li><strong>Capacity:</strong> Evidence capture added repository files only; no cluster workload.</li>
+<li><strong>Performance:</strong> API and inventory reads created transient administrative load only.</li>
+<li><strong>Cost:</strong> The fully burdened baseline is <code>$60.43491</code> for 24 hours and <code>$185.54701</code> for 72 hours.</li>
+<li><strong>Sustainability/power:</strong> No new continuous service was introduced. Existing power assumptions remain inherited from the Kubecost calibration record.</li>
+</ul>
+<h2><a id="known-limitations-evidence-gaps-and-risks" href="#known-limitations-evidence-gaps-and-risks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Known limitations, evidence gaps, and risks</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Due or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAP-001</code></td>
+<td>limitation</td>
+<td>The 24-hour and 72-hour windows overlap.</td>
+<td>They are complementary views, not independent samples.</td>
+<td>Don Buddenbaum</td>
+<td>every comparison</td>
+</tr>
+<tr>
+<td><code>GAP-002</code></td>
+<td>evidence-gap</td>
+<td>The final network-cost DaemonSet was only about five hours old in the pod snapshot.</td>
+<td>Historical windows do not represent a long steady state after all recent Kubecost changes.</td>
+<td>Don Buddenbaum</td>
+<td>interpret post-change delta</td>
+</tr>
+<tr>
+<td><code>GAP-003</code></td>
+<td>limitation</td>
+<td>Kubecost main pods were about 21 hours old in the snapshot.</td>
+<td>Some of the 72-hour allocation depends on retained historical metrics rather than one unchanged Kubecost runtime.</td>
+<td>Don Buddenbaum</td>
+<td>future baseline review</td>
+</tr>
+<tr>
+<td><code>GAP-004</code></td>
+<td>risk</td>
+<td>Unrelated workloads may change before or after logging deployment.</td>
+<td>Total cluster delta may not equal logging cost.</td>
+<td>Don Buddenbaum</td>
+<td>post-logging comparison</td>
+</tr>
+<tr>
+<td><code>GAP-005</code></td>
+<td>limitation</td>
+<td>The snapshot checks names in selected workload kinds and Helm releases.</td>
+<td>A differently named or unmanaged logging component could be missed.</td>
+<td>Don Buddenbaum</td>
+<td>pre-deployment inventory</td>
+</tr>
+<tr>
+<td><code>GAP-006</code></td>
+<td>evidence-gap</td>
+<td>Administrative tool versions were not captured.</td>
+<td>Exact command behavior may vary on future clients.</td>
+<td>Don Buddenbaum</td>
+<td>next capture</td>
+</tr>
+<tr>
+<td><code>GAP-007</code></td>
+<td>limitation</td>
+<td><code>networkCost</code> is zero or negligible because unit network prices are configured as zero.</td>
+<td>Monetary network impact cannot be inferred from this field.</td>
+<td>Don Buddenbaum</td>
+<td>provider-pricing change</td>
+</tr>
+<tr>
+<td><code>GAP-008</code></td>
+<td>risk</td>
+<td>The 72-hour raw result contains <code>$0.00001</code> network cost while fully burdened is zero.</td>
+<td>Tiny adjustment or floating precision noise can be overinterpreted.</td>
+<td>Don Buddenbaum</td>
+<td>treat as negligible unless repeated</td>
+</tr>
+<tr>
+<td><code>GAP-009</code></td>
+<td>limitation</td>
+<td>Point-in-time <code>kubectl top</code> is not a 24-hour or 72-hour utilization average.</td>
+<td>It provides context, not a trend.</td>
+<td>Don Buddenbaum</td>
+<td>post-change capture</td>
+</tr>
+<tr>
+<td><code>GAP-010</code></td>
+<td>planned-work</td>
+<td>Centralized logging Ansible code is not part of this record.</td>
+<td>No logging functionality is validated.</td>
+<td>Don Buddenbaum</td>
+<td>next engineering task</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h2>
+<h3><a id="package-validation-reports-a-checksum-mismatch" href="#package-validation-reports-a-checksum-mismatch" class="Permalink" aria-hidden="true" title="Permalink">#</a>Package validation reports a checksum mismatch</h3>
+<p><strong>Meaning</strong></p>
+<p>A payload file changed after the manifest was generated.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">python3 scripts/sage/sage-publish.py check \
+  ~/Downloads/kalaxy3-pre-logging-kubecost-baseline-sage-package.zip
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Rebuild the package from the verified source directory. Do not edit files inside
+the ZIP manually.</p>
+<h3><a id="internal-checksum-validation-fails" href="#internal-checksum-validation-fails" class="Permalink" aria-hidden="true" title="Permalink">#</a>Internal checksum validation fails</h3>
+<p><strong>Meaning</strong></p>
+<p>The baseline directory no longer matches the original capture.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">shasum -a 256 -c \
+  markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Restore the artifact from the original transfer archive or Git and re-run the
+check. If the original cannot be restored, mark the evidence invalid rather than
+generating replacement hashes for changed historical data.</p>
+<h3><a id="post-logging-total-differs-unexpectedly" href="#post-logging-total-differs-unexpectedly" class="Permalink" aria-hidden="true" title="Permalink">#</a>Post-logging total differs unexpectedly</h3>
+<p><strong>Meaning</strong></p>
+<p>The delta may include pricing, workload, storage, or time-window differences.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="language-text">Compare exact start/end timestamps.
+Compare sharedNamespaces and sharedOverhead.
+Compare custom CPU, RAM, storage, and network prices.
+Compare workload, node, and PVC inventories.
+Compare raw namespace allocations before fully burdened totals.
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Normalize query parameters and isolate logging namespaces and workloads. If the
+windows are not comparable, capture a new control and state why this baseline
+was not used.</p>
+<h2><a id="freshness-revalidation-and-supersession" href="#freshness-revalidation-and-supersession" class="Permalink" aria-hidden="true" title="Permalink">#</a>Freshness, revalidation, and supersession</h2>
+<h3><a id="revalidate-when" href="#revalidate-when" class="Permalink" aria-hidden="true" title="Permalink">#</a>Revalidate when</h3>
+<ul>
+<li>centralized logging is deployed;</li>
+<li>a post-logging cost window is captured;</li>
+<li>Kubecost chart, allocation semantics, pricing inputs, shared namespaces, or shared overhead changes;</li>
+<li>nodes, storage classes, namespaces, or major workloads change;</li>
+<li>artifact checksum verification fails;</li>
+<li>another record contradicts the baseline metadata or window values.</li>
+</ul>
+<h3><a id="scheduled-review" href="#scheduled-review" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scheduled review</h3>
+<pre><code class="language-text">Event-based: at centralized logging deployment and matched post-change capture.
+</code></pre>
+<h3><a id="supersession-rule" href="#supersession-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>Supersession rule</h3>
+<p>A post-logging comparison record should normally <code>depend_on</code> and <code>related_to</code>
+this baseline. It may <code>supersede</code> this record only if it becomes the accepted
+authoritative before-and-after analysis while preserving this record and its
+artifacts for lineage. If a new pre-change capture replaces this one before
+deployment, mark this record <code>superseded</code> and link the replacement.</p>
+<h2><a id="final-completion-checklist" href="#final-completion-checklist" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final completion checklist</h2>
+<h3><a id="governance" href="#governance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governance</h3>
+<ul>
+<li>[x] Evidence ID is unique and permanent.</li>
+<li>[x] Schema 1.2 front matter follows canonical order.</li>
+<li>[x] Record metadata exactly mirrors front matter.</li>
+<li>[x] Status is limited to validation of the baseline capture.</li>
+<li>[x] Owner, author, operator, and reviewer state are identified.</li>
+<li>[x] Five Ws and How are complete.</li>
+<li>[x] Scope, exclusions, and nonclaims are explicit.</li>
+<li>[x] Repository state commit is recorded.</li>
+<li>[x] Relationships and supersession rules are defined.</li>
+</ul>
+<h3><a id="evidence" href="#evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence</h3>
+<ul>
+<li>[x] Every critical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Direct observations identify source, target, time, and artifact.</li>
+<li>[x] Derived conclusions reference direct evidence.</li>
+<li>[x] Artifact checksums are preserved.</li>
+<li>[x] Assumptions and planned work are marked.</li>
+<li>[x] Repeatability is explained without claiming byte-identical reruns.</li>
+<li>[x] The record does not claim centralized logging implementation.</li>
+</ul>
+<h3><a id="safety-and-operations" href="#safety-and-operations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Safety and operations</h3>
+<ul>
+<li>[x] Secrets and sensitive values are excluded.</li>
+<li>[x] Internal topology exposure is documented.</li>
+<li>[x] Rollback and rebuild are documented.</li>
+<li>[x] Health checks and troubleshooting are documented.</li>
+<li>[x] Known limitations and evidence gaps have owners and triggers.</li>
+<li>[x] Revalidation and supersession rules are defined.</li>
+</ul>
+<h3><a id="review-acceptance" href="#review-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Review acceptance</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Don Buddenbaum</td>
+<td>validated baseline capture</td>
+<td>2026-07-25</td>
+<td>Approved for use as a pre-change comparison with stated limitations.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Independent review is not required for <code>validated</code> status but remains pending.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="git-review-and-publication" href="#git-review-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git review and publication</h2>
+<p>Validate and publish only through the repository-owned SAGE process:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
+
+python3 scripts/sage/sage-publish.py check \
+  ~/Downloads/kalaxy3-pre-logging-kubecost-baseline-sage-package.zip
+
+python3 scripts/sage/sage-publish.py publish \
+  ~/Downloads/kalaxy3-pre-logging-kubecost-baseline-sage-package.zip \
+  --push
+</code></pre>
+<p>The evidence-only publisher binds the record to repository commit <code>4388c30c5f3f4ceafd233377582cded704889b8f</code>,
+creates the final record checksum and publication manifest, reconciles legacy
+and current evidence indexes, commits the evidence, and pushes without an ad
+hoc Git sequence.</p>
+<h2><a id="appendices" href="#appendices" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendices</h2>
+<h3><a id="artifact-inventory" href="#artifact-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifact inventory</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>SHA-256 before publication</th>
+<th>Sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h-summary.json</code></td>
+<td><code>95aef469ced007d7be576220643fe6a201212542096a8f3bd22d474fb734f9c5</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h.json</code></td>
+<td><code>de279e26c658de06423983dc01e906aa96f3d4fbc30770a87cd03578cbecccdd</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h-summary.json</code></td>
+<td><code>d6607743cbf27c916579e7f5745a39e12ff7dd035741077f62ca7534743ade09</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h.json</code></td>
+<td><code>cd2bbc5f35771af6d4298ee45ec0477206dfcf4f592a0a4ec756f9ca3c74f426</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h-summary.json</code></td>
+<td><code>f52b43ca3fc2e5f49e73225738284b9cba6e89086e80d94eb63ee3c8d54bee8f</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h.json</code></td>
+<td><code>ddffbff515f1309e89a5eeac6b909db0e0eb73e4b84d6e35890d3875966006ea</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h-summary.json</code></td>
+<td><code>8f18ae99fbd5fd82a6807afa08dc233954eb5167971ff6c0e140cbe1f70a198c</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h.json</code></td>
+<td><code>01dcfef1ea8cc06c30eaa51215dd463d93042158e5ae9314e6932fc0e6aa5ca5</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-analysis.json</code></td>
+<td><code>90812132fcd86f43ea969b2ab894a5a3e1357d9f28f5774b67c4e7dbea999120</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-metadata.txt</code></td>
+<td><code>720ee326e01e50ef8cf3984f684a390068724cde8facf140781ada460a22c45e</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256</code></td>
+<td><code>ccf4ce31ce179536165576111c8adb81de5252c9bed96e4db63db652572efa09</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/helm-releases.txt</code></td>
+<td><code>87d7df50ab7fb47b68bcb7fed27e750cc26c686532fe13710f94280bdc8f11e0</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/kubecost-live-values.yaml</code></td>
+<td><code>6228ce79a33fd0ecca8a8e3535ef34aec1ba05337eeab0a8e7f2d153dd316858</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/node-usage.txt</code></td>
+<td><code>170b01f03523c5cab87e7dc2242041c6413098d65841d0749e8d9598e32f42f0</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/nodes.txt</code></td>
+<td><code>6e114eaea4d624902433a9d987790d7aa8c4032bf474f4b7524ce3374f563834</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pod-usage.txt</code></td>
+<td><code>fd63fe712efc7794a038f6072df330570d5c1ae10658a22efa85e822efe088d4</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pods.txt</code></td>
+<td><code>0a9d3e2578ffc87eea37b90d2f026d8ff61416a1195f952f250e274514e33631</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/source-input-archive.sha256</code></td>
+<td><code>16a3320c48fa0ca444c57f160ded8bcb2dba7ad922d68985364008820db911dd</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/storage.txt</code></td>
+<td><code>60ef9b6c7f9de8d51c2155acc21c106bd32a6f1dbbcc86c0d6bbc523803419de</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/workloads.txt</code></td>
+<td><code>2503cd90ebeb610ece003611f3a7e732060403c070fc026a6dfbc385db0d29cb</code></td>
+<td>no secrets observed; internal operational metadata</td>
+<td>repository history</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="baseline-comparison-summary" href="#baseline-comparison-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Baseline comparison summary</h3>
+<table>
+<thead>
+<tr>
+<th>Measurement</th>
+<th align="right">24 hours</th>
+<th align="right">72 hours</th>
+<th align="right">72-hour daily average</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Raw total</td>
+<td align="right"><code>$59.50089</code></td>
+<td align="right"><code>$182.74493</code></td>
+<td align="right"><code>$60.91498</code></td>
+</tr>
+<tr>
+<td>Fully burdened total</td>
+<td align="right"><code>$60.43491</code></td>
+<td align="right"><code>$185.54701</code></td>
+<td align="right"><code>$61.84900</code></td>
+</tr>
+<tr>
+<td>Shared cost</td>
+<td align="right"><code>$32.62710</code></td>
+<td align="right"><code>$100.37668</code></td>
+<td align="right"><code>$33.45889</code></td>
+</tr>
+<tr>
+<td>Network cost</td>
+<td align="right"><code>$0.00000</code></td>
+<td align="right"><code>$0.00000</code> fully burdened</td>
+<td align="right">approximately <code>$0.00000</code></td>
+</tr>
+</tbody>
+</table>
+<p>The 24-hour fully burdened result is approximately <code>$1.41409</code>, or <code>2.286%</code>,
+below the 72-hour daily average. That modest difference supports proceeding,
+but it does not eliminate the timing and workload-drift limitations.</p>
+<h3><a id="required-post-logging-comparison-plan" href="#required-post-logging-comparison-plan" class="Permalink" aria-hidden="true" title="Permalink">#</a>Required post-logging comparison plan</h3>
+<p>The later record should:</p>
+<ol>
+<li>capture exact fixed post-change windows;</li>
+<li>use the same aggregation, accumulation, idle-sharing, shared namespace, fixed share cost, and weighted split parameters;</li>
+<li>retain raw and fully burdened JSON;</li>
+<li>retain current pricing and shared-overhead values;</li>
+<li>capture nodes, pods, workloads, PVCs, PVs, Helm releases, and resource usage;</li>
+<li>isolate Fluent Bit, OpenTelemetry, Loki, and Grafana-related namespaces and workloads;</li>
+<li>report unrelated cluster changes;</li>
+<li>calculate absolute and percentage deltas;</li>
+<li>distinguish implementation health from cost impact;</li>
+<li>reference this evidence ID and preserve this baseline even if superseded.</li>
+</ol>
+<h3><a id="next-engineering-task" href="#next-engineering-task" class="Permalink" aria-hidden="true" title="Permalink">#</a>Next engineering task</h3>
+<p>Planned, not implemented by this record:</p>
+<pre><code class="language-text">Build centralized logging as disabled-by-default Ansible code, including
+Fluent Bit collection, an OpenTelemetry Collector gateway, a log backend,
+Grafana integration, resource requests, retention, rollback, and acceptance tests.
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../index.html">Previous</a></li>            <li class=Pager--next><a href="../evidence/index.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>
