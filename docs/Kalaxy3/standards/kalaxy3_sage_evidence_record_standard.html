@@ -192,6 +192,25 @@ by a future operator, reviewer, documentation reader, automation, and LLM
 without depending on the original chat session.</p>
 <p>The words <strong>MUST</strong>, <strong>MUST NOT</strong>, <strong>REQUIRED</strong>, <strong>SHOULD</strong>, <strong>SHOULD NOT</strong>, and
 <strong>MAY</strong> are normative.</p>
+<h2><a id="repository-authority-and-controller-portability" href="#repository-authority-and-controller-portability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository authority and controller portability</h2>
+<p>The Git repository MUST be the authoritative source for persistent
+configuration, dependency versions, deployment logic, operational procedures,
+rebuild instructions, and evidence.</p>
+<p>Operator workstations and automation controllers MUST be treated as
+interchangeable execution clients. An iMac, Mac mini, CI runner, or future
+controller MUST NOT contain the only authoritative copy of state required to
+deploy, operate, validate, recover, or rebuild Kalaxy3.</p>
+<p>Controller-local state MAY contain credentials, SSH keys, kubeconfig files,
+vault access, repository-created virtual environments, and disposable caches.
+It MUST NOT be the sole location of Helm repositories, chart versions, values,
+manifests, Ansible variables, operational decisions, or evidence.</p>
+<p>Repository-owned bootstrap and preflight procedures MUST recreate and validate
+the controller toolchain before deployment. Exact dependency versions MUST be
+recorded in repository dependency files or configuration.</p>
+<p>Evidence MUST distinguish <code>controller_host</code>, <code>execution_host</code>, and affected
+target nodes. A manual diagnostic or emergency change MAY be performed, but
+the work is not repeatable or complete until the intended state is reconciled
+into repository-owned automation and validated from a clean checkout.</p>
 <h2><a id="authoritative-representations" href="#authoritative-representations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Authoritative representations</h2>
 <p>Every current SAGE record has four complementary representations:</p>
 <ol>

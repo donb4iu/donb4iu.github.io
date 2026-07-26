@@ -230,6 +230,7 @@ planned state as observed state.&gt;</p>
 <li><a href="#repository-files">Repository files</a></li>
 <li><a href="#implementation-commit">Implementation commit</a></li>
 <li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#controller-portability-and-repository-authority">Controller portability and repository authority</a></li>
 <li><a href="#configuration-excerpt">Configuration excerpt</a></li>
 </ul>
 </li>
@@ -698,6 +699,47 @@ repository evidence.</li>
 </tr>
 </tbody>
 </table>
+<h3><a id="controller-portability-and-repository-authority" href="#controller-portability-and-repository-authority" class="Permalink" aria-hidden="true" title="Permalink">#</a>Controller portability and repository authority</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository-controlled dependencies</td>
+<td><paths and exact versions></td>
+</tr>
+<tr>
+<td>Controller bootstrap</td>
+<td><repository command or target></td>
+</tr>
+<tr>
+<td>Controller preflight</td>
+<td><command and result></td>
+</tr>
+<tr>
+<td>Controller host</td>
+<td><canonical controller_host></td>
+</tr>
+<tr>
+<td>Execution host</td>
+<td><canonical execution_host></td>
+</tr>
+<tr>
+<td>Machine-local authoritative state</td>
+<td>none, or explain as an evidence gap</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[ ] Another supported controller can recreate the toolchain from a clean checkout.</li>
+<li>[ ] No workstation contains the only authoritative deployment configuration.</li>
+<li>[ ] Manual runtime changes were reconciled into repository-owned automation.</li>
+<li>[ ] Controller and execution-host versions are recorded in <code>components</code>.</li>
+</ul>
 <h3><a id="configuration-excerpt" href="#configuration-excerpt" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration excerpt</h3>
 <pre><code class="hljs yaml"><span class="hljs-string">&lt;Minimum</span> <span class="hljs-string">relevant</span> <span class="hljs-string">configuration;</span> <span class="hljs-string">redact</span> <span class="hljs-string">secrets&gt;</span>
 </code></pre>

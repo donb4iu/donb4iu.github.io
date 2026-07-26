@@ -210,6 +210,18 @@ scripts/sage/sage-publish.py
 scripts/sage/sage-index.py
 </code></pre>
 <p>The JSON contract and publisher constants MUST agree exactly.</p>
+<h2><a id="multi-controller-execution-contract" href="#multi-controller-execution-contract" class="Permalink" aria-hidden="true" title="Permalink">#</a>Multi-controller execution contract</h2>
+<p>The repository, rather than a particular workstation, is the publication and
+deployment source of truth.</p>
+<p>Before generating or publishing evidence, the controller MUST synchronize the
+declared branch, use the repository-created virtual environment, install exact
+repository dependencies, pass controller preflight, identify the actual
+controller and execution hosts, and preserve implementation lineage through a
+full Git commit SHA.</p>
+<p>Changing controller hosts MUST NOT change dependency selection, generated
+configuration, deployment behavior, evidence structure, or the target
+environment. Machine-local persistent configuration must be reconciled into
+the repository before evidence can claim repeatability.</p>
 <h2><a id="generator-responsibilities" href="#generator-responsibilities" class="Permalink" aria-hidden="true" title="Permalink">#</a>Generator responsibilities</h2>
 <p>The evidence generator MUST:</p>
 <ol>
