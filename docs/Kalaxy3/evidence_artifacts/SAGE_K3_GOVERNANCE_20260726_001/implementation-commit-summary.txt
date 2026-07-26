@@ -1,0 +1,43 @@
+Implementation commit
+=====================
+
+Full SHA: 5edd4e0223408ac6e4e1c63b52aab6ff89c990ec
+Subject: Provision repository-managed Python controllers
+Author date: 2026-07-26T14:49:08-05:00
+Parent: 83d1038
+Repository: donb4iu/Kalaxy3
+Branch: main
+
+Change summary
+--------------
+4 files changed, 81 insertions, 11 deletions.
+
+Implementation files
+--------------------
+.gitignore
+infrastructure/k3s-homelab/.uv-version
+infrastructure/k3s-homelab/Makefile
+infrastructure/k3s-homelab/scripts/controller-preflight.py
+
+Material behavior
+-----------------
+- Pins repository-local uv at version 0.11.32.
+- Reads the required Python version from .python-version.
+- Installs managed Python under infrastructure/k3s-homelab/.python.
+- Creates .venv from managed Python rather than whichever system Python happens
+  to be first on PATH.
+- Uses repository-local uv cache, tools, virtual environment, and Ansible
+  collections.
+- Provides a macOS sha256sum compatibility wrapper backed by shasum -a 256 so
+  the uv installer verifies its download.
+- Validates uv, managed Python, ansible-core, and exact Ansible collection
+  versions in scripts/controller-preflight.py.
+- Ignores disposable controller artifacts in Git.
+
+Implementation lineage
+----------------------
+The evidence package is evidence-only and declares the full implementation SHA
+above. The SAGE publisher must verify that this commit exists in the target
+repository, replace __SAGE_IMPLEMENTATION_COMMIT__ in the record, generate the
+final record checksum and publication manifest, reconcile evidence navigation,
+and create the separate evidence commit.
