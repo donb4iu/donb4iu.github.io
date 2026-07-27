@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>Ubuntu Node Provisioning - My Project</title>
+    <title>Ubuntu Node Provisioning - Kalaxy3 K3s Cluster</title>
     <meta name="description" content="Mixed arm64 Raspberry Pi and amd64 Ubuntu provisioning guide">
-    <meta name="author" content="I, Me & Myself">
+    <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -34,7 +34,7 @@
             <span class="Collapsible__trigger__bar"></span>
         </button>
 
-        <a class="Brand" href="../../index.html">My Project</a>
+        <a class="Brand" href="../../index.html">Kalaxy3 K3s Cluster</a>
 
     <form role='search' action="/" method="get" class="Search" id="search_form">
         <label for="search_input">
@@ -88,6 +88,7 @@
 <li class='Nav__item '><a href="../../evidence/subjects/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
 <li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_automation_controller_portability.html">kalaxy3-automation-controller-portability</a></li>
 <li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_controller_access_baseline.html">kalaxy3-controller-access-baseline</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_daux_landing_page.html">kalaxy3-daux-landing-page</a></li>
 <li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_sage_evidence_record_standard_1_0.html">kalaxy3-sage-evidence-record-standard-1-0</a></li>
 <li class='Nav__item '><a href="../../evidence/subjects/kubecost_chart_3_2_1.html">kubecost-chart-3-2-1</a></li>
 <li class='Nav__item '><a href="../../evidence/subjects/kubecost_installation.html">kubecost-installation</a></li>
@@ -110,9 +111,13 @@
 <li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/guardrail_gap_analysis.html">guardrail-gap-analysis</a></li>
 <li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/pause_decision.html">pause-decision</a></li>
 <li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/source_index.html">source-index</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/terminal_evidence.html">terminal-evidence</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-SECURITY-20260726-001</a><ul class='Nav'>
 <li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_SECURITY_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>governance</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../governance/kalaxy3_daux_landing_page_sage_evidence.html">Kalaxy3 Daux Landing Page Source and Local Render Validation</a></li>
 <li class='Nav__item '><a href="../../governance/kalaxy3_sage_guardrail_gap_observability_pause_evidence.html">SAGE Guardrail Gap Discovery and Centralized Logging Work Pause</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
@@ -196,10 +201,94 @@
 
     <div class="Page__header">
         <h1><a href="../../installation/k3s_api_ha_kube_vip.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/amd64_nocloud_seed_helper.html">old</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></h1>
+                <span class="ModifiedDate">
+            July 26, 2026 at 9:09 PM        </span>
                     </div>
 
     <div class="s-content">
-        <h1><a id="ubuntu-installation-and-node-provisioning" href="#ubuntu-installation-and-node-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ubuntu Installation and Node Provisioning</h1>
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li><a href="#ubuntu-installation-and-node-provisioning">Ubuntu Installation and Node Provisioning</a>
+<ul>
+<li><a href="#table-of-contents">Table of Contents</a></li>
+</ul>
+</li>
+<li><a href="#1-supported-node-types">1. Supported Node Types</a></li>
+<li><a href="#2-general-safety-rules">2. General Safety Rules</a></li>
+<li><a href="#3-recommended-repository-layout">3. Recommended Repository Layout</a></li>
+<li><a href="#4-raspberry-pi-arm64-provisioning">4. Raspberry Pi arm64 Provisioning</a>
+<ul>
+<li><a href="#4-1-install-the-flash-tool-on-macos">4.1 Install the Flash Tool on macOS</a></li>
+<li><a href="#4-2-download-the-ubuntu-raspberry-pi-image">4.2 Download the Ubuntu Raspberry Pi Image</a></li>
+<li><a href="#4-3-verify-the-raspberry-pi-image">4.3 Verify the Raspberry Pi Image</a></li>
+<li><a href="#4-4-identify-the-target-disk-on-macos">4.4 Identify the Target Disk on macOS</a></li>
+<li><a href="#4-5-select-the-correct-arm64-cloud-init-file">4.5 Select the Correct arm64 Cloud-Init File</a></li>
+<li><a href="#4-6-flash-the-raspberry-pi-boot-device">4.6 Flash the Raspberry Pi Boot Device</a></li>
+<li><a href="#4-7-boot-the-raspberry-pi">4.7 Boot the Raspberry Pi</a></li>
+</ul>
+</li>
+<li><a href="#5-amd64-bare-metal-provisioning">5. amd64 Bare-Metal Provisioning</a>
+<ul>
+<li><a href="#5-1-download-the-ubuntu-server-amd64-iso">5.1 Download the Ubuntu Server amd64 ISO</a></li>
+<li><a href="#5-2-verify-the-amd64-iso">5.2 Verify the amd64 ISO</a></li>
+<li><a href="#5-3-create-the-ubuntu-server-installer-usb">5.3 Create the Ubuntu Server Installer USB</a></li>
+<li><a href="#5-4-create-the-amd64-01-nocloud-seed-usb">5.4 Create the amd64-01 NoCloud Seed USB</a></li>
+<li><a href="#5-5-create-the-amd64-02-nocloud-seed-usb">5.5 Create the amd64-02 NoCloud Seed USB</a></li>
+<li><a href="#5-6-create-the-amd64-03-nocloud-seed-usb">5.6 Create the amd64-03 NoCloud Seed USB</a></li>
+<li><a href="#5-7-boot-amd64-with-autoinstall">5.7 Boot amd64 with Autoinstall</a></li>
+<li><a href="#5-8-provision-amd64-01">5.8 Provision amd64-01</a></li>
+<li><a href="#5-9-provision-amd64-02">5.9 Provision amd64-02</a></li>
+<li><a href="#5-10-provision-amd64-03">5.10 Provision amd64-03</a></li>
+</ul>
+</li>
+<li><a href="#6-amd64-cloud-init-and-autoinstall-mapping">6. amd64 Cloud-Init and Autoinstall Mapping</a></li>
+<li><a href="#7-first-boot-validation-for-all-nodes">7. First-Boot Validation for All Nodes</a>
+<ul>
+<li><a href="#7-1-check-network-reachability">7.1 Check Network Reachability</a></li>
+<li><a href="#7-2-ssh-into-the-node">7.2 SSH into the Node</a></li>
+<li><a href="#7-3-check-cloud-init-status">7.3 Check Cloud-Init Status</a></li>
+<li><a href="#7-4-check-hostname">7.4 Check Hostname</a></li>
+<li><a href="#7-5-check-ip-addresses-and-routes">7.5 Check IP Addresses and Routes</a></li>
+<li><a href="#7-6-check-os-version">7.6 Check OS Version</a></li>
+<li><a href="#7-7-check-block-devices">7.7 Check Block Devices</a></li>
+<li><a href="#7-8-check-mounted-filesystems">7.8 Check Mounted Filesystems</a></li>
+<li><a href="#7-9-check-ssh-service">7.9 Check SSH Service</a></li>
+</ul>
+</li>
+<li><a href="#8-storage-validation-for-minio-nodes">8. Storage Validation for MinIO Nodes</a>
+<ul>
+<li><a href="#8-1-identify-the-root-filesystem">8.1 Identify the Root Filesystem</a></li>
+<li><a href="#8-2-list-candidate-data-disks">8.2 List Candidate Data Disks</a></li>
+<li><a href="#8-3-show-filesystems">8.3 Show Filesystems</a></li>
+<li><a href="#8-4-safe-minio-disk-rule">8.4 Safe MinIO Disk Rule</a></li>
+<li><a href="#8-5-example-manual-confirmation">8.5 Example Manual Confirmation</a></li>
+</ul>
+</li>
+<li><a href="#9-troubleshooting">9. Troubleshooting</a>
+<ul>
+<li><a href="#9-1-cannot-ssh-into-the-node">9.1 Cannot SSH into the Node</a></li>
+<li><a href="#9-2-cloud-init-did-not-finish">9.2 Cloud-Init Did Not Finish</a></li>
+<li><a href="#9-3-wrong-hostname-or-ip-address">9.3 Wrong Hostname or IP Address</a></li>
+<li><a href="#9-4-wrong-disk-was-selected">9.4 Wrong Disk Was Selected</a></li>
+<li><a href="#9-5-raspberry-pi-does-not-boot-from-usb">9.5 Raspberry Pi Does Not Boot from USB</a></li>
+</ul>
+</li>
+<li><a href="#10-recommended-current-workflows">10. Recommended Current Workflows</a>
+<ul>
+<li><a href="#10-1-raspberry-pi-arm64-node-workflow">10.1 Raspberry Pi arm64 Node Workflow</a></li>
+<li><a href="#10-2-amd64-node-workflow">10.2 amd64 Node Workflow</a></li>
+<li><a href="#10-3-amd64-provisioning-summary">10.3 amd64 Provisioning Summary</a></li>
+</ul>
+</li>
+<li><a href="#11-archived-historical-notes">11. Archived Historical Notes</a></li>
+<li><a href="#appendix-a-useful-validation-commands">Appendix A: Useful Validation Commands</a></li>
+<li><a href="#appendix-b-publishing-notes">Appendix B: Publishing Notes</a></li>
+<li><a href="#appendix-c-source-urls">Appendix C: Source URLs</a></li>
+</ul>    </div>
+</div>
+<h1><a id="ubuntu-installation-and-node-provisioning" href="#ubuntu-installation-and-node-provisioning" class="Permalink" aria-hidden="true" title="Permalink">#</a>Ubuntu Installation and Node Provisioning</h1>
 <p>This guide describes how to provision Ubuntu nodes for a mixed-architecture
 homelab or Kubernetes cluster. It supports both Raspberry Pi <code>arm64</code> machines
 and Intel/AMD <code>amd64</code> bare-metal machines.</p>

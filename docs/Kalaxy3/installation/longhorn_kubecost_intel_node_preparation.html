@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html class="no-js" lang="en">
 <head>
-    <title>longhorn-kubecost-intel-node-preparation - My Project</title>
-    <meta name="description" content="My Stylish Documentation">
-    <meta name="author" content="I, Me & Myself">
+    <title>longhorn-kubecost-intel-node-preparation - Kalaxy3 K3s Cluster</title>
+    <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+    <meta name="author" content="Don Buddenbaum">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
@@ -34,7 +34,7 @@
             <span class="Collapsible__trigger__bar"></span>
         </button>
 
-        <a class="Brand" href="../index.html">My Project</a>
+        <a class="Brand" href="../index.html">Kalaxy3 K3s Cluster</a>
 
     <form role='search' action="/" method="get" class="Search" id="search_form">
         <label for="search_input">
@@ -88,6 +88,7 @@
 <li class='Nav__item '><a href="../evidence/subjects/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
 <li class='Nav__item '><a href="../evidence/subjects/kalaxy3_automation_controller_portability.html">kalaxy3-automation-controller-portability</a></li>
 <li class='Nav__item '><a href="../evidence/subjects/kalaxy3_controller_access_baseline.html">kalaxy3-controller-access-baseline</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kalaxy3_daux_landing_page.html">kalaxy3-daux-landing-page</a></li>
 <li class='Nav__item '><a href="../evidence/subjects/kalaxy3_sage_evidence_record_standard_1_0.html">kalaxy3-sage-evidence-record-standard-1-0</a></li>
 <li class='Nav__item '><a href="../evidence/subjects/kubecost_chart_3_2_1.html">kubecost-chart-3-2-1</a></li>
 <li class='Nav__item '><a href="../evidence/subjects/kubecost_installation.html">kubecost-installation</a></li>
@@ -110,9 +111,13 @@
 <li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/guardrail_gap_analysis.html">guardrail-gap-analysis</a></li>
 <li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/pause_decision.html">pause-decision</a></li>
 <li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/source_index.html">source-index</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/terminal_evidence.html">terminal-evidence</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-SECURITY-20260726-001</a><ul class='Nav'>
 <li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_SECURITY_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>governance</a><ul class='Nav'>
+<li class='Nav__item '><a href="../governance/kalaxy3_daux_landing_page_sage_evidence.html">Kalaxy3 Daux Landing Page Source and Local Render Validation</a></li>
 <li class='Nav__item '><a href="../governance/kalaxy3_sage_guardrail_gap_observability_pause_evidence.html">SAGE Guardrail Gap Discovery and Centralized Logging Work Pause</a></li></ul></li>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
 <li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
@@ -196,10 +201,71 @@
 
     <div class="Page__header">
         <h1><a href="../installation/k3s_api_ha_kube_vip.html">installation</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></h1>
+                <span class="ModifiedDate">
+            July 26, 2026 at 9:09 PM        </span>
                     </div>
 
     <div class="s-content">
-        <h1><a id="longhorn-kubecost-and-intel-node-preparation" href="#longhorn-kubecost-and-intel-node-preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn, Kubecost, and Intel Node Preparation</h1>
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li><a href="#longhorn-kubecost-and-intel-node-preparation">Longhorn, Kubecost, and Intel Node Preparation</a>
+<ul>
+<li><a href="#purpose">Purpose</a></li>
+<li><a href="#existing-cluster">Existing cluster</a></li>
+<li><a href="#storage-architecture">Storage architecture</a>
+<ul>
+<li><a href="#minio-responsibilities">MinIO responsibilities</a></li>
+<li><a href="#longhorn-responsibilities">Longhorn responsibilities</a></li>
+</ul>
+</li>
+<li><a href="#why-kubecost-was-changed">Why Kubecost was changed</a></li>
+<li><a href="#why-nfs-and-local-path-were-rejected">Why NFS and local-path were rejected</a></li>
+<li><a href="#scheduling-design">Scheduling design</a>
+<ul>
+<li><a href="#raspberry-pi-minio-nodes">Raspberry Pi MinIO nodes</a></li>
+<li><a href="#intel-longhorn-nodes">Intel Longhorn nodes</a></li>
+<li><a href="#intel-kubecost-nodes">Intel Kubecost nodes</a></li>
+</ul>
+</li>
+<li><a href="#planned-intel-inventory-groups">Planned Intel inventory groups</a></li>
+<li><a href="#longhorn-host-prerequisites">Longhorn host prerequisites</a></li>
+<li><a href="#longhorn-variables">Longhorn variables</a>
+<ul>
+<li><a href="#replica-progression">Replica progression</a></li>
+</ul>
+</li>
+<li><a href="#longhorn-ansible-files">Longhorn Ansible files</a>
+<ul>
+<li><a href="#longhorn-prerequisites-yml">longhorn-prerequisites.yml</a></li>
+<li><a href="#tasks-longhorn-yml">tasks/longhorn.yml</a></li>
+<li><a href="#longhorn-values-yml-j2">longhorn-values.yml.j2</a></li>
+</ul>
+</li>
+<li><a href="#platform-ordering">Platform ordering</a></li>
+<li><a href="#kubecost-ansible-behavior">Kubecost Ansible behavior</a></li>
+<li><a href="#kubecost-values">Kubecost values</a></li>
+<li><a href="#failed-kubecost-cleanup">Failed Kubecost cleanup</a></li>
+<li><a href="#required-deployment-sequence">Required deployment sequence</a>
+<ul>
+<li><a href="#phase-1-complete-the-repository-changes">Phase 1: Complete the repository changes</a></li>
+<li><a href="#phase-2-prepare-the-intel-machines">Phase 2: Prepare the Intel machines</a></li>
+<li><a href="#phase-3-add-the-first-intel-node">Phase 3: Add the first Intel node</a></li>
+<li><a href="#phase-4-add-the-remaining-intel-nodes">Phase 4: Add the remaining Intel nodes</a></li>
+<li><a href="#phase-5-install-kubecost">Phase 5: Install Kubecost</a></li>
+</ul>
+</li>
+<li><a href="#validation-before-adding-intel-nodes">Validation before adding Intel nodes</a></li>
+<li><a href="#validation-after-longhorn-installation">Validation after Longhorn installation</a></li>
+<li><a href="#validation-after-kubecost-installation">Validation after Kubecost installation</a></li>
+<li><a href="#rebuild-summary">Rebuild summary</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h1><a id="longhorn-kubecost-and-intel-node-preparation" href="#longhorn-kubecost-and-intel-node-preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Longhorn, Kubecost, and Intel Node Preparation</h1>
 <p><strong>Project:</strong> Kalaxy3<br />
 <strong>Date:</strong> July 17, 2026<br />
 <strong>Status:</strong> Ansible design checkpoint before completing the MinIO changes<br />
