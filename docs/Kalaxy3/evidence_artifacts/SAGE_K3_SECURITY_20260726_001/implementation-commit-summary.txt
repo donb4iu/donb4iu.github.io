@@ -1,0 +1,32 @@
+Kalaxy3 canonical controller-access implementation lineage
+
+Target repository: donb4iu/Kalaxy3
+Target branch: feature/sage-enforcement-guardrails
+Resolved implementation commit: e77cb1620e1f7b1231ebd162d9506d4123520c88
+
+Observed implementation checkpoints:
+92d7a8b  Add SAGE infrastructure enforcement guardrails
+2aa47b4  Record approved Kalaxy3 controller public keys
+f68d27e  Split SSH and privilege access preflights
+4c82dd0  Add canonical controller access baseline
+e77cb16  Fix access baseline check-mode validation
+
+The full implementation SHA resolves all preceding commits through Git ancestry.
+
+Primary source paths:
+.gitignore
+infrastructure/k3s-homelab/Makefile
+infrastructure/k3s-homelab/ansible.cfg
+infrastructure/k3s-homelab/access/controller-keys/donb-mac-mini-ed25519.pub
+infrastructure/k3s-homelab/access/controller-keys/donbs-imac-rsa.pub
+infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+infrastructure/k3s-homelab/inventory/ssh_known_hosts
+infrastructure/k3s-homelab/playbooks/access-baseline.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-08-intel.yml
+infrastructure/k3s-homelab/scripts/ansible-access-preflight.py
+infrastructure/k3s-homelab/scripts/bootstrap-ssh-key.py
+infrastructure/k3s-homelab/scripts/controller-preflight.py
+infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+
+Retired active source path:
+infrastructure/k3s-homelab/playbooks/intel-admin-access.yml
