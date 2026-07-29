@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence - Kalaxy3 K3s Cluster</title>
+    <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+    <meta name="author" content="ChatGPT">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../index.html">Kalaxy3 K3s Cluster</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>benchmarks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../benchmarks/kalaxy3_pre_logging_kubecost_baseline_evidence.html">Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../evidence/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>evidence</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/current.html">current</a></li>
+<li class='Nav__item '><a href="../evidence/legacy.html">legacy</a></li>
+<li class='Nav__item '><a href="../evidence/migration_report.html">migration-report</a></li>
+<li class='Nav__item  has-children'><a href="../evidence/sections/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>sections</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/sections/benchmarks.html">benchmarks</a></li>
+<li class='Nav__item '><a href="../evidence/sections/finops.html">finops</a></li>
+<li class='Nav__item '><a href="../evidence/sections/governance.html">governance</a></li>
+<li class='Nav__item '><a href="../evidence/sections/installation.html">installation</a></li>
+<li class='Nav__item '><a href="../evidence/sections/operations.html">operations</a></li>
+<li class='Nav__item '><a href="../evidence/sections/security.html">security</a></li>
+<li class='Nav__item '><a href="../evidence/sections/verification.html">verification</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../evidence/status/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>status</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/status/historical.html">historical</a></li>
+<li class='Nav__item '><a href="../evidence/status/validated.html">validated</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../evidence/subjects/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>subjects</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence/subjects/amd64.html">amd64</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/amd64_nocloud_seed_usb_helper.html">amd64-nocloud-seed-usb-helper</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/amd64_node.html">amd64-node</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/centralized_logging_cost_baseline.html">centralized-logging-cost-baseline</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/centralized_observability_logging.html">centralized-observability-logging</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/intel_node_pi_administrative_access_evidence.html">intel-node-pi-administrative-access-evidence</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/k3s_api_high_availability.html">k3s-api-high-availability</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kalaxy3_automation_controller_portability.html">kalaxy3-automation-controller-portability</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kalaxy3_controller_access_baseline.html">kalaxy3-controller-access-baseline</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kalaxy3_daux_landing_page.html">kalaxy3-daux-landing-page</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kalaxy3_sage_evidence_record_standard_1_0.html">kalaxy3-sage-evidence-record-standard-1-0</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kubecost_chart_3_2_1.html">kubecost-chart-3-2-1</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/kubecost_installation.html">kubecost-installation</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/longhorn_kubecost.html">longhorn-kubecost</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/minio_installation_evidence.html">minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/observability.html">observability</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/protected_longhorn.html">protected-longhorn</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/protected_traefik_dashboard_installation.html">protected-traefik-dashboard-installation</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/sage_enforcement_guardrails.html">sage-enforcement-guardrails</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/sage_evidence_catalog.html">sage-evidence-catalog</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/sage_record_schema.html">sage-record-schema</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/ubuntu_installation.html">ubuntu-installation</a></li>
+<li class='Nav__item '><a href="../evidence/subjects/ubuntu_node_provisioning.html">ubuntu-node-provisioning</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>evidence-artifacts</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-FINOPS-20260724-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_FINOPS_20260724_001/terminal_evidence_20260725.html">terminal-evidence-20260725</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-002</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/guardrail_gap_analysis.html">guardrail-gap-analysis</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/pause_decision.html">pause-decision</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/source_index.html">source-index</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_001/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_001/repository_authority_evidence.html">repository-authority-evidence</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_001/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-002</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_002/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_002/repository_authority_evidence.html">repository-authority-evidence</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_003/audit_method.html">audit-method</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_003/audited_source_record_package.html">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_003/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_003/publication_and_merge_evidence.html">publication-and-merge-evidence</a></li>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_OBS_20260728_003/requirement_crosswalk.html">requirement-crosswalk</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-SECURITY-20260726-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../evidence_artifacts/SAGE_K3_SECURITY_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>governance</a><ul class='Nav'>
+<li class='Nav__item '><a href="../governance/kalaxy3_daux_landing_page_sage_evidence.html">Kalaxy3 Daux Landing Page Source and Local Render Validation</a></li>
+<li class='Nav__item '><a href="../governance/kalaxy3_sage_guardrail_gap_observability_pause_evidence.html">SAGE Guardrail Gap Discovery and Centralized Logging Work Pause</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_kubecost_calibration_sage_evidence.html">Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../operations/kalaxy3_centralized_logging_deployment_evidence.html">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_controller_machine_portability_evidence.html">Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_legacy_evidence_navigation_evidence.html">Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation</a></li>
+<li class='Nav__item '><a href="../operations/kalaxy3_sage_observability_iterative_readiness_evidence.html">Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
+<li class='Nav__item '><a href="../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>security</a><ul class='Nav'>
+<li class='Nav__item '><a href="../security/kalaxy3_controller_access_baseline_sage_evidence.html">Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>standards</a><ul class='Nav'>
+<li class='Nav__item '><a href="../standards/kalaxy3_sage_change_discovery_process.html">kalaxy3-sage-change-discovery-process</a></li>
+<li class='Nav__item '><a href="../standards/kalaxy3_sage_evidence_orchestration_process.html">kalaxy3-sage-evidence-orchestration-process</a></li>
+<li class='Nav__item '><a href="../standards/kalaxy3_sage_evidence_publication_process.html">Kalaxy3 SAGE Evidence Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../standards/kalaxy3_sage_evidence_record_standard.html">Kalaxy3 SAGE Evidence Record Standard</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>templates</a><ul class='Nav'>
+<li class='Nav__item '><a href="../templates/sage_evidence_generation_request.html">sage-evidence-generation-request</a></li>
+<li class='Nav__item '><a href="../templates/sage_evidence_record_template.html"><Formal evidence-record title></a></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>verification</a><ul class='Nav'>
+<li class='Nav__item Nav__item--active'><a href="../verification/kalaxy3_centralized_logging_sage_evidence_quality_audit.html">External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../verification/kalaxy3_centralized_logging_sage_evidence_quality_audit.html">verification</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../verification/kalaxy3_centralized_logging_sage_evidence_quality_audit.html">External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence</a></h1>
+                <span class="ModifiedDate">
+            July 28, 2026 at 6:21 PM        </span>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="external-audit-of-centralized-logging-sage-evidence-quality-and-prompt-equivalence" href="#external-audit-of-centralized-logging-sage-evidence-quality-and-prompt-equivalence" class="Permalink" aria-hidden="true" title="Permalink">#</a>External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence</h1>
+<h2><a id="executive-summary" href="#executive-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive summary</h2>
+<p>This validated external evidence-quality audit concludes that <code>SAGE-K3-OBS-20260728-002</code> is <strong>as good as the generic Kalaxy3 SAGE prompt baseline in every canonical requirement and materially better in evidence specificity and traceability</strong>. The source package uses schema 1.2, passed the repository publisher check, was published through the canonical publisher, and was merged into synchronized <code>main</code> after repository and cluster guardrails passed. Its detailed requester language preserved activation, partial failure, correction, runtime acceptance, startup pressure, helper failures, exact release lineage, security, rollback, rebuild, operations, gaps, and revalidation that the generic prompt did not enumerate. The conclusion is a model-based external audit, not a human certification or a replay of the live cluster.</p>
+<div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li><a href="#external-audit-of-centralized-logging-sage-evidence-quality-and-prompt-equivalence">External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence</a>
+<ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#record-metadata">Record metadata</a></li>
+<li><a href="#five-ws-and-how">Five Ws and How</a>
+<ul>
+<li><a href="#five-w-completeness-gate">Five-W completeness gate</a></li>
+</ul>
+</li>
+<li><a href="#scope-and-boundaries">Scope and boundaries</a>
+<ul>
+<li><a href="#in-scope">In scope</a></li>
+<li><a href="#out-of-scope">Out of scope</a></li>
+<li><a href="#nonclaims">Nonclaims</a></li>
+</ul>
+</li>
+<li><a href="#final-accepted-state">Final accepted state</a></li>
+<li><a href="#claims-and-evidence-matrix">Claims and evidence matrix</a></li>
+<li><a href="#problem-and-decision-rationale">Problem and decision rationale</a>
+<ul>
+<li><a href="#problem-or-opportunity">Problem or opportunity</a></li>
+<li><a href="#decision">Decision</a></li>
+<li><a href="#decision-drivers">Decision drivers</a></li>
+<li><a href="#alternatives-considered">Alternatives considered</a></li>
+<li><a href="#tradeoffs-and-consequences">Tradeoffs and consequences</a></li>
+</ul>
+</li>
+<li><a href="#architecture-or-change-description">Architecture or change description</a>
+<ul>
+<li><a href="#before">Before</a></li>
+<li><a href="#after">After</a></li>
+</ul>
+</li>
+<li><a href="#source-of-truth-and-implementation-lineage">Source of truth and implementation lineage</a>
+<ul>
+<li><a href="#repository-files">Repository files</a></li>
+<li><a href="#implementation-commit">Implementation commit</a></li>
+<li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#controller-portability-and-repository-authority">Controller portability and repository authority</a></li>
+<li><a href="#configuration-excerpt">Configuration excerpt</a></li>
+</ul>
+</li>
+<li><a href="#prerequisites-and-assumptions">Prerequisites and assumptions</a>
+<ul>
+<li><a href="#proven-prerequisites">Proven prerequisites</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-procedure">Implementation procedure</a>
+<ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#expected-change">Expected change</a></li>
+<li><a href="#observed-change">Observed change</a></li>
+<li><a href="#failed-or-superseded-paths">Failed or superseded paths</a></li>
+</ul>
+</li>
+<li><a href="#evidence-items">Evidence items</a>
+<ul>
+<li><a href="#ev-001-source-package-integrity">EV-001 — Source package integrity</a></li>
+<li><a href="#ev-002-schema-and-structural-contract-audit">EV-002 — Schema and structural contract audit</a></li>
+<li><a href="#ev-003-minimum-quality-policy-crosswalk">EV-003 — Minimum-quality policy crosswalk</a></li>
+<li><a href="#ev-004-generic-prompt-equivalence">EV-004 — Generic prompt equivalence</a></li>
+<li><a href="#ev-005-additional-specificity-and-traceability">EV-005 — Additional specificity and traceability</a></li>
+<li><a href="#ev-006-publisher-check-and-publication">EV-006 — Publisher check and publication</a></li>
+<li><a href="#ev-007-main-merge-and-guardrail-lineage">EV-007 — Main merge and guardrail lineage</a></li>
+<li><a href="#ev-008-audit-limitation-boundary">EV-008 — Audit limitation boundary</a></li>
+</ul>
+</li>
+<li><a href="#verification-and-acceptance-criteria">Verification and acceptance criteria</a>
+<ul>
+<li><a href="#functional-verification">Functional verification</a></li>
+<li><a href="#negative-verification">Negative verification</a></li>
+</ul>
+</li>
+<li><a href="#idempotency-and-repeatability">Idempotency and repeatability</a>
+<ul>
+<li><a href="#first-accepted-run">First accepted run</a></li>
+<li><a href="#steady-state-rerun">Steady-state rerun</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#security-privacy-and-evidence-handling">Security, privacy, and evidence handling</a>
+<ul>
+<li><a href="#security-controls">Security controls</a></li>
+<li><a href="#sensitive-material-excluded">Sensitive material excluded</a></li>
+<li><a href="#redactions-and-omissions">Redactions and omissions</a></li>
+<li><a href="#residual-security-risk">Residual security risk</a></li>
+</ul>
+</li>
+<li><a href="#reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild</a>
+<ul>
+<li><a href="#failure-modes">Failure modes</a></li>
+<li><a href="#rollback">Rollback</a></li>
+<li><a href="#rebuild-procedure">Rebuild procedure</a></li>
+<li><a href="#data-durability-and-backup-impact">Data durability and backup impact</a></li>
+</ul>
+</li>
+<li><a href="#operational-considerations-and-observability">Operational considerations and observability</a>
+<ul>
+<li><a href="#health-signals">Health signals</a></li>
+<li><a href="#routine-verification">Routine verification</a></li>
+<li><a href="#capacity-performance-cost-and-sustainability">Capacity, performance, cost, and sustainability</a></li>
+</ul>
+</li>
+<li><a href="#known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#source-package-hash-does-not-match">Source package hash does not match</a></li>
+<li><a href="#publisher-check-passes-but-semantic-crosswalk-fails">Publisher check passes but semantic crosswalk fails</a></li>
+<li><a href="#source-record-and-manifest-disagree">Source record and manifest disagree</a></li>
+<li><a href="#main-ancestry-no-longer-contains-the-source-evidence-commit">Main ancestry no longer contains the source evidence commit</a></li>
+<li><a href="#a-reader-interprets-external-audit-as-human-certification">A reader interprets “external audit” as human certification</a></li>
+</ul>
+</li>
+<li><a href="#freshness-revalidation-and-supersession">Freshness, revalidation, and supersession</a>
+<ul>
+<li><a href="#revalidate-when">Revalidate when</a></li>
+<li><a href="#scheduled-review">Scheduled review</a></li>
+<li><a href="#supersession-rule">Supersession rule</a></li>
+</ul>
+</li>
+<li><a href="#final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance</a>
+<ul>
+<li><a href="#governance">Governance</a></li>
+<li><a href="#evidence">Evidence</a></li>
+<li><a href="#safety-and-operations">Safety and operations</a></li>
+<li><a href="#review-acceptance">Review acceptance</a></li>
+</ul>
+</li>
+<li><a href="#git-review-and-publication">Git review and publication</a></li>
+<li><a href="#appendices">Appendices</a>
+<ul>
+<li><a href="#artifact-inventory">Artifact inventory</a></li>
+<li><a href="#additional-notes">Additional notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h2><a id="record-metadata" href="#record-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Record metadata</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-OBS-20260728-003</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.2</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence</td>
+</tr>
+<tr>
+<td><strong>Navigation title</strong></td>
+<td>Audit centralized logging SAGE evidence quality</td>
+</tr>
+<tr>
+<td><strong>Navigation section</strong></td>
+<td>verification</td>
+</tr>
+<tr>
+<td><strong>Navigation order</strong></td>
+<td>441</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Independently audits SAGE-K3-OBS-20260728-002 against the Kalaxy3 schema 1.2 quality contract and confirms it meets the generic SAGE prompt baseline while providing stronger specificity and traceability.</td>
+</tr>
+<tr>
+<td><strong>Primary subject</strong></td>
+<td>Centralized observability logging</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td>verification</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>validated</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>centralized-logging-evidence-external-audit-20260728</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td>2026-07-28T20:06:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>2026-07-28T20:12:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td>2026-07-28T20:12:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td>2026-07-28T20:12:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td>2026-07-28T20:20:32-05:00</td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td>America/Chicago; UTC</td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td>2026-07-28</td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td>event-based</td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/verification/kalaxy3-centralized-logging-sage-evidence-quality-audit.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>main</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>research</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td>OpenAI ChatGPT audit environment</td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td>SAGE record schema=1.2; audited evidence=SAGE-K3-OBS-20260728-002; audited evidence commit=81cdb0b9c25491e15be6cc7de8897de3ecbd05b5; main merge commit=d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075; audit method=package integrity and requirement crosswalk</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Kalaxy3 architecture</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>ChatGPT</td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="five-ws-and-how" href="#five-ws-and-how" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five Ws and How</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td><strong>Author:</strong> ChatGPT; <strong>operator:</strong> Don Buddenbaum; <strong>owner:</strong> Kalaxy3 architecture; <strong>reviewer:</strong> ChatGPT external audit; <strong>affected users/teams:</strong> Kalaxy3 operators and future SAGE reviewers.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Audited <code>SAGE-K3-OBS-20260728-002</code> for package integrity, schema 1.2 structure, minimum-quality compliance, prompt equivalence, publication success, and final merge lineage.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td><strong>Completed:</strong> 2026-07-28T20:12:00-05:00; <strong>evidence collected:</strong> 2026-07-28T20:12:00-05:00; <strong>local timezone:</strong> America/Chicago; <strong>system timestamps:</strong> America/Chicago; UTC; <strong>valid as of:</strong> 2026-07-28; <strong>review due:</strong> event-based.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td><strong>Environment:</strong> research; <strong>cluster:</strong> not-applicable; <strong>execution host:</strong> OpenAI ChatGPT audit environment; <strong>controller host:</strong> not-applicable; <strong>record path:</strong> markdown/verification/kalaxy3-centralized-logging-sage-evidence-quality-audit.md; the subject evidence is stored in <code>donb4iu/Kalaxy3</code> on <code>main</code>.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>Before deleting the merged feature branch, the operator required independent assurance that the detailed generated evidence was not weaker than simply invoking the generic repository SAGE prompt. The audit reduces the risk of preserving an elaborate but noncanonical record.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>Recalculated source-package hashes, parsed canonical metadata order, checked mandatory sections and claims, crosswalked all sixteen policy requirements, compared the generic and actual requests, and corroborated publisher and main-merge outputs. Artifacts preserve method, crosswalk, source baseline, and lineage; rollback is removal of this audit record only.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="five-w-completeness-gate" href="#five-w-completeness-gate" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five-W completeness gate</h3>
+<ul>
+<li>[x] Who is complete and agrees with canonical metadata.</li>
+<li>[x] What is complete and names the audited record and decision.</li>
+<li>[x] When is complete and includes local and system timezones.</li>
+<li>[x] Where is complete and identifies the research environment and repository path.</li>
+<li>[x] Why is complete and states the assurance problem and risk.</li>
+<li>[x] How is complete and states method, artifacts, rollback, and revalidation.</li>
+</ul>
+<h2><a id="scope-and-boundaries" href="#scope-and-boundaries" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scope and boundaries</h2>
+<h3><a id="in-scope" href="#in-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>In scope</h3>
+<ul>
+<li>The immutable generation package for <code>SAGE-K3-OBS-20260728-002</code> and every declared payload hash.</li>
+<li>The captured Kalaxy3 SAGE standard, schema 1.2 metadata contract, template, evidence policy, and generation brief.</li>
+<li>Structural and semantic requirement coverage of the source record.</li>
+<li>Comparison with the generic prompt: <code>Generate the SAGE evidence package for this working session using the Kalaxy3 SAGE standard, template, and publication process.</code></li>
+<li>Operator-reported package validation, canonical publication, evidence commit, main merge, guardrails, checksums, and repository synchronization.</li>
+</ul>
+<h3><a id="out-of-scope" href="#out-of-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>Out of scope</h3>
+<ul>
+<li>Re-running the centralized-logging deployment or changing the live cluster.</li>
+<li>Re-querying Loki, Grafana, Longhorn, or Fluent Bit after the source validation window.</li>
+<li>Predicting the exact prose a separate nondeterministic generation from the generic prompt would produce.</li>
+<li>Human legal, financial, regulatory, or certification assurance.</li>
+<li>Deleting the feature branch; deletion remains a subsequent housekeeping action.</li>
+</ul>
+<h3><a id="nonclaims" href="#nonclaims" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nonclaims</h3>
+<ul>
+<li>This audit does not make <code>SAGE-K3-OBS-20260728-002</code> infallible or complete beyond the supplied repository and terminal evidence.</li>
+<li>This audit does not change the implementation commit recorded by <code>SAGE-K3-OBS-20260728-002</code>.</li>
+<li>This audit does not claim that a generic prompt could never produce equally detailed prose; it evaluates the actual package against the canonical requirement baseline.</li>
+<li>This audit does not upgrade the source record to lifecycle status <code>accepted</code>; its original reviewer remained pending at publication.</li>
+</ul>
+<h2><a id="final-accepted-state" href="#final-accepted-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final accepted state</h2>
+<p><strong>Audit verdict:</strong> <code>SAGE-K3-OBS-20260728-002</code> meets all sixteen repository minimum-quality requirements, passes package-integrity and structural checks, and is materially equivalent to the generic prompt in canonical process compliance while stronger in scope specificity, failure-path preservation, runtime traceability, and publication lineage.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Package integrity</td>
+<td>Every source payload hash matched the source manifest.</td>
+</tr>
+<tr>
+<td>Canonical structure</td>
+<td>Forty-seven front-matter fields, explicit TOC, and all twenty-three mandatory sections matched schema 1.2.</td>
+</tr>
+<tr>
+<td>Evidence model</td>
+<td>Thirteen atomic claims reference twelve defined evidence items.</td>
+</tr>
+<tr>
+<td>Policy crosswalk</td>
+<td>Sixteen of sixteen minimum-quality requirements met.</td>
+</tr>
+<tr>
+<td>Generic-prompt baseline</td>
+<td>Same canonical standard, template, metadata, section, and publication controls apply.</td>
+</tr>
+<tr>
+<td>Added value</td>
+<td>Detailed request preserved material deployment, failure, correction, validation, and operational facts absent from the generic sentence.</td>
+</tr>
+<tr>
+<td>Publication</td>
+<td>Repository check passed; publisher created evidence commit <code>81cdb0b9c25491e15be6cc7de8897de3ecbd05b5</code> with a clean tree.</td>
+</tr>
+<tr>
+<td>Main lineage</td>
+<td>Merge commit <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code> contains the evidence commit; local and remote <code>main</code> synchronized at zero divergence.</td>
+</tr>
+<tr>
+<td>Residual limitation</td>
+<td>Model-based external review without a live-cluster replay or human certification.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="claims-and-evidence-matrix" href="#claims-and-evidence-matrix" class="Permalink" aria-hidden="true" title="Permalink">#</a>Claims and evidence matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>The audited package is internally intact and every declared file hash matches.</td>
+<td>critical</td>
+<td><code>EV-001</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>The audited record satisfies the schema 1.2 metadata, TOC, section-order, and claim/evidence structural contract.</td>
+<td>critical</td>
+<td><code>EV-002</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>The audited generation path meets all sixteen repository minimum-quality requirements.</td>
+<td>critical</td>
+<td><code>EV-003</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>The generic prompt would activate the same canonical standard, template, metadata, and publisher contract used for the audited package.</td>
+<td>high</td>
+<td><code>EV-003</code>; <code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>The actual detailed request is a strict informational superset of the generic prompt without weakening canonical requirements.</td>
+<td>high</td>
+<td><code>EV-004</code>; <code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>The audited record contains materially stronger failure, runtime, lifecycle, and lineage specificity than the generic prompt explicitly requests.</td>
+<td>high</td>
+<td><code>EV-004</code>; <code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>The repository publisher validated and published the audited package, and the resulting evidence commit was merged into synchronized <code>main</code>.</td>
+<td>critical</td>
+<td><code>EV-006</code>; <code>EV-007</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-008</code></td>
+<td>The conclusion that the audited record is as good or better is supported for requirement coverage and evidence quality.</td>
+<td>critical</td>
+<td><code>EV-001</code>; <code>EV-002</code>; <code>EV-003</code>; <code>EV-004</code>; <code>EV-005</code>; <code>EV-006</code>; <code>EV-007</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-009</code></td>
+<td>The audit limitations prevent the conclusion from being misrepresented as independent human certification or live-cluster revalidation.</td>
+<td>normal</td>
+<td><code>EV-008</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="problem-and-decision-rationale" href="#problem-and-decision-rationale" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem and decision rationale</h2>
+<h3><a id="problem-or-opportunity" href="#problem-or-opportunity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem or opportunity</h3>
+<p>An evidence record can be lengthy yet still be weaker than the repository’s canonical process if it omits required metadata, hides failed paths, lacks traceable claims, or bypasses the publisher. Before deleting the merged feature branch, the operator requested an external assessment that <code>SAGE-K3-OBS-20260728-002</code> actually equals or exceeds the result expected from the simple canonical prompt.</p>
+<h3><a id="decision" href="#decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision</h3>
+<p>Accept <code>SAGE-K3-OBS-20260728-002</code> as meeting the generic prompt baseline and exceeding it in material specificity. Preserve this audit as a separate verification record rather than editing the source evidence or regenerating a competing record.</p>
+<h3><a id="decision-drivers" href="#decision-drivers" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision drivers</h3>
+<ul>
+<li>The source package is immutable and hash-verifiable.</li>
+<li>The generic prompt is governed by an explicit repository policy, allowing a requirements-based comparison.</li>
+<li>The actual detailed request is preserved verbatim and can be compared directly with the baseline.</li>
+<li>Repository publisher success provides executable structural validation.</li>
+<li>Final merge and guardrail output establishes publication lineage beyond package generation.</li>
+<li>A separate audit preserves source-record immutability and reviewer independence of conclusion.</li>
+</ul>
+<h3><a id="alternatives-considered" href="#alternatives-considered" class="Permalink" aria-hidden="true" title="Permalink">#</a>Alternatives considered</h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Disposition</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trust <code>sage-publish.py check</code> alone</td>
+<td>Rejected as incomplete</td>
+<td>The publisher validates structure and safety but does not by itself decide semantic prompt equivalence.</td>
+</tr>
+<tr>
+<td>Re-run the generic prompt and compare two generated records</td>
+<td>Rejected</td>
+<td>Nondeterministic wording could create a misleading comparison and a second competing evidence record.</td>
+</tr>
+<tr>
+<td>Edit <code>SAGE-K3-OBS-20260728-002</code> to add an audit conclusion</td>
+<td>Rejected</td>
+<td>It would blur generation evidence with later review and weaken immutability.</td>
+</tr>
+<tr>
+<td>Delete the feature branch before review</td>
+<td>Deferred</td>
+<td>The branch remains available until this audit is published.</td>
+</tr>
+<tr>
+<td>Perform a model-based external crosswalk against immutable inputs</td>
+<td>Accepted</td>
+<td>Reproducible, non-invasive, and directly answers the requested assurance question.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="tradeoffs-and-consequences" href="#tradeoffs-and-consequences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tradeoffs and consequences</h3>
+<ul>
+<li>The audit adds another evidence record and artifact set, increasing catalog volume.</li>
+<li>The conclusion is stronger than a publisher pass because it includes semantic crosswalk, but weaker than independent human certification.</li>
+<li>The source record remains unchanged; future readers must follow the <code>verifies</code> relationship to see this review.</li>
+<li>Feature-branch deletion can proceed only after this audit package passes the same repository publisher and is merged or otherwise preserved on <code>main</code>.</li>
+</ul>
+<h2><a id="architecture-or-change-description" href="#architecture-or-change-description" class="Permalink" aria-hidden="true" title="Permalink">#</a>Architecture or change description</h2>
+<p>This is an evidence-governance change, not a cluster architecture change.</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Before</th>
+<th>After</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source evidence</td>
+<td><code>SAGE-K3-OBS-20260728-002</code> published and merged with reviewer pending</td>
+<td>Source remains immutable and gains a separate external quality-verification relationship</td>
+</tr>
+<tr>
+<td>Assurance</td>
+<td>Publisher and operator validation only</td>
+<td>Publisher validation plus independent package-integrity and semantic prompt-equivalence crosswalk</td>
+</tr>
+<tr>
+<td>Repository</td>
+<td><code>main</code> contains source evidence at <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code></td>
+<td>Audit package can be published as evidence-only against the same main checkpoint</td>
+</tr>
+<tr>
+<td>Cluster</td>
+<td>Centralized logging deployed and validated</td>
+<td>No cluster change</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="before" href="#before" class="Permalink" aria-hidden="true" title="Permalink">#</a>Before</h3>
+<p>The source evidence had passed the canonical publisher and merge guardrails, but there was no separate record answering whether the detailed generation result was at least as good as the generic prompt baseline.</p>
+<h3><a id="after" href="#after" class="Permalink" aria-hidden="true" title="Permalink">#</a>After</h3>
+<p>A schema 1.2 verification record preserves the method, source baseline, policy crosswalk, publication lineage, conclusion, and limitations without changing the implementation or source record.</p>
+<h2><a id="source-of-truth-and-implementation-lineage" href="#source-of-truth-and-implementation-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source of truth and implementation lineage</h2>
+<h3><a id="repository-files" href="#repository-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository files</h3>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md</code></td>
+<td>Audited source record after publication</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/generation-provenance.md</code></td>
+<td>Preserved detailed requester language and generation method</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+<td>Deployment and validation evidence summary</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence.md</code></td>
+<td>Source locks, commits, authority files, and repository state</td>
+</tr>
+<tr>
+<td><code>sage-evidence-policy.json</code></td>
+<td>Sixteen minimum-quality requirements and canonical request authority</td>
+</tr>
+<tr>
+<td><code>markdown/standards/kalaxy3-sage-evidence-record-standard.md</code></td>
+<td>Mandatory metadata, sections, claims, lifecycle, and evidence rules</td>
+</tr>
+<tr>
+<td><code>markdown/standards/sage-evidence-metadata-contract-v1.2.json</code></td>
+<td>Exact front-matter and metadata-table contract</td>
+</tr>
+<tr>
+<td><code>markdown/templates/sage-evidence-record-template.md</code></td>
+<td>Canonical record structure</td>
+</tr>
+<tr>
+<td><code>scripts/sage/sage-publish.py</code></td>
+<td>Executable package, record, safety, checksum, index, and publication enforcement</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="implementation-commit" href="#implementation-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation commit</h3>
+<p>The audited record documents implementation commit <code>4247387a8062a0a353f5704e40c90b1727881a4a</code>. Its evidence was committed at <code>81cdb0b9c25491e15be6cc7de8897de3ecbd05b5</code> and merged into <code>main</code> by <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code>. This audit uses evidence-only publication against <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code> because that is the first main checkpoint containing the audited record and its artifacts.</p>
+<h3><a id="versioned-dependencies" href="#versioned-dependencies" class="Permalink" aria-hidden="true" title="Permalink">#</a>Versioned dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Dependency</th>
+<th>Version or identity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAGE package schema</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>SAGE record schema</td>
+<td>1.2</td>
+</tr>
+<tr>
+<td>Audited package SHA-256</td>
+<td><code>a2f555666b14013060c9bd7ce2be1a631320cef083938374520e790c927ea137</code></td>
+</tr>
+<tr>
+<td>Audited input bundle SHA-256</td>
+<td><code>58e54271cab85e4e3307959ac0e2d6e6dc87ce61b010ec42ec5a2f5c48673c39</code></td>
+</tr>
+<tr>
+<td>Audited evidence ID</td>
+<td><code>SAGE-K3-OBS-20260728-002</code></td>
+</tr>
+<tr>
+<td>Source evidence commit</td>
+<td><code>81cdb0b9c25491e15be6cc7de8897de3ecbd05b5</code></td>
+</tr>
+<tr>
+<td>Main merge commit</td>
+<td><code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="controller-portability-and-repository-authority" href="#controller-portability-and-repository-authority" class="Permalink" aria-hidden="true" title="Permalink">#</a>Controller portability and repository authority</h3>
+<p>The audit conclusion is based on repository-owned authorities and immutable package contents rather than a particular workstation configuration. Another reviewer can repeat the hash, metadata-order, section-order, claims, and policy-crosswalk checks from the published artifacts. Live-cluster access is not required to repeat this evidence-quality audit.</p>
+<h3><a id="configuration-excerpt" href="#configuration-excerpt" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration excerpt</h3>
+<p>Generic baseline:</p>
+<pre><code class="language-text">Generate the SAGE evidence package for this working session using the Kalaxy3 SAGE standard, template, and publication process.
+</code></pre>
+<p>Actual source-generation request begins:</p>
+<pre><code class="language-text">Generate a comprehensive SAGE evidence package for the activation, deployment, correction, and final validation of the Kalaxy3 centralized logging observability implementation...
+</code></pre>
+<p>The source generation brief states that the original request remains authoritative and that the canonical SAGE working-session request is automatically applied.</p>
+<h2><a id="prerequisites-and-assumptions" href="#prerequisites-and-assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites and assumptions</h2>
+<h3><a id="proven-prerequisites" href="#proven-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Proven prerequisites</h3>
+<ul>
+<li>The audited package and captured input bundle were available and hash-readable.</li>
+<li>The source package manifest declared schema 1.2, the expected evidence ID, record path, artifacts, and implementation boundary.</li>
+<li>The repository SAGE policy and metadata contract were included in the captured authority bundle.</li>
+<li>Operator output showed publisher check success, publication success, evidence commit, clean working tree, merge commit, checksum verification, guardrail success, and synchronized <code>main</code>.</li>
+</ul>
+<h3><a id="assumptions" href="#assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Assumptions</h3>
+<ul>
+<li>The operator-supplied publication and merge outputs are authentic representations of the repository commands shown.</li>
+<li>The repository authority bundle captured for the source generation matches the authorities used by the successful publisher invocation.</li>
+<li>The phrase “as good or better” refers to canonical requirement coverage and evidentiary quality, not identical prose or legal assurance.</li>
+<li>No material post-merge modification to the published source record occurred outside the shown clean and synchronized repository state.</li>
+</ul>
+<h2><a id="implementation-procedure" href="#implementation-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation procedure</h2>
+<h3><a id="preparation" href="#preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preparation</h3>
+<ol>
+<li>Retain the merged feature branch temporarily.</li>
+<li>Preserve the source evidence package and input bundle without modification.</li>
+<li>Identify the generic baseline prompt and current external-audit request.</li>
+<li>Load the source manifest, record, provenance, evidence summary, authority summary, policy, contract, and merge transcript.</li>
+</ol>
+<h3><a id="execution" href="#execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Execution</h3>
+<ol>
+<li>Recalculate every source payload hash.</li>
+<li>Parse the source record’s constrained YAML front matter.</li>
+<li>Compare field order with the schema 1.2 contract.</li>
+<li>Verify TOC, mandatory section order, claim rows, and evidence-item definitions.</li>
+<li>Crosswalk all sixteen policy requirements.</li>
+<li>Compare generic baseline, canonical expansion, and actual detailed request.</li>
+<li>Corroborate package check, publication, evidence commit, merge, guardrails, checksums, and synchronization.</li>
+<li>Build this evidence-only audit package against merge commit <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code>.</li>
+</ol>
+<h3><a id="expected-change" href="#expected-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Expected change</h3>
+<p>A new verification record should conclude either supported, partially supported, or unsupported. It must not change the cluster or rewrite <code>SAGE-K3-OBS-20260728-002</code>. A supported “as good or better” verdict requires all canonical requirements to pass and at least one material additional-quality dimension.</p>
+<h3><a id="observed-change" href="#observed-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Observed change</h3>
+<p>All source hashes matched; schema and mandatory structure passed; all sixteen policy requirements were met; publication and merge lineage were demonstrated; and the detailed request added multiple material specificity dimensions without weakening canonical controls. The verdict is supported with high confidence.</p>
+<h3><a id="failed-or-superseded-paths" href="#failed-or-superseded-paths" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed or superseded paths</h3>
+<ul>
+<li>A publisher-only conclusion was superseded because it does not fully test semantic prompt equivalence.</li>
+<li>A hypothetical second generation from the generic prompt was not used because it would compare nondeterministic prose rather than canonical requirements.</li>
+<li>No audit command changed cluster or repository implementation state.</li>
+</ul>
+<h2><a id="evidence-items" href="#evidence-items" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence items</h2>
+<h3><a id="ev-001-source-package-integrity" href="#ev-001-source-package-integrity" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-001</code> — Source package integrity</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:08:00-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td><code>kalaxy3-centralized-logging-deployment-evidence.zip</code> and <code>sage-package.json</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Every declared source payload file</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Python SHA-256 and ZIP reader</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>Every calculated digest equals its manifest digest</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>All declared payload hashes matched</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Direct generated verification</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal repository evidence</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method.md</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-package-manifest.json</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-002-schema-and-structural-contract-audit" href="#ev-002-schema-and-structural-contract-audit" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-002</code> — Schema and structural contract audit</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:09:00-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Audited source record and schema 1.2 metadata contract</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Front matter, metadata, TOC, mandatory sections, claims, evidence items</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Constrained front-matter and Markdown structural parser</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>Exact field order, canonical sections, traceable claims</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>47 fields, 23 sections, 13 claims, and 12 evidence items passed</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Generated structural verification</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal repository evidence</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method.md</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-record-package.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-003-minimum-quality-policy-crosswalk" href="#ev-003-minimum-quality-policy-crosswalk" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-003</code> — Minimum-quality policy crosswalk</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:09:30-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td><code>sage-evidence-policy.json</code>, source package, and generation brief</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Sixteen minimum-quality requirements</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Requirement-to-evidence crosswalk</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>No canonical requirement weaker than the generic prompt baseline</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>16 of 16 requirements met</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Repository authority plus derived conclusion</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal repository governance</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-004-generic-prompt-equivalence" href="#ev-004-generic-prompt-equivalence" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-004</code> — Generic prompt equivalence</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:10:00-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Generic baseline prompt, generation brief, and SAGE evidence policy</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Canonical process equivalence</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Textual and policy comparison</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>Generic prompt maps to the same standard, template, metadata, and publisher controls</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>Canonical request and quality contract were automatically applied to the source generation</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Repository authority and derived conclusion</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal governance</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk.md</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/generation-provenance.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-005-additional-specificity-and-traceability" href="#ev-005-additional-specificity-and-traceability" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-005</code> — Additional specificity and traceability</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:10:30-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Detailed requester language and audited source record</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Material quality beyond the generic sentence</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Content coverage review</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>Additional detail must be material and must not displace canonical requirements</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>Activation, partial failure, correction, helper failures, exact runtime validation, startup pressure, lifecycle, gaps, and lineage were added while all canonical requirements remained present</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Direct record review plus derived conclusion</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal operational evidence</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-record-package.md</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-006-publisher-check-and-publication" href="#ev-006-publisher-check-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-006</code> — Publisher check and publication</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>Don Buddenbaum, reviewed by ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:57:00-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Operator terminal output</td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>SAGE-K3-OBS-20260728-002</code> package validation and publication</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td><code>scripts/sage/sage-publish.py</code></td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>Check passes; publication creates checksum and evidence commit with clean tree</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>Validation PASS; publication completed cleanly at evidence commit <code>81cdb0b9c25491e15be6cc7de8897de3ecbd05b5</code></td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Direct operator observation</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal repository metadata</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-and-merge-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-007-main-merge-and-guardrail-lineage" href="#ev-007-main-merge-and-guardrail-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-007</code> — Main merge and guardrail lineage</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>Don Buddenbaum, reviewed by ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:05:00-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Final merge and guardrail terminal transcript</td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>main</code>, evidence checksums, SAGE and cluster guardrails</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Git, Make, SAGE publisher/indexer, Ansible and Helm guardrails</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>Evidence commit is second parent; guardrails pass; local and remote main synchronize</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>Merge <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code> contains <code>81cdb0b9c25491e15be6cc7de8897de3ecbd05b5</code>; checksums and guardrails passed; divergence <code>0 0</code>; tree clean</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Direct operator observation</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal repository and cluster metadata</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-and-merge-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3><a id="ev-008-audit-limitation-boundary" href="#ev-008-audit-limitation-boundary" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-008</code> — Audit limitation boundary</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Collector</td>
+<td>ChatGPT external audit</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T20:12:00-05:00</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Audit method and scope</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Interpretation of external-audit conclusion</td>
+</tr>
+<tr>
+<td>Tool/version</td>
+<td>Explicit nonclaim and limitation review</td>
+</tr>
+<tr>
+<td>Expected</td>
+<td>No claim of human certification or live-cluster replay</td>
+</tr>
+<tr>
+<td>Actual</td>
+<td>Both limitations are explicit throughout the record and artifacts</td>
+</tr>
+<tr>
+<td>Evidence class</td>
+<td>Audit governance evidence</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitivity</td>
+<td>internal</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method.md</code>; <code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/generation-provenance.md</code></td>
+</tr>
+</tbody>
+</table>
+<h2><a id="verification-and-acceptance-criteria" href="#verification-and-acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Verification and acceptance criteria</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source package integrity</td>
+<td>All declared hashes match</td>
+<td>All matched</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Schema version</td>
+<td>Package and record 1.2</td>
+<td>Both 1.2</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Canonical metadata</td>
+<td>Exact field set and order</td>
+<td>47 fields matched</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Mandatory structure</td>
+<td>TOC and 23 ordered sections</td>
+<td>Present and ordered</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Evidence traceability</td>
+<td>Claims reference defined evidence IDs</td>
+<td>13 claims reference 12 items</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Policy quality</td>
+<td>16 requirements met</td>
+<td>16 of 16</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Generic prompt equivalence</td>
+<td>Same canonical controls</td>
+<td>Demonstrated by policy and brief</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Better-than dimension</td>
+<td>Material added quality</td>
+<td>Specificity, failures, runtime, lifecycle, lineage</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Publisher</td>
+<td>Repository check and publish succeed</td>
+<td>PASS and evidence commit recorded</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Main lineage</td>
+<td>Evidence merged and synchronized</td>
+<td>Merge, guardrails, checksums, zero divergence</td>
+<td>PASS</td>
+</tr>
+<tr>
+<td>Limitation clarity</td>
+<td>No overstatement of independence</td>
+<td>Explicit model-based boundary</td>
+<td>PASS</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="functional-verification" href="#functional-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Functional verification</h3>
+<ul>
+<li>Source package and input bundle were readable and immutable during review.</li>
+<li>Hash recalculation, metadata parsing, section-order review, and claim/evidence counts completed successfully.</li>
+<li>The crosswalk produced no unmet or partially met repository requirement.</li>
+<li>The prompt comparison found canonical equivalence and multiple added-quality dimensions.</li>
+<li>Publication and main lineage were corroborated by direct operator output.</li>
+</ul>
+<h3><a id="negative-verification" href="#negative-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Negative verification</h3>
+<ul>
+<li>No source payload hash mismatch was found.</li>
+<li>No canonical front-matter field was missing, extra, or out of order.</li>
+<li>No mandatory section was missing or misplaced.</li>
+<li>No claim lacked a defined evidence reference.</li>
+<li>No quality requirement was weakened by the detailed request.</li>
+<li>No cluster or implementation write occurred during the audit.</li>
+<li>No claim of independent human certification was made.</li>
+</ul>
+<h2><a id="idempotency-and-repeatability" href="#idempotency-and-repeatability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idempotency and repeatability</h2>
+<h3><a id="first-accepted-run" href="#first-accepted-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>First accepted run</h3>
+<p>The first complete audit run extracted immutable inputs, recalculated digests, parsed the source record, evaluated the policy crosswalk, and produced a supported verdict. No source or cluster state changed.</p>
+<h3><a id="steady-state-rerun" href="#steady-state-rerun" class="Permalink" aria-hidden="true" title="Permalink">#</a>Steady-state rerun</h3>
+<p>A rerun against the same source package and authority bundle should produce identical hashes, counts, requirement results, and conclusion. Prose layout may differ, but the decision rule and evidence facts should remain stable.</p>
+<h3><a id="interpretation" href="#interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Interpretation</h3>
+<p>The audit is idempotent with respect to repository and cluster state. Publishing the audit creates only evidence, checksum, publication-manifest, and generated navigation/index changes owned by the SAGE publisher.</p>
+<h2><a id="security-privacy-and-evidence-handling" href="#security-privacy-and-evidence-handling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security, privacy, and evidence handling</h2>
+<h3><a id="security-controls" href="#security-controls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security controls</h3>
+<ul>
+<li>Source packages were read without executing embedded content.</li>
+<li>SHA-256 verified source payload integrity.</li>
+<li>No cluster credentials or Git credentials were requested or included.</li>
+<li>The audit package uses repository-relative evidence paths and canonical publication tokens.</li>
+<li>The source raw deployment transcript was not duplicated unnecessarily.</li>
+</ul>
+<h3><a id="sensitive-material-excluded" href="#sensitive-material-excluded" class="Permalink" aria-hidden="true" title="Permalink">#</a>Sensitive material excluded</h3>
+<p>No credential values, private-key material, bearer tokens, Kubernetes Secret values, kubeconfig client data, or vault password values are included.</p>
+<h3><a id="redactions-and-omissions" href="#redactions-and-omissions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Redactions and omissions</h3>
+<p>No material audit result was redacted. The full source deployment transcript is omitted from this audit package because it is already hashed and permanently stored under <code>SAGE-K3-OBS-20260728-002</code>. This package includes the source record and manifest required to reproduce the quality review.</p>
+<h3><a id="residual-security-risk" href="#residual-security-risk" class="Permalink" aria-hidden="true" title="Permalink">#</a>Residual security risk</h3>
+<p>Internal node names, commit identifiers, repository paths, service names, and architecture facts remain classified internal. Publishing this record to a public repository would expose those details and should follow the repository’s existing visibility policy.</p>
+<h2><a id="reliability-recovery-rollback-and-rebuild" href="#reliability-recovery-rollback-and-rebuild" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reliability, recovery, rollback, and rebuild</h2>
+<h3><a id="failure-modes" href="#failure-modes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failure modes</h3>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Detection</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Source package hash mismatch</td>
+<td>Integrity table FAIL</td>
+<td>Reject audit conclusion and reacquire source package</td>
+</tr>
+<tr>
+<td>Schema or section mismatch</td>
+<td>Structural parser failure</td>
+<td>Mark source record noncompliant and correct through a new evidence record or publisher-approved supersession</td>
+</tr>
+<tr>
+<td>Policy requirement partially met</td>
+<td>Crosswalk result not MET</td>
+<td>Do not assert “as good or better”; document gap</td>
+</tr>
+<tr>
+<td>Publication output cannot be corroborated</td>
+<td>Missing evidence commit or checksum</td>
+<td>Retain audit as draft until repository evidence is supplied</td>
+</tr>
+<tr>
+<td>Main no longer contains source evidence</td>
+<td>Ancestry or file check fails</td>
+<td>Revalidate against current main and update conclusion</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="rollback" href="#rollback" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rollback</h3>
+<p>This audit makes no implementation change. Before publication, discard the ZIP. After publication, use the repository’s evidence supersession or retirement process rather than rewriting history. Removing this audit does not roll back centralized logging or <code>SAGE-K3-OBS-20260728-002</code>.</p>
+<h3><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h3>
+<ol>
+<li>Obtain the original <code>SAGE-K3-OBS-20260728-002</code> generation package and captured authority bundle.</li>
+<li>Verify package and input SHA-256 values from this record.</li>
+<li>Extract the source manifest and record.</li>
+<li>Repeat the package-hash, metadata-order, section-order, claim/evidence, and sixteen-requirement checks documented in <code>audit-method.md</code>.</li>
+<li>Verify the evidence commit and main merge lineage.</li>
+<li>Generate a schema 1.2 evidence-only package under a new permanent ID if the source or policy changed.</li>
+</ol>
+<h3><a id="data-durability-and-backup-impact" href="#data-durability-and-backup-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data durability and backup impact</h3>
+<p>The audit adds modest Markdown and JSON artifacts only. It does not change Loki data, Longhorn volumes, cluster retention, or backup schedules. Repository durability is provided by Git history and the remote repository after publisher push.</p>
+<h2><a id="operational-considerations-and-observability" href="#operational-considerations-and-observability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational considerations and observability</h2>
+<h3><a id="health-signals" href="#health-signals" class="Permalink" aria-hidden="true" title="Permalink">#</a>Health signals</h3>
+<ul>
+<li>Source record checksum continues to pass.</li>
+<li>Source evidence commit remains reachable from <code>main</code>.</li>
+<li><code>sage-index.py check</code> reports no generated-path changes.</li>
+<li>Repository SAGE guardrails and package publisher checks continue to pass.</li>
+<li>Source package and audit artifact hashes remain stable.</li>
+</ul>
+<h3><a id="routine-verification" href="#routine-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Routine verification</h3>
+<pre><code class="hljs bash">python3 scripts/sage/sage-publish.py check   ~/Downloads/kalaxy3-centralized-logging-sage-evidence-external-audit.zip
+
+python3 scripts/sage/sage-index.py check
+
+shasum -a 256 -c   markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md.sha256
+</code></pre>
+<p>After audit publication, also verify this record’s generated checksum through the same repository mechanism.</p>
+<h3><a id="capacity-performance-cost-and-sustainability" href="#capacity-performance-cost-and-sustainability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity, performance, cost, and sustainability</h3>
+<p>The audit adds a small repository footprint and no continuous compute, storage, or network service. It avoids a redundant second evidence generation and live-cluster replay, reducing operational work while retaining reproducible assurance.</p>
+<h2><a id="known-limitations-evidence-gaps-and-risks" href="#known-limitations-evidence-gaps-and-risks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Known limitations, evidence gaps, and risks</h2>
+<ul>
+<li>The external reviewer is ChatGPT, not an independent human audit firm or named human governance reviewer.</li>
+<li>The audit did not access the live cluster; it validates evidence quality and lineage, not current runtime freshness after 2026-07-28.</li>
+<li>The published source record itself was not retrieved from Git after token replacement; the immutable prepublication package record plus publisher success and checksum output were reviewed.</li>
+<li>The exact output of a hypothetical fresh generation from the generic prompt is unknowable because generation is nondeterministic. The comparison therefore uses canonical requirements and material coverage.</li>
+<li>The source record retains <code>reviewer: pending</code>; this audit verifies quality but does not retroactively edit that metadata or change its lifecycle status.</li>
+<li>Future policy or schema changes could alter what the generic prompt requires and would trigger revalidation.</li>
+</ul>
+<h2><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h2>
+<h3><a id="source-package-hash-does-not-match" href="#source-package-hash-does-not-match" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source package hash does not match</h3>
+<p><strong>Symptom:</strong> The audited package SHA-256 differs from <code>a2f555666b14013060c9bd7ce2be1a631320cef083938374520e790c927ea137</code>.</p>
+<p><strong>Interpretation:</strong> The package is not the exact audited baseline.</p>
+<p><strong>Response:</strong> Retrieve the package associated with <code>SAGE-K3-OBS-20260728-002</code>, run the repository publisher check, and repeat the audit under a new evidence ID if contents changed.</p>
+<h3><a id="publisher-check-passes-but-semantic-crosswalk-fails" href="#publisher-check-passes-but-semantic-crosswalk-fails" class="Permalink" aria-hidden="true" title="Permalink">#</a>Publisher check passes but semantic crosswalk fails</h3>
+<p><strong>Symptom:</strong> Structure is valid, but a minimum-quality requirement lacks supporting content.</p>
+<p><strong>Interpretation:</strong> Publisher acceptance is necessary but not sufficient for the “as good or better” conclusion.</p>
+<p><strong>Response:</strong> Record the gap, do not publish a positive verdict, and create a supplemental or superseding evidence record through the canonical process.</p>
+<h3><a id="source-record-and-manifest-disagree" href="#source-record-and-manifest-disagree" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source record and manifest disagree</h3>
+<p><strong>Symptom:</strong> Evidence ID, record path, branch, schema, or file hash differs.</p>
+<p><strong>Interpretation:</strong> Package integrity or construction is invalid.</p>
+<p><strong>Response:</strong> Reject the package and regenerate from the captured SAGE input bundle.</p>
+<h3><a id="main-ancestry-no-longer-contains-the-source-evidence-commit" href="#main-ancestry-no-longer-contains-the-source-evidence-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Main ancestry no longer contains the source evidence commit</h3>
+<p><strong>Symptom:</strong> <code>81cdb0b9c25491e15be6cc7de8897de3ecbd05b5</code> is not reachable from current <code>main</code>.</p>
+<p><strong>Interpretation:</strong> Repository history or branch lineage changed after this audit.</p>
+<p><strong>Response:</strong> Stop branch cleanup, inspect repository history, and revalidate against the current authoritative branch.</p>
+<h3><a id="a-reader-interprets-external-audit-as-human-certification" href="#a-reader-interprets-external-audit-as-human-certification" class="Permalink" aria-hidden="true" title="Permalink">#</a>A reader interprets “external audit” as human certification</h3>
+<p><strong>Symptom:</strong> The record is cited as independent legal or regulatory assurance.</p>
+<p><strong>Interpretation:</strong> The model-based scope limitation was ignored.</p>
+<p><strong>Response:</strong> Cite the Nonclaims and Known limitations sections; obtain a named human reviewer when formal assurance is required.</p>
+<h2><a id="freshness-revalidation-and-supersession" href="#freshness-revalidation-and-supersession" class="Permalink" aria-hidden="true" title="Permalink">#</a>Freshness, revalidation, and supersession</h2>
+<h3><a id="revalidate-when" href="#revalidate-when" class="Permalink" aria-hidden="true" title="Permalink">#</a>Revalidate when</h3>
+<ul>
+<li><code>SAGE-K3-OBS-20260728-002</code> or any of its artifacts changes.</li>
+<li>Its checksum fails or its evidence commit is no longer reachable from <code>main</code>.</li>
+<li>The SAGE standard, template, metadata contract, evidence policy, publisher, or canonical request changes.</li>
+<li>The source record is superseded, retired, or accepted by a named governance reviewer.</li>
+<li>A human external audit is completed.</li>
+<li>The meaning of the generic working-session prompt changes through repository governance.</li>
+</ul>
+<h3><a id="scheduled-review" href="#scheduled-review" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scheduled review</h3>
+<p>Review is event-based. No periodic runtime review is required because this record audits evidence quality rather than live service health.</p>
+<h3><a id="supersession-rule" href="#supersession-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>Supersession rule</h3>
+<p>A later audit supersedes this record only when it names this evidence ID, uses current repository authorities, states the changed scope, and preserves this record’s lineage rather than rewriting it.</p>
+<h2><a id="final-completion-checklist-and-reviewer-acceptance" href="#final-completion-checklist-and-reviewer-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final completion checklist and reviewer acceptance</h2>
+<h3><a id="governance" href="#governance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governance</h3>
+<ul>
+<li>[x] Original audit requester language is preserved.</li>
+<li>[x] Generic comparison prompt is preserved exactly.</li>
+<li>[x] Canonical schema 1.2 metadata is complete and ordered.</li>
+<li>[x] Source record remains immutable.</li>
+<li>[x] Audit relationship verifies <code>SAGE-K3-OBS-20260728-002</code>.</li>
+<li>[x] Limitations prevent overstatement of external assurance.</li>
+</ul>
+<h3><a id="evidence" href="#evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence</h3>
+<ul>
+<li>[x] Source package SHA-256 recorded.</li>
+<li>[x] Every source payload hash independently verified.</li>
+<li>[x] Mandatory structure and claim/evidence counts verified.</li>
+<li>[x] Sixteen-requirement crosswalk completed.</li>
+<li>[x] Publisher and merge lineage preserved.</li>
+<li>[x] Audit artifacts are under the permanent evidence ID.</li>
+</ul>
+<h3><a id="safety-and-operations" href="#safety-and-operations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Safety and operations</h3>
+<ul>
+<li>[x] No live-cluster or implementation change performed.</li>
+<li>[x] No credentials or secret values included.</li>
+<li>[x] Rollback, rebuild, troubleshooting, and revalidation documented.</li>
+<li>[x] Feature branch deletion remains deferred until audit publication.</li>
+</ul>
+<h3><a id="review-acceptance" href="#review-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Review acceptance</h3>
+<ul>
+<li>[x] Audit verdict is supported with high confidence.</li>
+<li>[x] <code>SAGE-K3-OBS-20260728-002</code> meets the generic prompt baseline.</li>
+<li>[x] Material stronger-quality dimensions are identified and evidenced.</li>
+<li>[x] Model-based external-review boundary is explicit.</li>
+</ul>
+<h2><a id="git-review-and-publication" href="#git-review-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git review and publication</h2>
+<p>This package is evidence-only and targets <code>main</code> at implementation checkpoint <code>d5878d8d7ad3dc2f90822bbf162fe2b2fc63d075</code>. The repository publisher owns token replacement, checksum creation, publication-manifest creation, evidence-index reconciliation, commit, and push.</p>
+<p>Standard validation:</p>
+<pre><code class="hljs bash">python3 scripts/sage/sage-publish.py check   ~/Downloads/kalaxy3-centralized-logging-sage-evidence-external-audit.zip
+</code></pre>
+<p>Standard publication:</p>
+<pre><code class="hljs bash">python3 scripts/sage/sage-publish.py publish   ~/Downloads/kalaxy3-centralized-logging-sage-evidence-external-audit.zip   --push
+</code></pre>
+<h2><a id="appendices" href="#appendices" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendices</h2>
+<h3><a id="artifact-inventory" href="#artifact-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifact inventory</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-package-manifest.json</code></td>
+<td>Immutable source package manifest used by the audit</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-record-package.md</code></td>
+<td>Immutable prepublication source-record baseline from the generation package</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method.md</code></td>
+<td>Audit inputs, procedure, decision rule, integrity results, and structural counts</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk.md</code></td>
+<td>Sixteen-requirement and generic-prompt comparison matrix</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-and-merge-evidence.md</code></td>
+<td>Publisher, evidence commit, merge, guardrail, checksum, and synchronization evidence</td>
+</tr>
+<tr>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/generation-provenance.md</code></td>
+<td>Audit requester language, baseline prompt, source hashes, and generation boundary</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="additional-notes" href="#additional-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Additional notes</h3>
+<p>The positive verdict does not depend on the source record being longer. It depends on the source record satisfying the same canonical contract as the generic prompt and preserving additional material, traceable evidence without displacing required content. On that basis, <code>SAGE-K3-OBS-20260728-002</code> is as good or better.</p>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../templates/sage_evidence_record_template.html">Previous</a></li>                    </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../'})
+    </script>
+</body>
+</html>

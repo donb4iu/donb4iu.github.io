@@ -1,0 +1,2629 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence - Kalaxy3 K3s Cluster</title>
+    <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+    <meta name="author" content="ChatGPT">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../index.html">Kalaxy3 K3s Cluster</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>benchmarks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../benchmarks/kalaxy3_pre_logging_kubecost_baseline_evidence.html">Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../../evidence/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>evidence</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/current.html">current</a></li>
+<li class='Nav__item '><a href="../../evidence/legacy.html">legacy</a></li>
+<li class='Nav__item '><a href="../../evidence/migration_report.html">migration-report</a></li>
+<li class='Nav__item  has-children'><a href="../../evidence/sections/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>sections</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/sections/benchmarks.html">benchmarks</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/finops.html">finops</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/governance.html">governance</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/installation.html">installation</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/operations.html">operations</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/security.html">security</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/verification.html">verification</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../../evidence/status/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>status</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/status/historical.html">historical</a></li>
+<li class='Nav__item '><a href="../../evidence/status/validated.html">validated</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../../evidence/subjects/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>subjects</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/subjects/amd64.html">amd64</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/amd64_nocloud_seed_usb_helper.html">amd64-nocloud-seed-usb-helper</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/amd64_node.html">amd64-node</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/centralized_logging_cost_baseline.html">centralized-logging-cost-baseline</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/centralized_observability_logging.html">centralized-observability-logging</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/intel_node_pi_administrative_access_evidence.html">intel-node-pi-administrative-access-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/k3s_api_high_availability.html">k3s-api-high-availability</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_automation_controller_portability.html">kalaxy3-automation-controller-portability</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_controller_access_baseline.html">kalaxy3-controller-access-baseline</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_daux_landing_page.html">kalaxy3-daux-landing-page</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_sage_evidence_record_standard_1_0.html">kalaxy3-sage-evidence-record-standard-1-0</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kubecost_chart_3_2_1.html">kubecost-chart-3-2-1</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kubecost_installation.html">kubecost-installation</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/longhorn_kubecost.html">longhorn-kubecost</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/minio_installation_evidence.html">minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/observability.html">observability</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/protected_longhorn.html">protected-longhorn</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/protected_traefik_dashboard_installation.html">protected-traefik-dashboard-installation</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/sage_enforcement_guardrails.html">sage-enforcement-guardrails</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/sage_evidence_catalog.html">sage-evidence-catalog</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/sage_record_schema.html">sage-record-schema</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/ubuntu_installation.html">ubuntu-installation</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/ubuntu_node_provisioning.html">ubuntu-node-provisioning</a></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>evidence-artifacts</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-FINOPS-20260724-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_FINOPS_20260724_001/terminal_evidence_20260725.html">terminal-evidence-20260725</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-002</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/guardrail_gap_analysis.html">guardrail-gap-analysis</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/pause_decision.html">pause-decision</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/source_index.html">source-index</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/repository_authority_evidence.html">repository-authority-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-002</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/repository_authority_evidence.html">repository-authority-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/audit_method.html">audit-method</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/audited_source_record_package.html">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/publication_and_merge_evidence.html">publication-and-merge-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/requirement_crosswalk.html">requirement-crosswalk</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-SECURITY-20260726-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_SECURITY_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>governance</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../governance/kalaxy3_daux_landing_page_sage_evidence.html">Kalaxy3 Daux Landing Page Source and Local Render Validation</a></li>
+<li class='Nav__item '><a href="../../governance/kalaxy3_sage_guardrail_gap_observability_pause_evidence.html">SAGE Guardrail Gap Discovery and Centralized Logging Work Pause</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_kubecost_calibration_sage_evidence.html">Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../operations/kalaxy3_centralized_logging_deployment_evidence.html">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_controller_machine_portability_evidence.html">Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_legacy_evidence_navigation_evidence.html">Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_observability_iterative_readiness_evidence.html">Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>security</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../security/kalaxy3_controller_access_baseline_sage_evidence.html">Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>standards</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_change_discovery_process.html">kalaxy3-sage-change-discovery-process</a></li>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_evidence_orchestration_process.html">kalaxy3-sage-evidence-orchestration-process</a></li>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_evidence_publication_process.html">Kalaxy3 SAGE Evidence Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_evidence_record_standard.html">Kalaxy3 SAGE Evidence Record Standard</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>templates</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../templates/sage_evidence_generation_request.html">sage-evidence-generation-request</a></li>
+<li class='Nav__item '><a href="../../templates/sage_evidence_record_template.html"><Formal evidence-record title></a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>verification</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../verification/kalaxy3_centralized_logging_sage_evidence_quality_audit.html">External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence</a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../evidence_artifacts/SAGE_K3_FINOPS_20260724_001/terminal_evidence_20260725.html">evidence-artifacts</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/audit_method.html">SAGE-K3-OBS-20260728-003</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/audited_source_record_package.html">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a></h1>
+                <span class="ModifiedDate">
+            July 28, 2026 at 6:21 PM        </span>
+                    </div>
+
+    <div class="s-content">
+        <h1><a id="centralized-logging-activation-deployment-correction-and-runtime-validation-evidence" href="#centralized-logging-activation-deployment-correction-and-runtime-validation-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</h1>
+<h2><a id="executive-summary" href="#executive-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Executive summary</h2>
+<p>This validated record documents the activation and deployment of centralized logging as one component of the broader Kalaxy3 observability platform. Loki 18.5.4 and Fluent Bit Collector 1.0.9 are deployed from exact repository locks; Loki and its gateway are ready on <code>amd64-02</code>; one collector is ready on each of seven nodes; the 40 Gi Longhorn volume is attached, healthy, and replicated twice; Grafana loaded and reached the Loki datasource; and recent <code>cluster=&quot;kalaxy3&quot;</code> logs from every node are queryable. The record also preserves the partial-deployment failure, repository correction, startup backlog behavior, verification-helper mistakes, final guardrails, and unresolved operational tests.</p>
+<div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li><a href="#centralized-logging-activation-deployment-correction-and-runtime-validation-evidence">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a>
+<ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#record-metadata">Record metadata</a></li>
+<li><a href="#five-ws-and-how">Five Ws and How</a>
+<ul>
+<li><a href="#five-w-completeness-gate">Five-W completeness gate</a></li>
+</ul>
+</li>
+<li><a href="#scope-and-boundaries">Scope and boundaries</a>
+<ul>
+<li><a href="#in-scope">In scope</a></li>
+<li><a href="#out-of-scope">Out of scope</a></li>
+<li><a href="#nonclaims">Nonclaims</a></li>
+</ul>
+</li>
+<li><a href="#final-accepted-state">Final accepted state</a></li>
+<li><a href="#claims-and-evidence-matrix">Claims and evidence matrix</a></li>
+<li><a href="#problem-and-decision-rationale">Problem and decision rationale</a>
+<ul>
+<li><a href="#problem-or-opportunity">Problem or opportunity</a></li>
+<li><a href="#decision">Decision</a></li>
+<li><a href="#decision-drivers">Decision drivers</a></li>
+<li><a href="#alternatives-considered">Alternatives considered</a></li>
+<li><a href="#tradeoffs-and-consequences">Tradeoffs and consequences</a></li>
+</ul>
+</li>
+<li><a href="#architecture-or-change-description">Architecture or change description</a>
+<ul>
+<li><a href="#before">Before</a></li>
+<li><a href="#after">After</a></li>
+</ul>
+</li>
+<li><a href="#source-of-truth-and-implementation-lineage">Source of truth and implementation lineage</a>
+<ul>
+<li><a href="#repository-files">Repository files</a></li>
+<li><a href="#implementation-commit">Implementation commit</a></li>
+<li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#controller-portability-and-repository-authority">Controller portability and repository authority</a></li>
+<li><a href="#configuration-excerpt">Configuration excerpt</a></li>
+</ul>
+</li>
+<li><a href="#prerequisites-and-assumptions">Prerequisites and assumptions</a>
+<ul>
+<li><a href="#proven-prerequisites">Proven prerequisites</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-procedure">Implementation procedure</a>
+<ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#expected-change">Expected change</a></li>
+<li><a href="#observed-change">Observed change</a></li>
+<li><a href="#failed-or-superseded-paths">Failed or superseded paths</a></li>
+</ul>
+</li>
+<li><a href="#evidence-items">Evidence items</a>
+<ul>
+<li><a href="#ev-001-activation-checkpoint-and-predeployment-guardrails">EV-001 — Activation checkpoint and predeployment guardrails</a></li>
+<li><a href="#ev-002-partial-deployment-and-datasource-failure">EV-002 — Partial deployment and datasource failure</a></li>
+<li><a href="#ev-003-repository-correction-dry-run-guardrails-and-push">EV-003 — Repository correction, dry-run, guardrails, and push</a></li>
+<li><a href="#ev-004-successful-resumed-observability-phase">EV-004 — Successful resumed observability phase</a></li>
+<li><a href="#ev-005-loki-release-rollout-and-placement">EV-005 — Loki release, rollout, and placement</a></li>
+<li><a href="#ev-006-fluent-bit-release-and-all-node-collector-coverage">EV-006 — Fluent Bit release and all-node collector coverage</a></li>
+<li><a href="#ev-007-loki-longhorn-storage">EV-007 — Loki Longhorn storage</a></li>
+<li><a href="#ev-008-grafana-datasource-loading-and-health">EV-008 — Grafana datasource loading and health</a></li>
+<li><a href="#ev-009-queryable-recent-logs-and-all-node-stream-labels">EV-009 — Queryable recent logs and all-node stream labels</a></li>
+<li><a href="#ev-010-startup-backlog-errors-and-clearance">EV-010 — Startup backlog errors and clearance</a></li>
+<li><a href="#ev-011-final-source-deployment-cluster-and-git-reconciliation">EV-011 — Final source, deployment, cluster, and Git reconciliation</a></li>
+<li><a href="#ev-012-verification-helper-failures-and-final-hardened-method">EV-012 — Verification-helper failures and final hardened method</a></li>
+</ul>
+</li>
+<li><a href="#verification-and-acceptance-criteria">Verification and acceptance criteria</a>
+<ul>
+<li><a href="#functional-verification">Functional verification</a></li>
+<li><a href="#negative-verification">Negative verification</a></li>
+</ul>
+</li>
+<li><a href="#idempotency-and-repeatability">Idempotency and repeatability</a>
+<ul>
+<li><a href="#first-accepted-run">First accepted run</a></li>
+<li><a href="#steady-state-rerun">Steady-state rerun</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#security-privacy-and-evidence-handling">Security, privacy, and evidence handling</a>
+<ul>
+<li><a href="#security-controls">Security controls</a></li>
+<li><a href="#sensitive-material-excluded">Sensitive material excluded</a></li>
+<li><a href="#redactions-and-omissions">Redactions and omissions</a></li>
+<li><a href="#residual-security-risk">Residual security risk</a></li>
+</ul>
+</li>
+<li><a href="#reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild</a>
+<ul>
+<li><a href="#failure-modes">Failure modes</a></li>
+<li><a href="#rollback">Rollback</a></li>
+<li><a href="#rebuild-procedure">Rebuild procedure</a></li>
+<li><a href="#data-durability-and-backup-impact">Data durability and backup impact</a></li>
+</ul>
+</li>
+<li><a href="#operational-considerations-and-observability">Operational considerations and observability</a>
+<ul>
+<li><a href="#health-signals">Health signals</a></li>
+<li><a href="#routine-verification">Routine verification</a></li>
+<li><a href="#capacity-performance-cost-and-sustainability">Capacity, performance, cost, and sustainability</a></li>
+</ul>
+</li>
+<li><a href="#known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#grafana-datasource-task-fails-with-missing-python-kubernetes-library">Grafana datasource task fails with missing Python Kubernetes library</a></li>
+<li><a href="#fluent-bit-reports-http-429">Fluent Bit reports HTTP 429</a></li>
+<li><a href="#fluent-bit-reports-entries-too-old-or-too-far-behind">Fluent Bit reports entries too old or too far behind</a></li>
+<li><a href="#loki-pod-is-pending-or-volume-is-degraded">Loki pod is Pending or volume is degraded</a></li>
+<li><a href="#grafana-does-not-show-loki-after-configmap-creation">Grafana does not show Loki after ConfigMap creation</a></li>
+<li><a href="#validation-helper-fails-before-cluster-checks">Validation helper fails before cluster checks</a></li>
+</ul>
+</li>
+<li><a href="#freshness-revalidation-and-supersession">Freshness, revalidation, and supersession</a>
+<ul>
+<li><a href="#revalidate-when">Revalidate when</a></li>
+<li><a href="#scheduled-review">Scheduled review</a></li>
+<li><a href="#supersession-rule">Supersession rule</a></li>
+</ul>
+</li>
+<li><a href="#final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance</a>
+<ul>
+<li><a href="#governance">Governance</a></li>
+<li><a href="#evidence">Evidence</a></li>
+<li><a href="#safety-and-operations">Safety and operations</a></li>
+<li><a href="#review-acceptance">Review acceptance</a></li>
+</ul>
+</li>
+<li><a href="#git-review-and-publication">Git review and publication</a></li>
+<li><a href="#appendices-and-raw-artifacts">Appendices and raw artifacts</a>
+<ul>
+<li><a href="#artifact-inventory">Artifact inventory</a></li>
+<li><a href="#additional-notes">Additional notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h2><a id="record-metadata" href="#record-metadata" class="Permalink" aria-hidden="true" title="Permalink">#</a>Record metadata</h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-OBS-20260728-002</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.2</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</td>
+</tr>
+<tr>
+<td><strong>Navigation title</strong></td>
+<td>Deploy centralized logging observability</td>
+</tr>
+<tr>
+<td><strong>Navigation section</strong></td>
+<td>operations</td>
+</tr>
+<tr>
+<td><strong>Navigation order</strong></td>
+<td>440</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Documents activating and deploying Loki and Fluent Bit, correcting Grafana datasource reconciliation, and validating storage, all-node collection, Grafana health, and queryable logs.</td>
+</tr>
+<tr>
+<td><strong>Primary subject</strong></td>
+<td>Centralized observability logging</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td>operations</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>validated</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>centralized-logging-deployment-20260728</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td>2026-07-28T18:51:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td>2026-07-28T19:44:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td>2026-07-28T19:44:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td><strong>SAGE_PUBLISHED_AT</strong></td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td>America/Chicago; UTC</td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td>2026-07-28</td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td>event-based</td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>wip/centralized-logging-staged-20260726</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td><strong>SAGE_IMPLEMENTATION_COMMIT</strong></td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>homelab</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; amd64-01; amd64-02</td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td>arm64-01=192.168.2.51; arm64-02=192.168.2.52; arm64-03=192.168.2.53; arm64-04=192.168.2.54; arm64-05=192.168.2.55; amd64-01=192.168.2.61; amd64-02=192.168.2.62</td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td>observability; longhorn-system; kubecost; metallb-system; kube-system</td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td>grafana=192.168.2.25; loki-api=loki.observability.svc.cluster.local:3100; loki-gateway=loki-gateway.observability.svc.cluster.local:80</td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td>SAGE schema=1.2; K3s=v1.36.2+k3s1; Helm=v3.21.3+g1ad6e68; ansible-core=2.18.7; kubernetes.core=5.1.0; Loki Helm chart=18.5.4; Loki application=3.7.4; Fluent Bit Collector Helm chart=1.0.9; Fluent Bit=5.0.9; kube-prometheus-stack Helm chart=87.19.0; kube-prometheus-stack application=v0.92.1; Grafana=13.1.1; Longhorn=1.12.0</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Kalaxy3 architecture</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>ChatGPT</td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td>pending</td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="five-ws-and-how" href="#five-ws-and-how" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five Ws and How</h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td><strong>Author:</strong> ChatGPT; <strong>operator:</strong> Don Buddenbaum; <strong>owner:</strong> Kalaxy3 architecture; <strong>reviewer:</strong> pending; <strong>affected users/teams:</strong> Kalaxy3 operators, platform users, and future SAGE reviewers.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Activated and deployed Loki and Fluent Bit Collector, corrected Grafana datasource reconciliation after a partial deployment, resumed the observability phase, and validated exact releases, placement, storage, Grafana health, all-node ingestion, startup-pressure clearance, guardrails, and repository state.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td><strong>Completed:</strong> 2026-07-28T19:39:00-05:00; <strong>evidence collected:</strong> 2026-07-28T19:44:00-05:00; <strong>local timezone:</strong> America/Chicago; <strong>system timestamps:</strong> America/Chicago; UTC; <strong>valid as of:</strong> 2026-07-28; <strong>review due:</strong> event-based. Kubernetes and application logs crossed midnight in UTC on 2026-07-29 while the local work session remained 2026-07-28.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td><strong>Environment:</strong> homelab; <strong>cluster:</strong> kalaxy3; <strong>execution host:</strong> donbs-imac; <strong>controller:</strong> donbs-imac; <strong>nodes:</strong> arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; amd64-01; amd64-02; <strong>addresses:</strong> arm64-01=192.168.2.51; arm64-02=192.168.2.52; arm64-03=192.168.2.53; arm64-04=192.168.2.54; arm64-05=192.168.2.55; amd64-01=192.168.2.61; amd64-02=192.168.2.62; <strong>namespaces:</strong> observability; longhorn-system; kubecost; metallb-system; kube-system; <strong>endpoints:</strong> grafana=192.168.2.25; loki-api=loki.observability.svc.cluster.local:3100; loki-gateway=loki-gateway.observability.svc.cluster.local:80; <strong>record:</strong> markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>The staged implementation had passed activation readiness and needed a controlled deployment that preserved exact sources, chart locks, placement, storage, validation, and failure evidence. Repository correction was required because the initial datasource task depended on an unavailable remote Python library.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>The operator published an isolated activation commit, ran the repository observability phase, inspected the partial deployment, replaced the failing datasource module with repository-established <code>k3s kubectl apply</code>, validated and pushed that correction, resumed deployment, and executed read-only runtime tests plus cluster guardrails. Raw terminal and repository-authority artifacts are hashed under the permanent evidence ID.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="five-w-completeness-gate" href="#five-w-completeness-gate" class="Permalink" aria-hidden="true" title="Permalink">#</a>Five-W completeness gate</h3>
+<ul>
+<li>[x] Who is complete and agrees with metadata.</li>
+<li>[x] What is complete.</li>
+<li>[x] When is complete, uses canonical timestamps, and explains the UTC date boundary.</li>
+<li>[x] Where is complete at repository, cluster, node, namespace, and endpoint levels.</li>
+<li>[x] Why includes rationale, alternatives, tradeoffs, and governance constraints.</li>
+<li>[x] How is reproducible, bounded, and tied to repository authority.</li>
+</ul>
+<h2><a id="scope-and-boundaries" href="#scope-and-boundaries" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scope and boundaries</h2>
+<h3><a id="in-scope" href="#in-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>In scope</h3>
+<ul>
+<li>Activation of <code>deploy_centralized_logging</code> and publication of commit <code>9c8b0e68aa742dad796d6871df24faf78f4485aa</code> before cluster mutation.</li>
+<li>Installation and reconciliation of exact Loki and Fluent Bit Collector chart locks.</li>
+<li>The partial deployment, datasource failure, repository correction, server-side dry-run, commit <code>4247387a8062a0a353f5704e40c90b1727881a4a</code>, and successful resumed deployment.</li>
+<li>Loki and gateway placement, all-node collector readiness, Longhorn storage, Grafana datasource loading and health, Loki queries, all-node stream labels, startup ingestion pressure, and final cluster guardrails.</li>
+<li>Operator-side verification-helper failures that explain how final evidence collection was hardened.</li>
+</ul>
+<h3><a id="out-of-scope" href="#out-of-scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>Out of scope</h3>
+<ul>
+<li>Long-term retention-expiry proof for the configured <code>168h</code> retention period.</li>
+<li>Longhorn backup, restore, replica-failure, node-loss, and disaster-recovery tests for Loki data.</li>
+<li>Sustained throughput, capacity, and resource-cost benchmarking under representative workloads.</li>
+<li>Alerting and SLOs for ingestion rejection, 429 responses, collector buffering, storage pressure, and query latency.</li>
+<li>Automated repository rollback or deactivation logic; current rollback remains a controlled manual procedure.</li>
+<li>Acceptance by a named reviewer; status remains <code>validated</code>, not <code>accepted</code>.</li>
+</ul>
+<h3><a id="nonclaims" href="#nonclaims" class="Permalink" aria-hidden="true" title="Permalink">#</a>Nonclaims</h3>
+<ul>
+<li>This record does not claim that centralized logging is the entirety of Kalaxy3 observability.</li>
+<li>It does not claim high availability for the monolithic single-replica Loki process.</li>
+<li>It does not claim that every historical log line was ingested; old entries were intentionally rejected by Loki’s active time windows during startup.</li>
+<li>It does not claim that the full observability phase is Helm-revision idempotent; <code>kube-prometheus-stack</code> advanced to revision 12 during repeated reconciliation.</li>
+</ul>
+<h2><a id="final-accepted-state" href="#final-accepted-state" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final accepted state</h2>
+<pre><code class="language-text">Activation gate:               true
+Loki release:                  loki-18.5.4, revision 1, deployed
+Loki application:              3.7.4
+Loki topology:                 monolithic single replica plus gateway
+Loki placement:                amd64-02
+Fluent Bit Collector release:  fluent-bit-collector-1.0.9, revision 1, deployed
+Fluent Bit application:        5.0.9
+Collector coverage:            one ready pod on each of seven nodes
+Loki PVC:                      storage-loki-0, Bound, 40Gi, longhorn
+Longhorn volume:               attached, healthy, two replicas
+Grafana datasource:            uid=loki, type=loki, health=OK
+Log query:                     recent cluster=kalaxy3 streams returned
+Node-stream coverage:          all seven nodes observed
+Startup errors, final window:  zero 429 and zero old-timestamp errors in five minutes
+Guardrails:                    eight installed locked releases, zero permitted new releases
+Repository:                    clean and synchronized at 4247387a8062a0a353f5704e40c90b1727881a4a
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deployment gate</td>
+<td>Active and represented in repository state.</td>
+</tr>
+<tr>
+<td>Loki</td>
+<td>Exact chart deployed, runtime ready, placed on the intended AMD64 platform node.</td>
+</tr>
+<tr>
+<td>Collection</td>
+<td>Exact Fluent Bit Collector chart deployed as an all-node DaemonSet.</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Bound Longhorn PVC and healthy two-replica attached volume.</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td>Datasource ConfigMap loaded and successful health response returned.</td>
+</tr>
+<tr>
+<td>Ingestion</td>
+<td>Recent logs queryable and all seven node labels present.</td>
+</tr>
+<tr>
+<td>Startup pressure</td>
+<td>Initial backlog generated 429 and old-entry rejection, then cleared in the final five-minute observation.</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>Source, deployment, cluster, and SAGE controls reconciled; repository clean and remote-synchronized.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="claims-and-evidence-matrix" href="#claims-and-evidence-matrix" class="Permalink" aria-hidden="true" title="Permalink">#</a>Claims and evidence matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>The deployment gate was activated and pushed before cluster deployment.</td>
+<td>high</td>
+<td><code>EV-001</code>; <code>EV-003</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>Loki 18.5.4 is deployed at Helm revision 1.</td>
+<td>critical</td>
+<td><code>EV-002</code>; <code>EV-004</code>; <code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>Fluent Bit Collector 1.0.9 is deployed at Helm revision 1.</td>
+<td>critical</td>
+<td><code>EV-002</code>; <code>EV-004</code>; <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>The initial datasource failure was caused by an unavailable Python Kubernetes client after both logging releases installed.</td>
+<td>high</td>
+<td><code>EV-002</code>; <code>EV-003</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>Repository commit <code>4247387a8062a0a353f5704e40c90b1727881a4a</code> corrected datasource reconciliation with <code>k3s kubectl apply</code>.</td>
+<td>critical</td>
+<td><code>EV-003</code>; <code>EV-011</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>Loki and its gateway are ready on <code>amd64-02</code>.</td>
+<td>critical</td>
+<td><code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>Exactly one ready collector runs on each of seven nodes.</td>
+<td>critical</td>
+<td><code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-008</code></td>
+<td>Loki uses a Bound 40 Gi Longhorn PVC backed by an attached, healthy, two-replica volume.</td>
+<td>critical</td>
+<td><code>EV-007</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-009</code></td>
+<td>Grafana loaded the <code>loki</code> datasource and successfully connected to Loki.</td>
+<td>critical</td>
+<td><code>EV-008</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-010</code></td>
+<td>Recent <code>cluster=&quot;kalaxy3&quot;</code> logs are queryable and include streams from all seven nodes.</td>
+<td>critical</td>
+<td><code>EV-009</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-011</code></td>
+<td>Initial ingestion-rate and historical-timestamp errors cleared in the final five-minute window.</td>
+<td>high</td>
+<td><code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-012</code></td>
+<td>Final cluster reconciliation found eight installed locked releases and zero permitted new releases, with a clean synchronized repository.</td>
+<td>critical</td>
+<td><code>EV-011</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-013</code></td>
+<td>Ad hoc verification-helper failures were distinguishable from repository or cluster failures and did not invalidate the final runtime result.</td>
+<td>normal</td>
+<td><code>EV-012</code>; <code>EV-009</code>; <code>EV-011</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="problem-and-decision-rationale" href="#problem-and-decision-rationale" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem and decision rationale</h2>
+<h3><a id="problem-or-opportunity" href="#problem-or-opportunity" class="Permalink" aria-hidden="true" title="Permalink">#</a>Problem or opportunity</h3>
+<p>The staged implementation was activation-ready but had not yet been exercised against the live cluster. Activation introduced a real state transition: two new Helm releases, an all-node collector, a persistent logging backend, and a Grafana datasource. The first live run exposed a controller/target dependency mismatch after the logging workloads were already installed.</p>
+<h3><a id="decision" href="#decision" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision</h3>
+<p>Proceed through secured checkpoints: first publish the gate activation without touching the cluster; then deploy through the repository observability phase; preserve the partial state when datasource provisioning failed; correct the repository instead of installing an ad hoc Python dependency on <code>arm64-01</code>; resume the same phase; and require runtime validation before declaring completion.</p>
+<h3><a id="decision-drivers" href="#decision-drivers" class="Permalink" aria-hidden="true" title="Permalink">#</a>Decision drivers</h3>
+<ul>
+<li>Preserve repository authority and controller portability.</li>
+<li>Avoid disguising a partial deployment as either total success or total failure.</li>
+<li>Reuse the existing K3s CLI authority already available on the execution node.</li>
+<li>Keep Loki and Fluent Bit on exact, approved chart locks.</li>
+<li>Require evidence of the actual data path, not only pod readiness.</li>
+<li>Retain failed paths that explain the final implementation and validation method.</li>
+</ul>
+<h3><a id="alternatives-considered" href="#alternatives-considered" class="Permalink" aria-hidden="true" title="Permalink">#</a>Alternatives considered</h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install the Python Kubernetes client globally on <code>arm64-01</code></td>
+<td>Minimal task rewrite</td>
+<td>Adds a remote package dependency not established by the repository and creates controller drift</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Run the datasource task only from the macOS controller</td>
+<td>Existing Python environment</td>
+<td>Splits phase execution authority and requires controller-specific kubeconfig handling</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Use repository-established <code>k3s kubectl apply</code> on the execution host</td>
+<td>No new dependency, simple, auditable, works with existing K3s authority</td>
+<td>Changed-state detection must parse command output</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td>Roll back Loki and Fluent Bit immediately after datasource failure</td>
+<td>Restores pre-deployment state</td>
+<td>Discards healthy installed work and adds unnecessary storage churn</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Ignore startup 429 and old-entry errors</td>
+<td>Faster closure</td>
+<td>Could hide persistent loss or an undersized ingestion path</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Raise Loki limits immediately</td>
+<td>May accelerate backlog drain</td>
+<td>Changes capacity policy before measuring whether startup pressure is transient</td>
+<td>deferred</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="tradeoffs-and-consequences" href="#tradeoffs-and-consequences" class="Permalink" aria-hidden="true" title="Permalink">#</a>Tradeoffs and consequences</h3>
+<ul>
+<li>A single-replica monolithic Loki is economical and simple, but not process-highly-available.</li>
+<li>Retained Longhorn storage provides disk replication, but does not replace tested backup and restore.</li>
+<li>The all-node collector provides broad coverage, but a first start can replay significant local backlog and transiently exceed ingestion limits.</li>
+<li><code>auth_enabled: false</code> simplifies internal single-tenant operation, but makes network isolation and Grafana access controls important.</li>
+<li>Re-running the broad observability phase reconciles desired state but advanced the Prometheus stack Helm revision even when its locked chart stayed unchanged.</li>
+</ul>
+<h2><a id="architecture-or-change-description" href="#architecture-or-change-description" class="Permalink" aria-hidden="true" title="Permalink">#</a>Architecture or change description</h2>
+<pre><code class="language-text">K3s container logs on seven nodes
+  -&gt; Fluent Bit Collector DaemonSet
+     labels: cluster, namespace, pod, container, node
+     disk buffering: /var/lib/fluent-bit
+  -&gt; loki-gateway.observability.svc.cluster.local:80
+  -&gt; monolithic Loki 3.7.4 on amd64-02
+     retention configuration: 168h
+     filesystem object store
+  -&gt; Longhorn 40Gi RWO volume, two replicas
+  -&gt; Grafana datasource uid=loki
+  -&gt; Grafana at 192.168.2.25
+</code></pre>
+<h3><a id="before" href="#before" class="Permalink" aria-hidden="true" title="Permalink">#</a>Before</h3>
+<p><code>deploy_centralized_logging</code> was <code>false</code>; Loki and Fluent Bit releases and the Grafana datasource were absent. Placement labels, exact chart locks, values, dry-runs, and readiness evidence were already staged and validated by <code>SAGE-K3-OBS-20260728-001</code>.</p>
+<h3><a id="after" href="#after" class="Permalink" aria-hidden="true" title="Permalink">#</a>After</h3>
+<p>The gate is <code>true</code>; both exact logging releases are deployed; the datasource is present and healthy; the intended node and all-node collection topology are realized; persistent storage is attached and healthy; recent logs are queryable from all nodes; and the startup burst cleared during final observation.</p>
+<h2><a id="source-of-truth-and-implementation-lineage" href="#source-of-truth-and-implementation-lineage" class="Permalink" aria-hidden="true" title="Permalink">#</a>Source of truth and implementation lineage</h2>
+<h3><a id="repository-files" href="#repository-files" class="Permalink" aria-hidden="true" title="Permalink">#</a>Repository files</h3>
+<pre><code class="language-text">AGENTS.md
+SAGE.md
+sage-change-authority.json
+sage-evidence-policy.json
+markdown/standards/kalaxy3-sage-evidence-record-standard.md
+markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/standards/sage-evidence-metadata-contract-v1.2.json
+markdown/templates/sage-evidence-record-template.md
+scripts/sage/sage-index.py
+scripts/sage/sage-publish.py
+infrastructure/k3s-homelab/helm-repositories.json
+infrastructure/k3s-homelab/helm-chart-lock.json
+infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+infrastructure/k3s-homelab/playbooks/platform.yml
+infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+infrastructure/k3s-homelab/playbooks/tasks/centralized-logging-node-labels.yml
+infrastructure/k3s-homelab/playbooks/templates/loki-values.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/fluent-bit-collector-values.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/grafana-loki-datasource.yml.j2
+infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-yaml.py
+infrastructure/k3s-homelab/scripts/sage-deployment-guardrail.py
+infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+</code></pre>
+<h3><a id="implementation-commit" href="#implementation-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation commit</h3>
+<pre><code class="language-text">__SAGE_IMPLEMENTATION_COMMIT__
+Use kubectl for Grafana datasource reconciliation
+</code></pre>
+<p>Supporting checkpoint:</p>
+<pre><code class="language-text">9c8b0e68aa742dad796d6871df24faf78f4485aa
+Activate centralized logging deployment
+</code></pre>
+<p>The implementation commit is the final repository correction governing the successful live deployment; the earlier activation commit is preserved as a separate secured checkpoint.</p>
+<h3><a id="versioned-dependencies" href="#versioned-dependencies" class="Permalink" aria-hidden="true" title="Permalink">#</a>Versioned dependencies</h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th align="right">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAGE record schema</td>
+<td align="right">1.2</td>
+<td>Metadata contract and publisher</td>
+</tr>
+<tr>
+<td>K3s</td>
+<td align="right">v1.36.2+k3s1</td>
+<td>Controller and cluster preflight</td>
+</tr>
+<tr>
+<td>Helm</td>
+<td align="right">v3.21.3+g1ad6e68</td>
+<td>Repository Helm wrapper preflight</td>
+</tr>
+<tr>
+<td>ansible-core</td>
+<td align="right">2.18.7</td>
+<td>Repository virtual environment preflight</td>
+</tr>
+<tr>
+<td>kubernetes.core collection</td>
+<td align="right">5.1.0</td>
+<td>Repository virtual environment preflight</td>
+</tr>
+<tr>
+<td>Loki chart</td>
+<td align="right">18.5.4</td>
+<td><code>helm-chart-lock.json</code> and live Helm list</td>
+</tr>
+<tr>
+<td>Loki application</td>
+<td align="right">3.7.4</td>
+<td>Live Helm list and pod image</td>
+</tr>
+<tr>
+<td>Fluent Bit Collector chart</td>
+<td align="right">1.0.9</td>
+<td><code>helm-chart-lock.json</code> and live Helm list</td>
+</tr>
+<tr>
+<td>Fluent Bit</td>
+<td align="right">5.0.9</td>
+<td>Live Helm list and pod image</td>
+</tr>
+<tr>
+<td>kube-prometheus-stack chart</td>
+<td align="right">87.19.0</td>
+<td>Lock reconciliation and live Helm list</td>
+</tr>
+<tr>
+<td>kube-prometheus-stack application</td>
+<td align="right">v0.92.1</td>
+<td>Live Helm list</td>
+</tr>
+<tr>
+<td>Grafana</td>
+<td align="right">13.1.1</td>
+<td>Live pod image</td>
+</tr>
+<tr>
+<td>Longhorn chart</td>
+<td align="right">1.12.0</td>
+<td>Lock reconciliation</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="controller-portability-and-repository-authority" href="#controller-portability-and-repository-authority" class="Permalink" aria-hidden="true" title="Permalink">#</a>Controller portability and repository authority</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository-controlled dependencies</td>
+<td>Chart repositories, locks, values, task logic, metadata contract, and publisher are hashed in <code>EV-003</code> and <code>EV-011</code>.</td>
+</tr>
+<tr>
+<td>Controller bootstrap</td>
+<td><code>make cluster-guardrails</code> recreates and validates the repository Python and Helm toolchain.</td>
+</tr>
+<tr>
+<td>Controller preflight</td>
+<td>Core, Helm, cluster, SSH, and privilege-escalation checks passed in <code>EV-011</code>.</td>
+</tr>
+<tr>
+<td>Controller host</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Execution host</td>
+<td>donbs-imac controlling the Ansible execution on arm64-01</td>
+</tr>
+<tr>
+<td>Machine-local authoritative state</td>
+<td>Local kubeconfig, SSH, vault access, and temporary API credentials are execution inputs; persistent desired state remains in Git.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[x] Another supported controller can recreate the toolchain from a clean checkout.</li>
+<li>[x] No workstation contains the only authoritative deployment configuration.</li>
+<li>[x] The failed datasource path was reconciled into repository-owned automation.</li>
+<li>[x] Controller and execution-host versions are recorded in <code>components</code>.</li>
+</ul>
+<h3><a id="configuration-excerpt" href="#configuration-excerpt" class="Permalink" aria-hidden="true" title="Permalink">#</a>Configuration excerpt</h3>
+<pre><code class="hljs yaml"><span class="hljs-attr">install_observability:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">deploy_centralized_logging:</span> <span class="hljs-literal">true</span>
+<span class="hljs-attr">install_kubecost:</span> <span class="hljs-literal">false</span>
+<span class="hljs-attr">centralized_logging_namespace:</span> <span class="hljs-string">observability</span>
+<span class="hljs-attr">centralized_logging_workload_pool:</span> <span class="hljs-string">platform-services</span>
+<span class="hljs-attr">centralized_logging_expected_node:</span> <span class="hljs-string">amd64-02</span>
+<span class="hljs-attr">loki_storage_class:</span> <span class="hljs-string">longhorn</span>
+<span class="hljs-attr">loki_storage_size:</span> <span class="hljs-string">40Gi</span>
+<span class="hljs-attr">loki_retention_period:</span> <span class="hljs-string">168h</span>
+</code></pre>
+<pre><code class="hljs yaml"><span class="hljs-attr">loki:</span>
+  <span class="hljs-attr">auth_enabled:</span> <span class="hljs-literal">false</span>
+  <span class="hljs-attr">limits_config:</span>
+    <span class="hljs-attr">retention_period:</span> <span class="hljs-string">"168h"</span>
+<span class="hljs-attr">singleBinary:</span>
+  <span class="hljs-attr">replicas:</span> <span class="hljs-number">1</span>
+  <span class="hljs-attr">nodeSelector:</span>
+    <span class="hljs-attr">kubernetes.io/arch:</span> <span class="hljs-string">amd64</span>
+    <span class="hljs-attr">kalaxy3.io/workload-pool:</span> <span class="hljs-string">platform-services</span>
+  <span class="hljs-attr">persistence:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+    <span class="hljs-attr">storageClass:</span> <span class="hljs-string">longhorn</span>
+    <span class="hljs-attr">size:</span> <span class="hljs-string">40Gi</span>
+</code></pre>
+<h2><a id="prerequisites-and-assumptions" href="#prerequisites-and-assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Prerequisites and assumptions</h2>
+<h3><a id="proven-prerequisites" href="#proven-prerequisites" class="Permalink" aria-hidden="true" title="Permalink">#</a>Proven prerequisites</h3>
+<ul>
+<li>The branch was clean, synchronized, and at evidence commit <code>9e6a2bb70cb1f4f718a28bcd7552a21db6f46a19</code> before activation (<code>EV-001</code>).</li>
+<li>The activation checkpoint passed source, deployment, cluster, and SAGE guardrails before deployment (<code>EV-001</code>).</li>
+<li><code>amd64-02</code> was the unique <code>amd64</code> node labeled <code>platform-services</code> (<code>EV-001</code>).</li>
+<li>Longhorn was present and the logging chart requested 40 Gi before activation (<code>EV-001</code>, <code>EV-007</code>).</li>
+<li>All seven inventory hosts were reachable with noninteractive SSH and privilege escalation (<code>EV-011</code>).</li>
+</ul>
+<h3><a id="assumptions" href="#assumptions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Assumptions</h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>The final five-minute error-free collector window is representative of steady state.</td>
+<td>Future restarts may replay enough backlog to trigger sustained 429 responses or dropped old records.</td>
+<td>Observe restart behavior and alert on collector output errors and Loki rejected samples.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td>Seven-day retention and compaction behave as configured on filesystem storage.</td>
+<td>Storage may fill or records may persist or disappear outside policy.</td>
+<td>Measure volume growth and verify expiry after more than 168 hours.</td>
+</tr>
+<tr>
+<td><code>ASM-003</code></td>
+<td>Two Longhorn replicas provide adequate durability for this homelab workload.</td>
+<td>Simultaneous node or disk loss could exceed protection.</td>
+<td>Add recurring backups and execute restore and replica-failure tests.</td>
+</tr>
+<tr>
+<td><code>ASM-004</code></td>
+<td>Internal cluster network trust is sufficient while Loki authentication is disabled.</td>
+<td>A compromised pod could query cluster logs.</td>
+<td>Add or validate NetworkPolicy and least-privilege access before broader tenancy.</td>
+</tr>
+</tbody>
+</table>
+<p>These assumptions prevent <code>accepted</code> status until the owner and reviewer explicitly accept the residual risks or the listed tests close them.</p>
+<h2><a id="implementation-procedure" href="#implementation-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Implementation procedure</h2>
+<h3><a id="preparation" href="#preparation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Preparation</h3>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
+SAGE_REQUEST=<span class="hljs-string">'&lt;activation request&gt;'</span> make sage-preflight
+make -C infrastructure/k3s-homelab centralized-logging-render
+make -C infrastructure/k3s-homelab <span class="hljs-built_in">source</span>-guardrails
+make -C infrastructure/k3s-homelab deployment-guardrail
+make -C infrastructure/k3s-homelab cluster-guardrails
+</code></pre>
+<p>The gate was changed from <code>false</code> to <code>true</code>, committed as <code>9c8b0e68aa742dad796d6871df24faf78f4485aa</code>, pushed, and verified without deploying logging.</p>
+<h3><a id="execution" href="#execution" class="Permalink" aria-hidden="true" title="Permalink">#</a>Execution</h3>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+.venv/bin/ansible-playbook   -i inventory/hosts.yml   playbooks/platform.yml   --extra-vars <span class="hljs-string">'platform_phase=observability'</span>   --vault-id kalaxy3@prompt
+</code></pre>
+<p>After the datasource failure, the repository task was corrected, server-side dry-run and guardrails passed, commit <code>4247387a8062a0a353f5704e40c90b1727881a4a</code> was pushed, and the same observability phase was rerun.</p>
+<h3><a id="expected-change" href="#expected-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Expected change</h3>
+<ul>
+<li>Install exactly one locked Loki release and one locked Fluent Bit Collector release.</li>
+<li>Schedule Loki and its gateway on the unique intended node.</li>
+<li>Run one collector on every node.</li>
+<li>Provision the Grafana datasource.</li>
+<li>Preserve Longhorn-backed Loki storage and return queryable logs.</li>
+</ul>
+<h3><a id="observed-change" href="#observed-change" class="Permalink" aria-hidden="true" title="Permalink">#</a>Observed change</h3>
+<p>The first run installed both logging releases but stopped at datasource provisioning (<code>EV-002</code>). The corrected rerun left both logging releases at revision 1, created the datasource, and completed without failure (<code>EV-004</code>). Runtime checks then passed for topology, storage, datasource health, ingestion, all-node coverage, and final guardrails (<code>EV-005</code> through <code>EV-011</code>).</p>
+<h3><a id="failed-or-superseded-paths" href="#failed-or-superseded-paths" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed or superseded paths</h3>
+<ul>
+<li><code>kubernetes.core.k8s</code> on <code>arm64-01</code> failed because <code>/usr/bin/python3</code> lacked the Python Kubernetes library. Installing the library ad hoc was rejected; <code>k3s kubectl apply</code> became the accepted repository path.</li>
+<li>A revision-report helper raised a shell-quoting <code>NameError</code>; no observability phase ran in that attempt.</li>
+<li>A Secret-reading helper used Python standard input for both script and JSON and raised <code>JSONDecodeError</code>; the deployment itself had already completed through datasource creation.</li>
+<li>A dictionary-key quoting helper raised <code>KeyError</code>; it was read-only.</li>
+<li>Bash indirect expansion pasted into zsh failed during parsing with <code>event not found</code>; no command ran.</li>
+<li>The final verification explicitly invoked Bash, used file-backed JSON, and retained cleanup traps.</li>
+</ul>
+<h2><a id="evidence-items" href="#evidence-items" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence items</h2>
+<h3><a id="ev-001-activation-checkpoint-and-predeployment-guardrails" href="#ev-001-activation-checkpoint-and-predeployment-guardrails" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-001</code> — Activation checkpoint and predeployment guardrails</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with repository automation</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T18:52:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac and donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>branch, deployment gate, and kalaxy3 predeployment state</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git=version-not-captured; Make=version-not-captured; Helm=v3.21.3+g1ad6e68; Ansible=2.18.7</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Gate active, guardrails pass, commit pushed, logging releases still absent</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">SAGE_REQUEST=<span class="hljs-string">'&lt;activation request&gt;'</span> make sage-preflight
+make -C infrastructure/k3s-homelab centralized-logging-render
+make -C infrastructure/k3s-homelab cluster-guardrails
+git commit -m <span class="hljs-string">'Activate centralized logging deployment'</span>
+git push origin wip/centralized-logging-staged-20260726
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">PASS activation validation did not deploy logging
+activation_commit=9c8b0e68aa742dad796d6871df24faf78f4485aa
+local=9c8b0e68aa742dad796d6871df24faf78f4485aa
+remote=9c8b0e68aa742dad796d6871df24faf78f4485aa
+PASS centralized logging activation checkpoint published
+READY FOR CLUSTER DEPLOYMENT
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The repository gate and activation checkpoint preceded live deployment. This evidence does not prove runtime behavior; later evidence items do.</p>
+<h3><a id="ev-002-partial-deployment-and-datasource-failure" href="#ev-002-partial-deployment-and-datasource-failure" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-002</code> — Partial deployment and datasource failure</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>; <code>CLM-003</code>; <code>CLM-004</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with Ansible and Helm</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:09:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac controlling arm64-01</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>observability namespace</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core=2.18.7; Helm=v3.21.3+g1ad6e68; Kubernetes API=K3s v1.36.2+k3s1</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Entire observability phase completes</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>partial</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>vault prompt retained without password value</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">.venv/bin/ansible-playbook -i inventory/hosts.yml playbooks/platform.yml   --extra-vars <span class="hljs-string">'platform_phase=observability'</span> --vault-id kalaxy3@prompt
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">TASK [Install Loki] changed
+TASK [Install Fluent Bit Collector] changed
+TASK [Provision Grafana Loki datasource] FAILED
+Failed to import the required Python library (kubernetes) on arm64-01's /usr/bin/python3
+
+loki                  revision 1 deployed loki-18.5.4
+fluent-bit-collector  revision 1 deployed fluent-bit-collector-1.0.9
+Grafana datasource ConfigMap absent
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The live state was partial: logging workloads and storage existed, but Grafana integration did not. The failure isolated a repository task dependency and did not justify uninstalling healthy releases.</p>
+<h3><a id="ev-003-repository-correction-dry-run-guardrails-and-push" href="#ev-003-repository-correction-dry-run-guardrails-and-push" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-003</code> — Repository correction, dry-run, guardrails, and push</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>; <code>CLM-004</code>; <code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>ChatGPT and Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:16:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac and donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>playbooks/tasks/observability.yml</code> and branch checkpoint</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git=version-not-captured; kubectl=K3s v1.36.2+k3s1; SAGE schema=1.2</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Remove remote Python-client dependency without creating datasource during validation</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">kubectl apply --dry-run=server --validate=<span class="hljs-literal">true</span>   -f /tmp/kalaxy3-centralized-logging-render/grafana-loki-datasource.yml
+make -C infrastructure/k3s-homelab cluster-guardrails
+make sage-guardrails
+git commit -m <span class="hljs-string">'Use kubectl for Grafana datasource reconciliation'</span>
+git push origin wip/centralized-logging-staged-20260726
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">configmap/grafana-datasource-loki created (server dry run)
+PASS datasource remains absent
+PASS 8 installed locked releases; 0 permitted new releases
+correction_commit=4247387a8062a0a353f5704e40c90b1727881a4a
+local=4247387a8062a0a353f5704e40c90b1727881a4a
+remote=4247387a8062a0a353f5704e40c90b1727881a4a
+0  0
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The accepted correction reused existing K3s authority, passed API validation, preserved the live partial deployment, and was pushed before resumption.</p>
+<h3><a id="ev-004-successful-resumed-observability-phase" href="#ev-004-successful-resumed-observability-phase" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-004</code> — Successful resumed observability phase</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>; <code>CLM-003</code>; <code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with Ansible</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:28:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac controlling arm64-01</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>observability namespace and Grafana datasource ConfigMap</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core=2.18.7; Helm=v3.21.3+g1ad6e68</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Logging releases reconcile and datasource is created</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>vault prompt retained without password value</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">.venv/bin/ansible-playbook -i inventory/hosts.yml playbooks/platform.yml   --extra-vars <span class="hljs-string">'platform_phase=observability'</span> --vault-id kalaxy3@prompt
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">TASK [Install Loki] ok
+TASK [Install Fluent Bit Collector] ok
+TASK [Provision Grafana Loki datasource] changed
+PLAY RECAP arm64-01: ok=26 changed=2 failed=0
+loki revision=1 deployed
+fluent-bit-collector revision=1 deployed
+kube-prometheus-stack revision=12 deployed
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The correction completed the missing integration without incrementing either logging release revision. The broader phase did increment the Prometheus stack revision, which is retained as an idempotency limitation.</p>
+<h3><a id="ev-005-loki-release-rollout-and-placement" href="#ev-005-loki-release-rollout-and-placement" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-005</code> — Loki release, rollout, and placement</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>; <code>CLM-006</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with Helm and kubectl</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Loki StatefulSet and gateway Deployment</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Helm=v3.21.3+g1ad6e68; kubectl=K3s v1.36.2+k3s1</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Exact release deployed and all Loki pods ready on amd64-02</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">scripts/helm list -n observability --filter <span class="hljs-string">'^loki$'</span>
+kubectl -n observability get pods -l app.kubernetes.io/instance=loki -o wide
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">loki revision=1 status=deployed chart=loki-18.5.4 app=3.7.4
+loki-0                          2/2 Running amd64-02
+loki-gateway-5c75989494-97v27   2/2 Running amd64-02
+PASS Loki and gateway are ready on amd64-02
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The intended single-node monolithic topology is realized. This is placement and readiness evidence, not a high-availability claim.</p>
+<h3><a id="ev-006-fluent-bit-release-and-all-node-collector-coverage" href="#ev-006-fluent-bit-release-and-all-node-collector-coverage" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-006</code> — Fluent Bit release and all-node collector coverage</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code>; <code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with Helm and kubectl</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Fluent Bit Collector DaemonSet and seven cluster nodes</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Helm=v3.21.3+g1ad6e68; Fluent Bit=5.0.9</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Exact release deployed and one ready collector per node</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">scripts/helm list -n observability --filter <span class="hljs-string">'^fluent-bit-collector$'</span>
+kubectl -n observability get pods   -l app.kubernetes.io/instance=fluent-bit-collector -o json
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">fluent-bit-collector revision=1 status=deployed chart=fluent-bit-collector-1.0.9 app=5.0.9
+PASS exactly one ready Fluent Bit Collector runs on every node
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>Collector scheduling and readiness cover every current Kubernetes node. The later log-label test proves data from those nodes reached Loki.</p>
+<h3><a id="ev-007-loki-longhorn-storage" href="#ev-007-loki-longhorn-storage" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-007</code> — Loki Longhorn storage</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with kubectl</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>storage-loki-0</code> PVC and Longhorn volume</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>kubectl=K3s v1.36.2+k3s1; Longhorn=1.12.0</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Bound 40Gi Longhorn PVC and attached healthy two-replica volume</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">kubectl -n observability get pvc storage-loki-0
+kubectl -n longhorn-system get volumes.longhorn.io &lt;volume-handle&gt; -o json
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">phase=Bound
+storage_class=longhorn
+requested=40Gi
+state=attached
+robustness=healthy
+replicas=2
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The runtime volume matches repository intent and has two Longhorn replicas. Backup and restore remain untested.</p>
+<h3><a id="ev-008-grafana-datasource-loading-and-health" href="#ev-008-grafana-datasource-loading-and-health" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-008</code> — Grafana datasource loading and health</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-009</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with kubectl, curl, and Grafana API</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac local port-forward</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Grafana datasource uid <code>loki</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Grafana=13.1.1; curl=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Datasource exists with internal gateway URL and health status OK</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>credentials decoded to temporary mode-0600 file, never displayed, then deleted</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">curl --user <span class="hljs-string">'&lt;redacted&gt;'</span> http://127.0.0.1:13000/api/datasources
+curl --user <span class="hljs-string">'&lt;redacted&gt;'</span> http://127.0.0.1:13000/api/datasources/uid/loki/health
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">name=Loki
+uid=loki
+type=loki
+url=http://loki-gateway.observability.svc.cluster.local
+{&quot;message&quot;:&quot;Data source successfully connected.&quot;,&quot;status&quot;:&quot;OK&quot;}
+PASS Grafana reached Loki successfully
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>Grafana’s live API, not only the ConfigMap, confirmed that the datasource was loaded and reachable.</p>
+<h3><a id="ev-009-queryable-recent-logs-and-all-node-stream-labels" href="#ev-009-queryable-recent-logs-and-all-node-stream-labels" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-009</code> — Queryable recent logs and all-node stream labels</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-010</code>; <code>CLM-013</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with Loki HTTP API</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac local port-forward</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Loki query API and node label-values API</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Loki=3.7.4; curl=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Recent Kalaxy3 streams returned and all seven node names present</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>sample labels retained; log payloads omitted</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">GET /loki/api/v1/query_range?query={cluster=<span class="hljs-string">"kalaxy3"</span>}
+GET /loki/api/v1/label/node/values
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">stream_count=6
+PASS recent Kalaxy3 logs are queryable
+expected=['amd64-01', 'amd64-02', 'arm64-01', 'arm64-02', 'arm64-03', 'arm64-04', 'arm64-05']
+observed=['amd64-01', 'amd64-02', 'arm64-01', 'arm64-02', 'arm64-03', 'arm64-04', 'arm64-05']
+PASS Loki contains recent streams from all seven nodes
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>This proves an end-to-end current data path from every node through Fluent Bit to Loki. It does not prove lossless ingestion of the initial historical backlog.</p>
+<h3><a id="ev-010-startup-backlog-errors-and-clearance" href="#ev-010-startup-backlog-errors-and-clearance" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-010</code> — Startup backlog errors and clearance</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-011</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum with kubectl logs</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>all seven Fluent Bit Collector pods</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Fluent Bit=5.0.9; Loki=3.7.4</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Initial pressure is identified and no longer appears in the final observation window</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>log metadata retained; message payloads minimized</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">kubectl -n observability logs &lt;collector-pod&gt; --since=5m
+grep -E <span class="hljs-string">'HTTP status=429|ingestion rate limit exceeded|timestamp too old|entry too far behind'</span>
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">Initial: HTTP 429 at 4194304 bytes/sec and HTTP 400 for entries too old or too far behind.
+Final five-minute scan:
+recent_rate_limit_errors=0
+recent_old_timestamp_errors=0
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The observed startup pressure cleared. This evidence supports monitoring and later tuning rather than an immediate unmeasured limit increase.</p>
+<h3><a id="ev-011-final-source-deployment-cluster-and-git-reconciliation" href="#ev-011-final-source-deployment-cluster-and-git-reconciliation" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-011</code> — Final source, deployment, cluster, and Git reconciliation</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-005</code>; <code>CLM-012</code>; <code>CLM-013</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>repository guardrails and Git</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac and donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>controller toolchain, seven inventory hosts, Helm locks, branch and working tree</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>SAGE schema=1.2; Helm=v3.21.3+g1ad6e68; ansible-core=2.18.7</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>All controls pass, no missing releases, clean synchronized repository</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="hljs bash">make cluster-guardrails
+git status
+git rev-parse HEAD
+git rev-parse origin/wip/centralized-logging-staged-20260726
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">PASS noninteractive SSH authentication for 7 inventory hosts
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
+52:deploy_centralized_logging: true
+nothing to commit, working tree clean
+HEAD and origin/wip/centralized-logging-staged-20260726: 4247387a8062a0a353f5704e40c90b1727881a4a
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>The final runtime state agrees with exact locks and the branch remained clean and published. Guardrails do not replace the longer-duration operational tests listed as gaps.</p>
+<h3><a id="ev-012-verification-helper-failures-and-final-hardened-method" href="#ev-012-verification-helper-failures-and-final-hardened-method" class="Permalink" aria-hidden="true" title="Permalink">#</a><code>EV-012</code> — Verification-helper failures and final hardened method</h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>negative-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-013</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum and ChatGPT</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-28T19:39:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac interactive zsh and explicit Bash validation</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>ad hoc evidence-collection wrappers</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>zsh=version-not-captured; Bash=version-not-captured; Python=3.12.4</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Verification wrapper runs without changing cluster state</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>informational</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<pre><code class="language-text">NameError from shell-quoted revision helper
+JSONDecodeError from standard-input conflict
+KeyError from dictionary-key quoting
+zsh event-not-found from Bash indirect expansion
+final explicit Bash and file-backed JSON validation: PASS
+</code></pre>
+<p><strong>Observed result</strong></p>
+<pre><code class="language-text">Each failed wrapper stopped before or during read-only verification.
+The final explicit-Bash validation completed every acceptance check.
+</code></pre>
+<p><strong>Interpretation</strong></p>
+<p>These failures were operator-side tooling defects. Retaining them prevents future reviewers from misclassifying them as cluster failures and documents the safer verification pattern.</p>
+<h2><a id="verification-and-acceptance-criteria" href="#verification-and-acceptance-criteria" class="Permalink" aria-hidden="true" title="Permalink">#</a>Verification and acceptance criteria</h2>
+<table>
+<thead>
+<tr>
+<th>Criterion ID</th>
+<th>Requirement</th>
+<th>Test or evidence</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AC-001</code></td>
+<td>Gate activated and published before deployment</td>
+<td><code>EV-001</code></td>
+<td>Active gate, synchronized commit, releases absent at checkpoint</td>
+<td><code>9c8b0e68aa742dad796d6871df24faf78f4485aa</code> published and no logging deployment</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-002</code></td>
+<td>Exact logging releases deployed</td>
+<td><code>EV-002</code>; <code>EV-004</code>; <code>EV-005</code>; <code>EV-006</code></td>
+<td>Locked charts deployed</td>
+<td>Loki 18.5.4 and Fluent Bit Collector 1.0.9 at revision 1</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-003</code></td>
+<td>Datasource correction is repository-owned</td>
+<td><code>EV-003</code></td>
+<td>No ad hoc target dependency</td>
+<td><code>k3s kubectl apply</code> committed and pushed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-004</code></td>
+<td>Intended backend placement</td>
+<td><code>EV-005</code></td>
+<td>Loki and gateway on amd64-02</td>
+<td>Both ready on amd64-02</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-005</code></td>
+<td>All-node collection</td>
+<td><code>EV-006</code></td>
+<td>Seven ready pods, one per node</td>
+<td>Exact node set matched</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-006</code></td>
+<td>Persistent storage</td>
+<td><code>EV-007</code></td>
+<td>Bound 40Gi Longhorn volume, healthy, two replicas</td>
+<td>All values matched</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-007</code></td>
+<td>Grafana integration</td>
+<td><code>EV-008</code></td>
+<td>Loaded datasource and successful health</td>
+<td>status OK</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-008</code></td>
+<td>End-to-end log path</td>
+<td><code>EV-009</code></td>
+<td>Recent query returns streams from every node</td>
+<td>Query and label-values tests passed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-009</code></td>
+<td>Startup pressure cleared</td>
+<td><code>EV-010</code></td>
+<td>Zero matching errors in final five-minute window</td>
+<td>zero 429 and zero old-timestamp matches</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-010</code></td>
+<td>Governance reconciliation</td>
+<td><code>EV-011</code></td>
+<td>All guards pass, locks match, Git clean</td>
+<td>eight locked releases, zero new, clean synchronized branch</td>
+<td>pass</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="functional-verification" href="#functional-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Functional verification</h3>
+<pre><code class="hljs bash">scripts/helm list --namespace observability
+kubectl --kubeconfig kubeconfig-kalaxy3.yaml -n observability get pods,pvc -o wide
+curl http://127.0.0.1:13000/api/datasources/uid/loki/health
+curl --get http://127.0.0.1:13100/loki/api/v1/query_range   --data-urlencode <span class="hljs-string">'query={cluster="kalaxy3"}'</span>
+curl http://127.0.0.1:13100/loki/api/v1/label/node/values
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">Exact releases deployed; every workload ready; storage healthy; Grafana status OK;
+recent streams returned; all seven node labels present.
+</code></pre>
+<h3><a id="negative-verification" href="#negative-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Negative verification</h3>
+<pre><code class="hljs bash">grep -E <span class="hljs-string">'HTTP status=429|ingestion rate limit exceeded|timestamp too old|entry too far behind'</span>   &lt;all collector logs from the final five minutes&gt;
+</code></pre>
+<p>Observed:</p>
+<pre><code class="language-text">recent_rate_limit_errors=0
+recent_old_timestamp_errors=0
+</code></pre>
+<p>The test establishes a clean final window; it does not erase or hide the earlier startup errors.</p>
+<h2><a id="idempotency-and-repeatability" href="#idempotency-and-repeatability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idempotency and repeatability</h2>
+<h3><a id="first-accepted-run" href="#first-accepted-run" class="Permalink" aria-hidden="true" title="Permalink">#</a>First accepted run</h3>
+<pre><code class="language-text">Initial run:
+  kube-prometheus-stack revision 10 -&gt; 11
+  Loki absent -&gt; revision 1 deployed
+  Fluent Bit Collector absent -&gt; revision 1 deployed
+  datasource failed before creation
+</code></pre>
+<h3><a id="steady-state-rerun" href="#steady-state-rerun" class="Permalink" aria-hidden="true" title="Permalink">#</a>Steady-state rerun</h3>
+<pre><code class="language-text">Corrected rerun:
+  Loki revision 1 -&gt; revision 1, task ok
+  Fluent Bit Collector revision 1 -&gt; revision 1, task ok
+  datasource absent -&gt; created
+  kube-prometheus-stack revision 11 -&gt; 12
+</code></pre>
+<h3><a id="interpretation" href="#interpretation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Interpretation</h3>
+<p>The logging Helm releases demonstrated reconciliation without revision churn during the corrected rerun. The datasource <code>kubectl apply</code> task has deterministic changed-state parsing, but a second post-creation Ansible rerun was not captured, so its steady-state <code>changed=0</code> result remains an evidence gap. The full observability phase is repeatable but not revision-idempotent because it advanced <code>kube-prometheus-stack</code> despite retaining the same locked chart. This does not change runtime intent, but it creates unnecessary Helm history and should be corrected or explicitly accepted.</p>
+<h2><a id="security-privacy-and-evidence-handling" href="#security-privacy-and-evidence-handling" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security, privacy, and evidence handling</h2>
+<h3><a id="security-controls" href="#security-controls" class="Permalink" aria-hidden="true" title="Permalink">#</a>Security controls</h3>
+<ul>
+<li>Approved Helm repositories use HTTPS and repository-recorded URL fingerprints.</li>
+<li>Exact chart versions are enforced by the deployment guardrail and reconciled against live releases.</li>
+<li>Loki and its gateway are ClusterIP services; no direct external Loki endpoint was created.</li>
+<li>Grafana access uses its existing authentication and was tested through a local port-forward.</li>
+<li>Temporary Grafana credentials were decoded into a mode-0600 file, never printed, and deleted by cleanup.</li>
+<li>Loki analytics reporting is disabled by repository values.</li>
+<li>Evidence scanning found no private keys, bearer tokens, kubeconfig client keys, or credential values.</li>
+</ul>
+<h3><a id="sensitive-material-excluded" href="#sensitive-material-excluded" class="Permalink" aria-hidden="true" title="Permalink">#</a>Sensitive material excluded</h3>
+<ul>
+<li>Ansible vault password and vault contents.</li>
+<li>Grafana username and password values.</li>
+<li>Kubernetes Secret data after decoding.</li>
+<li>Kubeconfig client key and certificate data.</li>
+<li>Log message bodies not required to prove the data path.</li>
+</ul>
+<h3><a id="redactions-and-omissions" href="#redactions-and-omissions" class="Permalink" aria-hidden="true" title="Permalink">#</a>Redactions and omissions</h3>
+<ul>
+<li>Authentication values are represented as <code>&lt;redacted&gt;</code> or described without disclosure.</li>
+<li>The record retains internal RFC1918 addresses and service names because they are material to cluster operations and rebuild.</li>
+<li>Sample Loki evidence retains labels but omits log-line payloads that may contain workload data.</li>
+</ul>
+<h3><a id="residual-security-risk" href="#residual-security-risk" class="Permalink" aria-hidden="true" title="Permalink">#</a>Residual security risk</h3>
+<ul>
+<li><code>loki.auth_enabled: false</code> means any workload with network reachability to the internal service may query logs. NetworkPolicy or another internal authorization boundary is not proven.</li>
+<li>Centralized logs may contain operational or application-sensitive data. No content-classification, masking, or retention exception policy was validated in this session.</li>
+<li>Grafana remains the intended human access layer; direct Loki exposure must remain internal.</li>
+</ul>
+<h2><a id="reliability-recovery-rollback-and-rebuild" href="#reliability-recovery-rollback-and-rebuild" class="Permalink" aria-hidden="true" title="Permalink">#</a>Reliability, recovery, rollback, and rebuild</h2>
+<h3><a id="failure-modes" href="#failure-modes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failure modes</h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Detection</th>
+<th>Impact</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loki process or gateway unavailable</td>
+<td>Pod readiness, <code>/ready</code>, Grafana datasource health, failed collector flushes</td>
+<td>Queries unavailable; collectors buffer and retry subject to local capacity</td>
+<td>Inspect rollout, pod logs, node health, and Longhorn attachment; restart only after preserving evidence.</td>
+</tr>
+<tr>
+<td>Ingestion rate exceeded</td>
+<td>Fluent Bit HTTP 429 and Loki rejected-sample metrics or logs</td>
+<td>Delayed ingestion and possible buffer growth</td>
+<td>Confirm whether pressure is transient; tune limits or collector replay behavior through repository values after measuring volume.</td>
+</tr>
+<tr>
+<td>Entries too old or too far behind</td>
+<td>Fluent Bit HTTP 400 output</td>
+<td>Historical backlog lines are dropped</td>
+<td>Decide whether old backlog is required; adjust startup position or Loki time windows only through reviewed repository policy.</td>
+</tr>
+<tr>
+<td>Longhorn volume degraded or detached</td>
+<td>PVC, Longhorn volume state and robustness</td>
+<td>Loki may become unavailable or lose durability</td>
+<td>Restore replica health, reattach, or recover from backup after testing procedure.</td>
+</tr>
+<tr>
+<td><code>amd64-02</code> unavailable</td>
+<td>Pending Loki pods and failed placement selector</td>
+<td>Single-replica backend unavailable</td>
+<td>Restore the node or execute a reviewed placement change; monolithic Loki has no current failover replica.</td>
+</tr>
+<tr>
+<td>Grafana datasource missing or unhealthy</td>
+<td>ConfigMap absence, Grafana API health</td>
+<td>Logs exist but are unavailable through Grafana</td>
+<td>Re-run corrected observability phase and verify sidecar/API loading.</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="rollback" href="#rollback" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rollback</h3>
+<p>The repository currently lacks a tested automated centralized-logging rollback path. A controlled emergency rollback should first preserve or snapshot required Loki data, then use the repository-managed Helm and kubeconfig tools:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+scripts/helm uninstall fluent-bit-collector   --namespace observability   --<span class="hljs-built_in">wait</span>
+
+scripts/helm uninstall loki   --namespace observability   --<span class="hljs-built_in">wait</span>
+
+kubectl --kubeconfig kubeconfig-kalaxy3.yaml   --namespace observability   delete configmap grafana-datasource-loki
+</code></pre>
+<p>Then change <code>deploy_centralized_logging</code> to <code>false</code>, run repository guardrails, commit, and publish the rollback intent. Because Loki persistence uses Retain semantics and Longhorn uses retained storage, confirm PVC and PV disposition explicitly; do not delete persistent data as part of an unreviewed rollback.</p>
+<h3><a id="rebuild-procedure" href="#rebuild-procedure" class="Permalink" aria-hidden="true" title="Permalink">#</a>Rebuild procedure</h3>
+<ol>
+<li>Clone or update <code>donb4iu/Kalaxy3</code> on a supported controller and check out the target branch or the later accepted mainline commit.</li>
+<li>Run repository controller preflight and cluster guardrails.</li>
+<li>Verify all seven nodes, workload-pool labels, <code>amd64-02</code> readiness, Longhorn schedulability, and the <code>longhorn</code> StorageClass.</li>
+<li>Verify the exact approved repository and chart locks.</li>
+<li>Confirm <code>install_observability: true</code> and <code>deploy_centralized_logging: true</code>.</li>
+<li>Run <code>playbooks/platform.yml</code> with <code>platform_phase=observability</code> and the repository vault authority.</li>
+<li>Wait for Loki, gateway, and collector rollouts.</li>
+<li>Verify the 40 Gi PVC and Longhorn volume health.</li>
+<li>Verify the Grafana datasource through Grafana’s API.</li>
+<li>Query recent <code>cluster=&quot;kalaxy3&quot;</code> streams and require all seven node labels.</li>
+<li>Run final cluster guardrails and publish a new revalidation record.</li>
+</ol>
+<h3><a id="data-durability-and-backup-impact" href="#data-durability-and-backup-impact" class="Permalink" aria-hidden="true" title="Permalink">#</a>Data durability and backup impact</h3>
+<p>The Loki filesystem is stored on a 40 Gi Longhorn RWO volume with two replicas and retained PVC behavior. This protects against a single storage-replica loss under expected Longhorn behavior, but no backup destination, snapshot schedule, restoration procedure, recovery point objective, or recovery time objective was validated. Replication is not a backup. The record must be revalidated after the first tested snapshot and restore.</p>
+<h2><a id="operational-considerations-and-observability" href="#operational-considerations-and-observability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Operational considerations and observability</h2>
+<h3><a id="health-signals" href="#health-signals" class="Permalink" aria-hidden="true" title="Permalink">#</a>Health signals</h3>
+<ul>
+<li><code>kubectl rollout status</code> for <code>statefulset/loki</code>, <code>deployment/loki-gateway</code>, and <code>daemonset/fluent-bit-collector</code>.</li>
+<li>Ready collector count equal to current node count.</li>
+<li>Loki <code>/ready</code> endpoint.</li>
+<li>Grafana datasource health API for uid <code>loki</code>.</li>
+<li>Fluent Bit output errors, retry count, storage backlog, and filesystem use.</li>
+<li>Loki rejected samples by reason, ingestion rate, query latency, compactor activity, and disk use.</li>
+<li>Longhorn volume state, robustness, replica count, and capacity.</li>
+<li>Helm release status and chart-lock reconciliation.</li>
+</ul>
+<h3><a id="routine-verification" href="#routine-verification" class="Permalink" aria-hidden="true" title="Permalink">#</a>Routine verification</h3>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+scripts/helm list --namespace observability
+kubectl --kubeconfig kubeconfig-kalaxy3.yaml   --namespace observability   get statefulset,deployment,daemonset,pod,pvc -o wide
+make cluster-guardrails
+</code></pre>
+<p>A complete revalidation should also exercise Grafana datasource health and a bounded recent Loki query from a local port-forward.</p>
+<h3><a id="capacity-performance-cost-and-sustainability" href="#capacity-performance-cost-and-sustainability" class="Permalink" aria-hidden="true" title="Permalink">#</a>Capacity, performance, cost, and sustainability</h3>
+<ul>
+<li><strong>Capacity:</strong> Loki requests 250m CPU and 512 MiB memory with a 2 GiB memory limit; gateway requests 50m CPU and 64 MiB; each collector requests 50m CPU and 64 MiB. Actual utilization and daily log volume were not captured.</li>
+<li><strong>Performance:</strong> Current queries succeeded, but sustained ingestion and query latency were not benchmarked. Initial backlog briefly exceeded the observed 4 MiB/s ingestion limit.</li>
+<li><strong>Cost:</strong> The deployment adds a 40 Gi Longhorn volume, compute on <code>amd64-02</code>, and seven collector pods. Kubecost comparison is required after sufficient accumulation time.</li>
+<li><strong>Sustainability/power:</strong> Running Loki on an existing platform-services node avoids a dedicated host, but incremental power has not been measured.</li>
+</ul>
+<h2><a id="known-limitations-evidence-gaps-and-risks" href="#known-limitations-evidence-gaps-and-risks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Known limitations, evidence gaps, and risks</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Due or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAP-001</code></td>
+<td>evidence-gap</td>
+<td>Seven-day retention expiry and compactor deletion were configured but not observed across a full retention window.</td>
+<td>Retention policy could differ from intent or storage could fill.</td>
+<td>Kalaxy3 architecture</td>
+<td>after 8 days of operation</td>
+</tr>
+<tr>
+<td><code>GAP-002</code></td>
+<td>evidence-gap</td>
+<td>No Loki backup, snapshot, restore, replica-loss, or node-loss recovery test was executed.</td>
+<td>Durability and recovery objectives are unproven.</td>
+<td>Kalaxy3 architecture</td>
+<td>before acceptance</td>
+</tr>
+<tr>
+<td><code>GAP-003</code></td>
+<td>risk</td>
+<td>Initial replay generated 429 responses and rejected historical lines, although the final five-minute window was clean.</td>
+<td>Future restarts may delay or drop backlog.</td>
+<td>Observability owner</td>
+<td>on any recurrence or planned restart test</td>
+</tr>
+<tr>
+<td><code>GAP-004</code></td>
+<td>technical-debt</td>
+<td>The full observability phase advanced <code>kube-prometheus-stack</code> from revision 10 to 12 during repeated reconciliation.</td>
+<td>Helm history churn obscures meaningful changes.</td>
+<td>Kalaxy3 automation owner</td>
+<td>next observability automation refinement</td>
+</tr>
+<tr>
+<td><code>GAP-005</code></td>
+<td>evidence-gap</td>
+<td>A second post-creation datasource reconciliation was not captured.</td>
+<td>Datasource task steady-state <code>changed=0</code> is expected but unproven.</td>
+<td>Kalaxy3 automation owner</td>
+<td>next observability rerun</td>
+</tr>
+<tr>
+<td><code>GAP-006</code></td>
+<td>risk</td>
+<td>Loki authentication is disabled and no NetworkPolicy evidence was captured.</td>
+<td>Cluster workloads may have broader log-query access than intended.</td>
+<td>Kalaxy3 security owner</td>
+<td>before additional tenants or sensitive workloads</td>
+</tr>
+<tr>
+<td><code>GAP-007</code></td>
+<td>evidence-gap</td>
+<td>No sustained throughput, resource-use, query-latency, or Kubecost comparison was captured.</td>
+<td>Capacity and operating cost are unknown.</td>
+<td>Kalaxy3 FinOps owner</td>
+<td>after 7–14 days of representative load</td>
+</tr>
+<tr>
+<td><code>GAP-008</code></td>
+<td>technical-debt</td>
+<td>Automated repository rollback and deactivation are not implemented or tested.</td>
+<td>Emergency rollback depends on careful manual commands.</td>
+<td>Kalaxy3 automation owner</td>
+<td>before acceptance</td>
+</tr>
+<tr>
+<td><code>GAP-009</code></td>
+<td>risk</td>
+<td>Monolithic Loki has one process replica on <code>amd64-02</code>.</td>
+<td>Node or process loss interrupts logging queries and ingestion until recovery.</td>
+<td>Kalaxy3 architecture</td>
+<td>when availability requirements change</td>
+</tr>
+<tr>
+<td><code>GAP-010</code></td>
+<td>evidence-gap</td>
+<td>No alert rules or SLOs were validated for ingestion rejection, collector buffering, storage, readiness, or datasource health.</td>
+<td>Failures may rely on manual detection.</td>
+<td>Observability owner</td>
+<td>next observability iteration</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="troubleshooting" href="#troubleshooting" class="Permalink" aria-hidden="true" title="Permalink">#</a>Troubleshooting</h2>
+<h3><a id="grafana-datasource-task-fails-with-missing-python-kubernetes-library" href="#grafana-datasource-task-fails-with-missing-python-kubernetes-library" class="Permalink" aria-hidden="true" title="Permalink">#</a>Grafana datasource task fails with missing Python Kubernetes library</h3>
+<p><strong>Meaning</strong></p>
+<p>The old <code>kubernetes.core.k8s</code> task was executed on <code>arm64-01</code>, whose <code>/usr/bin/python3</code> lacked the Python Kubernetes client.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">git <span class="hljs-built_in">log</span> -1 --oneline -- infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+grep -n -A18 <span class="hljs-string">'Provision Grafana Loki datasource'</span>   infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+</code></pre>
+<p><strong>Recovery</strong></p>
+<pre><code class="hljs bash"><span class="hljs-comment"># Require commit 4247387a8062a0a353f5704e40c90b1727881a4a or its accepted successor,</span>
+<span class="hljs-comment"># then rerun the repository observability phase.</span>
+</code></pre>
+<p>Do not install an untracked target dependency as the primary fix.</p>
+<h3><a id="fluent-bit-reports-http-429" href="#fluent-bit-reports-http-429" class="Permalink" aria-hidden="true" title="Permalink">#</a>Fluent Bit reports HTTP 429</h3>
+<p><strong>Meaning</strong></p>
+<p>Collector replay or current volume exceeds Loki’s accepted ingestion rate.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">kubectl -n observability logs daemonset/fluent-bit-collector --since=10m   | grep -E <span class="hljs-string">'HTTP status=429|ingestion rate limit exceeded'</span>
+kubectl -n observability logs statefulset/loki -c loki --since=10m
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>First determine whether the condition clears. If sustained, measure ingestion volume and buffer growth, then change Loki limits or collector replay behavior in repository templates and validate through exact-chart rendering and SAGE evidence.</p>
+<h3><a id="fluent-bit-reports-entries-too-old-or-too-far-behind" href="#fluent-bit-reports-entries-too-old-or-too-far-behind" class="Permalink" aria-hidden="true" title="Permalink">#</a>Fluent Bit reports entries too old or too far behind</h3>
+<p><strong>Meaning</strong></p>
+<p>Local container-log backlog is older than Loki’s active ingestion window or is behind the newest accepted stream timestamp.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">kubectl -n observability logs daemonset/fluent-bit-collector --since=30m   | grep -E <span class="hljs-string">'timestamp too old|entry too far behind'</span>
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Do not silently broaden acceptance windows. Decide whether historical replay is required, then implement a repository policy for collector start position or Loki out-of-order and age limits.</p>
+<h3><a id="loki-pod-is-pending-or-volume-is-degraded" href="#loki-pod-is-pending-or-volume-is-degraded" class="Permalink" aria-hidden="true" title="Permalink">#</a>Loki pod is Pending or volume is degraded</h3>
+<p><strong>Meaning</strong></p>
+<p>The unique placement target, PVC, or Longhorn volume cannot satisfy the monolithic backend.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">kubectl -n observability describe pod loki-0
+kubectl -n observability get pvc storage-loki-0 -o wide
+kubectl -n longhorn-system get volumes.longhorn.io
+kubectl get node amd64-02 --show-labels
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Restore <code>amd64-02</code> readiness, expected labels, and Longhorn health. A placement change must be reviewed and validated before application.</p>
+<h3><a id="grafana-does-not-show-loki-after-configmap-creation" href="#grafana-does-not-show-loki-after-configmap-creation" class="Permalink" aria-hidden="true" title="Permalink">#</a>Grafana does not show Loki after ConfigMap creation</h3>
+<p><strong>Meaning</strong></p>
+<p>The sidecar may not have observed the ConfigMap, the datasource may have invalid content, or Grafana may reject or fail to reach the service.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="hljs bash">kubectl -n observability get configmap grafana-datasource-loki -o yaml
+kubectl -n observability logs deployment/kube-prometheus-stack-grafana   -c grafana-sc-datasources --since=10m
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Re-run the corrected observability phase, wait for sidecar reconciliation, and verify <code>/api/datasources/uid/loki/health</code> through a local port-forward.</p>
+<h3><a id="validation-helper-fails-before-cluster-checks" href="#validation-helper-fails-before-cluster-checks" class="Permalink" aria-hidden="true" title="Permalink">#</a>Validation helper fails before cluster checks</h3>
+<p><strong>Meaning</strong></p>
+<p>Shell quoting, standard-input reuse, or shell-language assumptions may have broken an ad hoc wrapper.</p>
+<p><strong>Checks</strong></p>
+<pre><code class="language-text">Use explicit Bash for Bash syntax.
+Use file-backed JSON when Python reads a heredoc script.
+Avoid nested single-quote Python expressions inside shell single quotes.
+</code></pre>
+<p><strong>Recovery</strong></p>
+<p>Treat the helper failure separately from the cluster state, confirm whether any mutating command ran, and rerun bounded read-only checks with explicit shell and temporary-file cleanup.</p>
+<h2><a id="freshness-revalidation-and-supersession" href="#freshness-revalidation-and-supersession" class="Permalink" aria-hidden="true" title="Permalink">#</a>Freshness, revalidation, and supersession</h2>
+<h3><a id="revalidate-when" href="#revalidate-when" class="Permalink" aria-hidden="true" title="Permalink">#</a>Revalidate when</h3>
+<ul>
+<li>Loki, Fluent Bit Collector, Grafana, kube-prometheus-stack, Longhorn, K3s, Helm, Ansible, or SAGE versions change.</li>
+<li><code>deploy_centralized_logging</code>, placement labels, expected node, namespace, storage class, storage size, retention, resources, or service endpoints change.</li>
+<li>A node is added, removed, renamed, readdressed, or changes architecture or role.</li>
+<li>Loki or Fluent Bit restarts and a backlog replay occurs.</li>
+<li>Any 429, old-timestamp, buffer-growth, storage, readiness, or datasource-health incident occurs.</li>
+<li>A backup or restore path is implemented or tested.</li>
+<li>NetworkPolicy, authentication, tenancy, or log-content policy changes.</li>
+<li>The broad observability phase idempotency behavior is corrected.</li>
+<li>A conflicting or superseding evidence record is published.</li>
+</ul>
+<h3><a id="scheduled-review" href="#scheduled-review" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scheduled review</h3>
+<pre><code class="language-text">event-based; additionally review after the first full 168-hour retention cycle and after 7–14 days of Kubecost and resource evidence
+</code></pre>
+<h3><a id="supersession-rule" href="#supersession-rule" class="Permalink" aria-hidden="true" title="Permalink">#</a>Supersession rule</h3>
+<p>When replaced, set <code>status: superseded</code>, populate <code>superseded_by</code>, preserve this record and evidence ID, and state which deployment, storage, security, and runtime claims remain valid.</p>
+<h2><a id="final-completion-checklist-and-reviewer-acceptance" href="#final-completion-checklist-and-reviewer-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final completion checklist and reviewer acceptance</h2>
+<h3><a id="governance" href="#governance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Governance</h3>
+<ul>
+<li>[x] Evidence ID is unique and permanent.</li>
+<li>[x] Schema version is 1.2.</li>
+<li>[x] Front matter follows the exact metadata contract and order.</li>
+<li>[x] Record metadata exactly mirrors front matter.</li>
+<li>[x] Status accurately reflects validated but not reviewer-accepted completeness.</li>
+<li>[x] Owner, author, operator, and reviewer state are identified.</li>
+<li>[x] Five Ws and How agree with canonical metadata.</li>
+<li>[x] Scope and nonclaims are explicit.</li>
+<li>[x] Implementation commit is represented by the publication token.</li>
+<li>[x] Relationships and supersession fields are complete.</li>
+</ul>
+<h3><a id="evidence" href="#evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Evidence</h3>
+<ul>
+<li>[x] Every critical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Direct observations identify source, target, time, and tool version.</li>
+<li>[x] Derived conclusions reference evidence IDs.</li>
+<li>[x] Assumptions and planned work are marked.</li>
+<li>[x] Failed attempts are separated from final state.</li>
+<li>[x] Idempotency and its limitations are documented.</li>
+<li>[x] No metadata value uses <code>not-captured</code>.</li>
+</ul>
+<h3><a id="safety-and-operations" href="#safety-and-operations" class="Permalink" aria-hidden="true" title="Permalink">#</a>Safety and operations</h3>
+<ul>
+<li>[x] Secrets and sensitive data are excluded or redacted.</li>
+<li>[x] Security limitations and residual risks are recorded.</li>
+<li>[x] Rollback, rebuild, and data-durability impacts are documented.</li>
+<li>[x] Operational health checks are documented.</li>
+<li>[x] Known limitations and gaps have owners or triggers.</li>
+<li>[x] Revalidation criteria are defined.</li>
+</ul>
+<h3><a id="review-acceptance" href="#review-acceptance" class="Permalink" aria-hidden="true" title="Permalink">#</a>Review acceptance</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Kalaxy3 architecture</td>
+<td>pending</td>
+<td>pending</td>
+<td>Runtime deployment is validated; owner acceptance awaits gap review.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Named reviewer has not yet accepted the record.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="git-review-and-publication" href="#git-review-and-publication" class="Permalink" aria-hidden="true" title="Permalink">#</a>Git review and publication</h2>
+<p>Use only the repository publication process:</p>
+<pre><code class="hljs bash"><span class="hljs-built_in">cd</span> ~/dvlp/Kalaxy3
+
+python3 scripts/sage/sage-publish.py check   ~/Downloads/kalaxy3-centralized-logging-deployment-evidence.zip
+
+python3 scripts/sage/sage-publish.py publish   ~/Downloads/kalaxy3-centralized-logging-deployment-evidence.zip   --push
+</code></pre>
+<p>The publisher replaces <code>__SAGE_IMPLEMENTATION_COMMIT__</code> with <code>4247387a8062a0a353f5704e40c90b1727881a4a</code>, replaces <code>__SAGE_PUBLISHED_AT__</code>, creates the record checksum and publication manifest, reconciles evidence indexes, commits the evidence, and pushes the branch.</p>
+<h2><a id="appendices-and-raw-artifacts" href="#appendices-and-raw-artifacts" class="Permalink" aria-hidden="true" title="Permalink">#</a>Appendices and raw artifacts</h2>
+<h3><a id="artifact-inventory" href="#artifact-inventory" class="Permalink" aria-hidden="true" title="Permalink">#</a>Artifact inventory</h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path or URI</th>
+<th>SHA-256</th>
+<th>Contains sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Full terminal transcript</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt</code></td>
+<td><code>2f485cb3b549c8581cfa8c1630173e560d44fdf535b15ccbc7d2894ba2fb4aa7</code></td>
+<td>no credential values; internal addresses retained</td>
+<td>permanent with record</td>
+</tr>
+<tr>
+<td>Curated terminal evidence</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md</code></td>
+<td><code>a0d8d8e4c6fd63969552e41eebbb4397745b28ac25b14ede8bd42a25ad56f4c7</code></td>
+<td>no</td>
+<td>permanent with record</td>
+</tr>
+<tr>
+<td>Repository authority evidence</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence.md</code></td>
+<td><code>eeaab35660e82905d28af7742c3d2d39b73021cb7f104e62e5425c3ebb2834c2</code></td>
+<td>no</td>
+<td>permanent with record</td>
+</tr>
+<tr>
+<td>Generation provenance</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/generation-provenance.md</code></td>
+<td><code>c93f57a10b0e1c87b3f16abdd9deea0001c4bcf2fe2d5fe8506529a28b8d5d27</code></td>
+<td>no</td>
+<td>permanent with record</td>
+</tr>
+</tbody>
+</table>
+<h3><a id="additional-notes" href="#additional-notes" class="Permalink" aria-hidden="true" title="Permalink">#</a>Additional notes</h3>
+<ul>
+<li>Input generation bundle SHA-256: <code>58e54271cab85e4e3307959ac0e2d6e6dc87ce61b010ec42ec5a2f5c48673c39</code>.</li>
+<li>Supplied terminal transcript SHA-256: <code>2f485cb3b549c8581cfa8c1630173e560d44fdf535b15ccbc7d2894ba2fb4aa7</code>.</li>
+<li>This record depends on <code>SAGE-K3-OBS-20260728-001</code>, which established activation readiness without deploying logging.</li>
+<li>The initial <code>curl</code> connection-refused messages in the final successful validation were expected local port-forward startup races; readiness loops subsequently passed and are not service-failure evidence.</li>
+<li><code>kube-prometheus-stack</code> revision 12 is retained as an operational observation, not as evidence of a chart-version change.</li>
+</ul>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/audit_method.html">Previous</a></li>            <li class=Pager--next><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_003/generation_provenance.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>
