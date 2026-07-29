@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>terminal-evidence - Kalaxy3 K3s Cluster</title>
+    <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+    <meta name="author" content="Don Buddenbaum">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <link rel="icon" href="../../themes/daux/img/favicon-blue.png" type="image/x-icon">
+
+    <!-- Mobile -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- JS -->
+    <script>
+        window.base_url = "../../";
+        document.documentElement.classList.remove('no-js');
+    </script>
+
+    <!-- Font -->
+    
+    <!-- CSS -->
+            <link href='../../themes/daux/css/theme-blue.min.css' rel='stylesheet' type='text/css'>
+            <link href='../../daux_libraries/search.css' rel='stylesheet' type='text/css'>
+    </head>
+<body class="">
+    <div class="Columns content">
+    <aside class="Columns__left Collapsible">
+        <button type="button" class="Button Collapsible__trigger" aria-controls="sidebar_content" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+            <span class="Collapsible__trigger__bar"></span>
+        </button>
+
+        <a class="Brand" href="../../index.html">Kalaxy3 K3s Cluster</a>
+
+    <form role='search' action="/" method="get" class="Search" id="search_form">
+        <label for="search_input">
+            <span class='u-visuallyHidden'>Search</span>
+        </label>
+        <input
+            type="search"
+            id="search_input"
+            class="Search__field"
+            placeholder="Search..."
+            aria-label="Search..."
+            autocomplete="on"
+            results=25
+            autosave=text_search
+        >
+        <label>
+            <input type="submit" class='u-visuallyHidden' />
+            <span class='u-visuallyHidden'>Search...</span>
+            <svg class="Search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451 451">
+                <path d="M447.05 428l-109.6-109.6c29.4-33.8 47.2-77.9 47.2-126.1C384.65 86.2 298.35 0 192.35 0 86.25 0 .05 86.3.05 192.3s86.3 192.3 192.3 192.3c48.2 0 92.3-17.8 126.1-47.2L428.05 447c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.2-5.2 5.2-13.8 0-19zM26.95 192.3c0-91.2 74.2-165.3 165.3-165.3 91.2 0 165.3 74.2 165.3 165.3s-74.1 165.4-165.3 165.4c-91.1 0-165.3-74.2-165.3-165.4z"/>
+            </svg>
+        </label>
+    </form>
+
+        <div class="Collapsible__content" id="sidebar_content">
+            <!-- Navigation -->
+            <ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>benchmarks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../benchmarks/kalaxy3_pre_logging_kubecost_baseline_evidence.html">Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../../evidence/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>evidence</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/current.html">current</a></li>
+<li class='Nav__item '><a href="../../evidence/legacy.html">legacy</a></li>
+<li class='Nav__item '><a href="../../evidence/migration_report.html">migration-report</a></li>
+<li class='Nav__item  has-children'><a href="../../evidence/sections/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>sections</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/sections/benchmarks.html">benchmarks</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/finops.html">finops</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/governance.html">governance</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/installation.html">installation</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/operations.html">operations</a></li>
+<li class='Nav__item '><a href="../../evidence/sections/security.html">security</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../../evidence/status/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>status</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/status/historical.html">historical</a></li>
+<li class='Nav__item '><a href="../../evidence/status/validated.html">validated</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="../../evidence/subjects/index.html" class="Nav__item__link"><i class="Nav__arrow">&nbsp;</i>subjects</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence/subjects/amd64.html">amd64</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/amd64_nocloud_seed_usb_helper.html">amd64-nocloud-seed-usb-helper</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/amd64_node.html">amd64-node</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/centralized_logging_cost_baseline.html">centralized-logging-cost-baseline</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/centralized_observability_logging.html">centralized-observability-logging</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/intel_node_pi_administrative_access_evidence.html">intel-node-pi-administrative-access-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/k3s_api_high_availability.html">k3s-api-high-availability</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_automation_controller_portability.html">kalaxy3-automation-controller-portability</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_controller_access_baseline.html">kalaxy3-controller-access-baseline</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_daux_landing_page.html">kalaxy3-daux-landing-page</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kalaxy3_sage_evidence_record_standard_1_0.html">kalaxy3-sage-evidence-record-standard-1-0</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kubecost_chart_3_2_1.html">kubecost-chart-3-2-1</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/kubecost_installation.html">kubecost-installation</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/longhorn_kubecost.html">longhorn-kubecost</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/minio_installation_evidence.html">minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/observability.html">observability</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/protected_longhorn.html">protected-longhorn</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/protected_traefik_dashboard_installation.html">protected-traefik-dashboard-installation</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/sage_enforcement_guardrails.html">sage-enforcement-guardrails</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/sage_evidence_catalog.html">sage-evidence-catalog</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/sage_record_schema.html">sage-record-schema</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/ubuntu_installation.html">ubuntu-installation</a></li>
+<li class='Nav__item '><a href="../../evidence/subjects/ubuntu_node_provisioning.html">ubuntu-node-provisioning</a></li></ul></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>evidence-artifacts</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-FINOPS-20260724-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_FINOPS_20260724_001/terminal_evidence_20260725.html">terminal-evidence-20260725</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-002</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/guardrail_gap_analysis.html">guardrail-gap-analysis</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/pause_decision.html">pause-decision</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-GOVERNANCE-20260726-003</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/source_index.html">source-index</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_GOVERNANCE_20260726_003/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item Nav__item--open has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/repository_authority_evidence.html">repository-authority-evidence</a></li>
+<li class='Nav__item Nav__item--active'><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-OBS-20260728-002</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/generation_provenance.html">generation-provenance</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/repository_authority_evidence.html">repository-authority-evidence</a></li>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/terminal_evidence.html">terminal-evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>SAGE-K3-SECURITY-20260726-001</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../evidence_artifacts/SAGE_K3_SECURITY_20260726_001/terminal_evidence.html">terminal-evidence</a></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>governance</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../governance/kalaxy3_daux_landing_page_sage_evidence.html">Kalaxy3 Daux Landing Page Source and Local Render Validation</a></li>
+<li class='Nav__item '><a href="../../governance/kalaxy3_sage_guardrail_gap_observability_pause_evidence.html">SAGE Guardrail Gap Discovery and Centralized Logging Work Pause</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Infrastructure</a><ul class='Nav'>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>K3s Homelab</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture.html">Architecture</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/IP_Address_Plan.html">IP Address Plan</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Deployment_Order.html">Deployment Order</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phased_Deployment.html">Phased Deployment</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Architecture Decisions</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Three_Server_Control_Plane.html">Three Server Control Plane</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/MetalLB_and_Traefik.html">MetalLB and Traefik</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/Storage_Separation.html">Storage Separation</a></li></ul></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/k3s_install_evidence.html">k3s-install-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Phase_Notes.html">Phase Notes</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>Runbooks</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.html">Backup and Recovery</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp_login_token_instructions.html">headlamp-login-token-instructions</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/phase_03_network_storage_evidence.html">phase-03-network-storage-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/phase_04_ui_evidence.html">phase-04-ui-evidence</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.html">Phase 00 Site Survey</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.html">Troubleshooting</a></li>
+<li class='Nav__item '><a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade.html">Upgrade</a></li></ul></li></ul></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>installation</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/k3s_api_ha_kube_vip.html">k3s-api-ha-kube-vip</a></li>
+<li class='Nav__item '><a href="../../installation/k3s_etcd_baseline_backup_evidence.html">k3s-etcd-baseline-backup-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_amd64_02_k3s_longhorn_node_addition.html">kalaxy3-amd64-02-k3s-longhorn-node-addition</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_amd64_node_and_longhorn_installation_evidence.html">kalaxy3-amd64-node-and-longhorn-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_intel_pi_admin_access_evidence.html">kalaxy3-intel-pi-admin-access-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_kubecost_calibration_sage_evidence.html">Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_kubecost_installation_and_verification.html">kalaxy3-kubecost-installation-and-verification</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_minio_installation_evidence.html">kalaxy3-minio-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_observability_and_kubecost.html">kalaxy3-observability-and-kubecost</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_protected_ui_installation_evidence.html">kalaxy3-protected-ui-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/kalaxy3_traefik_dashboard_installation_evidence.html">kalaxy3-traefik-dashboard-installation-evidence</a></li>
+<li class='Nav__item '><a href="../../installation/longhorn_kubecost_intel_node_preparation.html">longhorn-kubecost-intel-node-preparation</a></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>old</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../installation/old/amd64_nocloud_seed_helper.html">AMD64 NoCloud Seed USB Helper</a></li>
+<li class='Nav__item '><a href="../../installation/old/flash.html">flash</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_installation_and_node_provisioning_v2.html">ubuntu-installation-and-node-provisioning-v2</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning.html">Ubuntu Node Provisioning</a></li>
+<li class='Nav__item '><a href="../../installation/old/ubuntu_node_provisioning_fixed_amd64.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item '><a href="../../installation/ubuntu_node_provisioning_fixed.html">Ubuntu Node Provisioning</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>operations</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../operations/kalaxy3_centralized_logging_deployment_evidence.html">Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_controller_machine_portability_evidence.html">Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_canonical_metadata_contract_evidence.html">Canonical SAGE metadata contract and publisher enforcement</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_evidence_publication_process_evidence.html">Repeatable SAGE Evidence Package Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_legacy_evidence_navigation_evidence.html">Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation</a></li>
+<li class='Nav__item '><a href="../../operations/kalaxy3_sage_observability_iterative_readiness_evidence.html">Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>research</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../research/kalaxy3_cost_model_architecture_and_finops_analysis.html">kalaxy3-cost-model-architecture-and-finops-analysis</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>security</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../security/kalaxy3_controller_access_baseline_sage_evidence.html">Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>standards</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_change_discovery_process.html">kalaxy3-sage-change-discovery-process</a></li>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_evidence_orchestration_process.html">kalaxy3-sage-evidence-orchestration-process</a></li>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_evidence_publication_process.html">Kalaxy3 SAGE Evidence Generation and Git Publication Process</a></li>
+<li class='Nav__item '><a href="../../standards/kalaxy3_sage_evidence_record_standard.html">Kalaxy3 SAGE Evidence Record Standard</a></li></ul></li>
+<li class='Nav__item  has-children'><a href="#" class="Nav__item__link Nav__item__link--nopage"><i class="Nav__arrow">&nbsp;</i>templates</a><ul class='Nav'>
+<li class='Nav__item '><a href="../../templates/sage_evidence_generation_request.html">sage-evidence-generation-request</a></li>
+<li class='Nav__item '><a href="../../templates/sage_evidence_record_template.html"><Formal evidence-record title></a></li></ul></li></ul>
+            <div class="Links">
+                            </div>
+
+                            <div class="CodeToggler">
+                    <hr/>
+                    <label class="Checkbox">Show Code Blocks                        <input type="checkbox" class="CodeToggler__button--main" checked="checked"/>
+                        <div class="Checkbox__indicator"></div>
+                    </label>
+                </div>
+            
+            <div class="DarkModeToggler">
+                <hr/>
+                <label class="Checkbox">Dark Mode                    <input type="checkbox" class="ColorMode__button" />
+                    <div class="Checkbox__indicator"></div>
+                </label>
+            </div>
+
+                
+                        </div>
+    </aside>
+    <div class="Columns__right">
+        <div class="Columns__right__content">
+            <div class="doc_content">
+                <article class="Page">
+
+    <div class="Page__header">
+        <h1><a href="../../evidence_artifacts/SAGE_K3_FINOPS_20260724_001/terminal_evidence_20260725.html">evidence-artifacts</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/generation_provenance.html">SAGE-K3-OBS-20260728-001</a> <svg class="Page__header--separator" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.175 477.175"><path d="M360.73 229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1 0s-5.3 13.8 0 19.1l215.5 215.5-215.5 215.5c-5.3 5.3-5.3 13.8 0 19.1 2.6 2.6 6.1 4 9.5 4 3.4 0 6.9-1.3 9.5-4l225.1-225.1c5.3-5.2 5.3-13.8.1-19z"/></svg> <a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/terminal_evidence.html">terminal-evidence</a></h1>
+                <span class="ModifiedDate">
+            July 28, 2026 at 6:05 PM        </span>
+                    </div>
+
+    <div class="s-content">
+        <div class="TableOfContentsContainer">
+    <h4 class="TableOfContentsContainer__title">Table of Contents</h4>
+    <div class="TableOfContentsContainer__content">
+        <ul class="TableOfContents">
+<li><a href="#terminal-evidence-sage-k3-obs-20260728-001">Terminal Evidence — SAGE-K3-OBS-20260728-001</a>
+<ul>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#chronological-checkpoint-summary">Chronological checkpoint summary</a></li>
+<li><a href="#failed-path-vaulted-yaml-parsing">Failed path: vaulted YAML parsing</a></li>
+<li><a href="#failed-path-declared-placement-absent-live">Failed path: declared placement absent live</a></li>
+<li><a href="#failed-path-controller-kubeconfig-authority">Failed path: controller kubeconfig authority</a></li>
+<li><a href="#failed-path-unavailable-python-kubernetes-client">Failed path: unavailable Python Kubernetes client</a></li>
+<li><a href="#corrected-check-mode-preview">Corrected check-mode preview</a></li>
+<li><a href="#guardrails-before-amended-commit">Guardrails before amended commit</a></li>
+<li><a href="#amended-placement-checkpoint">Amended placement checkpoint</a></li>
+<li><a href="#bounded-label-apply">Bounded label apply</a></li>
+<li><a href="#idempotency-rerun">Idempotency rerun</a></li>
+<li><a href="#exact-locked-chart-rendering">Exact locked-chart rendering</a></li>
+<li><a href="#target-and-storage-readiness">Target and storage readiness</a></li>
+<li><a href="#pre-dry-run-negative-evidence">Pre-dry-run negative evidence</a></li>
+<li><a href="#server-side-dry-run-loki">Server-side dry-run: Loki</a></li>
+<li><a href="#server-side-dry-run-fluent-bit-and-grafana">Server-side dry-run: Fluent Bit and Grafana</a></li>
+<li><a href="#final-cluster-guardrails">Final cluster guardrails</a></li>
+<li><a href="#final-gate-and-repository-result">Final gate and repository result</a></li>
+<li><a href="#push-checkpoint">Push checkpoint</a></li>
+<li><a href="#sage-generator-input-capture">SAGE generator input capture</a></li>
+</ul>
+</li>
+</ul>    </div>
+</div>
+<h1><a id="terminal-evidence-sage-k3-obs-20260728-001" href="#terminal-evidence-sage-k3-obs-20260728-001" class="Permalink" aria-hidden="true" title="Permalink">#</a>Terminal Evidence — SAGE-K3-OBS-20260728-001</h1>
+<h2><a id="scope" href="#scope" class="Permalink" aria-hidden="true" title="Permalink">#</a>Scope</h2>
+<p>These excerpts were supplied by the operator in the ChatGPT working session or captured in the SAGE generator-input bundle. Repetitive output is reduced, but failure messages, state transitions, final recaps, versions, and negative evidence are retained. No credential or kubeconfig content is included.</p>
+<h2><a id="chronological-checkpoint-summary" href="#chronological-checkpoint-summary" class="Permalink" aria-hidden="true" title="Permalink">#</a>Chronological checkpoint summary</h2>
+<table>
+<thead>
+<tr>
+<th align="right">Sequence</th>
+<th>Checkpoint</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="right">1</td>
+<td><code>133d844</code> Add repository-owned SAGE change governance</td>
+<td>SAGE discovery and evidence orchestration established; full SHA absent from generator bundle.</td>
+</tr>
+<tr>
+<td align="right">2</td>
+<td><code>abea253b763bbede21226ca559354bcc0ca19650</code> Lock centralized logging Helm charts</td>
+<td>Approved repository sources and exact chart locks added.</td>
+</tr>
+<tr>
+<td align="right">3</td>
+<td><code>69237e1bffe586a5cdb115b5f56cb8f193d8c404</code> Complete Loki chart compatibility values</td>
+<td>Filesystem placeholder buckets and disabled Canary/test path added.</td>
+</tr>
+<tr>
+<td align="right">4</td>
+<td><code>8e41f83ac5475cb5ee6ab46b749bd468c8c923e8</code> Retire obsolete Kubernetes Dashboard source</td>
+<td>Obsolete source removed; Headlamp retained.</td>
+</tr>
+<tr>
+<td align="right">5</td>
+<td><code>82da6e90932ac6dd8caafaf03c7d415e6887d2a2</code> Validate locked centralized logging charts</td>
+<td>Exact locked chart rendering and assertions moved into repository validation.</td>
+</tr>
+<tr>
+<td align="right">6</td>
+<td><code>a4a11fc03dec92663a7e31924e8b3690d68aec4e</code> Separate logging placement label reconciliation</td>
+<td>Dedicated prerequisite automation corrected, validated, applied, and pushed.</td>
+</tr>
+</tbody>
+</table>
+<h2><a id="failed-path-vaulted-yaml-parsing" href="#failed-path-vaulted-yaml-parsing" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed path: vaulted YAML parsing</h2>
+<p>A read-only readiness audit attempted to parse <code>inventory/group_vars/all/main.yml</code> with a generic YAML loader. Repository variables included <code>!vault</code>, so the extraction path could not reliably resolve the expected node and workload pool. No cluster or repository change occurred. The accepted approach used repository-aware inspection and direct live-state queries instead of weakening or bypassing vault semantics.</p>
+<h2><a id="failed-path-declared-placement-absent-live" href="#failed-path-declared-placement-absent-live" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed path: declared placement absent live</h2>
+<pre><code class="language-text">amd64-01 declared=ai live=&lt;missing&gt;
+amd64-02 declared=platform-services live=&lt;missing&gt;
+</code></pre>
+<p>Interpretation: inventory intent existed, but the live cluster lacked the labels. Placement could not be claimed until a repository-owned reconciliation path existed.</p>
+<h2><a id="failed-path-controller-kubeconfig-authority" href="#failed-path-controller-kubeconfig-authority" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed path: controller kubeconfig authority</h2>
+<pre><code class="language-text">TASK [Reconcile centralized logging workload-pool label]
+failed: [localhost] (item=amd64-01)
+msg: Could not find or access '/etc/rancher/k3s/k3s.yaml' on the Ansible Controller.
+failed: [localhost] (item=amd64-02)
+msg: Could not find or access '/etc/rancher/k3s/k3s.yaml' on the Ansible Controller.
+
+PLAY RECAP
+localhost : ok=4 changed=0 unreachable=0 failed=1 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p>No label changed. The dedicated localhost playbook was corrected to use the repository controller kubeconfig.</p>
+<h2><a id="failed-path-unavailable-python-kubernetes-client" href="#failed-path-unavailable-python-kubernetes-client" class="Permalink" aria-hidden="true" title="Permalink">#</a>Failed path: unavailable Python Kubernetes client</h2>
+<pre><code class="language-text">TASK [Reconcile centralized logging workload-pool label]
+failed: [localhost] (item=amd64-01)
+msg: Failed to import the required Python library (kubernetes) on donbs-imac.local's
+     Python /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python.
+failed: [localhost] (item=amd64-02)
+msg: Failed to import the required Python library (kubernetes) on donbs-imac.local's
+     Python /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python.
+
+PLAY RECAP
+localhost : ok=4 changed=0 unreachable=0 failed=1 skipped=0 rescued=0 ignored=0
+</code></pre>
+<p>No label changed. The accepted task reused repository-owned <code>kubectl label</code>, with server-side dry-run for check mode and <code>--overwrite</code> for apply.</p>
+<h2><a id="corrected-check-mode-preview" href="#corrected-check-mode-preview" class="Permalink" aria-hidden="true" title="Permalink">#</a>Corrected check-mode preview</h2>
+<pre><code class="language-text">TASK [Require staged centralized logging]
+ok: [localhost]
+msg: Centralized logging remains staged and inactive.
+
+TASK [Validate declared workload-pool labels]
+ok: [localhost]
+msg: Repository workload-pool declarations are valid.
+
+TASK [Preview centralized logging workload-pool label]
+ok: [localhost] =&gt; (item=amd64-01)
+ok: [localhost] =&gt; (item=amd64-02)
+
+PLAY RECAP
+localhost : ok=5 changed=0 unreachable=0 failed=0 skipped=1 rescued=0 ignored=0
+
+PASS amd64-01 remains unlabeled after server dry-run
+PASS amd64-02 remains unlabeled after server dry-run
+</code></pre>
+<h2><a id="guardrails-before-amended-commit" href="#guardrails-before-amended-commit" class="Permalink" aria-hidden="true" title="Permalink">#</a>Guardrails before amended commit</h2>
+<pre><code class="language-text">Kalaxy3 SAGE source guardrails: PASS
+Kalaxy3 SAGE deployment guardrail: PASS
+PASS locked centralized-logging chart validation
+Kalaxy3 repository SAGE guardrails: PASS
+</code></pre>
+<h2><a id="amended-placement-checkpoint" href="#amended-placement-checkpoint" class="Permalink" aria-hidden="true" title="Permalink">#</a>Amended placement checkpoint</h2>
+<pre><code class="language-text">[wip/centralized-logging-staged-20260726 a4a11fc] Separate logging placement label reconciliation
+3 files changed, 133 insertions(+), 20 deletions(-)
+create mode 100644 infrastructure/k3s-homelab/playbooks/reconcile-centralized-logging-labels.yml
+create mode 100644 infrastructure/k3s-homelab/playbooks/tasks/centralized-logging-node-labels.yml
+
+On branch wip/centralized-logging-staged-20260726
+Your branch is ahead of 'origin/wip/centralized-logging-staged-20260726' by 1 commit.
+nothing to commit, working tree clean
+52:deploy_centralized_logging: false
+</code></pre>
+<h2><a id="bounded-label-apply" href="#bounded-label-apply" class="Permalink" aria-hidden="true" title="Permalink">#</a>Bounded label apply</h2>
+<pre><code class="language-text">TASK [Reconcile centralized logging workload-pool label]
+changed: [localhost] =&gt; (item=amd64-01)
+changed: [localhost] =&gt; (item=amd64-02)
+
+PLAY RECAP
+localhost : ok=5 changed=1 unreachable=0 failed=0 skipped=1 rescued=0 ignored=0
+
+amd64-01=ai
+amd64-02=platform-services
+PASS live workload-pool labels match repository intent
+node/amd64-02
+PASS amd64-02 is the unique logging target
+</code></pre>
+<h2><a id="idempotency-rerun" href="#idempotency-rerun" class="Permalink" aria-hidden="true" title="Permalink">#</a>Idempotency rerun</h2>
+<pre><code class="language-text">TASK [Reconcile centralized logging workload-pool label]
+ok: [localhost] =&gt; (item=amd64-01)
+ok: [localhost] =&gt; (item=amd64-02)
+
+PLAY RECAP
+localhost : ok=5 changed=0 unreachable=0 failed=0 skipped=1 rescued=0 ignored=0
+PASS label reconciliation is idempotent
+</code></pre>
+<h2><a id="exact-locked-chart-rendering" href="#exact-locked-chart-rendering" class="Permalink" aria-hidden="true" title="Permalink">#</a>Exact locked-chart rendering</h2>
+<pre><code class="language-text">PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS kubernetes.core 5.1.0
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+
+PASS YAML: loki-values.yml
+PASS YAML: fluent-bit-values.yml
+PASS YAML: grafana-loki-datasource.yml
+PASS placement: Loki=platform-services; Fluent Bit=all nodes
+PASS locked chart render: grafana-community/loki version=18.5.4 release=loki namespace=observability
+PASS locked chart render: fluent/fluent-bit-collector version=1.0.9 release=fluent-bit-collector namespace=observability
+PASS Loki manifests: amd64/platform-services, Longhorn=40Gi, filesystem storage, no test hook
+PASS Fluent Bit manifests: one all-node DaemonSet in observability
+PASS locked centralized-logging chart validation
+</code></pre>
+<h2><a id="target-and-storage-readiness" href="#target-and-storage-readiness" class="Permalink" aria-hidden="true" title="Permalink">#</a>Target and storage readiness</h2>
+<pre><code class="language-text">architecture=amd64
+workload_pool=platform-services
+ready=True
+PASS intended Loki node is ready and correctly labeled
+
+NAME       PROVISIONER          RECLAIM   BINDING
+longhorn   driver.longhorn.io   Retain    Immediate
+
+longhorn_ready=True
+longhorn_schedulable=True
+PASS Longhorn target node is ready and schedulable
+</code></pre>
+<h2><a id="pre-dry-run-negative-evidence" href="#pre-dry-run-negative-evidence" class="Permalink" aria-hidden="true" title="Permalink">#</a>Pre-dry-run negative evidence</h2>
+<pre><code class="language-text">PASS Loki and Fluent Bit Helm releases are absent
+PASS centralized logging resources are absent
+</code></pre>
+<h2><a id="server-side-dry-run-loki" href="#server-side-dry-run-loki" class="Permalink" aria-hidden="true" title="Permalink">#</a>Server-side dry-run: Loki</h2>
+<pre><code class="language-text">serviceaccount/loki-gateway created (server dry run)
+serviceaccount/loki-memcached created (server dry run)
+serviceaccount/loki created (server dry run)
+configmap/loki created (server dry run)
+configmap/loki-gateway created (server dry run)
+configmap/loki-runtime created (server dry run)
+clusterrole.rbac.authorization.k8s.io/loki-clusterrole created (server dry run)
+clusterrolebinding.rbac.authorization.k8s.io/loki-clusterrolebinding created (server dry run)
+service/loki-gateway-exporter created (server dry run)
+service/loki-gateway created (server dry run)
+service/loki created (server dry run)
+service/loki-headless created (server dry run)
+service/loki-memberlist created (server dry run)
+deployment.apps/loki-gateway created (server dry run)
+statefulset.apps/loki created (server dry run)
+PASS Loki manifests accepted by Kubernetes dry-run
+</code></pre>
+<h2><a id="server-side-dry-run-fluent-bit-and-grafana" href="#server-side-dry-run-fluent-bit-and-grafana" class="Permalink" aria-hidden="true" title="Permalink">#</a>Server-side dry-run: Fluent Bit and Grafana</h2>
+<pre><code class="language-text">serviceaccount/fluent-bit-collector created (server dry run)
+configmap/fluent-bit-collector-config created (server dry run)
+configmap/fluent-bit-collector-dashboard created (server dry run)
+configmap/fluent-bit-collector-scripts created (server dry run)
+clusterrole.rbac.authorization.k8s.io/fluent-bit-collector created (server dry run)
+clusterrolebinding.rbac.authorization.k8s.io/fluent-bit-collector created (server dry run)
+daemonset.apps/fluent-bit-collector created (server dry run)
+podmonitor.monitoring.coreos.com/fluent-bit-collector created (server dry run)
+PASS Fluent Bit manifests accepted by Kubernetes dry-run
+
+configmap/grafana-datasource-loki created (server dry run)
+PASS Grafana datasource accepted by Kubernetes dry-run
+PASS server-side dry-run persisted no logging resources
+</code></pre>
+<h2><a id="final-cluster-guardrails" href="#final-cluster-guardrails" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final cluster guardrails</h2>
+<pre><code class="language-text">PASS noninteractive SSH authentication for 7 inventory hosts
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 SAGE bootstrap guardrails: PASS
+PASS 6 enabled Helm releases have exact chart pins
+SKIP fluent_bit_collector: release is not enabled
+SKIP loki: release is not enabled
+PASS 6 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
+</code></pre>
+<h2><a id="final-gate-and-repository-result" href="#final-gate-and-repository-result" class="Permalink" aria-hidden="true" title="Permalink">#</a>Final gate and repository result</h2>
+<pre><code class="language-text">52:deploy_centralized_logging: false
+
+On branch wip/centralized-logging-staged-20260726
+Your branch is ahead of 'origin/wip/centralized-logging-staged-20260726' by 1 commit.
+nothing to commit, working tree clean
+
+PASS centralized logging placement prerequisites
+PASS centralized logging activation readiness
+NO LOGGING DEPLOYMENT OCCURRED
+</code></pre>
+<h2><a id="push-checkpoint" href="#push-checkpoint" class="Permalink" aria-hidden="true" title="Permalink">#</a>Push checkpoint</h2>
+<pre><code class="language-text">To github.com:donb4iu/Kalaxy3.git
+82da6e9..a4a11fc  wip/centralized-logging-staged-20260726 -&gt; wip/centralized-logging-staged-20260726
+
+local=a4a11fc03dec92663a7e31924e8b3690d68aec4e
+remote=a4a11fc03dec92663a7e31924e8b3690d68aec4e
+PASS local and remote checkpoints match
+0  0
+PASS Loki and Fluent Bit releases remain absent
+52:deploy_centralized_logging: false
+nothing to commit, working tree clean
+PASS staged centralized logging checkpoint published
+NO LOGGING DEPLOYMENT OCCURRED
+</code></pre>
+<h2><a id="sage-generator-input-capture" href="#sage-generator-input-capture" class="Permalink" aria-hidden="true" title="Permalink">#</a>SAGE generator input capture</h2>
+<pre><code class="language-text">Kalaxy3 SAGE evidence-generation inputs: PASS
+Bundle: /private/tmp/kalaxy3-sage-evidence-inputs.zip
+Next gate: generate one package from this bundle, then run
+  SAGE_PACKAGE=&lt;package.zip&gt; make sage-evidence-check
+</code></pre>
+<p>Copied input bundle verification:</p>
+<pre><code class="language-text">size_bytes=98378
+sha256=8f43c71b4047990fe8963486f1fc5775aeea969c12872cfe0395ba4932213bd3
+entries=37
+PASS captured SAGE generator-input package
+</code></pre>
+    </div>
+
+        <nav>
+        <ul class="Pager">
+            <li class=Pager--prev><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_001/repository_authority_evidence.html">Previous</a></li>            <li class=Pager--next><a href="../../evidence_artifacts/SAGE_K3_OBS_20260728_002/generation_provenance.html">Next</a></li>        </ul>
+    </nav>
+    </article>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+    <!-- JS -->
+            <script src="../../themes/daux/js/main.js"></script>
+    
+        <script>
+        
+        window.searchLanguage = "";
+        window.searchTranslation = {"Search_one_result":"1 result","Search_results":"!count results","Search_no_results":"Nothing found","Search_common_words_ignored":"Common words are largely ignored","Search_too_short":"Search too short","Search_one_character_or_more":"Should be one character or more","Search_should_be_x_or_more":"Should be !min characters or more","Link_previous":"Previous","Link_next":"Next"};
+    </script>
+
+    <!-- Search -->
+    <script type="text/javascript" src="../../daux_libraries/search.min.js"></script>
+
+    <script>
+        window.search({'base_url': '../../'})
+    </script>
+</body>
+</html>

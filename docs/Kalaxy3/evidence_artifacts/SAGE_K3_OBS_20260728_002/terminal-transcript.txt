@@ -1,0 +1,2599 @@
+# Kalaxy3 centralized logging deployment terminal evidence
+# Session date: 2026-07-28
+# Branch: wip/centralized-logging-staged-20260726
+# Consolidated from the terminal transcripts supplied during the deployment session.
+
+====================================================================================================
+TRANSCRIPT 1: Pasted text(84).txt
+====================================================================================================
+(base) #( 07/28/26@ 6:51PM )( donbuddenbaum@donbs-imac ):~
+   >....
+    git diff --cached --name-only
+  )" = \
+    'infrastructure/k3s-homelab/inventory/group_vars/all/main.yml'
+
+  git commit \
+    -m 'Activate centralized logging deployment'
+
+  ACTIVATION_SHA="$(git rev-parse HEAD)"
+
+  printf 'activation_commit=%s\n' "$ACTIVATION_SHA"
+
+  printf '\n===== PUSH ACTIVATION CHECKPOINT =====\n'
+  git push origin "$BRANCH"
+
+  git fetch origin
+
+  REMOTE_SHA="$(git rev-parse "origin/$BRANCH")"
+
+  printf 'local=%s\n' "$ACTIVATION_SHA"
+  printf 'remote=%s\n' "$REMOTE_SHA"
+
+  test "$ACTIVATION_SHA" = "$REMOTE_SHA"
+
+  printf '\n===== DIVERGENCE =====\n'
+  DIVERGENCE="$(
+    git rev-list \
+      --left-right \
+      --count \
+      "HEAD...origin/$BRANCH"
+  )"
+
+  printf '%s\n' "$DIVERGENCE"
+  test "$DIVERGENCE" = $'0\t0'
+
+  printf '\n===== FINAL ACTIVATION STATE =====\n'
+  grep -nE \
+    '^deploy_centralized_logging:[[:space:]]*true$' \
+    "$GATE_FILE"
+
+  test -z "$(
+    "$HOMELAB/scripts/helm" \
+      list \
+      --all-namespaces \
+      --short |
+    grep -E '^(loki|fluent-bit-collector)$' ||
+    true
+  )"
+
+  git status
+
+  printf '\n===== RESULT =====\n'
+  printf 'PASS centralized logging activation checkpoint published\n'
+  printf 'READY FOR CLUSTER DEPLOYMENT\n'
+  printf 'NO LOGGING DEPLOYMENT OCCURRED IN THIS STEP\n'
+)
+
+===== REQUIRE CLEAN SYNCHRONIZED BRANCH =====
+local=9e6a2bb70cb1f4f718a28bcd7552a21db6f46a19
+remote=9e6a2bb70cb1f4f718a28bcd7552a21db6f46a19
+PASS branch is clean and synchronized
+
+===== REQUIRE STAGED STARTING STATE =====
+52:deploy_centralized_logging: false
+PASS activation gate is false
+PASS Loki and Fluent Bit remain absent
+
+===== SAGE CHANGE DISCOVERY =====
+python3 scripts/sage/sage-change-preflight.py --request "$SAGE_REQUEST"
+Kalaxy3 SAGE change discovery: PASS
+Repository: /Users/donbuddenbaum/dvlp/Kalaxy3
+Request: Activate the validated Kalaxy3 centralized logging observability implementation by changing the repository-owned deployment gate from false to true. Preserve the exact locked Loki and Fluent Bit Collector versions, existing placement, storage, retention, Grafana datasource, guardrails, and rollback authority. Commit and publish the activation checkpoint before modifying the cluster.
+
+Inferred SAGE contexts:
+  - repository-governance
+  - evidence
+  - helm-platform
+  - observability
+  - centralized-logging
+  - storage
+
+[repository-governance]
+  Working directory: .
+
+  Authoritative files:
+  - AGENTS.md
+  - SAGE.md
+  - sage-change-authority.json
+  - markdown/standards/kalaxy3-sage-change-discovery-process.md
+
+  Baseline checks before editing:
+  - make sage-discovery-guardrail
+
+  Required validation after editing:
+  - make sage-self-test
+  - make sage-discovery-guardrail
+  - make sage-index-check
+
+  Evidence process:
+  - Record inferred contexts and authoritative files.
+  - Preserve terminal output from required guardrails.
+
+[evidence]
+  Working directory: .
+
+  Authoritative files:
+  - markdown/standards/kalaxy3-sage-evidence-record-standard.md
+  - markdown/standards/kalaxy3-sage-evidence-publication-process.md
+  - markdown/standards/sage-evidence-metadata-contract-v1.2.json
+  - markdown/templates/sage-evidence-record-template.md
+  - scripts/sage/sage-index.py
+  - scripts/sage/sage-publish.py
+  - sage-evidence-policy.json
+  - scripts/sage/sage-evidence-orchestrator.py
+  - markdown/standards/kalaxy3-sage-evidence-orchestration-process.md
+
+  Baseline checks before editing:
+  - make sage-index-check
+  - make sage-evidence-guardrail
+
+  Required validation after editing:
+  - make sage-index-check
+  - make sage-evidence-self-test
+  - make sage-evidence-guardrail
+
+  Evidence process:
+  - Apply the canonical evidence-generation request automatically; the requester need not enumerate SAGE mechanics.
+  - Use the repository-owned SAGE standard and template.
+  - Publish through scripts/sage/sage-publish.py.
+  - Reconcile indexes through scripts/sage/sage-index.py.
+
+[helm-platform]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/helm-repositories.json
+  - infrastructure/k3s-homelab/helm-chart-lock.json
+  - infrastructure/k3s-homelab/playbooks/platform.yml
+  - infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+  - infrastructure/k3s-homelab/scripts/sage-deployment-guardrail.py
+
+  Baseline checks before editing:
+  - make helm-repository-guardrail
+  - make source-guardrails
+  - make deployment-guardrail
+
+  Required validation after editing:
+  - make source-guardrails
+  - make deployment-guardrail
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture repository, chart-lock, render, and deployment evidence.
+
+[observability]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+  - infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+  - infrastructure/k3s-homelab/helm-chart-lock.json
+
+  Baseline checks before editing:
+  - make source-guardrails
+  - make deployment-guardrail
+
+  Required validation after editing:
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture placement, health, requests, and Kubecost impact.
+
+[centralized-logging]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+  - infrastructure/k3s-homelab/playbooks/templates/loki-values.yml.j2
+  - infrastructure/k3s-homelab/playbooks/templates/fluent-bit-collector-values.yml.j2
+  - infrastructure/k3s-homelab/playbooks/templates/grafana-loki-datasource.yml.j2
+  - infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml
+  - infrastructure/k3s-homelab/scripts/validate-centralized-logging-yaml.py
+
+  Baseline checks before editing:
+  - make helm-repository-guardrail
+  - make source-guardrails
+  - make deployment-guardrail
+  - make centralized-logging-render
+
+  Required validation after editing:
+  - make centralized-logging-render
+  - make cluster-guardrails
+
+  Evidence process:
+  - Preserve pre-deployment render evidence.
+  - Capture collector rollout and Loki placement.
+  - Compare post-deployment Kubecost results with the baseline.
+
+[storage]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/longhorn.yml
+  - infrastructure/k3s-homelab/playbooks/tasks/network-storage.yml
+  - infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+
+  Baseline checks before editing:
+  - make cluster-guardrails
+
+  Required validation after editing:
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture StorageClass, PVC, placement, retention, and recovery evidence.
+
+Implementation policy:
+  - Read every listed authoritative file before editing.
+  - Run baseline checks before implementation.
+  - Treat inactive reviewable code as a staged implementation.
+  - Run validation before activation or publication.
+  - Preserve terminal evidence for the SAGE record.
+
+===== FINAL STAGED CHART RENDER =====
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+.venv/bin/ansible-playbook \
+		playbooks/validate-centralized-logging.yml
+
+PLAY [Render staged centralized logging configuration] *********************************************************************************************************************************
+
+TASK [Require the repository-managed controller interpreter] ***************************************************************************************************************************
+ok: [localhost] =>
+    changed: false
+    msg: 'Using repository-managed Python: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python'
+
+TASK [Require staged activation gate] **************************************************************************************************************************************************
+ok: [localhost] =>
+    changed: false
+    msg: Centralized logging remains staged and inactive.
+
+TASK [Recreate centralized logging render directory] ***********************************************************************************************************************************
+changed: [localhost]
+
+TASK [Create centralized logging render directory] *************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Render Loki Helm values] *********************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Render Fluent Bit Collector Helm values] *****************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Render Grafana Loki datasource] **************************************************************************************************************************************************
+changed: [localhost]
+
+TASK [Validate rendered YAML] **********************************************************************************************************************************************************
+ok: [localhost]
+
+TASK [Show rendered YAML validation] ***************************************************************************************************************************************************
+ok: [localhost] =>
+    centralized_logging_yaml_validation.stdout_lines:
+    - 'PASS YAML: loki-values.yml'
+    - 'PASS YAML: fluent-bit-values.yml'
+    - 'PASS YAML: grafana-loki-datasource.yml'
+    - 'PASS placement: Loki=platform-services; Fluent Bit=all nodes'
+    - 'PASS activation gate: validated by playbook'
+    - 'PASS locked chart render: grafana-community/loki version=18.5.4 release=loki namespace=observability'
+    - 'PASS locked chart render: fluent/fluent-bit-collector version=1.0.9 release=fluent-bit-collector
+        namespace=observability'
+    - 'PASS Loki manifests: amd64/platform-services, Longhorn=40Gi, filesystem storage,
+        no test hook'
+    - 'PASS Fluent Bit manifests: one all-node DaemonSet in observability'
+    - PASS locked centralized-logging chart validation
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+localhost                  : ok=9    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+PASS staged exact-chart render completed
+
+===== ACTIVATE REPOSITORY DEPLOYMENT GATE =====
+PASS centralized logging activation gate set to true
+
+===== REQUIRE EXACT ONE-FILE CHANGE =====
+infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+PASS exact activation-file change
+
+===== REVIEW ACTIVATION DIFF =====
+
+===== REQUIRE ACTIVE GATE =====
+52:deploy_centralized_logging: true
+
+===== OBSERVABILITY PLAYBOOK SYNTAX =====
+
+playbook: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/phases/phase-05-observability.yml
+
+===== SOURCE GUARDRAILS =====
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+
+===== DEPLOYMENT GUARDRAIL =====
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+
+===== PREDEPLOYMENT CLUSTER GUARDRAILS =====
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+NEW  fluent_bit_collector: fluent-bit-collector is not installed; the pinned version may be installed
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+NEW  loki: loki is not installed; the pinned version may be installed
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 6 installed locked releases; 2 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
+
+===== ROOT SAGE GUARDRAILS =====
+python3 scripts/sage/sage-change-preflight.py --self-test
+Kalaxy3 SAGE change discovery self-test: PASS
+python3 scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage/sage-evidence-orchestrator.py self-test
+Kalaxy3 SAGE evidence orchestration self-test: PASS
+python3 scripts/sage/sage-evidence-orchestration-guardrail.py
+PASS canonical evidence request integrity
+PASS repository-owned evidence policy and authorities
+PASS plain-language evidence request regression tests
+PASS original requester language preservation
+PASS root Make evidence-generation entry points
+PASS evidence policy mutation negative tests
+Kalaxy3 SAGE evidence orchestration guardrail: PASS
+python3 scripts/sage/sage-index.py check
+SAGE evidence reconciliation: PASS
+Records:          27
+Generated paths:  42
+Changed paths:    0
+CURATION: markdown/installation/k3s-api-ha-kube-vip.md needs registry review
+CURATION: markdown/installation/k3s-etcd-baseline-backup-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-installation-and-verification.md needs registry review
+CURATION: markdown/installation/kalaxy3-minio-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-observability-and-kubecost.md needs registry review
+CURATION: markdown/installation/kalaxy3-protected-ui-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md needs registry review
+CURATION: markdown/installation/longhorn-kubecost-intel-node-preparation.md needs registry review
+CURATION: markdown/installation/old/amd64-nocloud-seed-helper.md needs registry review
+CURATION: markdown/installation/old/flash.md needs registry review
+CURATION: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning.md needs registry review
+CURATION: markdown/installation/ubuntu-node-provisioning-fixed.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md needs registry review
+LEGACY: markdown/installation/k3s-api-ha-kube-vip.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/k3s-etcd-baseline-backup-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-installation-and-verification.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-minio-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-observability-and-kubecost.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-protected-ui-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/longhorn-kubecost-intel-node-preparation.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/amd64-nocloud-seed-helper.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/flash.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/ubuntu-node-provisioning-fixed.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md indexed as sage-legacy with inferred metadata
+Kalaxy3 repository SAGE guardrails: PASS
+
+===== VERIFY CLUSTER STILL UNCHANGED =====
+PASS activation validation did not deploy logging
+
+===== COMMIT ACTIVATION CHECKPOINT =====
+[wip/centralized-logging-staged-20260726 9c8b0e6] Activate centralized logging deployment
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+activation_commit=9c8b0e68aa742dad796d6871df24faf78f4485aa
+
+===== PUSH ACTIVATION CHECKPOINT =====
+Enumerating objects: 15, done.
+Counting objects: 100% (15/15), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (8/8), 670 bytes | 670.00 KiB/s, done.
+Total 8 (delta 4), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (4/4), completed with 4 local objects.
+To github.com:donb4iu/Kalaxy3.git
+   9e6a2bb..9c8b0e6  wip/centralized-logging-staged-20260726 -> wip/centralized-logging-staged-20260726
+local=9c8b0e68aa742dad796d6871df24faf78f4485aa
+remote=9c8b0e68aa742dad796d6871df24faf78f4485aa
+
+===== DIVERGENCE =====
+0	0
+
+===== FINAL ACTIVATION STATE =====
+52:deploy_centralized_logging: true
+On branch wip/centralized-logging-staged-20260726
+Your branch is up to date with 'origin/wip/centralized-logging-staged-20260726'.
+
+nothing to commit, working tree clean
+
+===== RESULT =====
+PASS centralized logging activation checkpoint published
+READY FOR CLUSTER DEPLOYMENT
+NO LOGGING DEPLOYMENT OCCURRED IN THIS STEP
+(base) #( 07/28/26@ 6:52PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@wip/centralized-logging-staged-20260726✔
+
+====================================================================================================
+TRANSCRIPT 2: Pasted text(85).txt
+====================================================================================================
+(base) #( 07/28/26@ 6:52PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@wip/centralized-logging-staged-20260726✔
+   >....
+    --kubeconfig "$KUBECONFIG_PATH" \
+    -n "$NAMESPACE" \
+    get events \
+    --field-selector type=Warning \
+    --sort-by='.lastTimestamp' |
+  grep -Ei \
+    'loki|fluent-bit-collector' ||
+  printf 'No logging-related Warning events found.\n'
+
+  printf '\n===== POSTDEPLOYMENT CLUSTER GUARDRAILS =====\n'
+  make cluster-guardrails
+
+  printf '\n===== PROMETHEUS REVISION AFTER PHASE =====\n'
+  PROMETHEUS_REVISION_AFTER="$(
+    scripts/helm \
+      list \
+      --namespace "$NAMESPACE" \
+      --filter '^kube-prometheus-stack$' \
+      --output json |
+    .venv/bin/python -c '
+import json
+import sys
+
+releases = json.load(sys.stdin)
+if len(releases) != 1:
+    raise SystemExit(
+        f"Expected one kube-prometheus-stack release; found {len(releases)}"
+    )
+
+print(releases[0]["revision"])
+'
+  )"
+
+  printf 'prometheus_revision_before=%s\n' \
+    "$PROMETHEUS_REVISION_BEFORE"
+
+  printf 'prometheus_revision_after=%s\n' \
+    "$PROMETHEUS_REVISION_AFTER"
+
+  printf '\n===== FINAL REPOSITORY AND ACTIVATION STATE =====\n'
+  test -z "$(git status --porcelain)"
+
+  grep -nE \
+    '^deploy_centralized_logging:[[:space:]]*true$' \
+    inventory/group_vars/all/main.yml
+
+  git status
+
+  printf '\n===== RESULT =====\n'
+  printf 'PASS Loki 18.5.4 deployed\n'
+  printf 'PASS Fluent Bit Collector 1.0.9 deployed on all nodes\n'
+  printf 'PASS Grafana Loki datasource provisioned\n'
+  printf 'PASS Loki storage and ingestion validated\n'
+  printf 'CENTRALIZED LOGGING OBSERVABILITY DEPLOYMENT COMPLETE\n'
+)
+
+===== REQUIRE PUBLISHED ACTIVATION CHECKPOINT =====
+local=9c8b0e68aa742dad796d6871df24faf78f4485aa
+remote=9c8b0e68aa742dad796d6871df24faf78f4485aa
+PASS activation checkpoint is published and clean
+
+===== REQUIRE ACTIVATED OBSERVABILITY STATE =====
+50:install_observability: true
+52:deploy_centralized_logging: true
+53:install_kubecost: false
+PASS observability enabled
+PASS centralized logging activated
+PASS Kubecost excluded from this phase
+
+===== REQUIRE EXACT LIVE PLACEMENT =====
+amd64-01=ai
+amd64-02=platform-services
+PASS amd64-02 is the unique Loki target
+
+===== REQUIRE LOGGING RELEASES ABSENT =====
+PASS Loki and Fluent Bit are not yet installed
+
+===== RECORD EXISTING PROMETHEUS REVISION =====
+prometheus_revision_before=10
+
+===== DEPLOY OBSERVABILITY PHASE =====
+Enter the kalaxy3 vault password when prompted.
+Vault password (kalaxy3):
+
+PLAY [Install a selected cluster platform phase] ***************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Resolve the repository-supported Helm platform] **********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require a repository-pinned Helm platform] ***************************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Create the versioned Helm installation directory] ********************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Create isolated Helm runtime directories] ****************************************************************************************************************************************
+changed: [arm64-01] => (item=/var/lib/kalaxy3/helm/config)
+changed: [arm64-01] => (item=/var/lib/kalaxy3/helm/cache)
+changed: [arm64-01] => (item=/var/lib/kalaxy3/helm/data)
+changed: [arm64-01] => (item=/var/lib/kalaxy3/helm/plugins)
+changed: [arm64-01] => (item=/var/lib/kalaxy3/helm/registry)
+changed: [arm64-01] => (item=/var/lib/kalaxy3/helm/repository-cache)
+
+TASK [Download the repository-pinned Helm archive] *************************************************************************************************************************************
+[WARNING]: Module remote_tmp /root/.ansible/tmp did not exist and was created with a mode of 0700, this may cause issues when running as another user. To avoid this, create the
+remote_tmp dir with the correct permissions manually
+changed: [arm64-01]
+
+TASK [Create the Helm extraction directory] ********************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Extract the repository-pinned Helm archive] **************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Install the exact remote Helm binary] ********************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Read the controlled remote Helm binary checksum] *********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require the exact remote Helm binary checksum] ***********************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Read the controlled remote Helm version] *****************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require the exact remote Helm version] *******************************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Reconcile approved Helm repositories] ********************************************************************************************************************************************
+ok: [arm64-01] => (item={'name': 'metallb', 'url': 'https://metallb.github.io/metallb', 'url_sha256': '9e613e6868e0eef74759fca94ef5ba48c9e4d82509f23f05a4c5f5520cbbadbc'})
+ok: [arm64-01] => (item={'name': 'nfs', 'url': 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner', 'url_sha256': 'e9108655a590726c810dd2eb237aab3332a462b4ed555303ecf43b5a94646df1'})
+ok: [arm64-01] => (item={'name': 'prometheus-community', 'url': 'https://prometheus-community.github.io/helm-charts', 'url_sha256': 'a3d71d79da3a7e97fc44127f373aa765c1b71499cb48cdf46a0c10608bd437bc'})
+ok: [arm64-01] => (item={'name': 'grafana', 'url': 'https://grafana.github.io/helm-charts', 'url_sha256': '7bb9752fde3d72057b84f100226217b212b0c3e26365451c28d72d0113e977f9'})
+ok: [arm64-01] => (item={'name': 'grafana-community', 'url': 'https://grafana-community.github.io/helm-charts', 'url_sha256': '206ac5464a9fcfa3442aa8c4f732e5017d88ffedfbee02e2ff2bed5cb58e67e3'})
+ok: [arm64-01] => (item={'name': 'fluent', 'url': 'https://fluent.github.io/helm-charts/', 'url_sha256': 'b16bb56016f47f67656cfbd58474bd8df8db9000c48377b2cef31927f3c33910'})
+ok: [arm64-01] => (item={'name': 'headlamp', 'url': 'https://kubernetes-sigs.github.io/headlamp/', 'url_sha256': '3d2292cd1983c771cb3fe6621bbc314405a664ff3443ed12d7d30062467a66fb'})
+ok: [arm64-01] => (item={'name': 'longhorn', 'url': 'https://charts.longhorn.io', 'url_sha256': 'fb7e9a4773fc0b78c82a6905fc62e1a675b271aa1d6ed461a42068c3bcb93860'})
+
+TASK [Update only approved Helm repositories] ******************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Run networking and storage phase] ************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run administrative UI phase] *****************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run Longhorn storage phase] ******************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run observability phase] *********************************************************************************************************************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Install Prometheus and Grafana] **************************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Reconcile staged centralized logging workload-pool labels] ***********************************************************************************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/centralized-logging-node-labels.yml for arm64-01
+
+TASK [Preview centralized logging workload-pool label] *********************************************************************************************************************************
+skipping: [arm64-01] => (item=amd64-01)
+skipping: [arm64-01] => (item=amd64-02)
+skipping: [arm64-01]
+
+TASK [Reconcile centralized logging workload-pool label] *******************************************************************************************************************************
+ok: [arm64-01] => (item=amd64-01)
+ok: [arm64-01] => (item=amd64-02)
+
+TASK [Find eligible centralized logging platform nodes] ********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require the intended centralized logging node] ***********************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: Centralized logging is assigned to amd64-02.
+
+TASK [Write Loki Helm values] **********************************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Install Loki] ********************************************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Write Fluent Bit Collector Helm values] ******************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Install Fluent Bit Collector] ****************************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Write Grafana Loki datasource] ***************************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Provision Grafana Loki datasource] ***********************************************************************************************************************************************
+fatal: [arm64-01]: FAILED! =>
+    changed: false
+    msg: Failed to import the required Python library (kubernetes) on arm64-01's Python
+        /usr/bin/python3. Please read the module documentation and install it in the appropriate
+        location. If the required library is installed, but Ansible is using the wrong
+        Python interpreter, please consult the documentation on ansible_python_interpreter
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+arm64-01                   : ok=26   changed=12   unreachable=0    failed=1    skipped=4    rescued=0    ignored=0
+
+(base) #( 07/28/26@ 7:09PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
+
+====================================================================================================
+TRANSCRIPT 3: Pasted text(86).txt
+====================================================================================================
+(base) #( 07/28/26@ 7:15PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
+   >....
+  printf '\n===== PUSH CORRECTION CHECKPOINT =====\n'
+  git push origin "$BRANCH"
+
+  git fetch origin
+
+  REMOTE_SHA="$(
+    git rev-parse "origin/$BRANCH"
+  )"
+
+  printf 'local=%s\n' "$CORRECTION_SHA"
+  printf 'remote=%s\n' "$REMOTE_SHA"
+
+  test "$CORRECTION_SHA" = "$REMOTE_SHA"
+
+  printf '\n===== DIVERGENCE =====\n'
+  DIVERGENCE="$(
+    git rev-list \
+      --left-right \
+      --count \
+      "HEAD...origin/$BRANCH"
+  )"
+
+  printf '%s\n' "$DIVERGENCE"
+  test "$DIVERGENCE" = $'0\t0'
+
+  printf '\n===== FINAL PARTIAL DEPLOYMENT STATE =====\n'
+  "$HOMELAB/scripts/helm" \
+    list \
+    --namespace observability \
+    --filter '^(loki|fluent-bit-collector)$'
+
+  if kubectl \
+    --kubeconfig "$KUBECONFIG_PATH" \
+    -n observability \
+    get configmap grafana-datasource-loki \
+    >/dev/null 2>&1
+  then
+    printf 'ERROR datasource was created during correction step\n' >&2
+    false
+  fi
+
+  test -z "$(git status --porcelain)"
+
+  grep -nE \
+    '^deploy_centralized_logging:[[:space:]]*true$' \
+    "$HOMELAB/inventory/group_vars/all/main.yml"
+
+  git status
+
+  printf '\n===== RESULT =====\n'
+  printf 'PASS datasource reconciliation correction published\n'
+  printf 'LOKI AND FLUENT BIT REMAIN INSTALLED\n'
+  printf 'GRAFANA DATASOURCE REMAINS PENDING\n'
+  printf 'READY TO RESUME OBSERVABILITY DEPLOYMENT\n'
+)
+
+===== REQUIRE EXPECTED REPOSITORY STATE =====
+PASS activation checkpoint is clean and synchronized
+PASS centralized logging gate remains active
+
+===== CAPTURE PARTIAL DEPLOYMENT STATE =====
+NAME                	NAMESPACE    	REVISION	UPDATED                                	STATUS  	CHART                     	APP VERSION
+fluent-bit-collector	observability	1       	2026-07-28 19:09:03.472186184 -0500 CDT	deployed	fluent-bit-collector-1.0.9	5.0.9
+loki                	observability	1       	2026-07-28 19:07:29.039676142 -0500 CDT	deployed	loki-18.5.4               	3.7.4
+PASS loki: loki-18.5.4 deployed
+PASS fluent-bit-collector: fluent-bit-collector-1.0.9 deployed
+
+===== VERIFY DATASOURCE IS THE MISSING STEP =====
+PASS Grafana datasource ConfigMap is absent
+
+===== CURRENT LOGGING WORKLOADS =====
+NAME                    READY   AGE    CONTAINERS           IMAGES
+statefulset.apps/loki   1/1     8m3s   loki,loki-sc-rules   docker.io/grafana/loki:3.7.4,docker.io/kiwigrid/k8s-sidecar:2.8.1
+
+NAME                           READY   UP-TO-DATE   AVAILABLE   AGE    CONTAINERS       IMAGES                                                                                         SELECTOR
+deployment.apps/loki-gateway   1/1     1            1           8m3s   nginx,exporter   docker.io/nginxinc/nginx-unprivileged:1.31-alpine,ghcr.io/jkroepke/access-log-exporter:0.4.8   app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+
+NAME                                  DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR   AGE     CONTAINERS   IMAGES                            SELECTOR
+daemonset.apps/fluent-bit-collector   7         7         7       7            7           <none>          6m31s   collector    ghcr.io/fluent/fluent-bit:5.0.9   app.kubernetes.io/instance=fluent-bit-collector,app.kubernetes.io/name=fluent-bit-collector
+
+NAME                                READY   STATUS    RESTARTS   AGE     IP           NODE       NOMINATED NODE   READINESS GATES
+pod/fluent-bit-collector-45dll      1/1     Running   0          6m31s   10.42.1.10   arm64-02   <none>           <none>
+pod/fluent-bit-collector-54w96      1/1     Running   0          6m31s   10.42.0.12   arm64-01   <none>           <none>
+pod/fluent-bit-collector-9glmr      1/1     Running   0          6m31s   10.42.3.9    arm64-04   <none>           <none>
+pod/fluent-bit-collector-d7ttl      1/1     Running   0          6m31s   10.42.4.35   amd64-01   <none>           <none>
+pod/fluent-bit-collector-gv2ds      1/1     Running   0          6m31s   10.42.2.22   arm64-03   <none>           <none>
+pod/fluent-bit-collector-n8rmb      1/1     Running   0          6m31s   10.42.6.28   amd64-02   <none>           <none>
+pod/fluent-bit-collector-pr7jh      1/1     Running   0          6m31s   10.42.5.9    arm64-05   <none>           <none>
+pod/loki-0                          2/2     Running   0          8m3s    10.42.6.27   amd64-02   <none>           <none>
+pod/loki-gateway-5c75989494-97v27   2/2     Running   0          8m3s    10.42.6.26   amd64-02   <none>           <none>
+
+NAME                                   STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE    VOLUMEMODE
+persistentvolumeclaim/storage-loki-0   Bound    pvc-75885121-8c1b-4024-aaf2-6d341244ea6d   40Gi       RWO            longhorn       <unset>                 8m3s   Filesystem
+
+===== SAGE CHANGE DISCOVERY =====
+python3 scripts/sage/sage-change-preflight.py --request "$SAGE_REQUEST"
+Kalaxy3 SAGE change discovery: PASS
+Repository: /Users/donbuddenbaum/dvlp/Kalaxy3
+Request: Correct the partially completed centralized logging observability deployment by replacing the Grafana Loki datasource kubernetes.core.k8s task, which requires an unavailable Python Kubernetes client on arm64-01, with the repository-established k3s kubectl reconciliation mechanism. Preserve the active deployment gate, exact chart locks, current Loki and Fluent Bit releases, datasource manifest, idempotency, and SAGE evidence requirements.
+
+Inferred SAGE contexts:
+  - repository-governance
+  - evidence
+  - helm-platform
+  - observability
+  - centralized-logging
+  - storage
+  - k3s-cluster
+
+[repository-governance]
+  Working directory: .
+
+  Authoritative files:
+  - AGENTS.md
+  - SAGE.md
+  - sage-change-authority.json
+  - markdown/standards/kalaxy3-sage-change-discovery-process.md
+
+  Baseline checks before editing:
+  - make sage-discovery-guardrail
+
+  Required validation after editing:
+  - make sage-self-test
+  - make sage-discovery-guardrail
+  - make sage-index-check
+
+  Evidence process:
+  - Record inferred contexts and authoritative files.
+  - Preserve terminal output from required guardrails.
+
+[evidence]
+  Working directory: .
+
+  Authoritative files:
+  - markdown/standards/kalaxy3-sage-evidence-record-standard.md
+  - markdown/standards/kalaxy3-sage-evidence-publication-process.md
+  - markdown/standards/sage-evidence-metadata-contract-v1.2.json
+  - markdown/templates/sage-evidence-record-template.md
+  - scripts/sage/sage-index.py
+  - scripts/sage/sage-publish.py
+  - sage-evidence-policy.json
+  - scripts/sage/sage-evidence-orchestrator.py
+  - markdown/standards/kalaxy3-sage-evidence-orchestration-process.md
+
+  Baseline checks before editing:
+  - make sage-index-check
+  - make sage-evidence-guardrail
+
+  Required validation after editing:
+  - make sage-index-check
+  - make sage-evidence-self-test
+  - make sage-evidence-guardrail
+
+  Evidence process:
+  - Apply the canonical evidence-generation request automatically; the requester need not enumerate SAGE mechanics.
+  - Use the repository-owned SAGE standard and template.
+  - Publish through scripts/sage/sage-publish.py.
+  - Reconcile indexes through scripts/sage/sage-index.py.
+
+[helm-platform]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/helm-repositories.json
+  - infrastructure/k3s-homelab/helm-chart-lock.json
+  - infrastructure/k3s-homelab/playbooks/platform.yml
+  - infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+  - infrastructure/k3s-homelab/scripts/sage-deployment-guardrail.py
+
+  Baseline checks before editing:
+  - make helm-repository-guardrail
+  - make source-guardrails
+  - make deployment-guardrail
+
+  Required validation after editing:
+  - make source-guardrails
+  - make deployment-guardrail
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture repository, chart-lock, render, and deployment evidence.
+
+[observability]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+  - infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+  - infrastructure/k3s-homelab/helm-chart-lock.json
+
+  Baseline checks before editing:
+  - make source-guardrails
+  - make deployment-guardrail
+
+  Required validation after editing:
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture placement, health, requests, and Kubecost impact.
+
+[centralized-logging]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+  - infrastructure/k3s-homelab/playbooks/templates/loki-values.yml.j2
+  - infrastructure/k3s-homelab/playbooks/templates/fluent-bit-collector-values.yml.j2
+  - infrastructure/k3s-homelab/playbooks/templates/grafana-loki-datasource.yml.j2
+  - infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml
+  - infrastructure/k3s-homelab/scripts/validate-centralized-logging-yaml.py
+
+  Baseline checks before editing:
+  - make helm-repository-guardrail
+  - make source-guardrails
+  - make deployment-guardrail
+  - make centralized-logging-render
+
+  Required validation after editing:
+  - make centralized-logging-render
+  - make cluster-guardrails
+
+  Evidence process:
+  - Preserve pre-deployment render evidence.
+  - Capture collector rollout and Loki placement.
+  - Compare post-deployment Kubecost results with the baseline.
+
+[storage]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/longhorn.yml
+  - infrastructure/k3s-homelab/playbooks/tasks/network-storage.yml
+  - infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+
+  Baseline checks before editing:
+  - make cluster-guardrails
+
+  Required validation after editing:
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture StorageClass, PVC, placement, retention, and recovery evidence.
+
+[k3s-cluster]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/k3s-platforms.json
+  - infrastructure/k3s-homelab/playbooks/k3s.yml
+  - infrastructure/k3s-homelab/playbooks/tasks/install-k3s.yml
+  - infrastructure/k3s-homelab/scripts/sage-k3s-guardrail.py
+
+  Baseline checks before editing:
+  - make k3s-guardrails
+
+  Required validation after editing:
+  - make k3s-guardrails
+
+  Evidence process:
+  - Capture node identity, architecture, readiness, etcd, and recovery evidence.
+
+Implementation policy:
+  - Read every listed authoritative file before editing.
+  - Run baseline checks before implementation.
+  - Treat inactive reviewable code as a staged implementation.
+  - Run validation before activation or publication.
+  - Preserve terminal evidence for the SAGE record.
+
+===== REPLACE PYTHON-CLIENT TASK =====
+PASS datasource reconciliation now uses repository-established k3s kubectl
+
+===== REQUIRE EXACT ONE-FILE CORRECTION =====
+infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+PASS exact one-file correction
+
+===== REVIEW CORRECTION =====
+
+===== REQUIRE OLD MODULE REMOVED =====
+PASS datasource task no longer requires Python Kubernetes client
+
+===== OBSERVABILITY PLAYBOOK SYNTAX =====
+
+playbook: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/phases/phase-05-observability.yml
+
+playbook: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/platform.yml
+
+===== DATASOURCE SERVER-SIDE DRY-RUN =====
+configmap/grafana-datasource-loki created (server dry run)
+PASS datasource manifest accepted by Kubernetes dry-run
+
+===== VERIFY DRY-RUN PERSISTED NOTHING =====
+PASS datasource remains absent
+
+===== SOURCE GUARDRAILS =====
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+
+===== DEPLOYMENT GUARDRAIL =====
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+
+===== CLUSTER GUARDRAILS =====
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
+
+===== ROOT SAGE GUARDRAILS =====
+python3 scripts/sage/sage-change-preflight.py --self-test
+Kalaxy3 SAGE change discovery self-test: PASS
+python3 scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage/sage-evidence-orchestrator.py self-test
+Kalaxy3 SAGE evidence orchestration self-test: PASS
+python3 scripts/sage/sage-evidence-orchestration-guardrail.py
+PASS canonical evidence request integrity
+PASS repository-owned evidence policy and authorities
+PASS plain-language evidence request regression tests
+PASS original requester language preservation
+PASS root Make evidence-generation entry points
+PASS evidence policy mutation negative tests
+Kalaxy3 SAGE evidence orchestration guardrail: PASS
+python3 scripts/sage/sage-index.py check
+SAGE evidence reconciliation: PASS
+Records:          27
+Generated paths:  42
+Changed paths:    0
+CURATION: markdown/installation/k3s-api-ha-kube-vip.md needs registry review
+CURATION: markdown/installation/k3s-etcd-baseline-backup-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-installation-and-verification.md needs registry review
+CURATION: markdown/installation/kalaxy3-minio-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-observability-and-kubecost.md needs registry review
+CURATION: markdown/installation/kalaxy3-protected-ui-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md needs registry review
+CURATION: markdown/installation/longhorn-kubecost-intel-node-preparation.md needs registry review
+CURATION: markdown/installation/old/amd64-nocloud-seed-helper.md needs registry review
+CURATION: markdown/installation/old/flash.md needs registry review
+CURATION: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning.md needs registry review
+CURATION: markdown/installation/ubuntu-node-provisioning-fixed.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md needs registry review
+LEGACY: markdown/installation/k3s-api-ha-kube-vip.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/k3s-etcd-baseline-backup-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-installation-and-verification.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-minio-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-observability-and-kubecost.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-protected-ui-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/longhorn-kubecost-intel-node-preparation.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/amd64-nocloud-seed-helper.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/flash.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/ubuntu-node-provisioning-fixed.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md indexed as sage-legacy with inferred metadata
+Kalaxy3 repository SAGE guardrails: PASS
+
+===== COMMIT CORRECTION =====
+[wip/centralized-logging-staged-20260726 4247387] Use kubectl for Grafana datasource reconciliation
+ 1 file changed, 11 insertions(+), 4 deletions(-)
+correction_commit=4247387a8062a0a353f5704e40c90b1727881a4a
+
+===== PUSH CORRECTION CHECKPOINT =====
+Enumerating objects: 13, done.
+Counting objects: 100% (13/13), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (6/6), done.
+Writing objects: 100% (7/7), 697 bytes | 697.00 KiB/s, done.
+Total 7 (delta 5), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (5/5), completed with 5 local objects.
+To github.com:donb4iu/Kalaxy3.git
+   9c8b0e6..4247387  wip/centralized-logging-staged-20260726 -> wip/centralized-logging-staged-20260726
+local=4247387a8062a0a353f5704e40c90b1727881a4a
+remote=4247387a8062a0a353f5704e40c90b1727881a4a
+
+===== DIVERGENCE =====
+0	0
+
+===== FINAL PARTIAL DEPLOYMENT STATE =====
+NAME                	NAMESPACE    	REVISION	UPDATED                                	STATUS  	CHART                     	APP VERSION
+fluent-bit-collector	observability	1       	2026-07-28 19:09:03.472186184 -0500 CDT	deployed	fluent-bit-collector-1.0.9	5.0.9
+loki                	observability	1       	2026-07-28 19:07:29.039676142 -0500 CDT	deployed	loki-18.5.4               	3.7.4
+52:deploy_centralized_logging: true
+On branch wip/centralized-logging-staged-20260726
+Your branch is up to date with 'origin/wip/centralized-logging-staged-20260726'.
+
+nothing to commit, working tree clean
+
+===== RESULT =====
+PASS datasource reconciliation correction published
+LOKI AND FLUENT BIT REMAIN INSTALLED
+GRAFANA DATASOURCE REMAINS PENDING
+READY TO RESUME OBSERVABILITY DEPLOYMENT
+(base) #( 07/28/26@ 7:16PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@wip/centralized-logging-staged-20260726✔
+
+====================================================================================================
+TRANSCRIPT 4: Pasted text(87).txt
+====================================================================================================
+(base) #( 07/28/26@ 7:16PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@wip/centralized-logging-staged-20260726✔
+   >....
+    'loki|fluent-bit-collector' ||
+  printf 'No logging-related Warning events found.\n'
+
+  printf '\n===== POSTDEPLOYMENT CLUSTER GUARDRAILS =====\n'
+  make cluster-guardrails
+
+  printf '\n===== HELM REVISIONS AFTER RESUME =====\n'
+  POST_REVISIONS="$(
+    scripts/helm \
+      list \
+      --namespace "$NAMESPACE" \
+      --filter '^(loki|fluent-bit-collector|kube-prometheus-stack)$' \
+      --output json |
+    .venv/bin/python -c '
+import json
+import sys
+
+for item in sorted(
+    json.load(sys.stdin),
+    key=lambda value: value["name"],
+):
+    print(
+        f"{item['name']}={item['revision']}"
+    )
+'
+  )"
+
+  printf 'before:\n%s\n' "$PRE_REVISIONS"
+  printf 'after:\n%s\n' "$POST_REVISIONS"
+
+  printf '\n===== FINAL REPOSITORY STATE =====\n'
+  test -z "$(git status --porcelain)"
+
+  test "$(
+    git rev-parse HEAD
+  )" = "$(
+    git rev-parse "origin/$BRANCH"
+  )"
+
+  grep -nE \
+    '^deploy_centralized_logging:[[:space:]]*true$' \
+    inventory/group_vars/all/main.yml
+
+  git status
+
+  trap - ERR
+
+  printf '\n===== RESULT =====\n'
+  printf 'PASS Loki 18.5.4 deployed and healthy\n'
+  printf 'PASS Fluent Bit Collector 1.0.9 runs on all seven nodes\n'
+  printf 'PASS Grafana loaded the Loki datasource\n'
+  printf 'PASS Longhorn storage is healthy and replicated\n'
+  printf 'PASS collected logs are queryable through Loki\n'
+  printf 'CENTRALIZED LOGGING OBSERVABILITY DEPLOYMENT COMPLETE\n'
+)
+
+===== REQUIRE PUBLISHED CORRECTION CHECKPOINT =====
+local=4247387a8062a0a353f5704e40c90b1727881a4a
+remote=4247387a8062a0a353f5704e40c90b1727881a4a
+PASS correction checkpoint is published and clean
+
+===== REQUIRE ACTIVE OBSERVABILITY GATE =====
+50:install_observability: true
+52:deploy_centralized_logging: true
+53:install_kubecost: false
+PASS observability and centralized logging are active
+PASS Kubecost remains excluded
+
+===== REQUIRE EXPECTED PARTIAL DEPLOYMENT =====
+PASS loki: chart=loki-18.5.4 revision=1 status=deployed
+PASS fluent-bit-collector: chart=fluent-bit-collector-1.0.9 revision=1 status=deployed
+PASS Grafana datasource remains the pending step
+
+===== RECORD PRE-RESUME HELM REVISIONS =====
+Traceback (most recent call last):
+  File "<string>", line 10, in <module>
+NameError: name 'name' is not defined
+
+===== FAILURE DIAGNOSTICS =====
+NAME                 	NAMESPACE    	REVISION	UPDATED                                	STATUS  	CHART                        	APP VERSION
+fluent-bit-collector 	observability	1       	2026-07-28 19:09:03.472186184 -0500 CDT	deployed	fluent-bit-collector-1.0.9   	5.0.9
+kube-prometheus-stack	observability	11      	2026-07-28 19:06:26.918319891 -0500 CDT	deployed	kube-prometheus-stack-87.19.0	v0.92.1
+loki                 	observability	1       	2026-07-28 19:07:29.039676142 -0500 CDT	deployed	loki-18.5.4                  	3.7.4
+NAME                                                               READY   AGE   CONTAINERS                     IMAGES
+statefulset.apps/alertmanager-kube-prometheus-stack-alertmanager   1/1     11d   alertmanager,config-reloader   quay.io/prometheus/alertmanager:v0.33.1,quay.io/prometheus-operator/prometheus-config-reloader:v0.92.1
+statefulset.apps/loki                                              1/1     13m   loki,loki-sc-rules             docker.io/grafana/loki:3.7.4,docker.io/kiwigrid/k8s-sidecar:2.8.1
+statefulset.apps/prometheus-kube-prometheus-stack-prometheus       1/1     11d   prometheus,config-reloader     quay.io/prometheus/prometheus:v3.13.1-distroless,quay.io/prometheus-operator/prometheus-config-reloader:v0.92.1
+
+NAME                                                       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS                                            IMAGES                                                                                                   SELECTOR
+deployment.apps/kube-prometheus-stack-grafana              1/1     1            1           11d   grafana-sc-dashboard,grafana-sc-datasources,grafana   quay.io/kiwigrid/k8s-sidecar:2.8.1,quay.io/kiwigrid/k8s-sidecar:2.8.1,docker.io/grafana/grafana:13.1.1   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=grafana
+deployment.apps/kube-prometheus-stack-kube-state-metrics   1/1     1            1           11d   kube-state-metrics                                    registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.19.1                                            app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=kube-state-metrics
+deployment.apps/kube-prometheus-stack-operator             1/1     1            1           11d   kube-prometheus-stack                                 quay.io/prometheus-operator/prometheus-operator:v0.92.1                                                  app=kube-prometheus-stack-operator,release=kube-prometheus-stack
+deployment.apps/loki-gateway                               1/1     1            1           13m   nginx,exporter                                        docker.io/nginxinc/nginx-unprivileged:1.31-alpine,ghcr.io/jkroepke/access-log-exporter:0.4.8             app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+
+NAME                                                            DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE   CONTAINERS      IMAGES                                                SELECTOR
+daemonset.apps/fluent-bit-collector                             7         7         7       7            7           <none>                   11m   collector       ghcr.io/fluent/fluent-bit:5.0.9                       app.kubernetes.io/instance=fluent-bit-collector,app.kubernetes.io/name=fluent-bit-collector
+daemonset.apps/kube-prometheus-stack-prometheus-node-exporter   7         7         7       7            7           kubernetes.io/os=linux   11d   node-exporter   quay.io/prometheus/node-exporter:v1.12.1-distroless   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=prometheus-node-exporter
+
+NAME                                                            READY   STATUS    RESTARTS      AGE    IP             NODE       NOMINATED NODE   READINESS GATES
+pod/alertmanager-kube-prometheus-stack-alertmanager-0           2/2     Running   0             11d    10.42.3.4      arm64-04   <none>           <none>
+pod/fluent-bit-collector-45dll                                  1/1     Running   0             11m    10.42.1.10     arm64-02   <none>           <none>
+pod/fluent-bit-collector-54w96                                  1/1     Running   0             11m    10.42.0.12     arm64-01   <none>           <none>
+pod/fluent-bit-collector-9glmr                                  1/1     Running   0             11m    10.42.3.9      arm64-04   <none>           <none>
+pod/fluent-bit-collector-d7ttl                                  1/1     Running   0             11m    10.42.4.35     amd64-01   <none>           <none>
+pod/fluent-bit-collector-gv2ds                                  1/1     Running   0             11m    10.42.2.22     arm64-03   <none>           <none>
+pod/fluent-bit-collector-n8rmb                                  1/1     Running   0             11m    10.42.6.28     amd64-02   <none>           <none>
+pod/fluent-bit-collector-pr7jh                                  1/1     Running   0             11m    10.42.5.9      arm64-05   <none>           <none>
+pod/kube-prometheus-stack-grafana-784b55fb5-f4xg5               3/3     Running   0             7d     10.42.6.10     amd64-02   <none>           <none>
+pod/kube-prometheus-stack-kube-state-metrics-6f664bc8c4-mwgz6   1/1     Running   0             7d     10.42.6.9      amd64-02   <none>           <none>
+pod/kube-prometheus-stack-operator-7d8df54f74-67hv4             1/1     Running   0             7d     10.42.6.11     amd64-02   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-c7qs4        1/1     Running   0             7d2h   192.168.2.62   amd64-02   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-hsxpx        1/1     Running   0             8d     192.168.2.61   amd64-01   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-pln7m        1/1     Running   1 (21h ago)   11d    192.168.2.51   arm64-01   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-t78zj        1/1     Running   0             11d    192.168.2.55   arm64-05   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-tqcjk        1/1     Running   0             11d    192.168.2.53   arm64-03   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-vgmjn        1/1     Running   0             11d    192.168.2.52   arm64-02   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-xhzjs        1/1     Running   0             11d    192.168.2.54   arm64-04   <none>           <none>
+pod/loki-0                                                      2/2     Running   0             13m    10.42.6.27     amd64-02   <none>           <none>
+pod/loki-gateway-5c75989494-97v27                               2/2     Running   0             13m    10.42.6.26     amd64-02   <none>           <none>
+pod/prometheus-kube-prometheus-stack-prometheus-0               2/2     Running   0             11d    10.42.5.4      arm64-05   <none>           <none>
+
+NAME                                                     TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)                      AGE   SELECTOR
+service/alertmanager-operated                            ClusterIP      None            <none>         9093/TCP,9094/TCP,9094/UDP   11d   app.kubernetes.io/name=alertmanager
+service/kube-prometheus-stack-alertmanager               ClusterIP      10.43.146.197   <none>         9093/TCP,8080/TCP            11d   alertmanager=kube-prometheus-stack-alertmanager,app.kubernetes.io/name=alertmanager
+service/kube-prometheus-stack-grafana                    LoadBalancer   10.43.101.190   192.168.2.25   80:32031/TCP                 11d   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=grafana
+service/kube-prometheus-stack-kube-state-metrics         ClusterIP      10.43.21.22     <none>         8080/TCP                     11d   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=kube-state-metrics
+service/kube-prometheus-stack-operator                   ClusterIP      10.43.5.133     <none>         443/TCP                      11d   app=kube-prometheus-stack-operator,release=kube-prometheus-stack
+service/kube-prometheus-stack-prometheus                 ClusterIP      10.43.129.4     <none>         9090/TCP,8080/TCP            11d   app.kubernetes.io/name=prometheus,operator.prometheus.io/name=kube-prometheus-stack-prometheus
+service/kube-prometheus-stack-prometheus-node-exporter   ClusterIP      10.43.164.191   <none>         9100/TCP                     11d   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=prometheus-node-exporter
+service/loki                                             ClusterIP      10.43.27.30     <none>         3100/TCP,9095/TCP,9096/TCP   13m   app.kubernetes.io/component=single-binary,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-gateway                                     ClusterIP      10.43.124.179   <none>         80/TCP                       13m   app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-gateway-exporter                            ClusterIP      10.43.176.13    <none>         4040/TCP                     13m   app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-headless                                    ClusterIP      None            <none>         3100/TCP,9095/TCP,9096/TCP   13m   app.kubernetes.io/component=single-binary,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-memberlist                                  ClusterIP      None            <none>         7946/TCP                     13m   app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki,app.kubernetes.io/part-of=memberlist
+service/prometheus-operated                              ClusterIP      None            <none>         9090/TCP                     11d   app.kubernetes.io/name=prometheus
+
+NAME                                                                                                                         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/alertmanager-kube-prometheus-stack-alertmanager-db-alertmanager-kube-prometheus-stack-alertmanager-0   Bound    pvc-4fcd51bb-709d-4ed7-ac7f-5db90b30e5ca   5Gi        RWO            nfs-ssd        <unset>                 11d   Filesystem
+persistentvolumeclaim/kube-prometheus-stack-grafana                                                                          Bound    pvc-73501baa-6b63-4a5c-8525-9985aca06046   10Gi       RWO            nfs-ssd        <unset>                 11d   Filesystem
+persistentvolumeclaim/prometheus-kube-prometheus-stack-prometheus-db-prometheus-kube-prometheus-stack-prometheus-0           Bound    pvc-591b574a-9cfb-4721-8ba3-75185c6bf94e   40Gi       RWO            nfs-ssd        <unset>                 11d   Filesystem
+persistentvolumeclaim/storage-loki-0                                                                                         Bound    pvc-75885121-8c1b-4024-aaf2-6d341244ea6d   40Gi       RWO            longhorn       <unset>                 13m   Filesystem
+
+NAME                                                                DATA   AGE
+configmap/fluent-bit-collector-config                               1      11m
+configmap/fluent-bit-collector-dashboard                            1      11m
+configmap/fluent-bit-collector-scripts                              0      11m
+configmap/kube-prometheus-stack-alertmanager-overview               1      11d
+configmap/kube-prometheus-stack-apiserver                           1      11d
+configmap/kube-prometheus-stack-cluster-total                       1      11d
+configmap/kube-prometheus-stack-controller-manager                  1      11d
+configmap/kube-prometheus-stack-etcd                                1      11d
+configmap/kube-prometheus-stack-grafana                             1      11d
+configmap/kube-prometheus-stack-grafana-config-dashboards           1      11d
+configmap/kube-prometheus-stack-grafana-datasource                  1      11d
+configmap/kube-prometheus-stack-grafana-overview                    1      11d
+configmap/kube-prometheus-stack-k8s-coredns                         1      11d
+configmap/kube-prometheus-stack-k8s-resources-cluster               1      11d
+configmap/kube-prometheus-stack-k8s-resources-multicluster          1      11d
+configmap/kube-prometheus-stack-k8s-resources-namespace             1      11d
+configmap/kube-prometheus-stack-k8s-resources-node                  1      11d
+configmap/kube-prometheus-stack-k8s-resources-nodes-overview        1      11d
+configmap/kube-prometheus-stack-k8s-resources-pod                   1      11d
+configmap/kube-prometheus-stack-k8s-resources-workload              1      11d
+configmap/kube-prometheus-stack-k8s-resources-workloads-namespace   1      11d
+configmap/kube-prometheus-stack-kubelet                             1      11d
+configmap/kube-prometheus-stack-namespace-by-pod                    1      11d
+configmap/kube-prometheus-stack-namespace-by-workload               1      11d
+configmap/kube-prometheus-stack-node-cluster-rsrc-use               1      11d
+configmap/kube-prometheus-stack-node-rsrc-use                       1      11d
+configmap/kube-prometheus-stack-nodes                               1      11d
+configmap/kube-prometheus-stack-nodes-aix                           1      11d
+configmap/kube-prometheus-stack-nodes-darwin                        1      11d
+configmap/kube-prometheus-stack-persistentvolumesusage              1      11d
+configmap/kube-prometheus-stack-pod-total                           1      11d
+configmap/kube-prometheus-stack-prometheus                          1      11d
+configmap/kube-prometheus-stack-proxy                               1      11d
+configmap/kube-prometheus-stack-scheduler                           1      11d
+configmap/kube-prometheus-stack-workload-total                      1      11d
+configmap/kube-root-ca.crt                                          1      11d
+configmap/loki                                                      1      13m
+configmap/loki-gateway                                              2      13m
+configmap/loki-runtime                                              1      13m
+configmap/prometheus-kube-prometheus-stack-prometheus-rulefiles-0   35     11d
+13m         Warning   FailedScheduling         pod/loki-0                                                 0/7 nodes are available: pod has unbound immediate PersistentVolumeClaims. not found
+11m         Normal    Scheduled                pod/fluent-bit-collector-9glmr                             Successfully assigned observability/fluent-bit-collector-9glmr to arm64-04
+11m         Normal    Scheduled                pod/fluent-bit-collector-n8rmb                             Successfully assigned observability/fluent-bit-collector-n8rmb to amd64-02
+14m         Normal    Scheduled                pod/kube-prometheus-stack-admission-create-4q7w8           Successfully assigned observability/kube-prometheus-stack-admission-create-4q7w8 to amd64-01
+14m         Normal    SuccessfulCreate         job/kube-prometheus-stack-admission-create                 Created pod: kube-prometheus-stack-admission-create-4q7w8
+14m         Normal    Started                  pod/kube-prometheus-stack-admission-create-4q7w8           Container started
+14m         Normal    Created                  pod/kube-prometheus-stack-admission-create-4q7w8           Container created
+14m         Normal    Pulled                   pod/kube-prometheus-stack-admission-create-4q7w8           Container image "ghcr.io/jkroepke/kube-webhook-certgen:1.8.4" already present on machine and can be accessed by the pod
+14m         Normal    Completed                job/kube-prometheus-stack-admission-create                 Job completed
+14m         Normal    SuccessfulCreate         job/kube-prometheus-stack-admission-patch                  Created pod: kube-prometheus-stack-admission-patch-hg4jw
+14m         Normal    Started                  pod/kube-prometheus-stack-admission-patch-hg4jw            Container started
+14m         Normal    Created                  pod/kube-prometheus-stack-admission-patch-hg4jw            Container created
+14m         Normal    Pulled                   pod/kube-prometheus-stack-admission-patch-hg4jw            Container image "ghcr.io/jkroepke/kube-webhook-certgen:1.8.4" already present on machine and can be accessed by the pod
+14m         Normal    Completed                job/kube-prometheus-stack-admission-patch                  Job completed
+13m         Normal    SuccessfulCreate         replicaset/loki-gateway-5c75989494                         Created pod: loki-gateway-5c75989494-97v27
+13m         Normal    Provisioning             persistentvolumeclaim/storage-loki-0                       External provisioner is provisioning volume for claim "observability/storage-loki-0"
+13m         Normal    SuccessfulCreate         statefulset/loki                                           Create Pod loki-0 in StatefulSet loki successful
+13m         Normal    SuccessfulCreate         statefulset/loki                                           Create Claim storage-loki-0 Pod loki-0 in StatefulSet loki success
+13m         Normal    ScalingReplicaSet        deployment/loki-gateway                                    Scaled up replica set loki-gateway-5c75989494 from 0 to 1
+13m         Normal    ExternalProvisioning     persistentvolumeclaim/storage-loki-0                       Waiting for a volume to be created either by the external provisioner 'driver.longhorn.io' or manually by the system administrator. If volume creation is delayed, please verify that the provisioner is running and correctly registered.
+13m         Normal    Pulling                  pod/loki-gateway-5c75989494-97v27                          Pulling image "docker.io/nginxinc/nginx-unprivileged:1.31-alpine"
+13m         Normal    Pulled                   pod/loki-gateway-5c75989494-97v27                          Successfully pulled image "docker.io/nginxinc/nginx-unprivileged:1.31-alpine" in 1.999s (1.999s including waiting). Image size: 23070958 bytes.
+13m         Normal    Pulling                  pod/loki-gateway-5c75989494-97v27                          Pulling image "ghcr.io/jkroepke/access-log-exporter:0.4.8"
+13m         Normal    Created                  pod/loki-gateway-5c75989494-97v27                          Container created
+13m         Normal    ProvisioningSucceeded    persistentvolumeclaim/storage-loki-0                       Successfully provisioned volume pvc-75885121-8c1b-4024-aaf2-6d341244ea6d
+13m         Normal    Started                  pod/loki-gateway-5c75989494-97v27                          Container started
+13m         Normal    Pulled                   pod/loki-gateway-5c75989494-97v27                          Successfully pulled image "ghcr.io/jkroepke/access-log-exporter:0.4.8" in 2.16s (2.16s including waiting). Image size: 5062899 bytes.
+13m         Normal    Created                  pod/loki-gateway-5c75989494-97v27                          Container created
+13m         Normal    Started                  pod/loki-gateway-5c75989494-97v27                          Container started
+13m         Normal    SuccessfulAttachVolume   pod/loki-0                                                 AttachVolume.Attach succeeded for volume "pvc-75885121-8c1b-4024-aaf2-6d341244ea6d"
+13m         Normal    Pulling                  pod/loki-0                                                 Pulling image "docker.io/grafana/loki:3.7.4"
+13m         Normal    Created                  pod/loki-0                                                 Container created
+13m         Normal    Started                  pod/loki-0                                                 Container started
+13m         Normal    Pulling                  pod/loki-0                                                 Pulling image "docker.io/kiwigrid/k8s-sidecar:2.8.1"
+13m         Normal    Pulled                   pod/loki-0                                                 Successfully pulled image "docker.io/grafana/loki:3.7.4" in 2.642s (2.642s including waiting). Image size: 47833145 bytes.
+13m         Normal    Pulled                   pod/loki-0                                                 Successfully pulled image "docker.io/kiwigrid/k8s-sidecar:2.8.1" in 376ms (376ms including waiting). Image size: 28673366 bytes.
+13m         Normal    Created                  pod/loki-0                                                 Container created
+13m         Normal    Started                  pod/loki-0                                                 Container started
+12m         Warning   Unhealthy                pod/loki-0                                                 Readiness probe failed: HTTP probe failed with statuscode: 503
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-gv2ds
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-n8rmb
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-d7ttl
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-pr7jh
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-9glmr
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-54w96
+11m         Normal    SuccessfulCreate         daemonset/fluent-bit-collector                             Created pod: fluent-bit-collector-45dll
+11m         Normal    Pulling                  pod/fluent-bit-collector-45dll                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Pulling                  pod/fluent-bit-collector-d7ttl                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Pulling                  pod/fluent-bit-collector-pr7jh                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Pulling                  pod/fluent-bit-collector-54w96                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Pulling                  pod/fluent-bit-collector-9glmr                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Pulling                  pod/fluent-bit-collector-n8rmb                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Pulling                  pod/fluent-bit-collector-gv2ds                             Pulling image "ghcr.io/fluent/fluent-bit:5.0.9"
+11m         Normal    Created                  pod/fluent-bit-collector-n8rmb                             Container created
+11m         Normal    Started                  pod/fluent-bit-collector-n8rmb                             Container started
+11m         Normal    Pulled                   pod/fluent-bit-collector-d7ttl                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 5.459s (5.459s including waiting). Image size: 49996646 bytes.
+11m         Normal    Pulled                   pod/fluent-bit-collector-n8rmb                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 4.918s (4.918s including waiting). Image size: 49996646 bytes.
+11m         Normal    Created                  pod/fluent-bit-collector-d7ttl                             Container created
+11m         Normal    Started                  pod/fluent-bit-collector-d7ttl                             Container started
+11m         Normal    Started                  pod/fluent-bit-collector-54w96                             Container started
+11m         Normal    Pulled                   pod/fluent-bit-collector-54w96                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 7.128s (7.128s including waiting). Image size: 48956292 bytes.
+11m         Normal    Created                  pod/fluent-bit-collector-54w96                             Container created
+11m         Normal    Started                  pod/fluent-bit-collector-9glmr                             Container started
+11m         Normal    Pulled                   pod/fluent-bit-collector-9glmr                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 8.38s (8.38s including waiting). Image size: 48956292 bytes.
+11m         Normal    Created                  pod/fluent-bit-collector-9glmr                             Container created
+11m         Normal    Pulled                   pod/fluent-bit-collector-45dll                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 9.586s (9.586s including waiting). Image size: 48956292 bytes.
+11m         Normal    Created                  pod/fluent-bit-collector-45dll                             Container created
+11m         Normal    Started                  pod/fluent-bit-collector-45dll                             Container started
+11m         Normal    Created                  pod/fluent-bit-collector-pr7jh                             Container created
+11m         Normal    Pulled                   pod/fluent-bit-collector-pr7jh                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 10.727s (10.727s including waiting). Image size: 48956292 bytes.
+11m         Normal    Pulled                   pod/fluent-bit-collector-gv2ds                             Successfully pulled image "ghcr.io/fluent/fluent-bit:5.0.9" in 11.043s (11.043s including waiting). Image size: 48956292 bytes.
+11m         Normal    Started                  pod/fluent-bit-collector-gv2ds                             Container started
+11m         Normal    Created                  pod/fluent-bit-collector-gv2ds                             Container created
+11m         Normal    Started                  pod/fluent-bit-collector-pr7jh                             Container started
+4m42s       Warning   DNSConfigForming         pod/kube-prometheus-stack-prometheus-node-exporter-hsxpx   Nameserver limits were exceeded, some nameservers have been omitted, the applied nameserver line is: 192.168.2.1 1.1.1.1 2001:558:feed::1
+4m26s       Warning   DNSConfigForming         pod/kube-prometheus-stack-prometheus-node-exporter-pln7m   Nameserver limits were exceeded, some nameservers have been omitted, the applied nameserver line is: 192.168.2.1 1.1.1.1 8.8.8.8
+2m41s       Warning   DNSConfigForming         pod/kube-prometheus-stack-prometheus-node-exporter-xhzjs   Nameserver limits were exceeded, some nameservers have been omitted, the applied nameserver line is: 192.168.2.1 1.1.1.1 8.8.8.8
+2m16s       Warning   DNSConfigForming         pod/kube-prometheus-stack-prometheus-node-exporter-t78zj   Nameserver limits were exceeded, some nameservers have been omitted, the applied nameserver line is: 192.168.2.1 1.1.1.1 8.8.8.8
+99s         Warning   DNSConfigForming         pod/kube-prometheus-stack-prometheus-node-exporter-vgmjn   Nameserver limits were exceeded, some nameservers have been omitted, the applied nameserver line is: 192.168.2.1 1.1.1.1 8.8.8.8
+89s         Warning   DNSConfigForming         pod/kube-prometheus-stack-prometheus-node-exporter-tqcjk   Nameserver limits were exceeded, some nameservers have been omitted, the applied nameserver line is: 192.168.2.1 1.1.1.1 8.8.8.8
+
+FAILED exit_code=1
+(base) #( 07/28/26@ 7:21PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
+
+====================================================================================================
+TRANSCRIPT 5: Pasted text(88).txt
+====================================================================================================
+(base) #( 07/28/26@ 7:21PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
+   >....
+      break
+    fi
+
+    sleep 5
+  done
+
+  test "$LOG_STREAM_FOUND" = '1'
+
+  printf 'PASS collected Kalaxy3 logs are queryable through Loki\n'
+
+  kill "$LOKI_FORWARD_PID" >/dev/null 2>&1 || true
+  wait "$LOKI_FORWARD_PID" >/dev/null 2>&1 || true
+  unset LOKI_FORWARD_PID
+
+  printf '\n===== CURRENT LOGGING WARNING EVENTS =====\n'
+  kubectl \
+    --kubeconfig "$KUBECONFIG_PATH" \
+    -n "$NAMESPACE" \
+    get events \
+    --field-selector type=Warning \
+    --sort-by='.lastTimestamp' |
+  grep -Ei \
+    'loki|fluent-bit-collector' ||
+  printf 'No logging-related Warning events found.\n'
+
+  printf '\n===== POSTDEPLOYMENT CLUSTER GUARDRAILS =====\n'
+  make cluster-guardrails
+
+  printf '\n===== FINAL REPOSITORY STATE =====\n'
+  test -z "$(git status --porcelain)"
+
+  test "$(
+    git rev-parse HEAD
+  )" = "$(
+    git rev-parse "origin/$BRANCH"
+  )"
+
+  grep -nE \
+    '^deploy_centralized_logging:[[:space:]]*true$' \
+    inventory/group_vars/all/main.yml
+
+  git status
+
+  trap - ERR
+  cleanup
+  trap - EXIT
+
+  printf '\n===== RESULT =====\n'
+  printf 'PASS Loki 18.5.4 deployed and healthy\n'
+  printf 'PASS Fluent Bit Collector 1.0.9 runs on all seven nodes\n'
+  printf 'PASS Grafana loaded and reached the Loki datasource\n'
+  printf 'PASS Longhorn storage is healthy and replicated\n'
+  printf 'PASS collected logs are queryable through Loki\n'
+  printf 'CENTRALIZED LOGGING OBSERVABILITY DEPLOYMENT COMPLETE\n'
+)
+
+===== REQUIRE PUBLISHED CORRECTION CHECKPOINT =====
+local=4247387a8062a0a353f5704e40c90b1727881a4a
+remote=4247387a8062a0a353f5704e40c90b1727881a4a
+PASS correction checkpoint is published and clean
+
+===== REQUIRE ACTIVE OBSERVABILITY STATE =====
+50:install_observability: true
+52:deploy_centralized_logging: true
+53:install_kubecost: false
+PASS centralized logging remains activated
+PASS Kubecost remains excluded
+
+===== CURRENT PARTIAL DEPLOYMENT =====
+NAME                 	NAMESPACE    	REVISION	UPDATED                                	STATUS  	CHART                        	APP VERSION
+fluent-bit-collector 	observability	1       	2026-07-28 19:09:03.472186184 -0500 CDT	deployed	fluent-bit-collector-1.0.9   	5.0.9
+kube-prometheus-stack	observability	11      	2026-07-28 19:06:26.918319891 -0500 CDT	deployed	kube-prometheus-stack-87.19.0	v0.92.1
+loki                 	observability	1       	2026-07-28 19:07:29.039676142 -0500 CDT	deployed	loki-18.5.4                  	3.7.4
+PASS Loki is ready
+PASS seven Fluent Bit collectors are ready
+PASS Grafana datasource remains pending
+
+===== RESUME OBSERVABILITY PHASE =====
+Enter the kalaxy3 vault password when prompted.
+Vault password (kalaxy3):
+
+PLAY [Install a selected cluster platform phase] ***************************************************************************************************************************************
+
+TASK [Gathering Facts] *****************************************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Resolve the repository-supported Helm platform] **********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require a repository-pinned Helm platform] ***************************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Create the versioned Helm installation directory] ********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Create isolated Helm runtime directories] ****************************************************************************************************************************************
+ok: [arm64-01] => (item=/var/lib/kalaxy3/helm/config)
+ok: [arm64-01] => (item=/var/lib/kalaxy3/helm/cache)
+ok: [arm64-01] => (item=/var/lib/kalaxy3/helm/data)
+ok: [arm64-01] => (item=/var/lib/kalaxy3/helm/plugins)
+ok: [arm64-01] => (item=/var/lib/kalaxy3/helm/registry)
+ok: [arm64-01] => (item=/var/lib/kalaxy3/helm/repository-cache)
+
+TASK [Download the repository-pinned Helm archive] *************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Create the Helm extraction directory] ********************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Extract the repository-pinned Helm archive] **************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Install the exact remote Helm binary] ********************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Read the controlled remote Helm binary checksum] *********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require the exact remote Helm binary checksum] ***********************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Read the controlled remote Helm version] *****************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require the exact remote Helm version] *******************************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Reconcile approved Helm repositories] ********************************************************************************************************************************************
+ok: [arm64-01] => (item={'name': 'metallb', 'url': 'https://metallb.github.io/metallb', 'url_sha256': '9e613e6868e0eef74759fca94ef5ba48c9e4d82509f23f05a4c5f5520cbbadbc'})
+ok: [arm64-01] => (item={'name': 'nfs', 'url': 'https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner', 'url_sha256': 'e9108655a590726c810dd2eb237aab3332a462b4ed555303ecf43b5a94646df1'})
+ok: [arm64-01] => (item={'name': 'prometheus-community', 'url': 'https://prometheus-community.github.io/helm-charts', 'url_sha256': 'a3d71d79da3a7e97fc44127f373aa765c1b71499cb48cdf46a0c10608bd437bc'})
+ok: [arm64-01] => (item={'name': 'grafana', 'url': 'https://grafana.github.io/helm-charts', 'url_sha256': '7bb9752fde3d72057b84f100226217b212b0c3e26365451c28d72d0113e977f9'})
+ok: [arm64-01] => (item={'name': 'grafana-community', 'url': 'https://grafana-community.github.io/helm-charts', 'url_sha256': '206ac5464a9fcfa3442aa8c4f732e5017d88ffedfbee02e2ff2bed5cb58e67e3'})
+ok: [arm64-01] => (item={'name': 'fluent', 'url': 'https://fluent.github.io/helm-charts/', 'url_sha256': 'b16bb56016f47f67656cfbd58474bd8df8db9000c48377b2cef31927f3c33910'})
+ok: [arm64-01] => (item={'name': 'headlamp', 'url': 'https://kubernetes-sigs.github.io/headlamp/', 'url_sha256': '3d2292cd1983c771cb3fe6621bbc314405a664ff3443ed12d7d30062467a66fb'})
+ok: [arm64-01] => (item={'name': 'longhorn', 'url': 'https://charts.longhorn.io', 'url_sha256': 'fb7e9a4773fc0b78c82a6905fc62e1a675b271aa1d6ed461a42068c3bcb93860'})
+
+TASK [Update only approved Helm repositories] ******************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Run networking and storage phase] ************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run administrative UI phase] *****************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run Longhorn storage phase] ******************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run observability phase] *********************************************************************************************************************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Install Prometheus and Grafana] **************************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Reconcile staged centralized logging workload-pool labels] ***********************************************************************************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/centralized-logging-node-labels.yml for arm64-01
+
+TASK [Preview centralized logging workload-pool label] *********************************************************************************************************************************
+skipping: [arm64-01] => (item=amd64-01)
+skipping: [arm64-01] => (item=amd64-02)
+skipping: [arm64-01]
+
+TASK [Reconcile centralized logging workload-pool label] *******************************************************************************************************************************
+ok: [arm64-01] => (item=amd64-01)
+ok: [arm64-01] => (item=amd64-02)
+
+TASK [Find eligible centralized logging platform nodes] ********************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Require the intended centralized logging node] ***********************************************************************************************************************************
+ok: [arm64-01] =>
+    changed: false
+    msg: Centralized logging is assigned to amd64-02.
+
+TASK [Write Loki Helm values] **********************************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Install Loki] ********************************************************************************************************************************************************************
+[WARNING]: The default idempotency check can fail to report changes in certain cases. Install helm diff >= 3.4.1 for better results.
+ok: [arm64-01]
+
+TASK [Write Fluent Bit Collector Helm values] ******************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Install Fluent Bit Collector] ****************************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Write Grafana Loki datasource] ***************************************************************************************************************************************************
+ok: [arm64-01]
+
+TASK [Provision Grafana Loki datasource] ***********************************************************************************************************************************************
+changed: [arm64-01]
+
+TASK [Find eligible Kubecost Intel nodes] **********************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Write Kubecost Helm values] ******************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Prepare calibrated Kubecost pricing] *********************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Install Helm Diff plugin] ********************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Install Kubecost] ****************************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Report that Kubecost is waiting for an Intel node] *******************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run protected UI phase] **********************************************************************************************************************************************************
+skipping: [arm64-01]
+
+TASK [Run MinIO phase] *****************************************************************************************************************************************************************
+skipping: [arm64-01]
+
+PLAY RECAP *****************************************************************************************************************************************************************************
+arm64-01                   : ok=26   changed=2    unreachable=0    failed=0    skipped=13   rescued=0    ignored=0
+
+
+===== VERIFY LOCKED HELM RELEASES =====
+PASS loki: chart=loki-18.5.4 revision=1 status=deployed
+PASS fluent-bit-collector: chart=fluent-bit-collector-1.0.9 revision=1 status=deployed
+
+===== WAIT FOR WORKLOAD ROLLOUTS =====
+partitioned roll out complete: 1 new pods have been updated...
+deployment "loki-gateway" successfully rolled out
+daemon set "fluent-bit-collector" successfully rolled out
+PASS all logging workloads rolled out
+
+===== VERIFY LOKI PLACEMENT =====
+NAME                            READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+loki-0                          2/2     Running   0          20m   10.42.6.27   amd64-02   <none>           <none>
+loki-gateway-5c75989494-97v27   2/2     Running   0          20m   10.42.6.26   amd64-02   <none>           <none>
+name=loki-0 node=amd64-02 phase=Running ready=True
+name=loki-gateway-5c75989494-97v27 node=amd64-02 phase=Running ready=True
+PASS all Loki pods are ready on amd64-02
+
+===== VERIFY ONE COLLECTOR PER NODE =====
+NAME                         READY   STATUS    RESTARTS   AGE   IP           NODE       NOMINATED NODE   READINESS GATES
+fluent-bit-collector-45dll   1/1     Running   0          19m   10.42.1.10   arm64-02   <none>           <none>
+fluent-bit-collector-54w96   1/1     Running   0          19m   10.42.0.12   arm64-01   <none>           <none>
+fluent-bit-collector-9glmr   1/1     Running   0          19m   10.42.3.9    arm64-04   <none>           <none>
+fluent-bit-collector-d7ttl   1/1     Running   0          19m   10.42.4.35   amd64-01   <none>           <none>
+fluent-bit-collector-gv2ds   1/1     Running   0          19m   10.42.2.22   arm64-03   <none>           <none>
+fluent-bit-collector-n8rmb   1/1     Running   0          19m   10.42.6.28   amd64-02   <none>           <none>
+fluent-bit-collector-pr7jh   1/1     Running   0          19m   10.42.5.9    arm64-05   <none>           <none>
+expected:
+node/amd64-01
+node/amd64-02
+node/arm64-01
+node/arm64-02
+node/arm64-03
+node/arm64-04
+node/arm64-05
+collectors:
+node/amd64-01
+node/amd64-02
+node/arm64-01
+node/arm64-02
+node/arm64-03
+node/arm64-04
+node/arm64-05
+PASS one ready Fluent Bit Collector runs on every node
+
+===== VERIFY LOKI LONGHORN STORAGE =====
+phase=Bound
+storage_class=longhorn
+requested=40Gi
+pv=pvc-75885121-8c1b-4024-aaf2-6d341244ea6d
+state=attached
+robustness=healthy
+replicas=2
+PASS Loki Longhorn volume is attached, healthy, and replicated twice
+
+===== VERIFY DATASOURCE CONFIGMAP =====
+apiVersion: v1
+data:
+  loki-datasource.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Loki
+        uid: loki
+        type: loki
+        access: proxy
+        url: >-
+          http://loki-gateway.observability.svc.cluster.local
+        isDefault: false
+        editable: false
+        jsonData:
+          timeout: 60
+          maxLines: 1000
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"loki-datasource.yaml":"apiVersion: 1\ndatasources:\n  - name: Loki\n    uid: loki\n    type: loki\n    access: proxy\n    url: \u003e-\n      http://loki-gateway.observability.svc.cluster.local\n    isDefault: false\n    editable: false\n    jsonData:\n      timeout: 60\n      maxLines: 1000\n"},"kind":"ConfigMap","metadata":{"annotations":{},"labels":{"grafana_datasource":"1"},"name":"grafana-datasource-loki","namespace":"observability"}}
+  creationTimestamp: "2026-07-29T00:28:02Z"
+  labels:
+    grafana_datasource: "1"
+  name: grafana-datasource-loki
+  namespace: observability
+  resourceVersion: "7780142"
+  uid: 9116719c-10c6-4051-983c-ec020c3445f5
+PASS Grafana datasource ConfigMap is correct
+
+===== VERIFY GRAFANA LOADED LOKI =====
+Traceback (most recent call last):
+  File "<stdin>", line 35, in <module>
+  File "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.python/cpython-3.12.4-macos-x86_64-none/lib/python3.12/json/__init__.py", line 293, in load
+    return loads(fp.read(),
+           ^^^^^^^^^^^^^^^^
+  File "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.python/cpython-3.12.4-macos-x86_64-none/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.python/cpython-3.12.4-macos-x86_64-none/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.python/cpython-3.12.4-macos-x86_64-none/lib/python3.12/json/decoder.py", line 355, in raw_decode
+    raise JSONDecodeError("Expecting value", s, err.value) from None
+json.decoder.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+===== FAILURE DIAGNOSTICS =====
+NAME                 	NAMESPACE    	REVISION	UPDATED                                	STATUS  	CHART                        	APP VERSION
+fluent-bit-collector 	observability	1       	2026-07-28 19:09:03.472186184 -0500 CDT	deployed	fluent-bit-collector-1.0.9   	5.0.9
+kube-prometheus-stack	observability	12      	2026-07-28 19:26:44.685172344 -0500 CDT	deployed	kube-prometheus-stack-87.19.0	v0.92.1
+loki                 	observability	1       	2026-07-28 19:07:29.039676142 -0500 CDT	deployed	loki-18.5.4                  	3.7.4
+NAME                                                               READY   AGE   CONTAINERS                     IMAGES
+statefulset.apps/alertmanager-kube-prometheus-stack-alertmanager   1/1     11d   alertmanager,config-reloader   quay.io/prometheus/alertmanager:v0.33.1,quay.io/prometheus-operator/prometheus-config-reloader:v0.92.1
+statefulset.apps/loki                                              1/1     20m   loki,loki-sc-rules             docker.io/grafana/loki:3.7.4,docker.io/kiwigrid/k8s-sidecar:2.8.1
+statefulset.apps/prometheus-kube-prometheus-stack-prometheus       1/1     11d   prometheus,config-reloader     quay.io/prometheus/prometheus:v3.13.1-distroless,quay.io/prometheus-operator/prometheus-config-reloader:v0.92.1
+
+NAME                                                       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS                                            IMAGES                                                                                                   SELECTOR
+deployment.apps/kube-prometheus-stack-grafana              1/1     1            1           11d   grafana-sc-dashboard,grafana-sc-datasources,grafana   quay.io/kiwigrid/k8s-sidecar:2.8.1,quay.io/kiwigrid/k8s-sidecar:2.8.1,docker.io/grafana/grafana:13.1.1   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=grafana
+deployment.apps/kube-prometheus-stack-kube-state-metrics   1/1     1            1           11d   kube-state-metrics                                    registry.k8s.io/kube-state-metrics/kube-state-metrics:v2.19.1                                            app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=kube-state-metrics
+deployment.apps/kube-prometheus-stack-operator             1/1     1            1           11d   kube-prometheus-stack                                 quay.io/prometheus-operator/prometheus-operator:v0.92.1                                                  app=kube-prometheus-stack-operator,release=kube-prometheus-stack
+deployment.apps/loki-gateway                               1/1     1            1           20m   nginx,exporter                                        docker.io/nginxinc/nginx-unprivileged:1.31-alpine,ghcr.io/jkroepke/access-log-exporter:0.4.8             app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+
+NAME                                                            DESIRED   CURRENT   READY   UP-TO-DATE   AVAILABLE   NODE SELECTOR            AGE   CONTAINERS      IMAGES                                                SELECTOR
+daemonset.apps/fluent-bit-collector                             7         7         7       7            7           <none>                   19m   collector       ghcr.io/fluent/fluent-bit:5.0.9                       app.kubernetes.io/instance=fluent-bit-collector,app.kubernetes.io/name=fluent-bit-collector
+daemonset.apps/kube-prometheus-stack-prometheus-node-exporter   7         7         7       7            7           kubernetes.io/os=linux   11d   node-exporter   quay.io/prometheus/node-exporter:v1.12.1-distroless   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=prometheus-node-exporter
+
+NAME                                                            READY   STATUS    RESTARTS      AGE    IP             NODE       NOMINATED NODE   READINESS GATES
+pod/alertmanager-kube-prometheus-stack-alertmanager-0           2/2     Running   0             11d    10.42.3.4      arm64-04   <none>           <none>
+pod/fluent-bit-collector-45dll                                  1/1     Running   0             19m    10.42.1.10     arm64-02   <none>           <none>
+pod/fluent-bit-collector-54w96                                  1/1     Running   0             19m    10.42.0.12     arm64-01   <none>           <none>
+pod/fluent-bit-collector-9glmr                                  1/1     Running   0             19m    10.42.3.9      arm64-04   <none>           <none>
+pod/fluent-bit-collector-d7ttl                                  1/1     Running   0             19m    10.42.4.35     amd64-01   <none>           <none>
+pod/fluent-bit-collector-gv2ds                                  1/1     Running   0             19m    10.42.2.22     arm64-03   <none>           <none>
+pod/fluent-bit-collector-n8rmb                                  1/1     Running   0             19m    10.42.6.28     amd64-02   <none>           <none>
+pod/fluent-bit-collector-pr7jh                                  1/1     Running   0             19m    10.42.5.9      arm64-05   <none>           <none>
+pod/kube-prometheus-stack-grafana-784b55fb5-f4xg5               3/3     Running   0             7d     10.42.6.10     amd64-02   <none>           <none>
+pod/kube-prometheus-stack-kube-state-metrics-6f664bc8c4-mwgz6   1/1     Running   0             7d     10.42.6.9      amd64-02   <none>           <none>
+pod/kube-prometheus-stack-operator-7d8df54f74-67hv4             1/1     Running   0             7d     10.42.6.11     amd64-02   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-c7qs4        1/1     Running   0             7d2h   192.168.2.62   amd64-02   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-hsxpx        1/1     Running   0             8d     192.168.2.61   amd64-01   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-pln7m        1/1     Running   1 (21h ago)   11d    192.168.2.51   arm64-01   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-t78zj        1/1     Running   0             11d    192.168.2.55   arm64-05   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-tqcjk        1/1     Running   0             11d    192.168.2.53   arm64-03   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-vgmjn        1/1     Running   0             11d    192.168.2.52   arm64-02   <none>           <none>
+pod/kube-prometheus-stack-prometheus-node-exporter-xhzjs        1/1     Running   0             11d    192.168.2.54   arm64-04   <none>           <none>
+pod/loki-0                                                      2/2     Running   0             20m    10.42.6.27     amd64-02   <none>           <none>
+pod/loki-gateway-5c75989494-97v27                               2/2     Running   0             20m    10.42.6.26     amd64-02   <none>           <none>
+pod/prometheus-kube-prometheus-stack-prometheus-0               2/2     Running   0             11d    10.42.5.4      arm64-05   <none>           <none>
+
+NAME                                                     TYPE           CLUSTER-IP      EXTERNAL-IP    PORT(S)                      AGE   SELECTOR
+service/alertmanager-operated                            ClusterIP      None            <none>         9093/TCP,9094/TCP,9094/UDP   11d   app.kubernetes.io/name=alertmanager
+service/kube-prometheus-stack-alertmanager               ClusterIP      10.43.146.197   <none>         9093/TCP,8080/TCP            11d   alertmanager=kube-prometheus-stack-alertmanager,app.kubernetes.io/name=alertmanager
+service/kube-prometheus-stack-grafana                    LoadBalancer   10.43.101.190   192.168.2.25   80:32031/TCP                 11d   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=grafana
+service/kube-prometheus-stack-kube-state-metrics         ClusterIP      10.43.21.22     <none>         8080/TCP                     11d   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=kube-state-metrics
+service/kube-prometheus-stack-operator                   ClusterIP      10.43.5.133     <none>         443/TCP                      11d   app=kube-prometheus-stack-operator,release=kube-prometheus-stack
+service/kube-prometheus-stack-prometheus                 ClusterIP      10.43.129.4     <none>         9090/TCP,8080/TCP            11d   app.kubernetes.io/name=prometheus,operator.prometheus.io/name=kube-prometheus-stack-prometheus
+service/kube-prometheus-stack-prometheus-node-exporter   ClusterIP      10.43.164.191   <none>         9100/TCP                     11d   app.kubernetes.io/instance=kube-prometheus-stack,app.kubernetes.io/name=prometheus-node-exporter
+service/loki                                             ClusterIP      10.43.27.30     <none>         3100/TCP,9095/TCP,9096/TCP   20m   app.kubernetes.io/component=single-binary,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-gateway                                     ClusterIP      10.43.124.179   <none>         80/TCP                       20m   app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-gateway-exporter                            ClusterIP      10.43.176.13    <none>         4040/TCP                     20m   app.kubernetes.io/component=gateway,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-headless                                    ClusterIP      None            <none>         3100/TCP,9095/TCP,9096/TCP   20m   app.kubernetes.io/component=single-binary,app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki
+service/loki-memberlist                                  ClusterIP      None            <none>         7946/TCP                     20m   app.kubernetes.io/instance=loki,app.kubernetes.io/name=loki,app.kubernetes.io/part-of=memberlist
+service/prometheus-operated                              ClusterIP      None            <none>         9090/TCP                     11d   app.kubernetes.io/name=prometheus
+
+NAME                                                                                                                         STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/alertmanager-kube-prometheus-stack-alertmanager-db-alertmanager-kube-prometheus-stack-alertmanager-0   Bound    pvc-4fcd51bb-709d-4ed7-ac7f-5db90b30e5ca   5Gi        RWO            nfs-ssd        <unset>                 11d   Filesystem
+persistentvolumeclaim/kube-prometheus-stack-grafana                                                                          Bound    pvc-73501baa-6b63-4a5c-8525-9985aca06046   10Gi       RWO            nfs-ssd        <unset>                 11d   Filesystem
+persistentvolumeclaim/prometheus-kube-prometheus-stack-prometheus-db-prometheus-kube-prometheus-stack-prometheus-0           Bound    pvc-591b574a-9cfb-4721-8ba3-75185c6bf94e   40Gi       RWO            nfs-ssd        <unset>                 11d   Filesystem
+persistentvolumeclaim/storage-loki-0                                                                                         Bound    pvc-75885121-8c1b-4024-aaf2-6d341244ea6d   40Gi       RWO            longhorn       <unset>                 20m   Filesystem
+
+NAME                                                                DATA   AGE
+configmap/fluent-bit-collector-config                               1      19m
+configmap/fluent-bit-collector-dashboard                            1      19m
+configmap/fluent-bit-collector-scripts                              0      19m
+configmap/grafana-datasource-loki                                   1      6s
+configmap/kube-prometheus-stack-alertmanager-overview               1      11d
+configmap/kube-prometheus-stack-apiserver                           1      11d
+configmap/kube-prometheus-stack-cluster-total                       1      11d
+configmap/kube-prometheus-stack-controller-manager                  1      11d
+configmap/kube-prometheus-stack-etcd                                1      11d
+configmap/kube-prometheus-stack-grafana                             1      11d
+configmap/kube-prometheus-stack-grafana-config-dashboards           1      11d
+configmap/kube-prometheus-stack-grafana-datasource                  1      11d
+configmap/kube-prometheus-stack-grafana-overview                    1      11d
+configmap/kube-prometheus-stack-k8s-coredns                         1      11d
+configmap/kube-prometheus-stack-k8s-resources-cluster               1      11d
+configmap/kube-prometheus-stack-k8s-resources-multicluster          1      11d
+configmap/kube-prometheus-stack-k8s-resources-namespace             1      11d
+configmap/kube-prometheus-stack-k8s-resources-node                  1      11d
+configmap/kube-prometheus-stack-k8s-resources-nodes-overview        1      11d
+configmap/kube-prometheus-stack-k8s-resources-pod                   1      11d
+configmap/kube-prometheus-stack-k8s-resources-workload              1      11d
+configmap/kube-prometheus-stack-k8s-resources-workloads-namespace   1      11d
+configmap/kube-prometheus-stack-kubelet                             1      11d
+configmap/kube-prometheus-stack-namespace-by-pod                    1      11d
+configmap/kube-prometheus-stack-namespace-by-workload               1      11d
+configmap/kube-prometheus-stack-node-cluster-rsrc-use               1      11d
+configmap/kube-prometheus-stack-node-rsrc-use                       1      11d
+configmap/kube-prometheus-stack-nodes                               1      11d
+configmap/kube-prometheus-stack-nodes-aix                           1      11d
+configmap/kube-prometheus-stack-nodes-darwin                        1      11d
+configmap/kube-prometheus-stack-persistentvolumesusage              1      11d
+configmap/kube-prometheus-stack-pod-total                           1      11d
+configmap/kube-prometheus-stack-prometheus                          1      11d
+configmap/kube-prometheus-stack-proxy                               1      11d
+configmap/kube-prometheus-stack-scheduler                           1      11d
+configmap/kube-prometheus-stack-workload-total                      1      11d
+configmap/kube-root-ca.crt                                          1      11d
+configmap/loki                                                      1      20m
+configmap/loki-gateway                                              2      20m
+configmap/loki-runtime                                              1      20m
+configmap/prometheus-kube-prometheus-stack-prometheus-rulefiles-0   35     11d
+
+===== LOKI LOGS =====
+level=info ts=2026-07-29T00:25:19.774280212Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+level=info ts=2026-07-29T00:25:19.774356691Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+level=info ts=2026-07-29T00:25:49.741250417Z caller=table_manager.go:136 index-store=tsdb-2024-04-01 msg="uploading tables"
+level=info ts=2026-07-29T00:25:49.74136096Z caller=index_set.go:86 msg="uploading table loki_index_20657"
+level=info ts=2026-07-29T00:25:49.741395655Z caller=index_set.go:107 msg="finished uploading table loki_index_20657"
+level=info ts=2026-07-29T00:25:49.741422008Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20657"
+level=info ts=2026-07-29T00:25:49.741448012Z caller=index_set.go:86 msg="uploading table loki_index_20658"
+level=info ts=2026-07-29T00:25:49.741466686Z caller=index_set.go:107 msg="finished uploading table loki_index_20658"
+level=info ts=2026-07-29T00:25:49.741486287Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20658"
+level=info ts=2026-07-29T00:25:49.741505945Z caller=index_set.go:86 msg="uploading table loki_index_20663"
+level=info ts=2026-07-29T00:25:49.741523326Z caller=index_set.go:107 msg="finished uploading table loki_index_20663"
+level=info ts=2026-07-29T00:25:49.741544035Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20663"
+level=info ts=2026-07-29T00:25:49.741563451Z caller=index_set.go:86 msg="uploading table loki_index_20659"
+level=info ts=2026-07-29T00:25:49.741580064Z caller=index_set.go:107 msg="finished uploading table loki_index_20659"
+level=info ts=2026-07-29T00:25:49.74159942Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20659"
+level=info ts=2026-07-29T00:25:49.741622722Z caller=index_set.go:86 msg="uploading table loki_index_20660"
+level=info ts=2026-07-29T00:25:49.741660908Z caller=index_set.go:107 msg="finished uploading table loki_index_20660"
+level=info ts=2026-07-29T00:25:49.741684053Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20660"
+level=info ts=2026-07-29T00:25:49.741697917Z caller=index_set.go:86 msg="uploading table loki_index_20661"
+level=info ts=2026-07-29T00:25:49.741709841Z caller=index_set.go:107 msg="finished uploading table loki_index_20661"
+level=info ts=2026-07-29T00:25:49.741721818Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20661"
+level=info ts=2026-07-29T00:25:49.741735554Z caller=index_set.go:86 msg="uploading table loki_index_20662"
+level=info ts=2026-07-29T00:25:49.741748477Z caller=index_set.go:107 msg="finished uploading table loki_index_20662"
+level=info ts=2026-07-29T00:25:49.741760448Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20662"
+level=info ts=2026-07-29T00:25:49.741773769Z caller=index_set.go:86 msg="uploading table loki_index_20656"
+level=info ts=2026-07-29T00:25:49.741786546Z caller=index_set.go:107 msg="finished uploading table loki_index_20656"
+level=info ts=2026-07-29T00:25:49.741798293Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20656"
+level=info ts=2026-07-29T00:25:49.774356215Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+level=info ts=2026-07-29T00:25:49.774439082Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+level=info ts=2026-07-29T00:25:49.968945903Z caller=memberlist_client.go:653 phase=periodic_rejoin msg="re-joined memberlist cluster" reached_nodes=1
+level=info ts=2026-07-29T00:26:04.217440955Z caller=flush.go:305 component=ingester msg="flushing stream" user=fake fp=e90d96fba40504e5 immediate=false num_chunks=1 total_comp="71 B" avg_comp="71 B" total_uncomp="96 kB" avg_uncomp="96 kB" max_age=1 labels="{cluster=\"kalaxy3\", container=\"frr-status\", namespace=\"metallb-system\", node=\"arm64-01\", pod=\"metallb-frr-k8s-qfhds\", service_name=\"frr-status\"}"
+level=info ts=2026-07-29T00:26:10.537827358Z caller=marker.go:206 msg="no marks file found"
+level=info ts=2026-07-29T00:26:19.774478769Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+level=info ts=2026-07-29T00:26:19.774576238Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+level=info ts=2026-07-29T00:26:49.74126846Z caller=table_manager.go:136 index-store=tsdb-2024-04-01 msg="uploading tables"
+level=info ts=2026-07-29T00:26:49.741332638Z caller=index_set.go:86 msg="uploading table loki_index_20662"
+level=info ts=2026-07-29T00:26:49.74135998Z caller=index_set.go:107 msg="finished uploading table loki_index_20662"
+level=info ts=2026-07-29T00:26:49.741379453Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20662"
+level=info ts=2026-07-29T00:26:49.741398955Z caller=index_set.go:86 msg="uploading table loki_index_20656"
+level=info ts=2026-07-29T00:26:49.741413594Z caller=index_set.go:107 msg="finished uploading table loki_index_20656"
+level=info ts=2026-07-29T00:26:49.741427708Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20656"
+level=info ts=2026-07-29T00:26:49.741442199Z caller=index_set.go:86 msg="uploading table loki_index_20657"
+level=info ts=2026-07-29T00:26:49.741453665Z caller=index_set.go:107 msg="finished uploading table loki_index_20657"
+level=info ts=2026-07-29T00:26:49.741464517Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20657"
+level=info ts=2026-07-29T00:26:49.741478079Z caller=index_set.go:86 msg="uploading table loki_index_20658"
+level=info ts=2026-07-29T00:26:49.741489574Z caller=index_set.go:107 msg="finished uploading table loki_index_20658"
+level=info ts=2026-07-29T00:26:49.741501153Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20658"
+level=info ts=2026-07-29T00:26:49.741514515Z caller=index_set.go:86 msg="uploading table loki_index_20663"
+level=info ts=2026-07-29T00:26:49.741526886Z caller=index_set.go:107 msg="finished uploading table loki_index_20663"
+level=info ts=2026-07-29T00:26:49.741538995Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20663"
+level=info ts=2026-07-29T00:26:49.741552109Z caller=index_set.go:86 msg="uploading table loki_index_20659"
+level=info ts=2026-07-29T00:26:49.741563129Z caller=index_set.go:107 msg="finished uploading table loki_index_20659"
+level=info ts=2026-07-29T00:26:49.741574637Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20659"
+level=info ts=2026-07-29T00:26:49.741590786Z caller=index_set.go:86 msg="uploading table loki_index_20660"
+level=info ts=2026-07-29T00:26:49.74160269Z caller=index_set.go:107 msg="finished uploading table loki_index_20660"
+level=info ts=2026-07-29T00:26:49.741613615Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20660"
+level=info ts=2026-07-29T00:26:49.741645074Z caller=index_set.go:86 msg="uploading table loki_index_20661"
+level=info ts=2026-07-29T00:26:49.741658457Z caller=index_set.go:107 msg="finished uploading table loki_index_20661"
+level=info ts=2026-07-29T00:26:49.741670409Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20661"
+level=info ts=2026-07-29T00:26:49.774792132Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+level=info ts=2026-07-29T00:26:49.774848144Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+level=info ts=2026-07-29T00:27:10.537303572Z caller=marker.go:206 msg="no marks file found"
+level=info ts=2026-07-29T00:27:19.775222562Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+level=info ts=2026-07-29T00:27:19.775256559Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+level=info ts=2026-07-29T00:27:19.806083253Z caller=checkpoint.go:599 msg="atomic checkpoint finished" old=/var/loki/wal/checkpoint.000002.tmp new=/var/loki/wal/checkpoint.000002
+level=info ts=2026-07-29T00:27:19.806848834Z caller=checkpoint.go:670 msg="checkpoint done" time=4m30.03139256s
+level=info ts=2026-07-29T00:27:19.966812961Z caller=memberlist_client.go:653 phase=periodic_rejoin msg="re-joined memberlist cluster" reached_nodes=1
+level=info ts=2026-07-29T00:27:49.741740019Z caller=table_manager.go:136 index-store=tsdb-2024-04-01 msg="uploading tables"
+level=info ts=2026-07-29T00:27:49.741809879Z caller=index_set.go:86 msg="uploading table loki_index_20662"
+level=info ts=2026-07-29T00:27:49.741790927Z caller=table_manager.go:239 index-store=tsdb-2024-04-01 msg="syncing tables"
+level=info ts=2026-07-29T00:27:49.741833732Z caller=index_set.go:107 msg="finished uploading table loki_index_20662"
+level=info ts=2026-07-29T00:27:49.741855941Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20662"
+level=info ts=2026-07-29T00:27:49.741875342Z caller=index_set.go:86 msg="uploading table loki_index_20656"
+level=info ts=2026-07-29T00:27:49.741890113Z caller=index_set.go:107 msg="finished uploading table loki_index_20656"
+level=info ts=2026-07-29T00:27:49.741849447Z caller=table_manager.go:300 index-store=tsdb-2024-04-01 msg="query readiness setup completed" duration=4.102µs distinct_users_len=0 distinct_users=
+level=info ts=2026-07-29T00:27:49.741911347Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20656"
+level=info ts=2026-07-29T00:27:49.741927739Z caller=index_set.go:86 msg="uploading table loki_index_20657"
+level=info ts=2026-07-29T00:27:49.74194061Z caller=index_set.go:107 msg="finished uploading table loki_index_20657"
+level=info ts=2026-07-29T00:27:49.741954218Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20657"
+level=info ts=2026-07-29T00:27:49.741968182Z caller=index_set.go:86 msg="uploading table loki_index_20658"
+level=info ts=2026-07-29T00:27:49.741980338Z caller=index_set.go:107 msg="finished uploading table loki_index_20658"
+level=info ts=2026-07-29T00:27:49.741992143Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20658"
+level=info ts=2026-07-29T00:27:49.742006131Z caller=index_set.go:86 msg="uploading table loki_index_20663"
+level=info ts=2026-07-29T00:27:49.742018131Z caller=index_set.go:107 msg="finished uploading table loki_index_20663"
+level=info ts=2026-07-29T00:27:49.742029774Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20663"
+level=info ts=2026-07-29T00:27:49.74204331Z caller=index_set.go:86 msg="uploading table loki_index_20659"
+level=info ts=2026-07-29T00:27:49.742054164Z caller=index_set.go:107 msg="finished uploading table loki_index_20659"
+level=info ts=2026-07-29T00:27:49.742064927Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20659"
+level=info ts=2026-07-29T00:27:49.742078089Z caller=index_set.go:86 msg="uploading table loki_index_20660"
+level=info ts=2026-07-29T00:27:49.742089019Z caller=index_set.go:107 msg="finished uploading table loki_index_20660"
+level=info ts=2026-07-29T00:27:49.742099974Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20660"
+level=info ts=2026-07-29T00:27:49.742114042Z caller=index_set.go:86 msg="uploading table loki_index_20661"
+level=info ts=2026-07-29T00:27:49.742124837Z caller=index_set.go:107 msg="finished uploading table loki_index_20661"
+level=info ts=2026-07-29T00:27:49.742136277Z caller=index_set.go:186 msg="cleaning up unwanted indexes from table loki_index_20661"
+level=info ts=2026-07-29T00:27:49.77423072Z caller=checkpoint.go:712 msg="starting checkpoint"
+level=info ts=2026-07-29T00:27:49.774296906Z caller=recalculate_owned_streams.go:49 msg="starting recalculate owned streams job"
+level=info ts=2026-07-29T00:27:49.774368737Z caller=recalculate_owned_streams.go:52 msg="completed recalculate owned streams job"
+level=info ts=2026-07-29T00:27:49.774533503Z caller=checkpoint.go:336 msg="attempting checkpoint for" dir=/var/loki/wal/checkpoint.000003
+level=info ts=2026-07-29T00:27:49.774559887Z caller=checkpoint.go:549 msg="tmp checkpoint cleanup starting"
+level=info ts=2026-07-29T00:27:49.774662243Z caller=checkpoint.go:554 msg="tmp checkpoint cleanup done" duration=86.342µs success=true
+
+===== FLUENT BIT LOGS =====
+Found 7 pods, using pod/fluent-bit-collector-d7ttl
+[2026/07/29 00:09:12.922] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2352' lines totaling '1918994' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:12.923] [ warn] [engine] failed to flush chunk '1-1785283751.857659957.flb', retry in 9 seconds: task_id=17, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:12.926] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2730' lines totaling '2082698' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:12.926] [ warn] [engine] failed to flush chunk '1-1785283751.817791053.flb', retry in 7 seconds: task_id=15, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:12.939] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2730' lines totaling '2082684' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:12.939] [ warn] [engine] failed to flush chunk '1-1785283751.942093485.flb', retry in 7 seconds: task_id=22, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:18.340] [ info] [engine] flush chunk '1-1785283751.953592744.flb' succeeded at retry 1: task_id=23, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:18.390] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2750' lines totaling '1866948' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:18.390] [ warn] [engine] failed to flush chunk '1-1785283751.868506716.flb', retry in 6 seconds: task_id=18, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:18.426] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2080' lines totaling '2038196' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:18.426] [ warn] [engine] failed to flush chunk '1-1785283751.681657287.flb', retry in 18 seconds: task_id=5, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:18.441] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2080' lines totaling '2038166' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:18.441] [ warn] [engine] failed to flush chunk '1-1785283751.806140807.flb', retry in 20 seconds: task_id=13, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:18.445] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '1962' lines totaling '1957264' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:18.445] [ warn] [engine] failed to flush chunk '1-1785283751.807392425.flb', retry in 11 seconds: task_id=14, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:19.353] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2079' lines totaling '1871949' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:19.354] [ warn] [engine] failed to flush chunk '1-1785283751.678862330.flb', retry in 7 seconds: task_id=1, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:19.401] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '1579' lines totaling '1252129' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:19.401] [ warn] [engine] failed to flush chunk '1-1785283751.687843424.flb', retry in 14 seconds: task_id=10, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:19.419] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2079' lines totaling '1871857' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:19.419] [ warn] [engine] failed to flush chunk '1-1785283752.28256132.flb', retry in 10 seconds: task_id=25, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:19.458] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2730' lines totaling '2082684' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:19.459] [ warn] [engine] failed to flush chunk '1-1785283751.942093485.flb', retry in 16 seconds: task_id=22, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:19.468] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2730' lines totaling '2082698' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:19.468] [ warn] [engine] failed to flush chunk '1-1785283751.817791053.flb', retry in 6 seconds: task_id=15, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:20.381] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2079' lines totaling '1871963' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:20.381] [ warn] [engine] failed to flush chunk '1-1785283751.931931859.flb', retry in 17 seconds: task_id=20, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:20.403] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2730' lines totaling '2082692' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:20.403] [ warn] [engine] failed to flush chunk '1-1785283751.990367118.flb', retry in 13 seconds: task_id=24, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:21.352] [ info] [engine] flush chunk '1-1785283752.65276728.flb' succeeded at retry 1: task_id=27, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:21.375] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2079' lines totaling '1871866' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:21.375] [ warn] [engine] failed to flush chunk '1-1785283751.679681106.flb', retry in 21 seconds: task_id=2, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:21.399] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2136' lines totaling '1695512' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:21.399] [ warn] [engine] failed to flush chunk '1-1785283751.837726660.flb', retry in 9 seconds: task_id=16, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:21.417] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2352' lines totaling '1918994' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:21.417] [ warn] [engine] failed to flush chunk '1-1785283751.857659957.flb', retry in 18 seconds: task_id=17, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:21.428] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2750' lines totaling '1866954' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:21.429] [ warn] [engine] failed to flush chunk '1-1785283751.677724728.flb', retry in 6 seconds: task_id=0, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:22.374] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2750' lines totaling '1866945' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:22.374] [ warn] [engine] failed to flush chunk '1-1785283751.776123293.flb', retry in 12 seconds: task_id=12, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:22.392] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-21T14:59:56Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-21T19:40:04Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 52 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T02:30:44Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 4 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T02:31:09Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T03:28:01Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T06:47:23Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-21T09:18:48Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T09:41:56Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T09:19:54Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-20T17:13:56Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-21T04:14:40Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-21T07:53:03Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr", service_name="longhorn-manager"}' has timestamp too old: 2026-07-21T18:28:41Z, oldest acceptable timestamp is: 2026-07-22T00:09:22Z; 1 errors like: entry for stream '{cluster="kalaxy3", container="longhorn-manager", namespace="longhorn-system", node="amd64-01", pod="longhorn-manager-4zzlr
+[2026/07/29 00:09:23.343] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '1769' lines totaling '1349548' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:23.343] [ warn] [engine] failed to flush chunk '1-1785283752.34437346.flb', retry in 20 seconds: task_id=26, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:23.375] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2430' lines totaling '1982625' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:23.375] [ warn] [engine] failed to flush chunk '1-1785283751.688818706.flb', retry in 19 seconds: task_id=11, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:24.374] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-28 21:57:44.934011491 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-28T21:57:44Z, oldest acceptable timestamp is: 2026-07-28T23:09:09Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="coredns", namespace="kube-system", node="amd64-01", pod="coredns-5f5694d56b-svbp2", service_name="coredns"}
+
+[2026/07/29 00:09:25.399] [ info] [engine] flush chunk '1-1785283751.817791053.flb' succeeded at retry 2: task_id=15, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:26.363] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-27 19:21:57.031682679 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-27T19:21:57Z, oldest acceptable timestamp is: 2026-07-28T23:09:17Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="csi-snapshotter", namespace="longhorn-system", node="amd64-01", pod="csi-snapshotter-548b956b8d-npw5z", service_name="csi-snapshotter"}
+
+[2026/07/29 00:09:27.371] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-27 20:13:24.545968321 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-27T20:13:24Z, oldest acceptable timestamp is: 2026-07-28T23:09:09Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="coredns", namespace="kube-system", node="amd64-01", pod="coredns-5f5694d56b-svbp2", service_name="coredns"}
+
+[2026/07/29 00:09:29.378] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2079' lines totaling '1871857' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:29.378] [ warn] [engine] failed to flush chunk '1-1785283752.28256132.flb', retry in 11 seconds: task_id=25, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:29.389] [ info] [engine] flush chunk '1-1785283751.807392425.flb' succeeded at retry 2: task_id=14, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:30.365] [ info] [engine] flush chunk '1-1785283751.837726660.flb' succeeded at retry 2: task_id=16, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:33.398] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-25 04:15:27.445278925 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-25T04:15:27Z, oldest acceptable timestamp is: 2026-07-28T23:08:32Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="speaker", namespace="metallb-system", node="amd64-01", pod="metallb-speaker-zkkb7", service_name="speaker"}
+
+[2026/07/29 00:09:33.428] [ info] [engine] flush chunk '1-1785283751.990367118.flb' succeeded at retry 2: task_id=24, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:34.377] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-28 09:05:34.739766883 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-28T09:05:34Z, oldest acceptable timestamp is: 2026-07-28T23:09:09Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="coredns", namespace="kube-system", node="amd64-01", pod="coredns-5f5694d56b-svbp2", service_name="coredns"}
+
+[2026/07/29 00:09:35.386] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-25 21:25:34.426884222 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-25T21:25:34Z, oldest acceptable timestamp is: 2026-07-27T17:45:53Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="frr-status", namespace="metallb-system", node="amd64-01", pod="metallb-frr-k8s-66vwc", service_name="frr-status"}
+
+[2026/07/29 00:09:36.370] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-27 10:20:55.741807718 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-27T10:20:55Z, oldest acceptable timestamp is: 2026-07-28T23:09:07Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="kubecost-network-costs", namespace="kubecost", node="amd64-01", pod="kubecost-network-costs-2jsr4", service_name="kubecost-network-costs"}
+
+[2026/07/29 00:09:37.363] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-28 08:18:05.245828359 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-28T08:18:05Z, oldest acceptable timestamp is: 2026-07-28T23:09:31Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="csi-snapshotter", namespace="longhorn-system", node="amd64-01", pod="csi-snapshotter-548b956b8d-npw5z", service_name="csi-snapshotter"}
+
+[2026/07/29 00:09:38.371] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-28 21:07:32.380044906 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-28T21:07:32Z, oldest acceptable timestamp is: 2026-07-28T23:09:07Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="kubecost-network-costs", namespace="kubecost", node="amd64-01", pod="kubecost-network-costs-2jsr4", service_name="kubecost-network-costs"}
+
+[2026/07/29 00:09:39.360] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=429
+ingestion rate limit exceeded for user fake (limit: 4194304 bytes/sec) while attempting to ingest '2352' lines totaling '1918994' bytes, reduce log volume or contact your Loki administrator to see if the limit can be increased
+
+[2026/07/29 00:09:39.361] [ warn] [engine] failed to flush chunk '1-1785283751.857659957.flb', retry in 14 seconds: task_id=17, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:40.381] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-28 21:17:07.383050507 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-28T21:17:07Z, oldest acceptable timestamp is: 2026-07-28T23:09:31Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="csi-snapshotter", namespace="longhorn-system", node="amd64-01", pod="csi-snapshotter-548b956b8d-npw5z", service_name="csi-snapshotter"}
+
+[2026/07/29 00:09:42.375] [error] [output:loki:loki] loki-gateway.observability.svc.cluster.local:80, HTTP status=400 Not retrying.
+entry with timestamp 2026-07-27 03:29:04.681412434 +0000 UTC ignored, reason: 'entry too far behind, entry timestamp is: 2026-07-27T03:29:04Z, oldest acceptable timestamp is: 2026-07-27T04:59:59Z',
+user 'fake', total ignored: 1 out of 1 for stream: {cluster="kalaxy3", container="csi-snapshotter", namespace="longhorn-system", node="amd64-01", pod="csi-snapshotter-548b956b8d-txr7n", service_name="csi-snapshotter"}
+
+[2026/07/29 00:09:42.396] [ info] [engine] flush chunk '1-1785283751.688818706.flb' succeeded at retry 2: task_id=11, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:43.343] [ info] [engine] flush chunk '1-1785283752.34437346.flb' succeeded at retry 2: task_id=26, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:09:53.363] [ info] [engine] flush chunk '1-1785283751.857659957.flb' succeeded at retry 3: task_id=17, input=k8s-logs > output=loki (out_id=0)
+[2026/07/29 00:27:10.264] [ info] [filter:kubernetes:kubernetes.0]  token updated
+[2026/07/29 00:27:10.272] [ info] [input:tail:k8s-logs] inotify_fs_add(): inode=49168589 watch_fd=47 name=/var/log/containers/kube-prometheus-stack-admission-create-vq2s9_observability_create-64a9765b44522d4cfac77f8aa20f0b131685006ba9b52f8b044a08fcbfd93d6a.log
+[2026/07/29 00:27:40.867] [ info] [input:tail:k8s-logs] inotify_fs_remove(): inode=49168589 watch_fd=47
+
+FAILED exit_code=1
+(base) #( 07/28/26@ 7:28PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
+
+====================================================================================================
+TRANSCRIPT 6: Pasted text(89).txt
+====================================================================================================
+(base) #( 07/28/26@ 7:35PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
+   >....
+  true
+)"
+
+printf 'recent_rate_limit_errors=%s\n' "$RECENT_429"
+printf 'recent_old_timestamp_errors=%s\n' "$RECENT_OLD"
+
+if [[ "$RECENT_429" -ne 0 || "$RECENT_OLD" -ne 0 ]]
+then
+  grep -E \
+    'HTTP status=429|ingestion rate limit exceeded|timestamp too old|entry too far behind' \
+    "$RECENT_COLLECTOR_LOGS" |
+  tail -n 100
+
+  printf \
+    'ERROR startup ingestion pressure has not cleared\n' \
+    >&2
+
+  exit 1
+fi
+
+printf \
+  'PASS no rate-limit or old-timestamp errors occurred in the last five minutes\n'
+
+printf '\n===== POSTDEPLOYMENT CLUSTER GUARDRAILS =====\n'
+
+make cluster-guardrails
+
+printf '\n===== FINAL REPOSITORY STATE =====\n'
+
+test -z "$(git status --porcelain)"
+
+test "$(
+  git rev-parse HEAD
+)" = "$(
+  git rev-parse "origin/$BRANCH"
+)"
+
+grep -nE \
+  '^deploy_centralized_logging:[[:space:]]*true$' \
+  inventory/group_vars/all/main.yml
+
+git status
+
+cleanup
+trap - EXIT
+
+printf '\n===== RESULT =====\n'
+printf 'PASS Loki 18.5.4 deployed and healthy\n'
+printf 'PASS Fluent Bit Collector 1.0.9 runs on all seven nodes\n'
+printf 'PASS Grafana loaded and reached the Loki datasource\n'
+printf 'PASS Longhorn storage is healthy and replicated\n'
+printf 'PASS recent logs from all seven nodes are queryable\n'
+printf 'PASS initial ingestion pressure cleared\n'
+printf 'CENTRALIZED LOGGING OBSERVABILITY DEPLOYMENT COMPLETE\n'
+BASH
+
+===== REQUIRE CLEAN PUBLISHED CHECKPOINT =====
+local=4247387a8062a0a353f5704e40c90b1727881a4a
+remote=4247387a8062a0a353f5704e40c90b1727881a4a
+PASS repository checkpoint is clean and published
+PASS centralized logging remains activated
+
+===== VERIFY DEPLOYED RELEASES =====
+NAME                 	NAMESPACE    	REVISION	UPDATED                                	STATUS  	CHART                        	APP VERSION
+fluent-bit-collector 	observability	1       	2026-07-28 19:09:03.472186184 -0500 CDT	deployed	fluent-bit-collector-1.0.9   	5.0.9
+kube-prometheus-stack	observability	12      	2026-07-28 19:26:44.685172344 -0500 CDT	deployed	kube-prometheus-stack-87.19.0	v0.92.1
+loki                 	observability	1       	2026-07-28 19:07:29.039676142 -0500 CDT	deployed	loki-18.5.4                  	3.7.4
+PASS Loki chart=loki-18.5.4
+PASS Fluent Bit chart=fluent-bit-collector-1.0.9
+
+===== VERIFY WORKLOAD READINESS =====
+PASS Loki and gateway are ready on amd64-02
+PASS seven Fluent Bit Collector pods are ready
+
+===== VERIFY STORAGE =====
+pvc_phase=Bound
+storage_class=longhorn
+requested=40Gi
+longhorn_state=attached
+longhorn_health=healthy
+longhorn_replicas=2
+PASS Loki Longhorn storage is healthy and replicated
+
+===== VERIFY DATASOURCE CONFIGMAP =====
+PASS Grafana datasource ConfigMap is correct
+
+===== VERIFY GRAFANA LOADED LOKI =====
+PASS Grafana credentials decoded without displaying them
+curl: (7) Failed to connect to 127.0.0.1 port 13000 after 0 ms: Couldn't connect to server
+name=Loki
+uid=loki
+type=loki
+url=http://loki-gateway.observability.svc.cluster.local
+PASS Grafana loaded the Loki datasource
+{"message":"Data source successfully connected.","status":"OK"}
+status=ok
+message=Data source successfully connected.
+PASS Grafana reached Loki successfully
+
+===== VERIFY RECENT LOG INGESTION =====
+curl: (7) Failed to connect to 127.0.0.1 port 13100 after 0 ms: Couldn't connect to server
+PASS Loki readiness endpoint
+stream_count=6
+labels={"cluster": "kalaxy3", "container": "finops-agent", "detected_level": "unknown", "namespace": "kubecost", "node": "amd64-02", "pod": "kubecost-finopsagent-576777b756-d5f6p", "service_name": "finops-agent"}
+labels={"cluster": "kalaxy3", "container": "frr-status", "detected_level": "unknown", "namespace": "metallb-system", "node": "arm64-02", "pod": "metallb-frr-k8s-8rjmm", "service_name": "frr-status"}
+labels={"cluster": "kalaxy3", "container": "grafana", "detected_level": "info", "namespace": "observability", "node": "amd64-02", "pod": "kube-prometheus-stack-grafana-784b55fb5-f4xg5", "service_name": "grafana"}
+labels={"cluster": "kalaxy3", "container": "kubecost-network-costs", "detected_level": "unknown", "namespace": "kubecost", "node": "arm64-05", "pod": "kubecost-network-costs-2rb66", "service_name": "kubecost-network-costs"}
+labels={"cluster": "kalaxy3", "container": "loki", "detected_level": "info", "namespace": "observability", "node": "amd64-02", "pod": "loki-0", "service_name": "loki"}
+PASS recent Kalaxy3 logs are queryable
+
+===== VERIFY STREAMS FROM ALL SEVEN NODES =====
+expected=['amd64-01', 'amd64-02', 'arm64-01', 'arm64-02', 'arm64-03', 'arm64-04', 'arm64-05']
+observed=['amd64-01', 'amd64-02', 'arm64-01', 'arm64-02', 'arm64-03', 'arm64-04', 'arm64-05']
+PASS Loki contains recent streams from all seven nodes
+
+===== VERIFY STARTUP INGESTION PRESSURE CLEARED =====
+recent_rate_limit_errors=0
+recent_old_timestamp_errors=0
+PASS no rate-limit or old-timestamp errors occurred in the last five minutes
+
+===== POSTDEPLOYMENT CLUSTER GUARDRAILS =====
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
+
+===== FINAL REPOSITORY STATE =====
+52:deploy_centralized_logging: true
+On branch wip/centralized-logging-staged-20260726
+Your branch is up to date with 'origin/wip/centralized-logging-staged-20260726'.
+
+nothing to commit, working tree clean
+
+===== RESULT =====
+PASS Loki 18.5.4 deployed and healthy
+PASS Fluent Bit Collector 1.0.9 runs on all seven nodes
+PASS Grafana loaded and reached the Loki datasource
+PASS Longhorn storage is healthy and replicated
+PASS recent logs from all seven nodes are queryable
+PASS initial ingestion pressure cleared
+CENTRALIZED LOGGING OBSERVABILITY DEPLOYMENT COMPLETE
+(base) #( 07/28/26@ 7:39PM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3/infrastructure/k3s-homelab@wip/centralized-logging-staged-20260726✔
