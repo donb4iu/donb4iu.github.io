@@ -1,0 +1,8121 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+      
+      
+        <meta name="author" content="ChatGPT">
+      
+      
+        <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/security/kalaxy3-controller-access-baseline-sage-evidence/">
+      
+      
+        <link rel="prev" href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/">
+      
+      
+        <link rel="next" href="../../standards/kalaxy3-sage-change-discovery-process/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../rpi4.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement - Kalaxy3 K3s Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#canonical-kalaxy3-controller-access-baseline-and-legacy-intel-administration-retirement" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-header__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalaxy3 K3s Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-nav__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    Kalaxy3 K3s Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s Homelab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    K3s Homelab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/01_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/02_IP_Address_Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP Address Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/03_Deployment_Order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/04_Phased_Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phased deployment and refinement workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Phase_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase observations and decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/k3s-install-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_7" id="__nav_2_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: Use Three K3s Server Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: MetalLB with Traefik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Separate Shared NFS and MinIO Local Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_8" id="__nav_2_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Recovery Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase 0 Site Survey Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Headlamp Login Token Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 03 Network and Storage Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 04 UI Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Benchmarks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Current SAGE evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical and legacy evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/migration-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE evidence migration report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/finops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finops evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Status
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/validated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validated evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subjects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subjects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by subject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-nocloud-seed-usb-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for amd64
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-logging-cost-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized logging cost baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-observability-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized observability logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/intel-node-pi-administrative-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-api-high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s API High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-automation-controller-portability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 automation controller portability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-controller-access-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 controller access baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-daux-landing-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 Daux landing page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 SAGE evidence-record standard 1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-chart-3-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost chart 3.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/longhorn-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Longhorn, Kubecost,
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for MinIO Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-longhorn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Longhorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-traefik-dashboard-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Traefik Dashboard Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-enforcement-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE enforcement guardrails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-evidence-catalog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-record-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE-record-schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-daux-landing-page-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Daux Landing Page Source and Local Render Validation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-continuous-improvement-foundation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Foundation Staged Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Guardrail Gap Discovery and Centralized Logging Work Pause
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/k3s-api-ha-kube-vip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s API High Availability with kube-vip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-amd64-02-k3s-longhorn-node-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 amd64-02 K3s and Longhorn Node Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-amd64-node-and-longhorn-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-intel-pi-admin-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-kubecost-calibration-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-kubecost-installation-and-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Kubecost Installation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 MinIO Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-observability-and-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Observability and Kubecost Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-protected-ui-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Longhorn and Prometheus UI Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-traefik-dashboard-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Traefik Dashboard Installation and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/longhorn-kubecost-intel-node-preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longhorn, Kubecost, and Intel Node Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/ubuntu-node-provisioning-fixed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_14" id="__nav_6_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/amd64-nocloud-seed-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-installation-and-node-provisioning-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-node-provisioning-fixed-amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-centralized-logging-deployment-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-controller-machine-portability-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-canonical-metadata-contract-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical SAGE metadata contract and publisher enforcement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-evidence-publication-process-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repeatable SAGE Evidence Package Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-legacy-evidence-navigation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-observability-iterative-readiness-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Cost Model Architecture and FinOps Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#record-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-active-account-and-controller-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — Active-account and controller baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-intel-parallel-root-path-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Intel parallel-root-path audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-guardrail-and-git-checkpoint-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Guardrail and Git checkpoint validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-split-ssh-and-privilege-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — Split SSH and privilege gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-negative-check-mode-evidence-and-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — Negative check-mode evidence and corrections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-006-intel-canary-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-006 — Intel canary and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-007-independent-mac-mini-intel-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-007 — Independent Mac mini Intel check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-008-arm-preview-canary-independent-check-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-008 — ARM preview, canary, independent check, and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-009-serialized-remaining-node-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-009 — Serialized remaining-node rollout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-010-final-seven-node-validation-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-010 — Final seven-node validation and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-011-source-and-artifact-integrity-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-011 — Source and artifact integrity inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-performed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test performed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential-and-secret-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credential and secret handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-from-lost-active-account-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery from lost active-account authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh-only-preflight-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH-only preflight fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privilege-preflight-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege preflight fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-mode-reports-an-undefined-legacy-account-fact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check mode reports an undefined legacy account fact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-mode-fails-the-post-removal-assertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check mode fails the post-removal assertion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-pi-remains-ssh-accessible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intel pi remains SSH-accessible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-approved-controller-loses-access-after-key-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An approved controller loses access after key rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-change-discovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-continuous-improvement-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-orchestration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Orchestration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-publication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-record-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Record Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/kalaxy3-centralized-logging-sage-evidence-quality-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#record-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-active-account-and-controller-baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — Active-account and controller baseline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-intel-parallel-root-path-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Intel parallel-root-path audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-guardrail-and-git-checkpoint-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Guardrail and Git checkpoint validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-split-ssh-and-privilege-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — Split SSH and privilege gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-negative-check-mode-evidence-and-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — Negative check-mode evidence and corrections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-006-intel-canary-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-006 — Intel canary and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-007-independent-mac-mini-intel-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-007 — Independent Mac mini Intel check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-008-arm-preview-canary-independent-check-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-008 — ARM preview, canary, independent check, and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-009-serialized-remaining-node-rollout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-009 — Serialized remaining-node rollout
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-010-final-seven-node-validation-and-idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-010 — Final seven-node validation and idempotency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-011-source-and-artifact-integrity-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-011 — Source and artifact integrity inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#test-performed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test performed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed result
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#credential-and-secret-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Credential and secret handling
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual risks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recovery-from-lost-active-account-authorization" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery from lost active-account authorization
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild sequence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ssh-only-preflight-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH-only preflight fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#privilege-preflight-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Privilege preflight fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-mode-reports-an-undefined-legacy-account-fact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check mode reports an undefined legacy account fact
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#check-mode-fails-the-post-removal-assertion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check mode fails the post-removal assertion
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#intel-pi-remains-ssh-accessible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intel pi remains SSH-accessible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#an-approved-controller-loses-access-after-key-rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        An approved controller loses access after key rotation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="canonical-kalaxy3-controller-access-baseline-and-legacy-intel-administration-retirement">Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement<a class="headerlink" href="#canonical-kalaxy3-controller-access-baseline-and-legacy-intel-administration-retirement" title="Permanent link">&para;</a></h1>
+<h2 id="executive-summary">Executive summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>Kalaxy3 controller access was normalized and validated across all seven cluster
+nodes. The five ARM64 nodes retain <code>pi</code> as their inventory account, while the
+two AMD64 nodes retain <code>dbuddenbaum</code>; every active inventory account now has
+exactly the two repository-approved controller public keys and the same
+validated passwordless-sudo policy at
+<code>/etc/sudoers.d/90-kalaxy3-ansible-admin</code>. The separate Intel <code>pi</code>
+administration route was retired by removing its SSH authorization, sudo-group
+membership, and <code>90-kalaxy3-pi</code> policy while retaining the password-locked
+account for historical continuity. SSH, privilege escalation, strict
+repository-owned host trust, representative independent Mac mini access, and a
+full seven-node idempotency pass succeeded. The implementation resolves to
+<code>e77cb1620e1f7b1231ebd162d9506d4123520c88</code>. This record is <code>validated</code>; independent
+review remains pending.</p>
+<div class="toc">
+<ul>
+<li><a href="#canonical-kalaxy3-controller-access-baseline-and-legacy-intel-administration-retirement">Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement</a><ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#record-metadata">Record metadata</a></li>
+<li><a href="#five-ws-and-how">Five Ws and How</a><ul>
+<li><a href="#five-w-completeness-gate">Five-W completeness gate</a></li>
+</ul>
+</li>
+<li><a href="#scope-and-boundaries">Scope and boundaries</a><ul>
+<li><a href="#in-scope">In scope</a></li>
+<li><a href="#out-of-scope">Out of scope</a></li>
+<li><a href="#nonclaims">Nonclaims</a></li>
+</ul>
+</li>
+<li><a href="#final-accepted-state">Final accepted state</a></li>
+<li><a href="#claims-and-evidence-matrix">Claims and evidence matrix</a></li>
+<li><a href="#problem-and-decision-rationale">Problem and decision rationale</a><ul>
+<li><a href="#problem-or-opportunity">Problem or opportunity</a></li>
+<li><a href="#decision">Decision</a></li>
+<li><a href="#decision-drivers">Decision drivers</a></li>
+<li><a href="#alternatives-considered">Alternatives considered</a></li>
+<li><a href="#tradeoffs-and-consequences">Tradeoffs and consequences</a></li>
+</ul>
+</li>
+<li><a href="#architecture-or-change-description">Architecture or change description</a><ul>
+<li><a href="#before">Before</a></li>
+<li><a href="#after">After</a></li>
+</ul>
+</li>
+<li><a href="#source-of-truth-and-implementation-lineage">Source of truth and implementation lineage</a><ul>
+<li><a href="#repository-files">Repository files</a></li>
+<li><a href="#implementation-commit">Implementation commit</a></li>
+<li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#configuration-excerpt">Configuration excerpt</a></li>
+</ul>
+</li>
+<li><a href="#prerequisites-and-assumptions">Prerequisites and assumptions</a><ul>
+<li><a href="#proven-prerequisites">Proven prerequisites</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-procedure">Implementation procedure</a><ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#expected-change">Expected change</a></li>
+<li><a href="#observed-change">Observed change</a></li>
+</ul>
+</li>
+<li><a href="#evidence-items">Evidence items</a><ul>
+<li><a href="#ev-001-active-account-and-controller-baseline">EV-001 — Active-account and controller baseline</a></li>
+<li><a href="#ev-002-intel-parallel-root-path-audit">EV-002 — Intel parallel-root-path audit</a></li>
+<li><a href="#ev-003-guardrail-and-git-checkpoint-validation">EV-003 — Guardrail and Git checkpoint validation</a></li>
+<li><a href="#ev-004-split-ssh-and-privilege-gates">EV-004 — Split SSH and privilege gates</a></li>
+<li><a href="#ev-005-negative-check-mode-evidence-and-corrections">EV-005 — Negative check-mode evidence and corrections</a></li>
+<li><a href="#ev-006-intel-canary-and-idempotency">EV-006 — Intel canary and idempotency</a></li>
+<li><a href="#ev-007-independent-mac-mini-intel-check">EV-007 — Independent Mac mini Intel check</a></li>
+<li><a href="#ev-008-arm-preview-canary-independent-check-and-idempotency">EV-008 — ARM preview, canary, independent check, and idempotency</a></li>
+<li><a href="#ev-009-serialized-remaining-node-rollout">EV-009 — Serialized remaining-node rollout</a></li>
+<li><a href="#ev-010-final-seven-node-validation-and-idempotency">EV-010 — Final seven-node validation and idempotency</a></li>
+<li><a href="#ev-011-source-and-artifact-integrity-inventory">EV-011 — Source and artifact integrity inventory</a></li>
+</ul>
+</li>
+<li><a href="#verification-and-acceptance-criteria">Verification and acceptance criteria</a></li>
+<li><a href="#idempotency-and-repeatability">Idempotency and repeatability</a><ul>
+<li><a href="#test-performed">Test performed</a></li>
+<li><a href="#observed-result">Observed result</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#security-privacy-and-evidence-handling">Security, privacy, and evidence handling</a><ul>
+<li><a href="#security-controls">Security controls</a></li>
+<li><a href="#credential-and-secret-handling">Credential and secret handling</a></li>
+<li><a href="#residual-risks">Residual risks</a></li>
+</ul>
+</li>
+<li><a href="#reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild</a><ul>
+<li><a href="#reliability">Reliability</a></li>
+<li><a href="#recovery-from-lost-active-account-authorization">Recovery from lost active-account authorization</a></li>
+<li><a href="#rollback">Rollback</a></li>
+<li><a href="#rebuild-sequence">Rebuild sequence</a></li>
+</ul>
+</li>
+<li><a href="#operational-considerations-and-observability">Operational considerations and observability</a></li>
+<li><a href="#known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a><ul>
+<li><a href="#ssh-only-preflight-fails">SSH-only preflight fails</a></li>
+<li><a href="#privilege-preflight-fails">Privilege preflight fails</a></li>
+<li><a href="#check-mode-reports-an-undefined-legacy-account-fact">Check mode reports an undefined legacy account fact</a></li>
+<li><a href="#check-mode-fails-the-post-removal-assertion">Check mode fails the post-removal assertion</a></li>
+<li><a href="#intel-pi-remains-ssh-accessible">Intel pi remains SSH-accessible</a></li>
+<li><a href="#an-approved-controller-loses-access-after-key-rotation">An approved controller loses access after key rotation</a></li>
+</ul>
+</li>
+<li><a href="#freshness-revalidation-and-supersession">Freshness, revalidation, and supersession</a><ul>
+<li><a href="#revalidate-when">Revalidate when</a></li>
+<li><a href="#scheduled-review">Scheduled review</a></li>
+<li><a href="#supersession-rule">Supersession rule</a></li>
+</ul>
+</li>
+<li><a href="#final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance</a><ul>
+<li><a href="#governance">Governance</a></li>
+<li><a href="#evidence">Evidence</a></li>
+<li><a href="#safety-and-operations">Safety and operations</a></li>
+<li><a href="#review-acceptance">Review acceptance</a></li>
+</ul>
+</li>
+<li><a href="#git-review-and-publication">Git review and publication</a></li>
+<li><a href="#appendices-and-raw-artifacts">Appendices and raw artifacts</a><ul>
+<li><a href="#artifact-inventory">Artifact inventory</a></li>
+<li><a href="#additional-notes">Additional notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="record-metadata">Record metadata<a class="headerlink" href="#record-metadata" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-SECURITY-20260726-001</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.2</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement</td>
+</tr>
+<tr>
+<td><strong>Navigation title</strong></td>
+<td>Enforce canonical controller access across Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Navigation section</strong></td>
+<td>security</td>
+</tr>
+<tr>
+<td><strong>Navigation order</strong></td>
+<td>30</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Validates a repository-owned dual-controller SSH and sudo baseline across seven Kalaxy3 nodes and retires the legacy Intel pi administration path.</td>
+</tr>
+<tr>
+<td><strong>Primary subject</strong></td>
+<td>Kalaxy3 controller access baseline</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td>security</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>validated</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>Kalaxy3 SAGE enforcement guardrails and canonical controller access</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td>2026-07-26T19:56:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>2026-07-26T21:21:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td>2026-07-26T21:21:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td>2026-07-26T21:30:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td>2026-07-26T21:44:01-05:00</td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td>2026-07-26</td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td>event-based</td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/security/kalaxy3-controller-access-baseline-sage-evidence.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>feature/sage-enforcement-guardrails</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td>e77cb1620e1f7b1231ebd162d9506d4123520c88</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>homelab</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td>donbs-imac and donb-mac-mini</td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td>donbs-imac and donb-mac-mini</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; amd64-01; amd64-02</td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td>arm64-01=192.168.2.51; arm64-02=192.168.2.52; arm64-03=192.168.2.53; arm64-04=192.168.2.54; arm64-05=192.168.2.55; amd64-01=192.168.2.61; amd64-02=192.168.2.62</td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td>origin=github.com/donb4iu/Kalaxy3; ssh-arm64-01=192.168.2.51; ssh-arm64-02=192.168.2.52; ssh-arm64-03=192.168.2.53; ssh-arm64-04=192.168.2.54; ssh-arm64-05=192.168.2.55; ssh-amd64-01=192.168.2.61; ssh-amd64-02=192.168.2.62</td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td>ansible-core=2.18.7; ansible.posix=1.6.2; Python=3.12.4; K3s=v1.36.2+k3s1; SSH-host-trust=repository-owned; sudo-policy=90-kalaxy3-ansible-admin</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>ChatGPT</td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td>pending</td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="five-ws-and-how">Five Ws and How<a class="headerlink" href="#five-ws-and-how" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td>Author ChatGPT, operator Don Buddenbaum, owner Don Buddenbaum, and reviewer pending. The affected users are the Kalaxy3 operator and future authorized automation controllers.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Replaced inconsistent controller-access paths with one behaviorally uniform baseline: two approved controller keys on every active inventory account, one canonical sudo policy, separate SSH and privilege gates, and retirement of the extra Intel <code>pi</code> root-capable route.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td>Work started 2026-07-26T19:56:00-05:00, completed 2026-07-26T21:21:00-05:00, and evidence was collected through 2026-07-26T21:21:00-05:00. Local and system timestamps use America/Chicago. The result is valid as of 2026-07-26 and is reviewed event-based.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td>Environment homelab; system Kalaxy3; cluster kalaxy3; execution host donbs-imac and donb-mac-mini; controller host donbs-imac and donb-mac-mini; nodes arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; amd64-01; amd64-02; node addresses arm64-01=192.168.2.51; arm64-02=192.168.2.52; arm64-03=192.168.2.53; arm64-04=192.168.2.54; arm64-05=192.168.2.55; amd64-01=192.168.2.61; amd64-02=192.168.2.62; namespace not-applicable; endpoints origin=github.com/donb4iu/Kalaxy3; ssh-arm64-01=192.168.2.51; ssh-arm64-02=192.168.2.52; ssh-arm64-03=192.168.2.53; ssh-arm64-04=192.168.2.54; ssh-arm64-05=192.168.2.55; ssh-amd64-01=192.168.2.61; ssh-amd64-02=192.168.2.62; repository donb4iu/Kalaxy3; branch feature/sage-enforcement-guardrails; record markdown/security/kalaxy3-controller-access-baseline-sage-evidence.md.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>The cluster had different active account names by architecture plus an additional Intel <code>pi</code> SSH-and-sudo path created by an older playbook. The inconsistency expanded administrative attack surface, made controller access harder to audit, and caused the existing preflight to hide whether SSH or sudo was failing.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>Repository-owned public keys, host trust, Ansible playbooks, and preflights were committed in small pushed checkpoints. Read-only audits established the starting state; check-mode failures were corrected; one Intel and one ARM node were applied as canaries; the Mac mini independently verified representative paths; the remaining nodes were updated sequentially; and all seven nodes passed exact key, sudo, legacy-path, SSH, privilege, and idempotency checks.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="five-w-completeness-gate">Five-W completeness gate<a class="headerlink" href="#five-w-completeness-gate" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Who is complete and agrees with metadata.</li>
+<li>[x] What is complete.</li>
+<li>[x] When is complete, uses canonical timestamps, and includes timezone context.</li>
+<li>[x] Where is complete at repository and runtime levels and agrees with metadata.</li>
+<li>[x] Why includes rationale, alternatives, and tradeoffs.</li>
+<li>[x] How is reproducible and verifiable.</li>
+</ul>
+<h2 id="scope-and-boundaries">Scope and boundaries<a class="headerlink" href="#scope-and-boundaries" title="Permanent link">&para;</a></h2>
+<h3 id="in-scope">In scope<a class="headerlink" href="#in-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Active Ansible inventory accounts on all seven Kalaxy3 nodes.</li>
+<li>Repository-approved Mac mini ED25519 and iMac RSA-4096 controller keys.</li>
+<li>Repository-owned strict SSH host trust for all seven nodes.</li>
+<li>Independent SSH-only and privilege-escalation preflights.</li>
+<li>Canonical <code>90-kalaxy3-ansible-admin</code> sudo policy with <code>visudo</code> validation.</li>
+<li>Removal of superseded <code>90-k3s-admin</code> files.</li>
+<li>Retirement of the Intel legacy <code>pi</code> SSH, sudo-group, and sudoers path.</li>
+<li>Check-mode behavior, controlled canary rollout, sequential expansion, and
+  full idempotency validation.</li>
+<li>Git implementation lineage and evidence-only SAGE publication.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Renaming ARM or Intel operating-system accounts.</li>
+<li>Deleting the retained Intel <code>pi</code> account or its home directory.</li>
+<li>Rotating either controller key or changing private-key storage.</li>
+<li>Adding a third controller or implementing a certificate authority for SSH.</li>
+<li>Changing K3s, Kubernetes workloads, namespaces, services, or storage.</li>
+<li>Capturing exact OpenSSH and sudo package versions.</li>
+<li>Post-rollout direct Mac mini SSH tests against every node; representative
+  ARM and Intel nodes were tested directly.</li>
+</ul>
+<h3 id="nonclaims">Nonclaims<a class="headerlink" href="#nonclaims" title="Permanent link">&para;</a></h3>
+<p>This record does <strong>not</strong> claim:</p>
+<ul>
+<li>that account names are identical across architectures;</li>
+<li>that the retained Intel <code>pi</code> account has been deleted;</li>
+<li>that password authentication is globally disabled by this playbook;</li>
+<li>that every future controller is authorized automatically;</li>
+<li>that possession of a public key grants access without the matching private
+  key;</li>
+<li>that successful SSH and sudo validation proves unrelated cluster workload
+  health;</li>
+<li>that the second controller directly tested every node after rollout.</li>
+</ul>
+<h2 id="final-accepted-state">Final accepted state<a class="headerlink" href="#final-accepted-state" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>ARM active inventory account:            pi
+Intel active inventory account:          dbuddenbaum
+Approved active-account key count:       2
+Approved key 1:                          Mac mini ED25519 fingerprint
+Approved key 2:                          iMac RSA-4096 fingerprint
+Repository SSH trust:                    7-node strict known-hosts file
+Canonical sudoers file:                  /etc/sudoers.d/90-kalaxy3-ansible-admin
+Canonical sudoers owner/mode:             root:root 0440
+Canonical sudoers validation:             parsed OK on all seven nodes
+Noninteractive SSH:                      PASS on all seven nodes
+Noninteractive privilege escalation:     UID 0 on all seven nodes
+Superseded 90-k3s-admin:                 absent on all seven nodes
+Intel retained pi password:              locked
+Intel retained pi sudo group:            absent
+Intel retained pi authorized_keys:       absent or empty
+Intel 90-kalaxy3-pi:                     absent
+Representative Mac mini ARM access:      PASS
+Representative Mac mini Intel access:    PASS
+Final playbook convergence:              changed=0, unreachable=0, failed=0
+Kubernetes workloads changed:            none
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Active access contract</td>
+<td>Architecture-specific account names are allowed, but key count, approved identities, host trust, and sudo behavior are uniform.</td>
+</tr>
+<tr>
+<td>Key authority</td>
+<td>The two public-key files under <code>access/controller-keys</code> are the approved active-account authorization set.</td>
+</tr>
+<tr>
+<td>Sudo authority</td>
+<td><code>90-kalaxy3-ansible-admin</code> is the only playbook-managed passwordless-sudo policy in this access baseline.</td>
+</tr>
+<tr>
+<td>Legacy Intel path</td>
+<td>The historical <code>pi</code> account remains locked but has no controller SSH authorization, sudo-group membership, or dedicated sudoers rule.</td>
+</tr>
+<tr>
+<td>Preflight semantics</td>
+<td>SSH authentication and privilege escalation can fail and be diagnosed independently.</td>
+</tr>
+<tr>
+<td>Repeatability</td>
+<td>A second full playbook execution made zero changes on every node.</td>
+</tr>
+<tr>
+<td>Git lineage</td>
+<td>The implementation resolves to <code>e77cb1620e1f7b1231ebd162d9506d4123520c88</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="claims-and-evidence-matrix">Claims and evidence matrix<a class="headerlink" href="#claims-and-evidence-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>Before this change, both Intel nodes had two parallel root-capable controller paths.</td>
+<td>critical</td>
+<td><code>EV-001</code>, <code>EV-002</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>Every active inventory account now contains exactly the two approved controller keys.</td>
+<td>critical</td>
+<td><code>EV-006</code>, <code>EV-008</code>, <code>EV-009</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>Every node now has a valid canonical passwordless-sudo policy and returns UID 0 noninteractively.</td>
+<td>critical</td>
+<td><code>EV-004</code>, <code>EV-006</code>, <code>EV-008</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>The Intel legacy <code>pi</code> SSH and sudo path is retired while the account remains locked.</td>
+<td>critical</td>
+<td><code>EV-006</code>, <code>EV-009</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>SSH authentication and privilege escalation are independently testable controls.</td>
+<td>high</td>
+<td><code>EV-004</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>The access playbook is safe to preview in check mode after the documented corrections.</td>
+<td>high</td>
+<td><code>EV-005</code>, <code>EV-008</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>The approved Mac mini controller can still access representative ARM and Intel nodes after normalization.</td>
+<td>critical</td>
+<td><code>EV-007</code>, <code>EV-008</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-008</code></td>
+<td>The final access baseline converges idempotently across all seven nodes.</td>
+<td>critical</td>
+<td><code>EV-006</code>, <code>EV-008</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-009</code></td>
+<td>The implementation is preserved in Git through frequent remote checkpoints.</td>
+<td>high</td>
+<td><code>EV-003</code>, <code>EV-011</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-010</code></td>
+<td>No Kubernetes workload or cluster-resource change was required for this security baseline.</td>
+<td>normal</td>
+<td><code>EV-003</code>, <code>EV-006</code>, <code>EV-008</code>, <code>EV-009</code>, <code>EV-010</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problem-and-decision-rationale">Problem and decision rationale<a class="headerlink" href="#problem-and-decision-rationale" title="Permanent link">&para;</a></h2>
+<h3 id="problem-or-opportunity">Problem or opportunity<a class="headerlink" href="#problem-or-opportunity" title="Permanent link">&para;</a></h3>
+<p>The live system had architecture-specific active accounts, which was acceptable,
+but it also had inconsistent sudoers files and an additional Intel <code>pi</code>
+administrator created by an earlier provisioning playbook. That retained path
+accepted only the Mac mini key and had unrestricted passwordless sudo. The
+existing Ansible ping preflight inherited become settings, so it did not
+distinguish transport authentication from privilege escalation. Repository
+source, live state, and intended controller policy had drifted.</p>
+<h3 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h3>
+<p>Keep the established active inventory accounts (<code>pi</code> on ARM and <code>dbuddenbaum</code>
+on Intel), but enforce one behavioral security contract everywhere:</p>
+<ol>
+<li>exactly the two approved controller public keys on the active account;</li>
+<li>repository-owned strict host trust;</li>
+<li>a single canonical passwordless-sudo policy;</li>
+<li>independent SSH and privilege preflights;</li>
+<li>no active controller authorization on the retained Intel <code>pi</code> account.</li>
+</ol>
+<h3 id="decision-drivers">Decision drivers<a class="headerlink" href="#decision-drivers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Reduce redundant root-capable access paths.</li>
+<li>Preserve working architecture-specific account names without unnecessary
+  operating-system migrations.</li>
+<li>Keep both established controller machines functional.</li>
+<li>Make authorization and host trust reviewable in Git.</li>
+<li>Fail closed before removing an existing sudo path.</li>
+<li>Support clean rebuild and bootstrap cases where passwordless sudo does not
+  yet exist.</li>
+<li>Provide deterministic check-mode and idempotency evidence.</li>
+</ul>
+<h3 id="alternatives-considered">Alternatives considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rename every node to one common account</td>
+<td>Superficially uniform inventory</td>
+<td>High-risk account migration with little security value; changes ownership and rebuild assumptions</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Keep both Intel <code>pi</code> and <code>dbuddenbaum</code> as root-capable paths</td>
+<td>Maximum short-term access redundancy</td>
+<td>Doubles administrative paths and preserves a one-controller legacy key set</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Delete the Intel <code>pi</code> account immediately</td>
+<td>Removes legacy identity completely</td>
+<td>Larger irreversible change; could erase useful history or files before review</td>
+<td>deferred</td>
+</tr>
+<tr>
+<td>Keep existing sudoers filenames per installation</td>
+<td>Minimal live change</td>
+<td>Continues inconsistent policy names and source drift</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Enforce approved keys but leave extra keys</td>
+<td>Avoids removing ad hoc access</td>
+<td>Prevents deterministic authorization review and retains unknown paths</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Enforce both keys exclusively and one canonical sudoers policy</td>
+<td>Deterministic, reviewable, dual-controller, and idempotent</td>
+<td>Intentional removal of any undeclared ad hoc key</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td>Test SSH and sudo with one inherited-become ping</td>
+<td>One command</td>
+<td>Cannot identify whether transport or privilege is broken</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Split SSH and privilege preflights</td>
+<td>Clear diagnosis and independent gates</td>
+<td>Two checks instead of one</td>
+<td>accepted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tradeoffs-and-consequences">Tradeoffs and consequences<a class="headerlink" href="#tradeoffs-and-consequences" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>exclusive: true</code> intentionally removes any undeclared key from active
+  inventory accounts.</li>
+<li>The retained Intel <code>pi</code> account still exists and should not be mistaken for
+  an authorized controller account.</li>
+<li>First-time rebuilds may require a sudo password or console/bootstrap access
+  before the canonical policy can be installed.</li>
+<li>Public controller keys are version controlled; matching private keys remain
+  machine-local and are not recoverable from Git.</li>
+<li>Direct post-rollout Mac mini testing sampled one ARM and one Intel node rather
+  than all seven; the iMac independently verified exact approved fingerprints
+  and state on all seven.</li>
+<li>The playbook removes the retained Intel <code>pi</code> <code>authorized_keys</code> file, so future
+  intentional use of that account requires a separately reviewed policy change.</li>
+</ul>
+<h2 id="architecture-or-change-description">Architecture or change description<a class="headerlink" href="#architecture-or-change-description" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>donb4iu/Kalaxy3 feature/sage-enforcement-guardrails
+  |
+  +-- inventory/ssh_known_hosts
+  |     +--&gt; strict host identity for 7 nodes
+  |
+  +-- access/controller-keys/
+  |     +--&gt; donb-mac-mini-ed25519.pub
+  |     +--&gt; donbs-imac-rsa.pub
+  |
+  +-- scripts/ansible-access-preflight.py
+  |     +--&gt; --scope ssh       (become=false)
+  |     +--&gt; --scope privilege (become=true, UID 0)
+  |     +--&gt; --scope all
+  |
+  +-- playbooks/access-baseline.yml
+        |
+        +--&gt; all active inventory accounts
+        |     +--&gt; exclusive approved two-key set
+        |     +--&gt; 90-kalaxy3-ansible-admin
+        |     +--&gt; sudo -n verification
+        |     +--&gt; remove 90-k3s-admin
+        |
+        +--&gt; longhorn_nodes / Intel only
+              +--&gt; retain locked pi account
+              +--&gt; remove pi from sudo group
+              +--&gt; remove pi authorized_keys
+              +--&gt; remove 90-kalaxy3-pi
+              +--&gt; assert retired state
+</code></pre></div>
+<h3 id="before">Before<a class="headerlink" href="#before" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ARM:
+  active pi account
+  two controller keys
+  preexisting passwordless sudo through noncanonical host setup
+
+Intel:
+  active dbuddenbaum account
+  two controller keys
+  90-k3s-admin
+  plus retained pi account
+  Mac mini key only
+  sudo group and 90-kalaxy3-pi
+</code></pre></div>
+<h3 id="after">After<a class="headerlink" href="#after" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ARM:
+  active pi account
+  exact two approved controller keys
+  canonical 90-kalaxy3-ansible-admin
+
+Intel:
+  active dbuddenbaum account
+  exact two approved controller keys
+  canonical 90-kalaxy3-ansible-admin
+  retained pi locked with no SSH authorization, sudo group, or sudoers rule
+</code></pre></div>
+<h2 id="source-of-truth-and-implementation-lineage">Source of truth and implementation lineage<a class="headerlink" href="#source-of-truth-and-implementation-lineage" title="Permanent link">&para;</a></h2>
+<h3 id="repository-files">Repository files<a class="headerlink" href="#repository-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>.gitignore
+infrastructure/k3s-homelab/Makefile
+infrastructure/k3s-homelab/ansible.cfg
+infrastructure/k3s-homelab/access/controller-keys/donb-mac-mini-ed25519.pub
+infrastructure/k3s-homelab/access/controller-keys/donbs-imac-rsa.pub
+infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+infrastructure/k3s-homelab/inventory/ssh_known_hosts
+infrastructure/k3s-homelab/playbooks/access-baseline.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-08-intel.yml
+infrastructure/k3s-homelab/scripts/ansible-access-preflight.py
+infrastructure/k3s-homelab/scripts/bootstrap-ssh-key.py
+infrastructure/k3s-homelab/scripts/controller-preflight.py
+infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+markdown/standards/kalaxy3-sage-evidence-record-standard.md
+markdown/standards/sage-evidence-metadata-contract-v1.2.json
+markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/templates/sage-evidence-record-template.md
+scripts/sage/sage-publish.py
+scripts/sage/sage-index.py
+</code></pre></div>
+<p>Retired active implementation source:</p>
+<div class="highlight"><pre><span></span><code>infrastructure/k3s-homelab/playbooks/intel-admin-access.yml
+</code></pre></div>
+<h3 id="implementation-commit">Implementation commit<a class="headerlink" href="#implementation-commit" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>e77cb1620e1f7b1231ebd162d9506d4123520c88
+Fix access baseline check-mode validation
+</code></pre></div>
+<p>The full implementation SHA includes the preceding guardrail, approved-key,
+preflight-split, and access-baseline commits through Git ancestry.</p>
+<h3 id="versioned-dependencies">Versioned dependencies<a class="headerlink" href="#versioned-dependencies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th style="text-align: right;">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Python</td>
+<td style="text-align: right;">3.12.4</td>
+<td>repository-managed controller runtime</td>
+</tr>
+<tr>
+<td>ansible-core</td>
+<td style="text-align: right;">2.18.7</td>
+<td>repository requirements</td>
+</tr>
+<tr>
+<td>ansible.posix</td>
+<td style="text-align: right;">1.6.2</td>
+<td>repository-managed Ansible collection</td>
+</tr>
+<tr>
+<td>K3s</td>
+<td style="text-align: right;">v1.36.2+k3s1</td>
+<td>observed installed version and repository release guardrail</td>
+</tr>
+<tr>
+<td>OpenSSH server/client</td>
+<td style="text-align: right;">not-captured</td>
+<td>evidence gap; functional behavior directly tested</td>
+</tr>
+<tr>
+<td>sudo</td>
+<td style="text-align: right;">not-captured</td>
+<td>evidence gap; policy parsing and UID 0 behavior directly tested</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-excerpt">Configuration excerpt<a class="headerlink" href="#configuration-excerpt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install the complete approved controller key set</span>
+<span class="w">  </span><span class="nt">ansible.posix.authorized_key</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">ansible_user</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">present</span>
+<span class="w">    </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">kalaxy3_controller_public_keys</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">    </span><span class="nt">exclusive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">manage_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install the canonical Ansible sudo policy</span>
+<span class="w">  </span><span class="nt">ansible.builtin.copy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/sudoers.d/90-kalaxy3-ansible-admin</span>
+<span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">ansible_user</span><span class="nv"> </span><span class="s">}}</span><span class="nv"> </span><span class="s">ALL=(ALL:ALL)</span><span class="nv"> </span><span class="s">NOPASSWD:</span><span class="nv"> </span><span class="s">ALL\n&quot;</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0440&quot;</span>
+<span class="w">    </span><span class="nt">validate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/usr/sbin/visudo -cf %s</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Verify noninteractive sudo through the canonical policy</span>
+<span class="w">  </span><span class="nt">ansible.builtin.command</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">argv</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">sudo</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-n</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">id</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-u</span><span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="nt">become</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Remove the legacy Intel pi passwordless-sudo policy</span>
+<span class="w">  </span><span class="nt">ansible.builtin.file</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/sudoers.d/90-kalaxy3-pi</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">absent</span>
+</code></pre></div>
+<p>No public-key bodies are reproduced in this record. The authoritative public
+keys are the repository files named above.</p>
+<h2 id="prerequisites-and-assumptions">Prerequisites and assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permanent link">&para;</a></h2>
+<h3 id="proven-prerequisites">Proven prerequisites<a class="headerlink" href="#proven-prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The iMac and Mac mini approved private keys existed locally and matched the
+  repository public-key fingerprints.</li>
+<li>All seven node host keys were represented in
+  <code>inventory/ssh_known_hosts</code>.</li>
+<li>Before rollout, the active inventory accounts accepted noninteractive SSH and
+  privilege escalation.</li>
+<li>The repository-managed controller toolchain passed exact version checks.</li>
+<li>Both approved controller key files were committed and pushed before the live
+  access change.</li>
+<li>The existing Intel <code>pi</code> account was password locked before its legacy SSH and
+  sudo paths were removed.</li>
+</ul>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>The two repository public keys remain controlled by Don Buddenbaum and correspond to protected private keys.</td>
+<td>Unauthorized private-key possession would permit administrative access.</td>
+<td>Rotate the affected key immediately and rerun the baseline and all-node validation.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td>Local or physical console recovery remains available if both controller keys become unusable.</td>
+<td>Simultaneous key loss could lock out remote administration.</td>
+<td>Document and periodically test host-console recovery separately.</td>
+</tr>
+<tr>
+<td><code>ASM-003</code></td>
+<td>No service depends on SSH login as the retained Intel <code>pi</code> account.</td>
+<td>Removing its authorization could break undocumented automation.</td>
+<td>Revalidate after any discovery of scripts or services naming Intel <code>pi</code>.</td>
+</tr>
+<tr>
+<td><code>ASM-004</code></td>
+<td>Repository host-key records remain authentic after intentional node rebuilds.</td>
+<td>A stale record fails closed; an improperly replaced record could trust the wrong host.</td>
+<td>Review host replacement evidence and update trust through the repository process.</td>
+</tr>
+</tbody>
+</table>
+<p>No material assumption was used in place of the direct acceptance tests. The
+remaining assumptions describe credential custody and recovery dependencies.</p>
+<h2 id="implementation-procedure">Implementation procedure<a class="headerlink" href="#implementation-procedure" title="Permanent link">&para;</a></h2>
+<h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+make<span class="w"> </span>bootstrap-guardrails
+make<span class="w"> </span>k3s-release-guardrail
+make<span class="w"> </span>controller-helm-preflight
+make<span class="w"> </span>deployment-guardrail
+make<span class="w"> </span>helm-lock-reconcile
+make<span class="w"> </span>ansible-access-preflight
+</code></pre></div>
+<p>Read-only baseline collection established active accounts, key fingerprints,
+sudo rules, host trust, and the live Intel legacy path before implementation.</p>
+<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
+<p>Repository checkpoints were committed and pushed after each logical change:</p>
+<div class="highlight"><pre><span></span><code>guardrail framework
+approved controller public keys
+split SSH and privilege preflights
+canonical access-baseline playbook
+check-mode validation corrections
+</code></pre></div>
+<p>The rollout sequence was:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Read-only Intel preview</span>
+ansible-playbook<span class="w"> </span>playbooks/access-baseline.yml<span class="w">   </span>--limit<span class="w"> </span>amd64-01<span class="w"> </span>--check<span class="w"> </span>--diff
+
+<span class="c1"># Real Intel canary and second run</span>
+ansible-playbook<span class="w"> </span>playbooks/access-baseline.yml<span class="w">   </span>--limit<span class="w"> </span>amd64-01<span class="w"> </span>--diff
+
+<span class="c1"># Read-only ARM preview</span>
+ansible-playbook<span class="w"> </span>playbooks/access-baseline.yml<span class="w">   </span>--limit<span class="w"> </span>arm64-01<span class="w"> </span>--check<span class="w"> </span>--diff
+
+<span class="c1"># Real ARM canary and second run</span>
+ansible-playbook<span class="w"> </span>playbooks/access-baseline.yml<span class="w">   </span>--limit<span class="w"> </span>arm64-01<span class="w"> </span>--diff
+
+<span class="c1"># Remaining nodes, serialized</span>
+ansible-playbook<span class="w"> </span>playbooks/access-baseline.yml<span class="w">   </span>--limit<span class="w"> </span><span class="s1">&#39;arm64-02:arm64-03:arm64-04:arm64-05:amd64-02&#39;</span><span class="w">   </span>--forks<span class="w"> </span><span class="m">1</span><span class="w"> </span>--diff
+
+<span class="c1"># Final all-node convergence</span>
+ansible-playbook<span class="w"> </span>playbooks/access-baseline.yml<span class="w"> </span>--forks<span class="w"> </span><span class="m">1</span>
+</code></pre></div>
+<p>Mac mini direct SSH checks were performed after the Intel and ARM canaries with:</p>
+<div class="highlight"><pre><span></span><code>IdentitiesOnly=yes
+BatchMode=yes
+StrictHostKeyChecking=yes
+UserKnownHostsFile=inventory/ssh_known_hosts
+</code></pre></div>
+<h3 id="expected-change">Expected change<a class="headerlink" href="#expected-change" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Active accounts retain their architecture-specific names.</li>
+<li>Active accounts converge to exactly the two approved keys.</li>
+<li>The canonical sudoers file is installed and validated before old files are
+  removed.</li>
+<li>Intel <code>pi</code> remains locked but loses controller SSH and unrestricted sudo.</li>
+<li>SSH and privilege tests pass independently.</li>
+<li>A second identical playbook run produces zero changes.</li>
+</ul>
+<h3 id="observed-change">Observed change<a class="headerlink" href="#observed-change" title="Permanent link">&para;</a></h3>
+<p>All expected changes occurred. The canary and remaining-node runs had no failed
+or unreachable hosts. Representative Mac mini direct checks passed. The final
+seven-node run reported zero changes and zero failures.</p>
+<h2 id="evidence-items">Evidence items<a class="headerlink" href="#evidence-items" title="Permanent link">&para;</a></h2>
+<h3 id="ev-001-active-account-and-controller-baseline"><code>EV-001</code> — Active-account and controller baseline<a class="headerlink" href="#ev-001-active-account-and-controller-baseline" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-002</code>, <code>CLM-003</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26 before 20:05 America/Chicago</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code>, then <code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>All seven inventory nodes</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core 2.18.7; OpenSSH version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Establish the real active accounts, key fingerprints, sudo behavior, and strict trust behavior before mutation</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; active accounts had both keys and sudo; stale Mac mini trust failed closed until authoritative trust was used</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Public-key bodies omitted; fingerprints retained</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; external checksums artifact</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-002-intel-parallel-root-path-audit"><code>EV-002</code> — Intel parallel-root-path audit<a class="headerlink" href="#ev-002-intel-parallel-root-path-audit" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code> and <code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-004</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T20:05:03-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>amd64-01</code>, <code>amd64-02</code>, and legacy playbook source</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core 2.18.7; <code>getent</code>, <code>passwd</code>, <code>ssh-keygen</code>, <code>sudo</code>, <code>visudo</code> versions not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Determine whether legacy <code>pi</code> access remained live</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; both Intel nodes had active <code>pi</code> key and passwordless-sudo paths in addition to <code>dbuddenbaum</code></td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Public-key bodies omitted; fingerprints retained</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; <code>acccd691...</code> external artifact</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-003-guardrail-and-git-checkpoint-validation"><code>EV-003</code> — Guardrail and Git checkpoint validation<a class="headerlink" href="#ev-003-guardrail-and-git-checkpoint-validation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code> and <code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-009</code>, <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T20:07:00-05:00 through 2026-07-26T21:01:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Feature branch and repository guardrails</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git version not captured; Python 3.12.4; ansible-core 2.18.7; Helm v3.21.3</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Store recoverable source checkpoints and prove source/dependency gates before live access changes</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; five logical commits were pushed and required gates passed</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/implementation-commit-summary.txt</code>; <code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-004-split-ssh-and-privilege-gates"><code>EV-004</code> — Split SSH and privilege gates<a class="headerlink" href="#ev-004-split-ssh-and-privilege-gates" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code> and <code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code>, <code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T20:25:00-05:00 through 2026-07-26T20:29:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>All seven inventory nodes</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Python 3.12.4; ansible-core 2.18.7</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>SSH-only scope passes without become; privilege scope proves UID 0; combined scope requires both</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass on all seven; bootstrap and recovery gates also passed</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-005-negative-check-mode-evidence-and-corrections"><code>EV-005</code> — Negative check-mode evidence and corrections<a class="headerlink" href="#ev-005-negative-check-mode-evidence-and-corrections" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>negative-evidence</code>, <code>repository-evidence</code>, and <code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-006</code>, <code>CLM-009</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T20:40:00-05:00 through 2026-07-26T21:00:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Access-baseline source and <code>amd64-01</code> check mode</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Python 3.12.4; ansible-core 2.18.7</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Preview completes without node mutation</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>initial failures exposed missing-file assumption, skipped read-only command, simulated-removal assertion, and status-parser defects; corrected preview passed with failed=0</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Public-key bodies omitted</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-006-intel-canary-and-idempotency"><code>EV-006</code> — Intel canary and idempotency<a class="headerlink" href="#ev-006-intel-canary-and-idempotency" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-004</code>, <code>CLM-008</code>, <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T21:02:53-05:00 through 2026-07-26T21:05:08-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>amd64-01</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core 2.18.7; system utilities versions not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Normalize active account, validate new sudo before removing old policy, retire legacy <code>pi</code>, and converge on second run</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; first run changed=6, second run changed=0, failed=0</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Public-key bodies omitted; fingerprints retained</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; external canary and postvalidation checksums</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-007-independent-mac-mini-intel-check"><code>EV-007</code> — Independent Mac mini Intel check<a class="headerlink" href="#ev-007-independent-mac-mini-intel-check" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T21:07:30-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>dbuddenbaum@amd64-01</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>OpenSSH version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Strict direct SSH with the approved ED25519 key and noninteractive sudo succeeds</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; remote user <code>dbuddenbaum</code>, sudo UID 0</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Private key not captured</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; <code>2311a70...</code> external artifact</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-008-arm-preview-canary-independent-check-and-idempotency"><code>EV-008</code> — ARM preview, canary, independent check, and idempotency<a class="headerlink" href="#ev-008-arm-preview-canary-independent-check-and-idempotency" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-006</code>, <code>CLM-007</code>, <code>CLM-008</code>, <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T21:08:48-05:00 through 2026-07-26T21:13:50-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code> and <code>donb-mac-mini</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>arm64-01</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core 2.18.7; OpenSSH version not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Keep active <code>pi</code>, install exact approved keys and canonical sudo, skip Intel retirement, converge, and remain accessible from Mac mini</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; preview failed=0, canary failed=0, second run changed=0, Mac mini sudo UID 0</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Private keys not captured; public-key bodies omitted</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; four external artifact checksums</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-009-serialized-remaining-node-rollout"><code>EV-009</code> — Serialized remaining-node rollout<a class="headerlink" href="#ev-009-serialized-remaining-node-rollout" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-004</code>, <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T21:15:12-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>arm64-02</code> through <code>arm64-05</code>, <code>amd64-02</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>ansible-core 2.18.7</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Four ARM accounts normalize; second Intel node also retires legacy <code>pi</code>; no failed or unreachable hosts</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass; ARM changed=2 each, Intel changed=6, all failed=0 and unreachable=0</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Public-key bodies omitted</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; <code>076c78d...</code> external artifact</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-010-final-seven-node-validation-and-idempotency"><code>EV-010</code> — Final seven-node validation and idempotency<a class="headerlink" href="#ev-010-final-seven-node-validation-and-idempotency" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code> and <code>generated-artifact</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-004</code>, <code>CLM-005</code>, <code>CLM-008</code>, <code>CLM-010</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26T21:18:17-05:00 through 2026-07-26T21:21:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code></td>
+</tr>
+<tr>
+<td>Target</td>
+<td>All seven Kalaxy3 nodes</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Python 3.12.4; ansible-core 2.18.7; ansible.posix 1.6.2</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>SSH and privilege pass; exact two fingerprints and canonical sudo exist; legacy Intel route absent; second playbook run changed=0</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass on every node; changed=0, unreachable=0, failed=0</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>Public-key bodies omitted; fingerprints retained</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code>; <code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/validation-summary.json</code>; <code>46814bb...</code> external artifact</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ev-011-source-and-artifact-integrity-inventory"><code>EV-011</code> — Source and artifact integrity inventory<a class="headerlink" href="#ev-011-source-and-artifact-integrity-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>generated-artifact</code> and <code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-009</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum and ChatGPT</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-26 working session and package generation</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td><code>donbs-imac</code> and evidence generator</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Repository source, external evidence files, and package artifacts</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>SHA-256; tool versions vary or not captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Preserve implementation lineage and deterministic evidence hashes without storing secrets</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>no private keys or credentials; public-key bodies intentionally omitted</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/external-artifact-checksums.sha256</code>; <code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/implementation-commit-summary.txt</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="verification-and-acceptance-criteria">Verification and acceptance criteria<a class="headerlink" href="#verification-and-acceptance-criteria" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterion</th>
+<th>Expected result</th>
+<th>Observed result</th>
+<th>Evidence</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository host trust</td>
+<td>Seven declared hosts and strict checking</td>
+<td>Seven-host trust passed; stale Mac mini trust failed closed before correction</td>
+<td><code>EV-001</code>, <code>EV-003</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Approved active keys</td>
+<td>Exactly two approved fingerprints per active account</td>
+<td>Two exact fingerprints on all seven nodes</td>
+<td><code>EV-006</code>, <code>EV-008</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Canonical sudoers</td>
+<td>root-owned mode 0440, parses, returns UID 0</td>
+<td>Passed on all seven nodes</td>
+<td><code>EV-006</code>, <code>EV-008</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Superseded sudoers</td>
+<td><code>90-k3s-admin</code> absent</td>
+<td>Absent on all seven nodes</td>
+<td><code>EV-006</code>, <code>EV-008</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Intel legacy sudo</td>
+<td><code>90-kalaxy3-pi</code> and sudo group absent</td>
+<td>Absent on both Intel nodes</td>
+<td><code>EV-006</code>, <code>EV-009</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Intel legacy SSH</td>
+<td>retained <code>pi</code> has no nonempty <code>authorized_keys</code></td>
+<td>Absent or empty on both Intel nodes</td>
+<td><code>EV-006</code>, <code>EV-009</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Intel account safety</td>
+<td>retained <code>pi</code> password remains locked</td>
+<td>Locked on both Intel nodes</td>
+<td><code>EV-006</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>SSH-only gate</td>
+<td>all seven return Ansible pong without become</td>
+<td>PASS</td>
+<td><code>EV-004</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Privilege gate</td>
+<td>all seven return UID 0 noninteractively</td>
+<td>PASS</td>
+<td><code>EV-004</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Mac mini continuity</td>
+<td>representative ARM and Intel direct checks pass</td>
+<td>PASS on <code>arm64-01</code> and <code>amd64-01</code></td>
+<td><code>EV-007</code>, <code>EV-008</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Check-mode safety</td>
+<td>previews complete without failure or mutation</td>
+<td>PASS after documented corrections</td>
+<td><code>EV-005</code>, <code>EV-008</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Idempotency</td>
+<td>second complete run changes nothing</td>
+<td>All seven changed=0, failed=0</td>
+<td><code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Workload isolation</td>
+<td>no K3s workload deployment or restart required</td>
+<td>No cluster-resource command in access playbook</td>
+<td><code>EV-003</code>, <code>EV-010</code></td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Implementation lineage</td>
+<td>full committed SHA is resolvable</td>
+<td><code>e77cb1620e1f7b1231ebd162d9506d4123520c88</code></td>
+<td><code>EV-003</code>, <code>EV-011</code></td>
+<td>pass</td>
+</tr>
+</tbody>
+</table>
+<p>Acceptance result: all technical criteria passed. The record remains
+<code>validated</code>, rather than <code>accepted</code>, pending independent reviewer approval.</p>
+<h2 id="idempotency-and-repeatability">Idempotency and repeatability<a class="headerlink" href="#idempotency-and-repeatability" title="Permanent link">&para;</a></h2>
+<h3 id="test-performed">Test performed<a class="headerlink" href="#test-performed" title="Permanent link">&para;</a></h3>
+<p>After both canaries and the complete remaining-node rollout, the same
+<code>playbooks/access-baseline.yml</code> playbook was run across all seven nodes with
+<code>--forks 1</code>.</p>
+<h3 id="observed-result">Observed result<a class="headerlink" href="#observed-result" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>amd64-01: changed=0 unreachable=0 failed=0
+amd64-02: changed=0 unreachable=0 failed=0
+arm64-01: changed=0 unreachable=0 failed=0
+arm64-02: changed=0 unreachable=0 failed=0
+arm64-03: changed=0 unreachable=0 failed=0
+arm64-04: changed=0 unreachable=0 failed=0
+arm64-05: changed=0 unreachable=0 failed=0
+</code></pre></div>
+<p>The check-mode preview is also repeatable because the two read-only discovery
+commands explicitly execute during check mode, while the real post-removal
+assertion is skipped only when changes are simulated.</p>
+<h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
+<p>The automation converges deterministically for the evidenced seven-node
+inventory. Key comments and order are normalized because the complete approved
+set is supplied to a single <code>authorized_key</code> invocation with <code>exclusive: true</code>.</p>
+<h2 id="security-privacy-and-evidence-handling">Security, privacy, and evidence handling<a class="headerlink" href="#security-privacy-and-evidence-handling" title="Permanent link">&para;</a></h2>
+<h3 id="security-controls">Security controls<a class="headerlink" href="#security-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Active account authorization is exactly the repository-approved two-key set.</li>
+<li>Strict host checking uses the repository-owned seven-node trust file.</li>
+<li>SSH and sudo are tested independently and fail closed.</li>
+<li>Canonical sudoers content is validated with <code>visudo</code> before installation.</li>
+<li>The new sudo policy is proven before the old active-account policy is
+  removed.</li>
+<li>The Intel legacy root-capable path is retired.</li>
+<li>The retained Intel <code>pi</code> password remains locked.</li>
+<li>Playbook application was serialized during the broad rollout.</li>
+<li>Git checkpoints were pushed before live changes and after source corrections.</li>
+</ul>
+<h3 id="credential-and-secret-handling">Credential and secret handling<a class="headerlink" href="#credential-and-secret-handling" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only public keys are version controlled.</li>
+<li>No private key was copied, displayed, or packaged.</li>
+<li>Public-key bodies are intentionally omitted from terminal artifacts; stable
+  fingerprints prove identity.</li>
+<li>No password, password hash, token, kubeconfig content, bearer credential,
+  Ansible Vault plaintext, or Kubernetes Secret is present.</li>
+<li>Local Downloads artifacts are referenced by checksum rather than embedded
+  when the original files were not available to the package generator.</li>
+</ul>
+<h3 id="residual-risks">Residual risks<a class="headerlink" href="#residual-risks" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Compromise of either approved private key grants the access authorized by its
+  corresponding public key.</li>
+<li>Passwordless unrestricted sudo is powerful; this baseline reduces duplicate
+  paths but does not implement command-scoped sudo.</li>
+<li>The repository trust file must be updated through a reviewed process after a
+  legitimate host rebuild.</li>
+<li>Physical or console recovery is outside this record.</li>
+<li>A future change to <code>ansible_user</code> must update both key and sudo policy
+  evidence.</li>
+</ul>
+<h2 id="reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild<a class="headerlink" href="#reliability-recovery-rollback-and-rebuild" title="Permanent link">&para;</a></h2>
+<h3 id="reliability">Reliability<a class="headerlink" href="#reliability" title="Permanent link">&para;</a></h3>
+<p>The final state is declarative, repository owned, and idempotent. Failure of one
+controller does not remove the other approved controller key. Host-key mismatch
+fails before authentication. Sudo is verified before superseded active-account
+sudoers files are removed.</p>
+<h3 id="recovery-from-lost-active-account-authorization">Recovery from lost active-account authorization<a class="headerlink" href="#recovery-from-lost-active-account-authorization" title="Permanent link">&para;</a></h3>
+<p>Use physical console, another still-approved controller, or another explicitly
+authorized break-glass path to restore the two repository public keys to the
+active inventory account. Then run:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+make<span class="w"> </span>access-baseline
+make<span class="w"> </span>ansible-access-preflight
+</code></pre></div>
+<p>When passwordless sudo has not yet been established on a rebuilt node, use the
+repository bootstrap target and provide the existing host sudo password:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>access-baseline-bootstrap
+</code></pre></div>
+<p>Private keys must be restored from their secure controller backup; they cannot
+be reconstructed from the repository public keys.</p>
+<h3 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h3>
+<p>A normal rollback should restore access to the declared active inventory
+account, not reactivate the retired Intel <code>pi</code> administration route. From local
+console or a valid controller:</p>
+<ol>
+<li>restore the approved active-account public keys;</li>
+<li>reinstall <code>90-kalaxy3-ansible-admin</code> with owner <code>root:root</code>, mode <code>0440</code>;</li>
+<li>validate it using <code>visudo -cf</code>;</li>
+<li>prove <code>sudo -n id -u</code> returns <code>0</code>;</li>
+<li>rerun <code>playbooks/access-baseline.yml</code>.</li>
+</ol>
+<p>Reactivating Intel <code>pi</code> SSH or passwordless sudo is a new security decision and
+requires a reviewed source change and superseding evidence.</p>
+<h3 id="rebuild-sequence">Rebuild sequence<a class="headerlink" href="#rebuild-sequence" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>1. Rebuild the host and retain the intended inventory account.
+2. Verify the host identity and update repository SSH trust after review.
+3. Bootstrap one approved controller key when first access requires it.
+4. Run repository controller bootstrap and core preflight.
+5. Run access-baseline-bootstrap when a sudo password is still required.
+6. Run make access-baseline.
+7. Run make ssh-auth-preflight and make privilege-preflight.
+8. Verify exact key fingerprints and canonical sudoers state.
+9. On Intel, verify retained pi is locked and has no SSH or sudo path.
+10. Run the access playbook again and require changed=0.
+</code></pre></div>
+<p>No Kubernetes workload restore is required for this access-only change.</p>
+<h2 id="operational-considerations-and-observability">Operational considerations and observability<a class="headerlink" href="#operational-considerations-and-observability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Run <code>make ansible-access-preflight</code> before deployment and recovery workflows.</li>
+<li>Use <code>make ssh-auth-preflight</code> to isolate transport or key failures.</li>
+<li>Use <code>make privilege-preflight</code> to isolate sudo-policy failures.</li>
+<li>Run <code>make access-baseline</code> after approved key rotation, inventory account
+  changes, or node replacement.</li>
+<li>Review <code>inventory/ssh_known_hosts</code> whenever a node host key changes.</li>
+<li>Treat an unexpected nonzero key count, unknown fingerprint, extra sudoers
+  file, or Intel <code>pi</code> authorization as a security drift event.</li>
+<li>Preserve command output and SHA-256 checksums under the evidence ID artifact
+  root during revalidation.</li>
+<li>This baseline does not install continuous SSH or sudo telemetry. Detection is
+  preflight- and audit-driven.</li>
+</ul>
+<h2 id="known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks<a class="headerlink" href="#known-limitations-evidence-gaps-and-risks" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Gap or risk</th>
+<th>Effect</th>
+<th>Owner</th>
+<th>Trigger or resolution</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OpenSSH and sudo package versions were not captured</td>
+<td>Behavior is proven, but exact package lineage is incomplete</td>
+<td>Don Buddenbaum</td>
+<td>Capture versions at next access revalidation</td>
+</tr>
+<tr>
+<td>Post-rollout Mac mini direct access sampled one ARM and one Intel node</td>
+<td>Second-controller direct coverage is representative rather than exhaustive</td>
+<td>Don Buddenbaum</td>
+<td>Run strict direct checks against all seven after key rotation or reviewer request</td>
+</tr>
+<tr>
+<td>No physical-console recovery test was performed</td>
+<td>Remote lockout recovery remains procedural</td>
+<td>Don Buddenbaum</td>
+<td>Test during a planned maintenance window</td>
+</tr>
+<tr>
+<td>Passwordless sudo remains unrestricted</td>
+<td>A valid controller key can obtain full root</td>
+<td>Don Buddenbaum</td>
+<td>Evaluate command-scoped sudo only with an operational impact study</td>
+</tr>
+<tr>
+<td>Intel <code>pi</code> account remains present</td>
+<td>Identity exists though controller authorization is absent</td>
+<td>Don Buddenbaum</td>
+<td>Delete only after filesystem and service dependency review</td>
+</tr>
+<tr>
+<td>No automated key-expiration or certificate authority</td>
+<td>Key lifecycle is manual</td>
+<td>Don Buddenbaum</td>
+<td>Reassess when a third controller or multiple operators are added</td>
+</tr>
+<tr>
+<td>External raw artifacts remain in Downloads until publication</td>
+<td>Loss before publication would remove original raw files, though checksums and material excerpts are preserved here</td>
+<td>Don Buddenbaum</td>
+<td>Publish package and retain repository artifacts</td>
+</tr>
+</tbody>
+</table>
+<p>No evidence gap contradicts the validated technical claims.</p>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="ssh-only-preflight-fails">SSH-only preflight fails<a class="headerlink" href="#ssh-only-preflight-fails" title="Permanent link">&para;</a></h3>
+<p>Run:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>ssh-auth-preflight
+</code></pre></div>
+<p>Check:</p>
+<ul>
+<li>the active <code>ansible_user</code>;</li>
+<li>the matching local private key;</li>
+<li><code>IdentitiesOnly</code> and noninteractive SSH behavior;</li>
+<li>repository host-key trust;</li>
+<li>the two expected fingerprints in active-account <code>authorized_keys</code>;</li>
+<li>file ownership and mode.</li>
+</ul>
+<p>Do not weaken strict host checking to bypass a mismatch. Verify the host
+identity and update the repository trust file through review.</p>
+<h3 id="privilege-preflight-fails">Privilege preflight fails<a class="headerlink" href="#privilege-preflight-fails" title="Permanent link">&para;</a></h3>
+<p>Run:</p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>privilege-preflight
+</code></pre></div>
+<p>On the target, inspect and validate:</p>
+<div class="highlight"><pre><span></span><code>/etc/sudoers.d/90-kalaxy3-ansible-admin
+owner root
+group root
+mode 0440
+visudo -cf PASS
+</code></pre></div>
+<p>For a first-time rebuild without passwordless sudo, use
+<code>make access-baseline-bootstrap</code>.</p>
+<h3 id="check-mode-reports-an-undefined-legacy-account-fact">Check mode reports an undefined legacy account fact<a class="headerlink" href="#check-mode-reports-an-undefined-legacy-account-fact" title="Permanent link">&para;</a></h3>
+<p>Confirm the read-only <code>getent passwd pi</code> and <code>id -nG pi</code> tasks use:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">check_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<p>These commands must observe real state during a preview.</p>
+<h3 id="check-mode-fails-the-post-removal-assertion">Check mode fails the post-removal assertion<a class="headerlink" href="#check-mode-fails-the-post-removal-assertion" title="Permanent link">&para;</a></h3>
+<p>The final assertion must contain:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">not ansible_check_mode</span>
+</code></pre></div>
+<p>Check mode simulates file removal but a following <code>stat</code> still sees the real
+file.</p>
+<h3 id="intel-pi-remains-ssh-accessible">Intel <code>pi</code> remains SSH-accessible<a class="headerlink" href="#intel-pi-remains-ssh-accessible" title="Permanent link">&para;</a></h3>
+<p>Confirm:</p>
+<div class="highlight"><pre><span></span><code>/home/pi/.ssh/authorized_keys is absent or empty
+/etc/sudoers.d/90-kalaxy3-pi is absent
+pi is not a member of sudo
+passwd -S pi reports L
+</code></pre></div>
+<p>Then rerun <code>playbooks/access-baseline.yml</code> against the affected Intel node.</p>
+<h3 id="an-approved-controller-loses-access-after-key-rotation">An approved controller loses access after key rotation<a class="headerlink" href="#an-approved-controller-loses-access-after-key-rotation" title="Permanent link">&para;</a></h3>
+<p>Update the repository public-key file, review its fingerprint, commit it, and
+run the access baseline while another approved controller or console session is
+still available. Never rotate both controller keys simultaneously without a
+tested recovery path.</p>
+<h2 id="freshness-revalidation-and-supersession">Freshness, revalidation, and supersession<a class="headerlink" href="#freshness-revalidation-and-supersession" title="Permanent link">&para;</a></h2>
+<h3 id="revalidate-when">Revalidate when<a class="headerlink" href="#revalidate-when" title="Permanent link">&para;</a></h3>
+<ul>
+<li>either approved controller key changes;</li>
+<li>an active inventory account changes;</li>
+<li>a node is rebuilt or replaced;</li>
+<li>an SSH host key changes;</li>
+<li><code>access-baseline.yml</code>, <code>ansible-access-preflight.py</code>, <code>ansible.cfg</code>, or
+  inventory SSH settings change;</li>
+<li>a new controller or operator is added;</li>
+<li>a new sudo policy is introduced;</li>
+<li>the retained Intel <code>pi</code> account is deleted or reauthorized;</li>
+<li>an access preflight fails;</li>
+<li>any node contains an unexpected key or sudoers file;</li>
+<li>a conflicting or superseding security record is accepted.</li>
+</ul>
+<h3 id="scheduled-review">Scheduled review<a class="headerlink" href="#scheduled-review" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Event-based, plus an annual controller-key and sudo-policy review.
+</code></pre></div>
+<h3 id="supersession-rule">Supersession rule<a class="headerlink" href="#supersession-rule" title="Permanent link">&para;</a></h3>
+<p>When replaced, set this record to <code>superseded</code>, populate <code>superseded_by</code>,
+preserve all artifacts and checksums, and identify whether the approved key set,
+account mapping, sudo policy, and Intel legacy-path conclusions remain valid.</p>
+<h2 id="final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance<a class="headerlink" href="#final-completion-checklist-and-reviewer-acceptance" title="Permanent link">&para;</a></h2>
+<h3 id="governance">Governance<a class="headerlink" href="#governance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Evidence ID is unique and permanent.</li>
+<li>[x] Schema version is 1.2.</li>
+<li>[x] Front matter follows the exact metadata contract and order.</li>
+<li>[x] Record metadata exactly mirrors front matter.</li>
+<li>[x] Status accurately reflects completeness.</li>
+<li>[x] Owner, author, operator, and reviewer are identified.</li>
+<li>[x] Five Ws and How agree with canonical metadata.</li>
+<li>[x] Scope and nonclaims are explicit.</li>
+<li>[x] Implementation commit is recorded or validly not-applicable.</li>
+<li>[x] Relationships and supersession fields are complete.</li>
+</ul>
+<h3 id="evidence">Evidence<a class="headerlink" href="#evidence" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Every critical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Direct observations identify source, target, time, and tool version.</li>
+<li>[x] Derived conclusions reference evidence IDs.</li>
+<li>[x] Assumptions and planned work are marked.</li>
+<li>[x] Failed attempts are separated from final state.</li>
+<li>[x] Idempotency or repeatability is proven or not-applicable.</li>
+<li>[x] Every not-captured value has an evidence gap.</li>
+</ul>
+<h3 id="safety-and-operations">Safety and operations<a class="headerlink" href="#safety-and-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Secrets and sensitive data are excluded or redacted.</li>
+<li>[x] Security limitations and residual risks are recorded.</li>
+<li>[x] Rollback, rebuild, and data-durability impacts are documented.</li>
+<li>[x] Operational health checks are documented.</li>
+<li>[x] Known limitations and gaps have owners or triggers.</li>
+<li>[x] Revalidation criteria are defined.</li>
+</ul>
+<h3 id="review-acceptance">Review acceptance<a class="headerlink" href="#review-acceptance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Don Buddenbaum</td>
+<td>accept</td>
+<td>2026-07-26</td>
+<td>Technical result accepted as the current seven-node controller-access baseline.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Independent review is required before status may become accepted.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="git-review-and-publication">Git review and publication<a class="headerlink" href="#git-review-and-publication" title="Permanent link">&para;</a></h2>
+<p>Use only the repository publication process:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>check<span class="w">   </span>~/Downloads/kalaxy3-controller-access-baseline-sage-package.zip
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>publish<span class="w">   </span>~/Downloads/kalaxy3-controller-access-baseline-sage-package.zip<span class="w">   </span>--push
+</code></pre></div>
+<p>Do not invent a session-specific unzip, stage, commit, rebase, or push sequence.</p>
+<h2 id="appendices-and-raw-artifacts">Appendices and raw artifacts<a class="headerlink" href="#appendices-and-raw-artifacts" title="Permanent link">&para;</a></h2>
+<h3 id="artifact-inventory">Artifact inventory<a class="headerlink" href="#artifact-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path or URI</th>
+<th>SHA-256</th>
+<th>Contains sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Working-session terminal evidence</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md</code></td>
+<td><code>ae3d7db510163838bd24c9c6ce2c31bbb1ca17ed896d9c3a997be3a2ab52b848</code></td>
+<td>public-key bodies redacted; no secrets</td>
+<td>retain with evidence record</td>
+</tr>
+<tr>
+<td>External artifact checksum inventory</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/external-artifact-checksums.sha256</code></td>
+<td><code>f77ecba02e45e026742aa4c903eb99be7ab4e0ea4d53d065f2a7e0dea30fc865</code></td>
+<td>no</td>
+<td>retain with evidence record</td>
+</tr>
+<tr>
+<td>Implementation commit summary</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/implementation-commit-summary.txt</code></td>
+<td><code>e333a405fa52f2bf6b48d6141bc5be4569a7251cd998616da8414bcabcc869cb</code></td>
+<td>no</td>
+<td>retain with evidence record</td>
+</tr>
+<tr>
+<td>Machine-readable validation summary</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/validation-summary.json</code></td>
+<td><code>9cc529624942393c7c1f808e7120849828b5dfa1ae2ece40517bda40bd73a434</code></td>
+<td>no</td>
+<td>retain with evidence record</td>
+</tr>
+</tbody>
+</table>
+<h3 id="additional-notes">Additional notes<a class="headerlink" href="#additional-notes" title="Permanent link">&para;</a></h3>
+<p>The package is evidence-only because the implementation was already committed
+and pushed before package generation. The publisher will resolve
+<code>e77cb1620e1f7b1231ebd162d9506d4123520c88</code> to
+<code>e77cb1620e1f7b1231ebd162d9506d4123520c88</code> and <code>2026-07-26T21:44:01-05:00</code> to the publication
+timestamp. The publisher, not this package, creates the final record checksum,
+publication manifest, and generated evidence indexes.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

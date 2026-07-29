@@ -1,0 +1,7810 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+      
+      
+        <meta name="author" content="ChatGPT, based on the Kalaxy3 SAGE standard, template, Kubecost evidence publication experience, and isolated publisher self-test">
+      
+      
+        <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/operations/kalaxy3-sage-evidence-publication-process-evidence/">
+      
+      
+        <link rel="prev" href="../kalaxy3-sage-canonical-metadata-contract-evidence/">
+      
+      
+        <link rel="next" href="../kalaxy3-sage-legacy-evidence-navigation-evidence/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../rpi4.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Repeatable SAGE Evidence Package Generation and Git Publication Process - Kalaxy3 K3s Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#repeatable-sage-evidence-package-generation-and-git-publication-process" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-header__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalaxy3 K3s Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Repeatable SAGE Evidence Package Generation and Git Publication Process
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-nav__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    Kalaxy3 K3s Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s Homelab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    K3s Homelab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/01_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/02_IP_Address_Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP Address Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/03_Deployment_Order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/04_Phased_Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phased deployment and refinement workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Phase_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase observations and decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/k3s-install-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_7" id="__nav_2_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: Use Three K3s Server Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: MetalLB with Traefik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Separate Shared NFS and MinIO Local Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_8" id="__nav_2_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Recovery Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase 0 Site Survey Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Headlamp Login Token Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 03 Network and Storage Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 04 UI Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Benchmarks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Current SAGE evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical and legacy evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/migration-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE evidence migration report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/finops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finops evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Status
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/validated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validated evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subjects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subjects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by subject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-nocloud-seed-usb-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for amd64
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-logging-cost-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized logging cost baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-observability-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized observability logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/intel-node-pi-administrative-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-api-high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s API High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-automation-controller-portability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 automation controller portability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-controller-access-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 controller access baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-daux-landing-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 Daux landing page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 SAGE evidence-record standard 1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-chart-3-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost chart 3.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/longhorn-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Longhorn, Kubecost,
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for MinIO Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-longhorn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Longhorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-traefik-dashboard-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Traefik Dashboard Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-enforcement-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE enforcement guardrails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-evidence-catalog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-record-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE-record-schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-daux-landing-page-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Daux Landing Page Source and Local Render Validation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-continuous-improvement-foundation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Foundation Staged Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Guardrail Gap Discovery and Centralized Logging Work Pause
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/k3s-api-ha-kube-vip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s API High Availability with kube-vip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-amd64-02-k3s-longhorn-node-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 amd64-02 K3s and Longhorn Node Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-amd64-node-and-longhorn-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-intel-pi-admin-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-kubecost-calibration-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-kubecost-installation-and-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Kubecost Installation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 MinIO Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-observability-and-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Observability and Kubecost Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-protected-ui-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Longhorn and Prometheus UI Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-traefik-dashboard-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Traefik Dashboard Installation and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/longhorn-kubecost-intel-node-preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longhorn, Kubecost, and Intel Node Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/ubuntu-node-provisioning-fixed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_14" id="__nav_6_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/amd64-nocloud-seed-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-installation-and-node-provisioning-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-node-provisioning-fixed-amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-centralized-logging-deployment-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-controller-machine-portability-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-canonical-metadata-contract-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical SAGE metadata contract and publisher enforcement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repeatable SAGE Evidence Package Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repeatable SAGE Evidence Package Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-sage-record-standard-requires-consistency-and-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — SAGE record standard requires consistency and lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-publisher-source-implements-package-and-git-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Publisher source implements package and Git gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-package-validation-behavior-is-exercised-by-self-test-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Package-validation behavior is exercised by self-test publication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-end-to-end-temporary-remote-publication-passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — End-to-end temporary remote publication passed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-canonical-request-process-and-manifest-templates-agree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — Canonical request, process, and manifest templates agree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification and acceptance criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-accepted-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First accepted run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-state-rerun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steady-state rerun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-material-excluded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive material excluded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redactions-and-omissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redactions and omissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-security-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual security risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-durability-and-backup-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data durability and backup impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational considerations and observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routine-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routine verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-performance-and-cost-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity, performance, and cost impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sage-publication-failed-git-index-already-contains-staged-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAGE publication failed: Git index already contains staged changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-implementation-changes-found-for-split-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No implementation changes found for split publication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-checksum-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payload checksum mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#record-is-missing-a-required-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record is missing a required section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potential-secret-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential secret found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-failed-after-local-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push failed after local commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git review and publication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-future-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal future session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-process-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This process bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-linked-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and linked raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and linked raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-package-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical package tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-operator-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical operator promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-legacy-evidence-navigation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-observability-iterative-readiness-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Cost Model Architecture and FinOps Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/kalaxy3-controller-access-baseline-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-change-discovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-continuous-improvement-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-orchestration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Orchestration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-publication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-record-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Record Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/kalaxy3-centralized-logging-sage-evidence-quality-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-sage-record-standard-requires-consistency-and-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — SAGE record standard requires consistency and lineage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-publisher-source-implements-package-and-git-gates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Publisher source implements package and Git gates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-package-validation-behavior-is-exercised-by-self-test-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Package-validation behavior is exercised by self-test publication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-end-to-end-temporary-remote-publication-passed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — End-to-end temporary remote publication passed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-canonical-request-process-and-manifest-templates-agree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — Canonical request, process, and manifest templates agree
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification and acceptance criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-accepted-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First accepted run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-state-rerun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steady-state rerun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-material-excluded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive material excluded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redactions-and-omissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redactions and omissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-security-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual security risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-durability-and-backup-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data durability and backup impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational considerations and observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routine-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routine verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-performance-and-cost-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity, performance, and cost impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sage-publication-failed-git-index-already-contains-staged-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SAGE publication failed: Git index already contains staged changes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#no-implementation-changes-found-for-split-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        No implementation changes found for split publication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#payload-checksum-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Payload checksum mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#record-is-missing-a-required-section" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record is missing a required section
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potential-secret-found" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Potential secret found
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#push-failed-after-local-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Push failed after local commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Git review and publication">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#normal-future-session" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Normal future session
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#this-process-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        This process bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-linked-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and linked raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and linked raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-package-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical package tree
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#canonical-operator-promise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Canonical operator promise
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="repeatable-sage-evidence-package-generation-and-git-publication-process">Repeatable SAGE Evidence Package Generation and Git Publication Process<a class="headerlink" href="#repeatable-sage-evidence-package-generation-and-git-publication-process" title="Permanent link">&para;</a></h1>
+<h2 id="executive-summary">Executive summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>Kalaxy3 now has a repository-owned SAGE evidence publication process that replaces session-specific packaging and Git instructions with a stable contract. Evidence generators must produce one ZIP containing <code>sage-package.json</code> and a canonical <code>payload/</code>; <code>scripts/sage/sage-publish.py</code> validates package integrity, SAGE record structure, claim-to-evidence references, canonical paths, and likely secret exposure before it changes Git. For sessions with implementation changes, the publisher creates a dedicated implementation commit, injects its immutable full SHA into the evidence record, generates the final record checksum and publication manifest, creates a separate evidence commit, synchronizes with <code>origin/main</code>, and pushes without force. An isolated end-to-end self-test created a temporary remote, published a synthetic split package, produced the required two commits, pushed them, and finished with a clean working tree. The process is technically <code>validated</code>; independent reviewer acceptance remains pending.</p>
+<h2 id="five-ws-and-how">Five Ws and How<a class="headerlink" href="#five-ws-and-how" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td><strong>Owner:</strong> Don Buddenbaum. <strong>Author and process implementer:</strong> ChatGPT using the Kalaxy3 SAGE sources and the observed inconsistencies from the Kubecost evidence-publication session. <strong>Operator:</strong> Don Buddenbaum for repository installation; <code>scripts/sage/sage-publish.py</code> for recurring package validation and publication. <strong>Reviewer:</strong> pending. <strong>Affected users:</strong> the Kalaxy3 owner, future evidence reviewers, automation, and AI services that consume repository evidence.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Added a canonical generation request, a package-manifest contract, a governing publication-process standard, a Python validator/publisher, an isolated self-test, and this SAGE evidence record. The process standardizes how the most recent working session becomes a SAGE record, raw artifact directory, checksum, implementation commit, evidence commit, and pushed Git history.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td><strong>Designed and implemented:</strong> July 25, 2026 CDT (<code>UTC-05:00</code>) after the Kubecost evidence was committed at approximately 16:57 CDT. <strong>Self-test executed:</strong> July 25, 2026 CDT. <strong>Record publication timestamp:</strong> injected by the publisher. <strong>Valid as of:</strong> July 25, 2026. <strong>Review due:</strong> whenever the SAGE standard, template, package schema, Git policy, repository layout, or publisher changes.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td><strong>Repository:</strong> <code>donb4iu/Kalaxy3</code>, branch <code>main</code>. <strong>Implementation paths:</strong> <code>scripts/sage/</code>, <code>markdown/standards/kalaxy3-sage-evidence-publication-process.md</code>, and the two SAGE package-generation templates. <strong>Evidence path:</strong> this record under <code>markdown/operations/</code> and raw artifacts under <code>markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/</code>. <strong>Execution environment:</strong> Python 3 and Git on a Kalaxy3 administrative workstation. <strong>Self-test target:</strong> an isolated temporary Git repository and bare remote.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>Previous SAGE sessions used slightly different unzip destinations, file lists, checksum sequences, commit grouping, implementation-SHA updates, pull/rebase order, and push commands. That variation increased the chance of staging unrelated files, recording a provisional SHA, publishing a stale checksum, or leaving repository lineage inconsistent. A repository-enforced process makes evidence production predictable and reviewable.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>The evidence generator follows the current SAGE standard, template, and publication process and creates a manifest-declared ZIP. The publisher performs structural and hash validation, synchronizes Git, stages exact implementation paths, commits them, replaces publication tokens, creates the final checksum and publication manifest, stages exact evidence paths, commits evidence, repairs lineage after a safe rebase if needed, pushes, and reports the resulting commits and tree state.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="five-w-completeness-gate">Five-W completeness gate<a class="headerlink" href="#five-w-completeness-gate" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Who is complete.</li>
+<li>[x] What is complete.</li>
+<li>[x] When is complete and includes timezone.</li>
+<li>[x] Where is complete at both repository and runtime levels.</li>
+<li>[x] Why includes rationale and tradeoffs.</li>
+<li>[x] How is reproducible and verifiable.</li>
+</ul>
+<h2 id="scope-and-boundaries">Scope and boundaries<a class="headerlink" href="#scope-and-boundaries" title="Permanent link">&para;</a></h2>
+<h3 id="in-scope">In scope<a class="headerlink" href="#in-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Canonical user wording for requesting evidence from the most recent working session.</li>
+<li>Rules an AI or human evidence generator must follow.</li>
+<li>Canonical ZIP structure and JSON package manifest.</li>
+<li>SHA-256 verification of all packaged payload files.</li>
+<li>SAGE front-matter and heading validation.</li>
+<li>Evidence-ID, path, lifecycle, record-type, Five-W, checklist, and claim-reference validation.</li>
+<li>High-confidence secret-pattern rejection and lower-confidence warnings.</li>
+<li>Exact implementation-path staging.</li>
+<li>Separate implementation and evidence commits.</li>
+<li>Full implementation SHA injection before the evidence commit.</li>
+<li>Final evidence-record checksum generation.</li>
+<li>Publication-manifest generation with standard and template hashes.</li>
+<li>Pre-commit upstream synchronization and non-force push.</li>
+<li>Safe repair when a remote update requires rebase and changes the implementation SHA.</li>
+<li>Isolated self-test against a temporary Git remote.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Automatically retrieving a ChatGPT conversation from the local workstation.</li>
+<li>Recovering terminal output that was never supplied or captured.</li>
+<li>Determining whether every technical statement is true solely from Markdown structure.</li>
+<li>Replacing owner or reviewer judgment.</li>
+<li>Signing commits, tags, or evidence with a hardware-backed identity.</li>
+<li>Uploading evidence to external artifact storage.</li>
+<li>Parsing binary artifacts for embedded secrets.</li>
+<li>Supporting arbitrary repositories, branches, or directory layouts without code changes.</li>
+<li>Publishing when local and remote branches have unresolved divergence.</li>
+</ul>
+<h3 id="nonclaims">Nonclaims<a class="headerlink" href="#nonclaims" title="Permanent link">&para;</a></h3>
+<p>This record does <strong>not</strong> claim:</p>
+<ul>
+<li>that structural validation proves operational correctness;</li>
+<li>that secret scanning can detect every sensitive value;</li>
+<li>that Git history alone proves the target system behaved as described;</li>
+<li>that evidence can be complete when the working session did not preserve material output;</li>
+<li>that reviewer acceptance is automated;</li>
+<li>that every future repository or branch policy is compatible with schema <code>1.0</code>;</li>
+<li>that a package is trusted merely because its internal hashes are self-consistent;</li>
+<li>that the process eliminates the need to inspect warnings or final Git status.</li>
+</ul>
+<h2 id="final-accepted-state">Final accepted state<a class="headerlink" href="#final-accepted-state" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Canonical request:
+  Generate the SAGE evidence package for the most recent Kalaxy3 working
+  session using the SAGE standard, SAGE template, and SAGE publication process.
+
+Package contract:
+  sage-package.json
+  payload/markdown/&lt;category&gt;/&lt;record&gt;.md
+  payload/markdown/evidence-artifacts/&lt;evidence-id&gt;/&lt;artifacts&gt;
+
+Validation command:
+  python3 scripts/sage/sage-publish.py check &lt;package.zip&gt;
+
+Publication command:
+  python3 scripts/sage/sage-publish.py publish &lt;package.zip&gt; --push
+
+Split publication:
+  commit 1 = exact implementation paths
+  commit 2 = evidence record, checksum, artifacts, publication manifest
+
+Implementation lineage:
+  full 40-character implementation SHA injected before evidence commit
+
+Self-test:
+  temporary remote + temporary working repository + two commits + push
+  final result = PASS and clean working tree
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generation input</td>
+<td>Most recent working-session evidence plus current repository standard, template, and process.</td>
+</tr>
+<tr>
+<td>Generated deliverable</td>
+<td>One ZIP package with JSON manifest and canonical payload tree.</td>
+</tr>
+<tr>
+<td>Normal operator workflow</td>
+<td>One optional <code>check</code> command and one <code>publish --push</code> command.</td>
+</tr>
+<tr>
+<td>File placement</td>
+<td>Determined exclusively by manifest paths after canonical-path validation.</td>
+</tr>
+<tr>
+<td>Implementation commit</td>
+<td>Created first when <code>publication_mode</code> is <code>split</code>.</td>
+</tr>
+<tr>
+<td>Evidence commit</td>
+<td>Created second after implementation SHA injection and checksum generation.</td>
+</tr>
+<tr>
+<td>Pull/rebase timing</td>
+<td>Upstream synchronized before commits; safe rebase repair available for a later remote race.</td>
+</tr>
+<tr>
+<td>Push policy</td>
+<td>Normal push only; no force push.</td>
+</tr>
+<tr>
+<td>Evidence checksum</td>
+<td>Generated after publication tokens are replaced.</td>
+</tr>
+<tr>
+<td>Publication provenance</td>
+<td>Stored under the evidence artifact directory with hashes of the governing standard and template.</td>
+</tr>
+<tr>
+<td>Validation boundary</td>
+<td>Structural, traceability, package-integrity, secret-pattern, and Git-workflow enforcement; substantive truth remains a review responsibility.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="claims-and-evidence-matrix">Claims and evidence matrix<a class="headerlink" href="#claims-and-evidence-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>The process defines one canonical working-session request and one package contract.</td>
+<td>high</td>
+<td><code>EV-001</code>, <code>EV-002</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>The publisher verifies package paths, manifest fields, payload hashes, SAGE structure, claim references, and likely secret exposure before repository mutation.</td>
+<td>critical</td>
+<td><code>EV-002</code>, <code>EV-003</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>Split publication stages and commits only manifest-declared implementation paths before evidence files.</td>
+<td>critical</td>
+<td><code>EV-002</code>, <code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>The publisher injects a full implementation commit SHA and generates the final record checksum before creating the evidence commit.</td>
+<td>critical</td>
+<td><code>EV-002</code>, <code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>The isolated self-test completed the two-commit publication and push with a clean working tree.</td>
+<td>critical</td>
+<td><code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>The process preserves the SAGE standard's mandatory identity, lifecycle, Five-W, evidence, recovery, security, limitation, and supersession requirements.</td>
+<td>high</td>
+<td><code>EV-001</code>, <code>EV-002</code>, <code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>The process reduces, but does not eliminate, evidence-quality and secret-handling risk.</td>
+<td>high</td>
+<td><code>EV-002</code>, <code>EV-005</code></td>
+<td>supported</td>
+<td>medium-high</td>
+</tr>
+<tr>
+<td><code>CLM-008</code></td>
+<td>Future sessions can use one standard check command and one standard publication command instead of session-specific Git instructions.</td>
+<td>high</td>
+<td><code>EV-002</code>, <code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problem-and-decision-rationale">Problem and decision rationale<a class="headerlink" href="#problem-and-decision-rationale" title="Permanent link">&para;</a></h2>
+<h3 id="problem-or-opportunity">Problem or opportunity<a class="headerlink" href="#problem-or-opportunity" title="Permanent link">&para;</a></h3>
+<p>The Kubecost session exposed a consistency problem in the publication layer rather than in the evidence content. The evidence itself was detailed and SAGE-oriented, but the path from generated files to Git varied repeatedly:</p>
+<ul>
+<li>one response advised appending to an existing record;</li>
+<li>another generated a replacement ZIP;</li>
+<li>commands alternated between repository root and the infrastructure subdirectory;</li>
+<li>checksum timing differed;</li>
+<li>implementation and evidence were sometimes proposed as one commit and sometimes two;</li>
+<li>implementation SHA insertion required a custom Python replacement block;</li>
+<li>pull/rebase and autostash behavior changed across responses;</li>
+<li>manual <code>git add</code> lists were generated for each session;</li>
+<li>a remote update after commits could rewrite the implementation SHA and invalidate the record;</li>
+<li>the evidence ZIP itself had no machine-readable contract defining exactly what could be copied and committed.</li>
+</ul>
+<p>This made every SAGE publication a small bespoke release process. Bespoke release processes are difficult to review, automate, and reproduce.</p>
+<h3 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h3>
+<p>Adopt a repository-owned package contract and publisher:</p>
+<ol>
+<li>The evidence generator synthesizes content but does not mutate Git.</li>
+<li>The ZIP manifest declares every intended repository file and commit input.</li>
+<li>The publisher validates the package and repository before committing.</li>
+<li>Implementation and evidence are separate commits when implementation changed.</li>
+<li>The implementation SHA is injected deterministically.</li>
+<li>The final checksum is generated only after injection.</li>
+<li>A publication manifest records the governing standard and template hashes.</li>
+<li>Normal publication is one command.</li>
+</ol>
+<h3 id="decision-drivers">Decision drivers<a class="headerlink" href="#decision-drivers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Consistent repository paths.</li>
+<li>Exact staging rather than wildcard or improvised file lists.</li>
+<li>Stable claim-to-implementation lineage.</li>
+<li>Repeatable checksum timing.</li>
+<li>Separation of implementation from evidence.</li>
+<li>Rejection before mutation when a package is malformed.</li>
+<li>Security review before files enter Git.</li>
+<li>No force-push requirement.</li>
+<li>Self-contained standard-library implementation.</li>
+<li>A process simple enough to invoke conversationally.</li>
+</ul>
+<h3 id="alternatives-considered">Alternatives considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Continue generating custom shell commands for each session</td>
+<td>No new repository code</td>
+<td>Repeats the inconsistency that motivated the work</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Store only a written checklist</td>
+<td>Easy to review</td>
+<td>Cannot enforce paths, hashes, commit split, or SHA injection</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Use a Makefile target with shell fragments</td>
+<td>Familiar invocation</td>
+<td>JSON and Markdown validation become fragile; platform differences remain</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Use a Bash-only publisher</td>
+<td>Available on macOS and Linux</td>
+<td>Safe ZIP parsing, JSON validation, and structured checks are harder</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Use Python with third-party YAML and schema libraries</td>
+<td>Rich validation</td>
+<td>Adds dependency installation and version drift</td>
+<td>deferred</td>
+</tr>
+<tr>
+<td>Use Python standard library with JSON manifest</td>
+<td>Portable, testable, no dependency bootstrap</td>
+<td>Front-matter parsing is intentionally limited to required top-level scalars</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td>Commit implementation and evidence together</td>
+<td>One commit</td>
+<td>Evidence cannot truthfully reference the final implementation commit before the commit exists</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Commit implementation first and evidence second</td>
+<td>Immutable implementation lineage</td>
+<td>Produces two commits per implemented session</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td>Pull/rebase only after both commits</td>
+<td>Familiar prior pattern</td>
+<td>A rebase can rewrite the implementation SHA already embedded in evidence</td>
+<td>rejected as default</td>
+</tr>
+<tr>
+<td>Synchronize before commits and repair a later remote race</td>
+<td>Preserves normal linear history and lineage</td>
+<td>More publisher logic</td>
+<td>accepted</td>
+</tr>
+<tr>
+<td>Automatically mark records <code>accepted</code></td>
+<td>Fewer manual steps</td>
+<td>Confuses technical validation with governance review</td>
+<td>rejected</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tradeoffs-and-consequences">Tradeoffs and consequences<a class="headerlink" href="#tradeoffs-and-consequences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Future evidence generators must conform to a stricter package contract.</li>
+<li>The publisher can reject a package that a human might have published manually.</li>
+<li>Split sessions create two commits, improving lineage at the cost of a slightly longer history.</li>
+<li>Structural validation improves consistency but does not verify every substantive assertion.</li>
+<li>JSON is used for the package manifest even though the evidence record uses YAML front matter.</li>
+<li>The publisher is tied intentionally to Kalaxy3 repository identity and layout.</li>
+<li>Safe remote-race repair adds complexity but prevents silent stale implementation lineage.</li>
+<li>Reviewer acceptance remains manual and visible.</li>
+</ul>
+<h2 id="architecture-or-change-description">Architecture or change description<a class="headerlink" href="#architecture-or-change-description" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Most recent working session
+  conversation + terminal output + repository evidence
+                    |
+                    v
+Evidence synthesis
+  current SAGE standard
+  current SAGE template
+  publication process
+                    |
+                    v
+ZIP package
+  sage-package.json
+  payload/&lt;record&gt;
+  payload/&lt;raw artifacts&gt;
+                    |
+          +---------+----------+
+          |                    |
+          v                    v
+       check                publish --push
+          |                    |
+          |             validate package
+          |             synchronize upstream
+          |             commit implementation
+          |             inject implementation SHA
+          |             create record checksum
+          |             create publication manifest
+          |             commit evidence
+          |             repair remote race if needed
+          |             push
+          v                    v
+    no Git change       consistent Git lineage
+</code></pre></div>
+<h3 id="before">Before<a class="headerlink" href="#before" title="Permanent link">&para;</a></h3>
+<p>Publication depended on session-specific instructions. The user manually unzipped files, checked checksums, selected implementation paths, committed implementation, captured the SHA, ran a custom text-replacement script, regenerated checksums, staged evidence, committed again, pulled, pushed, and inspected status. The sequence worked for the Kubecost session but was not a reusable repository capability.</p>
+<h3 id="after">After<a class="headerlink" href="#after" title="Permanent link">&para;</a></h3>
+<p>The repository contains:</p>
+<div class="highlight"><pre><span></span><code>scripts/sage/sage-publish.py
+scripts/sage/README.md
+scripts/sage/.gitignore
+scripts/sage/.gitignore
+markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/templates/sage-evidence-generation-request.md
+markdown/templates/sage-evidence-package-manifest-template.json
+</code></pre></div>
+<p>Future generated packages are checked or published through the same executable.</p>
+<h2 id="source-of-truth-and-implementation-lineage">Source of truth and implementation lineage<a class="headerlink" href="#source-of-truth-and-implementation-lineage" title="Permanent link">&para;</a></h2>
+<h3 id="repository-files">Repository files<a class="headerlink" href="#repository-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>scripts/sage/sage-publish.py
+scripts/sage/README.md
+scripts/sage/.gitignore
+markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/templates/sage-evidence-generation-request.md
+markdown/templates/sage-evidence-package-manifest-template.json
+markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/self-test-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/implementation-file-checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/publication-manifest.json
+</code></pre></div>
+<h3 id="implementation-commit">Implementation commit<a class="headerlink" href="#implementation-commit" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>2fb20594ed442a435567a391f14f21ed123cae8c
+</code></pre></div>
+<p>The publisher replaces this token with the immutable full implementation commit SHA before the evidence commit.</p>
+<h3 id="versioned-dependencies">Versioned dependencies<a class="headerlink" href="#versioned-dependencies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th style="text-align: right;">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAGE evidence-record standard</td>
+<td style="text-align: right;"><code>1.0</code></td>
+<td><code>markdown/standards/kalaxy3-sage-evidence-record-standard.md</code></td>
+</tr>
+<tr>
+<td>SAGE evidence-record template</td>
+<td style="text-align: right;"><code>1.0</code></td>
+<td><code>markdown/templates/sage-evidence-record-template.md</code></td>
+</tr>
+<tr>
+<td>SAGE package schema</td>
+<td style="text-align: right;"><code>1.0</code></td>
+<td>manifest and process standard</td>
+</tr>
+<tr>
+<td>Python</td>
+<td style="text-align: right;">Python 3; exact workstation version is captured by future session evidence when material</td>
+<td>local runtime</td>
+</tr>
+<tr>
+<td>Git</td>
+<td style="text-align: right;">exact workstation version is captured by future session evidence when material</td>
+<td>local runtime</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td style="text-align: right;">Python standard-library <code>zipfile</code></td>
+<td>Python runtime</td>
+</tr>
+<tr>
+<td>SHA-256</td>
+<td style="text-align: right;">Python standard-library <code>hashlib</code></td>
+<td>Python runtime</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-excerpt">Configuration excerpt<a class="headerlink" href="#configuration-excerpt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;schema_version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1.0&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;repository&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;donb4iu/Kalaxy3&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;branch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;main&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;evidence_id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SAGE-K3-GOVERNANCE-20260725-001&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;publication_mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;split&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;implementation_paths&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="s2">&quot;scripts/sage/sage-publish.py&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;scripts/sage/README.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;scripts/sage/.gitignore&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;markdown/standards/kalaxy3-sage-evidence-publication-process.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;markdown/templates/sage-evidence-generation-request.md&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;markdown/templates/sage-evidence-package-manifest-template.json&quot;</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="prerequisites-and-assumptions">Prerequisites and assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permanent link">&para;</a></h2>
+<h3 id="proven-prerequisites">Proven prerequisites<a class="headerlink" href="#proven-prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>A normal Git working tree exists.</li>
+<li>The repository contains the SAGE record standard and template.</li>
+<li>Python 3 can compile and execute the publisher.</li>
+<li>Git can create commits and push to a bare remote in the self-test.</li>
+<li>Package files can be hashed and validated with the Python standard library.</li>
+<li>The self-test can complete without modifying the real Kalaxy3 repository.</li>
+</ul>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>Future evidence generators can access the current working-session conversation or equivalent supplied evidence.</td>
+<td>The generated record may omit material observations.</td>
+<td>Require the generator to identify unavailable evidence as gaps.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td>The target repository remains <code>donb4iu/Kalaxy3</code> with branch <code>main</code>.</td>
+<td>Publisher rejects the repository or targets the wrong branch.</td>
+<td>Update process and code through reviewed SAGE change.</td>
+</tr>
+<tr>
+<td><code>ASM-003</code></td>
+<td>Python 3 standard-library behavior is sufficiently compatible across the operator's macOS and Linux environments.</td>
+<td>Package parsing or Git subprocess behavior differs.</td>
+<td>Run <code>self-test</code> after Python or operating-system changes.</td>
+</tr>
+<tr>
+<td><code>ASM-004</code></td>
+<td>Exact implementation paths can be determined from the working session.</td>
+<td>Unrelated files could be omitted or a split publication could fail.</td>
+<td>Manifest generation must use observed Git status and diff evidence.</td>
+</tr>
+<tr>
+<td><code>ASM-005</code></td>
+<td>Two commits are acceptable for sessions that change implementation.</td>
+<td>Repository history may not match a future squash-only policy.</td>
+<td>Revalidate if branch policy changes.</td>
+</tr>
+<tr>
+<td><code>ASM-006</code></td>
+<td>High-confidence regex patterns are useful for blocking obvious secrets.</td>
+<td>A sensitive value may evade detection or a harmless value may warn.</td>
+<td>Preserve human review and add patterns after incidents.</td>
+</tr>
+<tr>
+<td><code>ASM-007</code></td>
+<td>Evidence records use the current template heading names or compatible prefixes.</td>
+<td>A template revision can cause rejection.</td>
+<td>Version and update validator with the template.</td>
+</tr>
+<tr>
+<td><code>ASM-008</code></td>
+<td>A safe rebase after a remote race leaves the two local publication commits at <code>HEAD~1</code> and <code>HEAD</code>.</td>
+<td>SHA repair could identify the wrong implementation commit.</td>
+<td>Self-test and add a remote-race integration test when that path changes.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation-procedure">Implementation procedure<a class="headerlink" href="#implementation-procedure" title="Permanent link">&para;</a></h2>
+<h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h3>
+<p>Create the repository-owned files from the generated bootstrap ZIP:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+unzip<span class="w"> </span>-o<span class="w"> </span>~/Downloads/kalaxy3-sage-publication-process.zip
+chmod<span class="w"> </span>+x<span class="w"> </span>scripts/sage/sage-publish.py
+</code></pre></div>
+<p>Run syntax and isolated functional validation:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>py_compile<span class="w"> </span>scripts/sage/sage-publish.py
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>self-test
+</code></pre></div>
+<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
+<p>Publish this process implementation and its evidence through the new publisher:</p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-sage-publication-process-evidence.zip
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>publish<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-sage-publication-process-evidence.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push
+</code></pre></div>
+<h3 id="expected-change">Expected change<a class="headerlink" href="#expected-change" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Six process implementation files are committed first.</li>
+<li>The implementation SHA replaces every publication token in this record.</li>
+<li>This record and two raw artifacts are copied to canonical paths.</li>
+<li>The final record checksum is generated.</li>
+<li>A publication manifest is generated under the evidence ID directory.</li>
+<li>Evidence files are committed second.</li>
+<li>Both commits are pushed to <code>origin/main</code>.</li>
+<li>The final status is reported accurately.</li>
+</ul>
+<h3 id="observed-change">Observed change<a class="headerlink" href="#observed-change" title="Permanent link">&para;</a></h3>
+<p>The implementation package and evidence package were generated. The publisher passed Python compilation and the isolated end-to-end self-test. Repository publication remains the next operator action and will populate the implementation SHA through the tested mechanism.</p>
+<h2 id="evidence-items">Evidence items<a class="headerlink" href="#evidence-items" title="Permanent link">&para;</a></h2>
+<h3 id="ev-001-sage-record-standard-requires-consistency-and-lineage"><code>EV-001</code> — SAGE record standard requires consistency and lineage<a class="headerlink" href="#ev-001-sage-record-standard-requires-consistency-and-lineage" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-006</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>ChatGPT</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-25 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>Kalaxy3 SAGE standard review</td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>markdown/standards/kalaxy3-sage-evidence-record-standard.md</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>File review; schema version <code>1.0</code></td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Standard identifies the consistency, evidence-lineage, mandatory-section, acceptance, and repository-organization requirements</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>existing repository standard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>The standard requires permanent evidence identity, explicit Five Ws and How,
+claim-to-evidence traceability, lifecycle status, direct and repository
+evidence, expected-versus-observed results, implementation lineage,
+idempotency, security review, recovery, limitations, freshness, and canonical
+artifact storage.
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>The standard explicitly identifies inconsistency as the primary weakness in
+existing records and requires mandatory sections in a fixed order.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>This establishes the governance need for a repeatable publication process. It does not prove the publisher implementation.</p>
+<h3 id="ev-002-publisher-source-implements-package-and-git-gates"><code>EV-002</code> — Publisher source implements package and Git gates<a class="headerlink" href="#ev-002-publisher-source-implements-package-and-git-gates" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-004</code>, <code>CLM-006</code>, <code>CLM-007</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>ChatGPT</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-25 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>generated implementation review</td>
+</tr>
+<tr>
+<td>Target</td>
+<td><code>scripts/sage/sage-publish.py</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Python 3 source review</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Source contains manifest, hash, path, record, secret, Git, commit, checksum, push, and self-test logic</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>implementation file and checksum artifact</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-m<span class="w"> </span>py_compile<span class="w"> </span>scripts/sage/sage-publish.py
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>Compilation completed without error.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The source is syntactically valid and directly contains the required gates. Syntax validation does not prove all runtime paths.</p>
+<h3 id="ev-003-package-validation-behavior-is-exercised-by-self-test-publication"><code>EV-003</code> — Package-validation behavior is exercised by self-test publication<a class="headerlink" href="#ev-003-package-validation-behavior-is-exercised-by-self-test-publication" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>generated-artifact</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code>, <code>CLM-004</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td><code>scripts/sage/sage-publish.py</code></td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-25 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>temporary self-test repository</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>synthetic split SAGE package</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>publisher schema <code>1.0</code></td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Package accepted only after manifest, payload, record, and Git validation</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>synthetic test data only</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/self-test-output.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>self-test
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>The self-test reached publication completion, created an implementation commit,
+created an evidence commit, pushed to origin/main, and reported a clean working
+tree.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>A synthetically valid split package traversed the same validation and publication path intended for real packages.</p>
+<h3 id="ev-004-end-to-end-temporary-remote-publication-passed"><code>EV-004</code> — End-to-end temporary remote publication passed<a class="headerlink" href="#ev-004-end-to-end-temporary-remote-publication-passed" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code> and <code>generated-artifact</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code>, <code>CLM-004</code>, <code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>ChatGPT execution environment</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-25 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>isolated temporary Git working tree</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>isolated temporary bare remote</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git and Python 3</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Two commits, successful push, clean final tree, explicit PASS</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none; temporary synthetic repository</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>self-test-output.txt</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>self-test
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>Publication completed with a clean working tree.
+Evidence ID:           SAGE-K3-TEST-20260725-001
+Implementation commit: 07d61b06f5bbcde38c7940911cc8bb3492ad8741
+Evidence commit:       e8221e7de243051705f8b7fd2e4e32e27bed143a
+Record:                markdown/operations/sage-publication-self-test.md
+Checksum:              markdown/operations/sage-publication-self-test.md.sha256
+Published to:          origin/main
+
+SAGE publication self-test: PASS
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>This proves the normal split publication path can complete against Git without modifying the real Kalaxy3 repository. It does not exercise every rejection or rebase-conflict path.</p>
+<h3 id="ev-005-canonical-request-process-and-manifest-templates-agree"><code>EV-005</code> — Canonical request, process, and manifest templates agree<a class="headerlink" href="#ev-005-canonical-request-process-and-manifest-templates-agree" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-006</code>, <code>CLM-007</code>, <code>CLM-008</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>ChatGPT</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-25 CDT</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>generated process files</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>publication process and templates</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>manual cross-file review</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Same package structure and commands across process and templates</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>implementation files and checksum artifact</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/templates/sage-evidence-generation-request.md
+markdown/templates/sage-evidence-package-manifest-template.json
+scripts/sage/README.md
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>All files use sage-package.json + payload/, the same check command, the same
+publish --push command, and the same split/evidence-only publication model.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The human-facing and machine-facing instructions are aligned at generation time.</p>
+<h2 id="verification-and-acceptance-criteria">Verification and acceptance criteria<a class="headerlink" href="#verification-and-acceptance-criteria" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterion ID</th>
+<th>Requirement</th>
+<th>Test or evidence</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AC-001</code></td>
+<td>Canonical generation phrase exists</td>
+<td><code>EV-005</code></td>
+<td>One reusable request</td>
+<td>present</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-002</code></td>
+<td>Package contract is machine-readable</td>
+<td><code>EV-002</code>, <code>EV-005</code></td>
+<td>JSON schema fields and file hashes</td>
+<td>present</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-003</code></td>
+<td>Publisher compiles</td>
+<td><code>EV-002</code></td>
+<td>no syntax error</td>
+<td>no error</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-004</code></td>
+<td>Unsafe or undeclared ZIP content is rejected by code path</td>
+<td><code>EV-002</code></td>
+<td>path, symlink, count, size, inventory checks</td>
+<td>implemented</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-005</code></td>
+<td>Record structure and lineage are validated</td>
+<td><code>EV-002</code></td>
+<td>front matter, headings, claims, evidence, tokens</td>
+<td>implemented</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-006</code></td>
+<td>Split implementation and evidence commits are created</td>
+<td><code>EV-004</code></td>
+<td>two commits</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-007</code></td>
+<td>Full implementation SHA is injected</td>
+<td><code>EV-004</code></td>
+<td>40-character SHA</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-008</code></td>
+<td>Final checksum is generated</td>
+<td><code>EV-004</code></td>
+<td>record <code>.sha256</code> path</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-009</code></td>
+<td>Push completes without force</td>
+<td><code>EV-004</code></td>
+<td>origin/main updated</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-010</code></td>
+<td>Final self-test tree is clean</td>
+<td><code>EV-004</code></td>
+<td>no working-tree changes</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-011</code></td>
+<td>Process limitations are explicit</td>
+<td><code>EV-005</code></td>
+<td>limitation section present</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-012</code></td>
+<td>Real Kalaxy3 publication is complete</td>
+<td>publisher output after operator runs package</td>
+<td>two commits pushed to <code>origin/main</code></td>
+<td>not yet observed in this package</td>
+<td>partial</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functional-verification">Functional verification<a class="headerlink" href="#functional-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>self-test
+</code></pre></div>
+<p>Observed:</p>
+<div class="highlight"><pre><span></span><code>SAGE publication self-test: PASS
+</code></pre></div>
+<h3 id="negative-verification">Negative verification<a class="headerlink" href="#negative-verification" title="Permanent link">&para;</a></h3>
+<p>The publisher contains rejection paths for:</p>
+<div class="highlight"><pre><span></span><code>unsafe ZIP paths
+symbolic links
+more than 500 ZIP entries
+more than 500 MiB uncompressed payload
+manifest schema mismatch
+payload checksum mismatch
+noncanonical record or artifact path
+invalid evidence ID
+missing mandatory front matter or section
+missing claim evidence
+incomplete validated/accepted checklist
+accepted record with pending reviewer
+publication token mismatch
+high-confidence secret pattern
+preexisting staged changes
+wrong branch or repository remote
+diverged branch
+unexpected staged path
+checksum mismatch
+unsafe push/rebase state
+</code></pre></div>
+<p>Observed:</p>
+<div class="highlight"><pre><span></span><code>The source contains explicit SageError rejection paths. A complete fault-injection
+suite remains future work.
+</code></pre></div>
+<h2 id="idempotency-and-repeatability">Idempotency and repeatability<a class="headerlink" href="#idempotency-and-repeatability" title="Permanent link">&para;</a></h2>
+<h3 id="first-accepted-run">First accepted run<a class="headerlink" href="#first-accepted-run" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Publication completed with a clean working tree.
+Implementation commit created.
+Evidence commit created.
+Push completed.
+</code></pre></div>
+<h3 id="steady-state-rerun">Steady-state rerun<a class="headerlink" href="#steady-state-rerun" title="Permanent link">&para;</a></h3>
+<p>The publisher intentionally does not republish the same split package into a clean repository because no implementation changes remain. A repeated split publication is expected to stop with:</p>
+<div class="highlight"><pre><span></span><code>No implementation changes found for split publication
+</code></pre></div>
+<p>The self-test itself is repeatable because it creates a new isolated temporary repository on every run. Multiple self-test executions completed independently without touching Kalaxy3.</p>
+<h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
+<p>Publication is repeatable but not blindly idempotent: evidence publication creates permanent Git history exactly once per package and implementation state. Rejection of a second split publication prevents duplicate evidence commits based on nonexistent implementation changes. The self-test is safely repeatable.</p>
+<h2 id="security-privacy-and-evidence-handling">Security, privacy, and evidence handling<a class="headerlink" href="#security-privacy-and-evidence-handling" title="Permanent link">&para;</a></h2>
+<h3 id="security-controls">Security controls<a class="headerlink" href="#security-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>ZIP extraction rejects absolute paths, parent traversal, and symbolic links.</li>
+<li>Package file count and uncompressed size are bounded.</li>
+<li>Every payload file must be declared and SHA-256 matched.</li>
+<li>Record and artifact paths are constrained to canonical repository locations.</li>
+<li>The Git index must be empty before publication.</li>
+<li>Only manifest-declared paths are staged.</li>
+<li>High-confidence private key, kubeconfig key, bearer token, and GitHub token patterns are fatal.</li>
+<li>Lower-confidence password, token, and secret assignments produce warnings.</li>
+<li>No force push is used.</li>
+<li>Diverged branches require manual resolution.</li>
+<li>The publication manifest records standard and template hashes.</li>
+<li>Binary artifacts are not decoded or interpreted by the publisher.</li>
+</ul>
+<h3 id="sensitive-material-excluded">Sensitive material excluded<a class="headerlink" href="#sensitive-material-excluded" title="Permanent link">&para;</a></h3>
+<p>Never include:</p>
+<ul>
+<li>credentials, access tokens, passwords, private keys, or secret values;</li>
+<li>kubeconfig key material;</li>
+<li>unredacted Kubernetes Secret manifests;</li>
+<li>Basic Auth hashes unless explicitly approved and protected;</li>
+<li>ISP account identifiers or payment information;</li>
+<li>terminal history that contains secrets;</li>
+<li>unnecessary personal information;</li>
+<li>packet payloads when counters are sufficient.</li>
+</ul>
+<h3 id="redactions-and-omissions">Redactions and omissions<a class="headerlink" href="#redactions-and-omissions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The self-test uses synthetic identities and a reserved invalid email address.</li>
+<li>Temporary repository paths are not material and are omitted from the retained artifact.</li>
+<li>No real remote credential was needed for the bare local remote.</li>
+</ul>
+<h3 id="residual-security-risk">Residual security risk<a class="headerlink" href="#residual-security-risk" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Regex scanning cannot detect every encoded or context-specific secret.</li>
+<li>A malicious but internally self-consistent package can pass its own payload hashes; substantive trust still depends on the evidence source and review.</li>
+<li>Binary files may contain sensitive data that the script does not parse.</li>
+<li>Git remote authentication remains outside the publisher and depends on the workstation configuration.</li>
+</ul>
+<h2 id="reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild<a class="headerlink" href="#reliability-recovery-rollback-and-rebuild" title="Permanent link">&para;</a></h2>
+<h3 id="failure-modes">Failure modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Detection</th>
+<th>Impact</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Package hash mismatch</td>
+<td>Publisher exits before Git mutation</td>
+<td>Package is not published</td>
+<td>Regenerate or redownload package; do not bypass validation</td>
+</tr>
+<tr>
+<td>Existing staged changes</td>
+<td>Publisher exits</td>
+<td>Prevents accidental commit contamination</td>
+<td>Commit, unstage, or reset unrelated index state</td>
+</tr>
+<tr>
+<td>Missing implementation change in split mode</td>
+<td>Explicit error</td>
+<td>Duplicate or stale publication prevented</td>
+<td>Use a new package or evidence-only mode when appropriate</td>
+</tr>
+<tr>
+<td>Wrong branch or remote</td>
+<td>Explicit repository-contract error</td>
+<td>Publication blocked</td>
+<td>Switch to correct repository and branch</td>
+</tr>
+<tr>
+<td>Branch divergence</td>
+<td>Explicit error</td>
+<td>Automatic publication blocked</td>
+<td>Resolve divergence manually, then rerun</td>
+</tr>
+<tr>
+<td>Remote race before push</td>
+<td>Upstream ancestry check</td>
+<td>Push delayed</td>
+<td>Publisher rebases, repairs implementation SHA, regenerates checksum, and amends evidence when safe</td>
+</tr>
+<tr>
+<td>Rebase conflict</td>
+<td>Rebase abort and error</td>
+<td>Publication commits remain local</td>
+<td>Resolve upstream conflict manually; revalidate record lineage</td>
+</tr>
+<tr>
+<td>Secret-pattern rejection</td>
+<td>Explicit error naming file and pattern</td>
+<td>Sensitive evidence is not committed</td>
+<td>Redact or remove secret and regenerate hashes/package</td>
+</tr>
+<tr>
+<td>Warning-level secret pattern</td>
+<td>Warning output</td>
+<td>Human review required</td>
+<td>Inspect exact file before accepting publication</td>
+</tr>
+<tr>
+<td>Evidence record validation failure</td>
+<td>Explicit missing field/section/ID error</td>
+<td>Publication blocked</td>
+<td>Correct generator output and rebuild package</td>
+</tr>
+<tr>
+<td>Push authentication failure</td>
+<td>Git error</td>
+<td>Local commits exist but remote is unchanged</td>
+<td>Repair Git authentication, verify commits, rerun push or publication recovery procedure</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h3>
+<p>Before push, remove the two local commits while preserving files only when intentionally restarting publication:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>reset<span class="w"> </span>--mixed<span class="w"> </span>HEAD~2
+</code></pre></div>
+<p>After push, prefer a non-destructive revert:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>revert<span class="w"> </span>&lt;evidence-commit&gt;
+git<span class="w"> </span>revert<span class="w"> </span>&lt;implementation-commit&gt;
+git<span class="w"> </span>push<span class="w"> </span>origin<span class="w"> </span>main
+</code></pre></div>
+<p>Do not rewrite published <code>main</code> history solely to remove an evidence process. A replacement process should supersede this record.</p>
+<h3 id="rebuild-procedure">Rebuild procedure<a class="headerlink" href="#rebuild-procedure" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Restore the six implementation files from Git.</li>
+<li>Confirm the SAGE standard and template exist.</li>
+<li>Run Python compilation.</li>
+<li>Run the isolated self-test.</li>
+<li>Generate a synthetic or real package using schema <code>1.0</code>.</li>
+<li>Run <code>check</code>.</li>
+<li>Publish to an approved branch or temporary remote.</li>
+<li>Confirm separate commits, checksum, publication manifest, push, and final status.</li>
+</ol>
+<h3 id="data-durability-and-backup-impact">Data durability and backup impact<a class="headerlink" href="#data-durability-and-backup-impact" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The publisher writes only repository files and Git history.</li>
+<li>Evidence artifacts inherit repository backup and GitHub retention.</li>
+<li>Package ZIPs in <code>~/Downloads</code> are transient and may be deleted after verified publication.</li>
+<li>Raw evidence too large for Git requires a future external artifact-store policy.</li>
+<li>Reverting implementation does not automatically delete historical evidence records.</li>
+</ul>
+<h2 id="operational-considerations-and-observability">Operational considerations and observability<a class="headerlink" href="#operational-considerations-and-observability" title="Permanent link">&para;</a></h2>
+<h3 id="health-signals">Health signals<a class="headerlink" href="#health-signals" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>python3 -m py_compile scripts/sage/sage-publish.py</code></li>
+<li><code>python3 scripts/sage/sage-publish.py self-test</code></li>
+<li><code>SAGE package validation: PASS</code></li>
+<li>full implementation and evidence SHAs in publisher output;</li>
+<li>final record checksum path;</li>
+<li><code>Published to: origin/main</code>;</li>
+<li>clean or explicitly reported nonclean working-tree state;</li>
+<li>Git log showing implementation followed by evidence;</li>
+<li>publication manifest under the evidence ID directory.</li>
+</ul>
+<h3 id="routine-verification">Routine verification<a class="headerlink" href="#routine-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+
+python3<span class="w"> </span>-m<span class="w"> </span>py_compile<span class="w"> </span>scripts/sage/sage-publish.py
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>self-test
+
+git<span class="w"> </span>log<span class="w"> </span>-2<span class="w"> </span>--oneline<span class="w"> </span>--decorate
+git<span class="w"> </span>status
+</code></pre></div>
+<h3 id="capacity-performance-and-cost-impact">Capacity, performance, and cost impact<a class="headerlink" href="#capacity-performance-and-cost-impact" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Capacity:</strong> Temporary extraction and self-test repositories use local disk and are removed automatically.</li>
+<li><strong>Performance:</strong> Validation is linear in package file count and size; packages are capped at 500 files and 500 MiB uncompressed.</li>
+<li><strong>Cost:</strong> No direct cloud or software-license cost is introduced.</li>
+<li><strong>Sustainability/power:</strong> Negligible compared with the engineering session; no cluster workload is required for publication.</li>
+</ul>
+<h2 id="known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks<a class="headerlink" href="#known-limitations-evidence-gaps-and-risks" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Due or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAP-001</code></td>
+<td>evidence-gap</td>
+<td>Real Kalaxy3 publication output for this process is not available until the operator runs the package.</td>
+<td><code>AC-012</code> remains partial inside the generated package.</td>
+<td>Don Buddenbaum</td>
+<td>immediate publication</td>
+</tr>
+<tr>
+<td><code>GAP-002</code></td>
+<td>limitation</td>
+<td>The publisher validates structure and references, not technical truth.</td>
+<td>A polished but unsupported claim could still pass.</td>
+<td>Reviewer</td>
+<td>every review</td>
+</tr>
+<tr>
+<td><code>GAP-003</code></td>
+<td>limitation</td>
+<td>Front-matter parsing handles required top-level scalar fields rather than full YAML semantics.</td>
+<td>Complex YAML errors outside checked fields may not be detected.</td>
+<td>Process owner</td>
+<td>template or parser change</td>
+</tr>
+<tr>
+<td><code>GAP-004</code></td>
+<td>risk</td>
+<td>Secret scanning is pattern-based.</td>
+<td>Encoded or unusual secrets may escape detection.</td>
+<td>Security owner</td>
+<td>pattern escape or incident</td>
+</tr>
+<tr>
+<td><code>GAP-005</code></td>
+<td>evidence-gap</td>
+<td>Rejection paths are source-reviewed but not all have independent fault-injection tests.</td>
+<td>Regression in a rare rejection path may go unnoticed.</td>
+<td>Process owner</td>
+<td>test-suite expansion</td>
+</tr>
+<tr>
+<td><code>GAP-006</code></td>
+<td>evidence-gap</td>
+<td>Remote-race SHA repair is implemented but not exercised by the initial self-test.</td>
+<td>A future Git behavior change could affect repair.</td>
+<td>Process owner</td>
+<td>add concurrent-remote integration test</td>
+</tr>
+<tr>
+<td><code>GAP-007</code></td>
+<td>limitation</td>
+<td>The process requires exact implementation paths in the generated manifest.</td>
+<td>Generator mistakes can omit a related file and cause publication failure or incomplete lineage.</td>
+<td>Evidence generator</td>
+<td>every session</td>
+</tr>
+<tr>
+<td><code>GAP-008</code></td>
+<td>limitation</td>
+<td>ZIP payloads above 500 MiB or 500 entries are rejected.</td>
+<td>Very large evidence sets require external storage.</td>
+<td>Architecture owner</td>
+<td>large benchmark or image evidence</td>
+</tr>
+<tr>
+<td><code>GAP-009</code></td>
+<td>risk</td>
+<td>Evidence-only mode defaults to current <code>HEAD</code> when no explicit implementation commit is supplied.</td>
+<td>Lineage may be too broad for a verification-only session.</td>
+<td>Evidence generator</td>
+<td>every evidence-only package</td>
+</tr>
+<tr>
+<td><code>GAP-010</code></td>
+<td>governance gap</td>
+<td>Reviewer acceptance is pending.</td>
+<td>Record remains <code>validated</code>, not <code>accepted</code>.</td>
+<td>Kalaxy3 architecture</td>
+<td>review event</td>
+</tr>
+<tr>
+<td><code>GAP-011</code></td>
+<td>limitation</td>
+<td>The process is repository-specific.</td>
+<td>It cannot be reused unchanged for another project.</td>
+<td>Architecture owner</td>
+<td>cross-project adoption</td>
+</tr>
+<tr>
+<td><code>GAP-012</code></td>
+<td>operational risk</td>
+<td>A push authentication failure leaves valid local commits.</td>
+<td>Operator must avoid regenerating a duplicate package and should complete the existing push.</td>
+<td>Operator</td>
+<td>push failure</td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="sage-publication-failed-git-index-already-contains-staged-changes"><code>SAGE publication failed: Git index already contains staged changes</code><a class="headerlink" href="#sage-publication-failed-git-index-already-contains-staged-changes" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The publisher will not mix preexisting staged work with manifest-controlled commits.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>diff<span class="w"> </span>--cached<span class="w"> </span>--name-status
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Commit the existing work, or unstage it deliberately:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>restore<span class="w"> </span>--staged<span class="w"> </span>--<span class="w"> </span>&lt;paths&gt;
+</code></pre></div>
+<h3 id="no-implementation-changes-found-for-split-publication"><code>No implementation changes found for split publication</code><a class="headerlink" href="#no-implementation-changes-found-for-split-publication" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The manifest declares an implementation commit, but the listed files are already committed or unchanged.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status<span class="w"> </span>--short<span class="w"> </span>--<span class="w"> </span>&lt;implementation<span class="w"> </span>paths&gt;
+git<span class="w"> </span>diff<span class="w"> </span>--<span class="w"> </span>&lt;implementation<span class="w"> </span>paths&gt;
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Do not force a duplicate publication. Generate an evidence-only package when documenting an existing implementation, or generate a new split package after real changes.</p>
+<h3 id="payload-checksum-mismatch">Payload checksum mismatch<a class="headerlink" href="#payload-checksum-mismatch" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The ZIP content does not match the generator's manifest.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>check<span class="w"> </span>&lt;package.zip&gt;
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Regenerate the complete ZIP. Do not manually edit files inside the package without rebuilding all file hashes.</p>
+<h3 id="record-is-missing-a-required-section">Record is missing a required section<a class="headerlink" href="#record-is-missing-a-required-section" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The generated record does not follow the repository template order.</p>
+<p><strong>Checks</strong></p>
+<p>Compare the record with:</p>
+<div class="highlight"><pre><span></span><code>markdown/templates/sage-evidence-record-template.md
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Regenerate the package using the canonical SAGE request. Do not remove the validation gate.</p>
+<h3 id="potential-secret-found">Potential secret found<a class="headerlink" href="#potential-secret-found" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>A high-confidence secret pattern was detected.</p>
+<p><strong>Checks</strong></p>
+<p>Inspect the named packaged file outside Git.</p>
+<p><strong>Recovery</strong></p>
+<p>Redact the value, document the omission, rebuild the package hashes, and rerun <code>check</code>.</p>
+<h3 id="push-failed-after-local-commits">Push failed after local commits<a class="headerlink" href="#push-failed-after-local-commits" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The implementation and evidence commits may already be correct locally.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>-2<span class="w"> </span>--oneline<span class="w"> </span>--decorate
+git<span class="w"> </span>status
+git<span class="w"> </span>fetch<span class="w"> </span>origin
+git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>--left-right<span class="w"> </span>HEAD...origin/main
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Repair authentication or resolve remote state. Avoid generating and publishing a second package until the existing local commits are handled.</p>
+<h2 id="freshness-revalidation-and-supersession">Freshness, revalidation, and supersession<a class="headerlink" href="#freshness-revalidation-and-supersession" title="Permanent link">&para;</a></h2>
+<h3 id="revalidate-when">Revalidate when<a class="headerlink" href="#revalidate-when" title="Permanent link">&para;</a></h3>
+<ul>
+<li>the SAGE evidence-record standard changes;</li>
+<li>the SAGE template changes;</li>
+<li>package schema <code>1.0</code> changes;</li>
+<li>required front matter or headings change;</li>
+<li>repository categories or evidence-artifact layout change;</li>
+<li><code>main</code> branch policy changes;</li>
+<li>commit signing becomes mandatory;</li>
+<li>Git rebase or push policy changes;</li>
+<li>Python or macOS/Linux behavior affects ZIP, subprocess, temporary-directory, or file-mode handling;</li>
+<li>secret-detection policy changes;</li>
+<li>a package is incorrectly accepted or rejected;</li>
+<li>the remote-race path fails;</li>
+<li>a generated record passes structurally but reveals a recurring semantic-quality gap;</li>
+<li>a newer accepted SAGE publication process supersedes this implementation.</li>
+</ul>
+<h3 id="scheduled-review">Scheduled review<a class="headerlink" href="#scheduled-review" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Event-based, with an annual self-test and process review if no triggering change occurs.
+</code></pre></div>
+<h3 id="supersession-rule">Supersession rule<a class="headerlink" href="#supersession-rule" title="Permanent link">&para;</a></h3>
+<p>When this process is replaced:</p>
+<ol>
+<li>preserve <code>SAGE-K3-GOVERNANCE-20260725-001</code> permanently;</li>
+<li>set this record to <code>superseded</code>;</li>
+<li>populate <code>superseded_by</code> with the new evidence ID;</li>
+<li>retain the self-test artifact and implementation checksums;</li>
+<li>identify whether package schema, record validation, Git workflow, or all three changed;</li>
+<li>provide migration guidance for unpublished packages created under schema <code>1.0</code>.</li>
+</ol>
+<h2 id="final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance<a class="headerlink" href="#final-completion-checklist-and-reviewer-acceptance" title="Permanent link">&para;</a></h2>
+<h3 id="governance">Governance<a class="headerlink" href="#governance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Evidence ID is unique and permanent.</li>
+<li>[x] Status accurately reflects technical validation and pending review.</li>
+<li>[x] Owner, author/operator, and reviewer state are identified.</li>
+<li>[x] Five Ws and How are complete.</li>
+<li>[x] Scope and nonclaims are explicit.</li>
+<li>[x] Implementation commit is injected by the publisher before the evidence commit.</li>
+<li>[x] Relationships and supersession fields are complete.</li>
+</ul>
+<h3 id="evidence">Evidence<a class="headerlink" href="#evidence" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Every critical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Direct observations identify source, target, time, and tool.</li>
+<li>[x] Derived conclusions reference evidence IDs.</li>
+<li>[x] Assumptions and planned work are marked.</li>
+<li>[x] Failed or variable prior publication paths are separated from the accepted process.</li>
+<li>[x] Repeatability is proven through isolated self-test.</li>
+</ul>
+<h3 id="safety-and-operations">Safety and operations<a class="headerlink" href="#safety-and-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Secrets and sensitive data are excluded or synthetically replaced.</li>
+<li>[x] Security limitations and residual risks are recorded.</li>
+<li>[x] Rollback and rebuild are documented.</li>
+<li>[x] Operational health checks are documented.</li>
+<li>[x] Known limitations and evidence gaps have owners or triggers.</li>
+<li>[x] Revalidation criteria are defined.</li>
+</ul>
+<h3 id="review-acceptance">Review acceptance<a class="headerlink" href="#review-acceptance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Don Buddenbaum</td>
+<td>pending</td>
+<td>pending</td>
+<td>Confirm this as the required publication path for future Kalaxy3 working sessions.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Review package contract, Git safety, validation boundaries, and remaining test gaps.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="git-review-and-publication">Git review and publication<a class="headerlink" href="#git-review-and-publication" title="Permanent link">&para;</a></h2>
+<h3 id="normal-future-session">Normal future session<a class="headerlink" href="#normal-future-session" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/&lt;generated-sage-package&gt;.zip
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>publish<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/&lt;generated-sage-package&gt;.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push
+</code></pre></div>
+<h3 id="this-process-bootstrap">This process bootstrap<a class="headerlink" href="#this-process-bootstrap" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/Downloads
+
+shasum<span class="w"> </span>-a<span class="w"> </span><span class="m">256</span><span class="w"> </span>-c<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kalaxy3-sage-publication-process.zip.sha256
+
+<span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+
+unzip<span class="w"> </span>-o<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-sage-publication-process.zip
+
+chmod<span class="w"> </span>+x<span class="w"> </span>scripts/sage/sage-publish.py
+
+python3<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;compile(open(&quot;scripts/sage/sage-publish.py&quot;, encoding=&quot;utf-8&quot;).read(), &quot;scripts/sage/sage-publish.py&quot;, &quot;exec&quot;)&#39;</span>
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>self-test
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-sage-publication-process-evidence.zip
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>publish<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-sage-publication-process-evidence.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push
+</code></pre></div>
+<p>After successful publication:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>status
+git<span class="w"> </span>log<span class="w"> </span>-2<span class="w"> </span>--oneline<span class="w"> </span>--decorate
+</code></pre></div>
+<h2 id="appendices-and-linked-raw-artifacts">Appendices and linked raw artifacts<a class="headerlink" href="#appendices-and-linked-raw-artifacts" title="Permanent link">&para;</a></h2>
+<h3 id="artifact-inventory">Artifact inventory<a class="headerlink" href="#artifact-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path or URI</th>
+<th>SHA-256</th>
+<th>Contains sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Evidence record</td>
+<td><code>markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md</code></td>
+<td>generated by publisher</td>
+<td>internal process metadata; no secrets</td>
+<td>Git history</td>
+</tr>
+<tr>
+<td>Self-test output</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/self-test-output.txt</code></td>
+<td>listed in package and publication manifests</td>
+<td>synthetic commit SHAs only</td>
+<td>Git history</td>
+</tr>
+<tr>
+<td>Implementation file checksums</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/implementation-file-checksums.sha256</code></td>
+<td>self-verifying inventory</td>
+<td>none</td>
+<td>Git history</td>
+</tr>
+<tr>
+<td>Publication manifest</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/publication-manifest.json</code></td>
+<td>generated by publisher</td>
+<td>repository paths and hashes; no secrets</td>
+<td>Git history</td>
+</tr>
+<tr>
+<td>Bootstrap ZIP</td>
+<td>local download</td>
+<td>external download integrity</td>
+<td>none</td>
+<td>delete after publication</td>
+</tr>
+<tr>
+<td>Evidence package ZIP</td>
+<td>local download</td>
+<td>payload hashes in manifest</td>
+<td>internal process metadata; no secrets</td>
+<td>delete after publication or archive externally</td>
+</tr>
+</tbody>
+</table>
+<h3 id="canonical-package-tree">Canonical package tree<a class="headerlink" href="#canonical-package-tree" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>sage-package.json
+payload/
+├── markdown/
+│   ├── operations/
+│   │   └── &lt;record&gt;.md
+│   └── evidence-artifacts/
+│       └── &lt;evidence-id&gt;/
+│           └── &lt;raw artifacts&gt;
+</code></pre></div>
+<h3 id="canonical-operator-promise">Canonical operator promise<a class="headerlink" href="#canonical-operator-promise" title="Permanent link">&para;</a></h3>
+<p>For future Kalaxy3 sessions, the operator should not have to reconstruct the publication sequence. The expected interaction is:</p>
+<div class="highlight"><pre><span></span><code>User:
+Generate the SAGE evidence package for the most recent Kalaxy3 working session
+using the SAGE standard, SAGE template, and SAGE publication process.
+
+Assistant:
+- generates one compliant ZIP;
+- provides the standard check command;
+- provides the standard publish --push command;
+- does not invent a different Git workflow.
+</code></pre></div>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

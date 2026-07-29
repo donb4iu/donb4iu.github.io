@@ -1,0 +1,6351 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+      
+      
+        <meta name="author" content="Don Buddenbaum">
+      
+      
+        <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/installation/kalaxy3-kubecost-installation-and-verification/">
+      
+      
+        <link rel="prev" href="../kalaxy3-kubecost-calibration-sage-evidence/">
+      
+      
+        <link rel="next" href="../kalaxy3-minio-installation-evidence/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../rpi4.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Kalaxy3 Kubecost Installation and Verification - Kalaxy3 K3s Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kalaxy3-kubecost-installation-and-verification" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-header__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalaxy3 K3s Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kalaxy3 Kubecost Installation and Verification
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-nav__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    Kalaxy3 K3s Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s Homelab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    K3s Homelab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/01_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/02_IP_Address_Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP Address Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/03_Deployment_Order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/04_Phased_Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phased deployment and refinement workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Phase_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase observations and decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/k3s-install-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_7" id="__nav_2_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: Use Three K3s Server Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: MetalLB with Traefik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Separate Shared NFS and MinIO Local Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_8" id="__nav_2_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Recovery Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase 0 Site Survey Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Headlamp Login Token Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 03 Network and Storage Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 04 UI Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Benchmarks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Current SAGE evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical and legacy evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/migration-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE evidence migration report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/finops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finops evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Status
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/validated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validated evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subjects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subjects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by subject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-nocloud-seed-usb-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for amd64
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-logging-cost-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized logging cost baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-observability-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized observability logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/intel-node-pi-administrative-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-api-high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s API High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-automation-controller-portability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 automation controller portability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-controller-access-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 controller access baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-daux-landing-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 Daux landing page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 SAGE evidence-record standard 1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-chart-3-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost chart 3.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/longhorn-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Longhorn, Kubecost,
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for MinIO Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-longhorn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Longhorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-traefik-dashboard-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Traefik Dashboard Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-enforcement-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE enforcement guardrails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-evidence-catalog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-record-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE-record-schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-daux-landing-page-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Daux Landing Page Source and Local Render Validation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-continuous-improvement-foundation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Foundation Staged Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Guardrail Gap Discovery and Centralized Logging Work Pause
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k3s-api-ha-kube-vip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s API High Availability with kube-vip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-amd64-02-k3s-longhorn-node-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 amd64-02 K3s and Longhorn Node Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-amd64-node-and-longhorn-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-intel-pi-admin-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-kubecost-calibration-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Kubecost Installation and Verification
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Kubecost Installation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Date
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-kubecost-was-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Kubecost Was Added
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#placement-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Placement Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Placement Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preserve-amd64-01-for-the-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preserve amd64-01 for the LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-still-uses-both-amd64-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn still uses both AMD64 nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#k3s-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K3s cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-and-grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prometheus and Grafana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metallb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MetalLB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amd64-kubecost-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMD64 Kubecost label
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventory-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Labels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kalaxy3-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kalaxy3 Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubecost-helm-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubecost Helm Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-finops-agent-image-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important FinOps Agent Image Correction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Important FinOps Agent Image Correction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-observed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure observed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correct-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correct image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#immediate-repair-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immediate repair command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-installation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ansible Installation Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ansible Installation Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-or-reconcile-kubecost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install or reconcile Kubecost
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#successful-ansible-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Successful Ansible Evidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installed-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installed Workloads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistent Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-longhorn-health-and-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Longhorn health and replicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Exposure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-log-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Log Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Log Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finops-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FinOps Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-loadbalancer-pricing-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known LoadBalancer Pricing Warning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known LoadBalancer Pricing Warning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsuccessful-manual-pricing-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unsuccessful manual pricing experiments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accepted-operational-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accepted operational decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#region-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region Warning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-kalaxy3-cost-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Kalaxy3 Cost Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-rebuild-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Rebuild Sequence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Rebuild Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rebuild-and-verify-the-base-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rebuild and verify the base cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-verify-both-amd64-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Verify both AMD64 nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verify-longhorn-prerequisites-and-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verify Longhorn prerequisites and mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-install-or-reconcile-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Install or reconcile Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verify-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Verify Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verify-kubecost-node-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verify Kubecost node labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-install-observability-and-kubecost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Install observability and Kubecost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-watch-the-kubecost-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Watch the Kubecost pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-repair-the-finops-agent-image-if-necessary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Repair the FinOps Agent image if necessary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-verify-pods-pvcs-and-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Verify pods, PVCs, and service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-verify-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Verify logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-open-the-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Open the UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imagepullbackoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImagePullBackOff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-scheduled-on-the-wrong-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod scheduled on the wrong node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvc-remains-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PVC remains pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-has-no-external-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend has no external IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-is-unreachable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend is unreachable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeated-loadbalancer-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeated LoadBalancer warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-acceptance-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Acceptance Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 MinIO Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-observability-and-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Observability and Kubecost Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-protected-ui-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Longhorn and Prometheus UI Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-traefik-dashboard-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Traefik Dashboard Installation and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../longhorn-kubecost-intel-node-preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longhorn, Kubecost, and Intel Node Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubuntu-node-provisioning-fixed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_14" id="__nav_6_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/amd64-nocloud-seed-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/ubuntu-installation-and-node-provisioning-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/ubuntu-node-provisioning-fixed-amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-centralized-logging-deployment-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-controller-machine-portability-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-canonical-metadata-contract-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical SAGE metadata contract and publisher enforcement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-evidence-publication-process-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repeatable SAGE Evidence Package Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-legacy-evidence-navigation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-observability-iterative-readiness-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Cost Model Architecture and FinOps Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/kalaxy3-controller-access-baseline-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-change-discovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-continuous-improvement-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-orchestration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Orchestration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-publication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-record-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Record Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/kalaxy3-centralized-logging-sage-evidence-quality-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installation-date" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation Date
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#result-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#why-kubecost-was-added" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why Kubecost Was Added
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#placement-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Placement Decision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Placement Decision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preserve-amd64-01-for-the-llm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preserve amd64-01 for the LLM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-still-uses-both-amd64-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn still uses both AMD64 nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#k3s-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K3s cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prometheus-and-grafana" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prometheus and Grafana
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metallb" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MetalLB
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#amd64-kubecost-label" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMD64 Kubecost label
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventory-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node Labels
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kalaxy3-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kalaxy3 Variables
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubecost-helm-values" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubecost Helm Values
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#important-finops-agent-image-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Important FinOps Agent Image Correction
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Important FinOps Agent Image Correction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-observed" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure observed
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#correct-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Correct image
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#immediate-repair-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Immediate repair command
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-installation-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ansible Installation Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ansible Installation Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#syntax-check" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Syntax check
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#install-or-reconcile-kubecost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Install or reconcile Kubecost
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#successful-ansible-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Successful Ansible Evidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#installed-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installed Workloads
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#persistent-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Persistent Storage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Persistent Storage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verify-longhorn-health-and-replicas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verify Longhorn health and replicas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-exposure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network Exposure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#application-log-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Application Log Verification
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application Log Verification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregator" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Aggregator
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#finops-agent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        FinOps Agent
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-loadbalancer-pricing-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known LoadBalancer Pricing Warning
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known LoadBalancer Pricing Warning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#unsuccessful-manual-pricing-experiments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unsuccessful manual pricing experiments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#accepted-operational-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Accepted operational decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#region-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Region Warning
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#custom-kalaxy3-cost-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Custom Kalaxy3 Cost Model
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#complete-rebuild-sequence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Complete Rebuild Sequence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Complete Rebuild Sequence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-rebuild-and-verify-the-base-cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Rebuild and verify the base cluster
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-verify-both-amd64-nodes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Verify both AMD64 nodes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-verify-longhorn-prerequisites-and-mounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Verify Longhorn prerequisites and mounts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-install-or-reconcile-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Install or reconcile Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-verify-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Verify Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-verify-kubecost-node-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Verify Kubecost node labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-install-observability-and-kubecost" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Install observability and Kubecost
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-watch-the-kubecost-pods" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Watch the Kubecost pods
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-repair-the-finops-agent-image-if-necessary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Repair the FinOps Agent image if necessary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-verify-pods-pvcs-and-service" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Verify pods, PVCs, and service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-verify-logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Verify logs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-open-the-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Open the UI
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#imagepullbackoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ImagePullBackOff
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-scheduled-on-the-wrong-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod scheduled on the wrong node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pvc-remains-pending" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        PVC remains pending
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-has-no-external-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend has no external IP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frontend-is-unreachable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Frontend is unreachable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repeated-loadbalancer-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repeated LoadBalancer warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-acceptance-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final Acceptance Checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational Status
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kalaxy3-kubecost-installation-and-verification">Kalaxy3 Kubecost Installation and Verification<a class="headerlink" href="#kalaxy3-kubecost-installation-and-verification" title="Permanent link">&para;</a></h1>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>This document records the installation, configuration, correction, and
+verification of Kubecost on the Kalaxy3 K3s cluster.</p>
+<p>It is intended to provide enough detail to:</p>
+<ul>
+<li>understand why Kubecost was added;</li>
+<li>reproduce the installation after a complete Kalaxy3 rebuild;</li>
+<li>keep Kubecost compute workloads away from the primary LLM node;</li>
+<li>restore the required Longhorn-backed persistent storage;</li>
+<li>expose the Kubecost UI through MetalLB;</li>
+<li>recognize the known nonfatal LoadBalancer-pricing warning;</li>
+<li>verify that the installation is healthy.</li>
+</ul>
+<h2 id="installation-date">Installation Date<a class="headerlink" href="#installation-date" title="Permanent link">&para;</a></h2>
+<p>The installation and verification described here were completed on
+July 21, 2026, local time.</p>
+<p>Kubecost logs use UTC timestamps, so log entries immediately after the
+installation show July 22, 2026.</p>
+<h2 id="result-summary">Result Summary<a class="headerlink" href="#result-summary" title="Permanent link">&para;</a></h2>
+<p>Kubecost is operational on Kalaxy3 with the following state:</p>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Kubecost chart</td>
+<td><code>kubecost/kubecost</code></td>
+</tr>
+<tr>
+<td>Chart version</td>
+<td><code>3.2.1</code></td>
+</tr>
+<tr>
+<td>Namespace</td>
+<td><code>kubecost</code></td>
+</tr>
+<tr>
+<td>Primary workload node</td>
+<td><code>amd64-02</code></td>
+</tr>
+<tr>
+<td>LLM node preserved</td>
+<td><code>amd64-01</code></td>
+</tr>
+<tr>
+<td>Persistent storage</td>
+<td>Longhorn</td>
+</tr>
+<tr>
+<td>Longhorn replica count</td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td>Frontend service type</td>
+<td><code>LoadBalancer</code></td>
+</tr>
+<tr>
+<td>Frontend MetalLB address</td>
+<td><code>192.168.2.26</code></td>
+</tr>
+<tr>
+<td>Frontend port</td>
+<td><code>9090</code></td>
+</tr>
+<tr>
+<td>FinOps Agent image</td>
+<td><code>icr.io/ibm-finops/agent:v1.0.20</code></td>
+</tr>
+<tr>
+<td>Pod health</td>
+<td>All pods running</td>
+</tr>
+<tr>
+<td>Pod restarts at verification</td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td>Known warning</td>
+<td>Nonfatal LoadBalancer pricing warning</td>
+</tr>
+</tbody>
+</table>
+<p>The Kubecost user interface is available on the Kalaxy3 LAN at:</p>
+<div class="highlight"><pre><span></span><code>http://192.168.2.26:9090
+</code></pre></div>
+<h2 id="why-kubecost-was-added">Why Kubecost Was Added<a class="headerlink" href="#why-kubecost-was-added" title="Permanent link">&para;</a></h2>
+<p>Kalaxy3 already had Prometheus and Grafana for cluster metrics and
+observability. Kubecost adds Kubernetes resource-cost and allocation analysis.</p>
+<p>Kubecost provides visibility into:</p>
+<ul>
+<li>CPU allocation and utilization;</li>
+<li>memory allocation and utilization;</li>
+<li>namespace and workload cost allocation;</li>
+<li>pod and container allocation;</li>
+<li>persistent-volume allocation;</li>
+<li>node resource allocation;</li>
+<li>idle and shared cluster resources;</li>
+<li>historical allocation data retained in persistent storage.</li>
+</ul>
+<p>Kalaxy3 is a bare-metal homelab rather than an AWS, Azure, or Google Cloud
+cluster. Kubecost therefore cannot automatically obtain cloud-provider billing
+rates. The deployment is still useful for resource allocation and relative cost
+analysis, but accurate dollar values require a separate Kalaxy3 custom cost
+model.</p>
+<h2 id="placement-decision">Placement Decision<a class="headerlink" href="#placement-decision" title="Permanent link">&para;</a></h2>
+<h3 id="preserve-amd64-01-for-the-llm">Preserve <code>amd64-01</code> for the LLM<a class="headerlink" href="#preserve-amd64-01-for-the-llm" title="Permanent link">&para;</a></h3>
+<p><code>amd64-01</code> is intended to host the primary Kalaxy3 LLM and RAG workloads.</p>
+<p>Kubecost includes database, aggregation, local-storage, frontend, and collection
+components that consume CPU, memory, storage I/O, and network bandwidth.
+Therefore, Kubecost compute workloads were placed on <code>amd64-02</code>.</p>
+<h3 id="longhorn-still-uses-both-amd64-nodes">Longhorn still uses both AMD64 nodes<a class="headerlink" href="#longhorn-still-uses-both-amd64-nodes" title="Permanent link">&para;</a></h3>
+<p>Although Kubecost application pods run on <code>amd64-02</code>, its Longhorn volumes use
+two replicas.</p>
+<p>This means:</p>
+<ul>
+<li>Kubecost CPU and memory consumption stays on <code>amd64-02</code>;</li>
+<li>Kubecost persistent data remains redundant;</li>
+<li>one Longhorn replica may reside on <code>amd64-01</code>;</li>
+<li><code>amd64-01</code> can still see Longhorn disk and replication traffic;</li>
+<li>loss of one Longhorn node does not immediately destroy Kubecost data.</li>
+</ul>
+<p>This is the intended tradeoff between preserving LLM compute resources and
+maintaining storage resilience.</p>
+<h2 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h2>
+<p>Before rebuilding Kubecost, verify the following Kalaxy3 components.</p>
+<h3 id="k3s-cluster">K3s cluster<a class="headerlink" href="#k3s-cluster" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<p>Expected relevant nodes:</p>
+<div class="highlight"><pre><span></span><code>amd64-01   Ready
+amd64-02   Ready
+</code></pre></div>
+<h3 id="longhorn">Longhorn<a class="headerlink" href="#longhorn" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>longhorn-system
+
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass<span class="w"> </span>longhorn
+</code></pre></div>
+<p>The Longhorn StorageClass must exist before Kubecost is installed.</p>
+<h3 id="prometheus-and-grafana">Prometheus and Grafana<a class="headerlink" href="#prometheus-and-grafana" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>observability
+</code></pre></div>
+<p>Kubecost was installed through the Kalaxy3 observability phase, which also
+reconciles Prometheus and Grafana.</p>
+<h3 id="metallb">MetalLB<a class="headerlink" href="#metallb" title="Permanent link">&para;</a></h3>
+<p>The address <code>192.168.2.26</code> must be within the configured Kalaxy3 MetalLB address
+pool and must not be assigned to another service.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>-A<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<h3 id="amd64-kubecost-label">AMD64 Kubecost label<a class="headerlink" href="#amd64-kubecost-label" title="Permanent link">&para;</a></h3>
+<p>Only the intended Kubecost compute node should carry the Kubecost scheduling
+label.</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-L<span class="w"> </span>kubernetes.io/arch,kalaxy3.io/kubecost,kalaxy3.io/longhorn
+</code></pre></div>
+<p>Expected intent:</p>
+<div class="highlight"><pre><span></span><code>amd64-01   amd64   &lt;none&gt;   true
+amd64-02   amd64   true     true
+</code></pre></div>
+<p>The exact column order depends on the <code>kubectl</code> command, but
+<code>kalaxy3.io/kubecost=true</code> should be present only on <code>amd64-02</code>.</p>
+<h2 id="inventory-configuration">Inventory Configuration<a class="headerlink" href="#inventory-configuration" title="Permanent link">&para;</a></h2>
+<p>The Kalaxy3 Ansible inventory should identify <code>amd64-02</code> as the Kubecost node.</p>
+<p>Example:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kubecost_nodes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">amd64-02</span><span class="p">:</span>
+</code></pre></div>
+<p>The node must also remain a member of the appropriate K3s agent and Longhorn
+inventory groups.</p>
+<h2 id="node-labels">Node Labels<a class="headerlink" href="#node-labels" title="Permanent link">&para;</a></h2>
+<p>The desired Kubernetes labels are:</p>
+<div class="highlight"><pre><span></span><code>amd64-01:
+  kalaxy3.io/longhorn=true
+  node.longhorn.io/create-default-disk=true
+
+amd64-02:
+  kalaxy3.io/longhorn=true
+  kalaxy3.io/kubecost=true
+  node.longhorn.io/create-default-disk=true
+</code></pre></div>
+<p>Apply or repair the Kubecost label with:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>amd64-02<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kalaxy3.io/kubecost<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</code></pre></div>
+<p>Remove the Kubecost label from <code>amd64-01</code> with:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kalaxy3.io/kubecost-
+</code></pre></div>
+<p>Verify:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-L<span class="w"> </span>kubernetes.io/arch,kalaxy3.io/kubecost,kalaxy3.io/longhorn
+</code></pre></div>
+<p>The Ansible Longhorn/platform tasks should own these labels so a full rebuild
+does not depend on manual commands.</p>
+<h2 id="kalaxy3-variables">Kalaxy3 Variables<a class="headerlink" href="#kalaxy3-variables" title="Permanent link">&para;</a></h2>
+<p>The relevant Kalaxy3 variables include:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">install_observability</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">install_kubecost</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">kubecost_storage_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32Gi</span>
+
+<span class="nt">longhorn_replica_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+</code></pre></div>
+<p>During the initial installation, Kubecost was enabled explicitly on the command
+line:</p>
+<div class="highlight"><pre><span></span><code>--extra-vars<span class="w"> </span><span class="s1">&#39;install_kubecost=true&#39;</span>
+</code></pre></div>
+<p>For a fully automatic rebuild, set <code>install_kubecost: true</code> in the intended
+Kalaxy3 group variables after the deployment has been accepted.</p>
+<h2 id="kubecost-helm-values">Kubecost Helm Values<a class="headerlink" href="#kubecost-helm-values" title="Permanent link">&para;</a></h2>
+<p>The Kubecost values template is:</p>
+<div class="highlight"><pre><span></span><code>infrastructure/k3s-homelab/playbooks/templates/kubecost-values.yml.j2
+</code></pre></div>
+<p>The effective design is represented by the following values:</p>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">global</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">clusterId</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">kalaxy3</span>
+<span class="w">  </span><span class="nt">defaultStorageClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">longhorn</span>
+
+<span class="nt">frontend</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kubernetes.io/arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amd64</span>
+<span class="w">    </span><span class="nt">kalaxy3.io/kubecost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+
+<span class="w">  </span><span class="nt">service</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">LoadBalancer</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">metallb.io/loadBalancerIPs</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;192.168.2.26&quot;</span>
+
+<span class="nt">aggregator</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kubernetes.io/arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amd64</span>
+<span class="w">    </span><span class="nt">kalaxy3.io/kubecost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+
+<span class="w">  </span><span class="nt">persistentConfigsStorage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">longhorn</span>
+<span class="w">    </span><span class="nt">storageRequest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1Gi</span>
+
+<span class="w">  </span><span class="nt">aggregatorDbStorage</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">longhorn</span>
+<span class="w">    </span><span class="nt">storageRequest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">128Gi</span>
+
+<span class="w">  </span><span class="nt">resources</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">requests</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">cpu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100m</span>
+<span class="w">      </span><span class="nt">memory</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3Gi</span>
+
+<span class="nt">finopsagent</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icr.io</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-finops/agent</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.0.20</span>
+
+<span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kubernetes.io/arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amd64</span>
+<span class="w">    </span><span class="nt">kalaxy3.io/kubecost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+
+<span class="nt">localStore</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">kubernetes.io/arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amd64</span>
+<span class="w">    </span><span class="nt">kalaxy3.io/kubecost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+
+<span class="w">  </span><span class="nt">persistentVolume</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">    </span><span class="nt">storageClass</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">longhorn</span>
+<span class="w">    </span><span class="nt">size</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">kubecost_storage_size</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">    </span><span class="nt">annotations</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">helm.sh/resource-policy</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">keep</span>
+
+<span class="nt">forecasting</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">cloudCost</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">clusterController</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="nt">networkCosts</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+</code></pre></div>
+<h2 id="important-finops-agent-image-correction">Important FinOps Agent Image Correction<a class="headerlink" href="#important-finops-agent-image-correction" title="Permanent link">&para;</a></h2>
+<h3 id="failure-observed">Failure observed<a class="headerlink" href="#failure-observed" title="Permanent link">&para;</a></h3>
+<p>The Kubecost chart initially rendered this image:</p>
+<div class="highlight"><pre><span></span><code>icr.io/kubecost/agent:v1.0.20
+</code></pre></div>
+<p>The Kubernetes event showed:</p>
+<div class="highlight"><pre><span></span><code>Failed to pull image &quot;icr.io/kubecost/agent:v1.0.20&quot;:
+failed to resolve reference:
+icr.io/kubecost/agent:v1.0.20: not found
+</code></pre></div>
+<p>The pod entered:</p>
+<div class="highlight"><pre><span></span><code>ImagePullBackOff
+</code></pre></div>
+<h3 id="correct-image">Correct image<a class="headerlink" href="#correct-image" title="Permanent link">&para;</a></h3>
+<p>The working image is:</p>
+<div class="highlight"><pre><span></span><code>icr.io/ibm-finops/agent:v1.0.20
+</code></pre></div>
+<p>The permanent correction belongs in
+<code>playbooks/templates/kubecost-values.yml.j2</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">finopsagent</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="w">  </span><span class="nt">image</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">registry</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">icr.io</span>
+<span class="w">    </span><span class="nt">repository</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ibm-finops/agent</span>
+<span class="w">    </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">v1.0.20</span>
+</code></pre></div>
+<h3 id="immediate-repair-command">Immediate repair command<a class="headerlink" href="#immediate-repair-command" title="Permanent link">&para;</a></h3>
+<p>If a rebuilt cluster still renders the wrong image, repair it immediately with:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>deployment/kubecost-finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>finops-agent<span class="o">=</span>icr.io/ibm-finops/agent:v1.0.20<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+</code></pre></div>
+<p>Then reconcile the Helm release through Ansible so the repair is persistent.</p>
+<h2 id="ansible-installation-workflow">Ansible Installation Workflow<a class="headerlink" href="#ansible-installation-workflow" title="Permanent link">&para;</a></h2>
+<p>Run from:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+</code></pre></div>
+<h3 id="syntax-check">Syntax check<a class="headerlink" href="#syntax-check" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--syntax-check
+</code></pre></div>
+<h3 id="install-or-reconcile-kubecost">Install or reconcile Kubecost<a class="headerlink" href="#install-or-reconcile-kubecost" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;platform_phase=observability&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;install_kubecost=true&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ask-become-pass<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>The play performs the following work:</p>
+<ol>
+<li>gathers facts from <code>arm64-01</code>;</li>
+<li>verifies or installs Helm on the controller;</li>
+<li>reconciles the configured Helm repositories;</li>
+<li>selects only the observability platform phase;</li>
+<li>reconciles Prometheus and Grafana;</li>
+<li>finds eligible labeled AMD64 Kubecost nodes;</li>
+<li>renders the Kubecost values template;</li>
+<li>installs or upgrades Kubecost;</li>
+<li>waits for the Helm deployment to complete.</li>
+</ol>
+<p><code>arm64-01</code> acts as the Ansible and Helm controller. That does not mean Kubecost
+application pods run on <code>arm64-01</code>.</p>
+<h2 id="successful-ansible-evidence">Successful Ansible Evidence<a class="headerlink" href="#successful-ansible-evidence" title="Permanent link">&para;</a></h2>
+<p>The successful reconciliation completed with:</p>
+<div class="highlight"><pre><span></span><code>PLAY RECAP
+arm64-01 : ok=9 changed=2 unreachable=0 failed=0 skipped=6
+</code></pre></div>
+<p>The following phases were correctly skipped:</p>
+<ul>
+<li>networking and storage;</li>
+<li>administrative UI;</li>
+<li>Longhorn;</li>
+<li>protected UI;</li>
+<li>MinIO.</li>
+</ul>
+<p>Only the observability phase was included.</p>
+<h2 id="installed-workloads">Installed Workloads<a class="headerlink" href="#installed-workloads" title="Permanent link">&para;</a></h2>
+<p>The healthy Kubecost deployment contains:</p>
+<div class="highlight"><pre><span></span><code>kubecost-aggregator-0
+kubecost-finopsagent-...
+kubecost-frontend-...
+kubecost-local-store-...
+</code></pre></div>
+<p>Verification showed all four pods:</p>
+<ul>
+<li>ready;</li>
+<li>running;</li>
+<li>scheduled on <code>amd64-02</code>;</li>
+<li>reporting zero restarts.</li>
+</ul>
+<p>Use:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>custom-columns<span class="o">=</span><span class="s1">&#39;NAME:.metadata.name,READY:.status.containerStatuses[*].ready,RESTARTS:.status.containerStatuses[*].restartCount,NODE:.spec.nodeName&#39;</span>
+</code></pre></div>
+<p>Expected form:</p>
+<div class="highlight"><pre><span></span><code>NAME                                    READY   RESTARTS   NODE
+kubecost-aggregator-0                   true    0          amd64-02
+kubecost-finopsagent-...                true    0          amd64-02
+kubecost-frontend-...                   true    0          amd64-02
+kubecost-local-store-...                true    0          amd64-02
+</code></pre></div>
+<h2 id="persistent-storage">Persistent Storage<a class="headerlink" href="#persistent-storage" title="Permanent link">&para;</a></h2>
+<p>Kubecost created three Longhorn-backed PVCs.</p>
+<table>
+<thead>
+<tr>
+<th>PVC</th>
+<th style="text-align: right;">Capacity</th>
+<th>Access mode</th>
+<th>StorageClass</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregator-db-storage-kubecost-aggregator-0</code></td>
+<td style="text-align: right;"><code>128Gi</code></td>
+<td><code>RWO</code></td>
+<td><code>longhorn</code></td>
+</tr>
+<tr>
+<td><code>kubecost-local-store</code></td>
+<td style="text-align: right;"><code>32Gi</code></td>
+<td><code>RWO</code></td>
+<td><code>longhorn</code></td>
+</tr>
+<tr>
+<td><code>persistent-configs-kubecost-aggregator-0</code></td>
+<td style="text-align: right;"><code>1Gi</code></td>
+<td><code>RWO</code></td>
+<td><code>longhorn</code></td>
+</tr>
+</tbody>
+</table>
+<p>Verify:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+</code></pre></div>
+<p>Every PVC must be:</p>
+<div class="highlight"><pre><span></span><code>STATUS: Bound
+STORAGECLASS: longhorn
+</code></pre></div>
+<h3 id="verify-longhorn-health-and-replicas">Verify Longhorn health and replicas<a class="headerlink" href="#verify-longhorn-health-and-replicas" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>volumes.longhorn.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>custom-columns<span class="o">=</span><span class="s1">&#39;NAME:.metadata.name,STATE:.status.state,HEALTH:.status.robustness,REPLICAS:.spec.numberOfReplicas&#39;</span>
+</code></pre></div>
+<p>For the Kubecost volumes, the desired state is:</p>
+<div class="highlight"><pre><span></span><code>STATE: attached
+HEALTH: healthy
+REPLICAS: 2
+</code></pre></div>
+<p>A volume may be detached when its consuming pod is stopped. That is not itself
+an error.</p>
+<h2 id="network-exposure">Network Exposure<a class="headerlink" href="#network-exposure" title="Permanent link">&para;</a></h2>
+<p>The Kubecost frontend service is:</p>
+<div class="highlight"><pre><span></span><code>TYPE: LoadBalancer
+EXTERNAL-IP: 192.168.2.26
+PORT: 9090
+</code></pre></div>
+<p>Verify:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>kubecost-frontend<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+</code></pre></div>
+<p>Expected form:</p>
+<div class="highlight"><pre><span></span><code>NAME                TYPE           EXTERNAL-IP    PORT(S)
+kubecost-frontend   LoadBalancer   192.168.2.26   9090:...
+</code></pre></div>
+<p>Test from a LAN host:</p>
+<div class="highlight"><pre><span></span><code>curl<span class="w"> </span>-I<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://192.168.2.26:9090
+</code></pre></div>
+<p>Open in a browser:</p>
+<div class="highlight"><pre><span></span><code>http://192.168.2.26:9090
+</code></pre></div>
+<h2 id="application-log-verification">Application Log Verification<a class="headerlink" href="#application-log-verification" title="Permanent link">&para;</a></h2>
+<h3 id="aggregator">Aggregator<a class="headerlink" href="#aggregator" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>statefulset/kubecost-aggregator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tail<span class="o">=</span><span class="m">100</span>
+</code></pre></div>
+<p>Immediately after installation, messages referring to zero file windows may be
+normal because the system has not collected enough historical data.</p>
+<h3 id="finops-agent">FinOps Agent<a class="headerlink" href="#finops-agent" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>deployment/kubecost-finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tail<span class="o">=</span><span class="m">100</span>
+</code></pre></div>
+<p>Successful startup included:</p>
+<div class="highlight"><pre><span></span><code>Starting IBM Finops Agent version v1.0.20
+Found configmap pricing-configs, watching...
+Successfully created bucket storage
+</code></pre></div>
+<p><code>Successfully created bucket storage</code> confirms that the agent established its
+local storage path.</p>
+<h2 id="known-loadbalancer-pricing-warning">Known LoadBalancer Pricing Warning<a class="headerlink" href="#known-loadbalancer-pricing-warning" title="Permanent link">&para;</a></h2>
+<p>The FinOps Agent currently logs the following warning approximately once per
+minute:</p>
+<div class="highlight"><pre><span></span><code>WRN Error getting LoadBalancer cost:
+strconv.ParseFloat: parsing &quot;&quot;: invalid syntax
+</code></pre></div>
+<h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
+<p>Kalaxy3 uses MetalLB on bare metal. It does not use a cloud provider that
+supplies billed LoadBalancer pricing.</p>
+<p>The warning is nonfatal:</p>
+<ul>
+<li>the FinOps Agent remains ready;</li>
+<li>the pod does not restart;</li>
+<li>the frontend remains available;</li>
+<li>the aggregator and local store remain healthy;</li>
+<li>CPU, memory, storage, node, namespace, workload, and allocation collection
+  can continue;</li>
+<li>cloud-style LoadBalancer dollar pricing is unavailable.</li>
+</ul>
+<h3 id="unsuccessful-manual-pricing-experiments">Unsuccessful manual pricing experiments<a class="headerlink" href="#unsuccessful-manual-pricing-experiments" title="Permanent link">&para;</a></h3>
+<p>Several manual <code>pricing-configs</code> ConfigMap structures were tested.</p>
+<p>The chart-managed ConfigMap originally had metadata but no populated pricing
+data. Attempts to place pricing JSON under <code>default.json</code> caused the agent to
+interpret <code>default.json</code> as a field name:</p>
+<div class="highlight"><pre><span></span><code>error setting custom pricing field:
+no such field: Default.json in obj
+</code></pre></div>
+<p>Direct ConfigMap keys for the following values were also tested:</p>
+<div class="highlight"><pre><span></span><code>loadBalancer
+LBIngressDataCost
+FirstFiveForwardingRulesCost
+AdditionalForwardingRuleCost
+</code></pre></div>
+<p>The warning continued.</p>
+<h3 id="accepted-operational-decision">Accepted operational decision<a class="headerlink" href="#accepted-operational-decision" title="Permanent link">&para;</a></h3>
+<p>Do not maintain a manual <code>pricing-configs</code> patch in Ansible.</p>
+<p>Allow Helm to own the ConfigMap and treat the recurring LoadBalancer-cost
+message as a known nonfatal limitation of the current on-premises deployment.</p>
+<p>Restore the Helm-managed ConfigMap after any experiment with:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>delete<span class="w"> </span>configmap<span class="w"> </span>pricing-configs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+</code></pre></div>
+<p>Then rerun the observability phase:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;platform_phase=observability&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;install_kubecost=true&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ask-become-pass<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>Verify that the restored ConfigMap is owned by Helm:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>configmap<span class="w"> </span>pricing-configs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<p>Expected metadata includes:</p>
+<div class="highlight"><pre><span></span><code>meta.helm.sh/release-name: kubecost
+meta.helm.sh/release-namespace: kubecost
+app.kubernetes.io/managed-by: Helm
+</code></pre></div>
+<h2 id="region-warning">Region Warning<a class="headerlink" href="#region-warning" title="Permanent link">&para;</a></h2>
+<p>The agent may also report that it cannot determine a default region from node
+labels.</p>
+<p>For Kalaxy3, region and zone labels can be added as topology metadata:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>label<span class="w"> </span>nodes<span class="w"> </span>--all<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>topology.kubernetes.io/region<span class="o">=</span>kalaxy3-homelab<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>topology.kubernetes.io/zone<span class="o">=</span>kalaxy3-lan<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+</code></pre></div>
+<p>This topology labeling is optional and should be added to Ansible if Kalaxy3
+will rely on it after rebuilds.</p>
+<h2 id="custom-kalaxy3-cost-model">Custom Kalaxy3 Cost Model<a class="headerlink" href="#custom-kalaxy3-cost-model" title="Permanent link">&para;</a></h2>
+<p>The Kubecost deployment is complete, but actual homelab dollar calibration is
+a separate task.</p>
+<p>Kubecost does not yet know Kalaxy3's actual:</p>
+<ul>
+<li>hardware purchase cost;</li>
+<li>expected equipment lifetime;</li>
+<li>electricity rate;</li>
+<li>measured power consumption;</li>
+<li>CPU cost;</li>
+<li>memory cost;</li>
+<li>disk cost;</li>
+<li>NFS storage cost;</li>
+<li>Longhorn storage overhead;</li>
+<li>network cost.</li>
+</ul>
+<p>Until those values are modeled, Kubecost provides useful allocation and
+relative-cost information but not a complete accounting-grade operating cost.</p>
+<p>MetalLB itself has no separately billed cloud LoadBalancer fee. Infrastructure,
+power, hardware, and network costs should be represented through the broader
+Kalaxy3 cost model instead.</p>
+<h2 id="complete-rebuild-sequence">Complete Rebuild Sequence<a class="headerlink" href="#complete-rebuild-sequence" title="Permanent link">&para;</a></h2>
+<p>After rebuilding the Kalaxy3 cluster, use the following order.</p>
+<h3 id="1-rebuild-and-verify-the-base-cluster">1. Rebuild and verify the base cluster<a class="headerlink" href="#1-rebuild-and-verify-the-base-cluster" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-A
+</code></pre></div>
+<h3 id="2-verify-both-amd64-nodes">2. Verify both AMD64 nodes<a class="headerlink" href="#2-verify-both-amd64-nodes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>amd64-01<span class="w"> </span>amd64-02<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<h3 id="3-verify-longhorn-prerequisites-and-mounts">3. Verify Longhorn prerequisites and mounts<a class="headerlink" href="#3-verify-longhorn-prerequisites-and-mounts" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>pi@192.168.2.61<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;findmnt /mnt/longhorn&#39;</span>
+
+ssh<span class="w"> </span>pi@192.168.2.62<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;findmnt /mnt/longhorn&#39;</span>
+</code></pre></div>
+<h3 id="4-install-or-reconcile-longhorn">4. Install or reconcile Longhorn<a class="headerlink" href="#4-install-or-reconcile-longhorn" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3/infrastructure/k3s-homelab
+
+ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;platform_phase=longhorn&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ask-become-pass<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<h3 id="5-verify-longhorn">5. Verify Longhorn<a class="headerlink" href="#5-verify-longhorn" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>longhorn-system
+
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass<span class="w"> </span>longhorn
+</code></pre></div>
+<h3 id="6-verify-kubecost-node-labels">6. Verify Kubecost node labels<a class="headerlink" href="#6-verify-kubecost-node-labels" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-L<span class="w"> </span>kubernetes.io/arch,kalaxy3.io/kubecost,kalaxy3.io/longhorn
+</code></pre></div>
+<p>Correct labels if required:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>amd64-02<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kalaxy3.io/kubecost<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--overwrite
+
+kubectl<span class="w"> </span>label<span class="w"> </span>node<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>kalaxy3.io/kubecost-
+</code></pre></div>
+<h3 id="7-install-observability-and-kubecost">7. Install observability and Kubecost<a class="headerlink" href="#7-install-observability-and-kubecost" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;platform_phase=observability&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="s1">&#39;install_kubecost=true&#39;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--ask-become-pass<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<h3 id="8-watch-the-kubecost-pods">8. Watch the Kubecost pods<a class="headerlink" href="#8-watch-the-kubecost-pods" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>wide<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--watch
+</code></pre></div>
+<h3 id="9-repair-the-finops-agent-image-if-necessary">9. Repair the FinOps Agent image if necessary<a class="headerlink" href="#9-repair-the-finops-agent-image-if-necessary" title="Permanent link">&para;</a></h3>
+<p>First inspect:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>kubecost-finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.template.spec.containers[0].image}{&quot;\n&quot;}&#39;</span>
+</code></pre></div>
+<p>It must return:</p>
+<div class="highlight"><pre><span></span><code>icr.io/ibm-finops/agent:v1.0.20
+</code></pre></div>
+<p>Repair if required:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span><span class="nb">set</span><span class="w"> </span>image<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>deployment/kubecost-finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>finops-agent<span class="o">=</span>icr.io/ibm-finops/agent:v1.0.20<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+</code></pre></div>
+<p>Then correct the Helm values template and rerun Ansible.</p>
+<h3 id="10-verify-pods-pvcs-and-service">10. Verify pods, PVCs, and service<a class="headerlink" href="#10-verify-pods-pvcs-and-service" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>custom-columns<span class="o">=</span><span class="s1">&#39;NAME:.metadata.name,READY:.status.containerStatuses[*].ready,RESTARTS:.status.containerStatuses[*].restartCount,NODE:.spec.nodeName&#39;</span>
+
+kubectl<span class="w"> </span>get<span class="w"> </span>pvc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+
+kubectl<span class="w"> </span>get<span class="w"> </span>svc<span class="w"> </span>kubecost-frontend<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+</code></pre></div>
+<h3 id="11-verify-logs">11. Verify logs<a class="headerlink" href="#11-verify-logs" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>logs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>statefulset/kubecost-aggregator<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tail<span class="o">=</span><span class="m">100</span>
+
+kubectl<span class="w"> </span>logs<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>deployment/kubecost-finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--tail<span class="o">=</span><span class="m">100</span>
+</code></pre></div>
+<h3 id="12-open-the-ui">12. Open the UI<a class="headerlink" href="#12-open-the-ui" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>http://192.168.2.26:9090
+</code></pre></div>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="imagepullbackoff"><code>ImagePullBackOff</code><a class="headerlink" href="#imagepullbackoff" title="Permanent link">&para;</a></h3>
+<p>Inspect the image and events:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">POD</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>
+<span class="w">  </span>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-l<span class="w"> </span>app.kubernetes.io/name<span class="o">=</span>finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.items[0].metadata.name}&#39;</span>
+<span class="k">)</span><span class="s2">&quot;</span>
+
+kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">POD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;Image: {.spec.containers[0].image}{&quot;\n&quot;}&#39;</span>
+
+kubectl<span class="w"> </span>describe<span class="w"> </span>pod<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">POD</span><span class="si">}</span><span class="s2">&quot;</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="p">|</span>
+<span class="w">  </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;/Events:/,$p&#39;</span>
+</code></pre></div>
+<p>The known bad image is:</p>
+<div class="highlight"><pre><span></span><code>icr.io/kubecost/agent:v1.0.20
+</code></pre></div>
+<p>The working image is:</p>
+<div class="highlight"><pre><span></span><code>icr.io/ibm-finops/agent:v1.0.20
+</code></pre></div>
+<h3 id="pod-scheduled-on-the-wrong-node">Pod scheduled on the wrong node<a class="headerlink" href="#pod-scheduled-on-the-wrong-node" title="Permanent link">&para;</a></h3>
+<p>Inspect labels:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-L<span class="w"> </span>kalaxy3.io/kubecost
+</code></pre></div>
+<p>Inspect the pod's selector and assigned node:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pod<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span>wide
+
+kubectl<span class="w"> </span>get<span class="w"> </span>deployment<span class="w"> </span>kubecost-finopsagent<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{.spec.template.spec.nodeSelector}{&quot;\n&quot;}&#39;</span>
+</code></pre></div>
+<p>The Kubecost selector must include:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">kubernetes.io/arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amd64</span>
+<span class="nt">kalaxy3.io/kubecost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</code></pre></div>
+<p>Only <code>amd64-02</code> should match both labels.</p>
+<h3 id="pvc-remains-pending">PVC remains pending<a class="headerlink" href="#pvc-remains-pending" title="Permanent link">&para;</a></h3>
+<p>Check:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>pvc<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes.longhorn.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>longhorn-system
+</code></pre></div>
+<p>Confirm:</p>
+<ul>
+<li>the <code>longhorn</code> StorageClass exists;</li>
+<li>Longhorn nodes are schedulable;</li>
+<li>both Longhorn disks have usable capacity;</li>
+<li>the requested replica count can be satisfied.</li>
+</ul>
+<h3 id="frontend-has-no-external-ip">Frontend has no external IP<a class="headerlink" href="#frontend-has-no-external-ip" title="Permanent link">&para;</a></h3>
+<p>Check:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>describe<span class="w"> </span>svc<span class="w"> </span>kubecost-frontend<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+
+kubectl<span class="w"> </span>get<span class="w"> </span>ipaddresspools.metallb.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>metallb-system
+
+kubectl<span class="w"> </span>get<span class="w"> </span>l2advertisements.metallb.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>metallb-system
+</code></pre></div>
+<p>Confirm that <code>192.168.2.26</code> is available and part of the advertised pool.</p>
+<h3 id="frontend-is-unreachable">Frontend is unreachable<a class="headerlink" href="#frontend-is-unreachable" title="Permanent link">&para;</a></h3>
+<p>Check:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>endpoints<span class="w"> </span>kubecost-frontend<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>kubecost
+
+curl<span class="w"> </span>-v<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>http://192.168.2.26:9090
+</code></pre></div>
+<p>Also verify LAN routing and host firewall rules.</p>
+<h3 id="repeated-loadbalancer-warning">Repeated LoadBalancer warning<a class="headerlink" href="#repeated-loadbalancer-warning" title="Permanent link">&para;</a></h3>
+<p>This is currently accepted:</p>
+<div class="highlight"><pre><span></span><code>Error getting LoadBalancer cost:
+strconv.ParseFloat: parsing &quot;&quot;: invalid syntax
+</code></pre></div>
+<p>Do not repeatedly patch <code>pricing-configs</code> unless a later Kubecost or FinOps Agent
+release documents a supported on-premises LoadBalancer pricing configuration.</p>
+<h2 id="final-acceptance-checklist">Final Acceptance Checklist<a class="headerlink" href="#final-acceptance-checklist" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[x] Kubecost chart installed.</li>
+<li>[x] Kubecost namespace created.</li>
+<li>[x] Aggregator running.</li>
+<li>[x] FinOps Agent running.</li>
+<li>[x] Frontend running.</li>
+<li>[x] Local store running.</li>
+<li>[x] Correct FinOps Agent image configured.</li>
+<li>[x] All Kubecost pods scheduled on <code>amd64-02</code>.</li>
+<li>[x] <code>amd64-01</code> preserved for LLM compute.</li>
+<li>[x] Aggregator database PVC bound.</li>
+<li>[x] Local-store PVC bound.</li>
+<li>[x] Persistent-config PVC bound.</li>
+<li>[x] All Kubecost PVCs use Longhorn.</li>
+<li>[x] Longhorn replica target set to two.</li>
+<li>[x] Frontend exposed through MetalLB.</li>
+<li>[x] Frontend assigned <code>192.168.2.26</code>.</li>
+<li>[x] Ansible observability phase completes without failure.</li>
+<li>[x] Helm owns the final <code>pricing-configs</code> ConfigMap.</li>
+<li>[x] LoadBalancer pricing warning documented as nonfatal.</li>
+<li>[ ] Kalaxy3 custom hardware and electricity pricing calibrated.</li>
+<li>[ ] Final repository changes committed and pushed.</li>
+</ul>
+<h2 id="operational-status">Operational Status<a class="headerlink" href="#operational-status" title="Permanent link">&para;</a></h2>
+<p>At the completion of this work:</p>
+<div class="highlight"><pre><span></span><code>Deployment:          Complete
+Scheduling:          Complete
+Persistent storage: Complete
+Network access:      Complete
+Data collection:     Operational
+Pod stability:       Healthy
+Ansible rebuild:     Documented
+Custom cost model:   Not calibrated
+Known warning:       LoadBalancer pricing only
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

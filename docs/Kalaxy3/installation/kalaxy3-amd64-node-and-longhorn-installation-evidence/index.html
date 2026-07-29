@@ -1,0 +1,6466 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+      
+      
+        <meta name="author" content="Don Buddenbaum">
+      
+      
+        <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence/">
+      
+      
+        <link rel="prev" href="../kalaxy3-amd64-02-k3s-longhorn-node-addition/">
+      
+      
+        <link rel="next" href="../kalaxy3-intel-pi-admin-access-evidence/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../rpi4.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide - Kalaxy3 K3s Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kalaxy3-amd64-node-and-longhorn-installation-evidence-and-rebuild-guide" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-header__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalaxy3 K3s Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-nav__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    Kalaxy3 K3s Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s Homelab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    K3s Homelab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/01_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/02_IP_Address_Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP Address Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/03_Deployment_Order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/04_Phased_Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phased deployment and refinement workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Phase_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase observations and decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/k3s-install-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_7" id="__nav_2_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: Use Three K3s Server Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: MetalLB with Traefik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Separate Shared NFS and MinIO Local Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_8" id="__nav_2_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Recovery Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase 0 Site Survey Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Headlamp Login Token Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 03 Network and Storage Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 04 UI Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Benchmarks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Current SAGE evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical and legacy evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/migration-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE evidence migration report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/finops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finops evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Status
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/validated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validated evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subjects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subjects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by subject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-nocloud-seed-usb-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for amd64
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-logging-cost-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized logging cost baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-observability-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized observability logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/intel-node-pi-administrative-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-api-high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s API High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-automation-controller-portability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 automation controller portability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-controller-access-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 controller access baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-daux-landing-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 Daux landing page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 SAGE evidence-record standard 1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-chart-3-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost chart 3.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/longhorn-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Longhorn, Kubecost,
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for MinIO Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-longhorn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Longhorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-traefik-dashboard-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Traefik Dashboard Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-enforcement-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE enforcement guardrails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-evidence-catalog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-record-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE-record-schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-daux-landing-page-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Daux Landing Page Source and Local Render Validation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-continuous-improvement-foundation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Foundation Staged Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Guardrail Gap Discovery and Centralized Logging Work Pause
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k3s-api-ha-kube-vip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s API High Availability with kube-vip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-amd64-02-k3s-longhorn-node-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 amd64-02 K3s and Longhorn Node Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validated-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final validated result
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-after-this-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture after this change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key design decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key design decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amd64-nodes-use-normal-ubuntu-installation-plus-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMD64 nodes use normal Ubuntu installation plus Ansible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hdd-is-the-only-longhorn-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The HDD is the only Longhorn candidate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-4-tb-nvme-remains-untouched" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 4 TB NVMe remains untouched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-longhorn-replica-is-correct-for-the-first-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One Longhorn replica is correct for the first node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permanent-network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permanent network configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-and-sudo-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH and sudo bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory-membership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory membership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-specific-disk-safety-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host-specific disk safety variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-longhorn-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Longhorn variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-longhorn-disk-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safe Longhorn disk preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-the-playbook-refuses-to-format-disks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why the playbook refuses to format disks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longhorn-disk-preparation-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn disk preparation evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longhorn disk preparation evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-mode-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check-mode run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s-join-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K3s join evidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longhorn-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longhorn installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-skipped-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial skipped run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabled-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabled installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longhorn-placement-and-health-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn placement and health evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longhorn placement and health evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-node-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes node labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-node-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn node state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storageclasses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StorageClasses
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-volume-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional volume test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional volume test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-test-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the test claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-pod-and-write-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a pod and write data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attached-volume-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attached-volume evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test interpretation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-warnings-and-outstanding-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known warnings and outstanding hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known warnings and outstanding hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multipathd-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        multipathd warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dm_crypt-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dm_crypt warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-ubuntu-server-on-the-amd64-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Ubuntu Server on the AMD64 node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-identify-the-active-nic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Identify the active NIC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-the-permanent-netplan-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create the permanent Netplan file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-bootstrap-ssh-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Bootstrap SSH access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-confirm-disk-identity-before-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Confirm disk identity before Ansible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-validate-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Validate inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-dry-run-longhorn-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Dry-run Longhorn preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-mount-the-longhorn-hdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Mount the Longhorn HDD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-join-k3s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Join K3s
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-enable-and-install-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Enable and install Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-validate-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Validate Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-run-a-functional-pvc-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Run a functional PVC test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-and-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node and mount
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions-requiring-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions requiring attention
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expansion-procedure-for-amd64-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expansion procedure for amd64-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubecost-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubecost next step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-rebuild-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final rebuild checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final status
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-intel-pi-admin-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-kubecost-calibration-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-kubecost-installation-and-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Kubecost Installation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 MinIO Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-observability-and-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Observability and Kubecost Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-protected-ui-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Longhorn and Prometheus UI Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-traefik-dashboard-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Traefik Dashboard Installation and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../longhorn-kubecost-intel-node-preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longhorn, Kubecost, and Intel Node Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ubuntu-node-provisioning-fixed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_14" id="__nav_6_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/amd64-nocloud-seed-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/ubuntu-installation-and-node-provisioning-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/ubuntu-node-provisioning-fixed-amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../old/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-centralized-logging-deployment-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-controller-machine-portability-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-canonical-metadata-contract-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical SAGE metadata contract and publisher enforcement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-evidence-publication-process-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repeatable SAGE Evidence Package Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-legacy-evidence-navigation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-observability-iterative-readiness-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Cost Model Architecture and FinOps Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/kalaxy3-controller-access-baseline-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-change-discovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-continuous-improvement-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-orchestration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Orchestration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-publication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-record-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Record Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/kalaxy3-centralized-logging-sage-evidence-quality-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-validated-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final validated result
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-after-this-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture after this change
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-design-decisions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key design decisions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Key design decisions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#amd64-nodes-use-normal-ubuntu-installation-plus-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AMD64 nodes use normal Ubuntu installation plus Ansible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-hdd-is-the-only-longhorn-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The HDD is the only Longhorn candidate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-4-tb-nvme-remains-untouched" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 4 TB NVMe remains untouched
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#one-longhorn-replica-is-correct-for-the-first-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        One Longhorn replica is correct for the first node
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#network-recovery" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network recovery
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Network recovery">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#symptom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Symptom
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#permanent-network-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Permanent network configuration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Network validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ssh-and-sudo-bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SSH and sudo bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#repository-changes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository changes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Repository changes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#inventory-membership" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventory membership
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#host-specific-disk-safety-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Host-specific disk safety variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#global-longhorn-variables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Global Longhorn variables
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safe-longhorn-disk-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safe Longhorn disk preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#why-the-playbook-refuses-to-format-disks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Why the playbook refuses to format disks
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longhorn-disk-preparation-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn disk preparation evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longhorn disk preparation evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-mode-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Check-mode run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#real-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#idempotency-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3s-join-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        K3s join evidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longhorn-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn installation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longhorn installation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-skipped-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Initial skipped run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#enabled-installation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enabled installation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longhorn-placement-and-health-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn placement and health evidence
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longhorn placement and health evidence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pod-placement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pod placement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubernetes-node-labels" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubernetes node labels
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-node-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn node state
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storageclasses" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        StorageClasses
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functional-volume-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional volume test
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functional volume test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-the-test-claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create the test claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-a-pod-and-write-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Create a pod and write data
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#attached-volume-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Attached-volume evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-cleanup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test cleanup
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test interpretation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-warnings-and-outstanding-hardening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known warnings and outstanding hardening
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Known warnings and outstanding hardening">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multipathd-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        multipathd warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dm_crypt-warning" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        dm_crypt warning
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rebuild procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-ubuntu-server-on-the-amd64-node" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Install Ubuntu Server on the AMD64 node
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-identify-the-active-nic" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Identify the active NIC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-the-permanent-netplan-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Create the permanent Netplan file
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-bootstrap-ssh-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Bootstrap SSH access
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-confirm-disk-identity-before-ansible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Confirm disk identity before Ansible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-validate-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Validate inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-dry-run-longhorn-preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Dry-run Longhorn preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-mount-the-longhorn-hdd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Mount the Longhorn HDD
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-join-k3s" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Join K3s
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-enable-and-install-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Enable and install Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-validate-longhorn" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Validate Longhorn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-run-a-functional-pvc-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Run a functional PVC test
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational checks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational checks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#node-and-mount" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Node and mount
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#longhorn-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Longhorn health
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conditions-requiring-attention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conditions requiring attention
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#expansion-procedure-for-amd64-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expansion procedure for amd64-02
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#kubecost-next-step" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Kubecost next step
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-rebuild-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final rebuild checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-status" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final status
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kalaxy3-amd64-node-and-longhorn-installation-evidence-and-rebuild-guide">Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide<a class="headerlink" href="#kalaxy3-amd64-node-and-longhorn-installation-evidence-and-rebuild-guide" title="Permanent link">&para;</a></h1>
+<p><strong>Project:</strong> Kalaxy3<br />
+<strong>Completed:</strong> July 19, 2026, America/Chicago<br />
+<strong>Kubernetes timestamps:</strong> July 20, 2026 UTC<br />
+<strong>Target path:</strong> <code>markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md</code><br />
+<strong>Node:</strong> <code>amd64-01</code><br />
+<strong>Node address:</strong> <code>192.168.2.61</code><br />
+<strong>K3s version:</strong> <code>v1.36.2+k3s1</code><br />
+<strong>Longhorn version:</strong> <code>v1.12.0</code></p>
+<h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
+<p>This page records the addition of the first AMD64 node to Kalaxy3, the network
+recovery required after the Ubuntu installation, the storage decisions made for
+its three physical disks, the Ansible changes that safely prepared the dedicated
+Longhorn HDD, the K3s agent join, the Longhorn installation, and the evidence
+used to prove that dynamic block storage worked correctly.</p>
+<p>The document is intended to be sufficient for rebuilding this part of Kalaxy3
+without depending on memory or rediscovering why each disk and node restriction
+exists.</p>
+<h2 id="final-validated-result">Final validated result<a class="headerlink" href="#final-validated-result" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>AMD64 node:             amd64-01
+Address:                192.168.2.61
+Architecture:           x86_64 / Kubernetes amd64
+K3s role:               agent
+K3s status:             Ready
+K3s version:            v1.36.2+k3s1
+
+Operating-system disk:  /dev/nvme0n1, Samsung SSD 990 EVO 1 TB
+Root mount:             /
+Longhorn disk:          /dev/sda, ST1000VM002-1SD1 1 TB HDD
+Longhorn mount:         /mnt/longhorn
+Longhorn filesystem:    ext4
+Future RAG cache disk:  /dev/nvme1n1, Samsung SSD 990 EVO Plus 4 TB
+
+Longhorn node:          Ready and schedulable
+Longhorn disk:          Ready and schedulable
+Longhorn StorageClass:  longhorn
+Reclaim policy:         Retain
+Replica count:          1 while only one AMD64 storage node exists
+Functional test:        PVC bound, volume attached, file written and read
+Test cleanup:           PVC, PV, and Longhorn volume removed
+</code></pre></div>
+<h2 id="architecture-after-this-change">Architecture after this change<a class="headerlink" href="#architecture-after-this-change" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Kalaxy3 K3s cluster
+├── arm64-01  192.168.2.51  control-plane, etcd
+├── arm64-02  192.168.2.52  control-plane, etcd
+├── arm64-03  192.168.2.53  control-plane, etcd
+├── arm64-04  192.168.2.54  agent
+├── arm64-05  192.168.2.55  agent
+└── amd64-01  192.168.2.61  agent
+    ├── 1 TB NVMe  -&gt; Ubuntu and K3s root filesystem
+    ├── 1 TB HDD   -&gt; /mnt/longhorn
+    └── 4 TB NVMe  -&gt; reserved for future local RAG/PDF cache
+</code></pre></div>
+<p>The five Raspberry Pi HDDs remain dedicated to distributed MinIO at
+<code>/mnt/minio</code>. The AMD64 HDD is dedicated to Longhorn at <code>/mnt/longhorn</code>.
+MinIO and Longhorn must never be configured to use the same disk or mount path.</p>
+<h2 id="key-design-decisions">Key design decisions<a class="headerlink" href="#key-design-decisions" title="Permanent link">&para;</a></h2>
+<h3 id="amd64-nodes-use-normal-ubuntu-installation-plus-ansible">AMD64 nodes use normal Ubuntu installation plus Ansible<a class="headerlink" href="#amd64-nodes-use-normal-ubuntu-installation-plus-ansible" title="Permanent link">&para;</a></h3>
+<p>The Raspberry Pi nodes use the Ubuntu preinstalled image and custom cloud-init
+files. The AMD64 nodes do not use that Pi flashing workflow.</p>
+<p>The intended AMD64 sequence is:</p>
+<div class="highlight"><pre><span></span><code>Install Ubuntu Server normally from ISO
+→ establish working network connectivity
+→ enable SSH and install the administrator key
+→ run Ansible host preparation
+→ join the node to K3s
+→ install AMD64-only services
+</code></pre></div>
+<p>A hostname left with an installer-generated <code>new-*</code> prefix would not prove that
+an AMD64 cloud-init file failed, because custom cloud-init was not the selected
+AMD64 provisioning mechanism.</p>
+<h3 id="the-hdd-is-the-only-longhorn-candidate">The HDD is the only Longhorn candidate<a class="headerlink" href="#the-hdd-is-the-only-longhorn-candidate" title="Permanent link">&para;</a></h3>
+<p>The host contained three disks:</p>
+<div class="highlight"><pre><span></span><code>NAME                        SIZE ROTA TYPE FSTYPE      MOUNTPOINT MODEL
+sda                       931.5G    1 disk ext4                  ST1000VM002-1SD1
+nvme1n1                     3.6T    0 disk                       Samsung SSD 990 EVO Plus 4TB
+├─nvme1n1p1                   1G    0 part vfat
+├─nvme1n1p2                   2G    0 part ext4
+└─nvme1n1p3                 3.6T    0 part LVM2_member
+  └─ubuntu--vg-ubuntu--lv   100G    0 lvm  ext4
+nvme0n1                   931.5G    0 disk                       Samsung SSD 990 EVO 1TB
+├─nvme0n1p1                   1G    0 part vfat        /boot/efi
+└─nvme0n1p2               930.5G    0 part ext4        /
+</code></pre></div>
+<p>The storage assignments are deliberate:</p>
+<table>
+<thead>
+<tr>
+<th>Device</th>
+<th>Assignment</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/dev/nvme0n1</code></td>
+<td>Ubuntu root and K3s runtime</td>
+<td>It already contains <code>/</code> and <code>/boot/efi</code>; it must be protected from storage automation.</td>
+</tr>
+<tr>
+<td><code>/dev/sda</code></td>
+<td><code>/mnt/longhorn</code></td>
+<td>It is the dedicated rotational 1 TB HDD and already contains ext4.</td>
+</tr>
+<tr>
+<td><code>/dev/nvme1n1</code></td>
+<td>Reserved</td>
+<td>It is intended for a future high-speed local cache for PDF/RAG processing and currently contains an old LVM layout.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-4-tb-nvme-remains-untouched">The 4 TB NVMe remains untouched<a class="headerlink" href="#the-4-tb-nvme-remains-untouched" title="Permanent link">&para;</a></h3>
+<p>The 4 TB NVMe is not blank. It contains GPT partitions and an LVM physical
+volume with a 100 GB logical volume. No Ansible task created, removed, formatted,
+or mounted anything on this device during the Longhorn work.</p>
+<p>Before using it for RAG caching in the future:</p>
+<ol>
+<li>Confirm that the existing LVM data is not needed.</li>
+<li>Record the disk model and serial.</li>
+<li>Remove the old LVM and partition layout only as a deliberate, separately
+   reviewed operation.</li>
+<li>Create a dedicated filesystem and mount path such as <code>/mnt/rag-cache</code>.</li>
+<li>Expose it as node-local cache storage, not as part of the rotational Longhorn
+   disk pool.</li>
+</ol>
+<p>The cache should contain rebuildable material such as downloaded PDFs,
+extracted text, OCR products, embeddings, indexes, model artifacts, and other
+performance-oriented data. Irreplaceable application state should remain on
+replicated or backed-up storage.</p>
+<h3 id="one-longhorn-replica-is-correct-for-the-first-node">One Longhorn replica is correct for the first node<a class="headerlink" href="#one-longhorn-replica-is-correct-for-the-first-node" title="Permanent link">&para;</a></h3>
+<p>Only <code>amd64-01</code> currently provides Longhorn storage. The replica count was
+therefore changed from <code>2</code> to <code>1</code>.</p>
+<p>A replica count of two cannot provide two-node resilience when only one eligible
+storage node exists and can prevent new volumes from scheduling correctly.
+After <code>amd64-02</code> joins with its own independent <code>/mnt/longhorn</code> disk, increase
+the default to two and update existing important volumes to two replicas.</p>
+<h2 id="network-recovery">Network recovery<a class="headerlink" href="#network-recovery" title="Permanent link">&para;</a></h2>
+<h3 id="symptom">Symptom<a class="headerlink" href="#symptom" title="Permanent link">&para;</a></h3>
+<p>The add-in network adapter was active in BIOS but appeared inactive after Ubuntu
+started. Ubuntu detected two interfaces:</p>
+<div class="highlight"><pre><span></span><code>enp4s0  DOWN
+enp5s0  DOWN
+</code></pre></div>
+<p>The installed Netplan configuration referenced <code>enp4s0</code>, while the connected
+physical adapter was <code>enp5s0</code>. Manually bringing up <code>enp5s0</code> restored carrier.</p>
+<h3 id="permanent-network-configuration">Permanent network configuration<a class="headerlink" href="#permanent-network-configuration" title="Permanent link">&para;</a></h3>
+<p>The cloud-init-generated Netplan file was removed from the active Netplan
+directory, cloud-init network regeneration was disabled, and a single manually
+managed file was retained:</p>
+<div class="highlight"><pre><span></span><code>/etc/netplan/50-k3s-uplink.yaml
+</code></pre></div>
+<p>Representative configuration:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">network</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">  </span><span class="nt">renderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">networkd</span>
+<span class="w">  </span><span class="nt">ethernets</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">enp5s0</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">dhcp4</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">      </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.61/24</span>
+<span class="w">      </span><span class="nt">routes</span><span class="p">:</span>
+<span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">          </span><span class="nt">via</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.1</span>
+<span class="w">      </span><span class="nt">nameservers</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">addresses</span><span class="p">:</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.1</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.1.1</span>
+<span class="w">          </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8.8.8.8</span>
+<span class="w">      </span><span class="nt">optional</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+<p>Cloud-init network regeneration was disabled with:</p>
+<div class="highlight"><pre><span></span><code>/etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">config</span><span class="p">:</span><span class="w"> </span><span class="nv">disabled</span><span class="p p-Indicator">}</span>
+</code></pre></div>
+<h3 id="network-validation">Network validation<a class="headerlink" href="#network-validation" title="Permanent link">&para;</a></h3>
+<p>After reboot, the static configuration persisted:</p>
+<div class="highlight"><pre><span></span><code>enp5s0  UP  192.168.2.61/24
+</code></pre></div>
+<p>The node successfully reached the first K3s server:</p>
+<div class="highlight"><pre><span></span><code>ping<span class="w"> </span>-c<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">192</span>.168.2.51
+</code></pre></div>
+<h2 id="ssh-and-sudo-bootstrap">SSH and sudo bootstrap<a class="headerlink" href="#ssh-and-sudo-bootstrap" title="Permanent link">&para;</a></h2>
+<p>The Mac mini SSH key was installed with:</p>
+<div class="highlight"><pre><span></span><code>ssh-copy-id<span class="w"> </span>dbuddenbaum@192.168.2.61
+</code></pre></div>
+<p>Observed result:</p>
+<div class="highlight"><pre><span></span><code>Number of key(s) added: 1
+</code></pre></div>
+<p>Passwordless sudo was then configured for Ansible in:</p>
+<div class="highlight"><pre><span></span><code>/etc/sudoers.d/90-k3s-admin
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>dbuddenbaum ALL=(ALL) NOPASSWD:ALL
+</code></pre></div>
+<p>Validation:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>dbuddenbaum@192.168.2.61<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;sudo -n true &amp;&amp; echo &quot;sudo ready&quot;&#39;</span>
+</code></pre></div>
+<h2 id="repository-changes">Repository changes<a class="headerlink" href="#repository-changes" title="Permanent link">&para;</a></h2>
+<p>The completed work was committed and pushed to <code>main</code> as commit:</p>
+<div class="highlight"><pre><span></span><code>af6857f  Add amd64 Longhorn node and dedicated storage provisioning
+</code></pre></div>
+<p>The local commit was rebased over two generated-documentation commits before a
+normal, non-force push.</p>
+<h3 id="inventory-membership">Inventory membership<a class="headerlink" href="#inventory-membership" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong></p>
+<div class="highlight"><pre><span></span><code>infrastructure/k3s-homelab/inventory/hosts.yml
+</code></pre></div>
+<p><code>amd64-01</code> was added as a K3s agent with its own SSH user:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">k3s_agents</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">arm64-04</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.54</span>
+<span class="w">    </span><span class="nt">arm64-05</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.55</span>
+<span class="w">    </span><span class="nt">amd64-01</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ansible_host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.2.61</span>
+<span class="w">      </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dbuddenbaum</span>
+</code></pre></div>
+<p>A dedicated Longhorn inventory group was added:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">longhorn_nodes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">amd64-01</span><span class="p">:</span>
+</code></pre></div>
+<p>This prevents the Longhorn disk preparation play from running on Raspberry Pi
+nodes or unrelated AMD64 nodes.</p>
+<h3 id="host-specific-disk-safety-variables">Host-specific disk safety variables<a class="headerlink" href="#host-specific-disk-safety-variables" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong></p>
+<div class="highlight"><pre><span></span><code>infrastructure/k3s-homelab/inventory/host_vars/amd64-01.yml
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="nn">---</span>
+<span class="nt">longhorn_disk_expected_model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ST1000VM002-1SD1</span>
+<span class="nt">longhorn_disk_min_bytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">800000000000</span>
+<span class="nt">longhorn_disk_max_bytes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1200000000000</span>
+<span class="nt">longhorn_allowed_filesystems</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ext4</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">xfs</span>
+
+<span class="c1"># Both NVMe devices are intentionally excluded by rotational-disk discovery.</span>
+</code></pre></div>
+<p>The model assertion makes the first node especially conservative. Future nodes
+may use different HDD models and should receive their own host-specific value.</p>
+<h3 id="global-longhorn-variables">Global Longhorn variables<a class="headerlink" href="#global-longhorn-variables" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong></p>
+<div class="highlight"><pre><span></span><code>infrastructure/k3s-homelab/inventory/group_vars/all.yml
+</code></pre></div>
+<p>Relevant values after this change:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">install_longhorn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">longhorn_version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;1.12.0&quot;</span>
+<span class="nt">longhorn_data_path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/mnt/longhorn</span>
+
+<span class="c1"># Use one replica until amd64-02 joins. Increase this to 2 afterward and</span>
+<span class="c1"># update existing Longhorn volumes to two replicas.</span>
+<span class="nt">longhorn_replica_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p><code>install_longhorn</code> was initially left false while the node and mount were being
+validated, then changed to true immediately before the Longhorn platform phase.</p>
+<h3 id="safe-longhorn-disk-preparation">Safe Longhorn disk preparation<a class="headerlink" href="#safe-longhorn-disk-preparation" title="Permanent link">&para;</a></h3>
+<p><strong>File:</strong></p>
+<div class="highlight"><pre><span></span><code>infrastructure/k3s-homelab/playbooks/longhorn-prerequisites.yml
+</code></pre></div>
+<p>The play now targets only <code>longhorn_nodes</code> and performs these operations:</p>
+<ol>
+<li>Assert that the host architecture is <code>x86_64</code>.</li>
+<li>Install <code>open-iscsi</code>, <code>nfs-common</code>, <code>cryptsetup</code>, and <code>dmsetup</code>.</li>
+<li>Enable <code>iscsid</code>.</li>
+<li>Read the complete block-device inventory with <code>lsblk --json --bytes</code>.</li>
+<li>Select only whole disks that are:</li>
+<li>rotational;</li>
+<li>non-removable;</li>
+<li>between 800 GB and 1.2 TB.</li>
+<li>Require exactly one candidate.</li>
+<li>Require the exact expected disk model.</li>
+<li>Discover and protect the physical root disk.</li>
+<li>Refuse a disk mounted at a different path.</li>
+<li>Require an existing ext4 or XFS filesystem and valid UUID.</li>
+<li>Refuse to format a disk.</li>
+<li>Create <code>/mnt/longhorn</code>.</li>
+<li>Mount the disk by UUID using <code>defaults,noatime</code>.</li>
+<li>Persist the mount in <code>/etc/fstab</code>.</li>
+<li>Verify the resulting mount.</li>
+</ol>
+<p>The architecture assertion was updated to avoid Ansible's deprecated injected
+fact variables:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Confirm Longhorn nodes use the AMD64 architecture</span>
+<span class="w">  </span><span class="nt">ansible.builtin.assert</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">that</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ansible_facts[&quot;architecture&quot;] == &quot;x86_64&quot;</span>
+<span class="w">    </span><span class="nt">fail_msg</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<span class="w">      </span><span class="no">{{ inventory_hostname }} is {{ ansible_facts[&quot;architecture&quot;] }}, not x86_64.</span>
+</code></pre></div>
+<h3 id="why-the-playbook-refuses-to-format-disks">Why the playbook refuses to format disks<a class="headerlink" href="#why-the-playbook-refuses-to-format-disks" title="Permanent link">&para;</a></h3>
+<p>Automated discovery is useful for selecting the intended disk, but formatting
+is destructive. The playbook therefore stops when the selected disk does not
+already contain an approved filesystem.</p>
+<p>A future rebuild that uses a blank replacement HDD must include a separate,
+explicitly reviewed disk-initialization step before this playbook runs. The
+normal Longhorn prerequisite play must continue to refuse formatting.</p>
+<h2 id="longhorn-disk-preparation-evidence">Longhorn disk preparation evidence<a class="headerlink" href="#longhorn-disk-preparation-evidence" title="Permanent link">&para;</a></h2>
+<h3 id="check-mode-run">Check-mode run<a class="headerlink" href="#check-mode-run" title="Permanent link">&para;</a></h3>
+<p>Command:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/longhorn-prerequisites.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--limit<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--diff<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>Observed selection:</p>
+<div class="highlight"><pre><span></span><code>Node: amd64-01
+Device: /dev/sda
+Model: ST1000VM002-1SD1
+Filesystem: ext4
+Mount: /mnt/longhorn
+</code></pre></div>
+<p>The check-mode recap was:</p>
+<div class="highlight"><pre><span></span><code>amd64-01 : ok=20 changed=4 unreachable=0 failed=0 skipped=1
+</code></pre></div>
+<p>The apparent changes represented what Ansible would create or mount; check mode
+did not modify the node.</p>
+<h3 id="real-run">Real run<a class="headerlink" href="#real-run" title="Permanent link">&para;</a></h3>
+<p>The same playbook was run without <code>--check</code>.</p>
+<p>Observed result:</p>
+<div class="highlight"><pre><span></span><code>amd64-01 : ok=21 changed=4 unreachable=0 failed=0 skipped=0
+</code></pre></div>
+<p>The mount verification passed and the play reported:</p>
+<div class="highlight"><pre><span></span><code>Node: amd64-01
+Device: /dev/sda
+Model: ST1000VM002-1SD1
+Filesystem: ext4
+Mount: /mnt/longhorn
+</code></pre></div>
+<h3 id="idempotency-evidence">Idempotency evidence<a class="headerlink" href="#idempotency-evidence" title="Permanent link">&para;</a></h3>
+<p>A later check-mode run reported no changes:</p>
+<div class="highlight"><pre><span></span><code>amd64-01 : ok=20 changed=0 unreachable=0 failed=0 skipped=1
+</code></pre></div>
+<p>This established that the package state, iSCSI service, disk selection,
+filesystem validation, mount directory, UUID-based fstab entry, and active mount
+were all stable.</p>
+<h2 id="k3s-join-evidence">K3s join evidence<a class="headerlink" href="#k3s-join-evidence" title="Permanent link">&para;</a></h2>
+<p>The AMD64 node was joined using the existing Intel phase:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/phases/phase-08-intel.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>The phase:</p>
+<ul>
+<li>reran common K3s prerequisites idempotently across all six nodes;</li>
+<li>validated all five Pi MinIO mounts without involving <code>amd64-01</code>;</li>
+<li>reran the dedicated Longhorn disk preparation on <code>amd64-01</code>;</li>
+<li>read the existing cluster token from <code>arm64-01</code>;</li>
+<li>wrote the K3s agent configuration on <code>amd64-01</code>;</li>
+<li>installed and started <code>k3s-agent</code>;</li>
+<li>exported the kubeconfig back to the Mac.</li>
+</ul>
+<p>Relevant observed tasks:</p>
+<div class="highlight"><pre><span></span><code>TASK [Create K3s configuration directory]
+changed: [amd64-01]
+
+TASK [Write K3s agent configuration]
+changed: [amd64-01]
+
+TASK [Install and join K3s agent]
+changed: [amd64-01]
+
+RUNNING HANDLER [Restart K3s agent]
+changed: [amd64-01]
+
+TASK [Wait for K3s agent service]
+ok: [amd64-01]
+</code></pre></div>
+<p>Final recap:</p>
+<div class="highlight"><pre><span></span><code>amd64-01 : ok=34 changed=7 unreachable=0 failed=0 skipped=0
+</code></pre></div>
+<p>Kubernetes validation showed:</p>
+<div class="highlight"><pre><span></span><code>NAME       STATUS   ROLES                VERSION        ARCH
+amd64-01   Ready    &lt;none&gt;               v1.36.2+k3s1   amd64
+arm64-01   Ready    control-plane,etcd   v1.36.2+k3s1   arm64
+arm64-02   Ready    control-plane,etcd   v1.36.2+k3s1   arm64
+arm64-03   Ready    control-plane,etcd   v1.36.2+k3s1   arm64
+arm64-04   Ready    &lt;none&gt;               v1.36.2+k3s1   arm64
+arm64-05   Ready    &lt;none&gt;               v1.36.2+k3s1   arm64
+</code></pre></div>
+<h2 id="longhorn-installation">Longhorn installation<a class="headerlink" href="#longhorn-installation" title="Permanent link">&para;</a></h2>
+<h3 id="initial-skipped-run">Initial skipped run<a class="headerlink" href="#initial-skipped-run" title="Permanent link">&para;</a></h3>
+<p>The first Longhorn-only platform command skipped the phase because
+<code>install_longhorn</code> was still false:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="nv">platform_phase</span><span class="o">=</span>longhorn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>This was correct feature-flag behavior rather than an installation failure.</p>
+<h3 id="enabled-installation">Enabled installation<a class="headerlink" href="#enabled-installation" title="Permanent link">&para;</a></h3>
+<p>After setting:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">install_longhorn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">longhorn_replica_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p>The same normal command was run without an override:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="nv">platform_phase</span><span class="o">=</span>longhorn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>Successful tasks included:</p>
+<div class="highlight"><pre><span></span><code>TASK [Run Longhorn storage phase]
+included: playbooks/tasks/longhorn.yml for arm64-01
+
+TASK [Find AMD64 Kubernetes nodes]
+ok: [arm64-01]
+
+TASK [Label AMD64 nodes for Longhorn and Kubecost]
+changed: [arm64-01]
+
+TASK [Write Longhorn Helm values]
+changed: [arm64-01]
+
+TASK [Install Longhorn]
+changed: [arm64-01]
+
+TASK [Verify the Longhorn StorageClass]
+ok: [arm64-01]
+</code></pre></div>
+<p>Final recap:</p>
+<div class="highlight"><pre><span></span><code>arm64-01 : ok=12 changed=3 unreachable=0 failed=0 skipped=5
+</code></pre></div>
+<p>Although Helm was executed from <code>arm64-01</code>, the generated Longhorn values and
+node labels restricted Longhorn workloads and default disk creation to the
+eligible AMD64 node.</p>
+<h2 id="longhorn-placement-and-health-evidence">Longhorn placement and health evidence<a class="headerlink" href="#longhorn-placement-and-health-evidence" title="Permanent link">&para;</a></h2>
+<h3 id="pod-placement">Pod placement<a class="headerlink" href="#pod-placement" title="Permanent link">&para;</a></h3>
+<p>All Longhorn pods were running on <code>amd64-01</code>:</p>
+<div class="highlight"><pre><span></span><code>csi-attacher-*             1/1  Running  amd64-01
+csi-provisioner-*          1/1  Running  amd64-01
+csi-resizer-*              1/1  Running  amd64-01
+csi-snapshotter-*          1/1  Running  amd64-01
+engine-image-*             1/1  Running  amd64-01
+instance-manager-*         1/1  Running  amd64-01
+longhorn-csi-plugin-*      3/3  Running  amd64-01
+longhorn-driver-deployer-* 1/1  Running  amd64-01
+longhorn-manager-*         2/2  Running  amd64-01
+longhorn-ui-*              1/1  Running  amd64-01
+</code></pre></div>
+<p>No Longhorn pod was scheduled on an ARM64 node.</p>
+<h3 id="kubernetes-node-labels">Kubernetes node labels<a class="headerlink" href="#kubernetes-node-labels" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>NAME       STATUS   ARCH    CREATE-DEFAULT-DISK   LONGHORN
+amd64-01   Ready    amd64   true                  true
+arm64-01   Ready    arm64
+arm64-02   Ready    arm64
+arm64-03   Ready    arm64
+arm64-04   Ready    arm64
+arm64-05   Ready    arm64
+</code></pre></div>
+<h3 id="longhorn-node-state">Longhorn node state<a class="headerlink" href="#longhorn-node-state" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>NAME       READY   ALLOWSCHEDULING   SCHEDULABLE
+amd64-01   True    true              True
+</code></pre></div>
+<p>The Longhorn node object registered one filesystem disk:</p>
+<div class="highlight"><pre><span></span><code>Path:                 /mnt/longhorn
+Allow scheduling:     true
+Disk type:            filesystem
+Storage maximum:      983351140352 bytes
+Storage available:    983249715200 bytes at validation
+Storage scheduled:    0 bytes before the functional test
+</code></pre></div>
+<p>The disk conditions were:</p>
+<div class="highlight"><pre><span></span><code>Ready:        True
+Schedulable:  True
+</code></pre></div>
+<h3 id="storageclasses">StorageClasses<a class="headerlink" href="#storageclasses" title="Permanent link">&para;</a></h3>
+<p>The cluster contained:</p>
+<div class="highlight"><pre><span></span><code>NAME                   PROVISIONER                                             RECLAIMPOLICY   VOLUMEBINDINGMODE
+local-path (default)   rancher.io/local-path                                   Delete          WaitForFirstConsumer
+longhorn               driver.longhorn.io                                      Retain          Immediate
+longhorn-static        driver.longhorn.io                                      Delete          Immediate
+minio-local            kubernetes.io/no-provisioner                            Retain          WaitForFirstConsumer
+nfs-hdd                cluster.local/nfs-hdd-nfs-subdir-external-provisioner   Retain          Immediate
+nfs-ssd                cluster.local/nfs-ssd-nfs-subdir-external-provisioner   Retain          Immediate
+</code></pre></div>
+<p><code>local-path</code> intentionally remained the cluster default. Workloads that need
+Longhorn must request <code>storageClassName: longhorn</code> explicitly unless a future
+architecture decision changes the default.</p>
+<h2 id="functional-volume-test">Functional volume test<a class="headerlink" href="#functional-volume-test" title="Permanent link">&para;</a></h2>
+<h3 id="create-the-test-claim">Create the test claim<a class="headerlink" href="#create-the-test-claim" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">kind: PersistentVolumeClaim</span>
+<span class="s">metadata:</span>
+<span class="s">  name: longhorn-test</span>
+<span class="s">  namespace: default</span>
+<span class="s">spec:</span>
+<span class="s">  accessModes:</span>
+<span class="s">    - ReadWriteOnce</span>
+<span class="s">  storageClassName: longhorn</span>
+<span class="s">  resources:</span>
+<span class="s">    requests:</span>
+<span class="s">      storage: 1Gi</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p>The claim initially appeared <code>Pending</code> when checked at age zero, then bound
+normally:</p>
+<div class="highlight"><pre><span></span><code>NAME            STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS
+longhorn-test   Bound    pvc-9ae54f0e-9849-414a-9369-4d277f4447ed   1Gi        RWO            longhorn
+</code></pre></div>
+<p>Before a pod used it, the Longhorn volume correctly appeared detached:</p>
+<div class="highlight"><pre><span></span><code>STATE      ROBUSTNESS   NODE
+detached   unknown
+</code></pre></div>
+<h3 id="create-a-pod-and-write-data">Create a pod and write data<a class="headerlink" href="#create-a-pod-and-write-data" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>apply<span class="w"> </span>-f<span class="w"> </span>-<span class="w"> </span><span class="s">&lt;&lt;&#39;EOF&#39;</span>
+<span class="s">apiVersion: v1</span>
+<span class="s">kind: Pod</span>
+<span class="s">metadata:</span>
+<span class="s">  name: longhorn-test</span>
+<span class="s">  namespace: default</span>
+<span class="s">spec:</span>
+<span class="s">  nodeSelector:</span>
+<span class="s">    kubernetes.io/hostname: amd64-01</span>
+<span class="s">  containers:</span>
+<span class="s">    - name: test</span>
+<span class="s">      image: busybox:1.36</span>
+<span class="s">      command:</span>
+<span class="s">        - sh</span>
+<span class="s">        - -c</span>
+<span class="s">        - |</span>
+<span class="s">          echo &quot;Longhorn test $(date)&quot; &gt; /data/test.txt</span>
+<span class="s">          cat /data/test.txt</span>
+<span class="s">          sleep 3600</span>
+<span class="s">      volumeMounts:</span>
+<span class="s">        - name: storage</span>
+<span class="s">          mountPath: /data</span>
+<span class="s">  volumes:</span>
+<span class="s">    - name: storage</span>
+<span class="s">      persistentVolumeClaim:</span>
+<span class="s">        claimName: longhorn-test</span>
+<span class="s">EOF</span>
+</code></pre></div>
+<p>The pod became ready:</p>
+<div class="highlight"><pre><span></span><code>NAME            READY   STATUS    RESTARTS
+longhorn-test   1/1     Running   0
+</code></pre></div>
+<p>The log and direct file read both returned:</p>
+<div class="highlight"><pre><span></span><code>Longhorn test Mon Jul 20 02:38:04 UTC 2026
+</code></pre></div>
+<h3 id="attached-volume-evidence">Attached-volume evidence<a class="headerlink" href="#attached-volume-evidence" title="Permanent link">&para;</a></h3>
+<p>While the pod was running:</p>
+<div class="highlight"><pre><span></span><code>NAME                                       STATE      ROBUSTNESS   SIZE         NODE
+pvc-9ae54f0e-9849-414a-9369-4d277f4447ed   attached   healthy      1073741824   amd64-01
+</code></pre></div>
+<p>Longhorn created one running replica on the intended disk:</p>
+<div class="highlight"><pre><span></span><code>NAME                                                  STATE     NODE       DISK
+pvc-9ae54f0e-9849-414a-9369-4d277f4447ed-r-2133cd4d   running   amd64-01   35f9c7ca-fc4e-427f-8e56-213f26c1d821
+</code></pre></div>
+<p>The instance manager and engine image were both the expected Longhorn v1.12.0
+components.</p>
+<h3 id="test-cleanup">Test cleanup<a class="headerlink" href="#test-cleanup" title="Permanent link">&para;</a></h3>
+<p>The test pod and PVC were deleted. Because the <code>longhorn</code> StorageClass uses the
+<code>Retain</code> reclaim policy, the PV became <code>Released</code> and the detached Longhorn
+volume remained until explicitly removed.</p>
+<p>Cleanup commands:</p>
+<div class="highlight"><pre><span></span><code><span class="nv">TEST_VOLUME</span><span class="o">=</span><span class="s2">&quot;pvc-9ae54f0e-9849-414a-9369-4d277f4447ed&quot;</span>
+
+kubectl<span class="w"> </span>delete<span class="w"> </span>pv<span class="w"> </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TEST_VOLUME</span><span class="si">}</span><span class="s2">&quot;</span>
+
+kubectl<span class="w"> </span>delete<span class="w"> </span>volumes.longhorn.io<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s2">&quot;</span><span class="si">${</span><span class="nv">TEST_VOLUME</span><span class="si">}</span><span class="s2">&quot;</span>
+</code></pre></div>
+<p>Final result:</p>
+<div class="highlight"><pre><span></span><code>No resources found in longhorn-system namespace.
+</code></pre></div>
+<p>This final message referred to Longhorn volume resources, not the Longhorn
+installation itself. The Longhorn pods, node object, disk, CRDs, and
+StorageClasses remained installed.</p>
+<h2 id="test-interpretation">Test interpretation<a class="headerlink" href="#test-interpretation" title="Permanent link">&para;</a></h2>
+<p>The successful test proved all of the following:</p>
+<ul>
+<li>The Longhorn CSI provisioner created a 1 GiB volume.</li>
+<li>Kubernetes bound the claim to a Longhorn PV.</li>
+<li>Longhorn attached the volume to <code>amd64-01</code>.</li>
+<li>A replica was created on the registered <code>/mnt/longhorn</code> disk.</li>
+<li>The pod mounted the volume.</li>
+<li>The container wrote a file.</li>
+<li>The container read the same file.</li>
+<li>The volume reported <code>healthy</code> while attached.</li>
+<li>The volume detached when the consuming pod was removed.</li>
+<li>Retain-policy cleanup behavior was understood and handled deliberately.</li>
+</ul>
+<p>The test did not complete a pod-delete-and-recreate persistence check because
+the PVC was deleted before the pod was recreated. The successful write/read,
+attachment, healthy replica, and clean detach were sufficient to validate the
+installation. A later workload deployment will provide ongoing persistence
+evidence.</p>
+<h2 id="known-warnings-and-outstanding-hardening">Known warnings and outstanding hardening<a class="headerlink" href="#known-warnings-and-outstanding-hardening" title="Permanent link">&para;</a></h2>
+<p>The Longhorn node reported two non-blocking conditions during validation.
+Longhorn remained ready and schedulable, and the functional volume test passed.</p>
+<h3 id="multipathd-warning"><code>multipathd</code> warning<a class="headerlink" href="#multipathd-warning" title="Permanent link">&para;</a></h3>
+<p>Observed condition:</p>
+<div class="highlight"><pre><span></span><code>Multipathd: False
+Reason: MultipathdIsRunning
+Message: multipathd is running with a known issue that affects Longhorn.
+</code></pre></div>
+<p>This node uses local disks and does not currently need multipath SAN support.
+The intended remediation is to stop, disable, and mask <code>multipathd.service</code> and
+<code>multipathd.socket</code>, then persist that behavior in Ansible.</p>
+<p>Do not mark this remediation complete until the commands have actually been run
+and the Longhorn condition has been rechecked.</p>
+<h3 id="dm_crypt-warning"><code>dm_crypt</code> warning<a class="headerlink" href="#dm_crypt-warning" title="Permanent link">&para;</a></h3>
+<p>Observed condition:</p>
+<div class="highlight"><pre><span></span><code>KernelModulesLoaded: False
+Reason: KernelModulesNotLoaded
+Message: Kernel modules [dm_crypt] are not loaded
+</code></pre></div>
+<p>Unencrypted test volumes worked. Loading and persisting <code>dm_crypt</code> is still
+recommended so the node passes all Longhorn prerequisite checks and can support
+encrypted Longhorn volumes later.</p>
+<p>Recommended Ansible tasks after validation:</p>
+<div class="highlight"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load the dm_crypt kernel module</span>
+<span class="w">  </span><span class="nt">ansible.builtin.command</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">argv</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">modprobe</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dm_crypt</span>
+<span class="w">  </span><span class="nt">changed_when</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Load dm_crypt after reboot</span>
+<span class="w">  </span><span class="nt">ansible.builtin.copy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/modules-load.d/longhorn.conf</span>
+<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">group</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">root</span>
+<span class="w">    </span><span class="nt">mode</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;0644&quot;</span>
+<span class="w">    </span><span class="nt">content</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">      </span><span class="no">dm_crypt</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Disable multipathd services</span>
+<span class="w">  </span><span class="nt">ansible.builtin.systemd_service</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">item</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">    </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">    </span><span class="nt">state</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">stopped</span>
+<span class="w">    </span><span class="nt">masked</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">loop</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multipathd.service</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">multipathd.socket</span>
+</code></pre></div>
+<h2 id="rebuild-procedure">Rebuild procedure<a class="headerlink" href="#rebuild-procedure" title="Permanent link">&para;</a></h2>
+<h3 id="1-install-ubuntu-server-on-the-amd64-node">1. Install Ubuntu Server on the AMD64 node<a class="headerlink" href="#1-install-ubuntu-server-on-the-amd64-node" title="Permanent link">&para;</a></h3>
+<p>Install Ubuntu Server 24.04 LTS from the normal ISO. Create the
+<code>dbuddenbaum</code> administrator account and enable OpenSSH Server.</p>
+<p>Do not use the Raspberry Pi image-flashing workflow for AMD64 nodes.</p>
+<h3 id="2-identify-the-active-nic">2. Identify the active NIC<a class="headerlink" href="#2-identify-the-active-nic" title="Permanent link">&para;</a></h3>
+<p>From the console:</p>
+<div class="highlight"><pre><span></span><code>ip<span class="w"> </span>-br<span class="w"> </span>link
+lspci<span class="w"> </span>-nnk<span class="w"> </span><span class="p">|</span><span class="w"> </span>sed<span class="w"> </span>-n<span class="w"> </span><span class="s1">&#39;/Ethernet controller/,+5p&#39;</span>
+sudo<span class="w"> </span>netplan<span class="w"> </span>get
+</code></pre></div>
+<p>Bring candidate interfaces up and check carrier when necessary:</p>
+<div class="highlight"><pre><span></span><code>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>enp4s0<span class="w"> </span>up
+sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>enp5s0<span class="w"> </span>up
+</code></pre></div>
+<p>Use the interface that reports carrier. On the validated <code>amd64-01</code> build, that
+interface was <code>enp5s0</code>.</p>
+<h3 id="3-create-the-permanent-netplan-file">3. Create the permanent Netplan file<a class="headerlink" href="#3-create-the-permanent-netplan-file" title="Permanent link">&para;</a></h3>
+<p>Retain one manually managed file:</p>
+<div class="highlight"><pre><span></span><code>/etc/netplan/50-k3s-uplink.yaml
+</code></pre></div>
+<p>Assign:</p>
+<div class="highlight"><pre><span></span><code>Address:  192.168.2.61/24
+Gateway:  192.168.2.1
+DNS:      192.168.2.1, 1.1.1.1, 8.8.8.8
+</code></pre></div>
+<p>Disable cloud-init network regeneration, apply Netplan, reboot, and verify the
+address survives.</p>
+<h3 id="4-bootstrap-ssh-access">4. Bootstrap SSH access<a class="headerlink" href="#4-bootstrap-ssh-access" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ssh-copy-id<span class="w"> </span>dbuddenbaum@192.168.2.61
+</code></pre></div>
+<p>Create the passwordless sudo file and validate it with <code>visudo</code>.</p>
+<h3 id="5-confirm-disk-identity-before-ansible">5. Confirm disk identity before Ansible<a class="headerlink" href="#5-confirm-disk-identity-before-ansible" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>dbuddenbaum@192.168.2.61<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span><span class="s1">&#39;sudo lsblk -o NAME,SIZE,ROTA,TYPE,FSTYPE,MOUNTPOINT,MODEL,SERIAL&#39;</span>
+</code></pre></div>
+<p>Requirements for this node:</p>
+<div class="highlight"><pre><span></span><code>/dev/nvme0n1 -&gt; root filesystem
+/dev/sda     -&gt; ST1000VM002-1SD1, ext4, Longhorn candidate
+/dev/nvme1n1 -&gt; reserved; no automated changes
+</code></pre></div>
+<p>Stop if the device model, size, filesystem, or root-disk mapping differs.
+Update the host variables only after physically confirming the replacement
+hardware.</p>
+<h3 id="6-validate-inventory">6. Validate inventory<a class="headerlink" href="#6-validate-inventory" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-inventory<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--graph<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p><code>amd64-01</code> must appear in both:</p>
+<div class="highlight"><pre><span></span><code>k3s_agents
+longhorn_nodes
+</code></pre></div>
+<h3 id="7-dry-run-longhorn-preparation">7. Dry-run Longhorn preparation<a class="headerlink" href="#7-dry-run-longhorn-preparation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/longhorn-prerequisites.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--limit<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--diff<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>The selected device must be <code>/dev/sda</code>. Stop immediately if either NVMe appears
+as the candidate.</p>
+<h3 id="8-mount-the-longhorn-hdd">8. Mount the Longhorn HDD<a class="headerlink" href="#8-mount-the-longhorn-hdd" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/longhorn-prerequisites.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--limit<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--diff<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>Validate:</p>
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>dbuddenbaum@192.168.2.61<span class="w"> </span><span class="s1">&#39;</span>
+<span class="s1">  findmnt /mnt/longhorn</span>
+<span class="s1">  df -h /mnt/longhorn</span>
+<span class="s1">  grep -F /mnt/longhorn /etc/fstab</span>
+<span class="s1">  lsblk -o NAME,SIZE,ROTA,FSTYPE,MOUNTPOINTS,MODEL</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<p>Reboot once and confirm <code>/mnt/longhorn</code> mounts automatically.</p>
+<h3 id="9-join-k3s">9. Join K3s<a class="headerlink" href="#9-join-k3s" title="Permanent link">&para;</a></h3>
+<p>Run the complete Intel phase rather than limiting the full K3s join play to one
+host. The play needs access to the existing server group and cluster token.</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/phases/phase-08-intel.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<p>Validate:</p>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>node<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-L<span class="w"> </span>kubernetes.io/arch,kalaxy3.io/longhorn,kalaxy3.io/kubecost
+</code></pre></div>
+<h3 id="10-enable-and-install-longhorn">10. Enable and install Longhorn<a class="headerlink" href="#10-enable-and-install-longhorn" title="Permanent link">&para;</a></h3>
+<p>Use:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">install_longhorn</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">longhorn_replica_count</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
+</code></pre></div>
+<p>Then run:</p>
+<div class="highlight"><pre><span></span><code>ansible-playbook<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-i<span class="w"> </span>inventory/hosts.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>playbooks/platform.yml<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--extra-vars<span class="w"> </span><span class="nv">platform_phase</span><span class="o">=</span>longhorn<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--vault-id<span class="w"> </span>kalaxy3@prompt
+</code></pre></div>
+<h3 id="11-validate-longhorn">11. Validate Longhorn<a class="headerlink" href="#11-validate-longhorn" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>storageclass
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-L<span class="w"> </span>kubernetes.io/arch,node.longhorn.io/create-default-disk,kalaxy3.io/longhorn
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes.longhorn.io<span class="w"> </span>-n<span class="w"> </span>longhorn-system
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes.longhorn.io<span class="w"> </span>amd64-01<span class="w"> </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span>-o<span class="w"> </span>yaml
+</code></pre></div>
+<p>Required conditions:</p>
+<div class="highlight"><pre><span></span><code>amd64-01 Kubernetes node: Ready
+Longhorn node Ready: True
+Longhorn node Schedulable: True
+/mnt/longhorn disk Ready: True
+/mnt/longhorn disk Schedulable: True
+ARM64 Longhorn storage nodes: none
+</code></pre></div>
+<h3 id="12-run-a-functional-pvc-test">12. Run a functional PVC test<a class="headerlink" href="#12-run-a-functional-pvc-test" title="Permanent link">&para;</a></h3>
+<p>Create an explicitly Longhorn-backed PVC and a pod that writes and reads a file.
+Confirm the volume becomes <code>attached</code> and <code>healthy</code>, and confirm one replica is
+running on <code>amd64-01</code>.</p>
+<p>When deleting a test PVC, remember that the StorageClass uses <code>Retain</code>. Remove
+the released PV and Longhorn volume explicitly when the test data is no longer
+needed.</p>
+<h2 id="operational-checks">Operational checks<a class="headerlink" href="#operational-checks" title="Permanent link">&para;</a></h2>
+<h3 id="node-and-mount">Node and mount<a class="headerlink" href="#node-and-mount" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>node<span class="w"> </span>amd64-01<span class="w"> </span>-o<span class="w"> </span>wide
+
+ssh<span class="w"> </span>dbuddenbaum@192.168.2.61<span class="w"> </span><span class="s1">&#39;</span>
+<span class="s1">  systemctl is-active k3s-agent</span>
+<span class="s1">  systemctl is-active iscsid</span>
+<span class="s1">  findmnt /mnt/longhorn</span>
+<span class="s1">  df -h /mnt/longhorn</span>
+<span class="s1">&#39;</span>
+</code></pre></div>
+<h3 id="longhorn-health">Longhorn health<a class="headerlink" href="#longhorn-health" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>pods<span class="w"> </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span>-o<span class="w"> </span>wide
+kubectl<span class="w"> </span>get<span class="w"> </span>nodes.longhorn.io<span class="w"> </span>-n<span class="w"> </span>longhorn-system
+kubectl<span class="w"> </span>get<span class="w"> </span>volumes.longhorn.io<span class="w"> </span>-n<span class="w"> </span>longhorn-system
+kubectl<span class="w"> </span>get<span class="w"> </span>replicas.longhorn.io<span class="w"> </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span>-o<span class="w"> </span>wide
+</code></pre></div>
+<h3 id="conditions-requiring-attention">Conditions requiring attention<a class="headerlink" href="#conditions-requiring-attention" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>kubectl<span class="w"> </span>get<span class="w"> </span>nodes.longhorn.io<span class="w"> </span>amd64-01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-n<span class="w"> </span>longhorn-system<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-o<span class="w"> </span><span class="nv">jsonpath</span><span class="o">=</span><span class="s1">&#39;{range .status.conditions[*]}{.type}: {.status} {.reason}{&quot;\n&quot;}{end}&#39;</span>
+</code></pre></div>
+<h2 id="expansion-procedure-for-amd64-02">Expansion procedure for <code>amd64-02</code><a class="headerlink" href="#expansion-procedure-for-amd64-02" title="Permanent link">&para;</a></h2>
+<p>When the second AMD64 node is available:</p>
+<ol>
+<li>Give it <code>192.168.2.62</code>.</li>
+<li>Add it to <code>k3s_agents</code> and <code>longhorn_nodes</code>.</li>
+<li>Add host-specific disk model and safety limits.</li>
+<li>Prepare and validate its independent <code>/mnt/longhorn</code> HDD.</li>
+<li>Join it to K3s.</li>
+<li>Rerun the Longhorn platform phase.</li>
+<li>Verify both Longhorn nodes and both disks are schedulable.</li>
+<li>Change <code>longhorn_replica_count</code> from <code>1</code> to <code>2</code>.</li>
+<li>Update existing important Longhorn volumes to two replicas.</li>
+<li>Test replica placement across both physical hosts.</li>
+</ol>
+<p>Two replicas on two separate nodes provide node-level redundancy. Two replicas
+on the same physical node do not.</p>
+<h2 id="kubecost-next-step">Kubecost next step<a class="headerlink" href="#kubecost-next-step" title="Permanent link">&para;</a></h2>
+<p>The original Kubecost ClickHouse workload failed on ARM64 with an illegal
+instruction. <code>amd64-01</code> and Longhorn now provide the required architecture and
+persistent block storage foundation.</p>
+<p>Before reinstalling Kubecost:</p>
+<ol>
+<li>Confirm all Kubecost workloads require both:</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="nt">nodeSelector</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">kubernetes.io/arch</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">amd64</span>
+<span class="w">  </span><span class="nt">kalaxy3.io/kubecost</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;true&quot;</span>
+</code></pre></div>
+<ol>
+<li>Change Kubecost stateful storage from the earlier NFS or local-path values to
+   the <code>longhorn</code> StorageClass where appropriate.</li>
+<li>Remove or deliberately handle the old released Kubecost NFS PVs.</li>
+<li>Keep the Longhorn replica count at one until <code>amd64-02</code> joins.</li>
+<li>Reinstall Kubecost and capture separate deployment evidence.</li>
+</ol>
+<h2 id="final-rebuild-checklist">Final rebuild checklist<a class="headerlink" href="#final-rebuild-checklist" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>[ ] Ubuntu Server installed normally on AMD64 hardware
+[ ] Correct NIC identified by carrier
+[ ] /etc/netplan/50-k3s-uplink.yaml is the only active intended Netplan file
+[ ] Static address 192.168.2.61 survives reboot
+[ ] SSH key authentication works
+[ ] Passwordless sudo works for Ansible
+[ ] /dev/nvme0n1 confirmed as root disk
+[ ] /dev/sda confirmed as the dedicated 1 TB rotational HDD
+[ ] /dev/nvme1n1 preserved for future RAG cache
+[ ] amd64-01 is in k3s_agents and longhorn_nodes
+[ ] Host disk-model safety variable matches the physical HDD
+[ ] Longhorn preparation dry run selects only /dev/sda
+[ ] /dev/sda is mounted by UUID at /mnt/longhorn
+[ ] Mount survives reboot
+[ ] amd64-01 joins K3s as Ready amd64 agent
+[ ] Longhorn labels exist only on intended AMD64 nodes
+[ ] Longhorn pods are Running
+[ ] Longhorn node and disk are Ready and schedulable
+[ ] StorageClass longhorn exists with replica count 1
+[ ] Test PVC binds
+[ ] Test pod attaches the volume and writes/reads data
+[ ] Test volume reports healthy
+[ ] Retained test resources are removed deliberately
+[ ] multipathd warning reviewed and remediated
+[ ] dm_crypt module loaded and persisted
+[ ] Changes committed and pushed
+</code></pre></div>
+<h2 id="final-status">Final status<a class="headerlink" href="#final-status" title="Permanent link">&para;</a></h2>
+<p><strong>PASS — first AMD64 Longhorn storage node installed and functionally validated.</strong></p>
+<p>As of July 19, 2026:</p>
+<ul>
+<li><code>amd64-01</code> is a Ready K3s agent.</li>
+<li>The operating-system NVMe is protected.</li>
+<li>The 4 TB future RAG-cache NVMe is untouched.</li>
+<li>The dedicated 1 TB HDD is persistently mounted at <code>/mnt/longhorn</code>.</li>
+<li>Longhorn 1.12.0 is installed on the AMD64 node.</li>
+<li>The Longhorn node and disk are ready and schedulable.</li>
+<li>Dynamic PVC provisioning succeeded.</li>
+<li>Volume attachment and replica creation succeeded.</li>
+<li>Container-level write and read verification succeeded.</li>
+<li>Test resources were cleaned up.</li>
+<li>The repository changes were committed and pushed.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
