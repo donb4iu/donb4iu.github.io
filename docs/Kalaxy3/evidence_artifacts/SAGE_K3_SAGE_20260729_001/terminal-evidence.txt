@@ -1,0 +1,754 @@
+# Kalaxy3 SAGE continuous-improvement terminal evidence
+
+captured_at=2026-07-29T00:07:16-05:00
+branch=feature/sage-continuous-improvement
+implementation_commit=a754bbb8ce18fe5929f9c5846f1d15bf89e10940
+origin_main=20c06b2c1c6d3a5af5cc392d95f6743bd4ab8d82
+deployment_gate=closed
+cluster_mutation=none
+workload_activation=none
+composite_score_enabled=false
+
+===== ORIGINAL REQUESTER LANGUAGE =====
+agreed, make it so, but remember frequent pushes to a feature branch is good practice
+
+===== PRESERVED FAILED PATHS =====
+1. Interactive heredoc truncation left the shell at a heredoc continuation prompt; recovery used downloadable self-validating scripts.
+2. A zsh loop used the special parameter path and corrupted PATH; recovery used a fresh login shell and reserved special parameter names.
+3. A Git porcelain parser stripped leading status columns and dropped the first filename character; recovery used dedicated Git name-only commands.
+4. A semantically small authority-map edit reformatted the whole JSON file; a follow-up commit restored repository formatting to preserve reviewability.
+5. The first lesson guardrail correctly rejected a remote-state lesson that did not explicitly name origin/main; the lesson was corrected before commit.
+6. The first post-session review recovery used brittle whitespace matching, and the second used ast.unparse string formatting; structural AST subscript matching replaced both approaches.
+
+===== GIT STATUS =====
++ git status
+On branch feature/sage-continuous-improvement
+Your branch is up to date with 'origin/feature/sage-continuous-improvement'.
+
+nothing to commit, working tree clean
+
+exit_code=0
+
+===== FEATURE BRANCH DIVERGENCE =====
++ git rev-list --left-right --count HEAD...origin/feature/sage-continuous-improvement
+0	0
+
+exit_code=0
+
+===== COHESIVE IMPLEMENTATION HISTORY =====
++ git log --reverse --oneline 20c06b2c1c6d3a5af5cc392d95f6743bd4ab8d82..a754bbb8ce18fe5929f9c5846f1d15bf89e10940
+b7ff64d Add SAGE continuous improvement discovery authority
+cb6a60b Preserve SAGE authority map formatting
+208d9f6 Add SAGE continuous improvement policy
+deae608 Add SAGE candidate and session schemas
+fbeedfb Register initial SAGE improvement candidate
+6c76782 Add SAGE lesson-aware preflight
+5e4baa6 Add SAGE session metrics and prediction scoring
+c892f99 Add SAGE cost and observability feedback
+55a375c Add SAGE candidate lifecycle controls
+4168221 Add SAGE action lifecycle and baseline extraction
+a754bbb Add SAGE post-session review controls
+
+exit_code=0
+
+===== IMPLEMENTATION CHANGE STATISTICS =====
++ git diff --stat 20c06b2c1c6d3a5af5cc392d95f6743bd4ab8d82...a754bbb8ce18fe5929f9c5846f1d15bf89e10940
+ Makefile                                           |   59 +-
+ .../kalaxy3-sage-continuous-improvement-process.md |  477 +++++
+ ...age-change-candidate-lifecycle-schema-v1.0.json |  149 ++
+ .../sage-change-candidate-schema-v1.0.json         |  501 +++++
+ ...ontinuous-improvement-baseline-schema-v1.0.json |  394 ++++
+ .../sage-feedback-comparison-schema-v1.0.json      |  309 ++++
+ .../sage-improvement-action-schema-v1.0.json       |  196 ++
+ .../sage-post-session-review-schema-v1.0.json      |  391 ++++
+ .../sage-session-improvement-schema-v1.0.json      |  374 ++++
+ .../sage-session-scorecard-schema-v1.0.json        |  335 ++++
+ sage-change-authority.json                         |  121 ++
+ sage-change-candidate-lifecycle-registry.json      |   30 +
+ sage-change-candidate-registry.json                |  182 ++
+ sage-continuous-improvement-baseline-registry.json |  102 ++
+ sage-continuous-improvement-policy.json            |  462 +++++
+ sage-feedback-baseline-registry.json               |    5 +
+ sage-improvement-actions.json                      |    5 +
+ sage-lessons.json                                  |  386 ++++
+ sage-post-session-review-registry.json             |    5 +
+ sage-session-improvement-registry.json             |    5 +
+ scripts/sage/sage-baseline-extract.py              |  509 ++++++
+ scripts/sage/sage-candidate-lifecycle-guardrail.py |  275 +++
+ scripts/sage/sage-candidate-lifecycle.py           | 1102 +++++++++++
+ scripts/sage/sage-change-discovery-guardrail.py    |    6 +
+ scripts/sage/sage-change-preflight.py              |   24 +
+ .../sage/sage-continuous-improvement-guardrail.py  | 1933 ++++++++++++++++++++
+ scripts/sage/sage-feedback-compare.py              |  614 +++++++
+ scripts/sage/sage-feedback-guardrail.py            |  201 ++
+ scripts/sage/sage-improvement-actions.py           |  856 +++++++++
+ scripts/sage/sage-learning-guardrail.py            |  414 +++++
+ scripts/sage/sage-lessons.py                       |  355 ++++
+ scripts/sage/sage-post-session-review-guardrail.py |  303 +++
+ scripts/sage/sage-post-session-review.py           |  990 ++++++++++
+ scripts/sage/sage-session-score.py                 |  684 +++++++
+ 34 files changed, 12752 insertions(+), 2 deletions(-)
+
+exit_code=0
+
+===== FOUNDATIONAL CANDIDATE STATUS =====
++ python3 scripts/sage/sage-candidate-lifecycle.py --status --change-id SAGE-CHANGE-20260728-001
+Kalaxy3 SAGE candidate lifecycle: PASS
+Change ID: SAGE-CHANGE-20260728-001
+Status: staged-implementation
+Branch: feature/sage-continuous-improvement
+Deployment gate: closed
+Revalidation valid until: 2026-08-27
+Lifecycle events: 1
+
+exit_code=0
+
+===== LESSON REGISTRY =====
++ python3 -m json.tool sage-lessons.json
+{
+    "schema_version": "1.0",
+    "registry_type": "lessons",
+    "lessons": [
+        {
+            "lesson_id": "SAGE-LESSON-20260728-001",
+            "title": "Avoid heredocs for long interactive terminal payloads",
+            "status": "accepted",
+            "contexts": [
+                "repository-governance",
+                "documentation",
+                "continuous-improvement"
+            ],
+            "match_terms": [
+                "heredoc",
+                "large pasted shell block",
+                "multiline shell",
+                "terminal paste",
+                "downloadable script"
+            ],
+            "path_prefixes": [],
+            "failure_signature": "An interactive shell remains at a heredoc continuation prompt because a long pasted payload was truncated or its delimiter was not received.",
+            "symptoms": [
+                "The prompt changes to heredoc>.",
+                "Only the first part of a generated file is visible in the terminal.",
+                "Commands after the heredoc never execute."
+            ],
+            "root_cause": "Large nested multiline payloads are fragile when pasted into an interactive shell, especially when they contain Markdown fences, quotes, or additional heredocs.",
+            "known_resolution": [
+                "Interrupt the incomplete heredoc.",
+                "Verify repository state before retrying.",
+                "Deliver the implementation as a downloadable script.",
+                "Use a short one-line script invocation."
+            ],
+            "preventive_control": [
+                "Do not use heredocs for large Kalaxy3 terminal workflows.",
+                "Generate downloadable, self-validating scripts instead.",
+                "Keep direct terminal commands short and read-only when possible."
+            ],
+            "preflight_detection": [
+                "Flag requests that propose heredocs or large multiline terminal pastes.",
+                "Require a downloadable script when generated content is substantial."
+            ],
+            "first_evidence": [
+                "terminal-session:2026-07-28-continuous-improvement-heredoc-001"
+            ],
+            "latest_evidence": [
+                "terminal-session:2026-07-28-downloadable-script-recovery-001"
+            ],
+            "recurrence_count": 2,
+            "automation_status": "template"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-002",
+            "title": "Do not use zsh special parameter names as loop variables",
+            "status": "accepted",
+            "contexts": [
+                "repository-governance",
+                "continuous-improvement"
+            ],
+            "match_terms": [
+                "zsh",
+                "for path",
+                "path variable",
+                "command not found",
+                "pyenv"
+            ],
+            "path_prefixes": [],
+            "failure_signature": "Commands such as git, grep, and python3 become unavailable after a zsh loop assigns filenames to the variable path.",
+            "symptoms": [
+                "git, grep, and python3 report command not found.",
+                "The prompt hook reports pyenv command not found.",
+                "PATH contains filenames from the loop instead of executable directories."
+            ],
+            "root_cause": "In zsh, path is a special array tied directly to PATH. Assigning to path replaces the executable search path.",
+            "known_resolution": [
+                "Start a fresh login shell with exec /bin/zsh -l.",
+                "Use names such as FILE_PATH or ITEM_PATH instead of path.",
+                "Verify command -v git, grep, python3, and bash."
+            ],
+            "preventive_control": [
+                "Reserve path and other shell-special names in zsh workflows.",
+                "Use uppercase descriptive loop variables in pasted shell commands."
+            ],
+            "preflight_detection": [
+                "Reject generated zsh loops matching for path in.",
+                "Lint shell snippets for assignments to zsh special parameters."
+            ],
+            "first_evidence": [
+                "terminal-session:2026-07-28-zsh-path-corruption-001"
+            ],
+            "latest_evidence": [
+                "terminal-session:2026-07-28-zsh-path-recovery-001"
+            ],
+            "recurrence_count": 1,
+            "automation_status": "template"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-003",
+            "title": "Preserve porcelain status prefixes when parsing Git state",
+            "status": "accepted",
+            "contexts": [
+                "repository-governance",
+                "continuous-improvement"
+            ],
+            "match_terms": [
+                "git status --porcelain",
+                "porcelain parser",
+                "changed path parser",
+                "status prefix",
+                "age-change-authority"
+            ],
+            "path_prefixes": [
+                "scripts/sage/"
+            ],
+            "failure_signature": "A changed-path validator drops the first filename character and reports a false scope mismatch.",
+            "symptoms": [
+                "sage-change-authority.json is displayed as age-change-authority.json.",
+                "A valid one-file correction fails changed-path validation."
+            ],
+            "root_cause": "The parser stripped leading whitespace before removing the two-character Git status plus separator.",
+            "known_resolution": [
+                "Use git diff --name-only, git diff --cached --name-only, and git ls-files.",
+                "When porcelain output is required, preserve the leading status columns."
+            ],
+            "preventive_control": [
+                "Prefer dedicated Git name-only commands over manual porcelain slicing.",
+                "Test parsers with both staged and unstaged single-character-leading filenames."
+            ],
+            "preflight_detection": [
+                "Mutation-test status lines beginning with a leading space.",
+                "Require expected and actual path-set comparison before mutation."
+            ],
+            "first_evidence": [
+                "terminal-session:2026-07-28-porcelain-prefix-bug-001"
+            ],
+            "latest_evidence": [
+                "terminal-session:2026-07-28-porcelain-parser-recovery-001"
+            ],
+            "recurrence_count": 1,
+            "automation_status": "guardrail"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-004",
+            "title": "Preserve repository formatting to avoid review-obscuring churn",
+            "status": "validated",
+            "contexts": [
+                "repository-governance",
+                "continuous-improvement"
+            ],
+            "match_terms": [
+                "json formatting",
+                "formatting correction",
+                "large diff",
+                "normalize json",
+                "review churn"
+            ],
+            "path_prefixes": [
+                "sage-change-authority.json",
+                "sage-continuous-improvement-policy.json"
+            ],
+            "failure_signature": "A semantically small JSON change appears as hundreds of insertions and deletions because the entire file was reformatted.",
+            "symptoms": [
+                "Commit statistics are much larger than the intended change.",
+                "Reviewers cannot distinguish semantic edits from whitespace churn."
+            ],
+            "root_cause": "The writer used a different indentation convention than the repository-owned file.",
+            "known_resolution": [
+                "Compare parsed JSON before and after to confirm semantic scope.",
+                "Restore the repository's existing indentation.",
+                "Validate the correction with git diff -w."
+            ],
+            "preventive_control": [
+                "Detect and preserve the existing file's serialization style.",
+                "Review numstat and whitespace-insensitive diffs before committing."
+            ],
+            "preflight_detection": [
+                "Fail when a small semantic edit rewrites most of a canonical registry.",
+                "Compare parsed payloads to expected semantic transformations."
+            ],
+            "first_evidence": [
+                "commit:b7ff64d2a5bff672aeb7c814c37e7fb8283f6b64"
+            ],
+            "latest_evidence": [
+                "commit:cb6a60bf23d83d22688b2705cabba91bc3b30233"
+            ],
+            "recurrence_count": 1,
+            "automation_status": "guardrail"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-005",
+            "title": "Fetch and revalidate remote state before every cohesive mutation",
+            "status": "validated",
+            "contexts": [
+                "repository-governance",
+                "evidence",
+                "continuous-improvement"
+            ],
+            "match_terms": [
+                "feature branch",
+                "frequent push",
+                "frequent pushes",
+                "origin/main",
+                "git fetch",
+                "remote state",
+                "branch synchronization"
+            ],
+            "path_prefixes": [
+                ".github/workflows/"
+            ],
+            "failure_signature": "A local implementation is based on stale main or stale feature-branch state after automation or another actor advances the remote.",
+            "symptoms": [
+                "Local and remote SHAs differ unexpectedly.",
+                "Generated-document automation advances origin/main after publication.",
+                "A subsequent commit is built against an obsolete baseline."
+            ],
+            "root_cause": "Remote state was assumed rather than fetched and compared immediately before mutation.",
+            "known_resolution": [
+                "Run git fetch origin.",
+                "Compare local HEAD, origin/feature branch, and origin/main to expected SHAs.",
+                "Stop and rediscover authority when the baseline advances."
+            ],
+            "preventive_control": [
+                "Require clean, synchronized feature branches before every cohesive edit.",
+                "Push each validated cohesive commit immediately.",
+                "Revalidate when origin/main changes."
+            ],
+            "preflight_detection": [
+                "Check origin/main and the active feature branch against the expected SHAs before mutation.",
+                "Check exact local and remote SHAs before mutation.",
+                "Fail closed on nonzero feature-branch divergence."
+            ],
+            "first_evidence": [
+                "SAGE-K3-OBS-20260728-003"
+            ],
+            "latest_evidence": [
+                "commit:fbeedfbe827e967bac9530522d44b814bc9b6bd4"
+            ],
+            "recurrence_count": 2,
+            "automation_status": "preflight"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-006",
+            "title": "Use the repository kubeconfig instead of assuming the k3s default path",
+            "status": "accepted",
+            "contexts": [
+                "k3s-cluster",
+                "observability",
+                "centralized-logging"
+            ],
+            "match_terms": [
+                "kubeconfig",
+                "/etc/rancher/k3s/k3s.yaml",
+                "kubectl",
+                "cluster validation"
+            ],
+            "path_prefixes": [
+                "infrastructure/k3s-homelab/playbooks/"
+            ],
+            "failure_signature": "Controller-side Kubernetes validation fails because the workflow assumes a server-local k3s kubeconfig path.",
+            "symptoms": [
+                "kubectl cannot reach the cluster from the controller.",
+                "The expected /etc/rancher/k3s/k3s.yaml file is absent locally."
+            ],
+            "root_cause": "The controller and k3s server have different filesystem and credential contexts.",
+            "known_resolution": [
+                "Use the repository-owned controller kubeconfig.",
+                "Pass KUBECONFIG explicitly to controller-side commands.",
+                "Use remote k3s kubectl only for remote-host validation."
+            ],
+            "preventive_control": [
+                "Separate controller and remote execution paths.",
+                "Never infer kubeconfig location from k3s defaults."
+            ],
+            "preflight_detection": [
+                "Verify the selected kubeconfig exists before cluster commands.",
+                "Print the active kubectl context during validation."
+            ],
+            "first_evidence": [
+                "SAGE-K3-OBS-20260728-002"
+            ],
+            "latest_evidence": [
+                "SAGE-K3-OBS-20260728-003"
+            ],
+            "recurrence_count": 1,
+            "automation_status": "preflight"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-007",
+            "title": "Do not use standard input for both Python code and piped data",
+            "status": "accepted",
+            "contexts": [
+                "repository-governance",
+                "centralized-logging",
+                "continuous-improvement"
+            ],
+            "match_terms": [
+                "stdin",
+                "piped json",
+                "python -",
+                "pipe python",
+                "standard input"
+            ],
+            "path_prefixes": [],
+            "failure_signature": "A Python command receives either its program text or piped JSON, but not both, causing empty input or syntax failures.",
+            "symptoms": [
+                "The JSON parser receives no data.",
+                "Python interprets piped JSON as source code.",
+                "A validation pipeline fails despite valid upstream output."
+            ],
+            "root_cause": "python - consumes standard input as program source, leaving no independent standard-input channel for piped data.",
+            "known_resolution": [
+                "Use python -c for inline code that reads stdin.",
+                "Write code to a temporary or downloadable script.",
+                "Pass data through a file or command argument."
+            ],
+            "preventive_control": [
+                "Do not combine a Python-source heredoc with piped JSON.",
+                "Choose one explicit channel for code and another for data."
+            ],
+            "preflight_detection": [
+                "Flag pipelines combining a pipe with python - and a heredoc.",
+                "Test pipelines with representative nonempty JSON."
+            ],
+            "first_evidence": [
+                "terminal-session:2026-07-27-stdin-code-data-conflict-001"
+            ],
+            "latest_evidence": [
+                "terminal-session:2026-07-27-stdin-code-data-recovery-001"
+            ],
+            "recurrence_count": 1,
+            "automation_status": "template"
+        },
+        {
+            "lesson_id": "SAGE-LESSON-20260728-008",
+            "title": "Use stabilization windows before classifying logging startup failures",
+            "status": "validated",
+            "contexts": [
+                "observability",
+                "centralized-logging",
+                "storage"
+            ],
+            "match_terms": [
+                "loki",
+                "fluent bit",
+                "429",
+                "old timestamps",
+                "startup pressure",
+                "stabilization window"
+            ],
+            "path_prefixes": [
+                "infrastructure/k3s-homelab/playbooks/templates/loki-",
+                "infrastructure/k3s-homelab/playbooks/templates/fluent-bit-",
+                "infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml"
+            ],
+            "failure_signature": "Immediate post-deployment logging checks report transient 429 responses, old timestamps, or startup pressure that clears after the system stabilizes.",
+            "symptoms": [
+                "Collectors retry during Loki startup.",
+                "Recent-query checks initially return old data.",
+                "Resources become ready but telemetry is not yet representative."
+            ],
+            "root_cause": "Readiness and useful steady-state behavior occur on different timelines for stateful logging components.",
+            "known_resolution": [
+                "Separate immediate readiness from stabilization validation.",
+                "Repeat log freshness and error checks after the stabilization window.",
+                "Record both transient and steady-state behavior."
+            ],
+            "preventive_control": [
+                "Require baseline, immediate, stabilization, and trend windows.",
+                "Do not classify transient startup pressure as a persistent defect."
+            ],
+            "preflight_detection": [
+                "Require an explicit stabilization duration in logging validation plans.",
+                "Check restart counts, recent timestamps, and errors after stabilization."
+            ],
+            "first_evidence": [
+                "SAGE-K3-OBS-20260728-002"
+            ],
+            "latest_evidence": [
+                "SAGE-K3-OBS-20260728-003"
+            ],
+            "recurrence_count": 1,
+            "automation_status": "runbook"
+        }
+    ]
+}
+
+exit_code=0
+
+===== CONTINUOUS IMPROVEMENT POLICY CHECK =====
++ make sage-improvement-policy-check
+python3 scripts/sage/sage-continuous-improvement-guardrail.py
+PASS canonical continuous-improvement policy
+PASS four-plane feedback contract
+PASS immutable versioned prediction policy
+PASS candidate and session schema contracts
+PASS deterministic session scorecard contract
+PASS representative candidate and session records
+PASS foundational change candidate registry
+PASS discovery prediction v1 remains immutable
+PASS machine-readable lesson registry
+PASS required seed lessons and preventive controls
+PASS multidimensional sizing and confidence policy
+PASS cost, observability, and process-metric policy
+PASS session rate and prediction scoring policy
+PASS frequent cohesive feature-branch push policy
+PASS canonical lesson and empty action/session registries
+PASS continuous-improvement mutation negative tests
+Kalaxy3 SAGE continuous-improvement guardrail: PASS
+
+exit_code=0
+
+===== POST SESSION REVIEW SELF TEST =====
++ make sage-review-self-test
+python3 scripts/sage/sage-post-session-review.py --self-test
+PASS canonical post-session questions
+PASS canonical session linkage
+PASS known-failure and lesson-use review
+PASS four-plane feedback review
+PASS lesson-to-control decision coverage
+PASS action drafts validated without mutation
+PASS no-action decisions require rationale
+PASS post-session review mutation negative tests
+Kalaxy3 SAGE post-session review self-test: PASS
+python3 scripts/sage/sage-post-session-review-guardrail.py
+PASS canonical post-session review policy
+PASS empty canonical post-session review registry
+PASS canonical questions and session linkage
+PASS known-failure and lesson-use review contract
+PASS four-plane feedback review contract
+PASS lesson-to-control decision coverage
+PASS action registration remains a separate mutation
+PASS expected negative Git tests remain quiet
+PASS post-session policy mutation negative tests
+Kalaxy3 SAGE post-session review guardrail: PASS
+
+exit_code=0
+
+===== LEARNING SELF TEST =====
++ make sage-learning-self-test
+python3 scripts/sage/sage-improvement-actions.py --self-test
+PASS canonical improvement-action lifecycle
+PASS evidence-backed registration
+PASS append-only contiguous action history
+PASS dry-run registration and transition planning
+PASS explicit apply required for mutation
+PASS invalid transitions fail closed
+Kalaxy3 SAGE improvement-action self-test: PASS
+python3 scripts/sage/sage-baseline-extract.py --self-test
+PASS Git numstat baseline parsing
+PASS registry-count extraction contract
+PASS unavailable session metrics remain null
+PASS populated-session aggregation fails closed
+PASS baseline check normalization
+Kalaxy3 SAGE baseline extraction self-test: PASS
+python3 scripts/sage/sage-learning-guardrail.py
+PASS canonical improvement-action lifecycle policy
+PASS empty evidence-backed action registry
+PASS append-only dry-run action tooling
+PASS deterministic repository baseline extraction
+PASS unavailable process metrics remain null
+PASS prediction and provenance references preserved
+PASS composite baseline scoring remains closed
+PASS learning-policy mutation negative tests
+Kalaxy3 SAGE learning guardrail: PASS
+
+exit_code=0
+
+===== FULL ROOT SAGE GUARDRAILS =====
++ make sage-guardrails
+python3 scripts/sage/sage-change-preflight.py --self-test
+Kalaxy3 SAGE change discovery self-test: PASS
+python3 scripts/sage/sage-lessons.py --self-test
+Kalaxy3 SAGE lessons discovery self-test: PASS
+python3 scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage/sage-evidence-orchestrator.py self-test
+Kalaxy3 SAGE evidence orchestration self-test: PASS
+python3 scripts/sage/sage-evidence-orchestration-guardrail.py
+PASS canonical evidence request integrity
+PASS repository-owned evidence policy and authorities
+PASS plain-language evidence request regression tests
+PASS original requester language preservation
+PASS root Make evidence-generation entry points
+PASS evidence policy mutation negative tests
+Kalaxy3 SAGE evidence orchestration guardrail: PASS
+python3 scripts/sage/sage-session-score.py --self-test
+PASS raw session metrics preserved
+PASS required delivery and learning rates derived
+PASS point and inclusive-range prediction scoring
+PASS zero denominators and zero actuals return null
+PASS confidence-bucket range-hit summaries
+PASS session scoring mutation negative tests
+Kalaxy3 SAGE session scoring self-test: PASS
+python3 scripts/sage/sage-feedback-compare.py --self-test
+PASS recurring and one-time cost comparisons
+PASS unit-economics and avoidable-rework comparisons
+PASS observability direction and window comparisons
+PASS provenance and measurement types preserved
+PASS zero-baseline percentages remain null
+PASS comparison mutation negative tests
+Kalaxy3 SAGE feedback comparison self-test: PASS
+python3 scripts/sage/sage-feedback-guardrail.py
+PASS canonical feedback comparison policy
+PASS empty feedback baseline registry
+PASS cost and observability comparison schema
+PASS matching currency, units, metrics, and directions
+PASS provenance and measurement-type preservation
+PASS zero-baseline and composite-score policies
+PASS feedback policy mutation negative tests
+Kalaxy3 SAGE feedback guardrail: PASS
+python3 scripts/sage/sage-candidate-lifecycle.py --self-test
+PASS canonical candidate lifecycle policy
+PASS append-only contiguous transition history
+PASS dry-run transition planning
+PASS closed deployment gate blocks activation
+PASS pre-deployment prediction required
+PASS branch, remote, and expected HEAD checks
+PASS lifecycle mutation negative tests
+Kalaxy3 SAGE candidate lifecycle self-test: PASS
+python3 scripts/sage/sage-candidate-lifecycle-guardrail.py
+PASS canonical candidate lifecycle policy
+PASS candidate and lifecycle status consistency
+PASS append-only contiguous lifecycle history
+PASS foundational staged implementation
+PASS closed deployment gate preserved
+PASS activation prerequisites fail closed
+PASS lifecycle policy mutation negative tests
+Kalaxy3 SAGE candidate lifecycle guardrail: PASS
+python3 scripts/sage/sage-improvement-actions.py --self-test
+PASS canonical improvement-action lifecycle
+PASS evidence-backed registration
+PASS append-only contiguous action history
+PASS dry-run registration and transition planning
+PASS explicit apply required for mutation
+PASS invalid transitions fail closed
+Kalaxy3 SAGE improvement-action self-test: PASS
+python3 scripts/sage/sage-baseline-extract.py --self-test
+PASS Git numstat baseline parsing
+PASS registry-count extraction contract
+PASS unavailable session metrics remain null
+PASS populated-session aggregation fails closed
+PASS baseline check normalization
+Kalaxy3 SAGE baseline extraction self-test: PASS
+python3 scripts/sage/sage-learning-guardrail.py
+PASS canonical improvement-action lifecycle policy
+PASS empty evidence-backed action registry
+PASS append-only dry-run action tooling
+PASS deterministic repository baseline extraction
+PASS unavailable process metrics remain null
+PASS prediction and provenance references preserved
+PASS composite baseline scoring remains closed
+PASS learning-policy mutation negative tests
+Kalaxy3 SAGE learning guardrail: PASS
+python3 scripts/sage/sage-post-session-review.py --self-test
+PASS canonical post-session questions
+PASS canonical session linkage
+PASS known-failure and lesson-use review
+PASS four-plane feedback review
+PASS lesson-to-control decision coverage
+PASS action drafts validated without mutation
+PASS no-action decisions require rationale
+PASS post-session review mutation negative tests
+Kalaxy3 SAGE post-session review self-test: PASS
+python3 scripts/sage/sage-post-session-review-guardrail.py
+PASS canonical post-session review policy
+PASS empty canonical post-session review registry
+PASS canonical questions and session linkage
+PASS known-failure and lesson-use review contract
+PASS four-plane feedback review contract
+PASS lesson-to-control decision coverage
+PASS action registration remains a separate mutation
+PASS expected negative Git tests remain quiet
+PASS post-session policy mutation negative tests
+Kalaxy3 SAGE post-session review guardrail: PASS
+python3 scripts/sage/sage-continuous-improvement-guardrail.py
+PASS canonical continuous-improvement policy
+PASS four-plane feedback contract
+PASS immutable versioned prediction policy
+PASS candidate and session schema contracts
+PASS deterministic session scorecard contract
+PASS representative candidate and session records
+PASS foundational change candidate registry
+PASS discovery prediction v1 remains immutable
+PASS machine-readable lesson registry
+PASS required seed lessons and preventive controls
+PASS multidimensional sizing and confidence policy
+PASS cost, observability, and process-metric policy
+PASS session rate and prediction scoring policy
+PASS frequent cohesive feature-branch push policy
+PASS canonical lesson and empty action/session registries
+PASS continuous-improvement mutation negative tests
+Kalaxy3 SAGE continuous-improvement guardrail: PASS
+python3 scripts/sage/sage-index.py check
+SAGE evidence reconciliation: PASS
+Records:          29
+Generated paths:  43
+Changed paths:    0
+Kalaxy3 repository SAGE guardrails: PASS
+CURATION: markdown/installation/k3s-api-ha-kube-vip.md needs registry review
+CURATION: markdown/installation/k3s-etcd-baseline-backup-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-installation-and-verification.md needs registry review
+CURATION: markdown/installation/kalaxy3-minio-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-observability-and-kubecost.md needs registry review
+CURATION: markdown/installation/kalaxy3-protected-ui-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md needs registry review
+CURATION: markdown/installation/longhorn-kubecost-intel-node-preparation.md needs registry review
+CURATION: markdown/installation/old/amd64-nocloud-seed-helper.md needs registry review
+CURATION: markdown/installation/old/flash.md needs registry review
+CURATION: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning.md needs registry review
+CURATION: markdown/installation/ubuntu-node-provisioning-fixed.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md needs registry review
+LEGACY: markdown/installation/k3s-api-ha-kube-vip.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/k3s-etcd-baseline-backup-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-installation-and-verification.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-minio-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-observability-and-kubecost.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-protected-ui-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/longhorn-kubecost-intel-node-preparation.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/amd64-nocloud-seed-helper.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/flash.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/ubuntu-node-provisioning-fixed.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md indexed as sage-legacy with inferred metadata
+
+exit_code=0

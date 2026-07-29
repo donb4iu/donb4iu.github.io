@@ -1,0 +1,309 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-feedback-comparison-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE cost and observability feedback comparison",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "comparison_id",
+        "change_id",
+        "baseline_snapshot_id",
+        "after_snapshot_id",
+        "observation_window",
+        "cost_comparison",
+        "observability_comparison",
+        "provenance"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "comparison_id": {
+            "type": "string",
+            "pattern": "^SAGE-FEEDBACK-[0-9]{8}-[0-9]{3}$"
+        },
+        "change_id": {
+            "type": "string",
+            "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+        },
+        "baseline_snapshot_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "after_snapshot_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "observation_window": {
+            "enum": [
+                "immediate",
+                "stabilization",
+                "trend",
+                "economic"
+            ]
+        },
+        "cost_comparison": {
+            "$ref": "#/$defs/cost_comparison"
+        },
+        "observability_comparison": {
+            "$ref": "#/$defs/observability_comparison"
+        },
+        "provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "baseline",
+                "after"
+            ],
+            "properties": {
+                "baseline": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/provenance_item"
+                    }
+                },
+                "after": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/provenance_item"
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "number_comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "before",
+                "after",
+                "delta",
+                "percentage_change"
+            ],
+            "properties": {
+                "before": {
+                    "type": "number"
+                },
+                "after": {
+                    "type": "number"
+                },
+                "delta": {
+                    "type": "number"
+                },
+                "percentage_change": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "unit_comparison": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/number_comparison"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "unit"
+                    ],
+                    "properties": {
+                        "unit": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                }
+            ]
+        },
+        "cost_comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "currency",
+                "recurring_run_rate_per_month",
+                "one_time_change_cost",
+                "avoidable_rework_cost",
+                "unit_economics",
+                "measurement_types",
+                "confidence"
+            ],
+            "properties": {
+                "currency": {
+                    "type": "string",
+                    "pattern": "^[A-Z]{3}$"
+                },
+                "recurring_run_rate_per_month": {
+                    "$ref": "#/$defs/number_comparison"
+                },
+                "one_time_change_cost": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "avoidable_rework_cost": {
+                    "$ref": "#/$defs/number_comparison"
+                },
+                "unit_economics": {
+                    "type": "object",
+                    "minProperties": 1,
+                    "additionalProperties": {
+                        "$ref": "#/$defs/unit_comparison"
+                    }
+                },
+                "measurement_types": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "baseline",
+                        "after"
+                    ],
+                    "properties": {
+                        "baseline": {
+                            "enum": [
+                                "measured",
+                                "allocated",
+                                "estimated",
+                                "inferred"
+                            ]
+                        },
+                        "after": {
+                            "enum": [
+                                "measured",
+                                "allocated",
+                                "estimated",
+                                "inferred"
+                            ]
+                        }
+                    }
+                },
+                "confidence": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "baseline",
+                        "after"
+                    ],
+                    "properties": {
+                        "baseline": {
+                            "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                            ]
+                        },
+                        "after": {
+                            "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                            ]
+                        }
+                    }
+                }
+            }
+        },
+        "observability_metric_comparison": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/unit_comparison"
+                },
+                {
+                    "type": "object",
+                    "required": [
+                        "direction",
+                        "result"
+                    ],
+                    "properties": {
+                        "direction": {
+                            "enum": [
+                                "lower-is-better",
+                                "higher-is-better",
+                                "neutral"
+                            ]
+                        },
+                        "result": {
+                            "enum": [
+                                "improved",
+                                "regressed",
+                                "unchanged",
+                                "neutral"
+                            ]
+                        }
+                    }
+                }
+            ]
+        },
+        "observability_comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "baseline_window",
+                "after_window",
+                "metrics"
+            ],
+            "properties": {
+                "baseline_window": {
+                    "const": "baseline"
+                },
+                "after_window": {
+                    "enum": [
+                        "immediate",
+                        "stabilization",
+                        "trend",
+                        "economic"
+                    ]
+                },
+                "metrics": {
+                    "type": "object",
+                    "minProperties": 1,
+                    "additionalProperties": {
+                        "$ref": "#/$defs/observability_metric_comparison"
+                    }
+                }
+            }
+        },
+        "provenance_item": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "source_type",
+                "reference",
+                "measurement_type",
+                "captured_at"
+            ],
+            "properties": {
+                "source_type": {
+                    "enum": [
+                        "sage-evidence",
+                        "kubecost",
+                        "prometheus",
+                        "loki",
+                        "terminal",
+                        "manual"
+                    ]
+                },
+                "reference": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "measurement_type": {
+                    "enum": [
+                        "measured",
+                        "allocated",
+                        "estimated",
+                        "inferred"
+                    ]
+                },
+                "captured_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    }
+}

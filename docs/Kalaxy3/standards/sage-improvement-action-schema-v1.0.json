@@ -1,0 +1,196 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-improvement-action-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE improvement-action registry",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "registry_type",
+        "actions"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "registry_type": {
+            "const": "improvement-actions"
+        },
+        "actions": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/action"
+            }
+        }
+    },
+    "$defs": {
+        "status": {
+            "enum": [
+                "identified",
+                "accepted",
+                "implemented",
+                "validated",
+                "measured",
+                "closed",
+                "rejected"
+            ]
+        },
+        "action": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "action_id",
+                "title",
+                "source_lessons",
+                "source_sessions",
+                "current_status",
+                "owner",
+                "priority",
+                "target_control_type",
+                "desired_outcome",
+                "acceptance_criteria",
+                "measurement_plan",
+                "history"
+            ],
+            "properties": {
+                "action_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-ACTION-[0-9]{8}-[0-9]{3}$"
+                },
+                "title": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source_lessons": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^SAGE-LESSON-[0-9]{8}-[0-9]{3}$"
+                    }
+                },
+                "source_sessions": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^SAGE-SESSION-[0-9]{8}-[0-9]{3}$"
+                    }
+                },
+                "current_status": {
+                    "$ref": "#/$defs/status"
+                },
+                "owner": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "priority": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high",
+                        "critical"
+                    ]
+                },
+                "target_control_type": {
+                    "enum": [
+                        "manual",
+                        "template",
+                        "preflight",
+                        "guardrail",
+                        "runbook",
+                        "automation",
+                        "no-action"
+                    ]
+                },
+                "desired_outcome": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "acceptance_criteria": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "measurement_plan": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "history": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/event"
+                    }
+                }
+            }
+        },
+        "event": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "sequence",
+                "from_status",
+                "to_status",
+                "transition_type",
+                "recorded_at",
+                "actor",
+                "reason",
+                "evidence_references"
+            ],
+            "properties": {
+                "sequence": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "from_status": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/$defs/status"
+                        }
+                    ]
+                },
+                "to_status": {
+                    "$ref": "#/$defs/status"
+                },
+                "transition_type": {
+                    "enum": [
+                        "initial-registration",
+                        "status-transition"
+                    ]
+                },
+                "recorded_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "actor": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "reason": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "evidence_references": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        }
+    }
+}

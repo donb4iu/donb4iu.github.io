@@ -1,0 +1,212 @@
+{
+  "schema_version": "1.0",
+  "evidence_id": "SAGE-K3-SAGE-20260729-001",
+  "change_id": "SAGE-CHANGE-20260728-001",
+  "implementation_commit": "a754bbb8ce18fe5929f9c5846f1d15bf89e10940",
+  "branch": "feature/sage-continuous-improvement",
+  "status": "staged-implementation",
+  "deployment_gate": {
+    "status": "closed",
+    "reason": "The continuous-improvement foundation remains a staged implementation under active development."
+  },
+  "revalidation": {
+    "valid_until": "2026-08-27",
+    "triggers": [
+      "origin/main advances",
+      "SAGE evidence schema changes",
+      "Kubecost baseline changes",
+      "observability architecture changes",
+      "the workstream is selected for activation"
+    ]
+  },
+  "prediction": {
+    "stage": "discovery",
+    "version": 1,
+    "recorded_at": "2026-07-28T21:20:00-05:00",
+    "estimate": {
+      "overall_size": "L",
+      "active_hours": 48,
+      "elapsed_days": 7
+    },
+    "range": {
+      "active_hours_min": 32,
+      "active_hours_max": 80,
+      "elapsed_days_min": 4,
+      "elapsed_days_max": 14
+    },
+    "confidence": "medium",
+    "confidence_basis": [
+      "Repository-owned discovery, evidence, publisher, indexer, and guardrail patterns already exist.",
+      "Kubecost, Prometheus, Grafana, Loki, and published SAGE evidence provide baseline inputs.",
+      "Lesson extraction, longitudinal metrics, prediction scoring, and candidate lifecycle tooling do not yet exist."
+    ],
+    "assumptions": [
+      "The first version will preserve raw metrics and will not create a composite quality score.",
+      "The repository-only foundation will not mutate the cluster or materially change recurring run rate.",
+      "Existing SAGE evidence and deployment workflows remain authoritative."
+    ],
+    "known_unknowns": [
+      "How much historical terminal evidence can be classified automatically with acceptable accuracy.",
+      "Which observability and Kubecost queries can be normalized across different change classes.",
+      "How many comparable sessions are required before T-shirt boundaries and confidence calibration are statistically useful."
+    ],
+    "failure_conditions": [
+      "The implementation creates a parallel authority path instead of extending repository-owned SAGE.",
+      "Recorded predictions can be overwritten after outcomes are known.",
+      "A staged implementation can activate without an explicit open deployment gate.",
+      "Metrics reward documentation volume instead of improved engineering outcomes."
+    ]
+  },
+  "sizing": {
+    "overall": "L",
+    "dimensions": {
+      "implementation_effort": "L",
+      "elapsed_duration": "M",
+      "technical_uncertainty": "L",
+      "operational_risk": "S",
+      "blast_radius": "M",
+      "validation_burden": "L",
+      "cost_exposure": "S",
+      "dependency_complexity": "L"
+    },
+    "confidence": {
+      "rating": "medium",
+      "basis": [
+        "The repository governance surface is defined and testable.",
+        "The historical evidence baseline is rich but is not yet normalized into lessons and process metrics.",
+        "No cluster mutation is required for the governance and tooling foundation."
+      ]
+    }
+  },
+  "expected_value": {
+    "delivery": "high",
+    "operations": "high",
+    "economics": "high",
+    "learning": "very-high"
+  },
+  "initial_baseline": {
+    "baseline_id": "SAGE-BASELINE-20260728-001",
+    "change_id": "SAGE-CHANGE-20260728-001",
+    "captured_at": "2026-07-28T23:35:21-05:00",
+    "branch": "feature/sage-continuous-improvement",
+    "baseline_commit": "20c06b2c1c6d3a5af5cc392d95f6743bd4ab8d82",
+    "current_commit": "55a375c849afa4d59254447b3022a57738df7700",
+    "git_metrics": {
+      "commits_in_range": 9,
+      "files_changed": 24,
+      "insertions": 8354,
+      "deletions": 2,
+      "binary_files": 0
+    },
+    "registry_metrics": {
+      "change_candidates": 1,
+      "lessons": 8,
+      "improvement_actions": 0,
+      "sessions": 0,
+      "feedback_baselines": 0,
+      "candidate_lifecycles": 1
+    },
+    "process_metrics": {
+      "status": "unavailable-no-session-records",
+      "raw": {
+        "commands_executed": null,
+        "commands_failed": null,
+        "commands_retried": null,
+        "manual_corrections": null,
+        "phases_total": null,
+        "phases_first_pass": null,
+        "known_failures_encountered": null,
+        "known_failures_recurred": null,
+        "mutation_opportunities": null,
+        "failures_detected_pre_mutation": null,
+        "applicable_lessons": null,
+        "applicable_lessons_used": null,
+        "avoidable_rework_minutes": null,
+        "prompt_to_validated_change_minutes": null
+      },
+      "derived": {
+        "first_pass_phase_success_rate": null,
+        "known_failure_recurrence_rate": null,
+        "pre_mutation_detection_rate": null,
+        "applicable_lesson_usage_rate": null
+      }
+    },
+    "prediction_reference": {
+      "stage": "discovery",
+      "version": 1,
+      "confidence": "medium",
+      "estimate": {
+        "overall_size": "L",
+        "active_hours": 48,
+        "elapsed_days": 7
+      },
+      "range": {
+        "active_hours_min": 32,
+        "active_hours_max": 80,
+        "elapsed_days_min": 4,
+        "elapsed_days_max": 14
+      }
+    },
+    "measurement_quality": {
+      "git": "measured",
+      "registries": "measured",
+      "process": "unavailable",
+      "overall_confidence": "medium"
+    },
+    "provenance": [
+      {
+        "source_type": "git",
+        "reference": "git:20c06b2c1c6d3a5af5cc392d95f6743bd4ab8d82...55a375c849afa4d59254447b3022a57738df7700",
+        "measurement_type": "measured",
+        "captured_at": "2026-07-28T23:35:21-05:00"
+      },
+      {
+        "source_type": "registry",
+        "reference": "sage-change-candidate-registry.json",
+        "measurement_type": "measured",
+        "captured_at": "2026-07-28T23:35:21-05:00"
+      },
+      {
+        "source_type": "registry",
+        "reference": "sage-session-improvement-registry.json",
+        "measurement_type": "unavailable",
+        "captured_at": "2026-07-28T23:35:21-05:00"
+      }
+    ],
+    "limitations": [
+      "No canonical session records exist yet, so delivery and learning process metrics are null.",
+      "Git metrics describe repository change volume, not engineering quality or business value.",
+      "This baseline is not sufficient for a composite maturity or quality score."
+    ],
+    "composite_score_enabled": false
+  },
+  "lesson_count": 8,
+  "lesson_ids": [
+    "SAGE-LESSON-20260728-001",
+    "SAGE-LESSON-20260728-002",
+    "SAGE-LESSON-20260728-003",
+    "SAGE-LESSON-20260728-004",
+    "SAGE-LESSON-20260728-005",
+    "SAGE-LESSON-20260728-006",
+    "SAGE-LESSON-20260728-007",
+    "SAGE-LESSON-20260728-008"
+  ],
+  "lifecycle_event_count": 1,
+  "registry_counts_at_evidence_boundary": {
+    "change_candidates": 1,
+    "candidate_lifecycles": 1,
+    "lessons": 8,
+    "improvement_actions": 0,
+    "sessions": 0,
+    "feedback_baselines": 0,
+    "post_session_reviews": 0
+  },
+  "composite_score_enabled": {
+    "prediction_scoring": false,
+    "feedback_comparison": false,
+    "baseline": false,
+    "post_session_review": false
+  },
+  "cluster_mutation": "none",
+  "workload_activation": "none"
+}

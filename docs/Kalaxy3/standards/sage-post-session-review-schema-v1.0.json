@@ -1,0 +1,391 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-post-session-review-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE post-session review registry",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "registry_type",
+        "reviews"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "registry_type": {
+            "const": "post-session-reviews"
+        },
+        "reviews": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/review"
+            }
+        }
+    },
+    "$defs": {
+        "review": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "review_id",
+                "session_id",
+                "change_id",
+                "recorded_at",
+                "reviewer",
+                "implementation_commit",
+                "evidence_references",
+                "questions",
+                "failures",
+                "feedback_planes",
+                "control_decisions",
+                "summary",
+                "composite_score_enabled"
+            ],
+            "properties": {
+                "review_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-REVIEW-[0-9]{8}-[0-9]{3}$"
+                },
+                "session_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-SESSION-[0-9]{8}-[0-9]{3}$"
+                },
+                "change_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+                },
+                "recorded_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "reviewer": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "implementation_commit": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{40}$"
+                },
+                "evidence_references": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "questions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "$ref": "#/$defs/question"
+                    }
+                },
+                "failures": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/failure"
+                    }
+                },
+                "feedback_planes": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "delivery",
+                        "operations",
+                        "economics",
+                        "learning"
+                    ],
+                    "properties": {
+                        "delivery": {
+                            "$ref": "#/$defs/feedback_plane"
+                        },
+                        "operations": {
+                            "$ref": "#/$defs/feedback_plane"
+                        },
+                        "economics": {
+                            "$ref": "#/$defs/feedback_plane"
+                        },
+                        "learning": {
+                            "$ref": "#/$defs/feedback_plane"
+                        }
+                    }
+                },
+                "control_decisions": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/$defs/control_decision"
+                    }
+                },
+                "summary": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "composite_score_enabled": {
+                    "const": false
+                }
+            }
+        },
+        "question": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "question",
+                "answer"
+            ],
+            "properties": {
+                "question": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "answer": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "failure": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "failure_id",
+                "summary",
+                "classification",
+                "lesson_ids",
+                "lesson_surfaced",
+                "lesson_used",
+                "recurred",
+                "detected_pre_mutation",
+                "avoidable_rework_minutes",
+                "root_cause",
+                "prevention_opportunity"
+            ],
+            "properties": {
+                "failure_id": {
+                    "type": "string",
+                    "pattern": "^FAIL-[0-9]{3}$"
+                },
+                "summary": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "classification": {
+                    "enum": [
+                        "known",
+                        "new"
+                    ]
+                },
+                "lesson_ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^SAGE-LESSON-[0-9]{8}-[0-9]{3}$"
+                    }
+                },
+                "lesson_surfaced": {
+                    "type": "boolean"
+                },
+                "lesson_used": {
+                    "type": "boolean"
+                },
+                "recurred": {
+                    "type": "boolean"
+                },
+                "detected_pre_mutation": {
+                    "type": "boolean"
+                },
+                "avoidable_rework_minutes": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "root_cause": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "prevention_opportunity": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "feedback_plane": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "summary",
+                "evidence_references"
+            ],
+            "properties": {
+                "summary": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "evidence_references": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        },
+        "control_decision": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "decision_id",
+                "source_lessons",
+                "source_failures",
+                "disposition",
+                "target_control_type",
+                "rationale",
+                "action_draft"
+            ],
+            "properties": {
+                "decision_id": {
+                    "type": "string",
+                    "pattern": "^CONTROL-[0-9]{3}$"
+                },
+                "source_lessons": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^SAGE-LESSON-[0-9]{8}-[0-9]{3}$"
+                    }
+                },
+                "source_failures": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^FAIL-[0-9]{3}$"
+                    }
+                },
+                "disposition": {
+                    "enum": [
+                        "create-action",
+                        "no-action"
+                    ]
+                },
+                "target_control_type": {
+                    "enum": [
+                        "manual",
+                        "template",
+                        "preflight",
+                        "guardrail",
+                        "runbook",
+                        "automation",
+                        "no-action"
+                    ]
+                },
+                "rationale": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "action_draft": {
+                    "oneOf": [
+                        {
+                            "type": "null"
+                        },
+                        {
+                            "$ref": "#/$defs/action_draft"
+                        }
+                    ]
+                }
+            }
+        },
+        "action_draft": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "action_id",
+                "title",
+                "source_lessons",
+                "source_sessions",
+                "owner",
+                "priority",
+                "target_control_type",
+                "desired_outcome",
+                "acceptance_criteria",
+                "measurement_plan"
+            ],
+            "properties": {
+                "action_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-ACTION-[0-9]{8}-[0-9]{3}$"
+                },
+                "title": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source_lessons": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^SAGE-LESSON-[0-9]{8}-[0-9]{3}$"
+                    }
+                },
+                "source_sessions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "pattern": "^SAGE-SESSION-[0-9]{8}-[0-9]{3}$"
+                    }
+                },
+                "owner": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "priority": {
+                    "enum": [
+                        "low",
+                        "medium",
+                        "high",
+                        "critical"
+                    ]
+                },
+                "target_control_type": {
+                    "enum": [
+                        "manual",
+                        "template",
+                        "preflight",
+                        "guardrail",
+                        "runbook",
+                        "automation"
+                    ]
+                },
+                "desired_outcome": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "acceptance_criteria": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "measurement_plan": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,501 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-change-candidate-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE change candidate",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "change_id",
+        "title",
+        "request",
+        "status",
+        "branch",
+        "baseline_commit",
+        "contexts",
+        "dependencies",
+        "predictions",
+        "sizing",
+        "expected_value",
+        "cost",
+        "observability",
+        "implementation_outline",
+        "validation_plan",
+        "deployment_gate",
+        "revalidation"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "change_id": {
+            "type": "string",
+            "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+        },
+        "title": {
+            "type": "string",
+            "minLength": 1
+        },
+        "request": {
+            "type": "string",
+            "minLength": 1
+        },
+        "status": {
+            "enum": [
+                "discovery-needed",
+                "sized",
+                "decision-ready",
+                "sequenced",
+                "staged-implementation",
+                "active",
+                "validated",
+                "closed",
+                "superseded"
+            ]
+        },
+        "branch": {
+            "type": "string",
+            "pattern": "^(feature|staged)/[A-Za-z0-9._/-]+$"
+        },
+        "baseline_commit": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+        },
+        "contexts": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "dependencies": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+            }
+        },
+        "predictions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/prediction"
+            }
+        },
+        "sizing": {
+            "$ref": "#/$defs/sizing"
+        },
+        "expected_value": {
+            "$ref": "#/$defs/expected_value"
+        },
+        "cost": {
+            "$ref": "#/$defs/cost"
+        },
+        "observability": {
+            "$ref": "#/$defs/observability"
+        },
+        "implementation_outline": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "validation_plan": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "deployment_gate": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "status",
+                "reason"
+            ],
+            "properties": {
+                "status": {
+                    "enum": [
+                        "closed",
+                        "open"
+                    ]
+                },
+                "reason": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "revalidation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "valid_until",
+                "triggers"
+            ],
+            "properties": {
+                "valid_until": {
+                    "type": "string",
+                    "format": "date"
+                },
+                "triggers": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        }
+    },
+    "$defs": {
+        "prediction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "stage",
+                "version",
+                "recorded_at",
+                "estimate",
+                "range",
+                "confidence",
+                "confidence_basis",
+                "assumptions",
+                "known_unknowns",
+                "failure_conditions"
+            ],
+            "properties": {
+                "stage": {
+                    "enum": [
+                        "discovery",
+                        "pre-deployment"
+                    ]
+                },
+                "version": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "recorded_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "estimate": {
+                    "type": "object",
+                    "minProperties": 1
+                },
+                "range": {
+                    "type": "object",
+                    "minProperties": 1
+                },
+                "confidence": {
+                    "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                    ]
+                },
+                "confidence_basis": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "assumptions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "known_unknowns": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "failure_conditions": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "sizing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "overall",
+                "dimensions",
+                "confidence"
+            ],
+            "properties": {
+                "overall": {
+                    "enum": [
+                        "XS",
+                        "S",
+                        "M",
+                        "L",
+                        "XL"
+                    ]
+                },
+                "dimensions": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "implementation_effort",
+                        "elapsed_duration",
+                        "technical_uncertainty",
+                        "operational_risk",
+                        "blast_radius",
+                        "validation_burden",
+                        "cost_exposure",
+                        "dependency_complexity"
+                    ],
+                    "properties": {
+                        "implementation_effort": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "elapsed_duration": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "technical_uncertainty": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "operational_risk": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "blast_radius": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "validation_burden": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "cost_exposure": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        },
+                        "dependency_complexity": {
+                            "enum": [
+                                "XS",
+                                "S",
+                                "M",
+                                "L",
+                                "XL"
+                            ]
+                        }
+                    }
+                },
+                "confidence": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "rating",
+                        "basis"
+                    ],
+                    "properties": {
+                        "rating": {
+                            "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                            ]
+                        },
+                        "basis": {
+                            "type": "array",
+                            "minItems": 1,
+                            "items": {
+                                "type": "string",
+                                "minLength": 1
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "expected_value": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "delivery",
+                "operations",
+                "economics",
+                "learning"
+            ],
+            "properties": {
+                "delivery": {
+                    "enum": [
+                        "none",
+                        "low",
+                        "medium",
+                        "high",
+                        "very-high"
+                    ]
+                },
+                "operations": {
+                    "enum": [
+                        "none",
+                        "low",
+                        "medium",
+                        "high",
+                        "very-high"
+                    ]
+                },
+                "economics": {
+                    "enum": [
+                        "none",
+                        "low",
+                        "medium",
+                        "high",
+                        "very-high"
+                    ]
+                },
+                "learning": {
+                    "enum": [
+                        "none",
+                        "low",
+                        "medium",
+                        "high",
+                        "very-high"
+                    ]
+                }
+            }
+        },
+        "cost": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "baseline_references",
+                "one_time_change_cost",
+                "recurring_run_rate_delta",
+                "unit_economics",
+                "avoidable_rework_cost",
+                "measurement_provenance",
+                "confidence"
+            ],
+            "properties": {
+                "baseline_references": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "one_time_change_cost": {
+                    "type": "object"
+                },
+                "recurring_run_rate_delta": {
+                    "type": "object"
+                },
+                "unit_economics": {
+                    "type": "object"
+                },
+                "avoidable_rework_cost": {
+                    "type": "object"
+                },
+                "measurement_provenance": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "confidence": {
+                    "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                    ]
+                }
+            }
+        },
+        "observability": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "baseline_references",
+                "signals",
+                "observation_windows"
+            ],
+            "properties": {
+                "baseline_references": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "signals": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "observation_windows": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "enum": [
+                            "baseline",
+                            "immediate",
+                            "stabilization",
+                            "trend",
+                            "economic"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

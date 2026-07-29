@@ -1,0 +1,394 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-continuous-improvement-baseline-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE continuous-improvement baseline registry",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "registry_type",
+        "baselines"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "registry_type": {
+            "const": "continuous-improvement-baselines"
+        },
+        "baselines": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/baseline"
+            }
+        }
+    },
+    "$defs": {
+        "nullable_nonnegative_number": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": 0
+        },
+        "baseline": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "baseline_id",
+                "change_id",
+                "captured_at",
+                "branch",
+                "baseline_commit",
+                "current_commit",
+                "git_metrics",
+                "registry_metrics",
+                "process_metrics",
+                "prediction_reference",
+                "measurement_quality",
+                "provenance",
+                "limitations",
+                "composite_score_enabled"
+            ],
+            "properties": {
+                "baseline_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-BASELINE-[0-9]{8}-[0-9]{3}$"
+                },
+                "change_id": {
+                    "type": "string",
+                    "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+                },
+                "captured_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "branch": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "baseline_commit": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{40}$"
+                },
+                "current_commit": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{40}$"
+                },
+                "git_metrics": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "commits_in_range",
+                        "files_changed",
+                        "insertions",
+                        "deletions",
+                        "binary_files"
+                    ],
+                    "properties": {
+                        "commits_in_range": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "files_changed": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "insertions": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "deletions": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "binary_files": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "registry_metrics": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "change_candidates",
+                        "lessons",
+                        "improvement_actions",
+                        "sessions",
+                        "feedback_baselines",
+                        "candidate_lifecycles"
+                    ],
+                    "properties": {
+                        "change_candidates": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "lessons": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "improvement_actions": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "sessions": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "feedback_baselines": {
+                            "type": "integer",
+                            "minimum": 0
+                        },
+                        "candidate_lifecycles": {
+                            "type": "integer",
+                            "minimum": 0
+                        }
+                    }
+                },
+                "process_metrics": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "status",
+                        "raw",
+                        "derived"
+                    ],
+                    "properties": {
+                        "status": {
+                            "enum": [
+                                "measured",
+                                "unavailable-no-session-records"
+                            ]
+                        },
+                        "raw": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "commands_executed",
+                                "commands_failed",
+                                "commands_retried",
+                                "manual_corrections",
+                                "phases_total",
+                                "phases_first_pass",
+                                "known_failures_encountered",
+                                "known_failures_recurred",
+                                "mutation_opportunities",
+                                "failures_detected_pre_mutation",
+                                "applicable_lessons",
+                                "applicable_lessons_used",
+                                "avoidable_rework_minutes",
+                                "prompt_to_validated_change_minutes"
+                            ],
+                            "properties": {
+                                "commands_executed": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "commands_failed": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "commands_retried": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "manual_corrections": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "phases_total": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "phases_first_pass": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "known_failures_encountered": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "known_failures_recurred": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "mutation_opportunities": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "failures_detected_pre_mutation": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "applicable_lessons": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "applicable_lessons_used": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "avoidable_rework_minutes": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                },
+                                "prompt_to_validated_change_minutes": {
+                                    "$ref": "#/$defs/nullable_nonnegative_number"
+                                }
+                            }
+                        },
+                        "derived": {
+                            "type": "object",
+                            "additionalProperties": false,
+                            "required": [
+                                "first_pass_phase_success_rate",
+                                "known_failure_recurrence_rate",
+                                "pre_mutation_detection_rate",
+                                "applicable_lesson_usage_rate"
+                            ],
+                            "properties": {
+                                "first_pass_phase_success_rate": {
+                                    "type": [
+                                        "number",
+                                        "null"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "known_failure_recurrence_rate": {
+                                    "type": [
+                                        "number",
+                                        "null"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "pre_mutation_detection_rate": {
+                                    "type": [
+                                        "number",
+                                        "null"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                },
+                                "applicable_lesson_usage_rate": {
+                                    "type": [
+                                        "number",
+                                        "null"
+                                    ],
+                                    "minimum": 0,
+                                    "maximum": 1
+                                }
+                            }
+                        }
+                    }
+                },
+                "prediction_reference": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "stage",
+                        "version",
+                        "confidence",
+                        "estimate",
+                        "range"
+                    ],
+                    "properties": {
+                        "stage": {
+                            "enum": [
+                                "discovery",
+                                "pre-deployment"
+                            ]
+                        },
+                        "version": {
+                            "type": "integer",
+                            "minimum": 1
+                        },
+                        "confidence": {
+                            "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                            ]
+                        },
+                        "estimate": {
+                            "type": "object"
+                        },
+                        "range": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "measurement_quality": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "git",
+                        "registries",
+                        "process",
+                        "overall_confidence"
+                    ],
+                    "properties": {
+                        "git": {
+                            "const": "measured"
+                        },
+                        "registries": {
+                            "const": "measured"
+                        },
+                        "process": {
+                            "enum": [
+                                "measured",
+                                "unavailable"
+                            ]
+                        },
+                        "overall_confidence": {
+                            "enum": [
+                                "high",
+                                "medium",
+                                "low"
+                            ]
+                        }
+                    }
+                },
+                "provenance": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "source_type",
+                            "reference",
+                            "measurement_type",
+                            "captured_at"
+                        ],
+                        "properties": {
+                            "source_type": {
+                                "enum": [
+                                    "git",
+                                    "registry",
+                                    "sage-evidence"
+                                ]
+                            },
+                            "reference": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "measurement_type": {
+                                "enum": [
+                                    "measured",
+                                    "inferred",
+                                    "unavailable"
+                                ]
+                            },
+                            "captured_at": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    }
+                },
+                "limitations": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "composite_score_enabled": {
+                    "const": false
+                }
+            }
+        }
+    }
+}

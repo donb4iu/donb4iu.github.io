@@ -1,0 +1,374 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-session-improvement-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE session improvement record",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "session_id",
+        "change_id",
+        "candidate_prediction_versions",
+        "implementation_commit",
+        "evidence_ids",
+        "started_at",
+        "completed_at",
+        "feedback_planes",
+        "prediction_evaluations",
+        "cost_comparison",
+        "observability_comparison",
+        "lessons",
+        "improvement_actions",
+        "outcome"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "session_id": {
+            "type": "string",
+            "pattern": "^SAGE-SESSION-[0-9]{8}-[0-9]{3}$"
+        },
+        "change_id": {
+            "type": "string",
+            "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+        },
+        "candidate_prediction_versions": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "stage",
+                    "version"
+                ],
+                "properties": {
+                    "stage": {
+                        "enum": [
+                            "discovery",
+                            "pre-deployment"
+                        ]
+                    },
+                    "version": {
+                        "type": "integer",
+                        "minimum": 1
+                    }
+                }
+            }
+        },
+        "implementation_commit": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$"
+        },
+        "evidence_ids": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "started_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "completed_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "feedback_planes": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "delivery",
+                "operations",
+                "economics",
+                "learning"
+            ],
+            "properties": {
+                "delivery": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "measurements",
+                        "summary"
+                    ],
+                    "properties": {
+                        "measurements": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        },
+                        "summary": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "operations": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "measurements",
+                        "summary"
+                    ],
+                    "properties": {
+                        "measurements": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        },
+                        "summary": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "economics": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "measurements",
+                        "summary"
+                    ],
+                    "properties": {
+                        "measurements": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        },
+                        "summary": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                },
+                "learning": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "measurements",
+                        "summary"
+                    ],
+                    "properties": {
+                        "measurements": {
+                            "type": "array",
+                            "items": {
+                                "type": "object"
+                            }
+                        },
+                        "summary": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    }
+                }
+            }
+        },
+        "prediction_evaluations": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/prediction_evaluation"
+            }
+        },
+        "cost_comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "before",
+                "after",
+                "delta",
+                "one_time_change_cost",
+                "avoidable_rework_cost",
+                "unit_economics",
+                "provenance"
+            ],
+            "properties": {
+                "before": {
+                    "type": "object"
+                },
+                "after": {
+                    "type": "object"
+                },
+                "delta": {
+                    "type": "object"
+                },
+                "one_time_change_cost": {
+                    "type": "object"
+                },
+                "avoidable_rework_cost": {
+                    "type": "object"
+                },
+                "unit_economics": {
+                    "type": "object"
+                },
+                "provenance": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "observability_comparison": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "before",
+                "after",
+                "delta",
+                "observation_windows",
+                "provenance"
+            ],
+            "properties": {
+                "before": {
+                    "type": "object"
+                },
+                "after": {
+                    "type": "object"
+                },
+                "delta": {
+                    "type": "object"
+                },
+                "observation_windows": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "enum": [
+                            "baseline",
+                            "immediate",
+                            "stabilization",
+                            "trend",
+                            "economic"
+                        ]
+                    }
+                },
+                "provenance": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "lessons": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "pattern": "^SAGE-LESSON-[0-9]{8}-[0-9]{3}$"
+            }
+        },
+        "improvement_actions": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "pattern": "^SAGE-ACTION-[0-9]{8}-[0-9]{3}$"
+            }
+        },
+        "outcome": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "hypothesis_result",
+                "summary"
+            ],
+            "properties": {
+                "hypothesis_result": {
+                    "enum": [
+                        "supported",
+                        "rejected",
+                        "inconclusive"
+                    ]
+                },
+                "summary": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        }
+    },
+    "$defs": {
+        "prediction_evaluation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "prediction_stage",
+                "prediction_version",
+                "subject",
+                "predicted",
+                "actual",
+                "result",
+                "confidence",
+                "error_classifications",
+                "explanation"
+            ],
+            "properties": {
+                "prediction_stage": {
+                    "enum": [
+                        "discovery",
+                        "pre-deployment"
+                    ]
+                },
+                "prediction_version": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "subject": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "predicted": {},
+                "actual": {},
+                "result": {
+                    "enum": [
+                        "in-range",
+                        "outside-range",
+                        "correct",
+                        "incorrect",
+                        "inconclusive"
+                    ]
+                },
+                "confidence": {
+                    "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                    ]
+                },
+                "error_classifications": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "enum": [
+                            "incomplete-discovery",
+                            "prior-lesson-not-applied",
+                            "baseline-inaccurate",
+                            "scope-changed",
+                            "implementation-defect",
+                            "environmental-change",
+                            "dependency-behavior",
+                            "operator-error",
+                            "new-failure-mode",
+                            "range-too-narrow",
+                            "confidence-overstated",
+                            "confidence-understated"
+                        ]
+                    }
+                },
+                "explanation": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

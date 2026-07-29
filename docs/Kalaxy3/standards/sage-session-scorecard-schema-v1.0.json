@@ -1,0 +1,335 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-session-scorecard-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE session scorecard",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "session_id",
+        "change_id",
+        "raw_metrics",
+        "derived_metrics",
+        "prediction_scores",
+        "prediction_summary"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "session_id": {
+            "type": "string",
+            "pattern": "^SAGE-SESSION-[0-9]{8}-[0-9]{3}$"
+        },
+        "change_id": {
+            "type": "string",
+            "pattern": "^SAGE-CHANGE-[0-9]{8}-[0-9]{3}$"
+        },
+        "raw_metrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "commands_executed",
+                "commands_failed",
+                "commands_retried",
+                "manual_corrections",
+                "phases_total",
+                "phases_first_pass",
+                "known_failures_encountered",
+                "known_failures_recurred",
+                "mutation_opportunities",
+                "failures_detected_pre_mutation",
+                "applicable_lessons",
+                "applicable_lessons_used",
+                "avoidable_rework_minutes",
+                "prompt_to_validated_change_minutes"
+            ],
+            "properties": {
+                "commands_executed": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "commands_failed": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "commands_retried": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "manual_corrections": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "phases_total": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "phases_first_pass": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "known_failures_encountered": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "known_failures_recurred": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "mutation_opportunities": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "failures_detected_pre_mutation": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "applicable_lessons": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "applicable_lessons_used": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "avoidable_rework_minutes": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "prompt_to_validated_change_minutes": {
+                    "type": "number",
+                    "minimum": 0
+                }
+            }
+        },
+        "derived_metrics": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "first_pass_phase_success_rate",
+                "known_failure_recurrence_rate",
+                "pre_mutation_detection_rate",
+                "applicable_lesson_usage_rate"
+            ],
+            "properties": {
+                "first_pass_phase_success_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "known_failure_recurrence_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "pre_mutation_detection_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "applicable_lesson_usage_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "prediction_scores": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/prediction_score"
+            }
+        },
+        "prediction_summary": {
+            "$ref": "#/$defs/prediction_summary"
+        }
+    },
+    "$defs": {
+        "prediction_score": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "stage",
+                "version",
+                "subject",
+                "unit",
+                "confidence",
+                "predicted_point",
+                "predicted_min",
+                "predicted_max",
+                "actual",
+                "range_result",
+                "signed_error",
+                "absolute_error",
+                "percentage_error",
+                "range_distance",
+                "error_classifications"
+            ],
+            "properties": {
+                "stage": {
+                    "enum": [
+                        "discovery",
+                        "pre-deployment"
+                    ]
+                },
+                "version": {
+                    "type": "integer",
+                    "minimum": 1
+                },
+                "subject": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "unit": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "confidence": {
+                    "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                    ]
+                },
+                "predicted_point": {
+                    "type": "number"
+                },
+                "predicted_min": {
+                    "type": "number"
+                },
+                "predicted_max": {
+                    "type": "number"
+                },
+                "actual": {
+                    "type": "number"
+                },
+                "range_result": {
+                    "enum": [
+                        "in-range",
+                        "below-range",
+                        "above-range"
+                    ]
+                },
+                "signed_error": {
+                    "type": "number"
+                },
+                "absolute_error": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "percentage_error": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0
+                },
+                "range_distance": {
+                    "type": "number",
+                    "minimum": 0
+                },
+                "error_classifications": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                }
+            }
+        },
+        "confidence_bucket": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "total",
+                "in_range",
+                "range_hit_rate"
+            ],
+            "properties": {
+                "total": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "in_range": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "range_hit_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                }
+            }
+        },
+        "prediction_summary": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "total",
+                "in_range",
+                "outside_range",
+                "range_hit_rate",
+                "by_confidence"
+            ],
+            "properties": {
+                "total": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "in_range": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "outside_range": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "range_hit_rate": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0,
+                    "maximum": 1
+                },
+                "by_confidence": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "high",
+                        "medium",
+                        "low"
+                    ],
+                    "properties": {
+                        "high": {
+                            "$ref": "#/$defs/confidence_bucket"
+                        },
+                        "medium": {
+                            "$ref": "#/$defs/confidence_bucket"
+                        },
+                        "low": {
+                            "$ref": "#/$defs/confidence_bucket"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
