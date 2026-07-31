@@ -94,11 +94,17 @@
                     "minimum": 0
                 },
                 "avoidable_rework_minutes": {
-                    "type": "number",
+                    "type": [
+                        "number",
+                        "null"
+                    ],
                     "minimum": 0
                 },
                 "prompt_to_validated_change_minutes": {
-                    "type": "number",
+                    "type": [
+                        "number",
+                        "null"
+                    ],
                     "minimum": 0
                 }
             }
@@ -214,20 +220,30 @@
                     "type": "number"
                 },
                 "actual": {
-                    "type": "number"
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "range_result": {
                     "enum": [
                         "in-range",
                         "below-range",
-                        "above-range"
+                        "above-range",
+                        "inconclusive"
                     ]
                 },
                 "signed_error": {
-                    "type": "number"
+                    "type": [
+                        "number",
+                        "null"
+                    ]
                 },
                 "absolute_error": {
-                    "type": "number",
+                    "type": [
+                        "number",
+                        "null"
+                    ],
                     "minimum": 0
                 },
                 "percentage_error": {
@@ -238,7 +254,10 @@
                     "minimum": 0
                 },
                 "range_distance": {
-                    "type": "number",
+                    "type": [
+                        "number",
+                        "null"
+                    ],
                     "minimum": 0
                 },
                 "error_classifications": {
@@ -256,7 +275,10 @@
             "additionalProperties": false,
             "required": [
                 "total",
+                "conclusive",
                 "in_range",
+                "outside_range",
+                "inconclusive",
                 "range_hit_rate"
             ],
             "properties": {
@@ -275,6 +297,18 @@
                     ],
                     "minimum": 0,
                     "maximum": 1
+                },
+                "conclusive": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "outside_range": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "inconclusive": {
+                    "type": "integer",
+                    "minimum": 0
                 }
             }
         },
@@ -283,8 +317,10 @@
             "additionalProperties": false,
             "required": [
                 "total",
+                "conclusive",
                 "in_range",
                 "outside_range",
+                "inconclusive",
                 "range_hit_rate",
                 "by_confidence"
             ],
@@ -328,6 +364,14 @@
                             "$ref": "#/$defs/confidence_bucket"
                         }
                     }
+                },
+                "conclusive": {
+                    "type": "integer",
+                    "minimum": 0
+                },
+                "inconclusive": {
+                    "type": "integer",
+                    "minimum": 0
                 }
             }
         }

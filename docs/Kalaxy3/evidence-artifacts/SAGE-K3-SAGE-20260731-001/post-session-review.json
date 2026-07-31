@@ -1,0 +1,286 @@
+{
+  "change_id": "SAGE-CHANGE-20260729-001",
+  "composite_score_enabled": false,
+  "control_decisions": [
+    {
+      "action_draft": null,
+      "decision_id": "CONTROL-001",
+      "disposition": "no-action",
+      "rationale": "The existing formatting guardrail remained applicable and was used; no formatting-churn recurrence was recorded, so a duplicate action is not justified.",
+      "source_failures": [],
+      "source_lessons": [
+        "SAGE-LESSON-20260728-004"
+      ],
+      "target_control_type": "no-action"
+    },
+    {
+      "action_draft": null,
+      "decision_id": "CONTROL-002",
+      "disposition": "no-action",
+      "rationale": "The existing fetch-and-revalidate preflight was used and the branch finished synchronized; no duplicate action is needed.",
+      "source_failures": [],
+      "source_lessons": [
+        "SAGE-LESSON-20260728-005"
+      ],
+      "target_control_type": "no-action"
+    },
+    {
+      "action_draft": {
+        "acceptance_criteria": [
+          "A repository-owned validator runs py_compile and a declared runtime self-test for each generated helper.",
+          "A negative fixture with an unimported hashlib reference fails before helper delivery.",
+          "Helper delivery records the validator result and helper digest before user invocation."
+        ],
+        "action_id": "SAGE-ACTION-20260730-001",
+        "desired_outcome": "Prevent generated Python helpers from being delivered when an exercised runtime path contains an unresolved name, missing import, or untested reporting failure.",
+        "measurement_plan": [
+          "Track missing-import or unresolved-name recurrence across the next five generated helper deliveries.",
+          "Record runtime-self-test pass or failure in the associated SAGE session or evidence package.",
+          "Do not mark the action measured or closed until the recurrence rate is evaluated."
+        ],
+        "owner": "repository-workflow",
+        "priority": "high",
+        "source_lessons": [
+          "SAGE-LESSON-20260730-001"
+        ],
+        "source_sessions": [
+          "SAGE-SESSION-20260729-001"
+        ],
+        "target_control_type": "guardrail",
+        "title": "Add generated-helper runtime validation guardrail"
+      },
+      "decision_id": "CONTROL-003",
+      "disposition": "create-action",
+      "rationale": "The same unresolved runtime import failure occurred more than once because syntax-only validation did not execute the failing reporting path.",
+      "source_failures": [
+        "FAIL-007",
+        "FAIL-010"
+      ],
+      "source_lessons": [
+        "SAGE-LESSON-20260730-001"
+      ],
+      "target_control_type": "guardrail"
+    }
+  ],
+  "evidence_references": [
+    "SAGE-K3-SAGE-20260729-002",
+    "session:SAGE-SESSION-20260729-001",
+    "commit:68fa4892e3192ff30386d3798cbb5d6c4a35158f",
+    "terminal-session:2026-07-30-generated-helper-runtime-name-recurrence-001"
+  ],
+  "failures": [
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": true,
+      "failure_id": "FAIL-001",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Require commit-addressed reads and explicit absent-file handling in historical baseline extraction.",
+      "recurred": false,
+      "root_cause": "The extractor did not consistently use commit-addressed snapshots and treated missing historical files as fatal.",
+      "summary": "Historical baseline extraction used current-state registry counts and did not tolerate registries absent at old commits."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-002",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Verify helper existence, nonzero size, and digest before starting a recorded implementation command.",
+      "recurred": false,
+      "root_cause": "Artifact delivery and command execution were not joined by a verified file-presence and digest precondition.",
+      "summary": "Active-session implementation commands ran before the downloaded helper was present at the expected path."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-003",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Prefer structural source inspection and dedicated Git name-only commands over exact-text and porcelain slicing.",
+      "recurred": false,
+      "root_cause": "Validation depended on literal source formatting rather than the repository's actual structure and path sets.",
+      "summary": "The null-safe scorecard helper relied on brittle exact-text anchors and whitespace-sensitive Git status parsing."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": true,
+      "failure_id": "FAIL-004",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Resolve and verify the current synchronized HEAD immediately before generating each state-dependent helper.",
+      "recurred": false,
+      "root_cause": "The helper embedded an obsolete expected HEAD after the feature branch advanced.",
+      "summary": "A closeout inspection helper was pinned to a stale commit."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-005",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Discover event definitions from the canonical schema before building closeout validators.",
+      "recurred": false,
+      "root_cause": "The inspection inferred a schema layout instead of reading the repository-owned active-session schema definitions.",
+      "summary": "Closeout discovery assumed active-session events used a standalone schema file."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-006",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Use structural edits and require successful implementation and validation before commit and push with explicit && chaining.",
+      "recurred": false,
+      "root_cause": "Implementation, validation, commit, and push were not linked by one fail-fast chain, while the edit depended on literal documentation text.",
+      "summary": "A brittle documentation anchor stopped close integration, and non-fail-fast orchestration allowed a partial commit and push before integration was complete."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-007",
+      "lesson_ids": [
+        "SAGE-LESSON-20260730-001"
+      ],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Compile generated helpers and execute a self-test that covers every imported module and terminal reporting path.",
+      "recurred": false,
+      "root_cause": "The generated helper referenced hashlib without importing it.",
+      "summary": "The completed-session draft helper wrote its output but failed while calculating a checksum."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-008",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Test populated registries, uncaptured subprocess failures, and inclusive numeric prediction evaluation before apply.",
+      "recurred": false,
+      "root_cause": "The close path had only been validated against an empty completed registry, assumed captured subprocess streams, and did not cross-check numeric prediction results.",
+      "summary": "The first applied close encountered an empty-registry guardrail assumption, unsafe subprocess error rendering, and a stale elapsed-duration result."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "new",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-009",
+      "lesson_ids": [],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Use syntax-tree or function-level structural inspection for source-contract verification.",
+      "recurred": false,
+      "root_cause": "The inspector treated dynamically constructed source text as a fixed literal signature.",
+      "summary": "The rollback inspector searched for one literal guardrail error string and failed after rollback had already succeeded."
+    },
+    {
+      "avoidable_rework_minutes": null,
+      "classification": "known",
+      "detected_pre_mutation": false,
+      "failure_id": "FAIL-010",
+      "lesson_ids": [
+        "SAGE-LESSON-20260730-001"
+      ],
+      "lesson_surfaced": false,
+      "lesson_used": false,
+      "prevention_opportunity": "Require py_compile plus an executable self-test covering checksum and reporting paths before helper delivery.",
+      "recurred": true,
+      "root_cause": "The same generated-helper runtime validation gap identified in FAIL-007 remained uncontrolled; the helper again used hashlib without importing it.",
+      "summary": "The provenance finalizer updated the local draft but failed while reporting its checksum."
+    }
+  ],
+  "feedback_planes": {
+    "delivery": {
+      "evidence_references": [
+        "SAGE-K3-SAGE-20260729-002",
+        "session:SAGE-SESSION-20260729-001",
+        "commit:68fa4892e3192ff30386d3798cbb5d6c4a35158f"
+      ],
+      "summary": "The canonical session recorded 55 commands, 14 failed command events, 22 retries, 22 manual corrections, and 9 of 13 phases succeeding on first pass. These are raw delivery measurements, not a composite score."
+    },
+    "economics": {
+      "evidence_references": [
+        "SAGE-K3-SAGE-20260729-002",
+        "session:SAGE-SESSION-20260729-001",
+        "commit:68fa4892e3192ff30386d3798cbb5d6c4a35158f"
+      ],
+      "summary": "Recurring infrastructure delta was estimated at 0 USD/month. Active human effort, labor cost, and avoidable-rework duration were not measured and remain unavailable."
+    },
+    "learning": {
+      "evidence_references": [
+        "SAGE-K3-SAGE-20260729-002",
+        "session:SAGE-SESSION-20260729-001",
+        "commit:68fa4892e3192ff30386d3798cbb5d6c4a35158f",
+        "terminal-session:2026-07-30-generated-helper-runtime-name-recurrence-001"
+      ],
+      "summary": "Lessons 004 and 005 were used and no failure was classified as known by the live recorder. Retrospective review found that the missing-import root cause repeated within the session because no runtime-self-test lesson or control existed. The raw recorder metrics remain preserved and the session still does not prove that evidence use reduced rework or delivery time."
+    },
+    "operations": {
+      "evidence_references": [
+        "SAGE-K3-SAGE-20260729-002",
+        "session:SAGE-SESSION-20260729-001",
+        "commit:68fa4892e3192ff30386d3798cbb5d6c4a35158f"
+      ],
+      "summary": "The staged implementation remained repository-only. The deployment gate stayed closed and measured cluster mutations were zero."
+    }
+  },
+  "implementation_commit": "ca766d52b5ee80fa6b4b84c13c17097505a74b79",
+  "questions": [
+    {
+      "answer": "Fourteen recorded command events failed. The evidence groups them into historical-baseline extraction defects, missing implementation artifacts, brittle source-text and Git-status inspection, stale closeout assumptions, partial integration publication caused by non-fail-fast orchestration, missing helper imports, close-path validation defects, brittle rollback inspection, and stale provenance handling.",
+      "question": "What failed?"
+    },
+    {
+      "answer": "The canonical recorder reported zero known-failure encounters because the pattern had not yet been formalized during execution. Retrospective review identified that the missing runtime import first appeared in FAIL-007 and recurred in FAIL-010; the raw session metrics remain unchanged.",
+      "question": "Was the failure previously known?"
+    },
+    {
+      "answer": "SAGE-LESSON-20260728-004 and SAGE-LESSON-20260728-005 were applicable and used. The generated-helper runtime-import lesson did not yet exist, was not surfaced, and was not used when FAIL-007 or FAIL-010 occurred.",
+      "question": "Was an applicable lesson surfaced and used?"
+    },
+    {
+      "answer": "The missing-import failure recurred because the first occurrence was recovered operationally but was not converted into a lesson or preventive control before later generated helpers were delivered. Syntax compilation did not execute the failing reporting path.",
+      "question": "Why did any known failure recur?"
+    },
+    {
+      "answer": "Some failures were detected before mutation, but not all. Three of the fourteen failed command events are explicitly flagged pre-mutation. The raw counter value 21 contains documented classification noise and must not be interpreted as 21 distinct early detections. The first applied-close defect was discovered after registry mutation began, and rollback restored the state.",
+      "question": "Could the failure have been detected before mutation?"
+    },
+    {
+      "answer": "Active engineering effort was not explicitly timed, so the 4-to-12-hour prediction remains inconclusive. Elapsed duration was 1.048762 days and was inside the declared 1-to-2-day range. Recurring infrastructure cost was estimated unchanged at 0 USD/month. Human effort cost and avoidable-rework cost remain unavailable. The work stayed repository-only, the deployment gate remained closed, and cluster mutations were zero.",
+      "question": "How did actual effort, cost, and operational behavior compare with predictions?"
+    },
+    {
+      "answer": "Medium confidence was consistent with the elapsed-duration result because the actual was within range. Confidence for active engineering effort cannot be calibrated because the matching actual was not measured. The correction burden shows material implementation uncertainty, but it cannot substitute for the missing active-hours measurement.",
+      "question": "Was prediction confidence calibrated appropriately?"
+    },
+    {
+      "answer": "Keep explicit no-action decisions for lessons 004 and 005 because their existing controls operated. Register SAGE-LESSON-20260730-001 for the repeated generated-helper runtime-import failure and create a high-priority guardrail action requiring py_compile plus an executable runtime self-test before delivery.",
+      "question": "Should the result become a lesson, guardrail, preflight check, template, runbook, or explicit no-action decision?"
+    },
+    {
+      "answer": "Delivery measurement improved because the repository now has a canonical recorder and close path. Operations remained safe with a closed gate and zero cluster mutation. Recurring cost was estimated unchanged, while human cost remains unavailable. Retrospective review identified one repeated failure pattern and converted it into a lesson and action, but one session still does not prove reduced rework, faster delivery, or sustained learning.",
+      "question": "Did the session measurably improve delivery, operations, economics, or learning?"
+    }
+  ],
+  "recorded_at": "2026-07-30T22:39:12-05:00",
+  "review_id": "SAGE-REVIEW-20260730-001",
+  "reviewer": "repository-workflow",
+  "session_id": "SAGE-SESSION-20260729-001",
+  "summary": "The pilot established a canonical repository-owned measurement and session-close path, but 14 failed command events and 22 manual corrections show substantial validation friction. Retrospective review identified the generated-helper missing-import defect as a recurrent root cause: FAIL-007 introduced the pattern and FAIL-010 repeated it before a control existed. Existing controls for lessons 004 and 005 remain adequate; a new lesson and high-priority runtime-validation guardrail action address the recurrence. No maturity or evidence-learning claim is supported by one session."
+}

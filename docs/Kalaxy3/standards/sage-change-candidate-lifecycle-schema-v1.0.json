@@ -45,6 +45,7 @@
                 "current_status",
                 "branch",
                 "baseline_commit",
+                "execution_scope",
                 "deployment_gate_required",
                 "revalidation_required",
                 "history"
@@ -77,6 +78,12 @@
                     "items": {
                         "$ref": "#/$defs/transition"
                     }
+                },
+                "execution_scope": {
+                    "enum": [
+                        "repository-only",
+                        "deployment"
+                    ]
                 }
             }
         },

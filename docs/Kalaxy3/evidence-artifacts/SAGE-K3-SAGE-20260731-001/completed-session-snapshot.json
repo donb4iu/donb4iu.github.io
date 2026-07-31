@@ -1,0 +1,277 @@
+{
+  "candidate_prediction_versions": [
+    {
+      "stage": "discovery",
+      "version": 1
+    }
+  ],
+  "change_id": "SAGE-CHANGE-20260729-001",
+  "completed_at": "2026-07-30T22:15:48-05:00",
+  "cost_comparison": {
+    "after": {
+      "measurement_type": "estimated",
+      "recurring_run_rate_usd_per_month": 0.0,
+      "scope": "repository-only metrics pilot"
+    },
+    "avoidable_rework_cost": {
+      "avoidable_rework_minutes": null,
+      "cost_usd": null,
+      "measurement_type": "unavailable"
+    },
+    "before": {
+      "measurement_type": "estimated",
+      "recurring_run_rate_usd_per_month": 0.0,
+      "scope": "repository-only SAGE foundation"
+    },
+    "delta": {
+      "measurement_type": "estimated",
+      "recurring_run_rate_usd_per_month": 0.0
+    },
+    "one_time_change_cost": {
+      "active_human_effort_hours": null,
+      "command_runtime_seconds": 500.42,
+      "labor_cost_usd": null,
+      "limitation": "Only command runtime was measured. Human effort and labor cost remain unavailable.",
+      "measurement_type": "mixed"
+    },
+    "provenance": [
+      "SAGE-K3-SAGE-20260729-002",
+      "session:SAGE-SESSION-20260729-001",
+      "commit:ca766d52b5ee80fa6b4b84c13c17097505a74b79",
+      ".sage/active-sessions/SAGE-SESSION-20260729-001/events.jsonl"
+    ],
+    "unit_economics": {
+      "commands_per_validated_change": 55,
+      "cost_per_validated_change_usd": null,
+      "limitation": "A monetary unit cost cannot be calculated without measured human effort and labor cost.",
+      "manual_corrections_per_validated_change": 22
+    }
+  },
+  "evidence_ids": [
+    "SAGE-K3-SAGE-20260729-002"
+  ],
+  "feedback_planes": {
+    "delivery": {
+      "measurements": [
+        {
+          "measurement_type": "measured",
+          "metric": "active_session_summary",
+          "source": ".sage/active-sessions/SAGE-SESSION-20260729-001/events.jsonl",
+          "value": {
+            "applicable_lessons": 2,
+            "applicable_lessons_used": 2,
+            "avoidable_rework_minutes": null,
+            "change_id": "SAGE-CHANGE-20260729-001",
+            "command_runtime_seconds": 500.42,
+            "commands_executed": 55,
+            "commands_failed": 14,
+            "commands_retried": 22,
+            "failures_detected_pre_mutation": 21,
+            "known_failures_encountered": 0,
+            "known_failures_recurred": 0,
+            "manual_corrections": 22,
+            "mutation_opportunities": 51,
+            "notes_recorded": 19,
+            "phases_first_pass": 9,
+            "phases_total": 13,
+            "prompt_to_validated_change_minutes": null,
+            "runtime_ledger": ".sage/active-sessions/SAGE-SESSION-20260729-001/events.jsonl",
+            "session_id": "SAGE-SESSION-20260729-001",
+            "started_at": "2026-07-29T21:05:35-05:00",
+            "status": "active"
+          }
+        },
+        {
+          "definition": "Wall-clock interval from the declared session start through the close event.",
+          "measurement_type": "measured",
+          "metric": "session_elapsed_minutes",
+          "unit": "minutes",
+          "value": 1510.217
+        },
+        {
+          "limitation": "Human effort was not explicitly timed; command runtime and wall-clock elapsed time are not substitutes.",
+          "measurement_type": "unavailable",
+          "metric": "active_human_effort_hours",
+          "unit": "hours",
+          "value": null
+        }
+      ],
+      "summary": "The canonical recorder produced a measured delivery baseline through the terminal close event. Human effort and avoidable-rework duration remain unavailable."
+    },
+    "economics": {
+      "measurements": [
+        {
+          "basis": "The change adds repository tooling and no cluster workload.",
+          "measurement_type": "estimated",
+          "metric": "recurring_run_rate_delta",
+          "unit": "USD/month",
+          "value": 0.0
+        },
+        {
+          "limitation": "Active human effort and labor rate were not measured.",
+          "measurement_type": "unavailable",
+          "metric": "one_time_human_effort_cost",
+          "value": null
+        },
+        {
+          "limitation": "Avoidable-rework minutes were not explicitly measured.",
+          "measurement_type": "unavailable",
+          "metric": "avoidable_rework_cost",
+          "value": null
+        }
+      ],
+      "summary": "Recurring infrastructure cost is estimated unchanged. One-time human effort and avoidable-rework cost cannot be calculated from the available measurements."
+    },
+    "learning": {
+      "measurements": [
+        {
+          "measurement_type": "measured",
+          "metric": "applicable_lessons",
+          "unit": "unique lessons",
+          "value": 2
+        },
+        {
+          "measurement_type": "measured",
+          "metric": "applicable_lessons_used",
+          "unit": "unique lessons",
+          "value": 2
+        },
+        {
+          "measurement_type": "measured",
+          "metric": "known_failures_encountered",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "measurement_type": "measured",
+          "metric": "known_failures_recurred",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "limitation": "The immutable raw counter includes known classification noise from read-only or recovery inspection events. Preserve it as recorded, but do not interpret it as a count of distinct newly detected failures.",
+          "measurement_type": "measured-raw",
+          "metric": "failures_detected_pre_mutation_raw",
+          "unit": "event flags",
+          "value": 21
+        },
+        {
+          "limitation": "This pilot measured lesson use but does not yet establish that evidence use reduced rework or time to a validated implementation.",
+          "measurement_type": "not-yet-established",
+          "metric": "evidence_use_outcome",
+          "value": null
+        }
+      ],
+      "summary": "The session measured lesson retrieval and use and recorded no known-failure recurrence. One session does not establish a trend or prove that SAGE learns from evidence."
+    },
+    "operations": {
+      "measurements": [
+        {
+          "measurement_type": "measured",
+          "metric": "cluster_mutations",
+          "scope": "repository-only pilot",
+          "unit": "count",
+          "value": 0
+        },
+        {
+          "measurement_type": "observed",
+          "metric": "deployment_gate",
+          "value": "closed"
+        }
+      ],
+      "summary": "The pilot remained repository-only. It did not activate the staged implementation, open the deployment gate, or mutate the cluster."
+    }
+  },
+  "implementation_commit": "ca766d52b5ee80fa6b4b84c13c17097505a74b79",
+  "improvement_actions": [],
+  "lessons": [
+    "SAGE-LESSON-20260728-004",
+    "SAGE-LESSON-20260728-005"
+  ],
+  "observability_comparison": {
+    "after": {
+      "active_session_summary": {
+        "applicable_lessons": 2,
+        "applicable_lessons_used": 2,
+        "avoidable_rework_minutes": null,
+        "change_id": "SAGE-CHANGE-20260729-001",
+        "command_runtime_seconds": 500.42,
+        "commands_executed": 55,
+        "commands_failed": 14,
+        "commands_retried": 22,
+        "failures_detected_pre_mutation": 21,
+        "known_failures_encountered": 0,
+        "known_failures_recurred": 0,
+        "manual_corrections": 22,
+        "mutation_opportunities": 51,
+        "notes_recorded": 19,
+        "phases_first_pass": 9,
+        "phases_total": 13,
+        "prompt_to_validated_change_minutes": null,
+        "runtime_ledger": ".sage/active-sessions/SAGE-SESSION-20260729-001/events.jsonl",
+        "session_id": "SAGE-SESSION-20260729-001",
+        "started_at": "2026-07-29T21:05:35-05:00",
+        "status": "active"
+      },
+      "canonical_live_session_recorder": true
+    },
+    "before": {
+      "canonical_command_event_baseline": false,
+      "canonical_live_session_recorder": false
+    },
+    "delta": {
+      "cluster_operational_behavior": "Not evaluated because the pilot was repository-only.",
+      "measurement_capability": "Established repository-owned command, lesson-use, failure, retry, correction, and runtime measurements."
+    },
+    "observation_windows": [
+      "baseline",
+      "immediate"
+    ],
+    "provenance": [
+      "SAGE-K3-SAGE-20260729-002",
+      "session:SAGE-SESSION-20260729-001",
+      "commit:ca766d52b5ee80fa6b4b84c13c17097505a74b79"
+    ]
+  },
+  "outcome": {
+    "hypothesis_result": "inconclusive",
+    "summary": "The pilot established a functioning repository-owned measurement and closeout path and produced a canonical raw baseline. It does not yet prove that evidence use reduces rework, improves delivery time, or creates a sustained learning effect. Published evidence SAGE-K3-SAGE-20260729-002 covers the pilot implementation through 287933ac12f4cc9fb4d32b4d45503e6d55781982; session-close tooling and repairs through ca766d52b5ee80fa6b4b84c13c17097505a74b79 require follow-up closeout evidence."
+  },
+  "prediction_evaluations": [
+    {
+      "actual": null,
+      "confidence": "medium",
+      "error_classifications": [],
+      "explanation": "The declared prediction used active hours. Active human effort was not explicitly timed, so command runtime and elapsed wall-clock time are not substituted.",
+      "predicted": {
+        "maximum": 12,
+        "minimum": 4,
+        "point": 6,
+        "unit": "hours"
+      },
+      "prediction_stage": "discovery",
+      "prediction_version": 1,
+      "result": "inconclusive",
+      "subject": "active engineering effort"
+    },
+    {
+      "actual": 1.048762,
+      "confidence": "medium",
+      "error_classifications": [],
+      "explanation": "Actual elapsed duration uses the same declared subject and unit and is measured as the wall-clock interval from session start through close. The repository-owned close tool validates the stored result against the inclusive 1-to-2-day range.",
+      "predicted": {
+        "maximum": 2,
+        "minimum": 1,
+        "point": 1,
+        "unit": "days"
+      },
+      "prediction_stage": "discovery",
+      "prediction_version": 1,
+      "result": "in-range",
+      "subject": "elapsed duration"
+    }
+  ],
+  "schema_version": "1.0",
+  "session_id": "SAGE-SESSION-20260729-001",
+  "started_at": "2026-07-29T21:05:35-05:00"
+}

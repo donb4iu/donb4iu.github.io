@@ -2248,6 +2248,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement-closeout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous-improvement closeout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement-metrics-pilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement metrics pilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../evidence/subjects/sage-continuous-improvement/" class="md-nav__link">
         
   
@@ -2561,6 +2617,76 @@
     
   
     SAGE Guardrail Gap Discovery and Centralized Logging Work Pause
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-metrics-pilot-closeout-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Metrics Pilot Post-Session Closeout and Runtime-Validation Improvement Action Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-metrics-pilot-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Fully Instrumented Metrics Pilot Implementation Evidence
   
 
     
@@ -4020,6 +4146,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#live-session-measurement-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live-session measurement semantics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Live-session measurement semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-owned-active-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository-owned active sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#post-session-review" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4475,6 +4629,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#live-session-measurement-semantics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Live-session measurement semantics
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Live-session measurement semantics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-owned-active-sessions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository-owned active sessions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#post-session-review" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4623,12 +4805,18 @@ calculating derived rates. The canonical raw fields are defined by
 <li>lesson usage is applicable lessons used divided by applicable lessons;</li>
 <li>a zero denominator produces <code>null</code>, not a misleading zero.</li>
 </ul>
-<p>Prediction scoring uses the recorded point estimate, inclusive range, actual
-value, and confidence. Signed error is actual minus the point estimate.
-Absolute error is the magnitude of signed error. Percentage error is absolute
-error divided by the absolute actual value and is <code>null</code> when actual is zero.
-Range distance is zero inside the range and otherwise measures distance to the
-nearest range boundary.</p>
+<p>Prediction scoring compares a declared subject using its declared scalar and
+unit. Time is one possible unit, but it is not privileged: steps, counts,
+complexity points, cost deltas, validation burden, or another explicit scalar
+may be used. The actual value must measure the same subject and unit as the
+prediction; an available but different metric must never be substituted.</p>
+<p>When the matching actual scalar is unavailable, <code>actual</code>, signed error,
+absolute error, percentage error, and range distance remain <code>null</code>, and the
+range result is <code>inconclusive</code>. Conclusive range-hit rates exclude those
+unavailable comparisons while retaining explicit total, conclusive, and
+inconclusive counts. For measured actuals, signed error is actual minus the
+point estimate. Percentage error remains <code>null</code> when the measured actual is
+zero.</p>
 <p>Range-hit rates must be retained by confidence level so calibration can be
 evaluated across comparable sessions. The scorer must not collapse delivery,
 operations, economics, and learning into a composite score before stable
@@ -4786,18 +4974,22 @@ state, cluster state, cost baselines, and telemetry may change.</p>
 <h2 id="candidate-lifecycle-controls">Candidate lifecycle controls<a class="headerlink" href="#candidate-lifecycle-controls" title="Permanent link">&para;</a></h2>
 <p>Candidate status is governed by an append-only lifecycle registry rather
 than an unrecorded status edit.</p>
-<p>The lifecycle is:</p>
+<p>The lifecycle begins with the same discovery, sizing, decision, sequencing, and
+staged-implementation states for every candidate. The terminal path then
+depends on execution scope:</p>
 <div class="highlight"><pre><span></span><code>discovery-needed
   → sized
   → decision-ready
   → sequenced
   → staged-implementation
-  → active
-  → validated
-  → closed
+      → active → validated → closed       (deployment)
+      → validated → closed                (repository-only)
 </code></pre></div>
-<p>Supported rework transitions return a candidate to the nearest appropriate
-earlier state. <code>superseded</code> and <code>closed</code> are terminal.</p>
+<p>Repository-only validation does not mean activation. It confirms that the
+committed repository change passed its declared repository validation while
+the deployment gate remained closed. Supported rework transitions return a
+candidate to the nearest appropriate earlier state. <code>superseded</code> and <code>closed</code>
+are terminal.</p>
 <p>Every transition must preserve:</p>
 <ul>
 <li>source and target status;</li>
@@ -4819,6 +5011,16 @@ earlier state. <code>superseded</code> and <code>closed</code> are terminal.</p>
 <li>validation evidence is supplied;</li>
 <li>the expected commit matches <code>HEAD</code>.</li>
 </ul>
+<p>A staged implementation may move directly to <code>validated</code> only when its
+lifecycle is explicitly registered as <code>repository-only</code>, its deployment gate
+is closed, revalidation is current, the candidate branch is checked out and
+synchronized, validation references are supplied, and the expected commit
+matches <code>HEAD</code>. This path must not create an <code>active</code> event or claim deployment
+or cluster validation.</p>
+<p>Lifecycle registration is also dry-run by default and requires explicit
+<code>--apply</code>. Registration records the candidate's current status, execution
+scope, branch, baseline, validation references, and candidate commit without
+advancing the candidate.</p>
 <p>The foundational continuous-improvement candidate remains a staged
 implementation with a closed deployment gate. This capability does not
 activate it or mutate the cluster.</p>
@@ -4877,6 +5079,84 @@ narrative or commit volume.</p>
 <li><code>scripts/sage/sage-baseline-extract.py</code>;</li>
 <li><code>scripts/sage/sage-learning-guardrail.py</code>.</li>
 </ul>
+<h2 id="live-session-measurement-semantics">Live-session measurement semantics<a class="headerlink" href="#live-session-measurement-semantics" title="Permanent link">&para;</a></h2>
+<p>The live-session recorder measures only commands that pass through the
+canonical recording boundary. It counts engineering, repository mutation,
+validation, evidence, commit, push, and recovery commands. Commands that ran
+before the declared boundary, unrecorded shell navigation, and unrecorded
+display-only commands are not reconstructed later.</p>
+<p>The recorder preserves two different clocks:</p>
+<ul>
+<li>command runtime records how long a command process ran;</li>
+<li>session elapsed time records the wall-clock interval from the declared
+  session start through completion.</li>
+</ul>
+<p>Neither value is automatically equivalent to active human effort. Active human
+effort and waiting time remain unavailable unless they are explicitly timed
+and classified.</p>
+<p>A manual correction is an unplanned adjustment or recovery caused by an
+incorrect earlier command, implementation assumption, validation result, or
+tool behavior. Planned implementation iteration is not automatically a manual
+correction.</p>
+<p>A failed safety or validation command remains a failed command. When that
+failure prevents an invalid commit, push, activation, or cluster mutation, it
+also counts as successful pre-mutation detection. These two classifications
+measure different outcomes and must both be preserved.</p>
+<p>Unknown values are represented as <code>null</code>. A numeric zero means the value was
+measured and the measured result was zero. Missing or unmeasured values must
+never be silently converted to zero.</p>
+<p>This rule continues into completed-session scorecards. Avoidable rework and
+prompt-to-validated-change duration remain <code>null</code> when no measurement exists;
+session completion does not manufacture a numeric value.</p>
+<p>Post-session failure reviews apply the same rule. A failed command does not
+prove a measured amount of avoidable rework; the per-failure value remains
+<code>null</code> unless that duration was explicitly measured.</p>
+<p>The canonical ledger stores non-sensitive command labels and command digests.
+Raw command text may be retained only after redaction review. Credentials,
+tokens, passwords, and secret values are prohibited.</p>
+<p>The live-session measurement policy does not create a composite score and does
+not open any deployment or activation gate.</p>
+<h3 id="repository-owned-active-sessions">Repository-owned active sessions<a class="headerlink" href="#repository-owned-active-sessions" title="Permanent link">&para;</a></h3>
+<p>An active session is separate from the completed session-improvement registry.
+The active-session registry contains only sessions that are currently being
+measured. A completed session is created later, after implementation,
+validation, prediction comparison, and post-session review are available.</p>
+<p>The repository-owned active-session workflow supports five operations:</p>
+<ul>
+<li><code>start</code> registers a declared measurement boundary and opens the local event
+  ledger;</li>
+<li><code>run</code> executes one classified command and stores only its non-sensitive
+  label, SHA-256 command digest, timing, outcome, lesson use, and correction
+  metadata;</li>
+<li><code>note</code> records a baseline, observation, decision, limitation, or evidence
+  gap;</li>
+<li><code>status</code> summarizes raw active-session events without inventing missing
+  measurements;</li>
+<li><code>close</code> validates a completed-session draft, self-records the terminal
+  repository-mutation event, and moves the session from the active registry
+  to the completed-session registry.</li>
+</ul>
+<p>Runtime ledgers are written under <code>.sage/active-sessions/</code> and are excluded
+from Git. The tracked active-session registry stores the session identity,
+branch, baseline commit, prediction versions, measurement boundary, and local
+ledger location. Credentials, secret values, and raw command text are not
+permitted in the canonical event format.</p>
+<p>Command events also preserve whether a known failure was encountered and
+whether that known failure recurred. These are separate from the command's
+exit status: a command can fail for a new reason, or succeed while still
+revealing a previously documented failure pattern.</p>
+<p>Starting or closing a session is an explicit mutation. The recorder does not
+open a deployment gate, activate a staged implementation, or mutate the
+cluster.</p>
+<p>The repository-owned close command is dry-run by default and requires
+explicit <code>--apply</code>. It must be invoked directly rather than as a child of
+<code>sage-active-session.py run</code>, because the close operation removes the active
+registry entry after recording its own terminal command event. Before apply,
+it requires a clean synchronized feature branch, a validated repository-only
+candidate, a closed deployment gate, published evidence references, and a
+completed-session draft whose unavailable measurements remain <code>null</code>. The
+ledger and both registries are restored if validation or registry mutation
+fails.</p>
 <h2 id="post-session-review">Post-session review<a class="headerlink" href="#post-session-review" title="Permanent link">&para;</a></h2>
 <h3 id="machine-readable-review-and-lesson-to-control-decisions">Machine-readable review and lesson-to-control decisions<a class="headerlink" href="#machine-readable-review-and-lesson-to-control-decisions" title="Permanent link">&para;</a></h3>
 <p>A canonical post-session review must reference a canonical session record and

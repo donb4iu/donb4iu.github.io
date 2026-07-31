@@ -1,0 +1,41 @@
+{
+  "acceptance_criteria": [
+    "A repository-owned validator runs py_compile and a declared runtime self-test for each generated helper.",
+    "A negative fixture with an unimported hashlib reference fails before helper delivery.",
+    "Helper delivery records the validator result and helper digest before user invocation."
+  ],
+  "action_id": "SAGE-ACTION-20260730-001",
+  "current_status": "identified",
+  "desired_outcome": "Prevent generated Python helpers from being delivered when an exercised runtime path contains an unresolved name, missing import, or untested reporting failure.",
+  "history": [
+    {
+      "actor": "repository-workflow",
+      "evidence_references": [
+        "SAGE-REVIEW-20260730-001",
+        "session:SAGE-SESSION-20260729-001",
+        "terminal-session:2026-07-30-generated-helper-runtime-name-recurrence-001"
+      ],
+      "from_status": null,
+      "reason": "Register the generated-helper runtime-validation control identified by the SAGE metrics pilot post-session review",
+      "recorded_at": "2026-07-31T00:24:37-05:00",
+      "sequence": 1,
+      "to_status": "identified",
+      "transition_type": "initial-registration"
+    }
+  ],
+  "measurement_plan": [
+    "Track missing-import or unresolved-name recurrence across the next five generated helper deliveries.",
+    "Record runtime-self-test pass or failure in the associated SAGE session or evidence package.",
+    "Do not mark the action measured or closed until the recurrence rate is evaluated."
+  ],
+  "owner": "repository-workflow",
+  "priority": "high",
+  "source_lessons": [
+    "SAGE-LESSON-20260730-001"
+  ],
+  "source_sessions": [
+    "SAGE-SESSION-20260729-001"
+  ],
+  "target_control_type": "guardrail",
+  "title": "Add generated-helper runtime validation guardrail"
+}

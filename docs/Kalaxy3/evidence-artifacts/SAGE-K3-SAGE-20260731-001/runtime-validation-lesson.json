@@ -1,0 +1,49 @@
+{
+  "automation_status": "manual",
+  "contexts": [
+    "repository-governance",
+    "continuous-improvement",
+    "generated-helper-delivery"
+  ],
+  "failure_signature": "A generated Python helper passes syntax compilation but fails when an exercised reporting or checksum path references a module or name that was never imported.",
+  "first_evidence": [
+    "event:37fbe53f-84c5-4c6a-9da2-eb46e6170ebd"
+  ],
+  "known_resolution": [
+    "Add the missing import or runtime dependency.",
+    "Validate any already-written output before retrying mutation.",
+    "Run a focused executable self-test covering reporting and checksum paths."
+  ],
+  "latest_evidence": [
+    "terminal-session:2026-07-30-generated-helper-runtime-name-recurrence-001"
+  ],
+  "lesson_id": "SAGE-LESSON-20260730-001",
+  "match_terms": [
+    "generated helper",
+    "missing import",
+    "hashlib",
+    "NameError",
+    "py_compile",
+    "runtime self-test",
+    "checksum reporting"
+  ],
+  "path_prefixes": [],
+  "preflight_detection": [
+    "Execute a negative fixture whose reporting path references an unimported module and require the validator to reject it.",
+    "Fail helper delivery when any declared terminal path has not executed successfully."
+  ],
+  "preventive_control": [
+    "Require generated helpers to expose and pass a runtime self-test before delivery.",
+    "Run py_compile plus the declared self-test; neither alone is sufficient.",
+    "Verify the delivered helper digest before invocation."
+  ],
+  "recurrence_count": 3,
+  "root_cause": "Syntax compilation validates parsing and bytecode generation but does not execute late runtime paths or resolve referenced global names.",
+  "status": "accepted",
+  "symptoms": [
+    "The helper performs useful work and then raises NameError.",
+    "Checksum or terminal reporting fails after output files exist.",
+    "Repeated helpers fail on the same missing runtime import."
+  ],
+  "title": "Execute generated Python helper runtime paths before delivery"
+}
