@@ -1,0 +1,242 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kalaxy3.local/schemas/sage-evidence-retrieval-result-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE evidence retrieval result",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "algorithm_version",
+    "request",
+    "policy_sha256",
+    "sources",
+    "results"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "algorithm_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "request": {
+      "type": "string",
+      "minLength": 1
+    },
+    "policy_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "source_type",
+          "records_loaded"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "records_loaded": {
+            "type": "integer",
+            "minimum": 0
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "rank",
+          "source_type",
+          "identifier",
+          "title",
+          "source_path",
+          "record_path",
+          "status",
+          "score",
+          "matched_terms",
+          "matched_groups",
+          "reasons",
+          "confidence",
+          "applicable_facts",
+          "source_section",
+          "recency",
+          "disposition",
+          "disposition_rationale"
+        ],
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source_type": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identifier": {
+            "type": "string",
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1
+          },
+          "record_path": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "score": {
+            "type": "integer"
+          },
+          "matched_terms": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "matched_groups": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "confidence": {
+            "type": "object",
+            "required": [
+              "value",
+              "source_field",
+              "basis"
+            ],
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "source_field": {
+                "type": "string"
+              },
+              "basis": {
+                "enum": [
+                  "explicit-source-field",
+                  "not-recorded"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "applicable_facts": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": [
+                "source_field",
+                "value",
+                "matched_terms"
+              ],
+              "properties": {
+                "source_field": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "value": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "matched_terms": {
+                  "type": "array",
+                  "minItems": 1,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "source_section": {
+            "type": "object",
+            "required": [
+              "record_field",
+              "navigation_section",
+              "source_document"
+            ],
+            "properties": {
+              "record_field": {
+                "type": "string",
+                "minLength": 1
+              },
+              "navigation_section": {
+                "type": "string"
+              },
+              "source_document": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          },
+          "recency": {
+            "type": "object",
+            "required": [
+              "value",
+              "source_field",
+              "basis"
+            ],
+            "properties": {
+              "value": {
+                "type": "string"
+              },
+              "source_field": {
+                "type": "string"
+              },
+              "basis": {
+                "enum": [
+                  "explicit-source-field",
+                  "not-recorded"
+                ]
+              }
+            },
+            "additionalProperties": false
+          },
+          "disposition": {
+            "enum": [
+              "pending",
+              "applied",
+              "reviewed-not-applicable",
+              "rejected"
+            ]
+          },
+          "disposition_rationale": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}
