@@ -1,0 +1,8421 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+      
+      
+        <meta name="author" content="OpenAI GPT-5.6 Thinking">
+      
+      
+        <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/governance/kalaxy3-actionable-guardrail-ci-portability-evidence/">
+      
+      
+        <link rel="prev" href="../../evidence/subjects/ubuntu-node-provisioning/">
+      
+      
+        <link rel="next" href="../kalaxy3-actionable-guardrail-recovery-evidence/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../rpi4.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>PR - Kalaxy3 K3s Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pr-5-ci-portability-repair-and-source-only-guardrail-validation-evidence" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-header__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalaxy3 K3s Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              PR
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-nav__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    Kalaxy3 K3s Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s Homelab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    K3s Homelab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/01_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/02_IP_Address_Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP Address Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/03_Deployment_Order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/04_Phased_Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phased deployment and refinement workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Phase_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase observations and decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/k3s-install-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_7" id="__nav_2_1_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: Use Three K3s Server Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: MetalLB with Traefik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Separate Shared NFS and MinIO Local Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1_8" id="__nav_2_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Recovery Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase 0 Site Survey Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Headlamp Login Token Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 03 Network and Storage Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 04 UI Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Benchmarks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Pre-Logging Kubecost Cost Baseline for Centralized Logging Comparison
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Current SAGE evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical and legacy evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/migration-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE evidence migration report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sections
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Sections
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Benchmarks evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/finops/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Finops evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/operations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/security/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Status
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Status
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/historical/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/validated/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validated evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Subjects
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Subjects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence by subject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-nocloud-seed-usb-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64-node/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for AMD64 Node
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for amd64
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-logging-cost-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized logging cost baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/centralized-observability-logging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Centralized observability logging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/intel-node-pi-administrative-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-api-high-availability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s API High Availability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-automation-controller-portability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 automation controller portability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-controller-access-baseline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 controller access baseline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-daux-landing-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 Daux landing page
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-documentation-publication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 documentation publication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kalaxy3 SAGE evidence-record standard 1.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-chart-3-2-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost chart 3.2.1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/kubecost-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Kubecost Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/longhorn-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Longhorn, Kubecost,
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for MinIO Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Observability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-longhorn/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Longhorn
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/protected-traefik-dashboard-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Protected Traefik Dashboard Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-actionable-failures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE actionable failures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-ci-portability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE CI portability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement-closeout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous-improvement closeout
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement-metrics-pilot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement metrics pilot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-continuous-improvement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE continuous improvement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-enforcement-guardrails/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE enforcement guardrails
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-evidence-catalog/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE evidence catalog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/sage-record-schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for SAGE-record-schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Installation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence for Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    PR
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#record-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-portability-and-repository-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controller portability and repository authority
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failed-or-superseded-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failed or superseded paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-supplemental-commit-lineage-and-terminal-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — Supplemental commit lineage and terminal validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-repository-authority-and-runtime-prerequisite-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Repository authority and runtime-prerequisite classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-centralized-logging-source-only-and-operator-test-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Centralized-logging source-only and operator test tiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-yaml-metadata-source-only-and-parsing-test-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — YAML metadata source-only and parsing test tiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-github-pr-5-green-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — GitHub PR #5 green checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-006-retained-operator-runtime-and-live-logging-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-006 — Retained operator-runtime and live logging validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-007-input-provenance-prior-evidence-and-authority-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-007 — Input provenance, prior evidence, and authority hashes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification and acceptance criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-accepted-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First accepted run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-state-rerun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steady-state rerun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-material-excluded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive material excluded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redactions-and-omissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redactions and omissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-security-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual security risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-durability-and-backup-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data durability and backup impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational considerations and observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routine-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routine verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-performance-cost-and-sustainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity, performance, cost, and sustainability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-reports-a-missing-venv-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub reports a missing .venv executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-only-test-reports-missing-pyyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-only test reports missing PyYAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centralized-logging-source-test-reports-a-missing-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized-logging source test reports a missing helper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-only-tests-pass-but-live-validation-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-only tests pass but live validation fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#original-requester-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Original requester language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prior-evidence-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prior evidence relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-package-generation-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication-package generation note
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-actionable-guardrail-recovery-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Actionable Guardrail Recovery and Active Centralized Logging Runtime Validation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-daux-landing-page-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Daux Landing Page Source and Local Render Validation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-continuous-improvement-foundation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Foundation Staged Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-guardrail-gap-observability-pause-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Guardrail Gap Discovery and Centralized Logging Work Pause
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-metrics-pilot-closeout-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Metrics Pilot Post-Session Closeout and Runtime-Validation Improvement Action Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-metrics-pilot-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Fully Instrumented Metrics Pilot Implementation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/k3s-api-ha-kube-vip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s API High Availability with kube-vip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/k3s-etcd-baseline-backup-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s etcd Baseline Backup Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-amd64-02-k3s-longhorn-node-addition/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 amd64-02 K3s and Longhorn Node Addition
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-amd64-node-and-longhorn-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 AMD64 Node and Longhorn Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-intel-pi-admin-access-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Intel Node pi Administrative Access Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-kubecost-calibration-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kubecost Homelab Cost Calibration, Network Measurement, and Shared Provider-Cost Allocation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-kubecost-installation-and-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Kubecost Installation and Verification
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-minio-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 MinIO Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-observability-and-kubecost/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Observability and Kubecost Deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-protected-ui-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Longhorn and Prometheus UI Installation Evidence and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/kalaxy3-traefik-dashboard-installation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Protected Traefik Dashboard Installation and Rebuild Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/longhorn-kubecost-intel-node-preparation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Longhorn, Kubecost, and Intel Node Preparation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/ubuntu-node-provisioning-fixed/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_14" id="__nav_6_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Old
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Old
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/amd64-nocloud-seed-helper/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AMD64 NoCloud Seed USB Helper
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/flash/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-installation-and-node-provisioning-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Installation and Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-node-provisioning-fixed-amd64/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../installation/old/ubuntu-node-provisioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ubuntu Node Provisioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-centralized-logging-deployment-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Centralized Logging Activation, Deployment, Correction, and Runtime Validation Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-controller-machine-portability-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repository-Controlled Kalaxy3 Automation Controller Machine Portability Verification
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-mkdocs-material-publication-migration-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Daux-to-MkDocs Material Documentation Publication Migration Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-canonical-metadata-contract-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical SAGE metadata contract and publisher enforcement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-evidence-publication-process-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Repeatable SAGE Evidence Package Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-legacy-evidence-navigation-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backward-Compatible SAGE Evidence Navigation and Legacy Reconciliation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operations/kalaxy3-sage-observability-iterative-readiness-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Iterative SAGE-Governed Observability Staging and Activation-Readiness Evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Cost Model Architecture and FinOps Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Security
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../security/kalaxy3-controller-access-baseline-sage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Canonical Kalaxy3 Controller Access Baseline and Legacy Intel Administration Retirement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-actionable-failure-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE actionable failure contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-change-discovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-continuous-improvement-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-orchestration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Orchestration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-publication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-record-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Record Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Verification
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Verification
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../verification/kalaxy3-centralized-logging-sage-evidence-quality-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    External Audit of Centralized Logging SAGE Evidence Quality and Prompt Equivalence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#record-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-portability-and-repository-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controller portability and repository authority
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failed-or-superseded-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failed or superseded paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-supplemental-commit-lineage-and-terminal-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — Supplemental commit lineage and terminal validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-repository-authority-and-runtime-prerequisite-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Repository authority and runtime-prerequisite classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-centralized-logging-source-only-and-operator-test-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Centralized-logging source-only and operator test tiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-yaml-metadata-source-only-and-parsing-test-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — YAML metadata source-only and parsing test tiers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-github-pr-5-green-checks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — GitHub PR #5 green checks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-006-retained-operator-runtime-and-live-logging-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-006 — Retained operator-runtime and live logging validation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-007-input-provenance-prior-evidence-and-authority-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-007 — Input provenance, prior evidence, and authority hashes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification and acceptance criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-accepted-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First accepted run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-state-rerun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steady-state rerun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-material-excluded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive material excluded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redactions-and-omissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redactions and omissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-security-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual security risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-durability-and-backup-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data durability and backup impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational considerations and observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routine-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routine verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-performance-cost-and-sustainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity, performance, cost, and sustainability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-reports-a-missing-venv-executable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GitHub reports a missing .venv executable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-only-test-reports-missing-pyyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-only test reports missing PyYAML
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#centralized-logging-source-test-reports-a-missing-helper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Centralized-logging source test reports a missing helper
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-only-tests-pass-but-live-validation-fails" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source-only tests pass but live validation fails
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#original-requester-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Original requester language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#prior-evidence-relationship" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prior evidence relationship
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publication-package-generation-note" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publication-package generation note
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="pr-5-ci-portability-repair-and-source-only-guardrail-validation-evidence">PR #5 CI Portability Repair and Source-Only Guardrail Validation Evidence<a class="headerlink" href="#pr-5-ci-portability-repair-and-source-only-guardrail-validation-evidence" title="Permanent link">&para;</a></h1>
+<h2 id="executive-summary">Executive summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>PR #5 now passes its repository SAGE and MkDocs checks after three CI-only
+failures exposed a common architectural defect: source-only validation had
+been coupled to generated operator-runtime prerequisites. Kalaxy3 now treats
+repository authority, source-only contracts, and operator-runtime validation as
+separate but complementary layers. The final branch at
+<code>818fa5860c028ffd721c982861032adf1e9af1e0</code> passed source-only tests without <code>.venv</code>, PyYAML, site
+packages, cluster credentials, or live APIs; retained repository-managed
+operator tests and active Loki validation; and produced green GitHub checks with
+no base-branch conflict. This supplemental record is validated and linked to
+<code>SAGE-K3-GUARDRAIL-20260731-001</code>; governance review remains pending.</p>
+<div class="toc">
+<ul>
+<li><a href="#pr-5-ci-portability-repair-and-source-only-guardrail-validation-evidence">PR #5 CI Portability Repair and Source-Only Guardrail Validation Evidence</a><ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#record-metadata">Record metadata</a></li>
+<li><a href="#five-ws-and-how">Five Ws and How</a><ul>
+<li><a href="#five-w-completeness-gate">Five-W completeness gate</a></li>
+</ul>
+</li>
+<li><a href="#scope-and-boundaries">Scope and boundaries</a><ul>
+<li><a href="#in-scope">In scope</a></li>
+<li><a href="#out-of-scope">Out of scope</a></li>
+<li><a href="#nonclaims">Nonclaims</a></li>
+</ul>
+</li>
+<li><a href="#final-accepted-state">Final accepted state</a></li>
+<li><a href="#claims-and-evidence-matrix">Claims and evidence matrix</a></li>
+<li><a href="#problem-and-decision-rationale">Problem and decision rationale</a><ul>
+<li><a href="#problem-or-opportunity">Problem or opportunity</a></li>
+<li><a href="#decision">Decision</a></li>
+<li><a href="#decision-drivers">Decision drivers</a></li>
+<li><a href="#alternatives-considered">Alternatives considered</a></li>
+<li><a href="#tradeoffs-and-consequences">Tradeoffs and consequences</a></li>
+</ul>
+</li>
+<li><a href="#architecture-or-change-description">Architecture or change description</a><ul>
+<li><a href="#before">Before</a></li>
+<li><a href="#after">After</a></li>
+</ul>
+</li>
+<li><a href="#source-of-truth-and-implementation-lineage">Source of truth and implementation lineage</a><ul>
+<li><a href="#repository-files">Repository files</a></li>
+<li><a href="#implementation-commits">Implementation commits</a></li>
+<li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#controller-portability-and-repository-authority">Controller portability and repository authority</a></li>
+<li><a href="#configuration-excerpt">Configuration excerpt</a></li>
+</ul>
+</li>
+<li><a href="#prerequisites-and-assumptions">Prerequisites and assumptions</a><ul>
+<li><a href="#proven-prerequisites">Proven prerequisites</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-procedure">Implementation procedure</a><ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#expected-change">Expected change</a></li>
+<li><a href="#observed-change">Observed change</a></li>
+<li><a href="#failed-or-superseded-paths">Failed or superseded paths</a></li>
+</ul>
+</li>
+<li><a href="#evidence-items">Evidence items</a><ul>
+<li><a href="#ev-001-supplemental-commit-lineage-and-terminal-validation">EV-001 — Supplemental commit lineage and terminal validation</a></li>
+<li><a href="#ev-002-repository-authority-and-runtime-prerequisite-classification">EV-002 — Repository authority and runtime-prerequisite classification</a></li>
+<li><a href="#ev-003-centralized-logging-source-only-and-operator-test-tiers">EV-003 — Centralized-logging source-only and operator test tiers</a></li>
+<li><a href="#ev-004-yaml-metadata-source-only-and-parsing-test-tiers">EV-004 — YAML metadata source-only and parsing test tiers</a></li>
+<li><a href="#ev-005-github-pr-5-green-checks">EV-005 — GitHub PR #5 green checks</a></li>
+<li><a href="#ev-006-retained-operator-runtime-and-live-logging-validation">EV-006 — Retained operator-runtime and live logging validation</a></li>
+<li><a href="#ev-007-input-provenance-prior-evidence-and-authority-hashes">EV-007 — Input provenance, prior evidence, and authority hashes</a></li>
+</ul>
+</li>
+<li><a href="#verification-and-acceptance-criteria">Verification and acceptance criteria</a><ul>
+<li><a href="#functional-verification">Functional verification</a></li>
+<li><a href="#negative-verification">Negative verification</a></li>
+</ul>
+</li>
+<li><a href="#idempotency-and-repeatability">Idempotency and repeatability</a><ul>
+<li><a href="#first-accepted-run">First accepted run</a></li>
+<li><a href="#steady-state-rerun">Steady-state rerun</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#security-privacy-and-evidence-handling">Security, privacy, and evidence handling</a><ul>
+<li><a href="#security-controls">Security controls</a></li>
+<li><a href="#sensitive-material-excluded">Sensitive material excluded</a></li>
+<li><a href="#redactions-and-omissions">Redactions and omissions</a></li>
+<li><a href="#residual-security-risk">Residual security risk</a></li>
+</ul>
+</li>
+<li><a href="#reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild</a><ul>
+<li><a href="#failure-modes">Failure modes</a></li>
+<li><a href="#rollback">Rollback</a></li>
+<li><a href="#rebuild-procedure">Rebuild procedure</a></li>
+<li><a href="#data-durability-and-backup-impact">Data durability and backup impact</a></li>
+</ul>
+</li>
+<li><a href="#operational-considerations-and-observability">Operational considerations and observability</a><ul>
+<li><a href="#health-signals">Health signals</a></li>
+<li><a href="#routine-verification">Routine verification</a></li>
+<li><a href="#capacity-performance-cost-and-sustainability">Capacity, performance, cost, and sustainability</a></li>
+</ul>
+</li>
+<li><a href="#known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a><ul>
+<li><a href="#github-reports-a-missing-venv-executable">GitHub reports a missing .venv executable</a></li>
+<li><a href="#source-only-test-reports-missing-pyyaml">Source-only test reports missing PyYAML</a></li>
+<li><a href="#centralized-logging-source-test-reports-a-missing-helper">Centralized-logging source test reports a missing helper</a></li>
+<li><a href="#source-only-tests-pass-but-live-validation-fails">Source-only tests pass but live validation fails</a></li>
+</ul>
+</li>
+<li><a href="#freshness-revalidation-and-supersession">Freshness, revalidation, and supersession</a><ul>
+<li><a href="#revalidate-when">Revalidate when</a></li>
+<li><a href="#scheduled-review">Scheduled review</a></li>
+<li><a href="#supersession-rule">Supersession rule</a></li>
+</ul>
+</li>
+<li><a href="#final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance</a><ul>
+<li><a href="#governance">Governance</a></li>
+<li><a href="#evidence">Evidence</a></li>
+<li><a href="#safety-and-operations">Safety and operations</a></li>
+<li><a href="#review-acceptance">Review acceptance</a></li>
+</ul>
+</li>
+<li><a href="#git-review-and-publication">Git review and publication</a></li>
+<li><a href="#appendices-and-raw-artifacts">Appendices and raw artifacts</a><ul>
+<li><a href="#artifact-inventory">Artifact inventory</a></li>
+<li><a href="#original-requester-language">Original requester language</a></li>
+<li><a href="#prior-evidence-relationship">Prior evidence relationship</a></li>
+<li><a href="#publication-package-generation-note">Publication-package generation note</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="record-metadata">Record metadata<a class="headerlink" href="#record-metadata" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-GUARDRAIL-20260731-002</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.2</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>PR #5 CI Portability Repair and Source-Only Guardrail Validation Evidence</td>
+</tr>
+<tr>
+<td><strong>Navigation title</strong></td>
+<td>Validate PR #5 source-only guardrails</td>
+</tr>
+<tr>
+<td><strong>Navigation section</strong></td>
+<td>governance</td>
+</tr>
+<tr>
+<td><strong>Navigation order</strong></td>
+<td>420</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Documents the three post-publication CI repairs that separated repository authority from runtime prerequisites and made PR #5 source-only guardrails pass without weakening operator-runtime validation.</td>
+</tr>
+<tr>
+<td><strong>Primary subject</strong></td>
+<td>SAGE CI portability</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td>verification</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>validated</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>PR #5 CI portability and test-tier repair</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td>not-captured</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>2026-07-31T23:17:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td>2026-07-31T23:24:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td>2026-07-31T23:30:09-05:00</td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td>America/Chicago; UTC</td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td>2026-07-31</td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td>event-based</td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/governance/kalaxy3-actionable-guardrail-ci-portability-evidence.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>feature/actionable-guardrail-recovery</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td>818fa5860c028ffd721c982861032adf1e9af1e0</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>homelab</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td>donbs-imac-and-github-actions</td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>amd64-01; amd64-02; arm64-01; arm64-02; arm64-03; arm64-04; arm64-05</td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td>observability</td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td>github-pr=PR-5; loki-api=service/loki-gateway</td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td>SAGE-schema=1.2; SAGE-CI-portability=818fa5860c028ffd721c982861032adf1e9af1e0; GitHub-Actions=version-not-captured; Python=version-not-captured; PyYAML=operator-runtime-only; Loki=18.5.4; fluent-bit-collector=1.0.9; Longhorn=version-not-captured</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Kalaxy3 architecture</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>OpenAI GPT-5.6 Thinking</td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td>pending</td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="five-ws-and-how">Five Ws and How<a class="headerlink" href="#five-ws-and-how" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td>Author OpenAI GPT-5.6 Thinking; operator Don Buddenbaum; owner Kalaxy3 architecture; reviewer pending; affected users are Kalaxy3 operators, maintainers, and PR reviewers.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Three post-publication CI repairs made PR #5 source-only guardrails portable while preserving operator-runtime and live-cluster validation.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td>Completed 2026-07-31T23:17:00-05:00; evidence collected 2026-07-31T23:21:49-05:00; local timezone America/Chicago; system timestamps America/Chicago; UTC; valid as of 2026-07-31; review due event-based. The exact work start was not captured.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td>Environment homelab; cluster kalaxy3; execution host donbs-imac-and-github-actions; controller donbs-imac; nodes amd64-01; amd64-02; arm64-01; arm64-02; arm64-03; arm64-04; arm64-05; addresses not-applicable; namespace observability; endpoints github-pr=PR-5; loki-api=service/loki-gateway; record markdown/governance/kalaxy3-actionable-guardrail-ci-portability-evidence.md.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>GitHub Actions must validate repository contracts from a clean checkout without requiring generated virtual environments, optional parsing dependencies, cluster credentials, or live services, while operator closeout must still prove those runtime paths.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>The actionable-failure model now distinguishes source authority from runtime prerequisites; source-only tests run with <code>python3 -S</code>; optional PyYAML loading is lazy; operator tests continue through the repository <code>.venv</code>; live logging validation and GitHub checks were rerun.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="five-w-completeness-gate">Five-W completeness gate<a class="headerlink" href="#five-w-completeness-gate" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Who is complete and agrees with metadata.</li>
+<li>[x] What is complete.</li>
+<li>[x] When is complete, uses canonical timestamps, and includes timezone context.</li>
+<li>[x] Where is complete at repository and runtime levels and agrees with metadata.</li>
+<li>[x] Why includes rationale, alternatives, and tradeoffs.</li>
+<li>[x] How is reproducible and verifiable.</li>
+</ul>
+<h2 id="scope-and-boundaries">Scope and boundaries<a class="headerlink" href="#scope-and-boundaries" title="Permanent link">&para;</a></h2>
+<h3 id="in-scope">In scope<a class="headerlink" href="#in-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The three CI failures after publication of the initial actionable-guardrail
+  evidence record.</li>
+<li>Portable classification of repository authority versus generated runtime
+  prerequisites.</li>
+<li>Source-only and operator-runtime test tiers for centralized logging and YAML
+  metadata.</li>
+<li>Lazy optional dependency loading and actionable missing-PyYAML behavior.</li>
+<li>Local source-only, operator-runtime, live-cluster, repository guardrail, and
+  GitHub PR validation.</li>
+<li>Supplemental lineage to <code>SAGE-K3-GUARDRAIL-20260731-001</code>.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Rewriting the original evidence record or changing its historical
+  implementation boundary.</li>
+<li>Removing <code>.venv</code>, PyYAML, kubeconfig, or live cluster access from operator
+  validation.</li>
+<li>Proving every future GitHub runner image or every optional dependency.</li>
+<li>Merging PR #5; this record is prepared before merge.</li>
+<li>Classifying the remaining actionable-failure audit candidates.</li>
+</ul>
+<h3 id="nonclaims">Nonclaims<a class="headerlink" href="#nonclaims" title="Permanent link">&para;</a></h3>
+<p>This record does <strong>not</strong> claim that source-only tests replace live validation,
+that PyYAML is unnecessary, that all GitHub workflows are portable, or that the
+PR has already merged.</p>
+<h2 id="final-accepted-state">Final accepted state<a class="headerlink" href="#final-accepted-state" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>PR #5 source-only guardrails pass from a clean checkout without generated
+operator dependencies, while repository-managed operator tests and live
+centralized-logging validation remain required and pass separately.
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Recovery path authority</td>
+<td><code>required_paths</code> contains repository-relative source authority, not <code>.venv</code> executables or other generated paths.</td>
+</tr>
+<tr>
+<td>Centralized-logging CI test</td>
+<td>Imports and tests pure validator contracts with <code>python3 -S</code>, without PyYAML, cluster credentials, or <code>.venv</code>.</td>
+</tr>
+<tr>
+<td>Centralized-logging operator test</td>
+<td>Runs through the repository <code>.venv</code> and continues to parse inventory and exercise runtime logic.</td>
+</tr>
+<tr>
+<td>YAML metadata CI test</td>
+<td>Validates types, opaque-value behavior, and actionable missing-PyYAML guidance without parsing YAML.</td>
+</tr>
+<tr>
+<td>YAML metadata operator test</td>
+<td>Parses tagged YAML through the repository <code>.venv</code> and keeps <code>!vault</code> payloads opaque.</td>
+</tr>
+<tr>
+<td>Active logging validation</td>
+<td>Still passes with seven collectors, Loki and gateway ready, Bound <code>40Gi</code> Longhorn storage, and all-node log coverage.</td>
+</tr>
+<tr>
+<td>GitHub PR #5</td>
+<td>Two checks passed, one documentation-only check skipped, and GitHub reported no conflicts with <code>main</code>.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="claims-and-evidence-matrix">Claims and evidence matrix<a class="headerlink" href="#claims-and-evidence-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>Actionable recovery required paths now contain portable repository authority rather than generated runtime executables.</td>
+<td>critical</td>
+<td><code>EV-001</code>; <code>EV-002</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>The centralized-logging source-only test runs without <code>.venv</code>, PyYAML, site packages, cluster credentials, or live APIs.</td>
+<td>critical</td>
+<td><code>EV-001</code>; <code>EV-003</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>YAML metadata source-only validation runs without PyYAML while operator-runtime parsing remains separately tested.</td>
+<td>critical</td>
+<td><code>EV-001</code>; <code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>Repository-managed operator tests and active centralized-logging validation still pass after the CI separation.</td>
+<td>critical</td>
+<td><code>EV-001</code>; <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>PR #5 GitHub checks passed at implementation commit <code>818fa5860c028ffd721c982861032adf1e9af1e0</code>.</td>
+<td>critical</td>
+<td><code>EV-005</code>; <code>EV-001</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-006</code></td>
+<td>The supplemental record is traceable to the prior evidence record, the input bundle, authority hashes, and the three implementation commits.</td>
+<td>high</td>
+<td><code>EV-001</code>; <code>EV-007</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-007</code></td>
+<td>Source-only and operator-runtime tests are complementary rather than interchangeable.</td>
+<td>high</td>
+<td><code>EV-003</code>; <code>EV-004</code>; <code>EV-006</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problem-and-decision-rationale">Problem and decision rationale<a class="headerlink" href="#problem-and-decision-rationale" title="Permanent link">&para;</a></h2>
+<h3 id="problem-or-opportunity">Problem or opportunity<a class="headerlink" href="#problem-or-opportunity" title="Permanent link">&para;</a></h3>
+<p>The initial feature implementation and evidence were valid on the operator
+controller, but GitHub Actions revealed three hidden dependency-boundary
+violations in succession:</p>
+<ol>
+<li>a generated <code>.venv</code> executable was modeled as a source-controlled recovery
+   authority;</li>
+<li>the aggregate repository guardrail invoked a centralized-logging
+   operator-runtime self-test from a source-only checkout;</li>
+<li>after that separation, the same aggregate invoked YAML parsing without
+   installing PyYAML.</li>
+</ol>
+<p>Each failure was a new instance of one general problem: the repository had not
+made the execution tier of every validation target explicit.</p>
+<h3 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h3>
+<p>Establish explicit source-only and operator-runtime validation tiers and enforce
+their boundaries:</p>
+<ul>
+<li>repository recovery authority must be portable source paths;</li>
+<li>generated environments stay in canonical commands and runtime guidance but
+  not in source-existence contracts;</li>
+<li>GitHub guardrails use dependency-minimal source-only tests;</li>
+<li>source-only tests run with <code>python3 -S</code>;</li>
+<li>PyYAML is imported only when parsing is requested;</li>
+<li>operator-runtime and live-cluster tests remain mandatory for implementation
+  and evidence closeout.</li>
+</ul>
+<h3 id="decision-drivers">Decision drivers<a class="headerlink" href="#decision-drivers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>GitHub Actions must validate a clean source checkout without hidden
+  workstation state.</li>
+<li>Operator validation must continue to use pinned dependencies and real
+  cluster access.</li>
+<li>A passing source-only contract must not be mistaken for a live runtime PASS.</li>
+<li>Missing optional dependencies must fail actionably rather than through an
+  import traceback.</li>
+<li>Each discovered instance must become a reusable regression for the broader
+  class.</li>
+</ul>
+<h3 id="alternatives-considered">Alternatives considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Install the complete homelab <code>.venv</code> in GitHub Actions</td>
+<td>Makes operator tests available in CI</td>
+<td>Requires credentials, cluster access, larger setup, and conflates source and runtime boundaries</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Install only PyYAML in GitHub Actions</td>
+<td>Fixes the third failure quickly</td>
+<td>Leaves hidden optional-dependency coupling and does not address live-runtime assumptions</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Remove runtime tests from SAGE validation entirely</td>
+<td>Simplifies CI</td>
+<td>Weakens operator and evidence closeout assurance</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Mark all failing tests as skipped in CI</td>
+<td>Makes the PR green</td>
+<td>Hides contract defects and eliminates regression coverage</td>
+<td>rejected</td>
+</tr>
+<tr>
+<td>Explicit source-only and operator-runtime tiers</td>
+<td>Portable CI plus retained runtime assurance</td>
+<td>Adds targets, documentation, and maintenance</td>
+<td>accepted</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tradeoffs-and-consequences">Tradeoffs and consequences<a class="headerlink" href="#tradeoffs-and-consequences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>More Make targets and tests exist, but each target now has a clear execution
+  contract.</li>
+<li>Source-only tests cannot prove inventory parsing, credentials, connectivity,
+  or live service health; those remain operator responsibilities.</li>
+<li>Operator-runtime tests remain slower and machine-dependent because they
+  intentionally validate pinned tools and the active cluster.</li>
+<li>Lazy optional imports improve portability but require explicit actionable
+  handling when parsing is attempted without the dependency.</li>
+</ul>
+<h2 id="architecture-or-change-description">Architecture or change description<a class="headerlink" href="#architecture-or-change-description" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>                    repository checkout
+                           |
+              +------------+-------------+
+              |                          |
+              v                          v
+     source-only CI tier          operator-runtime tier
+     python3 -S                    repository .venv
+     no site packages              pinned PyYAML/Ansible
+     no credentials                kubeconfig and credentials
+     no live APIs                  live cluster and Loki
+              |                          |
+              +------------+-------------+
+                           |
+                    evidence closeout
+</code></pre></div>
+<h3 id="before">Before<a class="headerlink" href="#before" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Catalog validation required a generated <code>.venv</code> executable to exist.</li>
+<li><code>make sage-guardrails</code> depended on operator-only centralized-logging and YAML
+  parsing tests.</li>
+<li>Importing the metadata helper eagerly required PyYAML.</li>
+<li>CI failures appeared sequentially because the test tier was implicit.</li>
+</ul>
+<h3 id="after">After<a class="headerlink" href="#after" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>canonical_recovery.required_paths</code> rejects runtime-only path components.</li>
+<li>The centralized-logging source test imports the real validator with
+  <code>python3 -S</code> and validates pure contracts and entry points.</li>
+<li>The YAML source test validates type, redaction, and actionable missing-parser
+  behavior without importing PyYAML.</li>
+<li>The operator tests use the homelab <code>.venv</code>.</li>
+<li>The active runtime validator remains a separate live-cluster target.</li>
+<li>GitHub Actions runs the source-only aggregate and passes.</li>
+</ul>
+<h2 id="source-of-truth-and-implementation-lineage">Source of truth and implementation lineage<a class="headerlink" href="#source-of-truth-and-implementation-lineage" title="Permanent link">&para;</a></h2>
+<h3 id="repository-files">Repository files<a class="headerlink" href="#repository-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Makefile
+sage-actionable-failures.json
+sage-change-authority.json
+scripts/sage/sage_actionable_failure.py
+scripts/sage/sage-actionable-failure-self-test.py
+scripts/sage/sage_yaml_metadata.py
+scripts/sage/sage-yaml-metadata-source-self-test.py
+scripts/sage/sage-yaml-metadata-self-test.py
+infrastructure/k3s-homelab/Makefile
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime.py
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime-source-self-test.py
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime-self-test.py
+markdown/standards/kalaxy3-sage-actionable-failure-contract.md
+</code></pre></div>
+<h3 id="implementation-commits">Implementation commits<a class="headerlink" href="#implementation-commits" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>91785bc Make actionable recovery paths CI-portable
+3fc7e45 Separate source-only and operator runtime self-tests
+818fa58 Separate YAML metadata source and runtime self-tests
+</code></pre></div>
+<p>The supplemental publication implementation commit is
+<code>818fa5860c028ffd721c982861032adf1e9af1e0</code>. The prior record
+<code>SAGE-K3-GUARDRAIL-20260731-001</code> remains historically correct for implementation
+commit <code>4c369193731e9fc7832d8c2a0e1e2718a6210e86</code>.</p>
+<h3 id="versioned-dependencies">Versioned dependencies<a class="headerlink" href="#versioned-dependencies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th style="text-align: right;">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAGE record schema</td>
+<td style="text-align: right;">1.2</td>
+<td>metadata contract</td>
+</tr>
+<tr>
+<td>GitHub Actions</td>
+<td style="text-align: right;">version not captured</td>
+<td>PR #5 checks screenshot</td>
+</tr>
+<tr>
+<td>Python</td>
+<td style="text-align: right;">version not captured</td>
+<td>source-only and operator command output</td>
+</tr>
+<tr>
+<td>PyYAML</td>
+<td style="text-align: right;">version not captured; operator-runtime only</td>
+<td>lazy import contract and <code>.venv</code> parsing test</td>
+</tr>
+<tr>
+<td>Loki Helm chart</td>
+<td style="text-align: right;">18.5.4</td>
+<td>live runtime validation</td>
+</tr>
+<tr>
+<td>Fluent Bit Collector chart</td>
+<td style="text-align: right;">1.0.9</td>
+<td>live runtime validation</td>
+</tr>
+<tr>
+<td>Longhorn</td>
+<td style="text-align: right;">version not captured</td>
+<td>Bound storage observation</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller-portability-and-repository-authority">Controller portability and repository authority<a class="headerlink" href="#controller-portability-and-repository-authority" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository-controlled dependencies</td>
+<td>Make targets, source tests, actionable-failure catalog, standards, and validators</td>
+</tr>
+<tr>
+<td>Controller bootstrap</td>
+<td>repository homelab <code>.venv</code> for operator-runtime tests</td>
+</tr>
+<tr>
+<td>Controller preflight</td>
+<td>source-only tests pass with <code>python3 -S</code>; operator and live tests pass separately</td>
+</tr>
+<tr>
+<td>Controller host</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Execution host</td>
+<td>donbs-imac-and-github-actions</td>
+</tr>
+<tr>
+<td>Machine-local authoritative state</td>
+<td>none claimed; <code>.venv</code>, credentials, and kubeconfig are runtime prerequisites rather than repository authority</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>[x] Another supported controller can validate source contracts from a clean checkout.</li>
+<li>[x] No generated <code>.venv</code> path is modeled as source-controlled authority.</li>
+<li>[x] Operator-only dependencies remain explicit and separately validated.</li>
+<li>[x] The final implementation commit and green CI result are recorded.</li>
+</ul>
+<h3 id="configuration-excerpt">Configuration excerpt<a class="headerlink" href="#configuration-excerpt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nf">sage-self-test</span><span class="o">:</span><span class="w"> </span><span class="n">centralized</span>-<span class="n">logging</span>-<span class="n">runtime</span>-<span class="n">source</span>-<span class="n">self</span>-<span class="n">test</span>                 <span class="n">sage</span>-<span class="n">yaml</span>-<span class="n">metadata</span>-<span class="n">source</span>-<span class="n">self</span>-<span class="n">test</span>
+
+<span class="nf">centralized-logging-runtime-self-test</span><span class="o">:</span>
+<span class="w">        </span>.venv/bin/python<span class="w"> </span>scripts/validate-centralized-logging-runtime-self-test.py
+
+<span class="nf">sage-yaml-metadata-self-test</span><span class="o">:</span>
+<span class="w">        </span>infrastructure/k3s-homelab/.venv/bin/python<span class="w">           </span>scripts/sage/sage-yaml-metadata-self-test.py
+</code></pre></div>
+<p>The excerpt is conceptual; exact formatting remains authoritative in the
+repository Makefiles.</p>
+<h2 id="prerequisites-and-assumptions">Prerequisites and assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permanent link">&para;</a></h2>
+<h3 id="proven-prerequisites">Proven prerequisites<a class="headerlink" href="#proven-prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>EV-002</code>: repository authority files exist in a source-only fixture without
+  <code>.venv</code>.</li>
+<li><code>EV-003</code>: the centralized-logging validator imports and its pure contracts
+  pass under <code>python3 -S</code>.</li>
+<li><code>EV-004</code>: metadata types and missing-PyYAML behavior pass under <code>python3 -S</code>.</li>
+<li><code>EV-006</code>: the repository <code>.venv</code> and live cluster remain available on
+  <code>donbs-imac</code>.</li>
+<li><code>EV-005</code>: GitHub Actions executed the PR source-only guardrails successfully.</li>
+</ul>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>The screenshot corresponds to PR #5 at <code>818fa5860c028ffd721c982861032adf1e9af1e0</code> as reported by the operator.</td>
+<td>CI lineage could be misattributed.</td>
+<td>Retain screenshot, full SHA, and branch history; confirm in PR before merge.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td>Future source-only tests continue to avoid optional site packages and live access.</td>
+<td>CI portability could regress.</td>
+<td>Run with <code>python3 -S</code> and keep explicit tier documentation.</td>
+</tr>
+<tr>
+<td><code>ASM-003</code></td>
+<td>Operator controllers recreate the repository <code>.venv</code> before runtime testing.</td>
+<td>Operator tests could fail before target validation.</td>
+<td>Use repository bootstrap and actionable prerequisite guidance.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation-procedure">Implementation procedure<a class="headerlink" href="#implementation-procedure" title="Permanent link">&para;</a></h2>
+<h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+git<span class="w"> </span>switch<span class="w"> </span>feature/actionable-guardrail-recovery
+git<span class="w"> </span>status
+git<span class="w"> </span>fetch<span class="w"> </span>origin
+</code></pre></div>
+<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Commit 91785bc</span>
+<span class="c1"># Classify required_paths as repository authority and add a source-only fixture.</span>
+
+<span class="c1"># Commit 3fc7e45</span>
+<span class="c1"># Add centralized-logging source-only tests and preserve .venv operator tests.</span>
+
+<span class="c1"># Commit 818fa58</span>
+<span class="c1"># Add YAML metadata source-only tests, lazy PyYAML loading, and preserve parsing tests.</span>
+</code></pre></div>
+<h3 id="expected-change">Expected change<a class="headerlink" href="#expected-change" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>make sage-guardrails</code> runs only source-only tests that a clean GitHub checkout
+  can satisfy.</li>
+<li>Operator targets continue to use the repository <code>.venv</code>.</li>
+<li>Live runtime validation remains unchanged.</li>
+<li>GitHub PR checks pass without adding broad runtime dependencies to the
+  workflow.</li>
+</ul>
+<h3 id="observed-change">Observed change<a class="headerlink" href="#observed-change" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Kalaxy3 centralized logging source-only self-test: PASS
+Kalaxy3 YAML metadata source-only self-test: PASS
+Kalaxy3 centralized logging runtime self-test: PASS
+Kalaxy3 centralized logging runtime validation: PASS
+Kalaxy3 repository SAGE guardrails: PASS
+GitHub PR #5: All checks have passed
+</code></pre></div>
+<h3 id="failed-or-superseded-paths">Failed or superseded paths<a class="headerlink" href="#failed-or-superseded-paths" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Attempt</th>
+<th>Failure</th>
+<th>Why it failed</th>
+<th>Generic correction</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Require <code>.venv/bin/ansible-playbook</code> in <code>required_paths</code></td>
+<td>CI checkout had no generated <code>.venv</code></td>
+<td>Runtime prerequisite was misclassified as repository authority</td>
+<td>Reject runtime-only path components from source authority</td>
+</tr>
+<tr>
+<td>Run centralized-logging runtime self-test inside <code>sage-self-test</code></td>
+<td><code>.venv/bin/python</code> did not exist in GitHub Actions</td>
+<td>Operator-runtime test was included in source-only aggregate</td>
+<td>Add source-only test target and keep runtime target separate</td>
+</tr>
+<tr>
+<td>Call stale <code>select_coverage_label</code> in new source test</td>
+<td>Actual API is <code>select_node_label(candidates, values, nodes)</code></td>
+<td>Test was written against remembered rather than inspected API</td>
+<td>Inspect and enforce the real function signature</td>
+</tr>
+<tr>
+<td>Run YAML parsing test under system Python</td>
+<td>PyYAML was absent</td>
+<td>Parsing dependency belonged to operator tier</td>
+<td>Add source-only metadata contract test and lazy import</td>
+</tr>
+<tr>
+<td>Install ad hoc dependencies in CI</td>
+<td>not attempted</td>
+<td>Would mask tier coupling rather than fix it</td>
+<td>Preserve dependency-minimal source-only contract</td>
+</tr>
+</tbody>
+</table>
+<h2 id="evidence-items">Evidence items<a class="headerlink" href="#evidence-items" title="Permanent link">&para;</a></h2>
+<h3 id="ev-001-supplemental-commit-lineage-and-terminal-validation"><code>EV-001</code> — Supplemental commit lineage and terminal validation<a class="headerlink" href="#ev-001-supplemental-commit-lineage-and-terminal-validation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>; <code>CLM-002</code>; <code>CLM-003</code>; <code>CLM-004</code>; <code>CLM-005</code>; <code>CLM-006</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum and repository automation</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>feature branch and validation targets</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git=version-not-captured; Make=version-not-captured; Python=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Three CI repairs are committed and all local validation tiers pass</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>log<span class="w"> </span>--oneline<span class="w"> </span>c50270d..HEAD
+make<span class="w"> </span>sage-guardrails
+make<span class="w"> </span>centralized-logging-runtime-source-self-test
+make<span class="w"> </span>sage-yaml-metadata-source-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-validate
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>818fa58 Separate YAML metadata source and runtime self-tests
+3fc7e45 Separate source-only and operator runtime self-tests
+91785bc Make actionable recovery paths CI-portable
+All listed validation targets returned PASS.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The transcript proves the final branch state and local validation outcome. The
+separate GitHub screenshot proves the hosted PR result.</p>
+<h3 id="ev-002-repository-authority-and-runtime-prerequisite-classification"><code>EV-002</code> — Repository authority and runtime-prerequisite classification<a class="headerlink" href="#ev-002-repository-authority-and-runtime-prerequisite-classification" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>repository SAGE evidence orchestrator</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>repository snapshot</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>actionable-failure catalog and parser</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>SAGE-actionable-failure=818fa5860c028ffd721c982861032adf1e9af1e0</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Source authority excludes generated runtime directories</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/evidence-input-provenance.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>canonical_recovery.required_paths:
+  - infrastructure/k3s-homelab/inventory/hosts.yml
+  - infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml
+
+canonical command:
+  .venv/bin/ansible-playbook ...
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<p>The repository model rejects absolute paths, path traversal, <code>.venv</code>, <code>.tools</code>,
+<code>.helm</code>, and cache directories from <code>required_paths</code>. The runtime command still
+uses the repository-managed <code>.venv</code>.</p>
+<p><strong>Interpretation</strong></p>
+<p>The repair preserves canonical operator guidance while allowing a source-only
+checkout to validate recovery authority.</p>
+<h3 id="ev-003-centralized-logging-source-only-and-operator-test-tiers"><code>EV-003</code> — Centralized-logging source-only and operator test tiers<a class="headerlink" href="#ev-003-centralized-logging-source-only-and-operator-test-tiers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>; <code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>repository automation</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac source-only fixture and operator runtime</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>centralized-logging runtime validator contracts</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Python=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Source-only import and pure contracts pass without optional dependencies; operator test remains separate</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-S<span class="w"> </span>scripts/validate-centralized-logging-runtime-source-self-test.py
+.venv/bin/python<span class="w"> </span>scripts/validate-centralized-logging-runtime-self-test.py
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>PASS runtime validator source-only import without PyYAML
+PASS locked-release interpretation
+PASS dynamic all-node label selection
+PASS live runtime entry-point contract
+Kalaxy3 centralized logging source-only self-test: PASS
+Kalaxy3 centralized logging runtime self-test: PASS
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The source test proves import and pure contracts, not live health. The operator
+test retains dependency and inventory behavior.</p>
+<h3 id="ev-004-yaml-metadata-source-only-and-parsing-test-tiers"><code>EV-004</code> — YAML metadata source-only and parsing test tiers<a class="headerlink" href="#ev-004-yaml-metadata-source-only-and-parsing-test-tiers" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code>; <code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>repository automation</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac source-only and operator runtimes</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>YAML metadata contract and tagged parsing</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>PyYAML=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Pure contract passes without PyYAML; parsing and opaque tags pass in <code>.venv</code></td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-S<span class="w"> </span>scripts/sage/sage-yaml-metadata-source-self-test.py
+infrastructure/k3s-homelab/.venv/bin/python<span class="w">   </span>scripts/sage/sage-yaml-metadata-self-test.py
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>PASS plain YAML metadata type contract
+PASS opaque tagged-value redaction contract
+PASS actionable missing-PyYAML recovery
+Kalaxy3 YAML metadata source-only self-test: PASS
+PASS vault and unknown tags remain opaque
+Kalaxy3 SAGE YAML metadata self-test: PASS
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>Lazy loading removes an import-time dependency from source-only validation
+without weakening operator parsing coverage.</p>
+<h3 id="ev-005-github-pr-5-green-checks"><code>EV-005</code> — GitHub PR #5 green checks<a class="headerlink" href="#ev-005-github-pr-5-green-checks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:17:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>GitHub Actions PR interface</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>PR #5 at <code>818fa5860c028ffd721c982861032adf1e9af1e0</code></td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>GitHub Actions=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Repository SAGE and MkDocs checks pass with no base conflict</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/github-pr5-checks-passed.png</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>GitHub PR #5 checks panel
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>All checks have passed
+1 skipped, 2 successful checks
+No conflicts with base branch
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The screenshot provides the hosted CI result. The skipped <code>doc</code> check is
+expected because the PR-specific MkDocs validation and SAGE validation passed.</p>
+<h3 id="ev-006-retained-operator-runtime-and-live-logging-validation"><code>EV-006</code> — Retained operator-runtime and live logging validation<a class="headerlink" href="#ev-006-retained-operator-runtime-and-live-logging-validation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>direct-observation</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-004</code>; <code>CLM-007</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>Don Buddenbaum and repository automation</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>active Kalaxy3 centralized logging</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Loki=18.5.4; fluent-bit-collector=1.0.9</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Source-only separation does not weaken live validation</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-validate
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>collectors: 7
+loki: 1
+gateway: 1
+storage: Bound 40Gi longhorn
+recent_query_results: 1
+covered_nodes: amd64-01, amd64-02, arm64-01 through arm64-05
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The operator tier still proves live service health. This result is bounded to
+the collection time and does not prove long-term retention or performance.</p>
+<h3 id="ev-007-input-provenance-prior-evidence-and-authority-hashes"><code>EV-007</code> — Input provenance, prior evidence, and authority hashes<a class="headerlink" href="#ev-007-input-provenance-prior-evidence-and-authority-hashes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>generated-artifact</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-006</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>repository SAGE evidence orchestrator</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-07-31T23:21:49-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>donbs-imac and evidence generator</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>supplemental input bundle and prior evidence lineage</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>sage-evidence-orchestrator=1.2-contract</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Original request, repository HEAD, prior record, terminal transcript, screenshot, and authority hashes are traceable</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/evidence-input-provenance.json</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>Input bundle SHA-256: cacbdf374351d1ed6e974c6ab60b82bf4af3a74adfe4ba300b7aadc9ed3d7b8e
+GitHub checks screenshot SHA-256: 58b9d85f1343644c7a8d1d5675f45943d5dbec191a70e5677f56d61403214d6e
+Prior evidence ID: SAGE-K3-GUARDRAIL-20260731-001
+Prior evidence commit: c50270d740fa3bcca976b6ed20db07cfed545638
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<p>The input bundle contains the schema, template, publisher, indexer, current
+source snapshots, repository context, and terminal evidence. The provenance
+artifact also binds the separately supplied GitHub screenshot to its digest.</p>
+<p><strong>Interpretation</strong></p>
+<p>This evidence record supplements rather than rewrites the prior record. The
+publisher remains authoritative for final timestamp replacement, checksum,
+catalog reconciliation, evidence commit, and push.</p>
+<h2 id="verification-and-acceptance-criteria">Verification and acceptance criteria<a class="headerlink" href="#verification-and-acceptance-criteria" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterion ID</th>
+<th>Requirement</th>
+<th>Test or evidence</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AC-001</code></td>
+<td>Recovery authority is source-portable</td>
+<td><code>EV-002</code></td>
+<td>no generated runtime path in <code>required_paths</code></td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-002</code></td>
+<td>Centralized-logging source contract runs without optional runtime dependencies</td>
+<td><code>EV-003</code></td>
+<td><code>python3 -S</code> PASS</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-003</code></td>
+<td>YAML metadata source contract runs without PyYAML</td>
+<td><code>EV-004</code></td>
+<td>type, redaction, and actionable missing-parser tests pass</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-004</code></td>
+<td>Operator centralized-logging tests remain valid</td>
+<td><code>EV-003</code>; <code>EV-006</code></td>
+<td><code>.venv</code> self-test and live validator pass</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-005</code></td>
+<td>Operator YAML parsing remains valid</td>
+<td><code>EV-004</code></td>
+<td>tagged parsing and opaque-value tests pass</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-006</code></td>
+<td>Repository aggregate guardrails pass</td>
+<td><code>EV-001</code></td>
+<td><code>make sage-guardrails</code> PASS</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-007</code></td>
+<td>Hosted PR checks pass</td>
+<td><code>EV-005</code></td>
+<td>two successful checks and no base conflict</td>
+<td>observed</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-008</code></td>
+<td>Supplemental lineage is traceable</td>
+<td><code>EV-007</code></td>
+<td>prior evidence, three commits, bundle, screenshot, and hashes recorded</td>
+<td>present</td>
+<td>pass</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functional-verification">Functional verification<a class="headerlink" href="#functional-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>sage-guardrails
+make<span class="w"> </span>centralized-logging-runtime-source-self-test
+make<span class="w"> </span>sage-yaml-metadata-source-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-validate
+</code></pre></div>
+<p>Observed:</p>
+<div class="highlight"><pre><span></span><code>Kalaxy3 repository SAGE guardrails: PASS
+Kalaxy3 centralized logging source-only self-test: PASS
+Kalaxy3 YAML metadata source-only self-test: PASS
+Kalaxy3 centralized logging runtime self-test: PASS
+Kalaxy3 centralized logging runtime validation: PASS
+</code></pre></div>
+<h3 id="negative-verification">Negative verification<a class="headerlink" href="#negative-verification" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The source-only logging test fails if the validator eagerly imports PyYAML.</li>
+<li>The YAML source-only test requires an actionable error when parsing is
+  requested without PyYAML.</li>
+<li>The actionable-failure parser rejects <code>.venv</code>, <code>.tools</code>, <code>.helm</code>, absolute
+  paths, and traversal from repository <code>required_paths</code>.</li>
+<li>The source-only node-label regression rejects incomplete node coverage and
+  enforces the real <code>select_node_label(candidates, values, nodes)</code> signature.</li>
+</ul>
+<h2 id="idempotency-and-repeatability">Idempotency and repeatability<a class="headerlink" href="#idempotency-and-repeatability" title="Permanent link">&para;</a></h2>
+<h3 id="first-accepted-run">First accepted run<a class="headerlink" href="#first-accepted-run" title="Permanent link">&para;</a></h3>
+<p>The fixes were committed in three cohesive checkpoints because each GitHub
+failure exposed the next hidden runtime dependency. Failed helper and CI paths
+stopped before merge and preserved evidence.</p>
+<h3 id="steady-state-rerun">Steady-state rerun<a class="headerlink" href="#steady-state-rerun" title="Permanent link">&para;</a></h3>
+<p>Local source-only, operator-runtime, live-cluster, SAGE index, and evidence
+guardrails passed at <code>818fa5860c028ffd721c982861032adf1e9af1e0</code>. GitHub then reran the PR workflow
+and reported all checks passed.</p>
+<h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
+<p>Source-only tests are deterministic for a given checkout and system Python.
+Operator-runtime and live tests are repeatable but depend on the repository
+<code>.venv</code>, credentials, connectivity, and current cluster state. The two tiers
+must continue to be run for their separate claims.</p>
+<h2 id="security-privacy-and-evidence-handling">Security, privacy, and evidence handling<a class="headerlink" href="#security-privacy-and-evidence-handling" title="Permanent link">&para;</a></h2>
+<h3 id="security-controls">Security controls<a class="headerlink" href="#security-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Source-only CI does not require kubeconfig, Vault access, cluster
+  credentials, or secret decryption.</li>
+<li>PyYAML is loaded only when parsing is requested.</li>
+<li>Opaque tagged values remain redacted and reject boolean coercion.</li>
+<li>The operator <code>.venv</code> remains the approved dependency boundary.</li>
+<li>The GitHub screenshot contains repository and check status only.</li>
+<li>The publisher scans text artifacts for high-confidence secret patterns.</li>
+</ul>
+<h3 id="sensitive-material-excluded">Sensitive material excluded<a class="headerlink" href="#sensitive-material-excluded" title="Permanent link">&para;</a></h3>
+<ul>
+<li>No Vault ciphertext, credentials, tokens, passwords, keys, kubeconfig
+  contents, or Kubernetes Secret values are included.</li>
+<li>Source authority files are represented by hashes in provenance rather than
+  copied into permanent artifacts.</li>
+<li>The input ZIP is referenced by digest and not embedded.</li>
+</ul>
+<h3 id="redactions-and-omissions">Redactions and omissions<a class="headerlink" href="#redactions-and-omissions" title="Permanent link">&para;</a></h3>
+<ul>
+<li>GitHub runner image and action versions were not captured.</li>
+<li>Python, PyYAML, Git, and Make versions were not captured in this
+  supplemental session.</li>
+<li>Node addresses are not required for the portability claims.</li>
+</ul>
+<h3 id="residual-security-risk">Residual security risk<a class="headerlink" href="#residual-security-risk" title="Permanent link">&para;</a></h3>
+<p>A future source-only test could accidentally import a dependency that reads
+credentials or contacts live services. Running with <code>python3 -S</code>, reviewing
+imports, and maintaining explicit tier contracts reduces but does not eliminate
+that risk.</p>
+<h2 id="reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild<a class="headerlink" href="#reliability-recovery-rollback-and-rebuild" title="Permanent link">&para;</a></h2>
+<h3 id="failure-modes">Failure modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Detection</th>
+<th>Impact</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Generated path added to repository authority</td>
+<td>actionable-failure self-test or CI guardrail</td>
+<td>source-only catalog validation fails</td>
+<td>move the path to runtime guidance and keep source authority portable</td>
+</tr>
+<tr>
+<td>Operator test added to source-only aggregate</td>
+<td>GitHub <code>No such file or directory</code> for <code>.venv</code></td>
+<td>PR guardrail fails before target validation</td>
+<td>add a source-only contract test and retain operator target separately</td>
+</tr>
+<tr>
+<td>Optional parser imported eagerly</td>
+<td>source-only <code>ModuleNotFoundError</code></td>
+<td>CI cannot import validator modules</td>
+<td>lazy-load dependency and fail actionably only when feature is invoked</td>
+</tr>
+<tr>
+<td>Source test uses stale API</td>
+<td>attribute or signature regression</td>
+<td>false test failure</td>
+<td>inspect the repository implementation and enforce its actual signature</td>
+</tr>
+<tr>
+<td>Source-only test passes but runtime is broken</td>
+<td>operator or live target fails</td>
+<td>false confidence if tiers are conflated</td>
+<td>require both tiers before evidence closeout</td>
+</tr>
+<tr>
+<td>GitHub checks regress</td>
+<td>PR status turns red</td>
+<td>merge blocked</td>
+<td>inspect first failure, classify tier, add generic regression, rerun</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h3>
+<p>For the unmerged feature branch:</p>
+<div class="highlight"><pre><span></span><code>git<span class="w"> </span>switch<span class="w"> </span>feature/actionable-guardrail-recovery
+git<span class="w"> </span>revert<span class="w"> </span>818fa5860c028ffd721c982861032adf1e9af1e0
+git<span class="w"> </span>revert<span class="w"> </span>3fc7e45e6ba641e18c77345f7bda7680ef42e59d
+git<span class="w"> </span>revert<span class="w"> </span>91785bceb2f473eb8623e14c4d2e490e89f5bb80
+</code></pre></div>
+<p>Because <code>818fa58</code> depends on the target separation introduced by <code>3fc7e45</code>,
+revert in reverse order. Reverts must be reviewed and must not be used to
+bypass red CI.</p>
+<h3 id="rebuild-procedure">Rebuild procedure<a class="headerlink" href="#rebuild-procedure" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Clone <code>donb4iu/Kalaxy3</code> and check out <code>818fa5860c028ffd721c982861032adf1e9af1e0</code> or a merged
+   descendant.</li>
+<li>Run <code>make sage-guardrails</code> in a clean source checkout.</li>
+<li>Confirm source-only tests use <code>python3 -S</code> and do not require <code>.venv</code>.</li>
+<li>Recreate the repository-managed homelab <code>.venv</code>.</li>
+<li>Run <code>make -C infrastructure/k3s-homelab centralized-logging-runtime-self-test</code>.</li>
+<li>Run <code>make sage-yaml-metadata-self-test</code>.</li>
+<li>With cluster access, run
+   <code>make -C infrastructure/k3s-homelab centralized-logging-runtime-validate</code>.</li>
+<li>Confirm GitHub PR checks pass before merge.</li>
+<li>Run <code>python3 scripts/sage/sage-index.py check</code>.</li>
+</ol>
+<h3 id="data-durability-and-backup-impact">Data durability and backup impact<a class="headerlink" href="#data-durability-and-backup-impact" title="Permanent link">&para;</a></h3>
+<p>These changes affect validation code, dependency boundaries, and documentation.
+They do not alter Loki data, PVCs, retention, reclaim policy, or backups. The
+live validator observes Bound Longhorn storage but does not test restore.</p>
+<h2 id="operational-considerations-and-observability">Operational considerations and observability<a class="headerlink" href="#operational-considerations-and-observability" title="Permanent link">&para;</a></h2>
+<h3 id="health-signals">Health signals<a class="headerlink" href="#health-signals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>GitHub PR check status and commit SHA.</li>
+<li><code>make sage-guardrails</code>.</li>
+<li>Source-only centralized-logging and YAML metadata test results.</li>
+<li>Operator <code>.venv</code> self-test results.</li>
+<li>Active centralized-logging runtime output.</li>
+<li>Evidence index and orchestration guardrails.</li>
+</ul>
+<h3 id="routine-verification">Routine verification<a class="headerlink" href="#routine-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+make<span class="w"> </span>sage-guardrails
+make<span class="w"> </span>centralized-logging-runtime-source-self-test
+make<span class="w"> </span>sage-yaml-metadata-source-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-self-test
+make<span class="w"> </span>sage-yaml-metadata-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-validate
+</code></pre></div>
+<h3 id="capacity-performance-cost-and-sustainability">Capacity, performance, cost, and sustainability<a class="headerlink" href="#capacity-performance-cost-and-sustainability" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Capacity:</strong> no runtime capacity change was introduced.</li>
+<li><strong>Performance:</strong> source-only CI should be faster than provisioning the full
+  operator environment, but duration was not measured.</li>
+<li><strong>Cost:</strong> no new persistent service or paid dependency was added.</li>
+<li><strong>Sustainability:</strong> source-only checks avoid unnecessary environment
+  provisioning and live cluster access; power and runner savings were not
+  measured.</li>
+</ul>
+<h2 id="known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks<a class="headerlink" href="#known-limitations-evidence-gaps-and-risks" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Due or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAP-001</code></td>
+<td>evidence-gap</td>
+<td><code>work_started_at</code> is <code>not-captured</code>.</td>
+<td>Session duration cannot be calculated.</td>
+<td>Kalaxy3 architecture</td>
+<td>next evidence session</td>
+</tr>
+<tr>
+<td><code>GAP-002</code></td>
+<td>evidence-gap</td>
+<td>GitHub runner image, action versions, Python, PyYAML, Git, and Make versions were not captured.</td>
+<td>Exact tool reproduction is incomplete.</td>
+<td>Kalaxy3 architecture</td>
+<td>next workflow or test-tier edit</td>
+</tr>
+<tr>
+<td><code>GAP-003</code></td>
+<td>limitation</td>
+<td>The GitHub screenshot is visual evidence and does not include the run URL or machine-readable workflow result.</td>
+<td>Hosted CI lineage relies on PR number, branch SHA, and operator-provided screenshot.</td>
+<td>Kalaxy3 architecture</td>
+<td>future GitHub API evidence integration</td>
+</tr>
+<tr>
+<td><code>GAP-004</code></td>
+<td>limitation</td>
+<td>Source-only tests validate imports and pure contracts, not inventory parsing, credentials, network access, or live services.</td>
+<td>A source PASS cannot establish runtime health.</td>
+<td>Kalaxy3 architecture</td>
+<td>every implementation closeout</td>
+</tr>
+<tr>
+<td><code>GAP-005</code></td>
+<td>risk</td>
+<td>Future aggregate Make targets may accidentally reintroduce operator-only dependencies.</td>
+<td>CI portability could regress.</td>
+<td>Kalaxy3 architecture</td>
+<td>any aggregate guardrail change</td>
+</tr>
+<tr>
+<td><code>GAP-006</code></td>
+<td>technical-debt</td>
+<td>Remaining actionable-failure candidates still require classification.</td>
+<td>Other validators may retain implicit dependency tiers.</td>
+<td>Kalaxy3 architecture</td>
+<td>prioritized migration work</td>
+</tr>
+<tr>
+<td><code>GAP-007</code></td>
+<td>governance</td>
+<td>Reviewer is pending and PR #5 is not yet merged.</td>
+<td>Record is validated, not accepted.</td>
+<td>Kalaxy3 architecture</td>
+<td>PR review and merge</td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="github-reports-a-missing-venv-executable">GitHub reports a missing <code>.venv</code> executable<a class="headerlink" href="#github-reports-a-missing-venv-executable" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>A source-only aggregate invoked an operator-runtime target or modeled a
+generated path as repository authority.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;\.venv&quot;</span><span class="w"> </span>Makefile<span class="w"> </span>sage-actionable-failures.json
+make<span class="w"> </span>sage-guardrails
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Keep <code>.venv</code> in operator commands and guidance, remove it from source
+<code>required_paths</code>, and add or invoke a source-only contract test.</p>
+<h3 id="source-only-test-reports-missing-pyyaml">Source-only test reports missing PyYAML<a class="headerlink" href="#source-only-test-reports-missing-pyyaml" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>Parsing was attempted in the source-only tier or an optional dependency was
+imported eagerly.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>python3<span class="w"> </span>-S<span class="w"> </span>scripts/sage/sage-yaml-metadata-source-self-test.py
+grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;import yaml&quot;</span><span class="w"> </span>scripts/sage/sage_yaml_metadata.py
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Keep import lazy, validate pure contracts without parsing, and run the parsing
+test through the repository <code>.venv</code>.</p>
+<h3 id="centralized-logging-source-test-reports-a-missing-helper">Centralized-logging source test reports a missing helper<a class="headerlink" href="#centralized-logging-source-test-reports-a-missing-helper" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The test may use a stale remembered API.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>grep<span class="w"> </span>-n<span class="w"> </span><span class="s2">&quot;^def select_&quot;</span><span class="w">   </span>infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime.py
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Inspect the actual function name and signature, update the source-only
+regression, then rerun both test tiers.</p>
+<h3 id="source-only-tests-pass-but-live-validation-fails">Source-only tests pass but live validation fails<a class="headerlink" href="#source-only-tests-pass-but-live-validation-fails" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>Repository contracts are portable, but operator dependencies, access, or the
+target system are not healthy.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-self-test
+make<span class="w"> </span>-C<span class="w"> </span>infrastructure/k3s-homelab<span class="w"> </span>centralized-logging-runtime-validate
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<p>Treat the operator or live failure separately; do not weaken the source-only
+test or report target health from a source-contract PASS.</p>
+<h2 id="freshness-revalidation-and-supersession">Freshness, revalidation, and supersession<a class="headerlink" href="#freshness-revalidation-and-supersession" title="Permanent link">&para;</a></h2>
+<h3 id="revalidate-when">Revalidate when<a class="headerlink" href="#revalidate-when" title="Permanent link">&para;</a></h3>
+<ul>
+<li>any SAGE aggregate guardrail target changes;</li>
+<li><code>.venv</code>, optional dependencies, or runtime paths appear in source authority;</li>
+<li>centralized-logging validator imports or pure helper APIs change;</li>
+<li>YAML metadata loading or tagged-value behavior changes;</li>
+<li>the GitHub Actions workflow or runner environment changes;</li>
+<li>operator Python, PyYAML, Ansible, kubeconfig, or cluster access changes;</li>
+<li>the active logging deployment or cluster topology changes;</li>
+<li>the prior actionable-guardrail evidence is superseded;</li>
+<li>PR #5 is rebased, amended, or merged at a different implementation SHA.</li>
+</ul>
+<h3 id="scheduled-review">Scheduled review<a class="headerlink" href="#scheduled-review" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>event-based: review on test-tier, workflow, runtime-dependency, validator, or PR lineage change
+</code></pre></div>
+<h3 id="supersession-rule">Supersession rule<a class="headerlink" href="#supersession-rule" title="Permanent link">&para;</a></h3>
+<p>This supplemental record depends on, but does not supersede,
+<code>SAGE-K3-GUARDRAIL-20260731-001</code>. A future accepted record may supersede both
+only if it preserves their implementation boundaries and failure chronology.</p>
+<h2 id="final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance<a class="headerlink" href="#final-completion-checklist-and-reviewer-acceptance" title="Permanent link">&para;</a></h2>
+<h3 id="governance">Governance<a class="headerlink" href="#governance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Evidence ID is unique and permanent.</li>
+<li>[x] Schema version is 1.2.</li>
+<li>[x] Front matter follows the exact metadata contract and order.</li>
+<li>[x] Record metadata exactly mirrors front matter.</li>
+<li>[x] Status accurately reflects completeness.</li>
+<li>[x] Owner, author, operator, and reviewer are identified.</li>
+<li>[x] Five Ws and How agree with canonical metadata.</li>
+<li>[x] Scope and nonclaims are explicit.</li>
+<li>[x] Supplemental implementation commit is recorded.</li>
+<li>[x] Prior evidence relationship is explicit.</li>
+</ul>
+<h3 id="evidence">Evidence<a class="headerlink" href="#evidence" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Every critical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Source-only, operator-runtime, live, and hosted CI results are distinct.</li>
+<li>[x] Direct observations identify source, target, time, and tool version or an explicit gap.</li>
+<li>[x] Failed CI and stale-API paths are separated from final state.</li>
+<li>[x] Input bundle, terminal transcript, screenshot, and authority hashes are traceable.</li>
+<li>[x] Every <code>not-captured</code> metadata value has an evidence gap.</li>
+<li>[x] Idempotency and repeatability are bounded.</li>
+</ul>
+<h3 id="safety-and-operations">Safety and operations<a class="headerlink" href="#safety-and-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Secrets and credentials are excluded.</li>
+<li>[x] Source-only CI requires no privileged runtime access.</li>
+<li>[x] Operator and live validation remain documented.</li>
+<li>[x] Rollback and rebuild procedures are documented.</li>
+<li>[x] Known limitations and gaps have owners or triggers.</li>
+<li>[x] Revalidation criteria are defined.</li>
+</ul>
+<h3 id="review-acceptance">Review acceptance<a class="headerlink" href="#review-acceptance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Kalaxy3 architecture</td>
+<td>conditional</td>
+<td>2026-07-31</td>
+<td>Implementation and PR checks passed; merge remains pending.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Review supplemental evidence and PR #5 before merge.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="git-review-and-publication">Git review and publication<a class="headerlink" href="#git-review-and-publication" title="Permanent link">&para;</a></h2>
+<p>Use only the repository publication process:</p>
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>~/dvlp/Kalaxy3
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>check<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-pr5-ci-portability-evidence-SAGE-K3-GUARDRAIL-20260731-002.zip
+
+python3<span class="w"> </span>scripts/sage/sage-publish.py<span class="w"> </span>publish<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>~/Downloads/kalaxy3-pr5-ci-portability-evidence-SAGE-K3-GUARDRAIL-20260731-002.zip<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--push
+</code></pre></div>
+<p>The package uses evidence-only publication and binds lineage to
+<code>818fa5860c028ffd721c982861032adf1e9af1e0</code>. Publishing creates a supplemental evidence commit,
+record checksum, publication manifest, and reconciled indexes. The PR checks
+must rerun after publication before merge.</p>
+<h2 id="appendices-and-raw-artifacts">Appendices and raw artifacts<a class="headerlink" href="#appendices-and-raw-artifacts" title="Permanent link">&para;</a></h2>
+<h3 id="artifact-inventory">Artifact inventory<a class="headerlink" href="#artifact-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path or URI</th>
+<th>SHA-256</th>
+<th>Contains sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Terminal evidence</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md</code></td>
+<td><code>48b4e5e770f87659a9df126bdd1f98293d63b4bee38d75aa5113cbef48fa6454</code></td>
+<td>no</td>
+<td>permanent with evidence ID</td>
+</tr>
+<tr>
+<td>Evidence input provenance</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/evidence-input-provenance.json</code></td>
+<td><code>385956ecb099b04a71d1148c070a6aa470389b43653b9f611eb9b42491d05352</code></td>
+<td>no</td>
+<td>permanent with evidence ID</td>
+</tr>
+<tr>
+<td>GitHub PR #5 checks screenshot</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/github-pr5-checks-passed.png</code></td>
+<td><code>58b9d85f1343644c7a8d1d5675f45943d5dbec191a70e5677f56d61403214d6e</code></td>
+<td>no</td>
+<td>permanent with evidence ID</td>
+</tr>
+<tr>
+<td>Input bundle</td>
+<td><code>kalaxy3-pr5-ci-repair-evidence-inputs-20260731-232149.zip</code></td>
+<td><code>cacbdf374351d1ed6e974c6ab60b82bf4af3a74adfe4ba300b7aadc9ed3d7b8e</code></td>
+<td>not embedded; may contain source snapshots</td>
+<td>retain outside repository until publication review completes</td>
+</tr>
+</tbody>
+</table>
+<h3 id="original-requester-language">Original requester language<a class="headerlink" href="#original-requester-language" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Generate a supplemental schema 1.2 SAGE evidence record for the post-publication CI repairs on PR #5, Add actionable SAGE guardrail recovery and runtime validation. Link the record to prior evidence SAGE-K3-GUARDRAIL-20260731-001 and prior evidence commit c50270d. Cover implementation commits 91785bc, 3fc7e45, and 818fa58. Explain the three source-only CI failures and their broader classes: a generated .venv executable incorrectly modeled as repository authority; an operator-runtime centralized-logging self-test incorrectly included in source-only GitHub guardrails; and a YAML parsing self-test requiring PyYAML incorrectly included in the same source-only aggregate. Document the generic remedies: repository-authority versus runtime-prerequisite classification, source-only versus operator-runtime test tiers, lazy optional dependency loading, source-only tests using python3 -S, and retention of the repository-managed .venv and live cluster tests for operator and evidence closeout. Preserve failed paths, accepted final state, rationale, limitations, rollback, rebuild, and revalidation. Record that PR #5 GitHub checks passed at HEAD 818fa5860c028ffd721c982861032adf1e9af1e0; the green GitHub screenshot is supplied separately to the final evidence generator. Use the repository-owned SAGE standard, metadata contract, template, orchestrator, publisher, and indexer.
+</code></pre></div>
+<h3 id="prior-evidence-relationship">Prior evidence relationship<a class="headerlink" href="#prior-evidence-relationship" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Prior evidence ID: SAGE-K3-GUARDRAIL-20260731-001
+Prior evidence commit: c50270d740fa3bcca976b6ed20db07cfed545638
+Prior implementation commit: 4c369193731e9fc7832d8c2a0e1e2718a6210e86
+Supplemental implementation commit: 818fa5860c028ffd721c982861032adf1e9af1e0
+</code></pre></div>
+<h3 id="publication-package-generation-note">Publication-package generation note<a class="headerlink" href="#publication-package-generation-note" title="Permanent link">&para;</a></h3>
+<p>The repository orchestrator produced a generation input bundle. This schema
+1.2 publication ZIP adds <code>sage-package.json</code>, the supplemental record, terminal
+evidence, provenance, and the GitHub checks screenshot under <code>payload/</code>.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
