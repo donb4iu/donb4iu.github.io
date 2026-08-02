@@ -1,0 +1,100 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-workflow-primitives-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE Workflow Primitive Registry",
+    "type": "object",
+    "required": [
+        "schema_version",
+        "framework_version",
+        "status",
+        "principles",
+        "primitives",
+        "composition_policy",
+        "logging_policy",
+        "mutation_policy",
+        "evolution_policy",
+        "usage_policy",
+        "required_metrics"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "framework_version": {
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "status": {
+            "enum": [
+                "pilot",
+                "validated",
+                "stable",
+                "deprecated"
+            ]
+        },
+        "principles": {
+            "type": "array",
+            "minItems": 10,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            },
+            "uniqueItems": true
+        },
+        "primitives": {
+            "type": "array",
+            "minItems": 10,
+            "items": {
+                "type": "object",
+                "required": [
+                    "primitive_id",
+                    "version",
+                    "module",
+                    "symbol",
+                    "side_effects",
+                    "idempotency",
+                    "logging",
+                    "failure_mode",
+                    "tests",
+                    "maturity"
+                ],
+                "properties": {
+                    "primitive_id": {
+                        "type": "string",
+                        "pattern": "^[a-z][a-z0-9.-]+$"
+                    },
+                    "version": {
+                        "type": "string",
+                        "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+                    },
+                    "module": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "symbol": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "tests": {
+                        "type": "array",
+                        "minItems": 1,
+                        "items": {
+                            "type": "string",
+                            "minLength": 1
+                        }
+                    },
+                    "maturity": {
+                        "enum": [
+                            "pilot",
+                            "validated",
+                            "stable",
+                            "deprecated"
+                        ]
+                    }
+                },
+                "additionalProperties": true
+            }
+        }
+    },
+    "additionalProperties": true
+}
