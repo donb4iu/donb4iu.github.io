@@ -1,0 +1,50 @@
+{
+    "schema_version": "1.0",
+    "gap_id": "SAGE-GAP-20260801-003",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "created_at": "2026-08-01T21:55:00-05:00",
+    "authority_receipt": "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+    "component_manifest": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json",
+    "required_capability": "Exactly one operator-executed Git or GitHub mutation proposal without execution.",
+    "candidates_considered": [
+        {
+            "component_id": "manual-console-guidance",
+            "version": "unversioned",
+            "source_path": "conversation guidance",
+            "insufficiency": "Manual prose does not enforce command count, boundary matching, digesting, validation evidence, or a blocked next boundary.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "A typed proposal builder matching the Phase 1 operator Git proposal schema.",
+        "why_configuration_is_insufficient": "Formatting conventions alone cannot enforce semantic command and boundary constraints.",
+        "why_composition_is_insufficient": "Existing workflow primitives either execute commands or write generic closeouts; neither guarantees non-execution of one mutation command.",
+        "new_primitive_required": true
+    },
+    "proposed_primitive": {
+        "primitive_id": "operator.git-proposal",
+        "responsibility": "Build and write a schema-valid secret-free one-command operator mutation proposal and never execute it.",
+        "side_effects": "Optional local proposal receipt write only.",
+        "idempotency": "Deterministic for fixed inputs and timestamp.",
+        "logging": "Boundary, command digest, exact scope, validation, and operator contract.",
+        "failure_mode": "Invalid identifiers, command composition, credentials, or validation fail before proposal emission.",
+        "runtime_tests": [
+            "one command",
+            "boundary-command match",
+            "secret rejection",
+            "non-execution contract"
+        ],
+        "initial_maturity": "pilot"
+    },
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-01T21:25:00-05:00",
+        "rationale": "The operator explicitly approved the Phase 2 least-authority safety-foundation gaps."
+    },
+    "evidence_references": [
+        "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+        "sha256:1eb688904d0776e641e7edb0ce1cc1ed6c9d13e72ec59300add520f5c740c701",
+        "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974"
+    ]
+}

@@ -1,0 +1,98 @@
+{
+    "schema_version": "1.0",
+    "manifest_id": "SAGE-COMP-20260801-003",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "created_at": "2026-08-01T22:40:00-05:00",
+    "authority_receipt": "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+    "required_capabilities": [
+        {
+            "capability_id": "CAP-009",
+            "description": "Construct schema 1.0 semantic outcome reports and compatible trends without fabricated measurements or opaque scores.",
+            "required": true
+        }
+    ],
+    "candidates": [
+        {
+            "candidate_id": "CANDIDATE-117",
+            "capability_ids": [
+                "CAP-009"
+            ],
+            "component_id": "usage.summary",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/usage.py",
+            "maturity": "pilot",
+            "disposition": "rejected",
+            "selection_factors": {
+                "applicability": "partial",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "insufficient",
+                "published_interface_verified": true,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "no",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+                "path:scripts/sage/workflow/usage.py"
+            ],
+            "rationale": "Useful event aggregation, but it lacks the operating-contract semantic metric and trend contract."
+        },
+        {
+            "candidate_id": "CANDIDATE-118",
+            "capability_ids": [
+                "CAP-009"
+            ],
+            "component_id": "metrics.outcome",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/metrics.py",
+            "maturity": "unregistered",
+            "disposition": "selected",
+            "selection_factors": {
+                "applicability": "direct",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "least-authority",
+                "published_interface_verified": true,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "no",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "commit-prefix:53872d6",
+                "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-outcome-metrics.json"
+            ],
+            "rationale": "Provides the exact schema-driven, least-authority in-memory measurement capability."
+        }
+    ],
+    "selections": [
+        {
+            "capability_id": "CAP-009",
+            "candidate_id": "CANDIDATE-118",
+            "component_id": "metrics.outcome",
+            "version": "1.0.0",
+            "selection_basis": "Exact raw, derived, null, mutation-separation, and comparable-trend semantics."
+        }
+    ],
+    "composition": [
+        {
+            "sequence": 1,
+            "step_id": "phase4-step-1",
+            "capability_id": "CAP-009",
+            "component_id": "metrics.outcome",
+            "version": "1.0.0",
+            "purpose": "Construct semantic outcome reports and compatible trends.",
+            "side_effect_scope": "in-memory"
+        }
+    ],
+    "capability_gap_receipts": [
+        "SAGE-GAP-20260801-009"
+    ],
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-01T21:25:00-05:00",
+        "rationale": "The operator approved the nine-gap operating-contract implementation plan, including semantic outcome measurement."
+    },
+    "composite_score_enabled": false
+}

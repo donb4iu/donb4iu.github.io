@@ -1,0 +1,52 @@
+{
+    "schema_version": "1.0",
+    "gap_id": "SAGE-GAP-20260801-004",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "created_at": "2026-08-01T21:55:00-05:00",
+    "authority_receipt": "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+    "component_manifest": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json",
+    "required_capability": "Production helper rejection of Git, GitHub, credential, and deployment mutation paths.",
+    "candidates_considered": [
+        {
+            "component_id": "workflow.composition",
+            "version": "1.1.0",
+            "source_path": "scripts/sage/sage-workflow-primitives-guardrail.py",
+            "insufficiency": "The current guardrail covers tracked compositions but not arbitrary downloaded implementation helpers or GH_CONFIG_DIR and token inheritance.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "A reusable source scanner with protected command, API, credential, and fixture-boundary rules.",
+        "why_configuration_is_insufficient": "Adding names to the composition policy does not scan external helper files or distinguish isolated fixtures.",
+        "why_composition_is_insufficient": "Composing existing discovery and validation primitives cannot prove a helper source lacks prohibited mutation paths.",
+        "new_primitive_required": true
+    },
+    "proposed_primitive": {
+        "primitive_id": "git.safety-guardrail",
+        "responsibility": "Statically reject protected-system mutation and credential inheritance in delivered helpers while allowing isolated temporary-repository fixtures.",
+        "side_effects": "Read-only source analysis.",
+        "idempotency": "Deterministic for unchanged source and fixture root.",
+        "logging": "Violation path, line, code, and redacted description.",
+        "failure_mode": "Any prohibited path fails closed before helper delivery or execution.",
+        "runtime_tests": [
+            "read-only helper pass",
+            "Git mutation rejection",
+            "GitHub mutation rejection",
+            "credential rejection",
+            "deployment rejection",
+            "isolated fixture allowance"
+        ],
+        "initial_maturity": "pilot"
+    },
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-01T21:25:00-05:00",
+        "rationale": "The operator explicitly approved the Phase 2 least-authority safety-foundation gaps."
+    },
+    "evidence_references": [
+        "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+        "sha256:1eb688904d0776e641e7edb0ce1cc1ed6c9d13e72ec59300add520f5c740c701",
+        "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974"
+    ]
+}

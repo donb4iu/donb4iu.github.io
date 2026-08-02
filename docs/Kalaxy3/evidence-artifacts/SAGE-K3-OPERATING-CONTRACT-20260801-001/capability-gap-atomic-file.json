@@ -1,0 +1,50 @@
+{
+    "schema_version": "1.0",
+    "gap_id": "SAGE-GAP-20260801-002",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "created_at": "2026-08-01T21:55:00-05:00",
+    "authority_receipt": "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+    "component_manifest": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json",
+    "required_capability": "Mode-preserving atomic repository file replacement with rollback.",
+    "candidates_considered": [
+        {
+            "component_id": "helper-local-atomic-write",
+            "version": "unversioned",
+            "source_path": "downloaded helper implementations",
+            "insufficiency": "Helper-local writers are duplicated, unversioned, and previously changed an executable file to mode 0644.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "A reusable allowed-root writer with fsync, os.replace, mode preservation, symlink rejection, and snapshots.",
+        "why_configuration_is_insufficient": "Flags cannot make multiple helper-local implementations share one tested contract.",
+        "why_composition_is_insufficient": "Composing existing command and evidence primitives does not provide atomic file replacement semantics.",
+        "new_primitive_required": true
+    },
+    "proposed_primitive": {
+        "primitive_id": "file.atomic-preserve-mode",
+        "responsibility": "Replace declared repository files atomically while preserving existing modes and supporting rollback.",
+        "side_effects": "Declared repository-content writes only.",
+        "idempotency": "Identical input preserves identical content and existing mode.",
+        "logging": "Caller records path and digest; content remains unlogged.",
+        "failure_mode": "Out-of-root, symlink, write, fsync, replace, or rollback failure stops the transaction.",
+        "runtime_tests": [
+            "executable mode preservation",
+            "new-file mode",
+            "out-of-root rejection",
+            "rollback"
+        ],
+        "initial_maturity": "pilot"
+    },
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-01T21:25:00-05:00",
+        "rationale": "The operator explicitly approved the Phase 2 least-authority safety-foundation gaps."
+    },
+    "evidence_references": [
+        "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+        "sha256:1eb688904d0776e641e7edb0ce1cc1ed6c9d13e72ec59300add520f5c740c701",
+        "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974"
+    ]
+}

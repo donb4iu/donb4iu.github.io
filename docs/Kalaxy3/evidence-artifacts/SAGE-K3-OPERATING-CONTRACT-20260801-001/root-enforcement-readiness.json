@@ -1,0 +1,49 @@
+{
+    "schema_version": "1.0",
+    "record_type": "sage-operating-contract-root-enforcement-readiness",
+    "captured_at": "2026-08-01T22:55:00-05:00",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "implementation_base_commit": "219d116",
+    "state": "staged-root-enforcement",
+    "root_enforcement": {
+        "policy_path": "sage-operating-contract-policy.json",
+        "standard_path": "markdown/standards/kalaxy3-sage-operating-contract.md",
+        "composition_path": "scripts/sage/workflows/operating_contract.py",
+        "self_test_path": "scripts/sage/sage-operating-contract-self-test.py",
+        "guardrail_path": "scripts/sage/sage-operating-contract-guardrail.py",
+        "make_targets": [
+            "sage-operating-contract-self-test",
+            "sage-operating-contract-guardrail",
+            "sage-operating-contract-check"
+        ],
+        "aggregate_targets": [
+            "sage-self-test",
+            "sage-guardrails"
+        ]
+    },
+    "component_manifest": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-root-enforcement.json",
+    "approved_gap_receipts": [
+        "SAGE-GAP-20260801-001",
+        "SAGE-GAP-20260801-002",
+        "SAGE-GAP-20260801-003",
+        "SAGE-GAP-20260801-004",
+        "SAGE-GAP-20260801-005",
+        "SAGE-GAP-20260801-006",
+        "SAGE-GAP-20260801-007",
+        "SAGE-GAP-20260801-008",
+        "SAGE-GAP-20260801-009"
+    ],
+    "evidence_publication": {
+        "mode": "split",
+        "status": "pending-implementation-commit",
+        "required_record_id": "SAGE-K3-GOVERNANCE-20260801-001",
+        "publisher": "scripts/sage/sage-publish.py",
+        "indexer": "scripts/sage/sage-index.py"
+    },
+    "safety": {
+        "downloaded_helper_git_mutation": false,
+        "github_mutation": false,
+        "deployment_mutation": false,
+        "autonomous_mutation_authorized": false
+    }
+}

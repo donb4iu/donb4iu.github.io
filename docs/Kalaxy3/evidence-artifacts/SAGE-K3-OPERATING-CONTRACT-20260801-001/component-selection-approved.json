@@ -1,0 +1,320 @@
+{
+    "schema_version": "1.0",
+    "manifest_id": "SAGE-COMP-20260801-001",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "created_at": "2026-08-01T21:55:00-05:00",
+    "authority_receipt": "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+    "required_capabilities": [
+        {
+            "capability_id": "CAP-001",
+            "description": "Read-only Git authority inspection without mixed mutation methods.",
+            "required": true
+        },
+        {
+            "capability_id": "CAP-002",
+            "description": "Mode-preserving atomic repository file replacement with rollback.",
+            "required": true
+        },
+        {
+            "capability_id": "CAP-003",
+            "description": "Exactly one operator-executed Git or GitHub mutation proposal without execution.",
+            "required": true
+        },
+        {
+            "capability_id": "CAP-004",
+            "description": "Production helper rejection of Git, GitHub, credential, and deployment mutation paths.",
+            "required": true
+        }
+    ],
+    "candidates": [
+        {
+            "candidate_id": "CANDIDATE-001",
+            "capability_ids": [
+                "CAP-001"
+            ],
+            "component_id": "git.repository",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/git.py",
+            "maturity": "pilot",
+            "disposition": "rejected",
+            "selection_factors": {
+                "applicability": "partial",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "broader-than-required",
+                "published_interface_verified": true,
+                "successful_production_executions": 0,
+                "failed_production_executions": 0,
+                "open_recurrence": "unknown",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+                "path:scripts/sage/workflow/git.py"
+            ],
+            "rationale": "The existing class mixes read-only inspection with fetch, branch creation, staging, commit, and push."
+        },
+        {
+            "candidate_id": "CANDIDATE-002",
+            "capability_ids": [
+                "CAP-001"
+            ],
+            "component_id": "git.inspect",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/git_inspect.py",
+            "maturity": "unregistered",
+            "disposition": "selected",
+            "selection_factors": {
+                "applicability": "direct",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "least-authority",
+                "published_interface_verified": true,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "no",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+                "sha256:1eb688904d0776e641e7edb0ce1cc1ed6c9d13e72ec59300add520f5c740c701"
+            ],
+            "rationale": "A dedicated allowlisted inspector supplies the required capability with no Git mutation interface."
+        },
+        {
+            "candidate_id": "CANDIDATE-003",
+            "capability_ids": [
+                "CAP-002"
+            ],
+            "component_id": "helper-local-atomic-write",
+            "version": "unversioned",
+            "source_path": "downloaded helper implementations",
+            "maturity": "unregistered",
+            "disposition": "rejected",
+            "selection_factors": {
+                "applicability": "partial",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "broader-than-required",
+                "published_interface_verified": false,
+                "successful_production_executions": null,
+                "failed_production_executions": 1,
+                "open_recurrence": "yes",
+                "runtime_test_coverage": "source-only"
+            },
+            "evidence_references": [
+                "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+                "failure:file-mode-regression"
+            ],
+            "rationale": "Repeated helper-local implementations caused an executable-mode regression and have no reusable published interface."
+        },
+        {
+            "candidate_id": "CANDIDATE-004",
+            "capability_ids": [
+                "CAP-002"
+            ],
+            "component_id": "file.atomic-preserve-mode",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/files.py",
+            "maturity": "unregistered",
+            "disposition": "selected",
+            "selection_factors": {
+                "applicability": "direct",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "least-authority",
+                "published_interface_verified": true,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "no",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+                "failure:file-mode-regression"
+            ],
+            "rationale": "A repository-owned atomic writer centralizes mode preservation, fsync, allowed-root checks, and rollback."
+        },
+        {
+            "candidate_id": "CANDIDATE-005",
+            "capability_ids": [
+                "CAP-003"
+            ],
+            "component_id": "manual-console-guidance",
+            "version": "unversioned",
+            "source_path": "conversation guidance",
+            "maturity": "unregistered",
+            "disposition": "rejected",
+            "selection_factors": {
+                "applicability": "partial",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "broader-than-required",
+                "published_interface_verified": false,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "yes",
+                "runtime_test_coverage": "none"
+            },
+            "evidence_references": [
+                "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+                "failure:combined-git-boundaries"
+            ],
+            "rationale": "Unstructured guidance does not enforce one command, exact scope, secret-free representation, or a blocked next boundary."
+        },
+        {
+            "candidate_id": "CANDIDATE-006",
+            "capability_ids": [
+                "CAP-003"
+            ],
+            "component_id": "operator.git-proposal",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/proposal.py",
+            "maturity": "unregistered",
+            "disposition": "selected",
+            "selection_factors": {
+                "applicability": "direct",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "least-authority",
+                "published_interface_verified": true,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "no",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+                "path:markdown/standards/sage-operator-git-proposal-schema-v1.0.json"
+            ],
+            "rationale": "A typed proposal builder can emit exactly one visible operator boundary and cannot execute it."
+        },
+        {
+            "candidate_id": "CANDIDATE-007",
+            "capability_ids": [
+                "CAP-004"
+            ],
+            "component_id": "workflow.composition-guardrail",
+            "version": "1.1.0",
+            "source_path": "scripts/sage/sage-workflow-primitives-guardrail.py",
+            "maturity": "pilot",
+            "disposition": "rejected",
+            "selection_factors": {
+                "applicability": "partial",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "insufficient",
+                "published_interface_verified": true,
+                "successful_production_executions": 0,
+                "failed_production_executions": 0,
+                "open_recurrence": "yes",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+                "path:scripts/sage/sage-workflow-primitives-guardrail.py"
+            ],
+            "rationale": "The existing guardrail covers tracked compositions but does not scan delivered helpers for GitHub, credential, and deployment mutation paths."
+        },
+        {
+            "candidate_id": "CANDIDATE-008",
+            "capability_ids": [
+                "CAP-004"
+            ],
+            "component_id": "git.safety-guardrail",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/safety.py",
+            "maturity": "unregistered",
+            "disposition": "selected",
+            "selection_factors": {
+                "applicability": "direct",
+                "authority_compatibility": "compatible",
+                "mutation_scope_fit": "least-authority",
+                "published_interface_verified": true,
+                "successful_production_executions": null,
+                "failed_production_executions": null,
+                "open_recurrence": "no",
+                "runtime_test_coverage": "positive-and-negative"
+            },
+            "evidence_references": [
+                "commit:106ce43d4e790955ddeaf7a02f4f0728f67a7b80",
+                "sha256:1eb688904d0776e641e7edb0ce1cc1ed6c9d13e72ec59300add520f5c740c701"
+            ],
+            "rationale": "A dedicated scanner can reject protected-system mutation and credential inheritance while permitting isolated temporary-repository fixtures."
+        }
+    ],
+    "selections": [
+        {
+            "capability_id": "CAP-001",
+            "candidate_id": "CANDIDATE-002",
+            "component_id": "git.inspect",
+            "version": "1.0.0",
+            "selection_basis": "least-authority read-only Git state"
+        },
+        {
+            "capability_id": "CAP-002",
+            "candidate_id": "CANDIDATE-004",
+            "component_id": "file.atomic-preserve-mode",
+            "version": "1.0.0",
+            "selection_basis": "mode-preserving transactional file replacement"
+        },
+        {
+            "capability_id": "CAP-003",
+            "candidate_id": "CANDIDATE-006",
+            "component_id": "operator.git-proposal",
+            "version": "1.0.0",
+            "selection_basis": "one-command operator mutation proposal"
+        },
+        {
+            "capability_id": "CAP-004",
+            "candidate_id": "CANDIDATE-008",
+            "component_id": "git.safety-guardrail",
+            "version": "1.0.0",
+            "selection_basis": "production helper mutation and credential safety"
+        }
+    ],
+    "composition": [
+        {
+            "sequence": 1,
+            "step_id": "phase2-step-1",
+            "capability_id": "CAP-001",
+            "component_id": "git.inspect",
+            "version": "1.0.0",
+            "purpose": "Read-only Git authority inspection without mixed mutation methods.",
+            "side_effect_scope": "read-only"
+        },
+        {
+            "sequence": 2,
+            "step_id": "phase2-step-2",
+            "capability_id": "CAP-002",
+            "component_id": "file.atomic-preserve-mode",
+            "version": "1.0.0",
+            "purpose": "Mode-preserving atomic repository file replacement with rollback.",
+            "side_effect_scope": "repository-content"
+        },
+        {
+            "sequence": 3,
+            "step_id": "phase2-step-3",
+            "capability_id": "CAP-003",
+            "component_id": "operator.git-proposal",
+            "version": "1.0.0",
+            "purpose": "Exactly one operator-executed Git or GitHub mutation proposal without execution.",
+            "side_effect_scope": "operator-proposal"
+        },
+        {
+            "sequence": 4,
+            "step_id": "phase2-step-4",
+            "capability_id": "CAP-004",
+            "component_id": "git.safety-guardrail",
+            "version": "1.0.0",
+            "purpose": "Production helper rejection of Git, GitHub, credential, and deployment mutation paths.",
+            "side_effect_scope": "read-only"
+        }
+    ],
+    "capability_gap_receipts": [
+        "SAGE-GAP-20260801-001",
+        "SAGE-GAP-20260801-002",
+        "SAGE-GAP-20260801-003",
+        "SAGE-GAP-20260801-004"
+    ],
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-01T21:25:00-05:00",
+        "rationale": "The operator explicitly approved the component-selection and capability-gap plan before Phase 1 implementation."
+    },
+    "composite_score_enabled": false
+}

@@ -1,0 +1,52 @@
+{
+    "schema_version": "1.0",
+    "gap_id": "SAGE-GAP-20260801-009",
+    "request": "Activate the complete Kalaxy3 SAGE mandatory operating contract. Require current Git, GitHub, SAGE, and runtime authority before mutation; evidence-based selection and reuse of repository-owned components; composition manifests; capability-gap receipts; real runtime validation; failure diagnosis that records what failed, what should have been done, which existing component should have been used, why the actual path differed, and the reusable correction; measurable outcome, reuse, authority, failure, rework, and safety statistics; Git credential and history safety; and an operator-executed, visible, one-boundary-at-a-time Git/GitHub mutation gate. Downloaded implementation helpers may edit and validate repository files but may only inspect Git read-only and may not create or switch branches, stage, commit, push, pull, merge, rebase, reset, clean, delete refs, mutate GitHub, or deploy.",
+    "created_at": "2026-08-01T22:40:00-05:00",
+    "authority_receipt": "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+    "component_manifest": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-outcome-metrics.json",
+    "required_capability": "Construct semantic outcome reports from explicit raw measurements and compare only compatible workflow classes.",
+    "candidates_considered": [
+        {
+            "component_id": "usage.summary",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/usage.py",
+            "insufficiency": "Aggregates primitive event counts but does not validate the operating-contract raw metric set, derive semantic rates, preserve unknowns as null, or construct comparable trends.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "A typed metrics primitive that validates all raw fields, derives only transparent rates, separates authoritative and fixture mutations, and rejects incomparable trends.",
+        "why_configuration_is_insufficient": "Configuration cannot add the missing semantic validation and trend contract to usage.summary.",
+        "why_composition_is_insufficient": "Composition can invoke aggregation but cannot supply schema-level formulas, null semantics, or comparability enforcement.",
+        "new_primitive_required": true
+    },
+    "proposed_primitive": {
+        "primitive_id": "metrics.outcome",
+        "responsibility": "Construct semantic outcome reports and comparable trends from explicit raw measurements.",
+        "side_effects": "in-memory report and trend construction only",
+        "idempotency": "deterministic for fixed raw measurements, provenance, timestamps, and baseline reports",
+        "logging": "caller records report identifier, source references, metric availability, and digest without raw secrets",
+        "failure_mode": "missing raw fields, invalid values, opaque scoring, or incomparable trends fail closed",
+        "runtime_tests": [
+            "raw-to-derived positive path",
+            "unknown-null preservation",
+            "invalid subset rejection",
+            "workflow-class trend rejection",
+            "baseline artifact integration"
+        ],
+        "initial_maturity": "pilot"
+    },
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-01T21:25:00-05:00",
+        "rationale": "Approved as the ninth gap in the operating-contract component and gap plan."
+    },
+    "evidence_references": [
+        "commit-prefix:53872d6",
+        "artifact:kalaxy3-sage-operating-contract-authority-20260801-211530.json#sha256=e1b08b7e5a6dee4205269f47baffd15ca63866cfa8263cecb79f17b9f88c9974",
+        "path:markdown/standards/sage-outcome-metrics-schema-v1.0.json",
+        "path:scripts/sage/workflow/usage.py"
+    ]
+}

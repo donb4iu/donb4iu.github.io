@@ -15,7 +15,7 @@
         <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/standards/kalaxy3-sage-workflow-primitives-process/">
       
       
-        <link rel="prev" href="../kalaxy3-sage-evidence-retrieval-process/">
+        <link rel="prev" href="../kalaxy3-sage-operating-contract/">
       
       
         <link rel="next" href="../kalaxy3-sage-workflow-support-process/">
@@ -2920,6 +2920,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-operating-contract-enforcement-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE mandatory operating-contract enforcement evidence
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4335,6 +4370,34 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-operating-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Mandatory Operating Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -4479,6 +4542,50 @@
     <span class="md-ellipsis">
       
         Required measurements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#least-authority-safety-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Least-authority safety foundations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-and-diagnosis-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision and diagnosis primitives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-outcome-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic outcome measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-operating-contract-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root operating-contract composition
       
     </span>
   </a>
@@ -4737,6 +4844,50 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#least-authority-safety-foundations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Least-authority safety foundations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-and-diagnosis-primitives" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision and diagnosis primitives
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-outcome-measurement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic outcome measurement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-operating-contract-composition" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root operating-contract composition
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4848,6 +4999,49 @@ helpers.</p>
 </ul>
 <p>These measurements determine which primitives are hardened, replaced, or
 deprecated.</p>
+<h2 id="least-authority-safety-foundations">Least-authority safety foundations<a class="headerlink" href="#least-authority-safety-foundations" title="Permanent link">&para;</a></h2>
+<p>Phase 2 adds four pilot primitives without activating autonomous mutation:</p>
+<ul>
+<li><code>git.inspect</code> exposes only allowlisted local read-only Git inspection. It has no fetch, branch, stage, commit, push, ref, GitHub, or deployment method.</li>
+<li><code>file.atomic-preserve-mode</code> performs same-directory temporary writes, file and directory fsync, atomic replacement, existing-mode preservation, allowed-root checks, and transactional rollback.</li>
+<li><code>operator.git-proposal</code> emits one schema 1.0 operator-executed boundary containing exactly one secret-free command. It never executes the proposed command and blocks the next boundary until pasted output is verified.</li>
+<li><code>git.safety-guardrail</code> rejects production-helper Git, GitHub, credential-inheritance, and deployment mutation paths. Mutating Git is permitted only in an explicitly declared isolated temporary-repository fixture.</li>
+</ul>
+<p>The mixed-authority <code>git.repository</code> primitive remains available only to isolated temporary-repository tests and legacy operator-owned compositions until migrated. Downloaded implementation helpers must use <code>git.inspect</code> for repository state and must not import or instantiate <code>GitRepository</code>.</p>
+<p>Every new Phase 2 primitive is linked to an approved capability-gap receipt and an approved component-selection manifest under <code>markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/</code>. The framework remains a staged implementation; deployment and autonomous Git or GitHub mutation remain unauthorized.</p>
+<h2 id="decision-and-diagnosis-primitives">Decision and diagnosis primitives<a class="headerlink" href="#decision-and-diagnosis-primitives" title="Permanent link">&para;</a></h2>
+<p>Framework version 0.4.0 adds four pilot primitives:</p>
+<ul>
+<li><code>authority.reconcile@1.0.0</code> keeps scoped source assertions separate from inference, reports conflicts and unknowns, and blocks mutation unless material authority is complete.</li>
+<li><code>component.select@1.0.0</code> ranks repository-owned candidates using explicit ordered factors, retains rejected alternatives, and emits a versioned composition manifest without an opaque composite score.</li>
+<li><code>capability.gap@1.0.0</code> proves configuration and composition are insufficient and requires operator approval before a new primitive may be implemented.</li>
+<li><code>failure.diagnose@1.0.0</code> records direct evidence, expected and actual component paths, divergence, ownership, lesson use, recurrence, avoidable rework when measured, and a reusable correction before another corrective mutation.</li>
+</ul>
+<p>These primitives construct typed in-memory records. Repository writes remain the responsibility of <code>file.atomic-preserve-mode</code>; Git and GitHub mutation remain operator-executed boundaries.</p>
+<h2 id="semantic-outcome-measurement">Semantic outcome measurement<a class="headerlink" href="#semantic-outcome-measurement" title="Permanent link">&para;</a></h2>
+<p>Framework version 0.5.0 adds <code>metrics.outcome@1.0.0</code>. The primitive:</p>
+<ul>
+<li>requires every schema 1.0 raw metric to be present, using <code>null</code> when measurement is unavailable;</li>
+<li>derives rates only after raw validation and never converts an unavailable value into zero;</li>
+<li>keeps authoritative repository Git mutations separate from disposable fixture Git mutations;</li>
+<li>rejects numerator values that cannot be a subset of their denominator;</li>
+<li>compares reports only when <code>workflow_class</code> matches and records the explicit comparability basis;</li>
+<li>emits no composite score.</li>
+</ul>
+<p>Manual correction and operator intervention rates are activity shares: the count divided by commands executed plus that count. Other derived metrics use the numerator and denominator named in <code>sage-operating-contract-policy.json</code>. A zero denominator produces <code>null</code>, not zero.</p>
+<p>The initial report at <code>markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/outcome-metrics-baseline.json</code> preserves known measurements and leaves unavailable command, recurrence, intervention, fixture-mutation, elapsed-time, and rework measurements null. It is a baseline, not evidence of an improving trend.</p>
+<h2 id="root-operating-contract-composition">Root operating-contract composition<a class="headerlink" href="#root-operating-contract-composition" title="Permanent link">&para;</a></h2>
+<p>Framework version 0.6.0 adds no new primitive. The approved root-enforcement
+manifest proves the existing primitives are sufficient and rejects an
+autonomous mutation engine.</p>
+<p><code>scripts/sage/workflows/operating_contract.py</code> contains a thin two-boundary
+composition. The pre-mutation sequence permits declared repository-content
+writes and stops at one operator proposal. The post-operator sequence starts
+with read-only verification of pasted output, then records outcome metrics and
+evidence.</p>
+<p><code>make sage-operating-contract-check</code> runs positive, negative, ordering, and
+fail-closed runtime tests plus the root policy guardrail. The target is a
+dependency of the normal repository self-test and guardrail chains.</p>
 
 
 

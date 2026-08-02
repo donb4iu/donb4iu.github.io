@@ -1,0 +1,366 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-failure-diagnosis-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE failure diagnosis",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "diagnosis_id",
+        "failure_id",
+        "recorded_at",
+        "attempted_action",
+        "what_failed",
+        "direct_evidence",
+        "classification",
+        "actual_path",
+        "expected_path",
+        "divergence",
+        "ownership",
+        "mutation_effect",
+        "lesson_use",
+        "recurrence",
+        "correction",
+        "evidence_references"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "diagnosis_id": {
+            "type": "string",
+            "pattern": "^SAGE-DIAG-[0-9]{8}-[0-9]{3}$"
+        },
+        "failure_id": {
+            "type": "string",
+            "pattern": "^FAIL-[0-9]{3}$"
+        },
+        "recorded_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "attempted_action": {
+            "type": "string",
+            "minLength": 1
+        },
+        "what_failed": {
+            "type": "string",
+            "minLength": 1
+        },
+        "direct_evidence": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/evidence"
+            }
+        },
+        "classification": {
+            "enum": [
+                "known",
+                "new"
+            ]
+        },
+        "actual_path": {
+            "$ref": "#/$defs/path"
+        },
+        "expected_path": {
+            "$ref": "#/$defs/path"
+        },
+        "divergence": {
+            "$ref": "#/$defs/divergence"
+        },
+        "ownership": {
+            "enum": [
+                "primitive",
+                "composition",
+                "policy",
+                "authority",
+                "environment",
+                "operator",
+                "external-dependency"
+            ]
+        },
+        "mutation_effect": {
+            "$ref": "#/$defs/mutation"
+        },
+        "lesson_use": {
+            "$ref": "#/$defs/lesson"
+        },
+        "recurrence": {
+            "$ref": "#/$defs/recurrence"
+        },
+        "correction": {
+            "$ref": "#/$defs/correction"
+        },
+        "evidence_references": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        }
+    },
+    "$defs": {
+        "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "source",
+                "captured_at",
+                "observation",
+                "artifact",
+                "sha256"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "captured_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "observation": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "artifact": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "sha256": {
+                    "oneOf": [
+                        {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{64}$"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ]
+                }
+            }
+        },
+        "path": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "component_id",
+                "component_version",
+                "source_path",
+                "description"
+            ],
+            "properties": {
+                "component_id": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "component_version": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "source_path": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "description": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "divergence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "why_actual_path_differed",
+                "selection_failure",
+                "authority_failure",
+                "contract_mismatch"
+            ],
+            "properties": {
+                "why_actual_path_differed": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "selection_failure": {
+                    "type": "boolean"
+                },
+                "authority_failure": {
+                    "type": "boolean"
+                },
+                "contract_mismatch": {
+                    "type": "boolean"
+                }
+            }
+        },
+        "mutation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "mutation_opportunity",
+                "mutation_performed",
+                "detected_pre_mutation",
+                "mutation_scope"
+            ],
+            "properties": {
+                "mutation_opportunity": {
+                    "type": "boolean"
+                },
+                "mutation_performed": {
+                    "type": "boolean"
+                },
+                "detected_pre_mutation": {
+                    "type": "boolean"
+                },
+                "mutation_scope": {
+                    "enum": [
+                        "none",
+                        "repository-content",
+                        "authoritative-git",
+                        "temporary-fixture-git",
+                        "github",
+                        "deployment"
+                    ]
+                }
+            }
+        },
+        "lesson": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "retrieval_performed",
+                "applicable_lesson_ids",
+                "surfaced_lesson_ids",
+                "used_lesson_ids",
+                "nonuse_reason"
+            ],
+            "properties": {
+                "retrieval_performed": {
+                    "type": "boolean"
+                },
+                "applicable_lesson_ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "surfaced_lesson_ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "used_lesson_ids": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "nonuse_reason": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        },
+        "recurrence": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "recurred",
+                "previous_failure_references",
+                "avoidable_rework_minutes"
+            ],
+            "properties": {
+                "recurred": {
+                    "type": "boolean"
+                },
+                "previous_failure_references": {
+                    "type": "array",
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "avoidable_rework_minutes": {
+                    "type": [
+                        "number",
+                        "null"
+                    ],
+                    "minimum": 0
+                }
+            }
+        },
+        "correction": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "disposition",
+                "reusable_correction",
+                "target_control_type",
+                "primitive_version_bump_required",
+                "regression_test_required",
+                "action_reference",
+                "no_action_rationale"
+            ],
+            "properties": {
+                "disposition": {
+                    "enum": [
+                        "create-control",
+                        "update-primitive",
+                        "update-composition",
+                        "update-policy",
+                        "update-authority",
+                        "environment-repair",
+                        "operator-correction",
+                        "no-action"
+                    ]
+                },
+                "reusable_correction": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "target_control_type": {
+                    "enum": [
+                        "manual",
+                        "template",
+                        "preflight",
+                        "guardrail",
+                        "runbook",
+                        "automation",
+                        "primitive",
+                        "composition",
+                        "policy",
+                        "authority",
+                        "no-action"
+                    ]
+                },
+                "primitive_version_bump_required": {
+                    "type": "boolean"
+                },
+                "regression_test_required": {
+                    "type": "boolean"
+                },
+                "action_reference": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "no_action_rationale": {
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            }
+        }
+    }
+}

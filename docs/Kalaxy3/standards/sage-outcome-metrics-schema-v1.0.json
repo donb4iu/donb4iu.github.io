@@ -1,0 +1,357 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/sage-outcome-metrics-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE semantic outcome and operating-contract metrics",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "report_id",
+        "captured_at",
+        "period",
+        "workflow_class",
+        "raw_metrics",
+        "derived_metrics",
+        "trends",
+        "provenance",
+        "limitations",
+        "composite_score_enabled"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "report_id": {
+            "type": "string",
+            "pattern": "^SAGE-METRICS-[0-9]{8}-[0-9]{3}$"
+        },
+        "captured_at": {
+            "type": "string",
+            "format": "date-time"
+        },
+        "period": {
+            "$ref": "#/$defs/period"
+        },
+        "workflow_class": {
+            "type": "string",
+            "minLength": 1
+        },
+        "raw_metrics": {
+            "$ref": "#/$defs/raw"
+        },
+        "derived_metrics": {
+            "$ref": "#/$defs/derived"
+        },
+        "trends": {
+            "type": "array",
+            "items": {
+                "$ref": "#/$defs/trend"
+            }
+        },
+        "provenance": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "$ref": "#/$defs/provenance"
+            }
+        },
+        "limitations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "composite_score_enabled": {
+            "const": false
+        }
+    },
+    "$defs": {
+        "nullable_nonnegative": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": 0
+        },
+        "nullable_rate": {
+            "type": [
+                "number",
+                "null"
+            ],
+            "minimum": 0,
+            "maximum": 1
+        },
+        "period": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "started_at",
+                "completed_at"
+            ],
+            "properties": {
+                "started_at": {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                "completed_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        },
+        "raw": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "workflows_started",
+                "workflows_completed",
+                "first_pass_completions",
+                "semantic_validations",
+                "semantic_false_passes",
+                "commands_executed",
+                "commands_failed",
+                "commands_retried",
+                "manual_corrections",
+                "operator_interventions",
+                "authority_checks",
+                "authority_failures",
+                "component_candidates_considered",
+                "components_selected",
+                "components_reused",
+                "new_components_created",
+                "component_contract_mismatches",
+                "direct_execution_violations",
+                "known_failures_encountered",
+                "known_failures_recurred",
+                "mutation_opportunities",
+                "failures_detected_pre_mutation",
+                "authoritative_repository_git_mutations",
+                "disposable_fixture_git_mutations",
+                "github_mutations",
+                "deployment_mutations",
+                "avoidable_rework_minutes",
+                "prompt_to_validated_change_minutes"
+            ],
+            "properties": {
+                "workflows_started": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "workflows_completed": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "first_pass_completions": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "semantic_validations": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "semantic_false_passes": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "commands_executed": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "commands_failed": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "commands_retried": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "manual_corrections": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "operator_interventions": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "authority_checks": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "authority_failures": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "component_candidates_considered": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "components_selected": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "components_reused": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "new_components_created": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "component_contract_mismatches": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "direct_execution_violations": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "known_failures_encountered": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "known_failures_recurred": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "mutation_opportunities": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "failures_detected_pre_mutation": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "authoritative_repository_git_mutations": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "disposable_fixture_git_mutations": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "github_mutations": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "deployment_mutations": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "avoidable_rework_minutes": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                },
+                "prompt_to_validated_change_minutes": {
+                    "$ref": "#/$defs/nullable_nonnegative"
+                }
+            }
+        },
+        "derived": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "first_pass_completion_rate",
+                "semantic_false_pass_rate",
+                "component_reuse_ratio",
+                "authority_failure_rate",
+                "known_failure_recurrence_rate",
+                "pre_mutation_detection_rate",
+                "manual_correction_rate",
+                "operator_intervention_rate"
+            ],
+            "properties": {
+                "first_pass_completion_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "semantic_false_pass_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "component_reuse_ratio": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "authority_failure_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "known_failure_recurrence_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "pre_mutation_detection_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "manual_correction_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                },
+                "operator_intervention_rate": {
+                    "$ref": "#/$defs/nullable_rate"
+                }
+            }
+        },
+        "trend": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "metric",
+                "baseline_report",
+                "current_value",
+                "baseline_value",
+                "direction",
+                "result",
+                "comparability_basis"
+            ],
+            "properties": {
+                "metric": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "baseline_report": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "current_value": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "baseline_value": {
+                    "type": [
+                        "number",
+                        "null"
+                    ]
+                },
+                "direction": {
+                    "enum": [
+                        "higher-is-better",
+                        "lower-is-better",
+                        "neutral"
+                    ]
+                },
+                "result": {
+                    "enum": [
+                        "improved",
+                        "regressed",
+                        "unchanged",
+                        "inconclusive"
+                    ]
+                },
+                "comparability_basis": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "provenance": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "source_type",
+                "reference",
+                "measurement_type",
+                "captured_at"
+            ],
+            "properties": {
+                "source_type": {
+                    "enum": [
+                        "workflow-event-log",
+                        "session-scorecard",
+                        "post-session-review",
+                        "git",
+                        "github",
+                        "runtime",
+                        "manual"
+                    ]
+                },
+                "reference": {
+                    "type": "string",
+                    "minLength": 1
+                },
+                "measurement_type": {
+                    "enum": [
+                        "measured",
+                        "declared",
+                        "unavailable"
+                    ]
+                },
+                "captured_at": {
+                    "type": "string",
+                    "format": "date-time"
+                }
+            }
+        }
+    }
+}

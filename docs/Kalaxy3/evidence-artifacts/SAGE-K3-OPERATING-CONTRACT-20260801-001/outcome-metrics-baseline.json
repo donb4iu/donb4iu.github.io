@@ -1,0 +1,78 @@
+{
+    "schema_version": "1.0",
+    "report_id": "SAGE-METRICS-20260801-001",
+    "captured_at": "2026-08-01T22:40:00-05:00",
+    "period": {
+        "started_at": "2026-08-01T21:25:00-05:00",
+        "completed_at": "2026-08-01T22:40:00-05:00"
+    },
+    "workflow_class": "operating-contract-staged-implementation-phase",
+    "raw_metrics": {
+        "workflows_started": 3,
+        "workflows_completed": 3,
+        "first_pass_completions": 3,
+        "semantic_validations": 3,
+        "semantic_false_passes": 0,
+        "commands_executed": null,
+        "commands_failed": 0,
+        "commands_retried": 0,
+        "manual_corrections": null,
+        "operator_interventions": null,
+        "authority_checks": 3,
+        "authority_failures": 0,
+        "component_candidates_considered": 16,
+        "components_selected": 8,
+        "components_reused": null,
+        "new_components_created": 8,
+        "component_contract_mismatches": 1,
+        "direct_execution_violations": 0,
+        "known_failures_encountered": 7,
+        "known_failures_recurred": null,
+        "mutation_opportunities": null,
+        "failures_detected_pre_mutation": null,
+        "authoritative_repository_git_mutations": 3,
+        "disposable_fixture_git_mutations": null,
+        "github_mutations": 0,
+        "deployment_mutations": 0,
+        "avoidable_rework_minutes": null,
+        "prompt_to_validated_change_minutes": null
+    },
+    "derived_metrics": {
+        "first_pass_completion_rate": 1.0,
+        "semantic_false_pass_rate": 0.0,
+        "component_reuse_ratio": null,
+        "authority_failure_rate": 0.0,
+        "known_failure_recurrence_rate": null,
+        "pre_mutation_detection_rate": null,
+        "manual_correction_rate": null,
+        "operator_intervention_rate": null
+    },
+    "trends": [],
+    "provenance": [
+        {
+            "source_type": "git",
+            "reference": "commits:106ce43,319f200,53872d6",
+            "measurement_type": "measured",
+            "captured_at": "2026-08-01T22:40:00-05:00"
+        },
+        {
+            "source_type": "manual",
+            "reference": "conversation:2026-08-01:operating-contract-known-outcomes",
+            "measurement_type": "declared",
+            "captured_at": "2026-08-01T22:40:00-05:00"
+        },
+        {
+            "source_type": "runtime",
+            "reference": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json and component-selection-decision-primitives.json",
+            "measurement_type": "measured",
+            "captured_at": "2026-08-01T22:40:00-05:00"
+        }
+    ],
+    "limitations": [
+        "No prior report with the same workflow class exists, so the initial baseline has no trend entries.",
+        "Command totals, operator interventions, recurrence counts, disposable-fixture Git mutations, and elapsed/rework minutes were not captured under stable counting definitions and remain null.",
+        "Authoritative repository Git mutations count the three operator-created commits; push transport is not counted separately and GitHub API or pull-request mutations remain zero.",
+        "Component reuse cannot be reconstructed reliably from the available manifests because selected new primitives and reused framework primitives use different counting scopes."
+    ],
+    "composite_score_enabled": false
+}
