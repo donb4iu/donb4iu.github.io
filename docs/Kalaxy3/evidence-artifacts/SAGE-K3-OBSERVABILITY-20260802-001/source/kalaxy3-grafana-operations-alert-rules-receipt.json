@@ -1,0 +1,40 @@
+{
+  "alert_manifest": "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml",
+  "alert_manifest_sha256": "3b83f9bc06900fda18c21d29108ffd1af2190bf9f32929f4ad03a13cf42cc373",
+  "alerts": [
+    {
+      "expression": "sum(up{job=\"fluent-bit-collector\"}) < 7 or absent(up{job=\"fluent-bit-collector\"})",
+      "for": "10m",
+      "name": "FluentBitCoverageDegraded",
+      "severity": "warning"
+    },
+    {
+      "expression": "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes) > 80",
+      "for": "15m",
+      "name": "LonghornStorageUtilizationHigh",
+      "severity": "warning"
+    }
+  ],
+  "branch": "feature/grafana-operations-dashboard",
+  "checkpoint": "grafana-operations-alert-rules-staged",
+  "commit": "ab36c484e32c28936f282287c707b0e4087cbaba",
+  "dashboard_gate": {
+    "name": "deploy_grafana_operations_dashboard",
+    "value": true
+  },
+  "deployment_gate": {
+    "name": "deploy_grafana_operations_alerts",
+    "value": false
+  },
+  "kubernetes_persistence": "none-server-side-dry-run-only",
+  "promql_inactive_baseline": {
+    "FluentBitCoverageDegraded": 0,
+    "LonghornStorageUtilizationHigh": 0
+  },
+  "rendered_manifest": "/tmp/kalaxy3-grafana-operations-render/alerts-prometheusrule.yml",
+  "rendered_manifest_sha256": "3b83f9bc06900fda18c21d29108ffd1af2190bf9f32929f4ad03a13cf42cc373",
+  "schema_version": "1.0",
+  "source_report": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-contract-20260802-024450.json",
+  "source_report_sha256": "d2cecee412f258d7ad591dc5df6dd00923030a553c6072e9e3e839e9b9d7562e",
+  "status": "committed-and-pushed"
+}

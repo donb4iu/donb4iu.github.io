@@ -1,0 +1,1387 @@
+{
+  "captured_at": "2026-08-02T03:19:00-05:00",
+  "checkpoint_commits": [
+    {
+      "commit": "fecb97540127ac3abee4100ef7f8dcf74286d769",
+      "committed_at": "2026-08-02T01:31:46-05:00",
+      "label": "telemetry_scrape_staging",
+      "parents": [
+        "c9fc440e6b225a1119b57658a7cd526c2d2e0127"
+      ],
+      "subject": "Stage Grafana operations telemetry scrape coverage"
+    },
+    {
+      "commit": "4dc80e59ea2c0829a809abe60c3bdea61f56613a",
+      "committed_at": "2026-08-02T02:00:34-05:00",
+      "label": "dashboard_definition_staging",
+      "parents": [
+        "fecb97540127ac3abee4100ef7f8dcf74286d769"
+      ],
+      "subject": "Stage Grafana operations dashboard definition"
+    },
+    {
+      "commit": "fa5a752e1bf25c249b09cd0579399b3924b69fc5",
+      "committed_at": "2026-08-02T02:22:14-05:00",
+      "label": "dashboard_activation",
+      "parents": [
+        "4dc80e59ea2c0829a809abe60c3bdea61f56613a"
+      ],
+      "subject": "Activate Grafana operations dashboard"
+    },
+    {
+      "commit": "ab36c484e32c28936f282287c707b0e4087cbaba",
+      "committed_at": "2026-08-02T03:01:38-05:00",
+      "label": "alert_rule_staging",
+      "parents": [
+        "fa5a752e1bf25c249b09cd0579399b3924b69fc5"
+      ],
+      "subject": "Stage Grafana operations alert rules"
+    },
+    {
+      "commit": "55916a36afdee3fd8187f2269995f44e7ba532c2",
+      "committed_at": "2026-08-02T03:15:18-05:00",
+      "label": "alert_rule_activation",
+      "parents": [
+        "ab36c484e32c28936f282287c707b0e4087cbaba"
+      ],
+      "subject": "Activate Grafana operations alert rules"
+    }
+  ],
+  "cluster_mutation": "none",
+  "existing_related_evidence": [
+    {
+      "path": "markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md",
+      "sha256": "979f07c9900ccb746552b85caf637da9a468e4b64accde7f0b44c1a515d2647f",
+      "size_bytes": 53795
+    },
+    {
+      "path": "markdown/evidence/catalog.json",
+      "sha256": "5453064a732556cfddf984f3313896394b667091628c1ffd4122830d4eaea1d3",
+      "size_bytes": 42130
+    },
+    {
+      "path": "markdown/evidence/current.md",
+      "sha256": "cf8051192d5ebae9cb8e4d3fd777bd93e8efdfe0690af7298939aeccdb7a8415",
+      "size_bytes": 5440
+    },
+    {
+      "path": "markdown/evidence/generated-files.json",
+      "sha256": "6ebbedc74b3ef60f69c66fb7acefa2be395bd8c694181cb9d6ae8160c0d61629",
+      "size_bytes": 2897
+    },
+    {
+      "path": "markdown/evidence/index.md",
+      "sha256": "ff62f3bd0fe810cb4b89e7cd7832765aaaed9e4e92cad02503cd14354e093f08",
+      "size_bytes": 5472
+    },
+    {
+      "path": "markdown/evidence/legacy.md",
+      "sha256": "9fc1640bdb5d75ecea647f2565e068c47ae9efb5c277090c3441d285c7138b38",
+      "size_bytes": 7599
+    },
+    {
+      "path": "markdown/evidence/migration-report.md",
+      "sha256": "d91c415bf22a015966a36ebd8e29c0680ccefaee905b1bee9d6247d06a853550",
+      "size_bytes": 8988
+    },
+    {
+      "path": "markdown/evidence/sections/governance.md",
+      "sha256": "a032666fa7069ba9693d0df04cd9a41e1b9476fd88f502e3bcc6a5f71e2fe68f",
+      "size_bytes": 3287
+    },
+    {
+      "path": "markdown/evidence/sections/installation.md",
+      "sha256": "e10654c5307b34d6493e4037cac137616471dde9667e86d5cb663c1f54b190c6",
+      "size_bytes": 5692
+    },
+    {
+      "path": "markdown/evidence/sections/operations.md",
+      "sha256": "aee7c48eed5b9036b6107ff49ce2f342ada7313bf792e389d98f3136b32e5837",
+      "size_bytes": 2300
+    },
+    {
+      "path": "markdown/evidence/status/historical.md",
+      "sha256": "d13352f394fe7d9a6f4a5638c132174e5d85f2a783f864e774d90a1f683c0d90",
+      "size_bytes": 5690
+    },
+    {
+      "path": "markdown/evidence/status/validated.md",
+      "sha256": "404c287f4eef9bddcafebeef9b7ea62a287d9e4ee813b9632d0cdd1cfec82d5c",
+      "size_bytes": 7062
+    },
+    {
+      "path": "markdown/evidence/subjects/centralized-observability-logging.md",
+      "sha256": "b71badba7544a5ebc7b7d207a96b7e02f4cb1e702357a9abc3208fc34e403059",
+      "size_bytes": 1269
+    },
+    {
+      "path": "markdown/evidence/subjects/index.md",
+      "sha256": "8a673592b463c0e5367327f238610990aa326aee7b6c856a841336af01291598",
+      "size_bytes": 1921
+    },
+    {
+      "path": "markdown/evidence/subjects/observability.md",
+      "sha256": "7b372f39e977c29afe35321d49328b675fbcabdc680f9d7f3be8c3a536c48c2c",
+      "size_bytes": 392
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-enforcement-guardrails.md",
+      "sha256": "eeb12bff906d25010805b2f5af4a6175f50703c6073b99157bd32de3704e510c",
+      "size_bytes": 534
+    },
+    {
+      "path": "markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md",
+      "sha256": "4ac08ef11ec040d48dddbf6a65b0859ba905410045ffe58ffccdc6a3523c69e7",
+      "size_bytes": 80708
+    },
+    {
+      "path": "markdown/installation/kalaxy3-kubecost-installation-and-verification.md",
+      "sha256": "743db6c367e941aa3c11f8abdd66eb4bc3ea54522f58963253a030ca7e9beb1d",
+      "size_bytes": 21968
+    },
+    {
+      "path": "markdown/installation/kalaxy3-minio-installation-evidence.md",
+      "sha256": "b84ca442f4443cb0780dade9ef0c5562747eb0b111096ae90b9f6a268e2342fd",
+      "size_bytes": 13580
+    },
+    {
+      "path": "markdown/installation/kalaxy3-observability-and-kubecost.md",
+      "sha256": "04a7432246d2ad7b5b7ab61f3ced75a30f6f316cbb7355565dd720c5f6a1efee",
+      "size_bytes": 14301
+    },
+    {
+      "path": "markdown/installation/kalaxy3-protected-ui-installation-evidence.md",
+      "sha256": "c92180d787d96223eb9a465f6023465fe9019f42c66b7dab6bf1f4cebda7d1b6",
+      "size_bytes": 19441
+    }
+  ],
+  "makefile_targets": [
+    "SAGE_ACTIVE_SESSION",
+    "SAGE_ACTIVE_SESSION_GUARDRAIL",
+    "SAGE_BASELINE_EXTRACT",
+    "SAGE_CANDIDATE_GUARDRAIL",
+    "SAGE_CANDIDATE_LIFECYCLE",
+    "SAGE_DISCOVERY_GUARDRAIL",
+    "SAGE_EVIDENCE_GUARDRAIL",
+    "SAGE_EVIDENCE_ORCHESTRATOR",
+    "SAGE_FEEDBACK_COMPARE",
+    "SAGE_FEEDBACK_GUARDRAIL",
+    "SAGE_IMPROVEMENT_ACTIONS",
+    "SAGE_IMPROVEMENT_GUARDRAIL",
+    "SAGE_INDEX",
+    "SAGE_LEARNING_GUARDRAIL",
+    "SAGE_LESSONS",
+    "SAGE_OPERATING_CONTRACT_GUARDRAIL",
+    "SAGE_OPERATING_CONTRACT_SELF_TEST",
+    "SAGE_POST_SESSION_REVIEW",
+    "SAGE_POST_SESSION_REVIEW_GUARDRAIL",
+    "SAGE_PREFLIGHT",
+    "SAGE_SESSION_CLOSE",
+    "SAGE_SESSION_SCORE",
+    "sage-actionable-failure-audit",
+    "sage-actionable-failure-guardrail",
+    "sage-actionable-failure-self-test",
+    "sage-active-session-self-test",
+    "sage-candidate-self-test",
+    "sage-capability-intelligence-check",
+    "sage-capability-intelligence-guardrail",
+    "sage-capability-intelligence-render",
+    "sage-capability-intelligence-self-test",
+    "sage-changed",
+    "sage-discovery-guardrail",
+    "sage-evidence-brief",
+    "sage-evidence-check",
+    "sage-evidence-guardrail",
+    "sage-evidence-prepare",
+    "sage-evidence-retrieval-self-test",
+    "sage-evidence-retrieve",
+    "sage-evidence-self-test",
+    "sage-failure-retrieval",
+    "sage-failure-retrieval-self-test",
+    "sage-feedback-self-test",
+    "sage-file-delivery-guardrail",
+    "sage-guardrails",
+    "sage-improvement-policy-check",
+    "sage-index-check",
+    "sage-learning-self-test",
+    "sage-operating-contract-check",
+    "sage-operating-contract-guardrail",
+    "sage-operating-contract-self-test",
+    "sage-preflight",
+    "sage-review-self-test",
+    "sage-self-test",
+    "sage-session-close-self-test",
+    "sage-session-self-test",
+    "sage-validator-runtime-self-test",
+    "sage-workflow-guardrail",
+    "sage-workflow-self-test",
+    "sage-workflow-support-guardrail",
+    "sage-workflow-support-self-test",
+    "sage-workflow-usage",
+    "sage-yaml-metadata-self-test",
+    "sage-yaml-metadata-source-self-test"
+  ],
+  "readiness": {
+    "checks": {
+      "all_receipt_families_found": true,
+      "evidence_templates_or_standards_found": true,
+      "five_checkpoint_commits_verified": true,
+      "sage_interfaces_available": true
+    },
+    "missing_receipt_families": [],
+    "ready_for_evidence_staging": true
+  },
+  "receipt_inventory": {
+    "alerts": [
+      {
+        "captured_at": "2026-08-02T02:44:49-05:00",
+        "checkpoint": null,
+        "commit": null,
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-contract-20260802-024450.json",
+        "report_type": "kalaxy3-grafana-operations-alert-contract",
+        "repository_head": "fa5a752e1bf25c249b09cd0579399b3924b69fc5",
+        "sha256": "d2cecee412f258d7ad591dc5df6dd00923030a553c6072e9e3e839e9b9d7562e",
+        "size_bytes": 33215,
+        "status": "read-only-alert-contract-complete"
+      },
+      {
+        "captured_at": null,
+        "checkpoint": "grafana-operations-alert-rules-staged",
+        "commit": "ab36c484e32c28936f282287c707b0e4087cbaba",
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-receipt.json",
+        "report_type": null,
+        "repository_head": null,
+        "sha256": "9300740a4efa4d96eac5c9d16bbca05544f2d6494241557fca0e0e46b425c4a0",
+        "size_bytes": 1692,
+        "status": "committed-and-pushed"
+      },
+      {
+        "captured_at": "2026-08-02T03:16:21-05:00",
+        "checkpoint": "grafana-operations-alert-rules-activated",
+        "commit": null,
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-activation-receipt.json",
+        "report_type": null,
+        "repository_head": null,
+        "sha256": "2ef6677efe6f63728f2332fe9b9484260858310a973ffa8e1b3f9f22e2d0c861",
+        "size_bytes": 2434,
+        "status": "activated-and-live-accepted"
+      }
+    ],
+    "dashboard": [
+      {
+        "captured_at": null,
+        "checkpoint": "grafana-operations-dashboard-definition-staged",
+        "commit": "4dc80e59ea2c0829a809abe60c3bdea61f56613a",
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-definition-receipt.json",
+        "report_type": null,
+        "repository_head": null,
+        "sha256": "a4ba885396d36818280dc290b7fbec54f39e7af3a9e259474254592e5f5341dc",
+        "size_bytes": 3872,
+        "status": "committed-and-pushed"
+      },
+      {
+        "captured_at": "2026-08-02T02:30:46-05:00",
+        "checkpoint": "grafana-operations-dashboard-activated",
+        "commit": null,
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-activation-receipt.json",
+        "report_type": null,
+        "repository_head": "fa5a752e1bf25c249b09cd0579399b3924b69fc5",
+        "sha256": "4cdf768dadc62e38d36abc898aa7237fbcc246356b0302bb70111b381a88db01",
+        "size_bytes": 4560,
+        "status": "activated-and-live-accepted"
+      },
+      {
+        "captured_at": "2026-08-02T01:41:19-05:00",
+        "checkpoint": null,
+        "commit": null,
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-data-contract-20260802-014120.json",
+        "report_type": "kalaxy3-grafana-operations-dashboard-data-contract",
+        "repository_head": "fecb97540127ac3abee4100ef7f8dcf74286d769",
+        "sha256": "ac9e28dafe5b51cc789df872e29507002f875315012fb8dd1d441aa7c38890f0",
+        "size_bytes": 54863,
+        "status": "read-only-dashboard-data-contract-complete"
+      }
+    ],
+    "failures": [
+      {
+        "captured_at": "2026-08-02T02:22:45-05:00",
+        "checkpoint": "grafana-operations-dashboard-activation",
+        "commit": "fa5a752e1bf25c249b09cd0579399b3924b69fc5",
+        "error": "Missing ServiceMonitors in longhorn-system: {'kalaxy3-longhorn-longhorn-backend-metrics'}",
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-activation-failure.json",
+        "report_type": null,
+        "repository_head": null,
+        "sha256": "36db1696f4eb6977fca225816c83bc04f6eb9db806baacdda855a19fafa56397",
+        "size_bytes": 448,
+        "status": "activation-failed"
+      },
+      {
+        "captured_at": "2026-08-02T03:07:48-05:00",
+        "checkpoint": "grafana-operations-alert-rules-activation",
+        "commit": null,
+        "error": "Unexpected changed path: M infrastructure/k3s-homelab/inventory/group_vars/all/main.yml",
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-activation-failure.json",
+        "report_type": null,
+        "repository_head": null,
+        "sha256": "58e8112a149d3381fee142c40d5dd714262b7f84256629a2e9678e46fdbd2870",
+        "size_bytes": 490,
+        "status": "activation-failed"
+      }
+    ],
+    "telemetry": [
+      {
+        "captured_at": null,
+        "checkpoint": "grafana-operations-telemetry-scrape-staged",
+        "commit": "fecb97540127ac3abee4100ef7f8dcf74286d769",
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-telemetry-scrape-receipt.json",
+        "report_type": null,
+        "repository_head": null,
+        "sha256": "8327f92b6398c369544f7ca4a5f059e15d17650d29d83bd6c6779a98bbe05ba0",
+        "size_bytes": 872,
+        "status": "committed-and-pushed"
+      },
+      {
+        "captured_at": "2026-08-02T00:49:20-05:00",
+        "checkpoint": null,
+        "commit": null,
+        "error": null,
+        "path": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-telemetry-endpoint-contract-20260802-004920.json",
+        "report_type": "kalaxy3-grafana-telemetry-endpoint-contract",
+        "repository_head": "c9fc440e6b225a1119b57658a7cd526c2d2e0127",
+        "sha256": "99e7c5e2966a98054e4d325300cd2fa8be7cb122143485b7a539a45ff984c3a9",
+        "size_bytes": 107618,
+        "status": "read-only-telemetry-endpoint-discovery-complete"
+      }
+    ]
+  },
+  "report_type": "kalaxy3-grafana-evidence-closeout-contract",
+  "repository": {
+    "branch": "feature/grafana-operations-dashboard",
+    "head": "55916a36afdee3fd8187f2269995f44e7ba532c2",
+    "upstream": "origin/feature/grafana-operations-dashboard",
+    "working_tree_status": "clean"
+  },
+  "repository_mutation": "none",
+  "required_failure_chronology": [
+    "dashboard activation parent-tag omission",
+    "ServiceMonitor object-versus-target namespace verifier defect",
+    "kubectl all-namespaces argument ordering",
+    "render-only live-gate override",
+    "YAML folded path inserted a space",
+    "Prometheus alert-rule label-name schema violation",
+    "Git porcelain leading-space parsing and rollback-state defect"
+  ],
+  "sage_interfaces": [
+    {
+      "path": "scripts/sage/sage-change-preflight.py",
+      "returncode": 0,
+      "sha256": "091e7aced25016d92ceb2abb84e39ac9d61dbea27a8884a167161c28f631f809",
+      "stderr": "",
+      "stdout": "usage: sage-change-preflight.py [-h] [--request REQUEST] [--changed]\n                                [--self-test] [--authority-map AUTHORITY_MAP]\n\nInfer repository-owned SAGE authority\n\noptions:\n  -h, --help            show this help message and exit\n  --request REQUEST\n  --changed\n  --self-test\n  --authority-map AUTHORITY_MAP\n"
+    },
+    {
+      "path": "scripts/sage/sage-evidence-orchestrator.py",
+      "returncode": 0,
+      "sha256": "51bca255ab6c669e2548e71c99762f4db84fdd9204c71a75359a4a3875cfc180",
+      "stderr": "",
+      "stdout": "usage: sage-evidence-orchestrator.py [-h] {brief,capture,check,self-test} ...\n\nPrepare and validate Kalaxy3 SAGE evidence generation\n\npositional arguments:\n  {brief,capture,check,self-test}\n    brief               print the canonical evidence-generation brief\n    capture             create a self-contained evidence-generation input ZIP\n    check               validate a generated SAGE evidence package\n    self-test           run orchestration regression tests\n\noptions:\n  -h, --help            show this help message and exit\n"
+    },
+    {
+      "path": "scripts/sage/sage-evidence-orchestration-guardrail.py",
+      "returncode": 0,
+      "sha256": "08f4940563700ed0fbbadd3530d840faac14c7169ba648c1f9c6ee2931222ac1",
+      "stderr": "",
+      "stdout": "PASS canonical evidence request integrity\nPASS repository-owned evidence policy and authorities\nPASS plain-language evidence request regression tests\nPASS original requester language preservation\nPASS root Make evidence-generation entry points\nPASS evidence policy mutation negative tests\nKalaxy3 SAGE evidence orchestration guardrail: PASS\n"
+    },
+    {
+      "path": "scripts/sage/sage-index.py",
+      "returncode": 0,
+      "sha256": "c9a0dbea22597301216217b8c69e59af2578581eaeb4d3f51463756158b920b2",
+      "stderr": "",
+      "stdout": "usage: sage-index.py [-h] {check,reconcile} ...\n\nReconcile Kalaxy3 SAGE and legacy evidence navigation\n\npositional arguments:\n  {check,reconcile}\n\noptions:\n  -h, --help         show this help message and exit\n"
+    },
+    {
+      "path": "scripts/sage/sage-publish.py",
+      "returncode": 0,
+      "sha256": "a156ef52619db0f34c3f09e9d98fa081fb428e1380807ad33741a540aedcb270",
+      "stderr": "",
+      "stdout": "usage: sage-publish.py [-h] {check,publish,self-test} ...\n\nValidate and publish Kalaxy3 SAGE evidence packages\n\npositional arguments:\n  {check,publish,self-test}\n    check               validate a package without changing Git\n    publish             validate, commit, and optionally push a package\n    self-test           run a complete publication test in a temporary Git\n                        repository\n\noptions:\n  -h, --help            show this help message and exit\n"
+    }
+  ],
+  "schema_version": "1.0",
+  "status": "read-only-evidence-closeout-discovery-complete",
+  "template_and_standard_inventory": [
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-DOCS-20260729-001/concise-evidence.txt",
+      "sha256": "0992267b6d12fae1b1c903ecb0cdc7cc6cf4f766c58978ad4a9aefed95f47003",
+      "size_bytes": 9784
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-DOCS-20260729-001/publication-manifest.json",
+      "sha256": "079f450e68493a26444ef2dfe0bfcb9566bab0ffb24975569065215944a0e1ea",
+      "size_bytes": 2400
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-FINOPS-20260724-001/terminal-evidence-20260725.md",
+      "sha256": "1890f338c6c6c362a0e569ee34c81470c046c94552597d37472a1ab7a10f4efd",
+      "size_bytes": 11915
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/publication-manifest.json",
+      "sha256": "516b3b2f2ee6a02a408a9014585ff99bd5153ea2ecbb07458b65e54d0fa63378",
+      "size_bytes": 2143
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/self-test-output.txt",
+      "sha256": "74c2be376814076a2213eaba70d915f00e7bc01e4dcf17d4f21e69f69f6c78d1",
+      "size_bytes": 682
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/package-publication-test-output.txt",
+      "sha256": "a45b0135b67ed6a4eb9817001b63b3044121c74da29d640a2de41602ac4c6cfa",
+      "size_bytes": 650
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/publication-manifest.json",
+      "sha256": "7984687ff4b64ec93d2f378d41feee80483594fb2b0630241adc588084bb1ea0",
+      "size_bytes": 3059
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/self-test-output.txt",
+      "sha256": "92d7f21f49a1595a1b3f6a6f050abf52aa20f4cafc5febc5383fe4f932b44d02",
+      "size_bytes": 449
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/publication-manifest.json",
+      "sha256": "f8b5e55e8cf67ad94610e08fa665005251bea8edad3d256345c6f4a9bfbd02da",
+      "size_bytes": 3457
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/self-test-output.txt",
+      "sha256": "f6e7716d7b390c46bec0dc1dc7806b6b2470a914eaf92d1764a78044ff253227",
+      "size_bytes": 475
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/upgrade-publication-test-output.txt",
+      "sha256": "66ddca4bc7a015254a6b1aad5b804800eff71f8c6da2584958f3ee0bc0bea3b3",
+      "size_bytes": 1266
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/implementation-commit-summary.txt",
+      "sha256": "716ecba4b8ac7de0bc4544f507cf641939428bb7c6d317b7fa5899bcdde45353",
+      "size_bytes": 1609
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/publication-manifest.json",
+      "sha256": "f1e1c206c58a8b056f63ccb82e62ef7b71bd97ad59ed4bb21743b572b2aa79b0",
+      "size_bytes": 2687
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/terminal-evidence.md",
+      "sha256": "3de17314b9fa9134349e1c1fbfd09d610b3d38a18355bbfaa2eef80992e2a144",
+      "size_bytes": 5362
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/guardrail-gap-analysis.md",
+      "sha256": "68c1a8af48705aec7b669838ef7fb932ff90a7c0b50be5b48f5e0b7c40e027bd",
+      "size_bytes": 4837
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/pause-decision.md",
+      "sha256": "caffd9847f25dd6ee1b2452b931c136e3d08f223e12025c72364e1ab2787a16a",
+      "size_bytes": 3015
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/publication-manifest.json",
+      "sha256": "ae06033c4408888b389dcf62437d0dd2d7bb712bdbc2908b92400355e811dbf6",
+      "size_bytes": 2876
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/terminal-evidence.md",
+      "sha256": "ddf6f7c93981ec9b779443da50cb74de496eb680a901072862158b0b648f061d",
+      "size_bytes": 5388
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/daux-validation-output.txt",
+      "sha256": "7669776de8932a3841cd8ad5660b0203a0b308423b851e0650befb50577afb32",
+      "size_bytes": 14115
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/implementation-commit-summary.txt",
+      "sha256": "2b775f535fa6cc654336ad8eccaaf210568b24d0a97000bf55a816af5686abd1",
+      "size_bytes": 969
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/publication-manifest.json",
+      "sha256": "4e0e310a6947e93e4c1fb26b72e549434e3f7b62672aa677bffc00b5fd2a4625",
+      "size_bytes": 4727
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/source-config.json",
+      "sha256": "59505adfd4cb94d94cc6b66eac2a8c08694efb05481d10e0fa06b0560375af89",
+      "size_bytes": 254
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/source-index.md",
+      "sha256": "40bd2608d8e43c62dfd10dc74d4a5cbf0b6dea6bee14bb1aa9f8f6f9f934a93d",
+      "size_bytes": 1767
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/terminal-evidence.md",
+      "sha256": "6121534610f0df9c740e9581c422b8b3dc07388251f50cace55169a43bb7d8cd",
+      "size_bytes": 5524
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/validation-summary.json",
+      "sha256": "3d58e1143e46ae951af9641fd6c69fe9b4330a17c4091639dbc19e4ffca5fee5",
+      "size_bytes": 1474
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/implementation-lineage.json",
+      "sha256": "5ca44e5859094a5427af79b2fb942b441a57e7f4e927037d907a31c0e0ac1f98",
+      "size_bytes": 1758
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase1-closeout.json",
+      "sha256": "4760954e90b9a64dad732bce0772c788eb86978b5e5ff90bb734c04782a22d46",
+      "size_bytes": 4376
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase2-closeout.json",
+      "sha256": "31e6f49006796df5b7b2e15ab8b741bf8dd3e828da9ccd8bf7bf684fb0fb804f",
+      "size_bytes": 8713
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase3-closeout.json",
+      "sha256": "f9a23e49f06765098453b2be101ecf72cf009d644eddb2e7c936959fca8a28f3",
+      "size_bytes": 8707
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase4-closeout.json",
+      "sha256": "6417684cbc71eeaa087c2c13a45707d28224977bbe148f8487150bbb659395c1",
+      "size_bytes": 6751
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase5a-closeout.json",
+      "sha256": "b0a4e053a9b5baad1d32e798ebb06138687a43dc1ed52fce2224e4f56bee80a5",
+      "size_bytes": 7206
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/publication-inputs.json",
+      "sha256": "614a525d3828ac5fa5f8f49120dc9707208b102af5c15a05c3c4ff49d4c02d5e",
+      "size_bytes": 5740
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/publication-manifest.json",
+      "sha256": "97c3041f503f15c4297e2bedfe2b4a66067e0eeebfa60a6ead0ea4ecd2620acb",
+      "size_bytes": 5572
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/evidence-input-provenance.json",
+      "sha256": "3eb99bce49c25ad4b0ed81d15748f9378a48e354e10149739518266ea2bb1bda",
+      "size_bytes": 10226
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/publication-manifest.json",
+      "sha256": "992c7c07eee23e48c701e2a088e835bb38cdc922876b2c3e4a9fc160932c0f15",
+      "size_bytes": 2707
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/terminal-evidence.md",
+      "sha256": "0a22381d6a46523d4a3c2b2a52fcb8b8cd547c28b26f568baaa400f9aa357703",
+      "size_bytes": 13931
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/evidence-input-provenance.json",
+      "sha256": "385956ecb099b04a71d1148c070a6aa470389b43653b9f611eb9b42491d05352",
+      "size_bytes": 10682
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/publication-manifest.json",
+      "sha256": "cc8b0803ab9cc946526d18d119e2479b11276fd5ec74aa52edf5bb298bd452c3",
+      "size_bytes": 3024
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md",
+      "sha256": "48b4e5e770f87659a9df126bdd1f98293d63b4bee38d75aa5113cbef48fa6454",
+      "size_bytes": 25178
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/generation-provenance.md",
+      "sha256": "0abaaf6fe020fa667d3fd43258c80c0e26ecd6f49baf0fb67f1908b3a91101a2",
+      "size_bytes": 1384
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/publication-manifest.json",
+      "sha256": "c760f92943370ad816d095bcc3c1b42b72fa9fdd36bf0364204637636a7ac0b2",
+      "size_bytes": 2987
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/repository-authority-evidence.md",
+      "sha256": "0e77cf488bf2c94f1dbe0ee8a2e4fa8d3a90def860f1e17e9fb244472f327c87",
+      "size_bytes": 3845
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/terminal-evidence.md",
+      "sha256": "92e4bbb986d9bc2a7a0a741609827d8cd3ef902a4c50ad8eedabcf78730f4ec0",
+      "size_bytes": 10776
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/generation-provenance.md",
+      "sha256": "c93f57a10b0e1c87b3f16abdd9deea0001c4bcf2fe2d5fe8506529a28b8d5d27",
+      "size_bytes": 3796
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/publication-manifest.json",
+      "sha256": "14eb401133e9bb4773bed4f5c4b2515c3d711e05a95ab7d92cc55e8875e95ff9",
+      "size_bytes": 3232
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence.md",
+      "sha256": "eeaab35660e82905d28af7742c3d2d39b73021cb7f104e62e5425c3ebb2834c2",
+      "size_bytes": 5092
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md",
+      "sha256": "a0d8d8e4c6fd63969552e41eebbb4397745b28ac25b14ede8bd42a25ad56f4c7",
+      "size_bytes": 8914
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt",
+      "sha256": "2f485cb3b549c8581cfa8c1630173e560d44fdf535b15ccbc7d2894ba2fb4aa7",
+      "size_bytes": 180224
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method.md",
+      "sha256": "82a5a1a7868ed73eb88b257f5456b0569c345b7a0ba76d94fd5977e35a713800",
+      "size_bytes": 4654
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-package-manifest.json",
+      "sha256": "cb292586b7d8bf8877962a939f20d85f32f5f7783868f1b24d1f2850cc543744",
+      "size_bytes": 2151
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-record-package.md",
+      "sha256": "6dcef21fd4147a47ac8164ba3d23e6449c9710d45b8dd712aa6c6425222d3c1d",
+      "size_bytes": 67440
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/generation-provenance.md",
+      "sha256": "a43a2cbe1a05f63cac514f75eec19fd2a62e92f81709a26f8ecd845fe9947473",
+      "size_bytes": 2092
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-and-merge-evidence.md",
+      "sha256": "68ef2efec990ae2901a198c13a582af3fc172e7f91f97b74e29ed00099664794",
+      "size_bytes": 2425
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-manifest.json",
+      "sha256": "6eef65bf69ef4da3d424aff404579b7d69c6219fa3c1774558c4ac8f7247cff8",
+      "size_bytes": 3820
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk.md",
+      "sha256": "458c93914fd93648cda584c1a6d8cc0af5dfcc0489574dd2091b24e457a52268",
+      "size_bytes": 4817
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h-summary.json",
+      "sha256": "95aef469ced007d7be576220643fe6a201212542096a8f3bd22d474fb734f9c5",
+      "size_bytes": 150
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h.json",
+      "sha256": "de279e26c658de06423983dc01e906aa96f3d4fbc30770a87cd03578cbecccdd",
+      "size_bytes": 12163
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h-summary.json",
+      "sha256": "d6607743cbf27c916579e7f5745a39e12ff7dd035741077f62ca7534743ade09",
+      "size_bytes": 163
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h.json",
+      "sha256": "cd2bbc5f35771af6d4298ee45ec0477206dfcf4f592a0a4ec756f9ca3c74f426",
+      "size_bytes": 10851
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h-summary.json",
+      "sha256": "f52b43ca3fc2e5f49e73225738284b9cba6e89086e80d94eb63ee3c8d54bee8f",
+      "size_bytes": 134
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h.json",
+      "sha256": "ddffbff515f1309e89a5eeac6b909db0e0eb73e4b84d6e35890d3875966006ea",
+      "size_bytes": 31084
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h-summary.json",
+      "sha256": "8f18ae99fbd5fd82a6807afa08dc233954eb5167971ff6c0e140cbe1f70a198c",
+      "size_bytes": 160
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h.json",
+      "sha256": "01dcfef1ea8cc06c30eaa51215dd463d93042158e5ae9314e6932fc0e6aa5ca5",
+      "size_bytes": 20957
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-analysis.json",
+      "sha256": "90812132fcd86f43ea969b2ab894a5a3e1357d9f28f5774b67c4e7dbea999120",
+      "size_bytes": 2584
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-metadata.txt",
+      "sha256": "720ee326e01e50ef8cf3984f684a390068724cde8facf140781ada460a22c45e",
+      "size_bytes": 415
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/helm-releases.txt",
+      "sha256": "87d7df50ab7fb47b68bcb7fed27e750cc26c686532fe13710f94280bdc8f11e0",
+      "size_bytes": 1470
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/kubecost-live-values.yaml",
+      "sha256": "6228ce79a33fd0ecca8a8e3535ef34aec1ba05337eeab0a8e7f2d153dd316858",
+      "size_bytes": 2192
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/node-usage.txt",
+      "sha256": "170b01f03523c5cab87e7dc2242041c6413098d65841d0749e8d9598e32f42f0",
+      "size_bytes": 496
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/nodes.txt",
+      "sha256": "6e114eaea4d624902433a9d987790d7aa8c4032bf474f4b7524ce3374f563834",
+      "size_bytes": 1322
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pod-usage.txt",
+      "sha256": "fd63fe712efc7794a038f6072df330570d5c1ae10658a22efa85e822efe088d4",
+      "size_bytes": 8424
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pods.txt",
+      "sha256": "0a9d3e2578ffc87eea37b90d2f026d8ff61416a1195f952f250e274514e33631",
+      "size_bytes": 13941
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/storage.txt",
+      "sha256": "60ef9b6c7f9de8d51c2155acc21c106bd32a6f1dbbcc86c0d6bbc523803419de",
+      "size_bytes": 8257
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/workloads.txt",
+      "sha256": "2503cd90ebeb610ece003611f3a7e732060403c070fc026a6dfbc385db0d29cb",
+      "size_bytes": 12188
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/publication-manifest.json",
+      "sha256": "ead3933e5095211826a95b9a02b1a92ca96f621cd1e456494448d53877e98354",
+      "size_bytes": 8442
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-atomic-file.json",
+      "sha256": "3c54416457f6441ebdda2792020f7565c4b22e67aea3ad9c74d8e70eb490c78c",
+      "size_bytes": 3685
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-authority-reconcile.json",
+      "sha256": "de336dd49961e9f93cddecd7ed8e44bcec9b2a2fe8bccaf88f56c8f7f4c018ff",
+      "size_bytes": 3484
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-capability-gap.json",
+      "sha256": "8709712a45588b38ef1bc4620de9d709fe1758f9c99e7f6339d16610d8e61d94",
+      "size_bytes": 3492
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-component-select.json",
+      "sha256": "582a79a3fff44092b280b990e8ad605552690f87c3803c123f1571656ccdc9dc",
+      "size_bytes": 3555
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-failure-diagnose.json",
+      "sha256": "a62256b47d5c326737c2656d30a2a7b4de0745b472830f71f50845ce150373e2",
+      "size_bytes": 3623
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-git-inspect.json",
+      "sha256": "9a9ff724c3a6bc93e6e1b661e9154462f0956be1d44be39ac42efe8f5d6c61b5",
+      "size_bytes": 3586
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-git-safety.json",
+      "sha256": "2389ff52dcdc8706aa9c4565c47af2e053e54599162c95e8b67f47587cd7a908",
+      "size_bytes": 3865
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-operator-proposal.json",
+      "sha256": "90a0714192297aab4895a4c627ac9946c068be9f52bbef32220786e7bed68239",
+      "size_bytes": 3725
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-outcome-metrics.json",
+      "sha256": "026c93e688b4bb96baa44602de43c644f7ca662cbcfa340e72d884e1602b9fa4",
+      "size_bytes": 4014
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json",
+      "sha256": "eb7f14dd407e47c871bb3969c3bbba182726c999e61a3233d7bfb60a2bd1e86e",
+      "size_bytes": 14864
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-decision-primitives.json",
+      "sha256": "1c2ea95612a3cd9f12dcdd2b94b1bdd89362990609813629eacf8bf856364e59",
+      "size_bytes": 14801
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-outcome-metrics.json",
+      "sha256": "57502ff4c3a99da1e086e1e550e004d424c668b3dff86787e4d2e3b6167c22c9",
+      "size_bytes": 4973
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-root-enforcement.json",
+      "sha256": "457d6232bc351f2e02f1371ef06f0e15cc716dbe4cb2cadc1a6592cd7a2defe7",
+      "size_bytes": 13814
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/outcome-metrics-baseline.json",
+      "sha256": "ca3222345e077abda2a7fd88d1d637568bb1ff6718a1e047ec6fd9fc25917f4b",
+      "size_bytes": 3386
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/root-enforcement-readiness.json",
+      "sha256": "5dd3f33f97d290511ae8355a64281d75d6a0ff2e9967c811e066761fe76e9875",
+      "size_bytes": 2788
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/authority-inventory.json",
+      "sha256": "858a872fd64393932944c5fd5efb23224e840f776a60a381fac03de9b6fd5a23",
+      "size_bytes": 9146
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/generation-input-manifest.json",
+      "sha256": "a4417b3a3bddd5cc63160d1aa78f7d397971d8ff1847169282cd0940f9b665f7",
+      "size_bytes": 10787
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/implementation-summary.json",
+      "sha256": "dfcd14d4d8ac9198946cdeb2b573cdfac98a30043215bf1bf98bac7531cd3bf2",
+      "size_bytes": 7263
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/publication-manifest.json",
+      "sha256": "4ac3521173adc84d2875c8eef1d6d7d5bb724a8a1d4e1b824e4da054cf9257d7",
+      "size_bytes": 3545
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/repository-evidence.md",
+      "sha256": "2a56a922f538f0b491cc8ab5237f63bb6825f7056d973f70be265e74769c21c4",
+      "size_bytes": 784
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/terminal-evidence.txt",
+      "sha256": "648692e92e60d63f1ec229fd2a5c6ee4ba9ef9da8913b42e907c4e651ced83f5",
+      "size_bytes": 36851
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-002/publication-manifest.json",
+      "sha256": "d0c9b30d4ffc56ef369fa8aaed858a8d63a897264cc8d41495b8b7bf7b5b1e45",
+      "size_bytes": 2606
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-002/session-summary.json",
+      "sha256": "bf7edcb6fa13256cdbff85ecd168ef8fd867d8c3561afca2c4b1740c35f4a526",
+      "size_bytes": 1740
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-002/terminal-evidence.md",
+      "sha256": "cd095515b223a57a1689efd672048227ddee77551d97eeb7e48dd1d178b0c079",
+      "size_bytes": 12953
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/commit-lineage.md",
+      "sha256": "57b2015668588fe9a0dd4b283e55b84882d6eb43fc8288539935d2f6d15459a3",
+      "size_bytes": 781
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/completed-session-snapshot.json",
+      "sha256": "28f32f799d05c66098119dd3777025f07375fc94049f375b2c86427cd7d531e1",
+      "size_bytes": 10378
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/post-session-review.json",
+      "sha256": "968b0f3fbeae29af7aa8049e79d0a206b4e7ff5e3925864651f81099a7ad02e4",
+      "size_bytes": 16496
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/publication-manifest.json",
+      "sha256": "2f5a7c7463ea92875b4a070bda8ada708686fac959829d2328ea8da7e1f580b0",
+      "size_bytes": 4062
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/runtime-validation-action.json",
+      "sha256": "ff15a9e57e6102fc4791387014d42ecd6f2521cf2392fddea3c33cfa88dfd4db",
+      "size_bytes": 1782
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/runtime-validation-lesson.json",
+      "sha256": "72ae9c6a6df65f0aa05fade51f8eebc898673fb358402c248919e9e623430d7b",
+      "size_bytes": 1995
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/terminal-evidence.md",
+      "sha256": "1494da0ac38bbf9df86ef996d7a988a0c9fa2283df2209b8a807281a7f4d8ac1",
+      "size_bytes": 9762
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/validation-summary.md",
+      "sha256": "b28553789e5975181dedca45107efaaf64e9ddcb68084a714061609db4ea6ea9",
+      "size_bytes": 1205
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/implementation-commit-summary.txt",
+      "sha256": "e333a405fa52f2bf6b48d6141bc5be4569a7251cd998616da8414bcabcc869cb",
+      "size_bytes": 1419
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/publication-manifest.json",
+      "sha256": "55aeedea3840e65deb7a6874e17e77c594d7f8ca6c5eb9c7c21a57fb4bc5ac16",
+      "size_bytes": 3290
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md",
+      "sha256": "ae3d7db510163838bd24c9c6ce2c31bbb1ca17ed896d9c3a997be3a2ab52b848",
+      "size_bytes": 12576
+    },
+    {
+      "path": "markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/validation-summary.json",
+      "sha256": "9cc529624942393c7c1f808e7120849828b5dfa1ae2ece40517bda40bd73a434",
+      "size_bytes": 1471
+    },
+    {
+      "path": "markdown/evidence/catalog.json",
+      "sha256": "5453064a732556cfddf984f3313896394b667091628c1ffd4122830d4eaea1d3",
+      "size_bytes": 42130
+    },
+    {
+      "path": "markdown/evidence/current.md",
+      "sha256": "cf8051192d5ebae9cb8e4d3fd777bd93e8efdfe0690af7298939aeccdb7a8415",
+      "size_bytes": 5440
+    },
+    {
+      "path": "markdown/evidence/generated-files.json",
+      "sha256": "6ebbedc74b3ef60f69c66fb7acefa2be395bd8c694181cb9d6ae8160c0d61629",
+      "size_bytes": 2897
+    },
+    {
+      "path": "markdown/evidence/index.md",
+      "sha256": "ff62f3bd0fe810cb4b89e7cd7832765aaaed9e4e92cad02503cd14354e093f08",
+      "size_bytes": 5472
+    },
+    {
+      "path": "markdown/evidence/legacy-record-registry.json",
+      "sha256": "59d5bbf105d9568079207e127a99fe072b8a8f72b7e68250d0e5bd7cc1987117",
+      "size_bytes": 439
+    },
+    {
+      "path": "markdown/evidence/legacy.md",
+      "sha256": "9fc1640bdb5d75ecea647f2565e068c47ae9efb5c277090c3441d285c7138b38",
+      "size_bytes": 7599
+    },
+    {
+      "path": "markdown/evidence/migration-report.md",
+      "sha256": "d91c415bf22a015966a36ebd8e29c0680ccefaee905b1bee9d6247d06a853550",
+      "size_bytes": 8988
+    },
+    {
+      "path": "markdown/evidence/sections/benchmarks.md",
+      "sha256": "b1ba7c9318c87bfd2ce10a80e012fdf4d3758c5bad239f0d4b4142298ba94ec6",
+      "size_bytes": 429
+    },
+    {
+      "path": "markdown/evidence/sections/finops.md",
+      "sha256": "8955d492ca6d1e903c4b8d940b8ed88ebccb8606d29b61b7441e17d320714deb",
+      "size_bytes": 678
+    },
+    {
+      "path": "markdown/evidence/sections/governance.md",
+      "sha256": "a032666fa7069ba9693d0df04cd9a41e1b9476fd88f502e3bcc6a5f71e2fe68f",
+      "size_bytes": 3287
+    },
+    {
+      "path": "markdown/evidence/sections/index.md",
+      "sha256": "5451ba590295610b88047ac3223eb88f3feb9f722be3293c3a472b758cf4528b",
+      "size_bytes": 229
+    },
+    {
+      "path": "markdown/evidence/sections/installation.md",
+      "sha256": "e10654c5307b34d6493e4037cac137616471dde9667e86d5cb663c1f54b190c6",
+      "size_bytes": 5692
+    },
+    {
+      "path": "markdown/evidence/sections/operations.md",
+      "sha256": "aee7c48eed5b9036b6107ff49ce2f342ada7313bf792e389d98f3136b32e5837",
+      "size_bytes": 2300
+    },
+    {
+      "path": "markdown/evidence/sections/security.md",
+      "sha256": "711837883302144da3ef26a23d5b08f0eb61f114d6221ad29de453997083baad",
+      "size_bytes": 441
+    },
+    {
+      "path": "markdown/evidence/sections/verification.md",
+      "sha256": "651535144f038c606be115ec8c5a5d0344517a0f2d052e8e8ad81b1847031444",
+      "size_bytes": 514
+    },
+    {
+      "path": "markdown/evidence/status/historical.md",
+      "sha256": "d13352f394fe7d9a6f4a5638c132174e5d85f2a783f864e774d90a1f683c0d90",
+      "size_bytes": 5690
+    },
+    {
+      "path": "markdown/evidence/status/index.md",
+      "sha256": "f843a73cc9b9e1000a7b2d81cdfb05dbf5a7fdc00adc6df072bc6b8b7cd9c232",
+      "size_bytes": 80
+    },
+    {
+      "path": "markdown/evidence/status/validated.md",
+      "sha256": "404c287f4eef9bddcafebeef9b7ea62a287d9e4ee813b9632d0cdd1cfec82d5c",
+      "size_bytes": 7062
+    },
+    {
+      "path": "markdown/evidence/subjects/amd64-nocloud-seed-usb-helper.md",
+      "sha256": "77d509328b4d59db5bd2d19765fc42b854a4db89cb321f2acad7c0e8a2a06f8d",
+      "size_bytes": 393
+    },
+    {
+      "path": "markdown/evidence/subjects/amd64-node.md",
+      "sha256": "517e7565643e69137b0ca37d80ba848dc42b08fd1092af639d9121e3276f3668",
+      "size_bytes": 607
+    },
+    {
+      "path": "markdown/evidence/subjects/amd64.md",
+      "sha256": "59e47a97f8681b00e67a6ea60b5f79128b8cb220cbcd2b86b69afbdb491a08a7",
+      "size_bytes": 368
+    },
+    {
+      "path": "markdown/evidence/subjects/centralized-logging-cost-baseline.md",
+      "sha256": "16c9d9f93761d7348c2f8b2a2a4bdde5e3cf2b8178ee22d6b88e17a37d592127",
+      "size_bytes": 456
+    },
+    {
+      "path": "markdown/evidence/subjects/centralized-observability-logging.md",
+      "sha256": "b71badba7544a5ebc7b7d207a96b7e02f4cb1e702357a9abc3208fc34e403059",
+      "size_bytes": 1269
+    },
+    {
+      "path": "markdown/evidence/subjects/index.md",
+      "sha256": "8a673592b463c0e5367327f238610990aa326aee7b6c856a841336af01291598",
+      "size_bytes": 1921
+    },
+    {
+      "path": "markdown/evidence/subjects/intel-node-pi-administrative-access-evidence.md",
+      "sha256": "2dffc2b3bae5f538aa62c4119141b8e365caa75529149ef8576b4f93f98d95f3",
+      "size_bytes": 519
+    },
+    {
+      "path": "markdown/evidence/subjects/k3s-api-high-availability.md",
+      "sha256": "2f5d911e5cd8e02590f3bf51d75f86067fb563dd04e30b15c840c4d1949251f1",
+      "size_bytes": 444
+    },
+    {
+      "path": "markdown/evidence/subjects/k3s-etcd-baseline-backup-evidence.md",
+      "sha256": "bc96155aa66c177c29c1b938d8be927cc42670ce2101684f5230212cef4e2ce0",
+      "size_bytes": 429
+    },
+    {
+      "path": "markdown/evidence/subjects/kalaxy3-automation-controller-portability.md",
+      "sha256": "f58a2605ac4524f4a5c1d60a7da2283c13f9d02e30cf59ac60c9a942aae4fe9e",
+      "size_bytes": 500
+    },
+    {
+      "path": "markdown/evidence/subjects/kalaxy3-controller-access-baseline.md",
+      "sha256": "9112f638da16036b95f87b2ed87ce4d1daad606c18e99bee7a783cf832e88f61",
+      "size_bytes": 471
+    },
+    {
+      "path": "markdown/evidence/subjects/kalaxy3-daux-landing-page.md",
+      "sha256": "1dfeeef19646fb65ca9281e78f17d6ebed545b6dba7b891bffea85a6def9104c",
+      "size_bytes": 484
+    },
+    {
+      "path": "markdown/evidence/subjects/kalaxy3-documentation-publication.md",
+      "sha256": "bead434f179f2d82f318b973b13ef9bdf94459b9ef950a9315305dbf7cb7d176",
+      "size_bytes": 501
+    },
+    {
+      "path": "markdown/evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0.md",
+      "sha256": "86af4d7b1d1075348f46d9b8ddf389bfe6a3710396cacfe7c6e7c6729822531d",
+      "size_bytes": 704
+    },
+    {
+      "path": "markdown/evidence/subjects/kubecost-chart-3-2-1.md",
+      "sha256": "487944d831c15aa3a35cbd2060b160e919499b3e4a14518fc675fbaa202a4f9f",
+      "size_bytes": 696
+    },
+    {
+      "path": "markdown/evidence/subjects/kubecost-installation.md",
+      "sha256": "087fd9614ee69d398aa46635cc7371e1b7b45e605bd9941c81682807519089a4",
+      "size_bytes": 433
+    },
+    {
+      "path": "markdown/evidence/subjects/longhorn-kubecost.md",
+      "sha256": "ba39a5c656cbc77f5eeb210e59941ae74893a5c8b8af0f59b8118fc556e02320",
+      "size_bytes": 497
+    },
+    {
+      "path": "markdown/evidence/subjects/minio-installation-evidence.md",
+      "sha256": "445ccb74d408bed29621a6f305fc3059c1afe57043ca176ba2f9f5c5e2de5e95",
+      "size_bytes": 418
+    },
+    {
+      "path": "markdown/evidence/subjects/observability.md",
+      "sha256": "7b372f39e977c29afe35321d49328b675fbcabdc680f9d7f3be8c3a536c48c2c",
+      "size_bytes": 392
+    },
+    {
+      "path": "markdown/evidence/subjects/protected-longhorn.md",
+      "sha256": "c1fc9ee48c8683498a4eada1307963329de3b2e9a3eff0eafa9f10f0143e17f6",
+      "size_bytes": 555
+    },
+    {
+      "path": "markdown/evidence/subjects/protected-traefik-dashboard-installation.md",
+      "sha256": "c3c16d735c3b332594b02890811be88017fafcaf35d26c36d28d96d812ed5c2a",
+      "size_bytes": 593
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-actionable-failures.md",
+      "sha256": "0153621df89184aaeb07911b8c75de2f13d779a50c36fe3244b733300a96ca40",
+      "size_bytes": 481
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-ci-portability.md",
+      "sha256": "fb61d9317f40b0560126292ffe76cead197c641e3326012494581f5d3f180c1e",
+      "size_bytes": 504
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-continuous-improvement-closeout.md",
+      "sha256": "eb447af35a388c94a82122dd925d51907e4a78ee3c0e6d1a864d5f83cc02eb4e",
+      "size_bytes": 475
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-continuous-improvement-metrics-pilot.md",
+      "sha256": "cd971d619c31438f31b05c5767c1755c71b83aedd41a66fc862d9ecfb76b2304",
+      "size_bytes": 489
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-continuous-improvement.md",
+      "sha256": "4c1e32fb66685c2f66aa3941de0479af9bbf47d7035c6e435a22c5292500ab0b",
+      "size_bytes": 486
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-enforcement-guardrails.md",
+      "sha256": "eeb12bff906d25010805b2f5af4a6175f50703c6073b99157bd32de3704e510c",
+      "size_bytes": 534
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-evidence-catalog.md",
+      "sha256": "809c4539b0fd710f663efb9f4dadc60e7e070077cdc10fc8a2258c7528862cc3",
+      "size_bytes": 485
+    },
+    {
+      "path": "markdown/evidence/subjects/sage-record-schema.md",
+      "sha256": "ccce4dc4e3c3ddbbd10fa18341b76f48f2e1d6888b6eac44cd39dc399a2cfe1a",
+      "size_bytes": 675
+    },
+    {
+      "path": "markdown/evidence/subjects/ubuntu-installation.md",
+      "sha256": "b999738af8f85373fa4b63a307de813a70381665f672af81a0044f498830e748",
+      "size_bytes": 760
+    },
+    {
+      "path": "markdown/evidence/subjects/ubuntu-node-provisioning.md",
+      "sha256": "cbe61d930b77a5d6accc2f203c5b466dedaf5148b688dd3c7f9e46000a20ad4d",
+      "size_bytes": 1059
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-actionable-failure-contract.md",
+      "sha256": "7cf35f545cf2395a533a7f0777557e7b041b032cd7905f1b626113f08ce88492",
+      "size_bytes": 6484
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-capability-intelligence-process.md",
+      "sha256": "0e82e69ad0e1936e11818677b2f48657b2bdf4973b692822c8c0444986895db6",
+      "size_bytes": 3761
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-change-discovery-process.md",
+      "sha256": "b42d50ec76d37a6e53102d03246184abd394e8722bb8574af854b6bc0e4aefd3",
+      "size_bytes": 2937
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-continuous-improvement-process.md",
+      "sha256": "118eae8830fed19f4ba11f46dc8efea859421d426316519ba197c316c97c8a20",
+      "size_bytes": 22503
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-evidence-orchestration-process.md",
+      "sha256": "484788b6efd05e19a331fe49ff2fe80f39418ecfc74bf4544cebdd79cf478944",
+      "size_bytes": 3638
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-evidence-publication-process.md",
+      "sha256": "1cfa7b6d8c34d956cc343c8c55b6f6de35f77c7cc81983e23b3e0f4a8ebf6878",
+      "size_bytes": 11046
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-evidence-record-standard.md",
+      "sha256": "b0aa762265fb4f58ef26bd3b1edafdcee57a4ded77579efa8a48177569da8771",
+      "size_bytes": 14614
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-evidence-retrieval-process.md",
+      "sha256": "b816cc655b9eef4fa52dca9ba86cee7366e06a67b135c872b3d977100524bb8a",
+      "size_bytes": 5148
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-operating-contract.md",
+      "sha256": "9963493253b146b740d0ed3bb22f88a2e3eb70bb4a081d202a8504311ee6cc11",
+      "size_bytes": 10622
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-workflow-primitives-process.md",
+      "sha256": "60c5a5cb72fdf5bbc4eae6495d74e3beb5b96349712351f65f9028b3fb447d96",
+      "size_bytes": 8377
+    },
+    {
+      "path": "markdown/standards/kalaxy3-sage-workflow-support-process.md",
+      "sha256": "57d59001f0254bb9769c975f3d74ac56f91719f54cf0c19306dd1e5c9f32024b",
+      "size_bytes": 2253
+    },
+    {
+      "path": "markdown/standards/sage-active-session-schema-v1.0.json",
+      "sha256": "9a61807e9bcb0d68552ba7c1a75a3d729bdcaba486872ef4e5e6198995c9319b",
+      "size_bytes": 8031
+    },
+    {
+      "path": "markdown/standards/sage-authority-reconciliation-schema-v1.0.json",
+      "sha256": "1436183521cc77d71179dd8e5e0d88bb8b4cda5ac2eafafb2cf700f321041562",
+      "size_bytes": 10615
+    },
+    {
+      "path": "markdown/standards/sage-capability-gap-receipt-schema-v1.0.json",
+      "sha256": "f13a1bc559bb0629167eac122757bc83ba1670ee19b5b4c4d2d9004fe76a55f8",
+      "size_bytes": 6360
+    },
+    {
+      "path": "markdown/standards/sage-capability-intelligence-schema-v1.0.json",
+      "sha256": "58a2973d2445f4020fe9f174ec8d818686acca7bb1a1aeb2dc74a005b679911f",
+      "size_bytes": 772
+    },
+    {
+      "path": "markdown/standards/sage-change-candidate-lifecycle-schema-v1.0.json",
+      "sha256": "e3d9d0fa4cb1cff8a21a5ab4641eddb66546733a37090ccdc621ccb69712525c",
+      "size_bytes": 4691
+    },
+    {
+      "path": "markdown/standards/sage-change-candidate-schema-v1.0.json",
+      "sha256": "abde37750493141313082bf760ec6dedc17b6e0bf8dc4c2d2b74d5d393af33cd",
+      "size_bytes": 15058
+    },
+    {
+      "path": "markdown/standards/sage-component-selection-manifest-schema-v1.0.json",
+      "sha256": "4ecaab5d4ce483c1fc497d0111ce1739107e624f45e049bdb062457cfab3020d",
+      "size_bytes": 11040
+    },
+    {
+      "path": "markdown/standards/sage-continuous-improvement-baseline-schema-v1.0.json",
+      "sha256": "c6f39aa72ad381c863a586972952f809e8966c245ab1036e1dd67e0f318270eb",
+      "size_bytes": 15697
+    },
+    {
+      "path": "markdown/standards/sage-evidence-metadata-contract-v1.1.json",
+      "sha256": "6ae8096e29e46ae3755ac673c11bfb1927efb2a23acd4dfe234c3a7079ffd3f7",
+      "size_bytes": 2671
+    },
+    {
+      "path": "markdown/standards/sage-evidence-metadata-contract-v1.2.json",
+      "sha256": "81e45630d852f1c67ab3e6b95b506e942ceae6f11f08cfd2831e0f366db0726d",
+      "size_bytes": 4056
+    },
+    {
+      "path": "markdown/standards/sage-evidence-retrieval-result-schema-v1.0.json",
+      "sha256": "d2dab33bc3f402b2d664df8b8cd78c5909f199090869e874274863dfad28aa9a",
+      "size_bytes": 5859
+    },
+    {
+      "path": "markdown/standards/sage-failure-diagnosis-schema-v1.0.json",
+      "sha256": "4083c6661249cde9bba592f332eb7f5fd42c462a6d40d52f19504c67edf4fc4e",
+      "size_bytes": 10722
+    },
+    {
+      "path": "markdown/standards/sage-feedback-comparison-schema-v1.0.json",
+      "sha256": "d6e42fe56dee1289c178edf14e40ecec57af6f42732340a30f6d3a6bd4e3b2c1",
+      "size_bytes": 9544
+    },
+    {
+      "path": "markdown/standards/sage-improvement-action-schema-v1.0.json",
+      "sha256": "5b549cf330fdc135eb1d86465b80d3cd98e2dabe2d6af11272ce6980c1df605a",
+      "size_bytes": 5913
+    },
+    {
+      "path": "markdown/standards/sage-operator-git-proposal-schema-v1.0.json",
+      "sha256": "056d10369b48bf70510c7ec341da6a42804f1692d918927d0e009249284037f8",
+      "size_bytes": 6948
+    },
+    {
+      "path": "markdown/standards/sage-outcome-metrics-schema-v1.0.json",
+      "sha256": "8a476e548ad1beeb13fd3cf29c0dff1b0d60f7a40fdcc4be2ea711311e7e5d08",
+      "size_bytes": 11683
+    },
+    {
+      "path": "markdown/standards/sage-post-session-review-schema-v1.0.json",
+      "sha256": "ad72b77321a0bbae8f6b7a6169a4d2e08f1fff0e900845b309adb9aeaebe7445",
+      "size_bytes": 12475
+    },
+    {
+      "path": "markdown/standards/sage-session-improvement-schema-v1.0.json",
+      "sha256": "0ad70e33bc78ec16d20a6c4d850f52a36c2b1daaf89686f711c21228d9b86402",
+      "size_bytes": 11587
+    },
+    {
+      "path": "markdown/standards/sage-session-scorecard-schema-v1.0.json",
+      "sha256": "d487771e58a342fc38304c48e97c9c833f4bead4099ef6090a18cabae8509e39",
+      "size_bytes": 11644
+    },
+    {
+      "path": "markdown/standards/sage-workflow-primitives-schema-v1.0.json",
+      "sha256": "05fd7052406863eef8ef4b17289674f7545a5fa5a523cfba402870a682404ae7",
+      "size_bytes": 2963
+    },
+    {
+      "path": "markdown/templates/sage-evidence-generation-request.md",
+      "sha256": "fb57630dc72560ee6f816d852daea6a6459c30c410dfc44a417ff30659734063",
+      "size_bytes": 1822
+    },
+    {
+      "path": "markdown/templates/sage-evidence-package-manifest-template.json",
+      "sha256": "7b48269133ff47576ff8b8fcc462a35a9dde6d6b108cc46e036e5b2973e2d723",
+      "size_bytes": 1082
+    },
+    {
+      "path": "markdown/templates/sage-evidence-record-template.md",
+      "sha256": "3671b5ed8eb93adc5e735c9a7ce3a399674dd0cb46658f73b3336b66e3490a1b",
+      "size_bytes": 17728
+    }
+  ]
+}

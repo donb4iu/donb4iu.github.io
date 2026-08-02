@@ -1,0 +1,931 @@
+{
+  "alert_name_collisions": [],
+  "captured_at": "2026-08-02T02:44:49-05:00",
+  "controller": {
+    "context": "default",
+    "kubeconfig": "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml",
+    "kubectl": "/usr/local/bin/kubectl"
+  },
+  "deployment_gate": {
+    "name": "deploy_grafana_operations_dashboard",
+    "value": true
+  },
+  "prometheus": {
+    "label_conventions": [
+      {
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "release": "kube-prometheus-stack"
+        },
+        "rule_object_count": 35
+      }
+    ],
+    "live_rule_objects": [
+      {
+        "alert_names": [
+          "AlertmanagerClusterCrashlooping",
+          "AlertmanagerClusterDown",
+          "AlertmanagerClusterFailedPeers",
+          "AlertmanagerClusterFailedToSendAlerts",
+          "AlertmanagerClusterFailedToSendAlerts",
+          "AlertmanagerConfigInconsistent",
+          "AlertmanagerFailedReload",
+          "AlertmanagerFailedToSendAlerts",
+          "AlertmanagerMembersInconsistent"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-alertmanager.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "ConfigReloaderSidecarErrors"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-config-reloaders",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "etcdDatabaseHighFragmentationRatio",
+          "etcdDatabaseQuotaLowSpace",
+          "etcdExcessiveDatabaseGrowth",
+          "etcdGRPCRequestsSlow",
+          "etcdHighCommitDurations",
+          "etcdHighFsyncDurations",
+          "etcdHighFsyncDurations",
+          "etcdHighNumberOfFailedGRPCRequests",
+          "etcdHighNumberOfFailedGRPCRequests",
+          "etcdHighNumberOfFailedProposals",
+          "etcdHighNumberOfLeaderChanges",
+          "etcdInsufficientMembers",
+          "etcdMemberCommunicationSlow",
+          "etcdMembersDown",
+          "etcdNoLeader"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-etcd",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "InfoInhibitor",
+          "TargetDown",
+          "Watchdog"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-general.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.container-cpu-usage-seconds-tot",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.container-memory-cache",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.container-memory-rss",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.container-memory-swap",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.container-memory-working-set-by",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.container-resource",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-k8s.rules.pod-owner",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-apiserver-availability.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-apiserver-burnrate.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-apiserver-histogram.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeAPIErrorBudgetBurn",
+          "KubeAPIErrorBudgetBurn",
+          "KubeAPIErrorBudgetBurn",
+          "KubeAPIErrorBudgetBurn"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-apiserver-slos",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-prometheus-general.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-prometheus-node-recording.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-scheduler.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeStateMetricsListErrors",
+          "KubeStateMetricsShardingMismatch",
+          "KubeStateMetricsShardsMissing",
+          "KubeStateMetricsWatchErrors"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kube-state-metrics",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubelet.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeContainerWaiting",
+          "KubeDaemonSetMisScheduled",
+          "KubeDaemonSetNotScheduled",
+          "KubeDaemonSetRolloutStuck",
+          "KubeDeploymentGenerationMismatch",
+          "KubeDeploymentReplicasMismatch",
+          "KubeDeploymentRolloutStuck",
+          "KubeHpaMaxedOut",
+          "KubeHpaReplicasMismatch",
+          "KubeJobFailed",
+          "KubeJobNotCompleted",
+          "KubePdbNotEnoughHealthyPods",
+          "KubePodCrashLooping",
+          "KubePodNotReady",
+          "KubeStatefulSetGenerationMismatch",
+          "KubeStatefulSetReplicasMismatch",
+          "KubeStatefulSetUpdateNotRolledOut"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-apps",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "CPUThrottlingHigh",
+          "KubeCPUOvercommit",
+          "KubeCPUQuotaOvercommit",
+          "KubeMemoryOvercommit",
+          "KubeMemoryQuotaOvercommit",
+          "KubeQuotaAlmostFull",
+          "KubeQuotaExceeded",
+          "KubeQuotaFullyUsed"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-resources",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubePersistentVolumeErrors",
+          "KubePersistentVolumeFillingUp",
+          "KubePersistentVolumeFillingUp",
+          "KubePersistentVolumeInodesFillingUp",
+          "KubePersistentVolumeInodesFillingUp"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-storage",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeClientErrors",
+          "KubeVersionMismatch"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-system",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeAPIDown",
+          "KubeAPIInstanceUnreachable",
+          "KubeAPITerminatedRequests",
+          "KubeAggregatedAPIDown",
+          "KubeAggregatedAPIErrors",
+          "KubeClientCertificateExpiration",
+          "KubeClientCertificateExpiration"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-system-apiserver",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeControllerManagerDown",
+          "KubeControllerManagerInstanceUnreachable"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-system-controller-manager",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeProxyDown",
+          "KubeProxyInstanceUnreachable"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-system-kube-proxy",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeNodeEviction",
+          "KubeNodeNotReady",
+          "KubeNodePressure",
+          "KubeNodeReadinessFlapping",
+          "KubeNodeUnreachable",
+          "KubeletClientCertificateExpiration",
+          "KubeletClientCertificateExpiration",
+          "KubeletClientCertificateRenewalErrors",
+          "KubeletDown",
+          "KubeletInstanceUnreachable",
+          "KubeletPlegDurationHigh",
+          "KubeletPodStartUpLatencyHigh",
+          "KubeletServerCertificateExpiration",
+          "KubeletServerCertificateExpiration",
+          "KubeletServerCertificateRenewalErrors",
+          "KubeletTooManyPods"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-system-kubelet",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "KubeSchedulerDown",
+          "KubeSchedulerInstanceUnreachable"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-kubernetes-system-scheduler",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "NodeBondingDegraded",
+          "NodeCPUHighUsage",
+          "NodeClockNotSynchronising",
+          "NodeClockSkewDetected",
+          "NodeDiskIOSaturation",
+          "NodeFileDescriptorLimit",
+          "NodeFileDescriptorLimit",
+          "NodeFilesystemAlmostOutOfFiles",
+          "NodeFilesystemAlmostOutOfFiles",
+          "NodeFilesystemAlmostOutOfSpace",
+          "NodeFilesystemAlmostOutOfSpace",
+          "NodeFilesystemFilesFillingUp",
+          "NodeFilesystemFilesFillingUp",
+          "NodeFilesystemSpaceFillingUp",
+          "NodeFilesystemSpaceFillingUp",
+          "NodeHighNumberConntrackEntriesUsed",
+          "NodeMemoryHighUtilization",
+          "NodeMemoryMajorPagesFaults",
+          "NodeNetworkReceiveErrs",
+          "NodeNetworkTransmitErrs",
+          "NodeRAIDDegraded",
+          "NodeRAIDDiskFailure",
+          "NodeSystemSaturation",
+          "NodeSystemdServiceCrashlooping",
+          "NodeSystemdServiceFailed",
+          "NodeTextFileCollectorScrapeError"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-node-exporter",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-node-exporter.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "NodeNetworkInterfaceFlapping"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-node-network",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-node.rules",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "PrometheusBadConfig",
+          "PrometheusDuplicateTimestamps",
+          "PrometheusErrorSendingAlertsToAnyAlertmanager",
+          "PrometheusErrorSendingAlertsToSomeAlertmanagers",
+          "PrometheusHighQueryLoad",
+          "PrometheusKubernetesListWatchFailures",
+          "PrometheusLabelLimitHit",
+          "PrometheusMissingRuleEvaluations",
+          "PrometheusNotConnectedToAlertmanagers",
+          "PrometheusNotIngestingSamples",
+          "PrometheusNotificationQueueRunningFull",
+          "PrometheusOutOfOrderTimestamps",
+          "PrometheusRemoteStorageFailures",
+          "PrometheusRemoteWriteBehind",
+          "PrometheusRemoteWriteDesiredShards",
+          "PrometheusRuleFailures",
+          "PrometheusSDRefreshFailure",
+          "PrometheusScrapeBodySizeLimitHit",
+          "PrometheusScrapeSampleLimitHit",
+          "PrometheusTSDBCompactionsFailing",
+          "PrometheusTSDBReloadsFailing",
+          "PrometheusTargetLimitHit",
+          "PrometheusTargetSyncFailure"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-prometheus",
+        "namespace": "observability"
+      },
+      {
+        "alert_names": [
+          "PrometheusOperatorListErrors",
+          "PrometheusOperatorNodeLookupErrors",
+          "PrometheusOperatorNotReady",
+          "PrometheusOperatorReconcileErrors",
+          "PrometheusOperatorRejectedResources",
+          "PrometheusOperatorStatusUpdateErrors",
+          "PrometheusOperatorSyncFailed",
+          "PrometheusOperatorWatchErrors"
+        ],
+        "group_count": 1,
+        "labels": {
+          "app": "kube-prometheus-stack",
+          "app.kubernetes.io/instance": "kube-prometheus-stack",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/part-of": "kube-prometheus-stack",
+          "app.kubernetes.io/version": "87.19.0",
+          "chart": "kube-prometheus-stack-87.19.0",
+          "heritage": "Helm",
+          "release": "kube-prometheus-stack"
+        },
+        "name": "kube-prometheus-stack-prometheus-operator",
+        "namespace": "observability"
+      }
+    ],
+    "queries": {
+      "fluent_bit_alert": {
+        "expression": "sum(up{job=\"fluent-bit-collector\"}) < 7 or absent(up{job=\"fluent-bit-collector\"})",
+        "result_count": 0,
+        "result_type": "vector",
+        "values": []
+      },
+      "fluent_bit_healthy_targets": {
+        "expression": "sum(up{job=\"fluent-bit-collector\"})",
+        "result_count": 1,
+        "result_type": "vector",
+        "values": [
+          {
+            "metric": {},
+            "value": "7"
+          }
+        ]
+      },
+      "longhorn_storage_alert": {
+        "expression": "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes) > 80",
+        "result_count": 0,
+        "result_type": "vector",
+        "values": []
+      },
+      "longhorn_storage_utilization_percent": {
+        "expression": "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes)",
+        "result_count": 1,
+        "result_type": "vector",
+        "values": [
+          {
+            "metric": {},
+            "value": "7.181377867393488"
+          }
+        ]
+      }
+    },
+    "selector_contract": {
+      "name": "kube-prometheus-stack-prometheus",
+      "namespace": "observability",
+      "rule_namespace_selector": {},
+      "rule_selector": {
+        "matchLabels": {
+          "release": "kube-prometheus-stack"
+        }
+      }
+    },
+    "service_proxy_prefix": "/api/v1/namespaces/observability/services/http:kube-prometheus-stack-prometheus:http-web/proxy",
+    "target_summary": {
+      "counts": {
+        "fluent_bit_healthy": 7,
+        "fluent_bit_total": 7,
+        "longhorn_healthy": 2,
+        "longhorn_total": 2
+      },
+      "targets": [
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "fluent_bit",
+          "health": "up",
+          "job": "fluent-bit-collector",
+          "last_error": "",
+          "namespace": "observability",
+          "service": null
+        },
+        {
+          "family": "longhorn",
+          "health": "up",
+          "job": "longhorn-backend",
+          "last_error": "",
+          "namespace": "longhorn-system",
+          "service": "longhorn-backend"
+        },
+        {
+          "family": "longhorn",
+          "health": "up",
+          "job": "longhorn-backend",
+          "last_error": "",
+          "namespace": "longhorn-system",
+          "service": "longhorn-backend"
+        }
+      ]
+    }
+  },
+  "readiness": {
+    "baseline": {
+      "fluent_bit_healthy_targets": 7.0,
+      "longhorn_storage_utilization_percent": 7.181377867393488
+    },
+    "checks": {
+      "alert_names_are_unique": true,
+      "fluent_bit_alert_is_inactive": true,
+      "fluent_bit_target_count_is_seven": true,
+      "fluent_bit_value_is_seven": true,
+      "longhorn_alert_is_inactive": true,
+      "longhorn_targets_are_healthy": true,
+      "longhorn_value_below_threshold": true,
+      "longhorn_value_is_available": true
+    },
+    "proposed_alerts": [
+      {
+        "expression": "sum(up{job=\"fluent-bit-collector\"}) < 7 or absent(up{job=\"fluent-bit-collector\"})",
+        "for": "10m",
+        "name": "FluentBitCoverageDegraded",
+        "severity": "warning"
+      },
+      {
+        "expression": "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes) > 80",
+        "for": "15m",
+        "name": "LonghornStorageUtilizationHigh",
+        "severity": "warning"
+      }
+    ],
+    "ready_for_staged_alert_definition": true
+  },
+  "report_type": "kalaxy3-grafana-operations-alert-contract",
+  "repository": {
+    "branch": "feature/grafana-operations-dashboard",
+    "head": "fa5a752e1bf25c249b09cd0579399b3924b69fc5",
+    "upstream": "origin/feature/grafana-operations-dashboard",
+    "working_tree_status": "clean"
+  },
+  "repository_rule_files": [],
+  "schema_version": "1.0",
+  "status": "read-only-alert-contract-complete"
+}

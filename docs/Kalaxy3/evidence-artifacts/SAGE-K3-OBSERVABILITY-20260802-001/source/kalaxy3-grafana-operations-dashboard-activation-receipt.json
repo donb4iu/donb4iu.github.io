@@ -1,0 +1,143 @@
+{
+  "activated_panel_queries": {
+    "14": {
+      "family": "longhorn",
+      "result_count": 1,
+      "title": "Longhorn Storage Utilization"
+    },
+    "15": {
+      "family": "longhorn",
+      "result_count": 4,
+      "title": "Longhorn Volume Actual Size"
+    },
+    "16": {
+      "family": "longhorn",
+      "result_count": 4,
+      "title": "Longhorn Volume Write Throughput"
+    },
+    "17": {
+      "family": "kubecost",
+      "result_count": 1,
+      "title": "Kubecost Node Hourly Cost"
+    },
+    "18": {
+      "family": "kubecost",
+      "result_count": 1,
+      "title": "Kubecost Management Hourly Cost"
+    },
+    "19": {
+      "family": "kubecost",
+      "result_count": 1,
+      "title": "Kubecost CPU Allocation"
+    },
+    "20": {
+      "family": "kubecost",
+      "result_count": 1,
+      "title": "Kubecost Memory Allocation"
+    }
+  },
+  "captured_at": "2026-08-02T02:30:46-05:00",
+  "checkpoint": "grafana-operations-dashboard-activated",
+  "dashboard_configmap": {
+    "dashboard_sha256": "3ca04849ca4e2e968154528d4594a0d8d39e3496bff376b864a1cb310ce1c2e7",
+    "name": "kalaxy3-grafana-operations-dashboard",
+    "namespace": "observability",
+    "resource_version": "10246115"
+  },
+  "data_contract": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-data-contract-20260802-014120.json",
+  "data_contract_sha256": "ac9e28dafe5b51cc789df872e29507002f875315012fb8dd1d441aa7c38890f0",
+  "definition_receipt": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-definition-receipt.json",
+  "definition_receipt_sha256": "a4ba885396d36818280dc290b7fbec54f39e7af3a9e259474254592e5f5341dc",
+  "deployment_gate": {
+    "name": "deploy_grafana_operations_dashboard",
+    "value": true
+  },
+  "failure_receipt_sha256": "36db1696f4eb6977fca225816c83bc04f6eb9db806baacdda855a19fafa56397",
+  "grafana_dashboard": {
+    "data_panel_count": 20,
+    "provisioned": true,
+    "title": "Kalaxy3 Operations",
+    "uid": "kalaxy3-operations",
+    "url": "/d/kalaxy3-operations/kalaxy3-operations",
+    "version": 1
+  },
+  "kubernetes_mutation": "none-resume-acceptance-only",
+  "kubernetes_persistence": "service-monitors-and-dashboard-configmap",
+  "prometheus_targets": {
+    "counts": {
+      "kubecost": 2,
+      "longhorn": 2
+    },
+    "targets": [
+      {
+        "family": "kubecost",
+        "health": "up",
+        "job": "kubecost-aggregator",
+        "last_error": "",
+        "namespace": "kubecost",
+        "scrape_url": "http://10.42.6.24:9004/metrics",
+        "service": "kubecost-aggregator"
+      },
+      {
+        "family": "kubecost",
+        "health": "up",
+        "job": "kubecost-finopsagent",
+        "last_error": "",
+        "namespace": "kubecost",
+        "scrape_url": "http://10.42.6.23:9003/metrics",
+        "service": "kubecost-finopsagent"
+      },
+      {
+        "family": "longhorn",
+        "health": "up",
+        "job": "longhorn-backend",
+        "last_error": "",
+        "namespace": "longhorn-system",
+        "scrape_url": "http://10.42.4.2:9500/metrics",
+        "service": "longhorn-backend"
+      },
+      {
+        "family": "longhorn",
+        "health": "up",
+        "job": "longhorn-backend",
+        "last_error": "",
+        "namespace": "longhorn-system",
+        "scrape_url": "http://10.42.6.2:9500/metrics",
+        "service": "longhorn-backend"
+      }
+    ]
+  },
+  "recovered_from_failure_receipt": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-activation-failure.json",
+  "repository": {
+    "branch": "feature/grafana-operations-dashboard",
+    "head": "fa5a752e1bf25c249b09cd0579399b3924b69fc5",
+    "upstream": "origin/feature/grafana-operations-dashboard",
+    "working_tree_status": "clean"
+  },
+  "repository_mutation": "none",
+  "schema_version": "1.0",
+  "service_monitors": {
+    "kalaxy3-kubecost-kubecost-aggregator-metrics": {
+      "family": "kubecost",
+      "object_namespace": "observability",
+      "port": "tcp-api",
+      "resource_version": "10246041",
+      "target_namespace": "kubecost"
+    },
+    "kalaxy3-kubecost-kubecost-finopsagent-metrics": {
+      "family": "kubecost",
+      "object_namespace": "observability",
+      "port": "http",
+      "resource_version": "10246043",
+      "target_namespace": "kubecost"
+    },
+    "kalaxy3-longhorn-longhorn-backend-metrics": {
+      "family": "longhorn",
+      "object_namespace": "observability",
+      "port": "manager",
+      "resource_version": "10246045",
+      "target_namespace": "longhorn-system"
+    }
+  },
+  "status": "activated-and-live-accepted"
+}

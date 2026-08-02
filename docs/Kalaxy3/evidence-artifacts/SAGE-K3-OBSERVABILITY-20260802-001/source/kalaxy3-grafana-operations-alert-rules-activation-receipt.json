@@ -1,0 +1,63 @@
+{
+  "captured_at": "2026-08-02T03:16:21-05:00",
+  "checkpoint": "grafana-operations-alert-rules-activated",
+  "dashboard_gate": {
+    "name": "deploy_grafana_operations_dashboard",
+    "value": true
+  },
+  "deployment_gate": {
+    "name": "deploy_grafana_operations_alerts",
+    "value": true
+  },
+  "inactive_expression_results": {
+    "FluentBitCoverageDegraded": 0,
+    "LonghornStorageUtilizationHigh": 0
+  },
+  "kubernetes_persistence": "prometheus-rule",
+  "prometheus_loaded_rules": {
+    "evaluation_time": 0.002324011,
+    "file": "/etc/prometheus/rules/prometheus-kube-prometheus-stack-prometheus-rulefiles-0/observability-kalaxy3-grafana-operations-alerts-02e15117-6451-402c-a7f6-dccb366eeaa6.yaml",
+    "group": "kalaxy3-grafana-operations.rules",
+    "interval": 30,
+    "last_evaluation": "2026-08-02T08:16:19.601517759Z",
+    "rules": {
+      "FluentBitCoverageDegraded": {
+        "duration": 600,
+        "health": "ok",
+        "last_evaluation": "2026-08-02T08:16:19.601622777Z",
+        "query": "sum(up{job=\"fluent-bit-collector\"}) < 7 or absent(up{job=\"fluent-bit-collector\"})",
+        "state": "inactive"
+      },
+      "LonghornStorageUtilizationHigh": {
+        "duration": 900,
+        "health": "ok",
+        "last_evaluation": "2026-08-02T08:16:19.602945169Z",
+        "query": "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes) > 80",
+        "state": "inactive"
+      }
+    }
+  },
+  "prometheus_rule_resource": {
+    "alert_names": [
+      "FluentBitCoverageDegraded",
+      "LonghornStorageUtilizationHigh"
+    ],
+    "generation": 1,
+    "name": "kalaxy3-grafana-operations-alerts",
+    "namespace": "observability",
+    "resource_version": "10267228"
+  },
+  "repository": {
+    "activation_commit": "55916a36afdee3fd8187f2269995f44e7ba532c2",
+    "branch": "feature/grafana-operations-dashboard",
+    "head_before_activation": "ab36c484e32c28936f282287c707b0e4087cbaba",
+    "recovered_interrupted_gate_flip": true,
+    "upstream": "origin/feature/grafana-operations-dashboard",
+    "working_tree_status": "clean"
+  },
+  "schema_version": "1.0",
+  "staging_commit": "ab36c484e32c28936f282287c707b0e4087cbaba",
+  "staging_receipt": "/Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-receipt.json",
+  "staging_receipt_sha256": "9300740a4efa4d96eac5c9d16bbca05544f2d6494241557fca0e0e46b425c4a0",
+  "status": "activated-and-live-accepted"
+}

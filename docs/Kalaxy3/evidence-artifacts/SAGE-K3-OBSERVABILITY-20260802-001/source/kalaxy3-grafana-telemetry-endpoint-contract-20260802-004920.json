@@ -1,0 +1,3121 @@
+{
+  "schema_version": "1.0",
+  "report_type": "kalaxy3-grafana-telemetry-endpoint-contract",
+  "captured_at": "2026-08-02T00:49:20-05:00",
+  "repository": {
+    "branch": "feature/grafana-operations-dashboard",
+    "head": "c9fc440e6b225a1119b57658a7cd526c2d2e0127",
+    "upstream": null,
+    "working_tree_status": "clean"
+  },
+  "controller": {
+    "kubectl": "/usr/local/bin/kubectl",
+    "kubeconfig": "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml",
+    "context": "default"
+  },
+  "namespaces": {
+    "longhorn-system": {
+      "services": [
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-admission-webhook",
+          "labels": {
+            "app": "longhorn-admission-webhook",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0"
+          },
+          "selector": {
+            "longhorn.io/admission-webhook": "longhorn-admission-webhook"
+          },
+          "cluster_ip": "10.43.132.92",
+          "ports": [
+            {
+              "name": "admission-webhook",
+              "port": 9502,
+              "target_port": "admission-wh",
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-backend",
+          "labels": {
+            "app": "longhorn-manager",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0"
+          },
+          "selector": {
+            "app": "longhorn-manager"
+          },
+          "cluster_ip": "10.43.72.4",
+          "ports": [
+            {
+              "name": "manager",
+              "port": 9500,
+              "target_port": "manager",
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-frontend",
+          "labels": {
+            "app": "longhorn-ui",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0"
+          },
+          "selector": {
+            "app": "longhorn-ui"
+          },
+          "cluster_ip": "10.43.248.144",
+          "ports": [
+            {
+              "name": "http",
+              "port": 80,
+              "target_port": "http",
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-recovery-backend",
+          "labels": {
+            "app": "longhorn-recovery-backend",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0"
+          },
+          "selector": {
+            "longhorn.io/recovery-backend": "longhorn-recovery-backend"
+          },
+          "cluster_ip": "10.43.9.234",
+          "ports": [
+            {
+              "name": "recovery-backend",
+              "port": 9503,
+              "target_port": "recov-backend",
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        }
+      ],
+      "endpoint_slices": [
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-admission-webhook-xh4rs",
+          "labels": {
+            "app": "longhorn-admission-webhook",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "kubernetes.io/service-name": "longhorn-admission-webhook"
+          },
+          "ports": [
+            {
+              "name": "admission-webhook",
+              "port": 9502,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.4.2"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-manager-4zzlr",
+                "namespace": "longhorn-system",
+                "uid": "df964a69-7e9a-4632-a32c-dafa82b05726"
+              },
+              "node_name": "amd64-01"
+            },
+            {
+              "addresses": [
+                "10.42.6.2"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-manager-l45k8",
+                "namespace": "longhorn-system",
+                "uid": "5249e334-4791-45f9-97dd-4a48c807fcd0"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-backend-24rgl",
+          "labels": {
+            "app": "longhorn-manager",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "kubernetes.io/service-name": "longhorn-backend"
+          },
+          "ports": [
+            {
+              "name": "manager",
+              "port": 9500,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.4.2"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-manager-4zzlr",
+                "namespace": "longhorn-system",
+                "uid": "df964a69-7e9a-4632-a32c-dafa82b05726"
+              },
+              "node_name": "amd64-01"
+            },
+            {
+              "addresses": [
+                "10.42.6.2"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-manager-l45k8",
+                "namespace": "longhorn-system",
+                "uid": "5249e334-4791-45f9-97dd-4a48c807fcd0"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-frontend-vnpfl",
+          "labels": {
+            "app": "longhorn-ui",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "kubernetes.io/service-name": "longhorn-frontend"
+          },
+          "ports": [
+            {
+              "name": "http",
+              "port": 8000,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.4.5"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-ui-5b55bff454-7fxkj",
+                "namespace": "longhorn-system",
+                "uid": "a5f3ede2-c220-41c4-8008-137d1a46b5f2"
+              },
+              "node_name": "amd64-01"
+            },
+            {
+              "addresses": [
+                "10.42.4.4"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-ui-5b55bff454-cfgst",
+                "namespace": "longhorn-system",
+                "uid": "b4cbb6ed-02a0-41fb-9a99-7ace07ee1f98"
+              },
+              "node_name": "amd64-01"
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-recovery-backend-bx6bb",
+          "labels": {
+            "app": "longhorn-recovery-backend",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "kubernetes.io/service-name": "longhorn-recovery-backend"
+          },
+          "ports": [
+            {
+              "name": "recovery-backend",
+              "port": 9503,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.4.2"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-manager-4zzlr",
+                "namespace": "longhorn-system",
+                "uid": "df964a69-7e9a-4632-a32c-dafa82b05726"
+              },
+              "node_name": "amd64-01"
+            },
+            {
+              "addresses": [
+                "10.42.6.2"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "longhorn-manager-l45k8",
+                "namespace": "longhorn-system",
+                "uid": "5249e334-4791-45f9-97dd-4a48c807fcd0"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        }
+      ],
+      "pods": [
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-attacher-774cf76ffd-89qpr",
+          "labels": {
+            "app": "csi-attacher",
+            "pod-template-hash": "774cf76ffd"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.12",
+          "containers": [
+            {
+              "name": "csi-attacher",
+              "image": "docker.io/longhornio/csi-attacher:v4.12.0",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-attacher",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-attacher-774cf76ffd-njvhs",
+          "labels": {
+            "app": "csi-attacher",
+            "pod-template-hash": "774cf76ffd"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.8",
+          "containers": [
+            {
+              "name": "csi-attacher",
+              "image": "docker.io/longhornio/csi-attacher:v4.12.0",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-attacher",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-attacher-774cf76ffd-p65qg",
+          "labels": {
+            "app": "csi-attacher",
+            "pod-template-hash": "774cf76ffd"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.15",
+          "containers": [
+            {
+              "name": "csi-attacher",
+              "image": "docker.io/longhornio/csi-attacher:v4.12.0",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-attacher",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-provisioner-76b8b7bf5f-278q7",
+          "labels": {
+            "app": "csi-provisioner",
+            "pod-template-hash": "76b8b7bf5f"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.16",
+          "containers": [
+            {
+              "name": "csi-provisioner",
+              "image": "docker.io/longhornio/csi-provisioner:v5.3.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-provisioner",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--default-fstype=ext4",
+                "--enable-capacity",
+                "--capacity-ownerref-level=2",
+                "--immediate-topology=false",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-provisioner-76b8b7bf5f-sgxht",
+          "labels": {
+            "app": "csi-provisioner",
+            "pod-template-hash": "76b8b7bf5f"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.9",
+          "containers": [
+            {
+              "name": "csi-provisioner",
+              "image": "docker.io/longhornio/csi-provisioner:v5.3.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-provisioner",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--default-fstype=ext4",
+                "--enable-capacity",
+                "--capacity-ownerref-level=2",
+                "--immediate-topology=false",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-provisioner-76b8b7bf5f-zlh5r",
+          "labels": {
+            "app": "csi-provisioner",
+            "pod-template-hash": "76b8b7bf5f"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.20",
+          "containers": [
+            {
+              "name": "csi-provisioner",
+              "image": "docker.io/longhornio/csi-provisioner:v5.3.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-provisioner",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--default-fstype=ext4",
+                "--enable-capacity",
+                "--capacity-ownerref-level=2",
+                "--immediate-topology=false",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-resizer-55b9478cbf-hb6qd",
+          "labels": {
+            "app": "csi-resizer",
+            "pod-template-hash": "55b9478cbf"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.13",
+          "containers": [
+            {
+              "name": "csi-resizer",
+              "image": "docker.io/longhornio/csi-resizer:v2.1.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-resizer",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000",
+                "--handle-volume-inuse-error=false",
+                "--feature-gates=RecoverVolumeExpansionFailure=false"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-resizer-55b9478cbf-v4zc6",
+          "labels": {
+            "app": "csi-resizer",
+            "pod-template-hash": "55b9478cbf"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.10",
+          "containers": [
+            {
+              "name": "csi-resizer",
+              "image": "docker.io/longhornio/csi-resizer:v2.1.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-resizer",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000",
+                "--handle-volume-inuse-error=false",
+                "--feature-gates=RecoverVolumeExpansionFailure=false"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-resizer-55b9478cbf-xjd92",
+          "labels": {
+            "app": "csi-resizer",
+            "pod-template-hash": "55b9478cbf"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.18",
+          "containers": [
+            {
+              "name": "csi-resizer",
+              "image": "docker.io/longhornio/csi-resizer:v2.1.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-resizer",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000",
+                "--handle-volume-inuse-error=false",
+                "--feature-gates=RecoverVolumeExpansionFailure=false"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-snapshotter-548b956b8d-npw5z",
+          "labels": {
+            "app": "csi-snapshotter",
+            "pod-template-hash": "548b956b8d"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.14",
+          "containers": [
+            {
+              "name": "csi-snapshotter",
+              "image": "docker.io/longhornio/csi-snapshotter:v8.5.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-snapshotter",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-snapshotter-548b956b8d-q8snn",
+          "labels": {
+            "app": "csi-snapshotter",
+            "pod-template-hash": "548b956b8d"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.19",
+          "containers": [
+            {
+              "name": "csi-snapshotter",
+              "image": "docker.io/longhornio/csi-snapshotter:v8.5.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-snapshotter",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "csi-snapshotter-548b956b8d-txr7n",
+          "labels": {
+            "app": "csi-snapshotter",
+            "pod-template-hash": "548b956b8d"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.11",
+          "containers": [
+            {
+              "name": "csi-snapshotter",
+              "image": "docker.io/longhornio/csi-snapshotter:v8.5.0-20260514",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "csi-snapshotter",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--timeout=1m50s",
+                "--leader-election",
+                "--leader-election-namespace=$(POD_NAMESPACE)",
+                "--kube-api-qps=50",
+                "--kube-api-burst=100",
+                "--http-endpoint=:8000"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "engine-image-ei-a4d05f02-dw4hh",
+          "labels": {
+            "controller-revision-hash": "6c6445cf6c",
+            "longhorn.io/component": "engine-image",
+            "longhorn.io/engine-image": "ei-a4d05f02",
+            "pod-template-generation": "1"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.7",
+          "containers": [
+            {
+              "name": "engine-image-ei-a4d05f02",
+              "image": "docker.io/longhornio/longhorn-engine:v1.12.0",
+              "ports": [],
+              "readiness_probe": {
+                "exec": {
+                  "command": [
+                    "sh",
+                    "-c",
+                    "ls /data/longhorn && /data/longhorn version --client-only"
+                  ]
+                },
+                "failureThreshold": 3,
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "liveness_probe": {
+                "exec": {
+                  "command": [
+                    "sh",
+                    "-c",
+                    "/data/longhorn version --client-only"
+                  ]
+                },
+                "failureThreshold": 3,
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "startup_probe": null,
+              "args": [
+                "-c",
+                "diff /usr/local/bin/longhorn /data/longhorn > /dev/null 2>&1; if [ $? -ne 0 ]; then cp -p /usr/local/bin/longhorn /data/ && echo installed; fi && trap 'rm /data/longhorn* && echo cleaned up' EXIT && sleep infinity"
+              ],
+              "command": [
+                "/bin/bash"
+              ]
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "engine-image-ei-a4d05f02-hfdhh",
+          "labels": {
+            "controller-revision-hash": "6c6445cf6c",
+            "longhorn.io/component": "engine-image",
+            "longhorn.io/engine-image": "ei-a4d05f02",
+            "pod-template-generation": "1"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.3",
+          "containers": [
+            {
+              "name": "engine-image-ei-a4d05f02",
+              "image": "docker.io/longhornio/longhorn-engine:v1.12.0",
+              "ports": [],
+              "readiness_probe": {
+                "exec": {
+                  "command": [
+                    "sh",
+                    "-c",
+                    "ls /data/longhorn && /data/longhorn version --client-only"
+                  ]
+                },
+                "failureThreshold": 3,
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "liveness_probe": {
+                "exec": {
+                  "command": [
+                    "sh",
+                    "-c",
+                    "/data/longhorn version --client-only"
+                  ]
+                },
+                "failureThreshold": 3,
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "startup_probe": null,
+              "args": [
+                "-c",
+                "diff /usr/local/bin/longhorn /data/longhorn > /dev/null 2>&1; if [ $? -ne 0 ]; then cp -p /usr/local/bin/longhorn /data/ && echo installed; fi && trap 'rm /data/longhorn* && echo cleaned up' EXIT && sleep infinity"
+              ],
+              "command": [
+                "/bin/bash"
+              ]
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "instance-manager-e0a6c083b4724bc8067a518b7681d760",
+          "labels": {
+            "longhorn.io/component": "instance-manager",
+            "longhorn.io/data-engine": "v1",
+            "longhorn.io/instance-manager-image": "imi-171634ab",
+            "longhorn.io/instance-manager-type": "aio",
+            "longhorn.io/managed-by": "longhorn-manager",
+            "longhorn.io/node": "amd64-02"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.5",
+          "containers": [
+            {
+              "name": "instance-manager",
+              "image": "docker.io/longhornio/longhorn-instance-manager:v1.12.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": {
+                "exec": {
+                  "command": [
+                    "/bin/sh",
+                    "-c",
+                    "nc -zv localhost 8500 > /dev/null 2>&1 && nc -zv localhost 8501 > /dev/null 2>&1 && nc -zv localhost 8502 > /dev/null 2>&1 && nc -zv localhost 8503 > /dev/null 2>&1"
+                  ]
+                },
+                "failureThreshold": 6,
+                "initialDelaySeconds": 3,
+                "periodSeconds": 11,
+                "successThreshold": 1,
+                "timeoutSeconds": 10
+              },
+              "startup_probe": null,
+              "args": [
+                "instance-manager",
+                "--debug",
+                "daemon",
+                "--listen",
+                ":8500"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "instance-manager-ff7adb783bc4d791d47b91a2368e0025",
+          "labels": {
+            "longhorn.io/component": "instance-manager",
+            "longhorn.io/data-engine": "v1",
+            "longhorn.io/instance-manager-image": "imi-171634ab",
+            "longhorn.io/instance-manager-type": "aio",
+            "longhorn.io/managed-by": "longhorn-manager",
+            "longhorn.io/node": "amd64-01"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.6",
+          "containers": [
+            {
+              "name": "instance-manager",
+              "image": "docker.io/longhornio/longhorn-instance-manager:v1.12.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": {
+                "exec": {
+                  "command": [
+                    "/bin/sh",
+                    "-c",
+                    "nc -zv localhost 8500 > /dev/null 2>&1 && nc -zv localhost 8501 > /dev/null 2>&1 && nc -zv localhost 8502 > /dev/null 2>&1 && nc -zv localhost 8503 > /dev/null 2>&1"
+                  ]
+                },
+                "failureThreshold": 6,
+                "initialDelaySeconds": 3,
+                "periodSeconds": 11,
+                "successThreshold": 1,
+                "timeoutSeconds": 10
+              },
+              "startup_probe": null,
+              "args": [
+                "instance-manager",
+                "--debug",
+                "daemon",
+                "--listen",
+                ":8500"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-csi-plugin-mt8ql",
+          "labels": {
+            "app": "longhorn-csi-plugin",
+            "controller-revision-hash": "7f5b897c88",
+            "pod-template-generation": "1"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.17",
+          "containers": [
+            {
+              "name": "node-driver-registrar",
+              "image": "docker.io/longhornio/csi-node-driver-registrar:v2.17.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--kubelet-registration-path=/var/lib/kubelet/plugins/driver.longhorn.io/csi.sock"
+              ],
+              "command": []
+            },
+            {
+              "name": "longhorn-liveness-probe",
+              "image": "docker.io/longhornio/livenessprobe:v2.19.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=4",
+                "--csi-address=/csi/csi.sock"
+              ],
+              "command": []
+            },
+            {
+              "name": "longhorn-csi-plugin",
+              "image": "docker.io/longhornio/longhorn-manager:v1.12.0",
+              "ports": [
+                {
+                  "containerPort": 9808,
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9808,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "startup_probe": {
+                "failureThreshold": 36,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9808,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "args": [
+                "longhorn-manager",
+                "-d",
+                "csi",
+                "--nodeid=$(NODE_ID)",
+                "--endpoint=$(CSI_ENDPOINT)",
+                "--drivername=driver.longhorn.io",
+                "--manager-url=http://longhorn-backend:9500/v1"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-csi-plugin-zgwv4",
+          "labels": {
+            "app": "longhorn-csi-plugin",
+            "controller-revision-hash": "7f5b897c88",
+            "pod-template-generation": "1"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.4",
+          "containers": [
+            {
+              "name": "node-driver-registrar",
+              "image": "docker.io/longhornio/csi-node-driver-registrar:v2.17.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=2",
+                "--csi-address=$(ADDRESS)",
+                "--kubelet-registration-path=/var/lib/kubelet/plugins/driver.longhorn.io/csi.sock"
+              ],
+              "command": []
+            },
+            {
+              "name": "longhorn-liveness-probe",
+              "image": "docker.io/longhornio/livenessprobe:v2.19.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "--v=4",
+                "--csi-address=/csi/csi.sock"
+              ],
+              "command": []
+            },
+            {
+              "name": "longhorn-csi-plugin",
+              "image": "docker.io/longhornio/longhorn-manager:v1.12.0",
+              "ports": [
+                {
+                  "containerPort": 9808,
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9808,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "startup_probe": {
+                "failureThreshold": 36,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9808,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 3,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 4
+              },
+              "args": [
+                "longhorn-manager",
+                "-d",
+                "csi",
+                "--nodeid=$(NODE_ID)",
+                "--endpoint=$(CSI_ENDPOINT)",
+                "--drivername=driver.longhorn.io",
+                "--manager-url=http://longhorn-backend:9500/v1"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-driver-deployer-5c97745795-vb8fv",
+          "labels": {
+            "app": "longhorn-driver-deployer",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "pod-template-hash": "5c97745795"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.3",
+          "containers": [
+            {
+              "name": "longhorn-driver-deployer",
+              "image": "docker.io/longhornio/longhorn-manager:v1.12.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": [
+                "longhorn-manager",
+                "-d",
+                "deploy-driver",
+                "--manager-image",
+                "docker.io/longhornio/longhorn-manager:v1.12.0",
+                "--manager-url",
+                "http://longhorn-backend:9500/v1"
+              ]
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-manager-4zzlr",
+          "labels": {
+            "app": "longhorn-manager",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "controller-revision-hash": "b4d887654",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "longhorn.io/admission-webhook": "longhorn-admission-webhook",
+            "longhorn.io/recovery-backend": "longhorn-recovery-backend",
+            "pod-template-generation": "1"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.2",
+          "containers": [
+            {
+              "name": "longhorn-manager",
+              "image": "docker.io/longhornio/longhorn-manager:v1.12.0",
+              "ports": [
+                {
+                  "containerPort": 9500,
+                  "name": "manager",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 9502,
+                  "name": "admission-wh",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 9503,
+                  "name": "recov-backend",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/v1/healthz",
+                  "port": 9502,
+                  "scheme": "HTTPS"
+                },
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": [
+                "longhorn-manager",
+                "-d",
+                "daemon",
+                "--engine-image",
+                "docker.io/longhornio/longhorn-engine:v1.12.0",
+                "--instance-manager-image",
+                "docker.io/longhornio/longhorn-instance-manager:v1.12.0",
+                "--share-manager-image",
+                "docker.io/longhornio/longhorn-share-manager:v1.12.0",
+                "--backing-image-manager-image",
+                "docker.io/longhornio/backing-image-manager:v1.12.0",
+                "--support-bundle-manager-image",
+                "docker.io/longhornio/support-bundle-kit:v0.0.86",
+                "--manager-image",
+                "docker.io/longhornio/longhorn-manager:v1.12.0",
+                "--service-account",
+                "longhorn-service-account",
+                "--upgrade-version-check"
+              ]
+            },
+            {
+              "name": "pre-pull-share-manager-image",
+              "image": "docker.io/longhornio/longhorn-share-manager:v1.12.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": [
+                "sh",
+                "-c",
+                "echo share-manager image pulled && sleep infinity"
+              ]
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-manager-l45k8",
+          "labels": {
+            "app": "longhorn-manager",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "controller-revision-hash": "b4d887654",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "longhorn.io/admission-webhook": "longhorn-admission-webhook",
+            "longhorn.io/recovery-backend": "longhorn-recovery-backend",
+            "pod-template-generation": "1"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.2",
+          "containers": [
+            {
+              "name": "longhorn-manager",
+              "image": "docker.io/longhornio/longhorn-manager:v1.12.0",
+              "ports": [
+                {
+                  "containerPort": 9500,
+                  "name": "manager",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 9502,
+                  "name": "admission-wh",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 9503,
+                  "name": "recov-backend",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/v1/healthz",
+                  "port": 9502,
+                  "scheme": "HTTPS"
+                },
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": [
+                "longhorn-manager",
+                "-d",
+                "daemon",
+                "--engine-image",
+                "docker.io/longhornio/longhorn-engine:v1.12.0",
+                "--instance-manager-image",
+                "docker.io/longhornio/longhorn-instance-manager:v1.12.0",
+                "--share-manager-image",
+                "docker.io/longhornio/longhorn-share-manager:v1.12.0",
+                "--backing-image-manager-image",
+                "docker.io/longhornio/backing-image-manager:v1.12.0",
+                "--support-bundle-manager-image",
+                "docker.io/longhornio/support-bundle-kit:v0.0.86",
+                "--manager-image",
+                "docker.io/longhornio/longhorn-manager:v1.12.0",
+                "--service-account",
+                "longhorn-service-account",
+                "--upgrade-version-check"
+              ]
+            },
+            {
+              "name": "pre-pull-share-manager-image",
+              "image": "docker.io/longhornio/longhorn-share-manager:v1.12.0",
+              "ports": [],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": [
+                "sh",
+                "-c",
+                "echo share-manager image pulled && sleep infinity"
+              ]
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-ui-5b55bff454-7fxkj",
+          "labels": {
+            "app": "longhorn-ui",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "pod-template-hash": "5b55bff454"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.5",
+          "containers": [
+            {
+              "name": "longhorn-ui",
+              "image": "docker.io/longhornio/longhorn-ui:v1.12.0",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "http",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "longhorn-system",
+          "name": "longhorn-ui-5b55bff454-cfgst",
+          "labels": {
+            "app": "longhorn-ui",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0",
+            "pod-template-hash": "5b55bff454"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "10.42.4.4",
+          "containers": [
+            {
+              "name": "longhorn-ui",
+              "image": "docker.io/longhornio/longhorn-ui:v1.12.0",
+              "ports": [
+                {
+                  "containerPort": 8000,
+                  "name": "http",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        }
+      ],
+      "service_metric_probes": [
+        {
+          "namespace": "longhorn-system",
+          "service": "longhorn-admission-webhook",
+          "port_name": "admission-webhook",
+          "port": 9502,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 1,
+          "content_type_hint": "unknown",
+          "metric_name_count": 0,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": []
+          },
+          "sample_metric_names": [],
+          "error": "Error from server (BadRequest): the server rejected our request for an unknown reason"
+        },
+        {
+          "namespace": "longhorn-system",
+          "service": "longhorn-backend",
+          "port_name": "manager",
+          "port": 9500,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 0,
+          "content_type_hint": "prometheus-exposition",
+          "metric_name_count": 57,
+          "relevant_metric_counts": {
+            "longhorn": 57,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [
+              "longhorn_disk_capacity_bytes",
+              "longhorn_disk_health",
+              "longhorn_disk_health_attribute_raw",
+              "longhorn_disk_reservation_bytes",
+              "longhorn_disk_status",
+              "longhorn_disk_usage_bytes",
+              "longhorn_engine_info",
+              "longhorn_engine_replica_mode",
+              "longhorn_engine_state",
+              "longhorn_instance_manager_cpu_requests_millicpu",
+              "longhorn_instance_manager_cpu_usage_millicpu",
+              "longhorn_instance_manager_memory_requests_bytes",
+              "longhorn_instance_manager_memory_usage_bytes",
+              "longhorn_manager_cpu_usage_millicpu",
+              "longhorn_manager_memory_usage_bytes",
+              "longhorn_node_count_total",
+              "longhorn_node_cpu_capacity_millicpu",
+              "longhorn_node_cpu_usage_millicpu",
+              "longhorn_node_memory_capacity_bytes",
+              "longhorn_node_memory_usage_bytes",
+              "longhorn_node_status",
+              "longhorn_node_storage_capacity_bytes",
+              "longhorn_node_storage_reservation_bytes",
+              "longhorn_node_storage_scheduled_bytes",
+              "longhorn_node_storage_usage_bytes",
+              "longhorn_replica_info",
+              "longhorn_replica_state",
+              "longhorn_rest_client_rate_limiter_latency_seconds_bucket",
+              "longhorn_rest_client_rate_limiter_latency_seconds_count",
+              "longhorn_rest_client_rate_limiter_latency_seconds_sum",
+              "longhorn_rest_client_request_latency_seconds_bucket",
+              "longhorn_rest_client_request_latency_seconds_count",
+              "longhorn_rest_client_request_latency_seconds_sum",
+              "longhorn_rest_client_requests_total",
+              "longhorn_volume_actual_size_bytes",
+              "longhorn_volume_capacity_bytes",
+              "longhorn_volume_encrypted",
+              "longhorn_volume_last_backup_at",
+              "longhorn_volume_read_iops",
+              "longhorn_volume_read_latency",
+              "longhorn_volume_read_throughput",
+              "longhorn_volume_robustness",
+              "longhorn_volume_state",
+              "longhorn_volume_write_iops",
+              "longhorn_volume_write_latency",
+              "longhorn_volume_write_throughput",
+              "longhorn_workqueue_adds_total",
+              "longhorn_workqueue_depth",
+              "longhorn_workqueue_longest_running_processor_seconds",
+              "longhorn_workqueue_queue_duration_seconds_bucket",
+              "longhorn_workqueue_queue_duration_seconds_count",
+              "longhorn_workqueue_queue_duration_seconds_sum",
+              "longhorn_workqueue_retries_total",
+              "longhorn_workqueue_unfinished_work_seconds",
+              "longhorn_workqueue_work_duration_seconds_bucket",
+              "longhorn_workqueue_work_duration_seconds_count",
+              "longhorn_workqueue_work_duration_seconds_sum"
+            ],
+            "kubecost": []
+          },
+          "sample_metric_names": [
+            "longhorn_disk_capacity_bytes",
+            "longhorn_disk_health",
+            "longhorn_disk_health_attribute_raw",
+            "longhorn_disk_reservation_bytes",
+            "longhorn_disk_status",
+            "longhorn_disk_usage_bytes",
+            "longhorn_engine_info",
+            "longhorn_engine_replica_mode",
+            "longhorn_engine_state",
+            "longhorn_instance_manager_cpu_requests_millicpu",
+            "longhorn_instance_manager_cpu_usage_millicpu",
+            "longhorn_instance_manager_memory_requests_bytes",
+            "longhorn_instance_manager_memory_usage_bytes",
+            "longhorn_manager_cpu_usage_millicpu",
+            "longhorn_manager_memory_usage_bytes",
+            "longhorn_node_count_total",
+            "longhorn_node_cpu_capacity_millicpu",
+            "longhorn_node_cpu_usage_millicpu",
+            "longhorn_node_memory_capacity_bytes",
+            "longhorn_node_memory_usage_bytes",
+            "longhorn_node_status",
+            "longhorn_node_storage_capacity_bytes",
+            "longhorn_node_storage_reservation_bytes",
+            "longhorn_node_storage_scheduled_bytes",
+            "longhorn_node_storage_usage_bytes",
+            "longhorn_replica_info",
+            "longhorn_replica_state",
+            "longhorn_rest_client_rate_limiter_latency_seconds_bucket",
+            "longhorn_rest_client_rate_limiter_latency_seconds_count",
+            "longhorn_rest_client_rate_limiter_latency_seconds_sum",
+            "longhorn_rest_client_request_latency_seconds_bucket",
+            "longhorn_rest_client_request_latency_seconds_count",
+            "longhorn_rest_client_request_latency_seconds_sum",
+            "longhorn_rest_client_requests_total",
+            "longhorn_volume_actual_size_bytes",
+            "longhorn_volume_capacity_bytes",
+            "longhorn_volume_encrypted",
+            "longhorn_volume_last_backup_at",
+            "longhorn_volume_read_iops",
+            "longhorn_volume_read_latency",
+            "longhorn_volume_read_throughput",
+            "longhorn_volume_robustness",
+            "longhorn_volume_state",
+            "longhorn_volume_write_iops",
+            "longhorn_volume_write_latency",
+            "longhorn_volume_write_throughput",
+            "longhorn_workqueue_adds_total",
+            "longhorn_workqueue_depth",
+            "longhorn_workqueue_longest_running_processor_seconds",
+            "longhorn_workqueue_queue_duration_seconds_bucket",
+            "longhorn_workqueue_queue_duration_seconds_count",
+            "longhorn_workqueue_queue_duration_seconds_sum",
+            "longhorn_workqueue_retries_total",
+            "longhorn_workqueue_unfinished_work_seconds",
+            "longhorn_workqueue_work_duration_seconds_bucket",
+            "longhorn_workqueue_work_duration_seconds_count",
+            "longhorn_workqueue_work_duration_seconds_sum"
+          ],
+          "error": null
+        },
+        {
+          "namespace": "longhorn-system",
+          "service": "longhorn-frontend",
+          "port_name": "http",
+          "port": 80,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 0,
+          "content_type_hint": "prometheus-exposition",
+          "metric_name_count": 5,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": []
+          },
+          "sample_metric_names": [
+            "::",
+            "background:",
+            "border",
+            "height:",
+            "width:"
+          ],
+          "error": null
+        },
+        {
+          "namespace": "longhorn-system",
+          "service": "longhorn-recovery-backend",
+          "port_name": "recovery-backend",
+          "port": 9503,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 1,
+          "content_type_hint": "unknown",
+          "metric_name_count": 0,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": []
+          },
+          "sample_metric_names": [],
+          "error": "Error from server (NotFound): the server could not find the requested resource"
+        }
+      ],
+      "service_monitor_candidates": [
+        {
+          "namespace": "longhorn-system",
+          "service": "longhorn-backend",
+          "service_labels": {
+            "app": "longhorn-manager",
+            "app.kubernetes.io/instance": "longhorn",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/version": "v1.12.0",
+            "helm.sh/chart": "longhorn-1.12.0"
+          },
+          "recommended_selector_match_labels": {
+            "app": "longhorn-manager",
+            "app.kubernetes.io/name": "longhorn",
+            "app.kubernetes.io/instance": "longhorn"
+          },
+          "endpoint": {
+            "port": "manager",
+            "path": "/metrics",
+            "scheme": "http",
+            "interval": "30s"
+          },
+          "discovered_relevant_metric_counts": {
+            "longhorn": 57,
+            "kubecost": 0
+          },
+          "confidence": "high"
+        }
+      ]
+    },
+    "kubecost": {
+      "services": [
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-aggregator",
+          "labels": {
+            "app": "aggregator",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "aggregator",
+            "helm.sh/chart": "kubecost-3.2.1"
+          },
+          "selector": {
+            "app": "aggregator",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "aggregator"
+          },
+          "cluster_ip": "10.43.142.41",
+          "ports": [
+            {
+              "name": "tcp-api",
+              "port": 9004,
+              "target_port": 9004,
+              "protocol": "TCP",
+              "app_protocol": null
+            },
+            {
+              "name": "db-metrics",
+              "port": 9363,
+              "target_port": 9363,
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-finopsagent",
+          "labels": {
+            "app.kubernetes.io/component": "service",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "finopsagent",
+            "app.kubernetes.io/part-of": "finops-agent",
+            "app.kubernetes.io/version": "v1.0.20",
+            "helm.sh/chart": "finopsagent-1.0.20"
+          },
+          "selector": {
+            "app.kubernetes.io/component": "agent",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "finopsagent",
+            "app.kubernetes.io/part-of": "finops-agent"
+          },
+          "cluster_ip": "10.43.181.125",
+          "ports": [
+            {
+              "name": "http",
+              "port": 80,
+              "target_port": "http",
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-frontend",
+          "labels": {
+            "app": "kubecost",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "kubecost",
+            "helm.sh/chart": "kubecost-3.2.1"
+          },
+          "selector": {
+            "app": "cost-analyzer",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "frontend"
+          },
+          "cluster_ip": "10.43.59.77",
+          "ports": [
+            {
+              "name": "tcp-frontend",
+              "port": 9090,
+              "target_port": 9090,
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-local-store",
+          "labels": {
+            "app": "kubecost-local-store",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "kubecost-local-store",
+            "helm.sh/chart": "kubecost-3.2.1"
+          },
+          "selector": {
+            "app": "kubecost-local-store",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "kubecost-local-store"
+          },
+          "cluster_ip": "10.43.136.149",
+          "ports": [
+            {
+              "name": "tcp-api",
+              "port": 9006,
+              "target_port": 9006,
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "helm.sh/chart": "kubecost-3.2.1"
+          },
+          "selector": {
+            "app": "kubecost-network-costs"
+          },
+          "cluster_ip": "None",
+          "ports": [
+            {
+              "name": "metrics",
+              "port": 3001,
+              "target_port": 3001,
+              "protocol": "TCP",
+              "app_protocol": null
+            }
+          ]
+        }
+      ],
+      "endpoint_slices": [
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-aggregator-lxn79",
+          "labels": {
+            "app": "aggregator",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "aggregator",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "kubernetes.io/service-name": "kubecost-aggregator"
+          },
+          "ports": [
+            {
+              "name": "tcp-api",
+              "port": 9004,
+              "protocol": "TCP"
+            },
+            {
+              "name": "db-metrics",
+              "port": 9363,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.6.24"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-aggregator-0",
+                "namespace": "kubecost",
+                "uid": "49b9cddb-41be-4bd8-934c-d7e814308a72"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-finopsagent-ddqqh",
+          "labels": {
+            "app.kubernetes.io/component": "service",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "finopsagent",
+            "app.kubernetes.io/part-of": "finops-agent",
+            "app.kubernetes.io/version": "v1.0.20",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "finopsagent-1.0.20",
+            "kubernetes.io/service-name": "kubecost-finopsagent"
+          },
+          "ports": [
+            {
+              "name": "http",
+              "port": 9003,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.6.23"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-finopsagent-576777b756-d5f6p",
+                "namespace": "kubecost",
+                "uid": "a8bb4b34-7718-4f31-92ed-c90678d732ef"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-frontend-7n45f",
+          "labels": {
+            "app": "kubecost",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "kubecost",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "kubernetes.io/service-name": "kubecost-frontend"
+          },
+          "ports": [
+            {
+              "name": "tcp-frontend",
+              "port": 9090,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.6.22"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-frontend-67589b6bd4-ktdnf",
+                "namespace": "kubecost",
+                "uid": "38200fc0-32cf-4d02-89b6-501f8b948962"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-local-store-gxvsg",
+          "labels": {
+            "app": "kubecost-local-store",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "kubecost-local-store",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "kubernetes.io/service-name": "kubecost-local-store"
+          },
+          "ports": [
+            {
+              "name": "tcp-api",
+              "port": 9006,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "10.42.6.25"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-local-store-7bdf4dbdc9-2nrpz",
+                "namespace": "kubecost",
+                "uid": "d332b564-68af-422f-884b-8887d0afcf20"
+              },
+              "node_name": "amd64-02"
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-r2khv",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "kubernetes.io/service-name": "kubecost-network-costs",
+            "service.kubernetes.io/headless": ""
+          },
+          "ports": [
+            {
+              "name": "metrics",
+              "port": 3001,
+              "protocol": "TCP"
+            }
+          ],
+          "endpoints": [
+            {
+              "addresses": [
+                "192.168.2.53"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-s2l8g",
+                "namespace": "kubecost",
+                "uid": "7636226c-771c-42d4-8e77-f3c8ed66c1fb"
+              },
+              "node_name": "arm64-03"
+            },
+            {
+              "addresses": [
+                "192.168.2.55"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-2rb66",
+                "namespace": "kubecost",
+                "uid": "013924ed-d035-4c52-92cc-030ebc7e0ea4"
+              },
+              "node_name": "arm64-05"
+            },
+            {
+              "addresses": [
+                "192.168.2.62"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-dqc6d",
+                "namespace": "kubecost",
+                "uid": "88f1cfd3-b03c-410b-937f-d1c13eb6d8fd"
+              },
+              "node_name": "amd64-02"
+            },
+            {
+              "addresses": [
+                "192.168.2.54"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-27rhx",
+                "namespace": "kubecost",
+                "uid": "275b1326-aacd-44e7-a12f-df2af56bdf73"
+              },
+              "node_name": "arm64-04"
+            },
+            {
+              "addresses": [
+                "192.168.2.51"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-sdsph",
+                "namespace": "kubecost",
+                "uid": "e2bd3ffc-4ef3-44c3-9f31-9c2a2dd94917"
+              },
+              "node_name": "arm64-01"
+            },
+            {
+              "addresses": [
+                "192.168.2.61"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-2jsr4",
+                "namespace": "kubecost",
+                "uid": "48261298-08a7-4bca-a920-50bce7f8fdf6"
+              },
+              "node_name": "amd64-01"
+            },
+            {
+              "addresses": [
+                "192.168.2.52"
+              ],
+              "conditions": {
+                "ready": true,
+                "serving": true,
+                "terminating": false
+              },
+              "target_ref": {
+                "kind": "Pod",
+                "name": "kubecost-network-costs-p52zt",
+                "namespace": "kubecost",
+                "uid": "bded9590-e233-442d-b6e8-c6bf8cb6dabb"
+              },
+              "node_name": "arm64-02"
+            }
+          ]
+        }
+      ],
+      "pods": [
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-aggregator-0",
+          "labels": {
+            "app": "aggregator",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "aggregator",
+            "apps.kubernetes.io/pod-index": "0",
+            "controller-revision-hash": "kubecost-aggregator-687946bfdc",
+            "statefulset.kubernetes.io/pod-name": "kubecost-aggregator-0"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.24",
+          "containers": [
+            {
+              "name": "aggregator",
+              "image": "icr.io/kubecost/cost-model:3.2.1",
+              "ports": [
+                {
+                  "containerPort": 9004,
+                  "name": "tcp-api",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 9363,
+                  "name": "db-metrics",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": {
+                "failureThreshold": 200,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9004,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 10,
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "waterfowl"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-finopsagent-576777b756-d5f6p",
+          "labels": {
+            "app.kubernetes.io/component": "agent",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "finopsagent",
+            "app.kubernetes.io/part-of": "finops-agent",
+            "app.kubernetes.io/version": "v1.0.20",
+            "helm.sh/chart": "finopsagent-1.0.20",
+            "pod-template-hash": "576777b756"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.23",
+          "containers": [
+            {
+              "name": "finops-agent",
+              "image": "icr.io/ibm-finops/agent:v1.0.20",
+              "ports": [
+                {
+                  "containerPort": 9003,
+                  "name": "http",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": "http",
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 10,
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "liveness_probe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": "http",
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 60,
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-frontend-67589b6bd4-ktdnf",
+          "labels": {
+            "app": "cost-analyzer",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "frontend",
+            "pod-template-hash": "67589b6bd4"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.22",
+          "containers": [
+            {
+              "name": "frontend",
+              "image": "icr.io/kubecost/frontend:3.2.1",
+              "ports": [
+                {
+                  "containerPort": 9090,
+                  "name": "tcp-frontend",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": {
+                "failureThreshold": 6,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9090,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 1,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "liveness_probe": {
+                "failureThreshold": 6,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9090,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 1,
+                "periodSeconds": 5,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-local-store-7bdf4dbdc9-2nrpz",
+          "labels": {
+            "app": "kubecost-local-store",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/name": "kubecost-local-store",
+            "pod-template-hash": "7bdf4dbdc9"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "10.42.6.25",
+          "containers": [
+            {
+              "name": "local-object-store",
+              "image": "icr.io/kubecost/cost-model:3.2.1",
+              "ports": [
+                {
+                  "containerPort": 9006,
+                  "name": "tcp-api",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": {
+                "failureThreshold": 200,
+                "httpGet": {
+                  "path": "/healthz",
+                  "port": 9006,
+                  "scheme": "HTTP"
+                },
+                "initialDelaySeconds": 10,
+                "periodSeconds": 10,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [
+                "cluster-storage"
+              ],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-27rhx",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "arm64-04",
+          "pod_ip": "192.168.2.54",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-2jsr4",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "amd64-01",
+          "pod_ip": "192.168.2.61",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-2rb66",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "arm64-05",
+          "pod_ip": "192.168.2.55",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-dqc6d",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "amd64-02",
+          "pod_ip": "192.168.2.62",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-p52zt",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "arm64-02",
+          "pod_ip": "192.168.2.52",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-s2l8g",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "arm64-03",
+          "pod_ip": "192.168.2.53",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        },
+        {
+          "namespace": "kubecost",
+          "name": "kubecost-network-costs-sdsph",
+          "labels": {
+            "app": "kubecost-network-costs",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "network-costs",
+            "controller-revision-hash": "65c4c9b68b",
+            "helm.sh/chart": "kubecost-3.2.1",
+            "pod-template-generation": "4",
+            "topology.kubernetes.io/region": "kalaxy3-home",
+            "topology.kubernetes.io/zone": "kalaxy3-lan"
+          },
+          "phase": "Running",
+          "node_name": "arm64-01",
+          "pod_ip": "192.168.2.51",
+          "containers": [
+            {
+              "name": "kubecost-network-costs",
+              "image": "icr.io/kubecost/network-costs:v0.19.0",
+              "ports": [
+                {
+                  "containerPort": 3001,
+                  "hostPort": 3001,
+                  "name": "http-server",
+                  "protocol": "TCP"
+                }
+              ],
+              "readiness_probe": null,
+              "liveness_probe": null,
+              "startup_probe": null,
+              "args": [],
+              "command": []
+            }
+          ]
+        }
+      ],
+      "service_metric_probes": [
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-aggregator",
+          "port_name": "tcp-api",
+          "port": 9004,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 0,
+          "content_type_hint": "prometheus-exposition",
+          "metric_name_count": 66,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 15
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": [
+              "kubecost_derivation_concurrency_limit",
+              "kubecost_errored_allocation_ingestions",
+              "kubecost_errored_asset_ingestions",
+              "kubecost_errored_cloud_cost_ingestions",
+              "kubecost_errored_custom_cost_ingestions",
+              "kubecost_errored_network_insight_ingestions",
+              "kubecost_ingestion_concurrency_limit",
+              "kubecost_ingestion_records_total",
+              "kubecost_ingestion_time_seconds_total",
+              "kubecost_read_db_size",
+              "kubecost_successful_allocation_ingestions",
+              "kubecost_successful_asset_ingestions",
+              "kubecost_successful_cloud_cost_ingestions",
+              "kubecost_successful_custom_cost_ingestions",
+              "kubecost_successful_network_insight_ingestions"
+            ]
+          },
+          "sample_metric_names": [
+            "go_gc_duration_seconds",
+            "go_gc_duration_seconds_count",
+            "go_gc_duration_seconds_sum",
+            "go_gc_gogc_percent",
+            "go_gc_gomemlimit_bytes",
+            "go_goroutines",
+            "go_info",
+            "go_memstats_alloc_bytes",
+            "go_memstats_alloc_bytes_total",
+            "go_memstats_buck_hash_sys_bytes",
+            "go_memstats_frees_total",
+            "go_memstats_gc_sys_bytes",
+            "go_memstats_heap_alloc_bytes",
+            "go_memstats_heap_idle_bytes",
+            "go_memstats_heap_inuse_bytes",
+            "go_memstats_heap_objects",
+            "go_memstats_heap_released_bytes",
+            "go_memstats_heap_sys_bytes",
+            "go_memstats_last_gc_time_seconds",
+            "go_memstats_mallocs_total",
+            "go_memstats_mcache_inuse_bytes",
+            "go_memstats_mcache_sys_bytes",
+            "go_memstats_mspan_inuse_bytes",
+            "go_memstats_mspan_sys_bytes",
+            "go_memstats_next_gc_bytes",
+            "go_memstats_other_sys_bytes",
+            "go_memstats_stack_inuse_bytes",
+            "go_memstats_stack_sys_bytes",
+            "go_memstats_sys_bytes",
+            "go_sched_gomaxprocs_threads",
+            "go_sql_stats_connections_blocked_seconds",
+            "go_sql_stats_connections_closed_max_idle",
+            "go_sql_stats_connections_closed_max_idle_time",
+            "go_sql_stats_connections_closed_max_lifetime",
+            "go_sql_stats_connections_idle",
+            "go_sql_stats_connections_in_use",
+            "go_sql_stats_connections_max_open",
+            "go_sql_stats_connections_open",
+            "go_sql_stats_connections_waited_for",
+            "go_threads",
+            "kubecost_derivation_concurrency_limit",
+            "kubecost_errored_allocation_ingestions",
+            "kubecost_errored_asset_ingestions",
+            "kubecost_errored_cloud_cost_ingestions",
+            "kubecost_errored_custom_cost_ingestions",
+            "kubecost_errored_network_insight_ingestions",
+            "kubecost_ingestion_concurrency_limit",
+            "kubecost_ingestion_records_total",
+            "kubecost_ingestion_time_seconds_total",
+            "kubecost_read_db_size",
+            "kubecost_successful_allocation_ingestions",
+            "kubecost_successful_asset_ingestions",
+            "kubecost_successful_cloud_cost_ingestions",
+            "kubecost_successful_custom_cost_ingestions",
+            "kubecost_successful_network_insight_ingestions",
+            "process_cpu_seconds_total",
+            "process_max_fds",
+            "process_network_receive_bytes_total",
+            "process_network_transmit_bytes_total",
+            "process_open_fds",
+            "process_resident_memory_bytes",
+            "process_start_time_seconds",
+            "process_virtual_memory_bytes",
+            "process_virtual_memory_max_bytes",
+            "promhttp_metric_handler_requests_in_flight",
+            "promhttp_metric_handler_requests_total"
+          ],
+          "error": null
+        },
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-aggregator",
+          "port_name": "db-metrics",
+          "port": 9363,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 1,
+          "content_type_hint": "unknown",
+          "metric_name_count": 0,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": []
+          },
+          "sample_metric_names": [],
+          "error": "Error from server (ServiceUnavailable): error trying to reach service: proxy error from 127.0.0.1:6443 while dialing 10.42.6.24:9363, code 502: 502 Bad Gateway"
+        },
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-finopsagent",
+          "port_name": "http",
+          "port": 80,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 0,
+          "content_type_hint": "prometheus-exposition",
+          "metric_name_count": 88,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 20
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": [
+              "container_cpu_allocation",
+              "container_memory_allocation_bytes",
+              "kubecost_cluster_info",
+              "kubecost_cluster_management_cost",
+              "kubecost_http_requests_total",
+              "kubecost_http_response_size_bytes_count",
+              "kubecost_http_response_size_bytes_sum",
+              "kubecost_http_response_time_seconds_bucket",
+              "kubecost_http_response_time_seconds_count",
+              "kubecost_http_response_time_seconds_sum",
+              "kubecost_network_internet_egress_cost",
+              "kubecost_network_nat_gateway_egress_cost",
+              "kubecost_network_nat_gateway_ingress_cost",
+              "kubecost_network_region_egress_cost",
+              "kubecost_network_zone_egress_cost",
+              "kubecost_node_is_spot",
+              "kubecost_pv_info",
+              "node_total_hourly_cost",
+              "opencost_build_info",
+              "pv_hourly_cost"
+            ]
+          },
+          "sample_metric_names": [
+            "container_cpu_allocation",
+            "container_gpu_allocation",
+            "container_memory_allocation_bytes",
+            "deployment_match_labels",
+            "go_gc_duration_seconds",
+            "go_gc_duration_seconds_count",
+            "go_gc_duration_seconds_sum",
+            "go_gc_gogc_percent",
+            "go_gc_gomemlimit_bytes",
+            "go_goroutines",
+            "go_info",
+            "go_memstats_alloc_bytes",
+            "go_memstats_alloc_bytes_total",
+            "go_memstats_buck_hash_sys_bytes",
+            "go_memstats_frees_total",
+            "go_memstats_gc_sys_bytes",
+            "go_memstats_heap_alloc_bytes",
+            "go_memstats_heap_idle_bytes",
+            "go_memstats_heap_inuse_bytes",
+            "go_memstats_heap_objects",
+            "go_memstats_heap_released_bytes",
+            "go_memstats_heap_sys_bytes",
+            "go_memstats_last_gc_time_seconds",
+            "go_memstats_mallocs_total",
+            "go_memstats_mcache_inuse_bytes",
+            "go_memstats_mcache_sys_bytes",
+            "go_memstats_mspan_inuse_bytes",
+            "go_memstats_mspan_sys_bytes",
+            "go_memstats_next_gc_bytes",
+            "go_memstats_other_sys_bytes",
+            "go_memstats_stack_inuse_bytes",
+            "go_memstats_stack_sys_bytes",
+            "go_memstats_sys_bytes",
+            "go_sched_gomaxprocs_threads",
+            "go_threads",
+            "kube_job_status_failed",
+            "kube_namespace_labels",
+            "kube_node_labels",
+            "kube_node_status_allocatable",
+            "kube_node_status_allocatable_cpu_cores",
+            "kube_node_status_allocatable_memory_bytes",
+            "kube_node_status_capacity",
+            "kube_node_status_capacity_cpu_cores",
+            "kube_node_status_capacity_memory_bytes",
+            "kube_persistentvolume_capacity_bytes",
+            "kube_persistentvolumeclaim_info",
+            "kube_persistentvolumeclaim_resource_requests_storage_bytes",
+            "kube_pod_container_resource_requests",
+            "kube_pod_container_status_running",
+            "kube_pod_container_status_terminated_reason",
+            "kube_pod_labels",
+            "kube_pod_owner",
+            "kubecost_cluster_info",
+            "kubecost_cluster_management_cost",
+            "kubecost_http_requests_total",
+            "kubecost_http_response_size_bytes_count",
+            "kubecost_http_response_size_bytes_sum",
+            "kubecost_http_response_time_seconds_bucket",
+            "kubecost_http_response_time_seconds_count",
+            "kubecost_http_response_time_seconds_sum",
+            "kubecost_network_internet_egress_cost",
+            "kubecost_network_nat_gateway_egress_cost",
+            "kubecost_network_nat_gateway_ingress_cost",
+            "kubecost_network_region_egress_cost",
+            "kubecost_network_zone_egress_cost",
+            "kubecost_node_is_spot",
+            "kubecost_pv_info",
+            "node_cpu_hourly_cost",
+            "node_gpu_count",
+            "node_gpu_hourly_cost",
+            "node_ram_hourly_cost",
+            "node_total_hourly_cost",
+            "opencost_build_info",
+            "pod_pvc_allocation",
+            "process_cpu_seconds_total",
+            "process_max_fds",
+            "process_network_receive_bytes_total",
+            "process_network_transmit_bytes_total",
+            "process_open_fds",
+            "process_resident_memory_bytes",
+            "process_start_time_seconds",
+            "process_virtual_memory_bytes",
+            "process_virtual_memory_max_bytes",
+            "promhttp_metric_handler_requests_in_flight",
+            "promhttp_metric_handler_requests_total",
+            "pv_hourly_cost",
+            "service_selector_labels",
+            "statefulSet_match_labels"
+          ],
+          "error": null
+        },
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-frontend",
+          "port_name": "tcp-frontend",
+          "port": 9090,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 0,
+          "content_type_hint": "unknown",
+          "metric_name_count": 0,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": []
+          },
+          "sample_metric_names": [],
+          "error": null
+        },
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-local-store",
+          "port_name": "tcp-api",
+          "port": 9006,
+          "scheme": "http",
+          "path": "/metrics",
+          "returncode": 1,
+          "content_type_hint": "unknown",
+          "metric_name_count": 0,
+          "relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 0
+          },
+          "relevant_metric_names": {
+            "longhorn": [],
+            "kubecost": []
+          },
+          "sample_metric_names": [],
+          "error": "Error from server (NotFound): the server could not find the requested resource"
+        }
+      ],
+      "service_monitor_candidates": [
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-aggregator",
+          "service_labels": {
+            "app": "aggregator",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "aggregator",
+            "helm.sh/chart": "kubecost-3.2.1"
+          },
+          "recommended_selector_match_labels": {
+            "app": "aggregator",
+            "app.kubernetes.io/name": "aggregator",
+            "app.kubernetes.io/instance": "kubecost"
+          },
+          "endpoint": {
+            "port": "tcp-api",
+            "path": "/metrics",
+            "scheme": "http",
+            "interval": "30s"
+          },
+          "discovered_relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 15
+          },
+          "confidence": "high"
+        },
+        {
+          "namespace": "kubecost",
+          "service": "kubecost-finopsagent",
+          "service_labels": {
+            "app.kubernetes.io/component": "service",
+            "app.kubernetes.io/instance": "kubecost",
+            "app.kubernetes.io/managed-by": "Helm",
+            "app.kubernetes.io/name": "finopsagent",
+            "app.kubernetes.io/part-of": "finops-agent",
+            "app.kubernetes.io/version": "v1.0.20",
+            "helm.sh/chart": "finopsagent-1.0.20"
+          },
+          "recommended_selector_match_labels": {
+            "app.kubernetes.io/name": "finopsagent",
+            "app.kubernetes.io/instance": "kubecost"
+          },
+          "endpoint": {
+            "port": "http",
+            "path": "/metrics",
+            "scheme": "http",
+            "interval": "30s"
+          },
+          "discovered_relevant_metric_counts": {
+            "longhorn": 0,
+            "kubecost": 20
+          },
+          "confidence": "high"
+        }
+      ]
+    }
+  },
+  "repository_reuse_hits": [
+    {
+      "path": "infrastructure/k3s-homelab/manifests/minio.yml.j2",
+      "line": 183,
+      "text": "kind: ServiceMonitor"
+    }
+  ],
+  "component_selection": {
+    "selected_existing_components": [
+      "kube-prometheus-stack Prometheus Operator",
+      "Grafana dashboard ConfigMap sidecar",
+      "ServiceMonitor CRD",
+      "existing Longhorn and Kubecost services when an endpoint is confirmed"
+    ],
+    "new_primitive_required": false,
+    "service_monitor_candidates": [
+      {
+        "namespace": "longhorn-system",
+        "service": "longhorn-backend",
+        "service_labels": {
+          "app": "longhorn-manager",
+          "app.kubernetes.io/instance": "longhorn",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/name": "longhorn",
+          "app.kubernetes.io/version": "v1.12.0",
+          "helm.sh/chart": "longhorn-1.12.0"
+        },
+        "recommended_selector_match_labels": {
+          "app": "longhorn-manager",
+          "app.kubernetes.io/name": "longhorn",
+          "app.kubernetes.io/instance": "longhorn"
+        },
+        "endpoint": {
+          "port": "manager",
+          "path": "/metrics",
+          "scheme": "http",
+          "interval": "30s"
+        },
+        "discovered_relevant_metric_counts": {
+          "longhorn": 57,
+          "kubecost": 0
+        },
+        "confidence": "high"
+      },
+      {
+        "namespace": "kubecost",
+        "service": "kubecost-aggregator",
+        "service_labels": {
+          "app": "aggregator",
+          "app.kubernetes.io/instance": "kubecost",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/name": "aggregator",
+          "helm.sh/chart": "kubecost-3.2.1"
+        },
+        "recommended_selector_match_labels": {
+          "app": "aggregator",
+          "app.kubernetes.io/name": "aggregator",
+          "app.kubernetes.io/instance": "kubecost"
+        },
+        "endpoint": {
+          "port": "tcp-api",
+          "path": "/metrics",
+          "scheme": "http",
+          "interval": "30s"
+        },
+        "discovered_relevant_metric_counts": {
+          "longhorn": 0,
+          "kubecost": 15
+        },
+        "confidence": "high"
+      },
+      {
+        "namespace": "kubecost",
+        "service": "kubecost-finopsagent",
+        "service_labels": {
+          "app.kubernetes.io/component": "service",
+          "app.kubernetes.io/instance": "kubecost",
+          "app.kubernetes.io/managed-by": "Helm",
+          "app.kubernetes.io/name": "finopsagent",
+          "app.kubernetes.io/part-of": "finops-agent",
+          "app.kubernetes.io/version": "v1.0.20",
+          "helm.sh/chart": "finopsagent-1.0.20"
+        },
+        "recommended_selector_match_labels": {
+          "app.kubernetes.io/name": "finopsagent",
+          "app.kubernetes.io/instance": "kubecost"
+        },
+        "endpoint": {
+          "port": "http",
+          "path": "/metrics",
+          "scheme": "http",
+          "interval": "30s"
+        },
+        "discovered_relevant_metric_counts": {
+          "longhorn": 0,
+          "kubecost": 20
+        },
+        "confidence": "high"
+      }
+    ]
+  },
+  "capability_gap_receipts": [
+    {
+      "namespace": "longhorn-system",
+      "metric_family": "longhorn",
+      "relevant_metric_names_found": 57,
+      "candidate_count": 1,
+      "status": "existing-metrics-endpoint-found",
+      "required_action": "Add repository-owned ServiceMonitor coverage using the discovered service selector and named port."
+    },
+    {
+      "namespace": "kubecost",
+      "metric_family": "kubecost",
+      "relevant_metric_names_found": 35,
+      "candidate_count": 2,
+      "status": "existing-metrics-endpoint-found",
+      "required_action": "Add repository-owned ServiceMonitor coverage using the discovered service selector and named port."
+    }
+  ],
+  "status": "read-only-telemetry-endpoint-discovery-complete"
+}

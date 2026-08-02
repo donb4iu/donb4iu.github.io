@@ -1,0 +1,3331 @@
+Kalaxy3 Grafana Operations Dashboard and Alerting
+Consolidated Terminal Evidence
+Captured from operator-provided terminal transcripts.
+
+================================================================================
+SOURCE: Pasted text(238).txt
+SHA256: c001d3d9abf756f8b9433d6802b1afb24e677a3761a82c4e0b1d48616738c9de
+================================================================================
+
+
+(base) #( 08/02/26@ 1:29AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+   python3 ~/Downloads/kalaxy3_stage_grafana_telemetry_scrape_v4.py
+
+===== BASELINE GUARDRAILS =====
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+
+===== STAGE REPOSITORY-OWNED SCRAPE COVERAGE =====
+
+===== VALIDATE STAGED IMPLEMENTATION =====
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python -m py_compile /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/scripts/validate-grafana-operations-yaml.py
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/validate-grafana-operations.yml --syntax-check --extra-vars ansible_become=false
+
+playbook: playbooks/validate-grafana-operations.yml
++ make grafana-operations-render
+.venv/bin/ansible-playbook \
+		playbooks/validate-grafana-operations.yml \
+		--extra-vars ansible_become=false
+
+PLAY [Validate staged Grafana operations telemetry] ****************************
+
+TASK [Require repository-managed Python] ***************************************
+ok: [localhost] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Require staged deployment gate] ******************************************
+ok: [localhost] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Recreate render directory] ***********************************************
+changed: [localhost]
+
+TASK [Create render directory] *************************************************
+changed: [localhost]
+
+TASK [Render telemetry ServiceMonitors] ****************************************
+changed: [localhost]
+
+TASK [Validate rendered telemetry ServiceMonitors] *****************************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=6    changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
++ /usr/local/bin/kubectl --kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml --context default apply --dry-run=server --filename /tmp/kalaxy3-grafana-operations-render/servicemonitors.yml
+servicemonitor.monitoring.coreos.com/kalaxy3-kubecost-kubecost-aggregator-metrics created (server dry run)
+servicemonitor.monitoring.coreos.com/kalaxy3-kubecost-kubecost-finopsagent-metrics created (server dry run)
+servicemonitor.monitoring.coreos.com/kalaxy3-longhorn-longhorn-backend-metrics created (server dry run)
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ git diff --check
+
+===== COMMIT AND PUSH CHECKPOINT =====
++ git add -- infrastructure/k3s-homelab/playbooks/tasks/observability.yml infrastructure/k3s-homelab/inventory/group_vars/all/main.yml infrastructure/k3s-homelab/Makefile infrastructure/k3s-homelab/playbooks/templates/grafana-operations-servicemonitors.yml.j2 infrastructure/k3s-homelab/playbooks/validate-grafana-operations.yml infrastructure/k3s-homelab/scripts/validate-grafana-operations-yaml.py
++ git diff --cached --check
++ git commit -m Stage Grafana operations telemetry scrape coverage
+[feature/grafana-operations-dashboard fecb975] Stage Grafana operations telemetry scrape coverage
+ 6 files changed, 282 insertions(+)
+ create mode 100644 infrastructure/k3s-homelab/playbooks/templates/grafana-operations-servicemonitors.yml.j2
+ create mode 100644 infrastructure/k3s-homelab/playbooks/validate-grafana-operations.yml
+ create mode 100755 infrastructure/k3s-homelab/scripts/validate-grafana-operations-yaml.py
++ git ls-remote --heads origin feature/grafana-operations-dashboard
++ git push --set-upstream origin feature/grafana-operations-dashboard
+branch 'feature/grafana-operations-dashboard' set up to track 'origin/feature/grafana-operations-dashboard'.
+remote:
+remote: Create a pull request for 'feature/grafana-operations-dashboard' on GitHub by visiting:
+remote:      https://github.com/donb4iu/Kalaxy3/pull/new/feature/grafana-operations-dashboard
+remote:
+To github.com:donb4iu/Kalaxy3.git
+ * [new branch]      feature/grafana-operations-dashboard -> feature/grafana-operations-dashboard
+
+===== CHECKPOINT COMPLETE =====
+PASS branch: feature/grafana-operations-dashboard
+PASS commit: fecb97540127ac3abee4100ef7f8dcf74286d769
+PASS ServiceMonitors: 3
+PASS Longhorn monitors: 1
+PASS Kubecost monitors: 2
+PASS deployment gate remains false
+PASS Kubernetes persistence: none
+PASS receipt: /Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-telemetry-scrape-receipt.json
+Kalaxy3 Grafana telemetry scrape staging: COMPLETE
+(base) #( 08/02/26@ 1:31AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+
+================================================================================
+SOURCE: Pasted text(239).txt
+SHA256: 1e0e5d41b6bf090a70bdc5d458e526d9abad919c856accfe3d57dc13700beb1e
+================================================================================
+
+
+(base) #( 08/02/26@ 1:59AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+   python3 ~/Downloads/kalaxy3_stage_grafana_operations_dashboard_v2.py
++ git fetch origin --prune
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+
+===== STAGE DASHBOARD CONTRACT AND DEFINITION =====
+
+===== VALIDATE DASHBOARD QUERIES AND ARTIFACTS =====
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python -m py_compile /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/scripts/validate-grafana-operations-dashboard.py
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/validate-grafana-operations.yml --syntax-check --extra-vars ansible_become=false
+
+playbook: playbooks/validate-grafana-operations.yml
++ make grafana-operations-render
+.venv/bin/ansible-playbook \
+		playbooks/validate-grafana-operations.yml \
+		--extra-vars ansible_become=false
+
+PLAY [Validate staged Grafana operations telemetry] ****************************
+
+TASK [Require repository-managed Python] ***************************************
+ok: [localhost] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Require staged deployment gate] ******************************************
+ok: [localhost] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Recreate render directory] ***********************************************
+changed: [localhost]
+
+TASK [Create render directory] *************************************************
+changed: [localhost]
+
+TASK [Render telemetry ServiceMonitors] ****************************************
+changed: [localhost]
+
+TASK [Validate rendered telemetry ServiceMonitors] *****************************
+ok: [localhost]
+
+TASK [Copy Grafana operations dashboard contract] ******************************
+changed: [localhost]
+
+TASK [Copy Grafana operations dashboard ConfigMap] *****************************
+changed: [localhost]
+
+TASK [Validate Grafana operations dashboard] ***********************************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=9    changed=5    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
++ /usr/local/bin/kubectl --kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml --context default apply --dry-run=server --filename /tmp/kalaxy3-grafana-operations-render/dashboard-configmap.yml
+configmap/kalaxy3-grafana-operations-dashboard created (server dry run)
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ git diff --check
+
+===== COMMIT AND PUSH CHECKPOINT =====
++ git add -- infrastructure/k3s-homelab/playbooks/tasks/observability.yml infrastructure/k3s-homelab/playbooks/validate-grafana-operations.yml infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-contract.json infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-configmap.yml infrastructure/k3s-homelab/scripts/validate-grafana-operations-dashboard.py
++ git diff --cached --check
++ git commit -m Stage Grafana operations dashboard definition
+[feature/grafana-operations-dashboard 4dc80e5] Stage Grafana operations dashboard definition
+ 5 files changed, 1998 insertions(+)
+ create mode 100644 infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-configmap.yml
+ create mode 100644 infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-contract.json
+ create mode 100755 infrastructure/k3s-homelab/scripts/validate-grafana-operations-dashboard.py
++ git push origin feature/grafana-operations-dashboard
+To github.com:donb4iu/Kalaxy3.git
+   fecb975..4dc80e5  feature/grafana-operations-dashboard -> feature/grafana-operations-dashboard
+
+===== CHECKPOINT COMPLETE =====
+PASS branch: feature/grafana-operations-dashboard
+PASS commit: 4dc80e59ea2c0829a809abe60c3bdea61f56613a
+PASS dashboard panels: 20
+PASS live Prometheus panels: 12
+PASS live Loki panels: 1
+PASS pending Longhorn panels: 3
+PASS pending Kubecost panels: 4
+PASS deployment gate remains false
+PASS Kubernetes persistence: none
+PASS receipt: /Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-definition-receipt.json
+Kalaxy3 Grafana operations dashboard staging: COMPLETE
+(base) #( 08/02/26@ 2:00AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+
+================================================================================
+SOURCE: Pasted text(240).txt
+SHA256: 673b32502b0806c847da9dba32a917826757a237abb0873de33f4f45903b17a7
+================================================================================
+
+
+(base) #( 08/02/26@ 2:19AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+   python3 ~/Downloads/kalaxy3_activate_grafana_operations_dashboard_v2.py
++ git fetch origin --prune
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --check --diff --tags observability,grafana-operations --extra-vars deploy_grafana_operations_dashboard=true
+
+PLAY [Install a selected cluster platform phase] *******************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [arm64-01]
+
+TASK [Run observability phase] *************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Write Grafana operations telemetry ServiceMonitors] **********************
+--- before
++++ after: /Users/donbuddenbaum/.ansible/tmp/ansible-local-63326ty20oofi/tmpd4gvhgbc/grafana-operations-servicemonitors.yml.j2
+@@ -0,0 +1,73 @@
++# Repository-owned scrape coverage for the Kalaxy3 operations dashboard.
++# Deployment remains staged while deploy_grafana_operations_dashboard=false.
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: kalaxy3-kubecost-kubecost-aggregator-metrics
++  namespace: "observability"
++  labels:
++    release: kube-prometheus-stack
++    kalaxy3.io/component: grafana-operations
++    kalaxy3.io/telemetry-family: kubecost
++spec:
++  namespaceSelector:
++    matchNames:
++      - "kubecost"
++  selector:
++    matchLabels:
++      "app": "aggregator"
++      "app.kubernetes.io/instance": "kubecost"
++      "app.kubernetes.io/name": "aggregator"
++  endpoints:
++    - port: "tcp-api"
++      path: "/metrics"
++      scheme: "http"
++      interval: "30s"
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: kalaxy3-kubecost-kubecost-finopsagent-metrics
++  namespace: "observability"
++  labels:
++    release: kube-prometheus-stack
++    kalaxy3.io/component: grafana-operations
++    kalaxy3.io/telemetry-family: kubecost
++spec:
++  namespaceSelector:
++    matchNames:
++      - "kubecost"
++  selector:
++    matchLabels:
++      "app.kubernetes.io/instance": "kubecost"
++      "app.kubernetes.io/name": "finopsagent"
++  endpoints:
++    - port: "http"
++      path: "/metrics"
++      scheme: "http"
++      interval: "30s"
++---
++apiVersion: monitoring.coreos.com/v1
++kind: ServiceMonitor
++metadata:
++  name: kalaxy3-longhorn-longhorn-backend-metrics
++  namespace: "observability"
++  labels:
++    release: kube-prometheus-stack
++    kalaxy3.io/component: grafana-operations
++    kalaxy3.io/telemetry-family: longhorn
++spec:
++  namespaceSelector:
++    matchNames:
++      - "longhorn-system"
++  selector:
++    matchLabels:
++      "app": "longhorn-manager"
++      "app.kubernetes.io/instance": "longhorn"
++      "app.kubernetes.io/name": "longhorn"
++  endpoints:
++    - port: "manager"
++      path: "/metrics"
++      scheme: "http"
++      interval: "30s"
+
+changed: [arm64-01]
+
+TASK [Provision Grafana operations telemetry ServiceMonitors] ******************
+skipping: [arm64-01]
+
+TASK [Write Grafana operations dashboard ConfigMap] ****************************
+--- before
++++ after: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-configmap.yml
+@@ -0,0 +1,1414 @@
++---
++apiVersion: v1
++kind: ConfigMap
++metadata:
++  name: kalaxy3-grafana-operations-dashboard
++  namespace: observability
++  labels:
++    grafana_dashboard: "1"
++    kalaxy3.io/component: grafana-operations
++    kalaxy3.io/stage: staged
++data:
++  kalaxy3-operations.json: |-
++    {
++      "annotations": {
++        "list": []
++      },
++      "editable": false,
++      "fiscalYearStartMonth": 0,
++      "graphTooltip": 1,
++      "id": null,
++      "links": [],
++      "liveNow": false,
++      "panels": [
++        {
++          "collapsed": false,
++          "gridPos": {
++            "h": 1,
++            "w": 24,
++            "x": 0,
++            "y": 0
++          },
++          "id": 101,
++          "panels": [],
++          "title": "Cluster and Workload Summary",
++          "type": "row"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 4,
++            "w": 4,
++            "x": 0,
++            "y": 1
++          },
++          "id": 1,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(kube_node_status_condition{condition=\"Ready\",status=\"true\"})",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Ready Nodes",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 4,
++            "w": 4,
++            "x": 4,
++            "y": 1
++          },
++          "id": 2,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "count(kube_node_info)",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Total Nodes",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 4,
++            "w": 4,
++            "x": 8,
++            "y": 1
++          },
++          "id": 3,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(kube_pod_status_ready{condition=\"false\"})",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Not-Ready Pods",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 4,
++            "w": 4,
++            "x": 12,
++            "y": 1
++          },
++          "id": 4,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(increase(kube_pod_container_status_restarts_total[1h]))",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Container Restarts (1h)",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 4,
++            "w": 4,
++            "x": 16,
++            "y": 1
++          },
++          "id": 5,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "count(up{job=~\".*fluent.*bit.*\"} == 1)",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Fluent Bit Ready Targets",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 4,
++            "w": 4,
++            "x": 20,
++            "y": 1
++          },
++          "id": 6,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(kube_deployment_status_replicas_unavailable)",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Unavailable Deployment Replicas",
++          "type": "stat"
++        },
++        {
++          "collapsed": false,
++          "gridPos": {
++            "h": 1,
++            "w": 24,
++            "x": 0,
++            "y": 5
++          },
++          "id": 102,
++          "panels": [],
++          "title": "Node Capacity",
++          "type": "row"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "percent"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 8,
++            "w": 12,
++            "x": 0,
++            "y": 6
++          },
++          "id": 7,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "100 - (avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m])) * 100)",
++              "legendFormat": "{{instance}}",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Node CPU Utilization",
++          "type": "timeseries"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "percent"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 8,
++            "w": 12,
++            "x": 12,
++            "y": 6
++          },
++          "id": 8,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "100 * (1 - node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)",
++              "legendFormat": "{{instance}}",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Node Memory Utilization",
++          "type": "timeseries"
++        },
++        {
++          "collapsed": false,
++          "gridPos": {
++            "h": 1,
++            "w": 24,
++            "x": 0,
++            "y": 14
++          },
++          "id": 103,
++          "panels": [],
++          "title": "Fluent Bit Pipeline",
++          "type": "row"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "ops"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 8,
++            "w": 6,
++            "x": 0,
++            "y": 15
++          },
++          "id": 9,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(rate(fluentbit_input_records_total[5m]))",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Fluent Bit Input Records",
++          "type": "timeseries"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "ops"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 8,
++            "w": 6,
++            "x": 6,
++            "y": 15
++          },
++          "id": 10,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(rate(fluentbit_output_proc_records_total[5m]))",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Fluent Bit Output Records",
++          "type": "timeseries"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "ops"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 8,
++            "w": 6,
++            "x": 12,
++            "y": 15
++          },
++          "id": 11,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(rate(fluentbit_output_errors_total[5m]))",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Fluent Bit Output Errors",
++          "type": "timeseries"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "ops"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 8,
++            "w": 6,
++            "x": 18,
++            "y": 15
++          },
++          "id": 12,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(rate(fluentbit_output_retries_total[5m]))",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Fluent Bit Output Retries",
++          "type": "timeseries"
++        },
++        {
++          "collapsed": false,
++          "gridPos": {
++            "h": 1,
++            "w": 24,
++            "x": 0,
++            "y": 23
++          },
++          "id": 104,
++          "panels": [],
++          "title": "Recent Logs",
++          "type": "row"
++        },
++        {
++          "datasource": {
++            "type": "loki",
++            "uid": "loki"
++          },
++          "description": "Validated against the live Kalaxy3 telemetry data contract.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "short"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 10,
++            "w": 24,
++            "x": 0,
++            "y": 24
++          },
++          "id": 13,
++          "options": {
++            "dedupStrategy": "none",
++            "enableLogDetails": true,
++            "showTime": true,
++            "sortOrder": "Descending",
++            "wrapLogMessage": true
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "loki",
++                "uid": "loki"
++              },
++              "expr": "{namespace=~\".+\"}",
++              "queryType": "range",
++              "refId": "A"
++            }
++          ],
++          "title": "Recent Cluster Logs",
++          "type": "logs"
++        },
++        {
++          "collapsed": false,
++          "gridPos": {
++            "h": 1,
++            "w": 24,
++            "x": 0,
++            "y": 34
++          },
++          "id": 105,
++          "panels": [],
++          "title": "Longhorn \u2014 Pending Scrape Activation",
++          "type": "row"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "percent"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 8,
++            "x": 0,
++            "y": 35
++          },
++          "id": 14,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes)",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Longhorn Storage Utilization",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "bytes"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 8,
++            "x": 8,
++            "y": 35
++          },
++          "id": 15,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum by (volume) (longhorn_volume_actual_size_bytes)",
++              "legendFormat": "{{volume}}",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Longhorn Volume Actual Size",
++          "type": "timeseries"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "Bps"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 8,
++            "x": 16,
++            "y": 35
++          },
++          "id": 16,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum by (volume) (longhorn_volume_write_throughput)",
++              "legendFormat": "{{volume}}",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Longhorn Volume Write Throughput",
++          "type": "timeseries"
++        },
++        {
++          "collapsed": false,
++          "gridPos": {
++            "h": 1,
++            "w": 24,
++            "x": 0,
++            "y": 41
++          },
++          "id": 106,
++          "panels": [],
++          "title": "Kubecost \u2014 Pending Scrape Activation",
++          "type": "row"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "currencyUSD"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 6,
++            "x": 0,
++            "y": 42
++          },
++          "id": 17,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(node_total_hourly_cost)",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Kubecost Node Hourly Cost",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "currencyUSD"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 6,
++            "x": 6,
++            "y": 42
++          },
++          "id": 18,
++          "options": {
++            "colorMode": "value",
++            "graphMode": "area",
++            "justifyMode": "auto",
++            "orientation": "auto",
++            "reduceOptions": {
++              "calcs": [
++                "lastNotNull"
++              ],
++              "fields": "",
++              "values": false
++            },
++            "textMode": "auto"
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum(kubecost_cluster_management_cost)",
++              "legendFormat": "",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Kubecost Management Hourly Cost",
++          "type": "stat"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "cores"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 6,
++            "x": 12,
++            "y": 42
++          },
++          "id": 19,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum by (namespace) (container_cpu_allocation)",
++              "legendFormat": "{{namespace}}",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Kubecost CPU Allocation",
++          "type": "timeseries"
++        },
++        {
++          "datasource": {
++            "type": "prometheus",
++            "uid": "prometheus"
++          },
++          "description": "The endpoint metric is proven, but this panel is expected to show no data until the shared deployment gate applies the repository-owned ServiceMonitor.",
++          "fieldConfig": {
++            "defaults": {
++              "color": {
++                "mode": "palette-classic"
++              },
++              "mappings": [],
++              "thresholds": {
++                "mode": "absolute",
++                "steps": [
++                  {
++                    "color": "green",
++                    "value": null
++                  },
++                  {
++                    "color": "red",
++                    "value": 80
++                  }
++                ]
++              },
++              "unit": "gbytes"
++            },
++            "overrides": []
++          },
++          "gridPos": {
++            "h": 6,
++            "w": 6,
++            "x": 18,
++            "y": 42
++          },
++          "id": 20,
++          "options": {
++            "legend": {
++              "calcs": [],
++              "displayMode": "list",
++              "placement": "bottom",
++              "showLegend": true
++            },
++            "tooltip": {
++              "mode": "multi",
++              "sort": "none"
++            }
++          },
++          "targets": [
++            {
++              "datasource": {
++                "type": "prometheus",
++                "uid": "prometheus"
++              },
++              "editorMode": "code",
++              "expr": "sum by (namespace) (container_memory_allocation_bytes) / 1024^3",
++              "legendFormat": "{{namespace}}",
++              "range": true,
++              "refId": "A"
++            }
++          ],
++          "title": "Kubecost Memory Allocation",
++          "type": "timeseries"
++        }
++      ],
++      "refresh": "30s",
++      "schemaVersion": 39,
++      "tags": [
++        "kalaxy3",
++        "operations",
++        "staged"
++      ],
++      "templating": {
++        "list": []
++      },
++      "time": {
++        "from": "now-6h",
++        "to": "now"
++      },
++      "timepicker": {},
++      "timezone": "browser",
++      "title": "Kalaxy3 Operations",
++      "uid": "kalaxy3-operations",
++      "version": 1,
++      "weekStart": ""
++    }
+
+changed: [arm64-01]
+
+TASK [Provision Grafana operations dashboard ConfigMap] ************************
+skipping: [arm64-01]
+
+PLAY RECAP *********************************************************************
+arm64-01                   : ok=4    changed=2    unreachable=0    failed=0    skipped=2    rescued=0    ignored=0
+
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ git diff --check
+
+
++ git add -- infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
++ git diff --cached --check
++ git commit -m Activate Grafana operations dashboard
+[feature/grafana-operations-dashboard fa5a752] Activate Grafana operations dashboard
+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ git push origin feature/grafana-operations-dashboard
+To github.com:donb4iu/Kalaxy3.git
+   4dc80e5..fa5a752  feature/grafana-operations-dashboard -> feature/grafana-operations-dashboard
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --tags observability,grafana-operations
+
+PLAY [Install a selected cluster platform phase] *******************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [arm64-01]
+
+TASK [Run observability phase] *************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Write Grafana operations telemetry ServiceMonitors] **********************
+changed: [arm64-01]
+
+TASK [Provision Grafana operations telemetry ServiceMonitors] ******************
+changed: [arm64-01]
+
+TASK [Write Grafana operations dashboard ConfigMap] ****************************
+changed: [arm64-01]
+
+TASK [Provision Grafana operations dashboard ConfigMap] ************************
+changed: [arm64-01]
+
+PLAY RECAP *********************************************************************
+arm64-01                   : ok=6    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+FAILURE RECEIPT: /Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-dashboard-activation-failure.json
+FAILED: Missing ServiceMonitors in longhorn-system: {'kalaxy3-longhorn-longhorn-backend-metrics'}
+(base) #( 08/02/26@ 2:22AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+
+================================================================================
+SOURCE: Pasted text(241).txt
+SHA256: 7f52b66fd4f6bab205fdd1be0c0c244b5500f1d047d109de21492c5357e306a5
+================================================================================
+
+
+(base) #( 08/02/26@ 2:57AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+   python3 ~/Downloads/kalaxy3_stage_grafana_operations_alerts_v4.py
++ git fetch origin --prune
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+
+===== STAGE ALERT DEFINITIONS =====
+
+===== VALIDATE ALERT DEFINITIONS =====
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python -m py_compile /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml --self-test
+PASS PrometheusRule mutation negative tests
+PASS PrometheusRule identity and selection labels
+PASS two alert expressions, durations, and severities
+Kalaxy3 Grafana operations alert validation: PASS
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/validate-grafana-operations.yml --extra-vars ansible_become=false --extra-vars deploy_grafana_operations_dashboard=false --extra-vars deploy_grafana_operations_alerts=false --syntax-check
+
+playbook: playbooks/validate-grafana-operations.yml
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/validate-grafana-operations.yml --extra-vars ansible_become=false --extra-vars deploy_grafana_operations_dashboard=false --extra-vars deploy_grafana_operations_alerts=false
+
+PLAY [Validate staged Grafana operations telemetry] ****************************
+
+TASK [Require repository-managed Python] ***************************************
+ok: [localhost] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Require staged deployment gate] ******************************************
+ok: [localhost] =>
+    changed: false
+    msg: All assertions passed
+
+TASK [Recreate render directory] ***********************************************
+changed: [localhost]
+
+TASK [Create render directory] *************************************************
+changed: [localhost]
+
+TASK [Render telemetry ServiceMonitors] ****************************************
+changed: [localhost]
+
+TASK [Validate rendered telemetry ServiceMonitors] *****************************
+ok: [localhost]
+
+TASK [Copy Grafana operations dashboard contract] ******************************
+changed: [localhost]
+
+TASK [Copy Grafana operations dashboard ConfigMap] *****************************
+changed: [localhost]
+
+TASK [Validate Grafana operations dashboard] ***********************************
+ok: [localhost]
+
+TASK [Copy Grafana operations PrometheusRule] **********************************
+changed: [localhost]
+
+TASK [Validate Grafana operations PrometheusRule] ******************************
+ok: [localhost]
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=11   changed=6    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
++ /usr/local/bin/kubectl --kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml --context default apply --dry-run=server --filename /tmp/kalaxy3-grafana-operations-render/alerts-prometheusrule.yml
+prometheusrule.monitoring.coreos.com/kalaxy3-grafana-operations-alerts created (server dry run)
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ git diff --check
+
+===== COMMIT AND PUSH CHECKPOINT =====
++ git add -- infrastructure/k3s-homelab/inventory/group_vars/all/main.yml infrastructure/k3s-homelab/playbooks/tasks/observability.yml infrastructure/k3s-homelab/playbooks/validate-grafana-operations.yml infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py
++ git diff --cached --check
++ git commit -m Stage Grafana operations alert rules
+[feature/grafana-operations-dashboard ab36c48] Stage Grafana operations alert rules
+ 5 files changed, 264 insertions(+)
+ create mode 100644 infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml
+ create mode 100755 infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py
++ git push origin feature/grafana-operations-dashboard
+To github.com:donb4iu/Kalaxy3.git
+   fa5a752..ab36c48  feature/grafana-operations-dashboard -> feature/grafana-operations-dashboard
+
+===== CHECKPOINT COMPLETE =====
+PASS branch: feature/grafana-operations-dashboard
+PASS commit: ab36c484e32c28936f282287c707b0e4087cbaba
+PASS PrometheusRule alert definitions: 2
+PASS live alert baseline: inactive
+PASS alert deployment gate: deploy_grafana_operations_alerts=false
+PASS dashboard deployment gate remains true
+PASS Kubernetes persistence: none
+PASS receipt: /Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-receipt.json
+Kalaxy3 Grafana operations alert staging: COMPLETE
+(base) #( 08/02/26@ 3:01AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+
+================================================================================
+SOURCE: Pasted text(242).txt
+SHA256: 5f6ae7e73f903ac9c10cdc5343fbcf310226dbb7bddf832858a459c2f853bed0
+================================================================================
+
+
+(base) #( 08/02/26@ 3:06AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
+   python3 ~/Downloads/kalaxy3_activate_grafana_operations_alerts.py
++ git fetch origin --prune
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --check --diff --tags observability,grafana-operations-alerts --extra-vars deploy_grafana_operations_dashboard=true --extra-vars deploy_grafana_operations_alerts=true
+
+PLAY [Install a selected cluster platform phase] *******************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [arm64-01]
+
+TASK [Run observability phase] *************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Write Grafana operations PrometheusRule] *********************************
+--- before
++++ after: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml
+@@ -0,0 +1,33 @@
++---
++apiVersion: monitoring.coreos.com/v1
++kind: PrometheusRule
++metadata:
++  name: kalaxy3-grafana-operations-alerts
++  namespace: observability
++  labels:
++    release: "kube-prometheus-stack"
++    "kalaxy3.io/component": "grafana-operations"
++    "kalaxy3.io/telemetry-family": "operations-alerts"
++spec:
++  groups:
++    - name: "kalaxy3-grafana-operations.rules"
++      interval: "30s"
++      rules:
++        - alert: "FluentBitCoverageDegraded"
++          expr: "sum(up{job=\"fluent-bit-collector\"}) < 7 or absent(up{job=\"fluent-bit-collector\"})"
++          for: "10m"
++          labels:
++            severity: "warning"
++            component: "logging"
++          annotations:
++            summary: "Fluent Bit coverage is below all seven Kalaxy3 nodes."
++            description: "Fewer than seven Fluent Bit collector targets have remained healthy for ten minutes. Inspect the collector DaemonSet, affected nodes, and Loki delivery."
++        - alert: "LonghornStorageUtilizationHigh"
++          expr: "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes) > 80"
++          for: "15m"
++          labels:
++            severity: "warning"
++            component: "storage"
++          annotations:
++            summary: "Longhorn aggregate storage utilization exceeds 80%."
++            description: "Longhorn aggregate storage usage has remained above 80 percent for fifteen minutes. Review node capacity, replicas, snapshots, and volume growth."
+
+changed: [arm64-01]
+
+TASK [Provision Grafana operations PrometheusRule] *****************************
+skipping: [arm64-01]
+
+PLAY RECAP *********************************************************************
+arm64-01                   : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
+FAILURE RECEIPT: /Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-activation-failure.json
+FAILED: Unexpected changed path: M infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+(base) #( 08/02/26@ 3:07AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✗✗✗
+
+================================================================================
+SOURCE: Pasted text(243).txt
+SHA256: ff46426d7a13eadfd0b4d8fda91e0b122352547b6740cb4fb4c3b5fa2c5578cf
+================================================================================
+
+
+(base) #( 08/02/26@ 3:12AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✗✗✗
+   python3 ~/Downloads/kalaxy3_activate_grafana_operations_alerts_v2.py
++ git fetch origin --prune
++ git restore --source=HEAD --worktree -- infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+PASS recovered interrupted uncommitted alert-gate flip
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --check --diff --tags observability,grafana-operations-alerts --extra-vars deploy_grafana_operations_dashboard=true --extra-vars deploy_grafana_operations_alerts=true
+
+PLAY [Install a selected cluster platform phase] *******************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [arm64-01]
+
+TASK [Run observability phase] *************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Write Grafana operations PrometheusRule] *********************************
+--- before
++++ after: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml
+@@ -0,0 +1,33 @@
++---
++apiVersion: monitoring.coreos.com/v1
++kind: PrometheusRule
++metadata:
++  name: kalaxy3-grafana-operations-alerts
++  namespace: observability
++  labels:
++    release: "kube-prometheus-stack"
++    "kalaxy3.io/component": "grafana-operations"
++    "kalaxy3.io/telemetry-family": "operations-alerts"
++spec:
++  groups:
++    - name: "kalaxy3-grafana-operations.rules"
++      interval: "30s"
++      rules:
++        - alert: "FluentBitCoverageDegraded"
++          expr: "sum(up{job=\"fluent-bit-collector\"}) < 7 or absent(up{job=\"fluent-bit-collector\"})"
++          for: "10m"
++          labels:
++            severity: "warning"
++            component: "logging"
++          annotations:
++            summary: "Fluent Bit coverage is below all seven Kalaxy3 nodes."
++            description: "Fewer than seven Fluent Bit collector targets have remained healthy for ten minutes. Inspect the collector DaemonSet, affected nodes, and Loki delivery."
++        - alert: "LonghornStorageUtilizationHigh"
++          expr: "100 * sum(longhorn_node_storage_usage_bytes) / sum(longhorn_node_storage_capacity_bytes) > 80"
++          for: "15m"
++          labels:
++            severity: "warning"
++            component: "storage"
++          annotations:
++            summary: "Longhorn aggregate storage utilization exceeds 80%."
++            description: "Longhorn aggregate storage usage has remained above 80 percent for fifteen minutes. Review node capacity, replicas, snapshots, and volume growth."
+
+changed: [arm64-01]
+
+TASK [Provision Grafana operations PrometheusRule] *****************************
+skipping: [arm64-01]
+
+PLAY RECAP *********************************************************************
+arm64-01                   : ok=3    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0
+
++ make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ make cluster-guardrails
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
+.venv/bin/python scripts/ansible-access-preflight.py --scope all
+arm64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-03 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-04 | SUCCESS => {"changed": false,"ping": "pong"}
+arm64-05 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-01 | SUCCESS => {"changed": false,"ping": "pong"}
+amd64-02 | SUCCESS => {"changed": false,"ping": "pong"}
+PASS noninteractive SSH authentication for 7 inventory hosts
+arm64-01 | CHANGED | rc=0 | (stdout) 0
+arm64-02 | CHANGED | rc=0 | (stdout) 0
+arm64-03 | CHANGED | rc=0 | (stdout) 0
+arm64-04 | CHANGED | rc=0 | (stdout) 0
+arm64-05 | CHANGED | rc=0 | (stdout) 0
+amd64-01 | CHANGED | rc=0 | (stdout) 0
+amd64-02 | CHANGED | rc=0 | (stdout) 0
+PASS noninteractive Ansible privilege escalation for 7 inventory hosts
+Kalaxy3 Ansible access preflight (all): PASS
+.venv/bin/ansible-playbook playbooks/phases/phase-00-readiness.yml --syntax-check
+
+playbook: playbooks/phases/phase-00-readiness.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-01-prerequisites.yml --syntax-check
+
+playbook: playbooks/phases/phase-01-prerequisites.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-02-k3s.yml --syntax-check
+
+playbook: playbooks/phases/phase-02-k3s.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-03-network-storage.yml --syntax-check
+
+playbook: playbooks/phases/phase-03-network-storage.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-04-ui.yml --syntax-check
+
+playbook: playbooks/phases/phase-04-ui.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --syntax-check
+
+playbook: playbooks/phases/phase-05-observability.yml
+.venv/bin/ansible-playbook playbooks/phases/phase-06-minio.yml --syntax-check
+
+playbook: playbooks/phases/phase-06-minio.yml
+Kalaxy3 SAGE bootstrap guardrails: PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
+.venv/bin/python scripts/helm-lock-reconcile.py --allow-missing
+PASS fluent_bit_collector: fluent-bit-collector-1.0.9 in observability
+PASS headlamp: headlamp-0.43.0 in headlamp
+PASS kube_prometheus_stack: kube-prometheus-stack-87.19.0 in observability
+SKIP kubecost: release is not enabled
+PASS loki: loki-18.5.4 in observability
+PASS longhorn: longhorn-1.12.0 in longhorn-system
+PASS metallb: metallb-0.16.1 in metallb-system
+PASS nfs_hdd: nfs-subdir-external-provisioner-4.0.18 in storage
+PASS nfs_ssd: nfs-subdir-external-provisioner-4.0.18 in storage
+
+PASS 8 installed locked releases; 0 permitted new releases
+Kalaxy3 Helm lock reconciliation: PASS
+Kalaxy3 SAGE cluster deployment guardrails: PASS
++ git diff --check
++ git add -- infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
++ git diff --cached --check
++ git commit -m Activate Grafana operations alert rules
+[feature/grafana-operations-dashboard 55916a3] Activate Grafana operations alert rules
+ 1 file changed, 1 insertion(+), 1 deletion(-)
++ git push origin feature/grafana-operations-dashboard
+To github.com:donb4iu/Kalaxy3.git
+   ab36c48..55916a3  feature/grafana-operations-dashboard -> feature/grafana-operations-dashboard
++ /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/ansible-playbook playbooks/phases/phase-05-observability.yml --tags observability,grafana-operations-alerts
+
+PLAY [Install a selected cluster platform phase] *******************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [arm64-01]
+
+TASK [Run observability phase] *************************************************
+included: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/tasks/observability.yml for arm64-01
+
+TASK [Write Grafana operations PrometheusRule] *********************************
+changed: [arm64-01]
+
+TASK [Provision Grafana operations PrometheusRule] *****************************
+changed: [arm64-01]
+
+PLAY RECAP *********************************************************************
+arm64-01                   : ok=4    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+
+===== ALERT ACTIVATION COMPLETE =====
+PASS branch: feature/grafana-operations-dashboard
+PASS staging commit: ab36c484e32c28936f282287c707b0e4087cbaba
+PASS activation commit: 55916a36afdee3fd8187f2269995f44e7ba532c2
+PASS alert deployment gate: deploy_grafana_operations_alerts=true
+PASS PrometheusRule persisted: 1
+PASS loaded alert rules: 2
+PASS loaded rule health: ok
+PASS loaded rule state: inactive
+PASS working tree: clean
+PASS receipt: /Users/donbuddenbaum/Downloads/kalaxy3-grafana-operations-alert-rules-activation-receipt.json
+Kalaxy3 Grafana operations alert activation: COMPLETE
+(base) #( 08/02/26@ 3:16AM )( donbuddenbaum@donbs-imac ):~/dvlp/Kalaxy3@feature/grafana-operations-dashboard✔
