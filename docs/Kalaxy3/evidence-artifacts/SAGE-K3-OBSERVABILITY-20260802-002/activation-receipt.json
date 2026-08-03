@@ -1,0 +1,113 @@
+{
+  "baseline_validations": {
+    "active_lifecycle": {
+      "attempted": [
+        "make",
+        "centralized-logging-render"
+      ],
+      "recovery": "make centralized-logging-runtime-validate",
+      "recovery_status": "pass",
+      "status": "expected-fail-closed"
+    },
+    "infrastructure": [
+      [
+        "make",
+        "helm-repository-guardrail"
+      ],
+      [
+        "make",
+        "source-guardrails"
+      ],
+      [
+        "make",
+        "deployment-guardrail"
+      ],
+      [
+        "make",
+        "cluster-guardrails"
+      ]
+    ],
+    "root": [
+      [
+        "make",
+        "sage-discovery-guardrail"
+      ],
+      [
+        "make",
+        "sage-index-check"
+      ],
+      [
+        "make",
+        "sage-evidence-guardrail"
+      ]
+    ],
+    "status": "pass"
+  },
+  "captured_at": "2026-08-02T22:58:20-05:00",
+  "cluster_mutation": "prometheus-rule-reconciled",
+  "deployment_gates": {
+    "alerts": true,
+    "dashboard": true
+  },
+  "live_acceptance": {
+    "centralized_logging_runtime": "pass",
+    "cluster_guardrails": "pass",
+    "prometheus": {
+      "alert_state": "inactive",
+      "alerts": [
+        "FluentBitCoverageDegraded",
+        "LokiWorkloadAvailabilityDegraded",
+        "LonghornStorageUtilizationHigh"
+      ],
+      "health": "ok",
+      "recording_rules": [
+        "kalaxy3:fluent_bit_coverage_ratio",
+        "kalaxy3:loki_workload_ready_ratio"
+      ]
+    },
+    "recording_values": {
+      "kalaxy3:fluent_bit_coverage_ratio": 1.0,
+      "kalaxy3:loki_workload_ready_ratio": 1.0
+    },
+    "resource": {
+      "alerts": [
+        "FluentBitCoverageDegraded",
+        "LokiWorkloadAvailabilityDegraded",
+        "LonghornStorageUtilizationHigh"
+      ],
+      "name": "kalaxy3-grafana-operations-alerts",
+      "namespace": "observability",
+      "recording_rules": [
+        "kalaxy3:fluent_bit_coverage_ratio",
+        "kalaxy3:loki_workload_ready_ratio"
+      ],
+      "resource_version": "10738565"
+    }
+  },
+  "next_boundary": "publish-supplemental-sage-evidence",
+  "record_type": "sage-logging-availability-slo-activation",
+  "repository": {
+    "branch": "feature/centralized-logging-alerts-slos",
+    "head": "1c41ce3a71d64613abb8bcfc0697223ede4c4733",
+    "remote_head": "1c41ce3a71d64613abb8bcfc0697223ede4c4733",
+    "working_tree": "clean"
+  },
+  "repository_mutation": "none",
+  "request": "Activate and live-accept the SAGE-staged centralized-logging availability SLO recording and alert rules on feature/centralized-logging-alerts-slos. Verify the machine-readable staging receipt and exact source hashes, preserve the active logging lifecycle, run repository-owned guardrails, reconcile only the Grafana operations PrometheusRule through the tagged observability phase, require two recording rules and three healthy inactive alerts, validate the recording values and centralized logging runtime, write a machine-readable receipt, and make no Git changes.",
+  "retrieval": {
+    "path": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-activation-20260802-225446-retrieval.json",
+    "sha256": "7bdd5c442a03276d269815197b4c216abe42a874582eae0d11dba959026e04f5"
+  },
+  "schema_version": "1.0",
+  "source_hashes": {
+    "infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml": "c5f2d10a8cf315e5ed2db13c4414c18d0bd70b6aea15018e4db44d3597edae02",
+    "infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py": "1bf094b0733cfc57541d49583011ddd72982307ec089a51723f25fdef8c44d57"
+  },
+  "staging_receipt": {
+    "commit": "1c41ce3a71d64613abb8bcfc0697223ede4c4733",
+    "path": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-receipt.json",
+    "sha256": "f21604c02d0f469acb160658e8abe1a15c05f6bfc639b1ebc5ad7c2c34128c72"
+  },
+  "status": "activated-and-live-accepted",
+  "terminal_evidence": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-activation-20260802-225446-terminal.txt"
+}

@@ -1,0 +1,1654 @@
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git fetch origin --prune
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git branch --show-current
+feature/centralized-logging-alerts-slos
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git rev-parse HEAD
+7524944470204915399e4b4461971b4373ae5b4b
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git status --porcelain
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git rev-parse origin/main
+7524944470204915399e4b4461971b4373ae5b4b
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git ls-remote --heads origin feature/centralized-logging-alerts-slos
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make --no-print-directory sage-preflight
+python3 scripts/sage/sage-change-preflight.py --request "$SAGE_REQUEST"
+Kalaxy3 SAGE change discovery: PASS
+Repository: /Users/donbuddenbaum/dvlp/Kalaxy3
+Request: Implement the approved centralized-logging alerts and SLOs scope on feature/centralized-logging-alerts-slos. Extend the existing reusable Grafana operations PrometheusRule with Fluent Bit coverage and Loki workload availability recording rules and actionable alerts. Use stabilization windows, validate live Prometheus inputs, run all SAGE baseline and post-edit checks from their declared working directories, commit and push the cohesive staged implementation, and do not apply the updated rule to the cluster.
+
+Inferred SAGE contexts:
+  - repository-governance
+  - evidence
+  - continuous-improvement
+  - helm-platform
+  - observability
+  - centralized-logging
+  - storage
+
+[repository-governance]
+  Working directory: .
+
+  Authoritative files:
+  - AGENTS.md
+  - SAGE.md
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-authority-reconcile.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-capability-gap.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-component-select.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-failure-diagnose.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-decision-primitives.json
+  - markdown/standards/kalaxy3-sage-actionable-failure-contract.md
+  - markdown/standards/kalaxy3-sage-change-discovery-process.md
+  - markdown/standards/kalaxy3-sage-operating-contract.md
+  - markdown/standards/sage-authority-reconciliation-schema-v1.0.json
+  - markdown/standards/sage-failure-diagnosis-schema-v1.0.json
+  - markdown/standards/sage-operator-git-proposal-schema-v1.0.json
+  - sage-actionable-failure-registry.json
+  - sage-actionable-failures.json
+  - sage-change-authority.json
+  - sage-operating-contract-policy.json
+  - scripts/sage/sage-actionable-failure-audit.py
+  - scripts/sage/sage-actionable-failure-guardrail.py
+  - scripts/sage/sage-actionable-failure-self-test.py
+  - scripts/sage/sage-decision-primitives-guardrail.py
+  - scripts/sage/sage-file-delivery-guardrail.py
+  - scripts/sage/sage-git-safety-guardrail.py
+  - scripts/sage/sage-validator-runner.py
+  - scripts/sage/sage-yaml-metadata-self-test.py
+  - scripts/sage/sage-yaml-metadata-source-self-test.py
+  - scripts/sage/sage_actionable_failure.py
+  - scripts/sage/sage_yaml_metadata.py
+  - scripts/sage/workflow/authority.py
+  - scripts/sage/workflow/diagnosis.py
+  - scripts/sage/workflow/gaps.py
+  - scripts/sage/workflow/safety.py
+  - scripts/sage/workflow/selection.py
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-outcome-metrics.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-outcome-metrics.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/outcome-metrics-baseline.json
+  - scripts/sage/sage-outcome-metrics-guardrail.py
+  - scripts/sage/workflow/metrics.py
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-root-enforcement.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/root-enforcement-readiness.json
+  - scripts/sage/sage-operating-contract-guardrail.py
+  - scripts/sage/sage-operating-contract-self-test.py
+  - scripts/sage/workflows/operating_contract.py
+  - scripts/sage/workflow/markdown.py
+  - scripts/sage/workflow/evidence_records.py
+  - scripts/sage/workflows/evidence_navigation.py
+  - scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+
+  Baseline checks before editing:
+  - make sage-discovery-guardrail
+
+  Required validation after editing:
+  - make sage-self-test
+  - make sage-discovery-guardrail
+  - make sage-index-check
+  - make sage-operating-contract-check
+  - python3 scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+
+  Evidence process:
+  - Record inferred contexts and authoritative files.
+  - Preserve terminal output from required guardrails.
+
+[evidence]
+  Working directory: .
+
+  Authoritative files:
+  - markdown/standards/kalaxy3-sage-evidence-record-standard.md
+  - markdown/standards/kalaxy3-sage-evidence-publication-process.md
+  - markdown/standards/sage-evidence-metadata-contract-v1.2.json
+  - markdown/templates/sage-evidence-record-template.md
+  - scripts/sage/sage-index.py
+  - scripts/sage/sage-publish.py
+  - sage-evidence-policy.json
+  - scripts/sage/sage-evidence-orchestrator.py
+  - markdown/standards/kalaxy3-sage-evidence-orchestration-process.md
+  - sage-evidence-template-policy.json
+  - scripts/sage/workflow/markdown.py
+  - scripts/sage/workflow/evidence_records.py
+  - scripts/sage/sage-evidence-template-guardrail.py
+  - scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+  - scripts/sage/workflows/evidence_navigation.py
+
+  Baseline checks before editing:
+  - make sage-index-check
+  - make sage-evidence-guardrail
+
+  Required validation after editing:
+  - make sage-index-check
+  - make sage-evidence-self-test
+  - make sage-evidence-guardrail
+  - python3 scripts/sage/sage-evidence-template-guardrail.py
+  - python3 scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+
+  Evidence process:
+  - Apply the canonical evidence-generation request automatically; the requester need not enumerate SAGE mechanics.
+  - Use the repository-owned SAGE standard and template.
+  - Publish through scripts/sage/sage-publish.py.
+  - Reconcile indexes through scripts/sage/sage-index.py.
+
+[continuous-improvement]
+  Working directory: .
+
+  Authoritative files:
+  - AGENTS.md
+  - SAGE.md
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-authority-reconcile.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-capability-gap.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-component-select.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-failure-diagnose.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-decision-primitives.json
+  - markdown/standards/kalaxy3-sage-change-discovery-process.md
+  - markdown/standards/kalaxy3-sage-continuous-improvement-process.md
+  - markdown/standards/kalaxy3-sage-evidence-orchestration-process.md
+  - markdown/standards/kalaxy3-sage-operating-contract.md
+  - markdown/standards/sage-active-session-schema-v1.0.json
+  - markdown/standards/sage-change-candidate-lifecycle-schema-v1.0.json
+  - markdown/standards/sage-change-candidate-schema-v1.0.json
+  - markdown/standards/sage-continuous-improvement-baseline-schema-v1.0.json
+  - markdown/standards/sage-failure-diagnosis-schema-v1.0.json
+  - markdown/standards/sage-feedback-comparison-schema-v1.0.json
+  - markdown/standards/sage-improvement-action-schema-v1.0.json
+  - markdown/standards/sage-outcome-metrics-schema-v1.0.json
+  - markdown/standards/sage-post-session-review-schema-v1.0.json
+  - markdown/standards/sage-session-improvement-schema-v1.0.json
+  - markdown/standards/sage-session-scorecard-schema-v1.0.json
+  - sage-active-session-registry.json
+  - sage-change-authority.json
+  - sage-change-candidate-lifecycle-registry.json
+  - sage-change-candidate-registry.json
+  - sage-continuous-improvement-baseline-registry.json
+  - sage-continuous-improvement-policy.json
+  - sage-feedback-baseline-registry.json
+  - sage-improvement-actions.json
+  - sage-lessons.json
+  - sage-operating-contract-policy.json
+  - sage-post-session-review-registry.json
+  - sage-session-improvement-registry.json
+  - scripts/sage/sage-active-session-guardrail.py
+  - scripts/sage/sage-active-session.py
+  - scripts/sage/sage-baseline-extract.py
+  - scripts/sage/sage-candidate-lifecycle-guardrail.py
+  - scripts/sage/sage-candidate-lifecycle.py
+  - scripts/sage/sage-continuous-improvement-guardrail.py
+  - scripts/sage/sage-decision-primitives-guardrail.py
+  - scripts/sage/sage-feedback-compare.py
+  - scripts/sage/sage-feedback-guardrail.py
+  - scripts/sage/sage-improvement-actions.py
+  - scripts/sage/sage-learning-guardrail.py
+  - scripts/sage/sage-lessons.py
+  - scripts/sage/sage-post-session-review-guardrail.py
+  - scripts/sage/sage-post-session-review.py
+  - scripts/sage/sage-session-score.py
+  - scripts/sage/workflow/authority.py
+  - scripts/sage/workflow/diagnosis.py
+  - scripts/sage/workflow/gaps.py
+  - scripts/sage/workflow/selection.py
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-outcome-metrics.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-outcome-metrics.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/outcome-metrics-baseline.json
+  - scripts/sage/sage-outcome-metrics-guardrail.py
+  - scripts/sage/workflow/metrics.py
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-root-enforcement.json
+  - markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/root-enforcement-readiness.json
+  - scripts/sage/sage-operating-contract-guardrail.py
+  - scripts/sage/sage-operating-contract-self-test.py
+  - scripts/sage/workflows/operating_contract.py
+
+  Baseline checks before editing:
+  - make sage-active-session-self-test
+  - make sage-review-self-test
+  - make sage-learning-self-test
+  - make sage-candidate-self-test
+  - make sage-feedback-self-test
+  - make sage-session-self-test
+  - make sage-improvement-policy-check
+  - make sage-discovery-guardrail
+  - make sage-index-check
+
+  Required validation after editing:
+  - make sage-active-session-self-test
+  - make sage-review-self-test
+  - make sage-learning-self-test
+  - make sage-candidate-self-test
+  - make sage-feedback-self-test
+  - make sage-session-self-test
+  - make sage-improvement-policy-check
+  - make sage-guardrails
+  - make sage-operating-contract-check
+
+  Evidence process:
+  - Preserve versioned predictions before outcomes are known.
+  - Capture delivery, operations, economics, and learning baselines.
+  - Compare predicted and actual outcomes and evaluate confidence calibration.
+  - Extract lessons and improvement actions from published evidence.
+  - Push every cohesive validated commit to the active feature branch.
+
+[helm-platform]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/helm-repositories.json
+  - infrastructure/k3s-homelab/helm-chart-lock.json
+  - infrastructure/k3s-homelab/playbooks/platform.yml
+  - infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+  - infrastructure/k3s-homelab/scripts/sage-deployment-guardrail.py
+
+  Baseline checks before editing:
+  - make helm-repository-guardrail
+  - make source-guardrails
+  - make deployment-guardrail
+
+  Required validation after editing:
+  - make source-guardrails
+  - make deployment-guardrail
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture repository, chart-lock, render, and deployment evidence.
+
+[observability]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+  - infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+  - infrastructure/k3s-homelab/helm-chart-lock.json
+
+  Baseline checks before editing:
+  - make source-guardrails
+  - make deployment-guardrail
+
+  Required validation after editing:
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture placement, health, requests, and Kubecost impact.
+
+[centralized-logging]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+  - infrastructure/k3s-homelab/playbooks/templates/loki-values.yml.j2
+  - infrastructure/k3s-homelab/playbooks/templates/fluent-bit-collector-values.yml.j2
+  - infrastructure/k3s-homelab/playbooks/templates/grafana-loki-datasource.yml.j2
+  - infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml
+  - infrastructure/k3s-homelab/scripts/validate-centralized-logging-yaml.py
+  - infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime.py
+  - infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime-self-test.py
+  - infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime-source-self-test.py
+
+  Baseline checks before editing:
+  - make helm-repository-guardrail
+  - make source-guardrails
+  - make deployment-guardrail
+  - make centralized-logging-render
+
+  Required validation after editing:
+  - make centralized-logging-render
+  - make cluster-guardrails
+
+  Evidence process:
+  - Preserve pre-deployment render evidence.
+  - Capture collector rollout and Loki placement.
+  - Compare post-deployment Kubecost results with the baseline.
+
+[storage]
+  Working directory: infrastructure/k3s-homelab
+
+  Authoritative files:
+  - infrastructure/k3s-homelab/playbooks/tasks/longhorn.yml
+  - infrastructure/k3s-homelab/playbooks/tasks/network-storage.yml
+  - infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+
+  Baseline checks before editing:
+  - make cluster-guardrails
+
+  Required validation after editing:
+  - make cluster-guardrails
+
+  Evidence process:
+  - Capture StorageClass, PVC, placement, retention, and recovery evidence.
+
+Implementation policy:
+  - Read every listed authoritative file before editing.
+  - Run baseline checks before implementation.
+  - Treat inactive reviewable code as a staged implementation.
+  - Run validation before activation or publication.
+  - Preserve terminal evidence for the SAGE record.
+python3 scripts/sage/sage-lessons.py --request "$SAGE_REQUEST"
+Kalaxy3 SAGE lessons discovery: PASS
+Repository: /Users/donbuddenbaum/dvlp/Kalaxy3
+Lesson request: Implement the approved centralized-logging alerts and SLOs scope on feature/centralized-logging-alerts-slos. Extend the existing reusable Grafana operations PrometheusRule with Fluent Bit coverage and Loki workload availability recording rules and actionable alerts. Use stabilization windows, validate live Prometheus inputs, run all SAGE baseline and post-edit checks from their declared working directories, commit and push the cohesive staged implementation, and do not apply the updated rule to the cluster.
+
+Applicable prior lessons:
+  - SAGE-LESSON-20260728-008: Use stabilization windows before classifying logging startup failures
+    Status: validated
+    Failure signature: Immediate post-deployment logging checks report transient 429 responses, old timestamps, or startup pressure that clears after the system stabilizes.
+    Preventive controls:
+      - Require baseline, immediate, stabilization, and trend windows.
+      - Do not classify transient startup pressure as a persistent defect.
+    Preflight detection:
+      - Require an explicit stabilization duration in logging validation plans.
+      - Check restart counts, recent timestamps, and errors after stabilization.
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) python3 -S scripts/sage/sage-lessons.py --request Implement the approved centralized-logging alerts and SLOs scope on feature/centralized-logging-alerts-slos. Extend the existing reusable Grafana operations PrometheusRule with Fluent Bit coverage and Loki workload availability recording rules and actionable alerts. Use stabilization windows, validate live Prometheus inputs, run all SAGE baseline and post-edit checks from their declared working directories, commit and push the cohesive staged implementation, and do not apply the updated rule to the cluster.
+Kalaxy3 SAGE lessons discovery: PASS
+Repository: /Users/donbuddenbaum/dvlp/Kalaxy3
+Lesson request: Implement the approved centralized-logging alerts and SLOs scope on feature/centralized-logging-alerts-slos. Extend the existing reusable Grafana operations PrometheusRule with Fluent Bit coverage and Loki workload availability recording rules and actionable alerts. Use stabilization windows, validate live Prometheus inputs, run all SAGE baseline and post-edit checks from their declared working directories, commit and push the cohesive staged implementation, and do not apply the updated rule to the cluster.
+
+Applicable prior lessons:
+  - SAGE-LESSON-20260728-008: Use stabilization windows before classifying logging startup failures
+    Status: validated
+    Failure signature: Immediate post-deployment logging checks report transient 429 responses, old timestamps, or startup pressure that clears after the system stabilizes.
+    Preventive controls:
+      - Require baseline, immediate, stabilization, and trend windows.
+      - Do not classify transient startup pressure as a persistent defect.
+    Preflight detection:
+      - Require an explicit stabilization duration in logging validation plans.
+      - Check restart counts, recent timestamps, and errors after stabilization.
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) python3 -S scripts/sage/sage-evidence-retrieval.py retrieve --request Implement the approved centralized-logging alerts and SLOs scope on feature/centralized-logging-alerts-slos. Extend the existing reusable Grafana operations PrometheusRule with Fluent Bit coverage and Loki workload availability recording rules and actionable alerts. Use stabilization windows, validate live Prometheus inputs, run all SAGE baseline and post-edit checks from their declared working directories, commit and push the cohesive staged implementation, and do not apply the updated rule to the cluster. --limit 30 --output /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-staging-20260802-222805-retrieval.json
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) git ls-files
+.gitattributes
+.github/workflows/kalaxy3_build_publish.yml
+.gitignore
+AGENTS.md
+LICENSE
+Makefile
+README.md
+SAGE.md
+cloud-init-setup/cloud-config.yml
+cloud-init-setup/k3-node-provisioning.zip
+cloud-init-setup/k3-node-provisioning/ansible/configure-amd64-nodes.yml
+cloud-init-setup/k3-node-provisioning/ansible/files/prepare-minio-disk.sh
+cloud-init-setup/k3-node-provisioning/ansible/inventory.yml
+cloud-init-setup/k3-node-provisioning/ansible/templates/50-k3s-uplink.yaml.j2
+cloud-init-setup/k3-node-provisioning/ansible/templates/hosts.j2
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-amd64-01.yml.reference-only
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-amd64-02.yml.reference-only
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-amd64-03.yml.reference-only
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-arm64-01.yml
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-arm64-02.yml
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-arm64-03.yml
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-arm64-04.yml
+cloud-init-setup/k3-node-provisioning/setup/cloud-config-arm64-05.yml
+cloud-init-setup/k3-node-provisioning/ubuntu-node-provisioning-fixed.md
+cloud-init-setup/legacy/cloud-config-1.yml
+cloud-init-setup/legacy/cloud-config-2.yml
+cloud-init-setup/legacy/cloud-config-3.yml
+cloud-init-setup/legacy/cloud-config-4.yml
+cloud-init-setup/legacy/cloud-config-400.yml
+cloud-init-setup/legacy/cloud-config-5.yml
+cloud-init-setup/legacy/cloud-config-amd64-1.yml
+cloud-init-setup/legacy/cloud-config-amd64-2.yml
+cloud-init-setup/legacy/cloud-config-amd64-3.yml
+cloud-init-setup/legacy/cloud-config.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible.tar.gz
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible.zip
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/README.md
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/ansible.cfg
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/collections/requirements.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/group_vars/all.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/inventory/hosts.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/k8s/minio/README.md
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/playbooks/site.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/roles/common/tasks/main.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/roles/microk8s/tasks/cluster.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/roles/microk8s/tasks/finalize.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/roles/microk8s/tasks/install.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/roles/microk8s/tasks/main.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s-ansible/roles/storage/tasks/main.yml
+cloud-init-setup/nodes/ansible-microk8s/microk8s_ansible_bundle (1).tar.gz
+cloud-init-setup/nodes/ansible-microk8s/microk8s_ansible_bundle.tar.gz
+cloud-init-setup/nodes/arm64-01.yml
+cloud-init-setup/nodes/arm64-02.yml
+cloud-init-setup/nodes/arm64-03.yml
+cloud-init-setup/nodes/arm64-04.yml
+cloud-init-setup/nodes/arm64-05.yml
+cloud-init-setup/nodes/new-amd64-01.yml
+cloud-init-setup/nodes/new-amd64-02.yml
+cloud-init-setup/nodes/new-amd64-03.yml
+docs/404.html
+docs/Infrastructure/K3s_Homelab/01_Architecture/index.html
+docs/Infrastructure/K3s_Homelab/02_IP_Address_Plan/index.html
+docs/Infrastructure/K3s_Homelab/03_Deployment_Order/index.html
+docs/Infrastructure/K3s_Homelab/04_Phased_Deployment/index.html
+docs/Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/index.html
+docs/Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/index.html
+docs/Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/index.html
+docs/Infrastructure/K3s_Homelab/Phase_Notes/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/Upgrade/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/index.html
+docs/Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/index.html
+docs/Infrastructure/K3s_Homelab/k3s-install-evidence/index.html
+docs/architecture/kalaxy3-sage-capability-intelligence-metrics.json
+docs/architecture/kalaxy3-sage-capability-intelligence/index.html
+docs/assets/images/favicon.png
+docs/assets/javascripts/bundle.d7400e89.min.js
+docs/assets/javascripts/bundle.d7400e89.min.js.map
+docs/assets/javascripts/lunr/min/lunr.ar.min.js
+docs/assets/javascripts/lunr/min/lunr.da.min.js
+docs/assets/javascripts/lunr/min/lunr.de.min.js
+docs/assets/javascripts/lunr/min/lunr.du.min.js
+docs/assets/javascripts/lunr/min/lunr.el.min.js
+docs/assets/javascripts/lunr/min/lunr.es.min.js
+docs/assets/javascripts/lunr/min/lunr.fi.min.js
+docs/assets/javascripts/lunr/min/lunr.fr.min.js
+docs/assets/javascripts/lunr/min/lunr.he.min.js
+docs/assets/javascripts/lunr/min/lunr.hi.min.js
+docs/assets/javascripts/lunr/min/lunr.hu.min.js
+docs/assets/javascripts/lunr/min/lunr.hy.min.js
+docs/assets/javascripts/lunr/min/lunr.it.min.js
+docs/assets/javascripts/lunr/min/lunr.ja.min.js
+docs/assets/javascripts/lunr/min/lunr.jp.min.js
+docs/assets/javascripts/lunr/min/lunr.kn.min.js
+docs/assets/javascripts/lunr/min/lunr.ko.min.js
+docs/assets/javascripts/lunr/min/lunr.multi.min.js
+docs/assets/javascripts/lunr/min/lunr.nl.min.js
+docs/assets/javascripts/lunr/min/lunr.no.min.js
+docs/assets/javascripts/lunr/min/lunr.pt.min.js
+docs/assets/javascripts/lunr/min/lunr.ro.min.js
+docs/assets/javascripts/lunr/min/lunr.ru.min.js
+docs/assets/javascripts/lunr/min/lunr.sa.min.js
+docs/assets/javascripts/lunr/min/lunr.stemmer.support.min.js
+docs/assets/javascripts/lunr/min/lunr.sv.min.js
+docs/assets/javascripts/lunr/min/lunr.ta.min.js
+docs/assets/javascripts/lunr/min/lunr.te.min.js
+docs/assets/javascripts/lunr/min/lunr.th.min.js
+docs/assets/javascripts/lunr/min/lunr.tr.min.js
+docs/assets/javascripts/lunr/min/lunr.vi.min.js
+docs/assets/javascripts/lunr/min/lunr.zh.min.js
+docs/assets/javascripts/lunr/tinyseg.js
+docs/assets/javascripts/lunr/wordcut.js
+docs/assets/javascripts/workers/search.2c215733.min.js
+docs/assets/javascripts/workers/search.2c215733.min.js.map
+docs/assets/stylesheets/main.ec1eaa64.min.css
+docs/assets/stylesheets/main.ec1eaa64.min.css.map
+docs/assets/stylesheets/palette.ab4e12ef.min.css
+docs/assets/stylesheets/palette.ab4e12ef.min.css.map
+docs/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md.sha256
+docs/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-DOCS-20260729-001/concise-evidence.txt
+docs/evidence-artifacts/SAGE-K3-DOCS-20260729-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-FINOPS-20260724-001/terminal-evidence-20260725/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/implementation-file-checksums.sha256
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/self-test-output.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/implementation-file-checksums.sha256
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/package-publication-test-output.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/self-test-output.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/implementation-file-checksums.sha256
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/self-test-output.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/upgrade-publication-test-output.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/implementation-commit-summary.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/guardrail-gap-analysis/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/pause-decision/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/daux-validation-output.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/external-artifact-checksums.sha256
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/implementation-commit-summary.txt
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/rendered-landing-page.png
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/source-config.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/source-index/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/validate-daux-landing-page.sh
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/validation-summary.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/implementation-lineage.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase1-closeout.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase1-event-log.jsonl
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase2-closeout.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase2-event-log.jsonl
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase3-closeout.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase3-event-log.jsonl
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase4-closeout.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase4-event-log.jsonl
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase5a-closeout.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase5a-event-log.jsonl
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/publication-inputs.json
+docs/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/evidence-input-provenance.json
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/evidence-input-provenance.json
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/github-pr5-checks-passed.png
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-001/generation-provenance/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-001/repository-authority-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-001/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-002/generation-provenance/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-002/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-package-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-record-package/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/generation-provenance/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-and-merge-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk/index.html
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h-summary.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h-summary.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h-summary.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h-summary.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-analysis.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-metadata.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/helm-releases.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/kubecost-live-values.yaml
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/node-usage.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/nodes.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pod-usage.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pods.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/source-input-archive.sha256
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/storage.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/workloads.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/evidence-inventory.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/bundle-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/kalaxy3-grafana-operations-evidence-inputs-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/kalaxy3-grafana-operations-evidence-inputs.zip
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/repository-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/sage-evidence-generation-brief/index.html
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/sage-session-context.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-evidence-closeout-contract-20260802-031900.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-contract-20260802-024450.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-rules-activation-failure.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-rules-activation-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-rules-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-activation-failure.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-activation-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-data-contract-20260802-014120.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-definition-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-telemetry-scrape-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-terminal-evidence.txt
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-sage-capture-repair-terminal-evidence.txt.gz
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-telemetry-endpoint-contract-20260802-004920.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-sage-authority-directory-capture-fix-receipt.json
+docs/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/terminal-evidence-summary/index.html
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-atomic-file.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-authority-reconcile.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-capability-gap.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-component-select.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-failure-diagnose.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-git-inspect.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-git-safety.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-operator-proposal.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-outcome-metrics.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-decision-primitives.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-outcome-metrics.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-root-enforcement.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/outcome-metrics-baseline.json
+docs/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/root-enforcement-readiness.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-001/authority-inventory.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-001/generation-input-manifest.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-001/implementation-summary.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-001/repository-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-001/terminal-evidence.txt
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-002/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-002/session-summary.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260729-002/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/commit-lineage/index.html
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/completed-session-snapshot.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/post-session-review.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/runtime-validation-action.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/runtime-validation-lesson.json
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-SAGE-20260731-001/validation-summary/index.html
+docs/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/external-artifact-checksums.sha256
+docs/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/implementation-commit-summary.txt
+docs/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/publication-manifest.json
+docs/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence/index.html
+docs/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/validation-summary.json
+docs/evidence/catalog.csv
+docs/evidence/catalog.json
+docs/evidence/current/index.html
+docs/evidence/generated-files.json
+docs/evidence/index.html
+docs/evidence/legacy-record-registry.json
+docs/evidence/legacy/index.html
+docs/evidence/migration-report/index.html
+docs/evidence/sections/benchmarks/index.html
+docs/evidence/sections/finops/index.html
+docs/evidence/sections/governance/index.html
+docs/evidence/sections/index.html
+docs/evidence/sections/installation/index.html
+docs/evidence/sections/operations/index.html
+docs/evidence/sections/security/index.html
+docs/evidence/sections/verification/index.html
+docs/evidence/status/historical/index.html
+docs/evidence/status/index.html
+docs/evidence/status/validated/index.html
+docs/evidence/subjects/amd64-nocloud-seed-usb-helper/index.html
+docs/evidence/subjects/amd64-node/index.html
+docs/evidence/subjects/amd64/index.html
+docs/evidence/subjects/centralized-logging-cost-baseline/index.html
+docs/evidence/subjects/centralized-observability-logging/index.html
+docs/evidence/subjects/grafana-operations-observability/index.html
+docs/evidence/subjects/index.html
+docs/evidence/subjects/intel-node-pi-administrative-access-evidence/index.html
+docs/evidence/subjects/k3s-api-high-availability/index.html
+docs/evidence/subjects/k3s-etcd-baseline-backup-evidence/index.html
+docs/evidence/subjects/kalaxy3-automation-controller-portability/index.html
+docs/evidence/subjects/kalaxy3-controller-access-baseline/index.html
+docs/evidence/subjects/kalaxy3-daux-landing-page/index.html
+docs/evidence/subjects/kalaxy3-documentation-publication/index.html
+docs/evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0/index.html
+docs/evidence/subjects/kubecost-chart-3-2-1/index.html
+docs/evidence/subjects/kubecost-installation/index.html
+docs/evidence/subjects/longhorn-kubecost/index.html
+docs/evidence/subjects/minio-installation-evidence/index.html
+docs/evidence/subjects/observability/index.html
+docs/evidence/subjects/protected-longhorn/index.html
+docs/evidence/subjects/protected-traefik-dashboard-installation/index.html
+docs/evidence/subjects/sage-actionable-failures/index.html
+docs/evidence/subjects/sage-ci-portability/index.html
+docs/evidence/subjects/sage-continuous-improvement-closeout/index.html
+docs/evidence/subjects/sage-continuous-improvement-metrics-pilot/index.html
+docs/evidence/subjects/sage-continuous-improvement/index.html
+docs/evidence/subjects/sage-enforcement-guardrails/index.html
+docs/evidence/subjects/sage-evidence-catalog/index.html
+docs/evidence/subjects/sage-record-schema/index.html
+docs/evidence/subjects/ubuntu-installation/index.html
+docs/evidence/subjects/ubuntu-node-provisioning/index.html
+docs/governance/kalaxy3-actionable-guardrail-ci-portability-evidence.md.sha256
+docs/governance/kalaxy3-actionable-guardrail-ci-portability-evidence/index.html
+docs/governance/kalaxy3-actionable-guardrail-recovery-evidence.md.sha256
+docs/governance/kalaxy3-actionable-guardrail-recovery-evidence/index.html
+docs/governance/kalaxy3-daux-landing-page-sage-evidence.md.sha256
+docs/governance/kalaxy3-daux-landing-page-sage-evidence/index.html
+docs/governance/kalaxy3-sage-continuous-improvement-foundation-evidence.md.sha256
+docs/governance/kalaxy3-sage-continuous-improvement-foundation-evidence/index.html
+docs/governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence.md.sha256
+docs/governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence/index.html
+docs/governance/kalaxy3-sage-metrics-pilot-closeout-evidence.md.sha256
+docs/governance/kalaxy3-sage-metrics-pilot-closeout-evidence/index.html
+docs/governance/kalaxy3-sage-metrics-pilot-evidence.md.sha256
+docs/governance/kalaxy3-sage-metrics-pilot-evidence/index.html
+docs/governance/kalaxy3-sage-operating-contract-enforcement-evidence.md.sha256
+docs/governance/kalaxy3-sage-operating-contract-enforcement-evidence/index.html
+docs/index.html
+docs/installation/k3s-api-ha-kube-vip/index.html
+docs/installation/k3s-etcd-baseline-backup-evidence/index.html
+docs/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition/index.html
+docs/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence/index.html
+docs/installation/kalaxy3-intel-pi-admin-access-evidence/index.html
+docs/installation/kalaxy3-kubecost-calibration-sage-evidence.md.sha256
+docs/installation/kalaxy3-kubecost-calibration-sage-evidence/index.html
+docs/installation/kalaxy3-kubecost-installation-and-verification/index.html
+docs/installation/kalaxy3-minio-installation-evidence/index.html
+docs/installation/kalaxy3-observability-and-kubecost/index.html
+docs/installation/kalaxy3-protected-ui-installation-evidence/index.html
+docs/installation/kalaxy3-traefik-dashboard-installation-evidence/index.html
+docs/installation/longhorn-kubecost-intel-node-preparation/index.html
+docs/installation/old/amd64-nocloud-seed-helper/index.html
+docs/installation/old/flash/index.html
+docs/installation/old/ubuntu-installation-and-node-provisioning-v2/index.html
+docs/installation/old/ubuntu-node-provisioning-fixed-amd64/index.html
+docs/installation/old/ubuntu-node-provisioning/index.html
+docs/installation/ubuntu-node-provisioning-fixed/index.html
+docs/operations/kalaxy3-centralized-logging-deployment-evidence.md.sha256
+docs/operations/kalaxy3-centralized-logging-deployment-evidence/index.html
+docs/operations/kalaxy3-controller-machine-portability-evidence.md.sha256
+docs/operations/kalaxy3-controller-machine-portability-evidence/index.html
+docs/operations/kalaxy3-grafana-operations-dashboard-alerting-evidence.md.sha256
+docs/operations/kalaxy3-grafana-operations-dashboard-alerting-evidence/index.html
+docs/operations/kalaxy3-mkdocs-material-publication-migration-evidence.md.sha256
+docs/operations/kalaxy3-mkdocs-material-publication-migration-evidence/index.html
+docs/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md.sha256
+docs/operations/kalaxy3-sage-canonical-metadata-contract-evidence/index.html
+docs/operations/kalaxy3-sage-evidence-publication-process-evidence.md.sha256
+docs/operations/kalaxy3-sage-evidence-publication-process-evidence/index.html
+docs/operations/kalaxy3-sage-legacy-evidence-navigation-evidence.md.sha256
+docs/operations/kalaxy3-sage-legacy-evidence-navigation-evidence/index.html
+docs/operations/kalaxy3-sage-observability-iterative-readiness-evidence.md.sha256
+docs/operations/kalaxy3-sage-observability-iterative-readiness-evidence/index.html
+docs/research/kalaxy3-cost-model-architecture-and-finops-analysis/index.html
+docs/rpi4.png
+docs/search/search_index.json
+docs/security/kalaxy3-controller-access-baseline-sage-evidence.md.sha256
+docs/security/kalaxy3-controller-access-baseline-sage-evidence/index.html
+docs/sitemap.xml
+docs/sitemap.xml.gz
+docs/standards/kalaxy3-mkdocs-evidence-navigation-process/index.html
+docs/standards/kalaxy3-sage-actionable-failure-contract/index.html
+docs/standards/kalaxy3-sage-capability-intelligence-process/index.html
+docs/standards/kalaxy3-sage-change-discovery-process/index.html
+docs/standards/kalaxy3-sage-continuous-improvement-process/index.html
+docs/standards/kalaxy3-sage-evidence-orchestration-process/index.html
+docs/standards/kalaxy3-sage-evidence-publication-process/index.html
+docs/standards/kalaxy3-sage-evidence-record-standard/index.html
+docs/standards/kalaxy3-sage-evidence-retrieval-process/index.html
+docs/standards/kalaxy3-sage-operating-contract/index.html
+docs/standards/kalaxy3-sage-workflow-primitives-process/index.html
+docs/standards/kalaxy3-sage-workflow-support-process/index.html
+docs/standards/sage-active-session-schema-v1.0.json
+docs/standards/sage-authority-reconciliation-schema-v1.0.json
+docs/standards/sage-capability-gap-receipt-schema-v1.0.json
+docs/standards/sage-capability-intelligence-schema-v1.0.json
+docs/standards/sage-change-candidate-lifecycle-schema-v1.0.json
+docs/standards/sage-change-candidate-schema-v1.0.json
+docs/standards/sage-component-selection-manifest-schema-v1.0.json
+docs/standards/sage-continuous-improvement-baseline-schema-v1.0.json
+docs/standards/sage-evidence-metadata-contract-v1.1.json
+docs/standards/sage-evidence-metadata-contract-v1.2.json
+docs/standards/sage-evidence-retrieval-result-schema-v1.0.json
+docs/standards/sage-failure-diagnosis-schema-v1.0.json
+docs/standards/sage-feedback-comparison-schema-v1.0.json
+docs/standards/sage-improvement-action-schema-v1.0.json
+docs/standards/sage-operator-git-proposal-schema-v1.0.json
+docs/standards/sage-outcome-metrics-schema-v1.0.json
+docs/standards/sage-post-session-review-schema-v1.0.json
+docs/standards/sage-session-improvement-schema-v1.0.json
+docs/standards/sage-session-scorecard-schema-v1.0.json
+docs/standards/sage-workflow-primitives-schema-v1.0.json
+docs/verification/kalaxy3-centralized-logging-sage-evidence-quality-audit.md.sha256
+docs/verification/kalaxy3-centralized-logging-sage-evidence-quality-audit/index.html
+infrastructure/k3s-homelab/.gitignore
+infrastructure/k3s-homelab/.helm-version
+infrastructure/k3s-homelab/.python-version
+infrastructure/k3s-homelab/.uv-version
+infrastructure/k3s-homelab/Makefile
+infrastructure/k3s-homelab/README.md
+infrastructure/k3s-homelab/access/controller-keys/donb-mac-mini-ed25519.pub
+infrastructure/k3s-homelab/access/controller-keys/donbs-imac-rsa.pub
+infrastructure/k3s-homelab/ansible.cfg
+infrastructure/k3s-homelab/helm-chart-lock.json
+infrastructure/k3s-homelab/helm-platforms.json
+infrastructure/k3s-homelab/helm-repositories.json
+infrastructure/k3s-homelab/inventory/future/intel-hosts.example.yml
+infrastructure/k3s-homelab/inventory/group_vars/all/kubecost-calibration.yml
+infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+infrastructure/k3s-homelab/inventory/host_vars/amd64-01.yml
+infrastructure/k3s-homelab/inventory/host_vars/amd64-02.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-01.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-02.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-03.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-04.yml
+infrastructure/k3s-homelab/inventory/host_vars/arm64-05.yml
+infrastructure/k3s-homelab/inventory/hosts.yml
+infrastructure/k3s-homelab/inventory/ssh_known_hosts
+infrastructure/k3s-homelab/k3s-platforms.json
+infrastructure/k3s-homelab/manifests/kube-vip/kube-vip-daemonset.yaml
+infrastructure/k3s-homelab/manifests/kube-vip/kube-vip-rbac.yaml
+infrastructure/k3s-homelab/manifests/metallb.yml.j2
+infrastructure/k3s-homelab/manifests/minio.yml.j2
+infrastructure/k3s-homelab/manifests/protected-ui-routes.yml
+infrastructure/k3s-homelab/manifests/traefik-config.yml.j2
+infrastructure/k3s-homelab/playbooks/access-baseline.yml
+infrastructure/k3s-homelab/playbooks/bootstrap-static-network.yml
+infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml
+infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-configmap.yml
+infrastructure/k3s-homelab/playbooks/files/grafana-operations-dashboard-contract.json
+infrastructure/k3s-homelab/playbooks/k3s.yml
+infrastructure/k3s-homelab/playbooks/kubecost-calibration-only.yml
+infrastructure/k3s-homelab/playbooks/longhorn-prerequisites.yml
+infrastructure/k3s-homelab/playbooks/longhorn-prerequisites.yml.before-amd64-01
+infrastructure/k3s-homelab/playbooks/phases/phase-00-readiness.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-01-prerequisites.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-02-k3s.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-03-network-storage.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-04-ui.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-05-observability.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-06-minio.yml
+infrastructure/k3s-homelab/playbooks/phases/phase-08-intel.yml
+infrastructure/k3s-homelab/playbooks/platform.yml
+infrastructure/k3s-homelab/playbooks/prerequisites.yml
+infrastructure/k3s-homelab/playbooks/reconcile-centralized-logging-labels.yml
+infrastructure/k3s-homelab/playbooks/site.yml
+infrastructure/k3s-homelab/playbooks/tasks/centralized-logging-node-labels.yml
+infrastructure/k3s-homelab/playbooks/tasks/install-k3s.yml
+infrastructure/k3s-homelab/playbooks/tasks/kubecost-calibration.yml
+infrastructure/k3s-homelab/playbooks/tasks/kubecost-node-label.yml
+infrastructure/k3s-homelab/playbooks/tasks/longhorn.yml
+infrastructure/k3s-homelab/playbooks/tasks/minio.yml
+infrastructure/k3s-homelab/playbooks/tasks/network-storage.yml
+infrastructure/k3s-homelab/playbooks/tasks/observability.yml
+infrastructure/k3s-homelab/playbooks/tasks/protected-ui.yml
+infrastructure/k3s-homelab/playbooks/tasks/ui.yml
+infrastructure/k3s-homelab/playbooks/templates/fluent-bit-collector-values.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/grafana-loki-datasource.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/grafana-operations-servicemonitors.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/kubecost-calibration-values.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/kubecost-values.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/loki-values.yml.j2
+infrastructure/k3s-homelab/playbooks/templates/longhorn-values.yml.j2
+infrastructure/k3s-homelab/playbooks/uninstall.yml
+infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml
+infrastructure/k3s-homelab/playbooks/validate-grafana-operations.yml
+infrastructure/k3s-homelab/requirements.txt
+infrastructure/k3s-homelab/requirements.yml
+infrastructure/k3s-homelab/scripts/ansible-access-preflight.py
+infrastructure/k3s-homelab/scripts/bootstrap-ssh-key.py
+infrastructure/k3s-homelab/scripts/controller-preflight.py
+infrastructure/k3s-homelab/scripts/helm
+infrastructure/k3s-homelab/scripts/helm-lock-reconcile.py
+infrastructure/k3s-homelab/scripts/install-repository-helm.py
+infrastructure/k3s-homelab/scripts/install-repository-uv.py
+infrastructure/k3s-homelab/scripts/sage-deployment-guardrail.py
+infrastructure/k3s-homelab/scripts/sage-helm-repository-guardrail.py
+infrastructure/k3s-homelab/scripts/sage-k3s-guardrail.py
+infrastructure/k3s-homelab/scripts/sage-source-guardrails.py
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime-self-test.py
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime-source-self-test.py
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime.py
+infrastructure/k3s-homelab/scripts/validate-centralized-logging-yaml.py
+infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py
+infrastructure/k3s-homelab/scripts/validate-grafana-operations-dashboard.py
+infrastructure/k3s-homelab/scripts/validate-grafana-operations-yaml.py
+infrastructure/k3s-homelab/scripts/validate-phase.sh
+infrastructure/k3s-homelab/scripts/verify-ssh-host-keys.py
+infrastructure/k3s-homelab/templates/k3s-agent-config.yml.j2
+infrastructure/k3s-homelab/templates/k3s-server-config.yml.j2
+infrastructure/k3s-homelab/uv-platforms.json
+markdown/Infrastructure/K3s_Homelab/01_Architecture.md
+markdown/Infrastructure/K3s_Homelab/02_IP_Address_Plan.md
+markdown/Infrastructure/K3s_Homelab/03_Deployment_Order.md
+markdown/Infrastructure/K3s_Homelab/04_Phased_Deployment.md
+markdown/Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane.md
+markdown/Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik.md
+markdown/Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation.md
+markdown/Infrastructure/K3s_Homelab/Phase_Notes.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/Troubleshooting.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/Upgrade.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence.md
+markdown/Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence.md
+markdown/Infrastructure/K3s_Homelab/k3s-install-evidence.md
+markdown/_index.md
+markdown/architecture/kalaxy3-sage-capability-intelligence-metrics.json
+markdown/architecture/kalaxy3-sage-capability-intelligence.md
+markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md
+markdown/benchmarks/kalaxy3-pre-logging-kubecost-baseline-evidence.md.sha256
+markdown/evidence-artifacts/SAGE-K3-DOCS-20260729-001/concise-evidence.txt
+markdown/evidence-artifacts/SAGE-K3-DOCS-20260729-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-FINOPS-20260724-001/terminal-evidence-20260725.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/implementation-file-checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-001/self-test-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/implementation-file-checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/package-publication-test-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-002/self-test-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/implementation-file-checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/self-test-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260725-003/upgrade-publication-test-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/implementation-commit-summary.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-001/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/guardrail-gap-analysis.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/pause-decision.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-002/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/daux-validation-output.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/external-artifact-checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/implementation-commit-summary.txt
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/rendered-landing-page.png
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/source-config.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/source-index.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/validate-daux-landing-page.sh
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260726-003/validation-summary.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/implementation-lineage.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase1-closeout.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase1-event-log.jsonl
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase2-closeout.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase2-event-log.jsonl
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase3-closeout.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase3-event-log.jsonl
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase4-closeout.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase4-event-log.jsonl
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase5a-closeout.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/phase5a-event-log.jsonl
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/publication-inputs.json
+markdown/evidence-artifacts/SAGE-K3-GOVERNANCE-20260801-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/evidence-input-provenance.json
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-001/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/evidence-input-provenance.json
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/github-pr5-checks-passed.png
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-GUARDRAIL-20260731-002/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/generation-provenance.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/repository-authority-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-001/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/generation-provenance.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/repository-authority-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-002/terminal-transcript.txt
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audit-method.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-package-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/audited-source-record-package.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/generation-provenance.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-and-merge-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBS-20260728-003/requirement-crosswalk.md
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h-summary.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-24h.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h-summary.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-fully-burdened-72h.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h-summary.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-24h.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h-summary.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/allocation-raw-72h.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-analysis.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/baseline-metadata.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/helm-releases.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/kubecost-live-values.yaml
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/node-usage.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/nodes.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pod-usage.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/pods.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/source-input-archive.sha256
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/storage.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/pre-logging/workloads.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260725-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/evidence-inventory.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/bundle-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/kalaxy3-grafana-operations-evidence-inputs-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/kalaxy3-grafana-operations-evidence-inputs.zip
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/repository-evidence.md
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/sage-evidence-generation-brief.md
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/input/sage-session-context.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-evidence-closeout-contract-20260802-031900.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-contract-20260802-024450.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-rules-activation-failure.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-rules-activation-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-alert-rules-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-activation-failure.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-activation-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-data-contract-20260802-014120.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-dashboard-definition-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-telemetry-scrape-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-operations-terminal-evidence.txt
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-sage-capture-repair-terminal-evidence.txt.gz
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-grafana-telemetry-endpoint-contract-20260802-004920.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/source/kalaxy3-sage-authority-directory-capture-fix-receipt.json
+markdown/evidence-artifacts/SAGE-K3-OBSERVABILITY-20260802-001/terminal-evidence-summary.md
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-atomic-file.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-authority-reconcile.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-capability-gap.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-component-select.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-failure-diagnose.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-git-inspect.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-git-safety.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-operator-proposal.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/capability-gap-outcome-metrics.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-approved.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-decision-primitives.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-outcome-metrics.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/component-selection-root-enforcement.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/outcome-metrics-baseline.json
+markdown/evidence-artifacts/SAGE-K3-OPERATING-CONTRACT-20260801-001/root-enforcement-readiness.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/authority-inventory.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/generation-input-manifest.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/implementation-summary.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/repository-evidence.md
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-001/terminal-evidence.txt
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-002/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-002/session-summary.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260729-002/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/commit-lineage.md
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/completed-session-snapshot.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/post-session-review.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/runtime-validation-action.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/runtime-validation-lesson.json
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-SAGE-20260731-001/validation-summary.md
+markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/external-artifact-checksums.sha256
+markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/implementation-commit-summary.txt
+markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/publication-manifest.json
+markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/terminal-evidence.md
+markdown/evidence-artifacts/SAGE-K3-SECURITY-20260726-001/validation-summary.json
+markdown/evidence/catalog.csv
+markdown/evidence/catalog.json
+markdown/evidence/current.md
+markdown/evidence/generated-files.json
+markdown/evidence/index.md
+markdown/evidence/legacy-record-registry.json
+markdown/evidence/legacy.md
+markdown/evidence/migration-report.md
+markdown/evidence/sections/benchmarks.md
+markdown/evidence/sections/finops.md
+markdown/evidence/sections/governance.md
+markdown/evidence/sections/index.md
+markdown/evidence/sections/installation.md
+markdown/evidence/sections/operations.md
+markdown/evidence/sections/security.md
+markdown/evidence/sections/verification.md
+markdown/evidence/status/historical.md
+markdown/evidence/status/index.md
+markdown/evidence/status/validated.md
+markdown/evidence/subjects/amd64-nocloud-seed-usb-helper.md
+markdown/evidence/subjects/amd64-node.md
+markdown/evidence/subjects/amd64.md
+markdown/evidence/subjects/centralized-logging-cost-baseline.md
+markdown/evidence/subjects/centralized-observability-logging.md
+markdown/evidence/subjects/grafana-operations-observability.md
+markdown/evidence/subjects/index.md
+markdown/evidence/subjects/intel-node-pi-administrative-access-evidence.md
+markdown/evidence/subjects/k3s-api-high-availability.md
+markdown/evidence/subjects/k3s-etcd-baseline-backup-evidence.md
+markdown/evidence/subjects/kalaxy3-automation-controller-portability.md
+markdown/evidence/subjects/kalaxy3-controller-access-baseline.md
+markdown/evidence/subjects/kalaxy3-daux-landing-page.md
+markdown/evidence/subjects/kalaxy3-documentation-publication.md
+markdown/evidence/subjects/kalaxy3-sage-evidence-record-standard-1-0.md
+markdown/evidence/subjects/kubecost-chart-3-2-1.md
+markdown/evidence/subjects/kubecost-installation.md
+markdown/evidence/subjects/longhorn-kubecost.md
+markdown/evidence/subjects/minio-installation-evidence.md
+markdown/evidence/subjects/observability.md
+markdown/evidence/subjects/protected-longhorn.md
+markdown/evidence/subjects/protected-traefik-dashboard-installation.md
+markdown/evidence/subjects/sage-actionable-failures.md
+markdown/evidence/subjects/sage-ci-portability.md
+markdown/evidence/subjects/sage-continuous-improvement-closeout.md
+markdown/evidence/subjects/sage-continuous-improvement-metrics-pilot.md
+markdown/evidence/subjects/sage-continuous-improvement.md
+markdown/evidence/subjects/sage-enforcement-guardrails.md
+markdown/evidence/subjects/sage-evidence-catalog.md
+markdown/evidence/subjects/sage-record-schema.md
+markdown/evidence/subjects/ubuntu-installation.md
+markdown/evidence/subjects/ubuntu-node-provisioning.md
+markdown/governance/kalaxy3-actionable-guardrail-ci-portability-evidence.md
+markdown/governance/kalaxy3-actionable-guardrail-ci-portability-evidence.md.sha256
+markdown/governance/kalaxy3-actionable-guardrail-recovery-evidence.md
+markdown/governance/kalaxy3-actionable-guardrail-recovery-evidence.md.sha256
+markdown/governance/kalaxy3-daux-landing-page-sage-evidence.md
+markdown/governance/kalaxy3-daux-landing-page-sage-evidence.md.sha256
+markdown/governance/kalaxy3-sage-continuous-improvement-foundation-evidence.md
+markdown/governance/kalaxy3-sage-continuous-improvement-foundation-evidence.md.sha256
+markdown/governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence.md
+markdown/governance/kalaxy3-sage-guardrail-gap-observability-pause-evidence.md.sha256
+markdown/governance/kalaxy3-sage-metrics-pilot-closeout-evidence.md
+markdown/governance/kalaxy3-sage-metrics-pilot-closeout-evidence.md.sha256
+markdown/governance/kalaxy3-sage-metrics-pilot-evidence.md
+markdown/governance/kalaxy3-sage-metrics-pilot-evidence.md.sha256
+markdown/governance/kalaxy3-sage-operating-contract-enforcement-evidence.md
+markdown/governance/kalaxy3-sage-operating-contract-enforcement-evidence.md.sha256
+markdown/installation/k3s-api-ha-kube-vip.md
+markdown/installation/k3s-etcd-baseline-backup-evidence.md
+markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md
+markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md
+markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md
+markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md
+markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md.sha256
+markdown/installation/kalaxy3-kubecost-installation-and-verification.md
+markdown/installation/kalaxy3-minio-installation-evidence.md
+markdown/installation/kalaxy3-observability-and-kubecost.md
+markdown/installation/kalaxy3-protected-ui-installation-evidence.md
+markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md
+markdown/installation/longhorn-kubecost-intel-node-preparation.md
+markdown/installation/old/amd64-nocloud-seed-helper.md
+markdown/installation/old/flash.md
+markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md
+markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md
+markdown/installation/old/ubuntu-node-provisioning.md
+markdown/installation/ubuntu-node-provisioning-fixed.md
+markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md
+markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md.sha256
+markdown/operations/kalaxy3-controller-machine-portability-evidence.md
+markdown/operations/kalaxy3-controller-machine-portability-evidence.md.sha256
+markdown/operations/kalaxy3-grafana-operations-dashboard-alerting-evidence.md
+markdown/operations/kalaxy3-grafana-operations-dashboard-alerting-evidence.md.sha256
+markdown/operations/kalaxy3-mkdocs-material-publication-migration-evidence.md
+markdown/operations/kalaxy3-mkdocs-material-publication-migration-evidence.md.sha256
+markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md
+markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md.sha256
+markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md
+markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md.sha256
+markdown/operations/kalaxy3-sage-legacy-evidence-navigation-evidence.md
+markdown/operations/kalaxy3-sage-legacy-evidence-navigation-evidence.md.sha256
+markdown/operations/kalaxy3-sage-observability-iterative-readiness-evidence.md
+markdown/operations/kalaxy3-sage-observability-iterative-readiness-evidence.md.sha256
+markdown/research/kalaxy3-cost-model-architecture-and-finops-analysis.md
+markdown/rpi4.png
+markdown/security/kalaxy3-controller-access-baseline-sage-evidence.md
+markdown/security/kalaxy3-controller-access-baseline-sage-evidence.md.sha256
+markdown/standards/kalaxy3-mkdocs-evidence-navigation-process.md
+markdown/standards/kalaxy3-sage-actionable-failure-contract.md
+markdown/standards/kalaxy3-sage-capability-intelligence-process.md
+markdown/standards/kalaxy3-sage-change-discovery-process.md
+markdown/standards/kalaxy3-sage-continuous-improvement-process.md
+markdown/standards/kalaxy3-sage-evidence-orchestration-process.md
+markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/standards/kalaxy3-sage-evidence-record-standard.md
+markdown/standards/kalaxy3-sage-evidence-retrieval-process.md
+markdown/standards/kalaxy3-sage-operating-contract.md
+markdown/standards/kalaxy3-sage-workflow-primitives-process.md
+markdown/standards/kalaxy3-sage-workflow-support-process.md
+markdown/standards/sage-active-session-schema-v1.0.json
+markdown/standards/sage-authority-reconciliation-schema-v1.0.json
+markdown/standards/sage-capability-gap-receipt-schema-v1.0.json
+markdown/standards/sage-capability-intelligence-schema-v1.0.json
+markdown/standards/sage-change-candidate-lifecycle-schema-v1.0.json
+markdown/standards/sage-change-candidate-schema-v1.0.json
+markdown/standards/sage-component-selection-manifest-schema-v1.0.json
+markdown/standards/sage-continuous-improvement-baseline-schema-v1.0.json
+markdown/standards/sage-evidence-metadata-contract-v1.1.json
+markdown/standards/sage-evidence-metadata-contract-v1.2.json
+markdown/standards/sage-evidence-retrieval-result-schema-v1.0.json
+markdown/standards/sage-failure-diagnosis-schema-v1.0.json
+markdown/standards/sage-feedback-comparison-schema-v1.0.json
+markdown/standards/sage-improvement-action-schema-v1.0.json
+markdown/standards/sage-operator-git-proposal-schema-v1.0.json
+markdown/standards/sage-outcome-metrics-schema-v1.0.json
+markdown/standards/sage-post-session-review-schema-v1.0.json
+markdown/standards/sage-session-improvement-schema-v1.0.json
+markdown/standards/sage-session-scorecard-schema-v1.0.json
+markdown/standards/sage-workflow-primitives-schema-v1.0.json
+markdown/templates/sage-evidence-generation-request.md
+markdown/templates/sage-evidence-package-manifest-template.json
+markdown/templates/sage-evidence-record-template.md
+markdown/verification/kalaxy3-centralized-logging-sage-evidence-quality-audit.md
+markdown/verification/kalaxy3-centralized-logging-sage-evidence-quality-audit.md.sha256
+mkdocs-navigation-policy.json
+mkdocs.yml
+requirements-docs.lock.txt
+requirements-docs.txt
+sage-actionable-failure-registry.json
+sage-actionable-failures.json
+sage-active-session-registry.json
+sage-capability-intelligence.json
+sage-change-authority.json
+sage-change-candidate-lifecycle-registry.json
+sage-change-candidate-registry.json
+sage-continuous-improvement-baseline-registry.json
+sage-continuous-improvement-policy.json
+sage-evidence-policy.json
+sage-evidence-retrieval-policy.json
+sage-evidence-template-policy.json
+sage-feedback-baseline-registry.json
+sage-improvement-actions.json
+sage-lessons.json
+sage-operating-contract-policy.json
+sage-post-session-review-registry.json
+sage-session-improvement-registry.json
+sage-workflow-primitives.json
+scripts/docs/generate-mkdocs-navigation.py
+scripts/docs/navigation_support.py
+scripts/docs/prepare-mkdocs-source.py
+scripts/docs/promote-mkdocs-site.py
+scripts/docs/validate-mkdocs-build.py
+scripts/docs/validate-mkdocs-navigation.py
+scripts/docs/validate-mkdocs-publication.py
+scripts/sage/.gitignore
+scripts/sage/README.md
+scripts/sage/sage-action-id.py
+scripts/sage/sage-actionable-failure-audit.py
+scripts/sage/sage-actionable-failure-guardrail.py
+scripts/sage/sage-actionable-failure-self-test.py
+scripts/sage/sage-active-session-guardrail.py
+scripts/sage/sage-active-session.py
+scripts/sage/sage-baseline-extract.py
+scripts/sage/sage-candidate-lifecycle-guardrail.py
+scripts/sage/sage-candidate-lifecycle.py
+scripts/sage/sage-capability-intelligence-guardrail.py
+scripts/sage/sage-capability-intelligence.py
+scripts/sage/sage-change-discovery-guardrail.py
+scripts/sage/sage-change-preflight.py
+scripts/sage/sage-continuous-improvement-guardrail.py
+scripts/sage/sage-decision-primitives-guardrail.py
+scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+scripts/sage/sage-evidence-orchestration-guardrail.py
+scripts/sage/sage-evidence-orchestrator.py
+scripts/sage/sage-evidence-retrieval-self-test.py
+scripts/sage/sage-evidence-retrieval.py
+scripts/sage/sage-evidence-template-guardrail.py
+scripts/sage/sage-failure-retrieval-gate.py
+scripts/sage/sage-feedback-compare.py
+scripts/sage/sage-feedback-guardrail.py
+scripts/sage/sage-file-delivery-guardrail.py
+scripts/sage/sage-git-safety-guardrail.py
+scripts/sage/sage-improvement-actions.py
+scripts/sage/sage-index.py
+scripts/sage/sage-learning-guardrail.py
+scripts/sage/sage-lessons.py
+scripts/sage/sage-operating-contract-guardrail.py
+scripts/sage/sage-operating-contract-self-test.py
+scripts/sage/sage-outcome-metrics-guardrail.py
+scripts/sage/sage-post-session-review-guardrail.py
+scripts/sage/sage-post-session-review.py
+scripts/sage/sage-publish.py
+scripts/sage/sage-python-static-guardrail.py
+scripts/sage/sage-session-close.py
+scripts/sage/sage-session-score.py
+scripts/sage/sage-validator-runner.py
+scripts/sage/sage-workflow-primitives-guardrail.py
+scripts/sage/sage-workflow-primitives-self-test.py
+scripts/sage/sage-workflow-support-guardrail.py
+scripts/sage/sage-workflow-usage.py
+scripts/sage/sage-yaml-metadata-self-test.py
+scripts/sage/sage-yaml-metadata-source-self-test.py
+scripts/sage/sage_actionable_failure.py
+scripts/sage/sage_evidence_retrieval.py
+scripts/sage/sage_identifiers.py
+scripts/sage/sage_yaml_metadata.py
+scripts/sage/workflow/__init__.py
+scripts/sage/workflow/authority.py
+scripts/sage/workflow/catalog.py
+scripts/sage/workflow/composition.py
+scripts/sage/workflow/diagnosis.py
+scripts/sage/workflow/discovery.py
+scripts/sage/workflow/evidence.py
+scripts/sage/workflow/evidence_records.py
+scripts/sage/workflow/files.py
+scripts/sage/workflow/gaps.py
+scripts/sage/workflow/git.py
+scripts/sage/workflow/git_inspect.py
+scripts/sage/workflow/lifecycle.py
+scripts/sage/workflow/logging.py
+scripts/sage/workflow/makefile.py
+scripts/sage/workflow/markdown.py
+scripts/sage/workflow/metrics.py
+scripts/sage/workflow/model.py
+scripts/sage/workflow/proposal.py
+scripts/sage/workflow/runner.py
+scripts/sage/workflow/safety.py
+scripts/sage/workflow/selection.py
+scripts/sage/workflow/usage.py
+scripts/sage/workflow/validation.py
+scripts/sage/workflows/evidence_navigation.py
+scripts/sage/workflows/operating_contract.py
+scripts/sage/workflows/validate-repository.py
+yaml/nginx-docs/k8s-doc-to-nginx/.helmignore
+yaml/nginx-docs/k8s-doc-to-nginx/Chart.yaml
+yaml/nginx-docs/k8s-doc-to-nginx/image_updater_old/argocd-image-updater.yaml
+yaml/nginx-docs/k8s-doc-to-nginx/nginx/Dockerfile
+yaml/nginx-docs/k8s-doc-to-nginx/templates/_helpers.tpl
+yaml/nginx-docs/k8s-doc-to-nginx/templates/nginx-doc-deployment.yaml
+yaml/nginx-docs/k8s-doc-to-nginx/templates/nginx-doc-service.yaml
+yaml/nginx-docs/k8s-doc-to-nginx/templates/ns.yaml
+yaml/nginx-docs/k8s-doc-to-nginx/values.yaml
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-discovery-guardrail
+python3 scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-index-check
+python3 scripts/sage/sage-index.py check
+SAGE evidence reconciliation: PASS
+Records:          36
+Generated paths:  50
+Changed paths:    0
+CURATION: markdown/installation/k3s-api-ha-kube-vip.md needs registry review
+CURATION: markdown/installation/k3s-etcd-baseline-backup-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-installation-and-verification.md needs registry review
+CURATION: markdown/installation/kalaxy3-minio-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-observability-and-kubecost.md needs registry review
+CURATION: markdown/installation/kalaxy3-protected-ui-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md needs registry review
+CURATION: markdown/installation/longhorn-kubecost-intel-node-preparation.md needs registry review
+CURATION: markdown/installation/old/amd64-nocloud-seed-helper.md needs registry review
+CURATION: markdown/installation/old/flash.md needs registry review
+CURATION: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning.md needs registry review
+CURATION: markdown/installation/ubuntu-node-provisioning-fixed.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md needs registry review
+LEGACY: markdown/installation/k3s-api-ha-kube-vip.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/k3s-etcd-baseline-backup-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-installation-and-verification.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-minio-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-observability-and-kubecost.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-protected-ui-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/longhorn-kubecost-intel-node-preparation.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/amd64-nocloud-seed-helper.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/flash.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/ubuntu-node-provisioning-fixed.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md indexed as sage-legacy with inferred metadata
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-evidence-guardrail
+python3 scripts/sage/sage-evidence-orchestration-guardrail.py
+PASS canonical evidence request integrity
+PASS repository-owned evidence policy and authorities
+PASS plain-language evidence request regression tests
+PASS original requester language preservation
+PASS root Make evidence-generation entry points
+PASS evidence policy mutation negative tests
+Kalaxy3 SAGE evidence orchestration guardrail: PASS
+python3 scripts/sage/sage-evidence-template-guardrail.py
+Kalaxy3 SAGE evidence template guardrail: PASS
+Current schema 1.2 records: 16
+Exact current template records: 1
+Compatible immutable variants: 15
+Historical and legacy records: 20
+New evidence packages require the exact current template
+python3 scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+Kalaxy3 evidence navigation architecture guardrail: PASS
+Reuse objectives passed: 10
+Registered primitives used by composition: 10
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-active-session-self-test
+python3 scripts/sage/sage-active-session.py --self-test
+PASS canonical active-session registry contract
+PASS duplicate session rejection
+PASS label-and-digest-only command storage
+PASS unknown measurements remain null
+PASS known-failure metrics are preserved
+PASS unsafe raw command data is rejected
+Kalaxy3 SAGE active-session self-test: PASS
+python3 scripts/sage/sage-active-session-guardrail.py
+PASS canonical active-session policy references
+PASS active-session and event schema contract
+PASS valid active-session registry
+PASS authority and path classification
+PASS local runtime ledger exclusion
+PASS duplicate and open-gate mutation negatives
+PASS repository-owned recorder self-test
+Kalaxy3 SAGE active-session guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-review-self-test
+python3 scripts/sage/sage-post-session-review.py --self-test
+PASS canonical post-session questions
+PASS canonical session linkage
+PASS known-failure and lesson-use review
+PASS unavailable failure rework remains null
+PASS four-plane feedback review
+PASS lesson-to-control decision coverage
+PASS action drafts validated without mutation
+PASS no-action decisions require rationale
+PASS post-session review mutation negative tests
+Kalaxy3 SAGE post-session review self-test: PASS
+python3 scripts/sage/sage-post-session-review-guardrail.py
+PASS canonical post-session review policy
+PASS canonical post-session review registry
+PASS canonical questions and session linkage
+PASS known-failure and lesson-use review contract
+PASS unavailable failure rework remains nullable
+PASS four-plane feedback review contract
+PASS lesson-to-control decision coverage
+PASS action registration remains a separate mutation
+PASS registered actions match review drafts
+PASS expected negative Git tests remain quiet
+PASS post-session policy mutation negative tests
+Kalaxy3 SAGE post-session review guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-learning-self-test
+python3 scripts/sage/sage-improvement-actions.py --self-test
+PASS canonical improvement-action lifecycle
+PASS evidence-backed registration
+PASS append-only contiguous action history
+PASS dry-run registration and transition planning
+PASS explicit apply required for mutation
+PASS invalid transitions fail closed
+Kalaxy3 SAGE improvement-action self-test: PASS
+python3 scripts/sage/sage-baseline-extract.py --self-test
+PASS Git numstat baseline parsing
+PASS registry-count extraction contract
+PASS unavailable session metrics remain null
+PASS populated-session aggregation fails closed
+PASS baseline check normalization
+Kalaxy3 SAGE baseline extraction self-test: PASS
+python3 scripts/sage/sage-learning-guardrail.py
+PASS canonical improvement-action lifecycle policy
+PASS evidence-backed action registry
+PASS append-only dry-run action tooling
+PASS deterministic repository baseline extraction
+PASS unavailable process metrics remain null
+PASS prediction and provenance references preserved
+PASS composite baseline scoring remains closed
+PASS learning-policy mutation negative tests
+Kalaxy3 SAGE learning guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-candidate-self-test
+python3 scripts/sage/sage-candidate-lifecycle.py --self-test
+PASS canonical candidate lifecycle policy
+PASS append-only contiguous transition history
+PASS dry-run lifecycle registration
+PASS guarded repository-only validation path
+PASS closed deployment gate blocks activation
+PASS branch, remote, and expected HEAD checks
+PASS lifecycle mutation negative tests
+Kalaxy3 SAGE candidate lifecycle self-test: PASS
+python3 scripts/sage/sage-candidate-lifecycle-guardrail.py
+PASS canonical candidate lifecycle policy
+PASS candidate and lifecycle status consistency
+PASS append-only contiguous lifecycle history
+PASS foundational staged implementation
+PASS closed deployment gate preserved
+PASS activation prerequisites fail closed
+PASS repository-only validation bypass is guarded
+PASS lifecycle policy mutation negative tests
+Kalaxy3 SAGE candidate lifecycle guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-feedback-self-test
+python3 scripts/sage/sage-feedback-compare.py --self-test
+PASS recurring and one-time cost comparisons
+PASS unit-economics and avoidable-rework comparisons
+PASS observability direction and window comparisons
+PASS provenance and measurement types preserved
+PASS zero-baseline percentages remain null
+PASS comparison mutation negative tests
+Kalaxy3 SAGE feedback comparison self-test: PASS
+python3 scripts/sage/sage-feedback-guardrail.py
+PASS canonical feedback comparison policy
+PASS empty feedback baseline registry
+PASS cost and observability comparison schema
+PASS matching currency, units, metrics, and directions
+PASS provenance and measurement-type preservation
+PASS zero-baseline and composite-score policies
+PASS feedback policy mutation negative tests
+Kalaxy3 SAGE feedback guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-session-self-test
+python3 scripts/sage/sage-session-score.py --self-test
+PASS raw session metrics preserved
+PASS required delivery and learning rates derived
+PASS point and inclusive-range prediction scoring
+PASS scalar-neutral predictions allow unavailable actuals
+PASS zero denominators and zero actuals return null
+PASS unavailable raw measurements remain null
+PASS confidence-bucket range-hit summaries
+PASS session scoring mutation negative tests
+Kalaxy3 SAGE session scoring self-test: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3) make sage-improvement-policy-check
+python3 scripts/sage/sage-continuous-improvement-guardrail.py
+PASS canonical continuous-improvement policy
+PASS four-plane feedback contract
+PASS immutable versioned prediction policy
+PASS candidate and session schema contracts
+PASS deterministic session scorecard contract
+PASS scalar-neutral prediction closeout contract
+PASS unavailable session measurements remain nullable
+PASS representative candidate and session records
+PASS foundational change candidate registry
+PASS discovery prediction v1 remains immutable
+PASS machine-readable lesson registry
+PASS required seed lessons and preventive controls
+PASS multidimensional sizing and confidence policy
+PASS cost, observability, and process-metric policy
+PASS session rate and prediction scoring policy
+PASS live-session measurement semantics
+PASS frequent cohesive feature-branch push policy
+PASS canonical lesson, valid action, and valid session registries
+PASS continuous-improvement mutation negative tests
+Kalaxy3 SAGE continuous-improvement guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab) make helm-repository-guardrail
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab) make source-guardrails
+python3 ../../scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+python3 scripts/sage-helm-repository-guardrail.py
+PASS Helm repository schema and required fields
+PASS repository names and URLs are unique
+PASS HTTPS-only repository URL policy
+PASS repository URL SHA-256 fingerprints
+PASS independently controlled repository authority mapping
+PASS repository tamper and mutation negative tests
+Kalaxy3 Helm repository guardrail: PASS
+python3 scripts/sage-source-guardrails.py
+PASS staged bootstrap, deployment, and recovery gates
+PASS repository-managed uv and Helm binary hashes
+PASS commit-pinned and checksum-verified K3s references
+PASS repository-owned SSH trust and noninteractive mode
+PASS repository-owned Helm kubeconfig/context authority
+PASS isolated local and remote Helm environments
+PASS no bare Helm or download-to-shell paths
+PASS Helm task lock-reference coverage
+PASS download-to-shell negative tests
+Kalaxy3 SAGE source guardrails: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab) make deployment-guardrail
+python3 scripts/sage-deployment-guardrail.py
+PASS 8 enabled Helm releases have exact chart pins
+PASS every Helm installation task is represented in the lock
+PASS release, chart, namespace, and repository mappings
+Kalaxy3 SAGE deployment guardrail: PASS
++ (cd /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab) make centralized-logging-render
+.venv/bin/python scripts/controller-preflight.py --scope core
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS uv 0.11.32 (darwin-amd64)
+PASS uv binary SHA-256 07653d52bc37cecadab5f968aebc27dd5cd0a485c20d9adbff147ba268698bae
+PASS uvx binary SHA-256 1f3ed6259d6c02e466dc49c6d5c57c1ab24e510cc7f611a06b277779cf4c8544
+PASS Python 3.12.4
+PASS ansible-core 2.18.7
+PASS ansible.posix 1.6.2
+PASS community.general 10.3.0
+PASS kubernetes.core 5.1.0
+PASS SSH host trust 7 nodes
+PASS SSH authentication is configured for noninteractive mode
+Kalaxy3 controller preflight (core): PASS
+python3 scripts/install-repository-helm.py
+PASS repository Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+.venv/bin/python scripts/controller-preflight.py --scope helm
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm v3.21.3+g1ad6e68 (darwin-amd64)
+PASS Helm binary SHA-256 f4f7708f4af5dd29fd0061b0cc3cb5b47648ff3b7a0ff6ab8a134ba83f392940
+PASS Helm binary /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.tools/helm
+PASS Helm state /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.helm
+PASS Helm wrapper sanitizes inherited cluster overrides
+Kalaxy3 controller preflight (helm): PASS
+.venv/bin/python scripts/controller-preflight.py --scope cluster
+PASS repository virtual environment /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv
+PASS Helm kubeconfig /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml
+PASS kubeconfig current context default
+PASS read-only Helm access through repository kubeconfig and context default
+Kalaxy3 controller preflight (cluster): PASS
+.venv/bin/ansible-playbook \
+		playbooks/validate-centralized-logging.yml
+
+PLAY [Render staged centralized logging configuration] *************************
+
+TASK [Build SAGE recovery for unmanaged controller interpreter] ****************
+ok: [localhost]
+
+TASK [Require the repository-managed controller interpreter] *******************
+ok: [localhost] => 
+    changed: false
+    msg: 'Using repository-managed Python: /Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python'
+
+TASK [Build SAGE recovery for active logging lifecycle] ************************
+ok: [localhost]
+
+TASK [Require staged activation gate] ******************************************
+fatal: [localhost]: FAILED! => 
+    assertion: not (deploy_centralized_logging | bool)
+    changed: false
+    evaluated_to: false
+    msg: |-
+        SAGE ACTION BLOCKED
+
+        Attempted action:
+          Run render-only validation for staged centralized logging.
+
+        Detected state:
+          deploy_centralized_logging=True; this validator requires the inactive staged state.
+
+        Why this is invalid:
+          Changing the activation gate merely to satisfy a render-only validator or bypassing the assertion would falsify lifecycle state and weaken SAGE evidence integrity.
+
+        Likely intended outcome:
+          SAGE infers that the operator intended to validate the health and usefulness of the active centralized-logging deployment.
+
+        Confirm the correct approach:
+          - From the Kalaxy3 repository root, run SAGE_REQUEST='Validate active centralized logging' make sage-preflight.
+          - Confirm the activation gate in infrastructure/k3s-homelab/inventory/group_vars/all/main.yml.
+          - Review the deployment evidence for the previously validated runtime checks.
+          - Authoritative path: markdown/standards/kalaxy3-sage-actionable-failure-contract.md
+          - Authoritative path: infrastructure/k3s-homelab/inventory/group_vars/all/main.yml
+          - Authoritative path: markdown/operations/kalaxy3-centralized-logging-deployment-evidence.md
+
+        Allowed actions:
+          - Run repository discovery for the active lifecycle state.
+          - Inspect repository-owned deployment evidence and current runtime state.
+          - Preserve failed and successful validation evidence.
+          - Record and correct a missing active-state validator as a systemic repository gap.
+
+        Prohibited actions:
+          - Do not set deploy_centralized_logging=false merely to satisfy this playbook.
+          - Do not bypass the lifecycle assertion.
+          - Do not substitute undocumented kubectl, Helm, or global Ansible workflows.
+          - Do not discard the failed-path evidence.
+
+        Canonical recovery:
+          - cd infrastructure/k3s-homelab
+            make centralized-logging-runtime-validate
+
+        SAGE integrity requirements:
+          - Preserve the true activation state, chart locks, storage state, and rollback authority.
+          - Run the discovery, source, deployment, cluster, index, and evidence guardrails required for the resulting change.
+          - Use frequent cohesive validated commits and immediate pushes.
+
+        Repository gap:
+          If runtime validation cannot run through the canonical target, preserve its actionable failure and correct the reported gap.
+
+PLAY RECAP *********************************************************************
+localhost                  : ok=3    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+
+make: *** [centralized-logging-render] Error 2

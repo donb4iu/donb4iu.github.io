@@ -1,0 +1,158 @@
+Kalaxy3 logging SLO evidence capture recovery
+============================================
+
+Failure ID: generated_helper.evidence_reference_boundary_overreach
+Root cause:
+  Arbitrary receipt paths were treated as terminal text evidence.
+Recovery:
+  Only approved-root, approved-suffix, strict UTF-8 text is supplied.
+Security boundary:
+  Kubeconfigs, executables, binaries, and repository paths are rejected.
+Activation receipt: /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-activation-20260802-225446-receipt.json
+Selection manifest: /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slo-evidence-inputs-recovered-20260802-230832-selection.json
+Branch: feature/centralized-logging-alerts-slos
+Commit: 1c41ce3a71d64613abb8bcfc0697223ede4c4733
+Accepted live values:
+  kalaxy3:fluent_bit_coverage_ratio = 1.0
+  kalaxy3:loki_workload_ready_ratio = 1.0
+
+Selected evidence:
+  /Users/donbuddenbaum/.local/state/kalaxy3/sage-failure-retrieval/20260802-223907-b88c04929373.json sha256=9557c1eeaff0ad75c048951b7521e975a2a844302c5350b699a37ceddcdc3b99
+  /Users/donbuddenbaum/.local/state/kalaxy3/sage-failure-retrieval/20260802-223907-c0c587bab861.json sha256=14d0f3fe9e7741d21317ab940165ec63c4054553b69906015290a95f56982f2b
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-activation-20260802-225446-receipt.json sha256=9c2d6d1b15dc2978b5172fb1d2fc34ede08c115431a8c25a4b0b39e5fe36888c
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-activation-20260802-225446-retrieval.json sha256=7bdd5c442a03276d269815197b4c216abe42a874582eae0d11dba959026e04f5
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-activation-20260802-225446-terminal.txt sha256=ac10d96eb4670a12c8bf87956fc0d248083201393d22747c0e1393b1be76dcc2
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-authorities.json sha256=646f5c72fe8ebbe269778a1d874a4dbc5c6bce57f9c98005930346d8d3df9f43
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-receipt.json sha256=f21604c02d0f469acb160658e8abe1a15c05f6bfc639b1ebc5ad7c2c34128c72
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-retrieval.json sha256=c4155367f5e5e40a2700740a989097758d25d0e04f262a08c431857803687562
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-terminal.txt sha256=ed3251075fd431aeb8fa8f000b32c7521b4aac07055c7759d627b41839385233
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-224203-terminal.txt sha256=d347d89372140c5de521f94ca5b7946dafe35777128df789e01870643e6674d5
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-recovery-20260802-223408-terminal.txt sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-recovery-20260802-224201-terminal.txt sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-staging-20260802-222805-authorities.json sha256=d90558a5f82b03af9f057368d7e1581ecd92d11d661c0cb9a67ad0a2a94b5a22
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-staging-20260802-222805-retrieval.json sha256=981eb28afa6710a747aa5b37dcd9831dbec216d254f3f4dfbce69684fd614662
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-staging-20260802-222805-terminal.txt sha256=8f4ae1886da9902c0807a24360a69d04a1c64b2f7770b5f1adb8c3a2b13aaec8
+  /Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-staging-20260802-224200-terminal.txt sha256=e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+
+$ make sage-discovery-guardrail
+python3 scripts/sage/sage-change-discovery-guardrail.py
+PASS repository-root SAGE discovery entry points
+PASS machine-readable change-authority map
+PASS authoritative file and directory references
+PASS request and changed-path classification tests
+PASS literal request transport through root Makefile
+PASS authority-map mutation negative tests
+Kalaxy3 SAGE discovery guardrail: PASS
+[exit=0]
+
+$ make sage-index-check
+python3 scripts/sage/sage-index.py check
+SAGE evidence reconciliation: PASS
+Records:          36
+Generated paths:  50
+Changed paths:    0
+CURATION: markdown/installation/k3s-api-ha-kube-vip.md needs registry review
+CURATION: markdown/installation/k3s-etcd-baseline-backup-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md needs registry review
+CURATION: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-kubecost-installation-and-verification.md needs registry review
+CURATION: markdown/installation/kalaxy3-minio-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-observability-and-kubecost.md needs registry review
+CURATION: markdown/installation/kalaxy3-protected-ui-installation-evidence.md needs registry review
+CURATION: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md needs registry review
+CURATION: markdown/installation/longhorn-kubecost-intel-node-preparation.md needs registry review
+CURATION: markdown/installation/old/amd64-nocloud-seed-helper.md needs registry review
+CURATION: markdown/installation/old/flash.md needs registry review
+CURATION: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md needs registry review
+CURATION: markdown/installation/old/ubuntu-node-provisioning.md needs registry review
+CURATION: markdown/installation/ubuntu-node-provisioning-fixed.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md needs registry review
+CURATION: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md needs registry review
+LEGACY: markdown/installation/k3s-api-ha-kube-vip.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/k3s-etcd-baseline-backup-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-02-k3s-longhorn-node-addition.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-amd64-node-and-longhorn-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-intel-pi-admin-access-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-calibration-sage-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/installation/kalaxy3-kubecost-installation-and-verification.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-minio-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-observability-and-kubecost.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-protected-ui-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/kalaxy3-traefik-dashboard-installation-evidence.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/longhorn-kubecost-intel-node-preparation.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/amd64-nocloud-seed-helper.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/flash.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-installation-and-node-provisioning-v2.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning-fixed-amd64.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/old/ubuntu-node-provisioning.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/installation/ubuntu-node-provisioning-fixed.md indexed as legacy-evidence with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-canonical-metadata-contract-evidence.md indexed as sage-legacy with inferred metadata
+LEGACY: markdown/operations/kalaxy3-sage-evidence-publication-process-evidence.md indexed as sage-legacy with inferred metadata
+[exit=0]
+
+$ make sage-evidence-self-test
+python3 scripts/sage/sage-evidence-orchestrator.py self-test
+Kalaxy3 SAGE evidence orchestration self-test: PASS
+[exit=0]
+
+$ make sage-evidence-guardrail
+python3 scripts/sage/sage-evidence-orchestration-guardrail.py
+PASS canonical evidence request integrity
+PASS repository-owned evidence policy and authorities
+PASS plain-language evidence request regression tests
+PASS original requester language preservation
+PASS root Make evidence-generation entry points
+PASS evidence policy mutation negative tests
+Kalaxy3 SAGE evidence orchestration guardrail: PASS
+python3 scripts/sage/sage-evidence-template-guardrail.py
+Kalaxy3 SAGE evidence template guardrail: PASS
+Current schema 1.2 records: 16
+Exact current template records: 1
+Compatible immutable variants: 15
+Historical and legacy records: 20
+New evidence packages require the exact current template
+python3 scripts/sage/sage-evidence-navigation-architecture-guardrail.py
+Kalaxy3 evidence navigation architecture guardrail: PASS
+Reuse objectives passed: 10
+Registered primitives used by composition: 10
+[exit=0]
+
+$ make centralized-logging-runtime-validate
+python3 ../../scripts/sage/sage-validator-runner.py --validator-id centralized_logging.runtime --attempted-action 'Validate active centralized logging.' --working-directory infrastructure/k3s-homelab --recovery-command 'make centralized-logging-runtime-validate' --authoritative-path infrastructure/k3s-homelab/inventory/group_vars/all/main.yml --authoritative-path infrastructure/k3s-homelab/helm-chart-lock.json --authoritative-path infrastructure/k3s-homelab/scripts/validate-centralized-logging-runtime.py --integrity-requirement 'Preserve activation state, chart locks, storage, and logs.' -- .venv/bin/python scripts/validate-centralized-logging-runtime.py
+Kalaxy3 centralized logging runtime validation: PASS
+{
+  "datasource_configmaps": 2,
+  "helm_releases": {
+    "fluent-bit-collector": "1.0.9",
+    "loki": "18.5.4"
+  },
+  "kubectl": "/usr/local/bin/kubectl",
+  "loki_data": {
+    "covered_nodes": [
+      "amd64-01",
+      "amd64-02",
+      "arm64-01",
+      "arm64-02",
+      "arm64-03",
+      "arm64-04",
+      "arm64-05"
+    ],
+    "node_label": "node",
+    "recent_query_results": 1
+  },
+  "storage": {
+    "phase": "Bound",
+    "requested": "40Gi",
+    "storage_class": "longhorn"
+  },
+  "workloads": {
+    "collectors": 7,
+    "gateway": 1,
+    "loki": 1
+  }
+}
+SAGE validator runtime: PASS (centralized_logging.runtime)
+[exit=0]

@@ -1,0 +1,322 @@
+{
+  "authority_manifest": {
+    "file_count": 80,
+    "path": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-authorities.json",
+    "sha256": "646f5c72fe8ebbe269778a1d874a4dbc5c6bce57f9c98005930346d8d3df9f43"
+  },
+  "baseline_validations": [
+    {
+      "argv": [
+        "make",
+        "sage-discovery-guardrail"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-index-check"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-evidence-guardrail"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "helm-repository-guardrail"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "source-guardrails"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "deployment-guardrail"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "centralized-logging-render"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "failure_id": "centralized_logging.render_validator_after_activation",
+      "returncode": 2,
+      "status": "expected-fail-closed"
+    },
+    {
+      "argv": [
+        "make",
+        "centralized-logging-runtime-validate"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "failure_id": "centralized_logging.render_validator_after_activation",
+      "returncode": 0,
+      "status": "recovery-pass"
+    },
+    {
+      "argv": [
+        "make",
+        "cluster-guardrails"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    }
+  ],
+  "cluster_mutation": "none-server-dry-run-only",
+  "commit": {
+    "commit": "1c41ce3a71d64613abb8bcfc0697223ede4c4733",
+    "remote_commit": "1c41ce3a71d64613abb8bcfc0697223ede4c4733",
+    "working_tree": "clean"
+  },
+  "deployment_state": "staged-implementation",
+  "failure_recovery": {
+    "active_lifecycle_recovery": "centralized-logging-runtime-validate",
+    "helper_verification_failure": {
+      "failure_id": "generated_helper.internal_terminal_wrapper_marker_mismatch",
+      "failure_triggered_retrieval": {
+        "failure_id": "generated_helper.internal_terminal_wrapper_marker_mismatch",
+        "receipt": "/Users/donbuddenbaum/.local/state/kalaxy3/sage-failure-retrieval/20260802-223907-b88c04929373.json",
+        "sha256": "9557c1eeaff0ad75c048951b7521e975a2a844302c5350b699a37ceddcdc3b99",
+        "status": "pass"
+      },
+      "recurrence_guardrail": "Production-shaped fixture omits the wrapper line and requires stable repository-owned markers.",
+      "root_cause": "The self-test fixture included an outer wrapper line that the internally captured production terminal omits."
+    },
+    "prior_render_failure": {
+      "classification": "known-active-lifecycle-render-rejection",
+      "failure_id": "centralized_logging.render_validator_after_activation",
+      "outer_wrapper_marker_required": false,
+      "signature_source": "stable-repository-owned-markers",
+      "terminal_evidence": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-staging-20260802-222805-terminal.txt",
+      "terminal_sha256": "8f4ae1886da9902c0807a24360a69d04a1c64b2f7770b5f1adb8c3a2b13aaec8"
+    },
+    "render_failure_triggered_retrieval": {
+      "failure_id": "centralized_logging.render_validator_after_activation",
+      "receipt": "/Users/donbuddenbaum/.local/state/kalaxy3/sage-failure-retrieval/20260802-223907-c0c587bab861.json",
+      "sha256": "14d0f3fe9e7741d21317ab940165ec63c4054553b69906015290a95f56982f2b",
+      "status": "pass"
+    },
+    "render_validator_bypass": "none"
+  },
+  "feature_branch": "feature/centralized-logging-alerts-slos",
+  "focused_validations": [
+    {
+      "argv": [
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python",
+        "-m",
+        "py_compile",
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/.venv/bin/python",
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py",
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml",
+        "--self-test"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/kubeconfig-kalaxy3.yaml",
+        "--context",
+        "default",
+        "apply",
+        "--dry-run=server",
+        "--filename",
+        "/Users/donbuddenbaum/dvlp/Kalaxy3/infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    }
+  ],
+  "initial_repository_state": {
+    "branch": "feature/centralized-logging-alerts-slos",
+    "head": "7524944470204915399e4b4461971b4373ae5b4b",
+    "origin_main": "7524944470204915399e4b4461971b4373ae5b4b",
+    "working_tree": "clean"
+  },
+  "live_prometheus_inputs": {
+    "fluent_bit_coverage_ratio": 1.0,
+    "loki_workload_ready_ratio": 1.0,
+    "validated_before_edit": true
+  },
+  "next_boundary": "review-and-activate-logging-availability-slos",
+  "proposer_provenance": {
+    "model": "GPT-5.6 Thinking",
+    "provider": "OpenAI",
+    "role": "untrusted-proposer",
+    "success_authority": "machine-readable-receipt"
+  },
+  "record_type": "sage-logging-availability-slo-staging",
+  "repository_mutation": "two-file-cohesive-commit-pushed",
+  "request": "Recover the generated-helper failure caused by requiring an outer wrapper error line that is absent from the internally preserved terminal artifact. Run failure-triggered SAGE retrieval before retry, verify the original active-lifecycle render rejection only from stable repository-owned markers, require the render validator to fail closed, run the canonical active runtime validator, stage the approved Fluent Bit and Loki availability SLO rules, validate, commit, and push without applying the updated rule to the cluster.",
+  "required_validations": [
+    {
+      "argv": [
+        "make",
+        "sage-self-test"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-discovery-guardrail"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-index-check"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-operating-contract-check"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/sage/sage-evidence-navigation-architecture-guardrail.py"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-evidence-self-test"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "sage-evidence-guardrail"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "python3",
+        "scripts/sage/sage-evidence-template-guardrail.py"
+      ],
+      "cwd": ".",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "source-guardrails"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "deployment-guardrail"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "cluster-guardrails"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "returncode": 0,
+      "status": "pass"
+    },
+    {
+      "argv": [
+        "make",
+        "centralized-logging-render"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "failure_id": "centralized_logging.render_validator_after_activation",
+      "returncode": 2,
+      "status": "expected-fail-closed"
+    },
+    {
+      "argv": [
+        "make",
+        "centralized-logging-runtime-validate"
+      ],
+      "cwd": "infrastructure/k3s-homelab",
+      "failure_id": "centralized_logging.render_validator_after_activation",
+      "returncode": 0,
+      "status": "recovery-pass"
+    }
+  ],
+  "retrieval": {
+    "path": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-retrieval.json",
+    "sha256": "c4155367f5e5e40a2700740a989097758d25d0e04f262a08c431857803687562"
+  },
+  "schema_version": "1.0",
+  "source_hashes": {
+    "infrastructure/k3s-homelab/playbooks/files/grafana-operations-alerts-prometheusrule.yml": "c5f2d10a8cf315e5ed2db13c4414c18d0bd70b6aea15018e4db44d3597edae02",
+    "infrastructure/k3s-homelab/scripts/validate-grafana-operations-alerts.py": "1bf094b0733cfc57541d49583011ddd72982307ec089a51723f25fdef8c44d57"
+  },
+  "status": "pass",
+  "terminal_evidence": "/Users/donbuddenbaum/Downloads/kalaxy3-logging-availability-slos-marker-recovery-20260802-223906-terminal.txt"
+}
