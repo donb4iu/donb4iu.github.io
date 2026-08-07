@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-generated-helper-delivery-manifest-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE generated-helper delivery manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "helper_sha256",
+    "runtime_fixture",
+    "companion_artifacts",
+    "self_test_argv",
+    "operator_argv"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "helper_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "runtime_fixture": {"type": "string", "minLength": 1},
+    "companion_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["path", "sha256"],
+        "properties": {
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "self_test_argv": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "string"}
+    },
+    "operator_argv": {
+      "type": "array",
+      "minItems": 2,
+      "items": {"type": "string"}
+    }
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "action": {
+    "acceptance_criteria": [
+      "A repository-owned validator runs py_compile and a declared runtime self-test for each generated helper.",
+      "A negative fixture with an unimported hashlib reference fails before helper delivery.",
+      "Helper delivery records the validator result and helper digest before user invocation."
+    ],
+    "action_id": "SAGE-ACTION-20260730-001",
+    "current_status": "validated",
+    "desired_outcome": "Prevent generated Python helpers from being delivered when an exercised runtime path contains an unresolved name, missing import, or untested reporting failure.",
+    "history": [
+      {
+        "actor": "repository-workflow",
+        "evidence_references": [
+          "SAGE-REVIEW-20260730-001",
+          "session:SAGE-SESSION-20260729-001",
+          "terminal-session:2026-07-30-generated-helper-runtime-name-recurrence-001"
+        ],
+        "from_status": null,
+        "reason": "Register the generated-helper runtime-validation control identified by the SAGE metrics pilot post-session review",
+        "recorded_at": "2026-07-31T00:24:37-05:00",
+        "sequence": 1,
+        "to_status": "identified",
+        "transition_type": "initial-registration"
+      },
+      {
+        "actor": "repository-workflow",
+        "evidence_references": [
+          "SAGE-REVIEW-20260730-001",
+          "SAGE-LESSON-20260730-001",
+          "SAGE-ACTION-20260801-005",
+          "SAGE-K3-GUARDRAIL-20260731-001"
+        ],
+        "from_status": "identified",
+        "reason": "The operator authorized remediation after SAGE discovery and evidence retrieval confirmed a recurring generated-helper delivery failure and an integration or workflow-composition gap; the validated static runtime-name control will be reused rather than duplicating a low-level primitive.",
+        "recorded_at": "2026-08-05T22:24:37-05:00",
+        "sequence": 2,
+        "to_status": "accepted",
+        "transition_type": "status-transition"
+      },
+      {
+        "actor": "repository-workflow",
+        "evidence_references": [
+          "commit:049c0565c1c601986ad8e8e1ca4887b29f090283",
+          "path:scripts/sage/workflows/generated_helper_delivery.py",
+          "path:scripts/sage/sage-generated-helper-runtime-self-test.py",
+          "path:markdown/standards/sage-generated-helper-delivery-manifest-schema-v1.0.json",
+          "terminal-session:2026-08-06-generated-helper-runtime-validation-guardrails-001"
+        ],
+        "from_status": "accepted",
+        "reason": "The tracked generated-helper delivery composition, manifest schema, exact-CLI runtime self-test, authority registration, Make integration, and file-delivery guardrail are implemented in commit 049c0565c1c601986ad8e8e1ca4887b29f090283.",
+        "recorded_at": "2026-08-06T01:18:33-05:00",
+        "sequence": 3,
+        "to_status": "implemented",
+        "transition_type": "status-transition"
+      },
+      {
+        "actor": "repository-workflow",
+        "evidence_references": [
+          "commit:df3e435d0ddb48edcd974fb478e808388cd8be6a",
+          "commit:049c0565c1c601986ad8e8e1ca4887b29f090283",
+          "target:make-sage-guardrails",
+          "terminal-session:2026-08-06-generated-helper-committed-state-validation-001"
+        ],
+        "from_status": "implemented",
+        "reason": "Independent committed-state validation passed the complete repository SAGE guardrail chain at commit df3e435d0ddb48edcd974fb478e808388cd8be6a, including the exact generated-helper delivery CLI, canonical path regression, static undefined-global checks, declared runtime self-test, exact operator path, companion integrity, helper-safety, failure reporting, and no-partial-receipt controls.",
+        "recorded_at": "2026-08-06T01:21:42-05:00",
+        "sequence": 4,
+        "to_status": "validated",
+        "transition_type": "status-transition"
+      }
+    ],
+    "measurement_plan": [
+      "Track missing-import or unresolved-name recurrence across the next five generated helper deliveries.",
+      "Record runtime-self-test pass or failure in the associated SAGE session or evidence package.",
+      "Do not mark the action measured or closed until the recurrence rate is evaluated."
+    ]
+  },
+  "branch": "feature/sage-generated-helper-runtime-validation",
+  "evidence_id": "SAGE-K3-SAGE-20260806-001",
+  "implementation_commit": "049c0565c1c601986ad8e8e1ca4887b29f090283",
+  "implemented_state_commit": "df3e435d0ddb48edcd974fb478e808388cd8be6a",
+  "measurement_status": {
+    "reason": "The next-five-generated-helper-deliveries recurrence evaluation remains outstanding.",
+    "status": "not-measured"
+  },
+  "repository_authority_digests": {
+    "delivery_manifest_schema": "9ee7bab971fdaec433321d80ff00a6a6cf891c41b6d4d383a88a3bde71855995",
+    "process": "ede3f7e186c045de22c1b441aefd01eee49bca7fb67eeaec2e6954948e606acf",
+    "runtime_self_test": "77d49fb758e35cb06155bf1c056d6ee1f0901951cbe45e59f9f487f86d208407",
+    "workflow": "e456be1d0559bc46ba3d37b66b1920a1f9f526089ac436bf08401e599bb4251c"
+  },
+  "repository_snapshot_head": "05b104bc1f0fe1fbb79ff8cf4857eabfcd6ea455",
+  "schema_version": "1.0",
+  "subject": "Generated-helper runtime validation guardrail",
+  "validated_controls": [
+    "Exact helper digest and manifest validation",
+    "Disposable runtime fixture validation outside the live repository",
+    "Companion artifact presence, digest, and operator-argv consumption",
+    "Exact helper py_compile",
+    "Repository undefined-global analysis",
+    "Declared helper self-test",
+    "Exact non-self-test operator path",
+    "Helper-safety rejection of Git, GitHub, credential, deployment, and cluster mutation capability",
+    "Atomic receipt creation only after all checks pass",
+    "Canonical path-equivalence handling for /var and /private/var aliases",
+    "Negative fixtures for unimported hashlib, undefined AUTHORITY_DIGESTS, invalid late-bound values, missing and mismatched companion artifacts, unsafe helper behavior, stale receipts, and partial-receipt prevention"
+  ],
+  "validated_state_commit": "05b104bc1f0fe1fbb79ff8cf4857eabfcd6ea455",
+  "validation_provenance": {
+    "basis": "Validated action history and original evidence-generation request; the captured bundle did not include a terminal transcript file.",
+    "result": "pass",
+    "target": "make sage-guardrails"
+  }
+}
