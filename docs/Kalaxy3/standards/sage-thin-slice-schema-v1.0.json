@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kalaxy3.local/sage-thin-slice-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE end-to-end thin slice",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "thin_slice_id",
+    "title",
+    "status",
+    "audience",
+    "introduction",
+    "case_question",
+    "selected_case",
+    "alternatives",
+    "end_to_end_trace",
+    "measures",
+    "participation_paths",
+    "future_capability"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "const": "1.0"
+    },
+    "thin_slice_id": {
+      "const": "kalaxy3.centralized-logging"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "selected-validated-case",
+        "staged",
+        "deprecated"
+      ]
+    },
+    "audience": {
+      "type": "string",
+      "minLength": 1
+    },
+    "introduction": {
+      "type": "string",
+      "minLength": 1
+    },
+    "case_question": {
+      "type": "string",
+      "minLength": 1
+    },
+    "selected_case": {
+      "type": "object"
+    },
+    "alternatives": {
+      "type": "array",
+      "minItems": 3
+    },
+    "end_to_end_trace": {
+      "type": "array",
+      "minItems": 6
+    },
+    "measures": {
+      "type": "array",
+      "minItems": 4
+    },
+    "participation_paths": {
+      "type": "array",
+      "minItems": 3
+    },
+    "future_capability": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    }
+  }
+}

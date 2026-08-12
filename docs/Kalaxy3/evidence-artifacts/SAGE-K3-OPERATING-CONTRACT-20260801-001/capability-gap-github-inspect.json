@@ -1,0 +1,66 @@
+{
+    "schema_version": "1.0",
+    "gap_id": "SAGE-GAP-20260811-002",
+    "request": "Implement SAGE-ACTION-20260811-002, Add least-authority GitHub inspection capability. Add a reusable repository-owned github.inspect primitive that independently reads and verifies GitHub pull-request state without GitHub mutation authority. Expose structured pull-request identity, base branch, head branch, head SHA, state, mergeability, merged state, merged timestamp, and merge commit SHA. Support deterministic lookup by expected base branch, head branch, and head SHA so operator pull-request creation and merge results can be independently verified. Fail closed on transport failure, ambiguous pull-request identity, mismatched base/head/SHA, truncated lookup results, invalid response shape, or unverifiable requested mergeability/merged state. Keep operator.git-proposal as the exclusive GitHub mutation boundary. Generated workflows must not invoke gh or GitHub HTTP APIs directly. Do not inherit personal GitHub credentials. Preserve existing Git/GitHub safety controls and add direct GitHub API rejection to the canonical safety guardrail. Include deterministic positive pre-merge/post-merge inspection tests and negative direct-gh, direct-API, mismatch, ambiguity, and mutation-authority tests. Register the new primitive at pilot maturity, link an approved capability-gap receipt, version any changed primitive behavior, and do not implement checkpoint promotion in this change.",
+    "created_at": "2026-08-11T02:25:42-05:00",
+    "authority_receipt": "sage-improvement-actions.json#SAGE-ACTION-20260811-002/history/1",
+    "component_manifest": "sage-improvement-actions.json#SAGE-ACTION-20260811-002",
+    "required_capability": "least-authority read-only GitHub pull-request inspection",
+    "candidates_considered": [
+        {
+            "component_id": "git.inspect",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/git_inspect.py",
+            "insufficiency": "Local Git only; no independent GitHub PR identity or merge state.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "operator.git-proposal",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/proposal.py",
+            "insufficiency": "Produces non-executed mutation proposals but does not inspect GitHub after operator execution.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "command.run",
+            "version": "1.0.0",
+            "source_path": "scripts/sage/workflow/runner.py",
+            "insufficiency": "Generic transport would require direct gh or GitHub API use in generated workflows and violate least authority.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "Stable structured read-only unique PR lookup and exact base/head/SHA/merge-state verification.",
+        "why_configuration_is_insufficient": "Existing local Git inspection and mutation proposals cannot be configured to produce independent GitHub PR facts.",
+        "why_composition_is_insufficient": "Composing command.run with gh or HTTP would bypass the least-authority GitHub inspection boundary.",
+        "new_primitive_required": true
+    },
+    "proposed_primitive": {
+        "primitive_id": "github.inspect",
+        "responsibility": "Read and verify GitHub pull-request identity and merge state without mutation authority.",
+        "side_effects": "GET-only GitHub REST inspection; no GitHub, Git, ref, credential, or deployment mutation.",
+        "idempotency": "Deterministic for unchanged GitHub pull-request state.",
+        "logging": "Caller records structured snapshot identity and verification outcome without raw response or credentials.",
+        "failure_mode": "Transport failure, invalid response, ambiguous identity, mismatched base/head/SHA, truncated lookup, or unverifiable requested state fails closed.",
+        "runtime_tests": [
+            "pre-merge structured snapshot",
+            "post-merge structured snapshot",
+            "head SHA mismatch rejection",
+            "ambiguous identity rejection",
+            "direct gh and GitHub API bypass rejection"
+        ],
+        "initial_maturity": "pilot"
+    },
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "operator",
+        "reviewed_at": "2026-08-11T02:25:42-05:00",
+        "rationale": "SAGE-ACTION-20260811-002 was accepted to close this least-authority GitHub inspection capability gap while preserving operator.git-proposal as the mutation boundary."
+    },
+    "evidence_references": [
+        "action:SAGE-ACTION-20260811-002",
+        "action:SAGE-ACTION-20260809-002",
+        "action:SAGE-ACTION-20260801-005",
+        "evidence:SAGE-K3-GUARDRAIL-20260731-002"
+    ]
+}

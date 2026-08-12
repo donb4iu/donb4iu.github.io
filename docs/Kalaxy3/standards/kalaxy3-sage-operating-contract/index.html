@@ -18,7 +18,7 @@
         <link rel="prev" href="../kalaxy3-sage-generated-helper-runtime-validation-process/">
       
       
-        <link rel="next" href="../kalaxy3-sage-workflow-primitives-process/">
+        <link rel="next" href="../kalaxy3-sage-request-execution-process/">
       
       
         
@@ -257,6 +257,8 @@
       
         
       
+        
+      
     
     
     
@@ -317,6 +319,34 @@
     
   
     Kalaxy3 SAGE Capability Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/kalaxy3-sage-thin-slice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE End-to-End Thin Slice
   
 
     
@@ -1541,6 +1571,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1692,6 +1730,34 @@
     
   
     Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-checkpoint-promotion-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE checkpoint promotion process
   
 
     
@@ -2107,10 +2173,105 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#checkpoint-persistence-versus-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint persistence versus promotion
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-request-execution-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Request Execution Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-request-planning-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE request-planning process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-thin-slice-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE End-to-End Thin-Slice Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2359,6 +2520,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#checkpoint-persistence-versus-promotion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Checkpoint persistence versus promotion
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2599,6 +2771,15 @@ measurement, and evidence closeout.</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>sage-operating-contract-check
 </code></pre></div>
 <p>It is also included in <code>make sage-self-test</code> and <code>make sage-guardrails</code>.</p>
+<h2 id="checkpoint-persistence-versus-promotion">Checkpoint persistence versus promotion<a class="headerlink" href="#checkpoint-persistence-versus-promotion" title="Permanent link">&para;</a></h2>
+<p>A checkpoint commit or push is durable engineering-state persistence, not a
+validation or promotability assertion. Synchronized incomplete or
+dependency-blocked work may be checkpointed for business continuity while
+remaining explicitly non-promotable.</p>
+<p>Crossing to <code>main</code> is a separate trust boundary. Promotion requires fresh
+source/target authority, the complete applicable composite validation gate,
+structured PR verification, and explicit operator mutation proposals. Any
+authority drift or unverifiable result fails closed.</p>
 
 
 
