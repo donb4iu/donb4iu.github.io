@@ -2737,7 +2737,10 @@ dependency of the normal repository self-test and guardrail chains.</p>
 <p><code>github.inspect</code> is the repository-owned read-only authority for GitHub pull-request state.
 It uses only fixed GET-only GitHub REST endpoints needed to list or get pull requests and
 returns structured repository, pull-request, base-branch, head-branch, head-SHA,
-mergeability, merged-state, merged-at, and merge-commit facts.</p>
+mergeability, merged-state, merged-at, and nullable merge-commit facts. A closed PR with
+<code>merged=true</code> and a valid <code>merged_at</code> is an affirmative GitHub merge-state observation;
+<code>merge_commit_sha</code> is retained when present but is not required because exact merge
+identity is independently proven from Git topology after the operator fetch.</p>
 <p>Generated workflow compositions must consume <code>github.inspect</code>; they must not invoke <code>gh</code>
 or GitHub HTTP APIs directly. <code>operator.git-proposal</code> remains the exclusive pull-request
 creation and merge mutation boundary. For those boundaries, <code>operator.git-proposal@1.1.0</code>
@@ -2767,8 +2770,13 @@ request-execution persistence. It reuses <code>git.inspect</code>, <code>github.
 <code>validation.plan</code>, and <code>operator.git-proposal</code>. It does not import
 <code>GitRepository</code> or execute Git/GitHub mutation. PR creation and merge are
 operator proposals. A final exact operator <code>git fetch origin main</code> refresh is
-required only after the merge has been independently verified so <code>git.inspect</code>
-can truthfully prove source containment in the refreshed target graph.</p>
+required only after GitHub has independently confirmed the exact PR is merged so
+<code>git.inspect</code> can truthfully prove the exact ordered-parent merge topology and source
+containment in the refreshed target graph. Post-merge repository automation may advance
+<code>main</code>; those commits are valid only when they remain descendants of that exact merge.
+A synchronized source branch may advance after the merge interaction for a governed repair
+or recovery only when the frozen promotion source remains an ancestor; the PR identity and
+Git topology proof remain bound to the original frozen source SHA.</p>
 <h2 id="browser-backed-github-operator-approval">Browser-backed GitHub operator approval<a class="headerlink" href="#browser-backed-github-operator-approval" title="Permanent link">&para;</a></h2>
 <p>Browser-backed GitHub proposals are navigation and approval contracts, not mutation helpers.
 The proposal binds the exact GitHub URL and intended browser action with SHA-256, prohibits
@@ -2781,8 +2789,9 @@ continues to enforce source and frozen-target authority.</p>
 <code>quick_pull=1</code>, <code>title</code>, and <code>body</code>. The source SHA is not trusted from the URL: after the
 operator clicks Create pull request, <code>github.inspect</code> must observe the exact expected head
 SHA and frozen base SHA before merge can be proposed. Merge proposals open only the exact
-independently verified PR page. The later merge-state, remote-target, and ancestry checks
-remain authoritative, so squash/rebase or wrong-PR outcomes fail closed.</p>
+independently verified PR page. The later merge-state, refreshed local/remote target equality, exact ordered-parent merge
+topology, and ancestry checks remain authoritative, so squash/rebase, wrong-PR, divergent
+automation, or ambiguous-merge outcomes fail closed.</p>
 
 
 
