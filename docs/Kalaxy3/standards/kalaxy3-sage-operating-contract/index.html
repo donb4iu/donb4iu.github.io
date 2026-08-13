@@ -2097,6 +2097,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#trusted-routine-git-lifecycle-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trusted routine Git lifecycle controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2444,6 +2455,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#trusted-routine-git-lifecycle-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trusted routine Git lifecycle controller
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#validation" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2663,6 +2685,32 @@ existing primitive.</p>
 <li>use personal credentials inside generated code;</li>
 <li>combine multiple operator mutation boundaries.</li>
 </ul>
+<h2 id="trusted-routine-git-lifecycle-controller">Trusted routine Git lifecycle controller<a class="headerlink" href="#trusted-routine-git-lifecycle-controller" title="Permanent link">&para;</a></h2>
+<p>A repository-owned routine Git lifecycle controller may be used to reduce
+repetitive operator stage/commit/push choreography without making downloaded
+helpers mutating or authorizing autonomous repository changes.</p>
+<p>The only trusted controller path is
+<code>scripts/sage/workflows/routine_git_lifecycle.py</code>. That controller may consume
+<code>git.repository</code> only for <code>commit_and_push</code>, and only after one explicit
+operator approval that is checksum-bound to the active proposal, feature
+branch, expected HEAD, exact declared paths, commit message, push remote, and
+successful validation receipts.</p>
+<p>Before mutation, the controller must fail closed unless the feature branch and
+expected HEAD still match, the working tree contains exactly the declared
+paths, and live remote <code>main</code> still matches the proposal's base authority. It
+may not create or switch branches, fetch, merge, rebase, reset, delete refs,
+invoke GitHub mutation, inherit credentials, or perform deployment mutation.
+Direct Git commands remain prohibited in the controller; all mutation must flow
+through the registered <code>git.repository</code> primitive.</p>
+<p>The approved routine lifecycle is one operator mutation boundary containing the
+bounded stage → commit → push sequence. One command is executed by the operator
+to authorize and invoke that repository-owned controller. Independent
+<code>git.inspect</code> verification remains mandatory afterward and must prove the
+resulting commit, exact path scope, clean tree, upstream equality, and remote
+branch identity before the request can complete.</p>
+<p>This exception applies only to the tracked repository-owned controller. It does
+not change the downloaded-helper prohibition on Git mutation and does not
+authorize autonomous Git or GitHub mutation.</p>
 <h2 id="validation">Validation<a class="headerlink" href="#validation" title="Permanent link">&para;</a></h2>
 <p>Syntax, token presence, or source inspection alone is not runtime validation.</p>
 <p>Each changed contract or primitive must have:</p>

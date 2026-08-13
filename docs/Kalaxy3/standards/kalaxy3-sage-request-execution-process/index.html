@@ -2124,6 +2124,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#legacy-continuation-state-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy continuation-state compatibility
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2355,6 +2366,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#legacy-continuation-state-compatibility" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Legacy continuation-state compatibility
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2391,17 +2413,20 @@
 <li>Reconcile evidence indexes only through the fixed repository <code>sage-index.py reconcile</code> path when the proposal declares generated evidence paths.</li>
 <li>Run changed-path SAGE discovery and the proposal's shell-free SAGE validation targets.</li>
 <li>Scan proposed Python source through the repository Git/GitHub/credential/deployment safety guardrail.</li>
-<li>Emit one non-executed operator proposal for the exact Git staging boundary.</li>
+<li>Emit one non-executed operator proposal. When the feature branch has a synchronized upstream and live remote <code>main</code> still matches the captured authority, the proposal is the one-approval <code>routine-git-lifecycle</code> controller boundary; otherwise request execution fails closed rather than silently broadening authority.</li>
 </ol>
-<p>After the operator executes a proposal and returns the complete result, SAGE resumes through the mandatory post-operator sequence rather than handing control back to ad hoc instructions:</p>
+<p>The <strong>routine Git lifecycle</strong> is the ordinary one-approval path after validation. For ordinary validated changes, the operator executes one checksum-bound <code>routine-git-lifecycle</code> proposal. That one approval invokes the exact tracked repository controller at <code>scripts/sage/sage-routine-git-lifecycle.py</code>, which delegates mutation only to <code>scripts/sage/workflows/routine_git_lifecycle.py</code> and <code>git.repository.commit_and_push</code>. Before any mutation the controller re-verifies the feature branch, approved HEAD, exact declared paths, synchronized upstream and remote feature branch, frozen remote <code>main</code>, pass-only validation receipts, authority/component receipts, and the proposal command digest.</p>
+<p>The bounded controller performs exactly stage → commit → push. It does not create or switch branches, merge, rebase, reset, delete refs, mutate GitHub, inherit credential variables, or mutate deployment state. It records a local controller receipt and event log.</p>
+<p>After the operator returns the complete controller result, SAGE resumes through the mandatory post-operator sequence:</p>
 <ol>
-<li>Verify the pasted operator result is bound to the exact proposal command and independently verify the resulting Git state through <code>git.inspect</code>.</li>
-<li>Record directly observed boundary outcomes through <code>metrics.outcome</code>, preserving unavailable measurements as null.</li>
+<li>Bind the pasted result to the exact active proposal command and independently inspect the resulting Git state through <code>git.inspect</code>.</li>
+<li>Prove exactly one commit descends directly from the approved HEAD, the committed path delta equals the declared scope, the working tree is clean, local HEAD equals its upstream, and the remote feature branch equals that same commit.</li>
+<li>Record directly observed outcomes through <code>metrics.outcome</code>, preserving unavailable measurements as null.</li>
 <li>Write local evidence closeout through <code>evidence.closeout</code>.</li>
-<li>Only after those three steps pass, emit the next deterministic operator proposal: stage → commit → push.</li>
-<li>After push verification confirms the branch is clean and equal to its upstream, mark the repository Git lifecycle complete. No further mutation boundary is emitted automatically.</li>
+<li>Mark the repository Git lifecycle complete. No additional stage, commit, or push approval is emitted.</li>
 </ol>
-<p>The proposal package declares the single-line commit message and push remote used by that deterministic lifecycle. Pasted operator output is untrusted evidence: SAGE hashes it, records no raw output in closeout, and verifies repository state independently.</p>
+<p>The legacy deterministic stage → commit → push continuation remains available only as a compatibility path for already-open request-execution states. New ordinary request execution uses the one-approval routine lifecycle and fails closed when its authority prerequisites are not satisfied.</p>
+<p>The proposal package declares the single-line commit message and <code>origin</code> push remote used by that deterministic lifecycle. Pasted operator output remains untrusted evidence: SAGE hashes it, records no raw output in closeout, and verifies repository state independently.</p>
 <p>The transaction commits only after all validation and safety checks pass and the operator proposal has been written. Any unexpected failure triggers rollback of the declared repository content before closeout and requires failure retrieval and diagnosis before retry.</p>
 <h2 id="proposal-package">Proposal package<a class="headerlink" href="#proposal-package" title="Permanent link">&para;</a></h2>
 <p>A proposal ZIP contains exactly <code>sage-proposal.json</code> plus <code>payload/&lt;repository-relative-path&gt;</code> for every source file. The manifest is governed by <code>sage-request-execution-proposal-schema-v1.0.json</code> and binds:</p>
@@ -2413,13 +2438,13 @@
 <li>evidence references used by the proposal;</li>
 <li>required capabilities and explicit repository component candidates;</li>
 <li><code>new_primitive_required=false</code> for this composition;</li>
-<li>a one-line commit message and validated push remote for the deterministic stage → commit → push operator plan; and</li>
+<li>a one-line commit message and validated <code>origin</code> push remote for the bounded one-approval stage → commit → push controller; and</li>
 <li>shell-free validation commands restricted to non-mutating <code>make sage-*</code> targets.</li>
 </ul>
 <p>Unknown archive files, path traversal, symlinks, duplicate paths, stale digests, request mismatch, branch/HEAD mismatch, unregistered component versions, unsafe validation targets, unsafe Python source, unresolved capability selection, or changed-path scope drift fail closed.</p>
 <h2 id="authority-and-human-boundary">Authority and human boundary<a class="headerlink" href="#authority-and-human-boundary" title="Permanent link">&para;</a></h2>
 <p>SAGE owns discovery, authority reconciliation, component selection, capability-gap gating, atomic application, validation, safety analysis, failure diagnosis, and construction of the operator proposal. Human or model expertise can propose content, rationale, alternatives, evidence references, and capabilities, but cannot convert those claims into authority by putting them in the package.</p>
-<p>The executor performs <strong>no Git mutation</strong>, <strong>no GitHub mutation</strong>, and <strong>no deployment mutation</strong>. It may change only declared repository content atomically. Every generated Git command is a single non-executed operator proposal. The operator reviews and runs exactly one proposal, returns the complete output, and SAGE must complete post-operator verification, outcome metrics, and evidence closeout before it can emit the next boundary.</p>
+<p>The request executor itself performs <strong>no Git mutation</strong>, <strong>no GitHub mutation</strong>, and <strong>no deployment mutation</strong>. It may change only declared repository content atomically. For ordinary validated changes it emits one non-executed command proposal that invokes the exact repository-owned routine Git controller. The operator's execution of that one proposal is the explicit approval for the bounded stage/commit/push lifecycle. SAGE must then complete independent post-operator verification, outcome metrics, and evidence closeout before the request is complete.</p>
 <h2 id="canonical-request-planning">Canonical request planning<a class="headerlink" href="#canonical-request-planning" title="Permanent link">&para;</a></h2>
 <p>Normal request execution no longer requires a caller to invent <code>capabilities</code>,
 <code>candidates</code>, <code>selection_factors</code>, or capability-gap decisions. The canonical
@@ -2454,6 +2479,16 @@ finding while changed unsafe statements remain fail closed. This exception is
 scoped only to baseline findings captured inside the current atomic
 request-execution transaction; it does not weaken <code>GitSafetyGuardrail</code> itself or
 authorize pre-existing unsafe behavior for reuse.</p>
+<h2 id="legacy-continuation-state-compatibility">Legacy continuation-state compatibility<a class="headerlink" href="#legacy-continuation-state-compatibility" title="Permanent link">&para;</a></h2>
+<p>Request-execution continuation states opened before the bounded routine Git
+lifecycle introduced <code>base_main_head</code> remain compatibility inputs only for the
+legacy <code>stage</code>, <code>commit</code>, and <code>push</code> boundaries. The loader may accept that
+exact legacy state shape without synthesizing missing main-branch authority.</p>
+<p>Every newly written state and every <code>routine-git-lifecycle</code> state must include
+a valid 40-hex <code>base_main_head</code>. Missing or malformed main authority fails
+closed. This compatibility exception does not authorize new legacy states and
+does not relax frozen-main verification for the one-approval routine Git
+lifecycle controller.</p>
 
 
 
