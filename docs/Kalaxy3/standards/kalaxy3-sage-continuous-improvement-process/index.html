@@ -3044,9 +3044,22 @@ earlier state.</p>
 <li>desired outcome;</li>
 <li>acceptance criteria;</li>
 <li>measurement plan;</li>
-<li>append-only transition history;</li>
+<li>append-only lifecycle and contract-amendment history;</li>
 <li>evidence references for every lifecycle event.</li>
 </ul>
+<p>An action contract may be amended only while the action remains <code>identified</code>.
+Amendment is not a lifecycle-state transition: <code>from_status</code> and <code>to_status</code>
+remain <code>identified</code>. The canonical action tool requires the caller to supply
+the expected SHA-256 of the current action contract and fails closed when that
+digest is stale, the replacement is a no-op, the action has progressed beyond
+<code>identified</code>, or an immutable field would change.</p>
+<p>Every amendment event preserves the complete before and after action contracts,
+their SHA-256 digests, the exact changed fields, actor, rationale, timestamp,
+and evidence references. The action identifier, lifecycle status, and prior
+history cannot be amended. This lets SAGE refine an identified objective before
+acceptance without silently rewriting the decision record or creating a
+duplicate action.</p>
+<p>The repository-owned <code>sage.improvement-action-transition</code> composition is shared by both status transitions and contract amendments. The amendment CLI delegates to that same discovery, authority reconciliation, validation, transactional rollback, operator Git boundary, and continuation path; a separate amendment workflow is prohibited.</p>
 <p>Action planning is dry-run by default. Registry mutation requires the explicit
 <code>--apply</code> flag and a clean working tree.</p>
 <p>Repository baseline extraction records measured Git and registry state against
@@ -3066,7 +3079,7 @@ narrative or commit volume.</p>
 <ul>
 <li><code>sage-improvement-actions.json</code>;</li>
 <li><code>sage-continuous-improvement-baseline-registry.json</code>;</li>
-<li><code>markdown/standards/sage-improvement-action-schema-v1.0.json</code>;</li>
+<li><code>markdown/standards/sage-improvement-action-schema-v1.1.json</code>;</li>
 <li><code>markdown/standards/sage-continuous-improvement-baseline-schema-v1.0.json</code>;</li>
 <li><code>scripts/sage/sage-improvement-actions.py</code>;</li>
 <li><code>scripts/sage/sage-baseline-extract.py</code>;</li>
