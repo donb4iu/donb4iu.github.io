@@ -1,0 +1,209 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "markdown/standards/sage-request-planning-source-schema-v1.1.json",
+    "title": "Kalaxy3 SAGE request planning source package with confirmed semantic authority",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "request_sha256",
+        "repository",
+        "source_files",
+        "generated_paths",
+        "reconcile_evidence_index",
+        "evidence_references",
+        "validation_commands",
+        "operator_plan",
+        "semantic_authority"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.1"
+        },
+        "request_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+        },
+        "repository": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "branch",
+                "head"
+            ],
+            "properties": {
+                "branch": {
+                    "type": "string",
+                    "minLength": 1,
+                    "not": {
+                        "const": "main"
+                    }
+                },
+                "head": {
+                    "type": "string",
+                    "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+                }
+            }
+        },
+        "source_files": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "path",
+                    "sha256",
+                    "mode"
+                ],
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "sha256": {
+                        "type": "string",
+                        "pattern": "^[0-9a-f]{64}$"
+                    },
+                    "mode": {
+                        "enum": [
+                            "0644",
+                            "0755"
+                        ]
+                    }
+                }
+            }
+        },
+        "generated_paths": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "reconcile_evidence_index": {
+            "type": "boolean"
+        },
+        "evidence_references": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "validation_commands": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "label",
+                    "argv"
+                ],
+                "properties": {
+                    "label": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "argv": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "prefixItems": [
+                            {
+                                "const": "make"
+                            },
+                            {
+                                "type": "string",
+                                "pattern": "^sage-[a-z0-9][a-z0-9-]*$"
+                            }
+                        ]
+                    },
+                    "timeout_seconds": {
+                        "type": "number",
+                        "minimum": 1,
+                        "maximum": 3600
+                    }
+                }
+            }
+        },
+        "operator_plan": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "commit_message",
+                "push_remote"
+            ],
+            "properties": {
+                "commit_message": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 120,
+                    "pattern": "^[^\\r\\n]+$"
+                },
+                "push_remote": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]*$"
+                }
+            }
+        },
+        "semantic_authority": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "semantic_understanding_sha256",
+                "semantic_confirmation_sha256",
+                "applicable_contexts",
+                "context_dispositions"
+            ],
+            "properties": {
+                "semantic_understanding_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                },
+                "semantic_confirmation_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                },
+                "applicable_contexts": {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "minLength": 1
+                    }
+                },
+                "context_dispositions": {
+                    "type": "array",
+                    "minItems": 1,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                            "context_id",
+                            "disposition"
+                        ],
+                        "properties": {
+                            "context_id": {
+                                "type": "string",
+                                "minLength": 1
+                            },
+                            "disposition": {
+                                "enum": [
+                                    "applicable",
+                                    "applicable-by-proposed-path-or-dependency",
+                                    "not-applicable-to-proposed-repository-scope"
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

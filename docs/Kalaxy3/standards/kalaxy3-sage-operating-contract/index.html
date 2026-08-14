@@ -1579,6 +1579,8 @@
       
         
       
+        
+      
     
     
     
@@ -2267,6 +2269,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-semantic-bootstrap-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE semantic-understanding bootstrap process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-thin-slice-process/" class="md-nav__link">
         
   
@@ -2605,8 +2635,11 @@ measurements, and operator mutation boundaries explicit and reviewable.</p>
    controlled mutation boundary.</li>
 <li>Diagnose every unexpected failure before another corrective mutation.</li>
 <li>Present exactly one Git or GitHub mutation boundary for operator execution.</li>
-<li>Require the operator to paste the complete result and verify the resulting
-   state before proposing another boundary.</li>
+<li>Require authoritative result evidence appropriate to the boundary and verify the
+    resulting state before proposing another boundary. The canonical post-operator
+    action is <code>verify-boundary-result</code>: repository-owned receipts are used when SAGE
+    can deterministically observe the result; complete pasted output remains a
+    legacy/manual evidence source for genuinely external boundaries.</li>
 <li>Preserve outcome, reuse, authority, failure, rework, safety, and trend
    measurements without inventing unavailable values.</li>
 <li>Publish implementation evidence through the repository-owned SAGE process.</li>
@@ -2757,7 +2790,7 @@ boundary and exactly one command. It includes:</p>
 <li>a secret-free command representation and digest;</li>
 <li>a statement that no helper executed the command.</li>
 </ul>
-<p>No next boundary is proposed until the operator pastes the complete output and
+<p>No next boundary is proposed until the active boundary result is bound to authoritative evidence and
 the resulting state is verified read-only.</p>
 <h2 id="measurements">Measurements<a class="headerlink" href="#measurements" title="Permanent link">&para;</a></h2>
 <p>Raw measurements are retained before derived rates. Unknown or unmeasured
@@ -2812,8 +2845,7 @@ GitHub mutation remain unauthorized.</p>
 <h2 id="root-enforcement-composition">Root enforcement composition<a class="headerlink" href="#root-enforcement-composition" title="Permanent link">&para;</a></h2>
 <p><code>scripts/sage/workflows/operating_contract.py</code> composes the registered
 primitives into two workflows. The pre-mutation workflow ends with exactly one
-operator proposal. The post-operator workflow begins only after complete pasted
-output is available and performs read-only verification, semantic outcome
+operator proposal. The post-operator workflow begins only after authoritative boundary-result evidence is available and performs read-only verification, semantic outcome
 measurement, and evidence closeout.</p>
 <p>The root enforcement gate is:</p>
 <div class="highlight"><pre><span></span><code>make<span class="w"> </span>sage-operating-contract-check

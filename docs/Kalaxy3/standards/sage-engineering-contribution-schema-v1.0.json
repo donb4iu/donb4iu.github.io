@@ -1,0 +1,92 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "markdown/standards/sage-engineering-contribution-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE engineering contribution",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "contribution_id",
+        "contributor",
+        "summary",
+        "rationale",
+        "assumptions",
+        "alternatives",
+        "files"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "contribution_id": {
+            "type": "string",
+            "minLength": 1
+        },
+        "contributor": {
+            "type": "object",
+            "additionalProperties": true,
+            "required": [
+                "participant_class",
+                "identity"
+            ],
+            "properties": {
+                "participant_class": {
+                    "enum": [
+                        "human",
+                        "llm"
+                    ]
+                },
+                "identity": {
+                    "type": "string",
+                    "minLength": 1
+                }
+            }
+        },
+        "summary": {
+            "type": "string",
+            "minLength": 1
+        },
+        "rationale": {
+            "type": "string",
+            "minLength": 1
+        },
+        "assumptions": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "alternatives": {
+            "type": "array",
+            "items": {
+                "type": "string",
+                "minLength": 1
+            }
+        },
+        "files": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                    "path",
+                    "mode"
+                ],
+                "properties": {
+                    "path": {
+                        "type": "string",
+                        "minLength": 1
+                    },
+                    "mode": {
+                        "enum": [
+                            "0644",
+                            "0755"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

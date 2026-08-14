@@ -18,7 +18,7 @@
         <link rel="prev" href="../kalaxy3-sage-request-execution-process/">
       
       
-        <link rel="next" href="../kalaxy3-sage-thin-slice-process/">
+        <link rel="next" href="../kalaxy3-sage-semantic-bootstrap-process/">
       
       
         
@@ -1579,6 +1579,8 @@
       
         
       
+        
+      
     
     
     
@@ -2098,6 +2100,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#semantic-authority-propagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic authority propagation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#planning-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2141,10 +2154,49 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#repository-owned-source-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository-owned source construction
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-semantic-bootstrap-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE semantic-understanding bootstrap process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2290,6 +2342,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#semantic-authority-propagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Semantic authority propagation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#planning-behavior" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2333,6 +2396,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#repository-owned-source-construction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository-owned source construction
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2369,16 +2443,20 @@ selection, or capability-gap decisions when this planner applies.</p>
 <p>The planning composition uses:</p>
 <ol>
 <li>the exact literal request;</li>
-<li>resolved <strong>repository authority</strong> from current SAGE discovery;</li>
+<li>resolved <strong>repository authority</strong> from Architect-confirmed semantic authority when present, otherwise current SAGE discovery for legacy sources;</li>
 <li><code>sage-workflow-primitives.json</code>;</li>
 <li>the mandatory request-execution primitive set published by
    <code>scripts/sage/workflows/request_execution.py</code>; and</li>
 <li>the checksum-bound source-only package.</li>
 </ol>
 <p>The source-only package is governed by
-<code>sage-request-planning-source-schema-v1.0.json</code>. Its manifest deliberately has
+<code>sage-request-planning-source-schema-v1.0.json</code> for legacy callers and semantic-bound v1.1 for Architect-confirmed sources. Their manifests deliberately have
 no <code>capabilities</code>, <code>candidates</code>, <code>selection_factors</code>, or
 <code>new_primitive_required</code> fields.</p>
+<h2 id="semantic-authority-propagation">Semantic authority propagation<a class="headerlink" href="#semantic-authority-propagation" title="Permanent link">&para;</a></h2>
+<p>When a planning source is generated after Architect semantic confirmation, the source package embeds the exact semantic-understanding and semantic-confirmation artifacts and records their SHA-256 digests, Architect-confirmed applicable contexts, and complete context dispositions. That <strong>Architect-confirmed semantic authority</strong> is authoritative for downstream repository-authority resolution.</p>
+<p>The planner still performs literal SAGE discovery and evidence retrieval, but raw discovery remains audit evidence rather than a second semantic-authority decision. Contexts already dispositioned as not applicable cannot silently re-enter implementation authority. The planner deterministically resolves authority files only from the confirmed applicable-context set and its existing dependency contract. If literal discovery produces a context that was not part of the confirmed dispositions, or if path/dependency-derived applicability no longer matches the confirmed context set, planning fails closed and requires a <strong>return to semantic confirmation</strong> rather than broadening scope.</p>
+<p>Legacy v1.0 planning sources retain the existing literal-discovery authority behavior so already-open/manual workflows remain compatible.</p>
 <h2 id="planning-behavior">Planning behavior<a class="headerlink" href="#planning-behavior" title="Permanent link">&para;</a></h2>
 <p>For every primitive required by the current request-execution composition, the
 planner derives a required capability from the operating contract and an
@@ -2429,8 +2507,12 @@ repository planner is available.</p>
 <li>a deliberately unsupported required capability creates an explicit
   <code>capability.gap</code> receipt and blocks proposal generation; and</li>
 <li>a source-only package becomes a proposal accepted by the existing
-  request-execution parser.</li>
+  request-execution parser;</li>
+<li>Architect-confirmed not-applicable contexts remain excluded even when literal discovery infers them again; and</li>
+<li>a genuinely new post-confirmation context fails closed and returns to semantic confirmation instead of silently expanding authority.</li>
 </ul>
+<h2 id="repository-owned-source-construction">Repository-owned source construction<a class="headerlink" href="#repository-owned-source-construction" title="Permanent link">&para;</a></h2>
+<p><code>scripts/sage/request_planning.py</code> publishes <code>write_source_package</code> so trusted repository compositions can derive <code>sage-source.json</code>, payload hashes, and archive scope internally. Human, LLM, and external callers are not required to author that SAGE-internal manifest. The accepted-action semantic-bootstrap composition is the first consumer; it preserves the existing <code>sage-request-plan</code> proposal interface rather than duplicating component selection or capability-gap semantics.</p>
 
 
 

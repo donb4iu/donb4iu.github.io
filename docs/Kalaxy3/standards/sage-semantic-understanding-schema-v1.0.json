@@ -1,0 +1,40 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "markdown/standards/sage-semantic-understanding-schema-v1.0.json",
+    "title": "Kalaxy3 SAGE semantic understanding record",
+    "type": "object",
+    "additionalProperties": true,
+    "required": [
+        "schema_version",
+        "record_type",
+        "action",
+        "literal_request",
+        "contribution",
+        "interpretation",
+        "assertions"
+    ],
+    "properties": {
+        "schema_version": {
+            "const": "1.0"
+        },
+        "record_type": {
+            "const": "sage-semantic-understanding"
+        },
+        "literal_request": {
+            "type": "string",
+            "minLength": 1
+        },
+        "action": {
+            "type": "object"
+        },
+        "contribution": {
+            "type": "object"
+        },
+        "interpretation": {
+            "type": "object"
+        },
+        "assertions": {
+            "type": "object"
+        }
+    }
+}
