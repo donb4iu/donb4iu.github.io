@@ -1,0 +1,202 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-legacy-evidence-projection-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE legacy evidence projection",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "projection_id",
+    "source",
+    "projection",
+    "authority",
+    "publication"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-legacy-evidence-projection"
+    },
+    "projection_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "repository_url",
+        "path",
+        "commit",
+        "content_sha256",
+        "historical_time_context"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repository_url": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "commit": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{40}$"
+        },
+        "content_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "historical_time_context": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "projected_by",
+        "claims"
+      ],
+      "properties": {
+        "projected_by": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "participant_class",
+            "identity"
+          ],
+          "properties": {
+            "participant_class": {
+              "enum": [
+                "human",
+                "llm",
+                "deterministic-orchestrator"
+              ]
+            },
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "claims": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "claim_id",
+              "statement",
+              "classification",
+              "source_basis",
+              "rationale"
+            ],
+            "properties": {
+              "claim_id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "statement": {
+                "type": "string",
+                "minLength": 1
+              },
+              "classification": {
+                "enum": [
+                  "directly-supported",
+                  "safely-derivable",
+                  "unknown",
+                  "requires-current-revalidation",
+                  "requires-Architect-disposition"
+                ]
+              },
+              "source_basis": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "rationale": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "historical_source_is_immutable",
+        "projection_is_current_authority",
+        "projection_may_upgrade_confidence",
+        "projection_may_establish_current_applicability",
+        "projection_may_claim_current_success",
+        "projection_may_claim_current_security_posture",
+        "projection_may_claim_current_validation",
+        "material_ambiguity_requires_architect_disposition"
+      ],
+      "properties": {
+        "historical_source_is_immutable": {
+          "const": true
+        },
+        "projection_is_current_authority": {
+          "const": false
+        },
+        "projection_may_upgrade_confidence": {
+          "const": false
+        },
+        "projection_may_claim_current_validation": {
+          "const": false
+        },
+        "material_ambiguity_requires_architect_disposition": {
+          "const": true
+        },
+        "projection_may_establish_current_applicability": {
+          "const": false
+        },
+        "projection_may_claim_current_success": {
+          "const": false
+        },
+        "projection_may_claim_current_security_posture": {
+          "const": false
+        }
+      }
+    },
+    "publication": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "legacy_label_required",
+        "surface_source_repository_path_commit",
+        "surface_current_revalidation_status"
+      ],
+      "properties": {
+        "legacy_label_required": {
+          "const": true
+        },
+        "surface_source_repository_path_commit": {
+          "const": true
+        },
+        "surface_current_revalidation_status": {
+          "const": true
+        }
+      }
+    }
+  }
+}
