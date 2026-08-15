@@ -2139,10 +2139,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anti-goose-chase-rule" class="md-nav__link">
+  <a href="#context-applicability-and-anti-goose-chase-rule" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anti-goose-chase rule
+        Context applicability and anti-goose-chase rule
       
     </span>
   </a>
@@ -2331,10 +2331,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#anti-goose-chase-rule" class="md-nav__link">
+  <a href="#context-applicability-and-anti-goose-chase-rule" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Anti-goose-chase rule
+        Context applicability and anti-goose-chase rule
       
     </span>
   </a>
@@ -2395,7 +2395,7 @@
 <li>Read exactly one accepted action through the read-only action contract interface.</li>
 <li>Load an engineering contribution whose manifest contains engineering semantics only; hashes are derived by SAGE.</li>
 <li>Run exactly one literal preflight pass.</li>
-<li>Reconcile inferred contexts with the proposed repository paths and dependency rules from <code>sage-change-authority.json</code>. Inferred contexts outside the proposed repository scope are explicitly dispositioned rather than recursively explored.</li>
+<li>Reconcile request-inferred contexts with proposed repository paths and dependency rules from <code>sage-change-authority.json</code> without equating semantic applicability with source mutation. Preserve all request-relevant inferred contexts as applicable evidence/governance context; separately derive the narrower implementation-context set that owns the proposed paths and their dependencies. A context is not demonstrably non-applicable merely because no file in that context changes.</li>
 <li>Emit an immutable semantic-understanding record plus a repository-owned Architect disposition template for its material scope, assumption, and alternative proposals.</li>
 <li>At the existing Architect continuation boundary, require every material proposal to be dispositioned as <code>accept</code>, <code>reject</code>, <code>modify</code>, or <code>defer</code> and bind those decisions to the exact interpreted-understanding digest. Non-accept decisions require rationale; resurfacing a prior disposition requires materially new basis.</li>
 <li>Deterministically derive the confirmed semantic-understanding record. Accepted/modified effects become <strong>confirmed semantic authority</strong>; rejected/deferred proposals remain decision evidence only. The existing semantic-confirmation record binds the derived result, so no parallel negotiation engine, schema fork, or planner authority model is introduced.</li>
@@ -2403,7 +2403,9 @@
 <li>Generate the canonical planning source through existing <code>write_source_package</code>; a modified implementation scope may only select paths already present in the contribution. The default immutable planning-source filename remains scoped by both action ID and the exact <strong>semantic-confirmation digest</strong>, so <strong>multiple confirmed slices</strong> under one accepted action cannot collide.</li>
 <li>Derive the routine Git commit subject from the active literal request and hand the source to the existing planning/execution path.</li>
 </ol>
-<h2 id="anti-goose-chase-rule">Anti-goose-chase rule<a class="headerlink" href="#anti-goose-chase-rule" title="Permanent link">&para;</a></h2>
+<h2 id="context-applicability-and-anti-goose-chase-rule">Context applicability and anti-goose-chase rule<a class="headerlink" href="#context-applicability-and-anti-goose-chase-rule" title="Permanent link">&para;</a></h2>
+<p>Semantic applicability and source-mutation authority are separate facts. <code>applicable_contexts</code> preserves contexts materially implicated by the literal request plus path/dependency contexts. <code>implementation_contexts</code> is the narrower set used to govern the proposed repository mutation. Request-relevant contexts with no proposed source mutation remain explicitly visible as <code>applicable-now-no-proposed-source-mutation</code>; they are not silently discarded as noise. Demonstrably non-applicable claims require evidence rather than absence of a matching changed path.</p>
+<p>New confirmations that carry the split are published through additive request-planning source schema v1.2. Historical v1.1 semantic planning sources keep their original combined-context meaning and remain readable without rewrite; v1.0 sources retain literal-discovery behavior.</p>
 <p>For unchanged request, contribution, action contract, and repository authority, semantic bootstrap performs one interpretation/preflight pass. A missing mandatory fact stops progression with an explicit fail-closed reason; registered downstream capability deficiencies continue to use the canonical <code>capability.gap</code> mechanism. The composition must not add magic vocabulary, recursively broaden contexts, or repeatedly retrieve unrelated material merely to obtain a passing classification.</p>
 <h2 id="bootstrap-exception">Bootstrap exception<a class="headerlink" href="#bootstrap-exception" title="Permanent link">&para;</a></h2>
 <p>The implementation of this composition may itself be introduced through one explicitly recorded legacy source package because the repository-owned source builder does not exist before this change. That exception is bounded to the bootstrap implementation. After this capability is installed, manually authored <code>sage-source.json</code> is not a normal accepted-action implementation path and is covered by regression controls.</p>
