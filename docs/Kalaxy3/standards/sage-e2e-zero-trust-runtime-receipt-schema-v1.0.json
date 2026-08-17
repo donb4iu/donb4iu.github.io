@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-e2e-zero-trust-runtime-receipt-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE zero-trust E2E runtime receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "status",
+    "hostname",
+    "captured_at",
+    "actor_role",
+    "checks",
+    "value_vignette",
+    "evidence"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-e2e-zero-trust-runtime-receipt"
+    },
+    "status": {
+      "const": "pass"
+    },
+    "hostname": {
+      "type": "string",
+      "minLength": 3
+    },
+    "captured_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "actor_role": {
+      "const": "architect"
+    },
+    "checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workload_ready",
+        "origin_through_traefik_ready",
+        "tunnel_ready",
+        "connector_node_ha",
+        "metrics_monitor_configured",
+        "unauthenticated_access_denied",
+        "authorized_mfa_access_verified",
+        "privileged_surfaces_not_published"
+      ],
+      "properties": {
+        "workload_ready": {
+          "const": true
+        },
+        "origin_through_traefik_ready": {
+          "const": true
+        },
+        "tunnel_ready": {
+          "const": true
+        },
+        "metrics_monitor_configured": {
+          "const": true
+        },
+        "unauthenticated_access_denied": {
+          "const": true
+        },
+        "authorized_mfa_access_verified": {
+          "const": true
+        },
+        "privileged_surfaces_not_published": {
+          "const": true
+        },
+        "connector_node_ha": {
+          "const": true
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "connector_nodes"
+      ],
+      "properties": {
+        "connector_nodes": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "value_vignette": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "architect_observation",
+        "sage_finding",
+        "prevented_action",
+        "bounded_correction",
+        "value_demonstrated"
+      ],
+      "properties": {
+        "architect_observation": {
+          "type": "string",
+          "minLength": 20
+        },
+        "sage_finding": {
+          "type": "string",
+          "minLength": 20
+        },
+        "prevented_action": {
+          "type": "string",
+          "minLength": 20
+        },
+        "bounded_correction": {
+          "type": "string",
+          "minLength": 20
+        },
+        "value_demonstrated": {
+          "type": "string",
+          "minLength": 20
+        }
+      }
+    }
+  }
+}

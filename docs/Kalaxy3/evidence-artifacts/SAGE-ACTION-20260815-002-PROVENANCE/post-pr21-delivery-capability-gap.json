@@ -1,0 +1,62 @@
+{
+    "schema_version": "1.1",
+    "gap_id": "SAGE-GAP-20260816-POST-PR21-DELIVERY",
+    "request": "Evolve post-PR21 SAGE delivery so stage execution is portable and workstation-independent, artifacts are built once and promoted immutably, orchestration engines/hosts are replaceable implementation details, environment-affinity work is isolated to promotion/runtime, applicable check status participates in convergence, evidence invalidation re-enters only the earliest materially affected domain, completed promotion lineage can reconcile into its parent intent, and immutable deadlines can drive explicit governed phasing without sacrificing intent, integrity, quality, security, traceability, evidence, learning, or innovation.",
+    "created_at": "2026-08-16T01:29:17-05:00",
+    "authority_receipt": "architect-disposition:SAGE-ACTION-20260815-002:PR21-interim-release-and-post-PR21-delivery-evolution",
+    "component_manifest": "sage-workflow-primitives.json",
+    "required_capability": "Portable stage execution, immutable artifact promotion, engine-neutral orchestration, evidence-domain-aware convergence, parent-lineage reconciliation, and constraint-aware governed phasing.",
+    "gap_kind": "domain-capability",
+    "candidates_considered": [
+        {
+            "component_id": "sage.checkpoint-promotion",
+            "version": "ab7afc0e6280f1fca4b9c9953049b8a4433cd185",
+            "source_path": "scripts/sage/workflows/checkpoint_promotion.py",
+            "insufficiency": "Current promotion proves Git merge topology and applicable repository/runtime evidence but does not model build-once immutable stage artifacts, environment-manifest promotion, or applicable GitHub check status as a first-class convergence input.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "kalaxy3-build-publish-github-actions",
+            "version": "ab7afc0e6280f1fca4b9c9953049b8a4433cd185",
+            "source_path": ".github/workflows/kalaxy3_build_publish.yml",
+            "insufficiency": "The hosted workflow transitively invokes controller/live-cluster guardrails and therefore mixes execution domains instead of invoking a portable canonical stage contract.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "sage.intent-to-outcome",
+            "version": "ab7afc0e6280f1fca4b9c9953049b8a4433cd185",
+            "source_path": "scripts/sage/workflows/intent_to_outcome.py",
+            "insufficiency": "The intent lifecycle can govern runtime and promotion children but does not yet reconcile an independently completed promotion child or encode artifact-domain invalidation and environment-affinity promotion.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "sage.request-planning",
+            "version": "ab7afc0e6280f1fca4b9c9953049b8a4433cd185",
+            "source_path": "scripts/sage/workflows/request_planning.py",
+            "insufficiency": "Planning can surface domain capability gaps but current delivery composition does not provide the portable stage/artifact-promotion capability or constraint-aware phasing contract discovered through PR21.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "The current delivery contract lacks a canonical portable stage artifact/receipt interface and corresponding promotion/environment/evidence-domain semantics, while PR21 also exposed missing applicable-check convergence and completed-child lineage reconciliation.",
+        "why_configuration_is_insufficient": "The defects span workflow contracts, provenance/evidence semantics, promotion gates, stage execution boundaries, and intent-lineage behavior; changing runner configuration or environment variables cannot establish those missing governed interfaces.",
+        "why_composition_is_insufficient": "Existing registered primitives can govern the eventual implementation, but their current compositions do not collectively provide build-once/promote-many stage semantics, check-aware convergence, minimal evidence invalidation, completed-promotion adoption, or constraint-aware phasing.",
+        "new_primitive_required": false,
+        "new_domain_capability_required": true
+    },
+    "proposed_primitive": null,
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "Architect",
+        "reviewed_at": "2026-08-16T01:29:17-05:00",
+        "rationale": "The Architect accepted PR21 as a valuable interim mainline release and approved prospective evolution rather than retrofitting the new delivery architecture into PR21. The Architect further required immutable real-world constraints such as deadlines to mutate scope/phasing explicitly while preserving intent, integrity, traceability, quality, security, evidence, learning, innovation, residual-risk visibility, and reconciliation obligations."
+    },
+    "evidence_references": [
+        "commit:ab7afc0e6280f1fca4b9c9953049b8a4433cd185",
+        "pr:https://github.com/donb4iu/Kalaxy3/pull/21",
+        "runtime-receipt:/Users/dbuddenbaum/.local/state/kalaxy3/sage-e2e-zero-trust/runtime-final.json",
+        "promotion-state:/Users/dbuddenbaum/.local/state/kalaxy3/sage-checkpoint-promotion/20260815-205644-382897/checkpoint-promotion-state.json",
+        "promotion-verification:/Users/dbuddenbaum/.local/state/kalaxy3/sage-checkpoint-promotion/continue-20260815-230906-695187/post-operator-verification.json",
+        "architect-decision:PR21-is-an-interim-release-and-architectural-demarcation"
+    ]
+}

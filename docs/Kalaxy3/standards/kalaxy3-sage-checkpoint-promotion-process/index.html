@@ -1583,6 +1583,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1763,6 +1767,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE checkpoint promotion process
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -1779,6 +1801,36 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exact-source-ci-convergence-prospective-after-pr-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exact-source CI convergence (prospective after PR #21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1974,6 +2026,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-intent-to-outcome-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE intent-to-outcome process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-legacy-evidence-projection-process/" class="md-nav__link">
         
   
@@ -2010,6 +2090,34 @@
     
   
     Kalaxy3 SAGE Mandatory Operating Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-portable-stage-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Portable Stage Process
   
 
     
@@ -2218,6 +2326,25 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exact-source-ci-convergence-prospective-after-pr-21" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Exact-source CI convergence (prospective after PR #21)
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -2241,29 +2368,37 @@
 operations. A synchronized checkpoint commit or push preserves engineering
 state for business continuity; it does not assert validation, promotability,
 merge readiness, deployment readiness, or completion. Incomplete and
-dependency-blocked checkpoints are explicitly allowed to remain non-promotable.</p>
-<p>Promotion to <code>main</code> requires a clean synchronized source branch, independent
+dependency-blocked checkpoints are explicitly allowed to remain non-promotable.
+Promotion to <code>main</code> requires a clean synchronized source branch, independent
 remote-source equality, a frozen target whose local remote-tracking ref matches
 the independently read remote branch head, proof that the source descends from
 that frozen target, and the conjunction of every applicable validation gate.
 <code>make sage-guardrails</code> always applies. Documentation and homelab paths add their
-existing publication and cluster guardrails.</p>
-<p>The implementation action is provenance, not a circular eligibility gate.
+existing publication and cluster guardrails.
+The implementation action is provenance, not a circular eligibility gate.
 Promotion eligibility is established by current authority and validation
 receipts.</p>
 <p>The repository-owned <code>sage.checkpoint-promotion</code> composition uses <code>git.inspect</code>
 for Git facts and <code>github.inspect</code> for pull-request facts. It does not import
 <code>GitRepository</code>, perform workflow-side <code>git fetch</code>, invoke <code>gh</code> through the
-command runner, call GitHub APIs directly, or inherit GitHub credentials.</p>
-<p>PR creation and merge remain <code>operator.git-proposal</code> boundaries, but they use the
+command runner, call GitHub APIs directly, or inherit GitHub credentials.
+PR creation and merge remain <code>operator.git-proposal</code> boundaries, but they use the
 schema 1.1 <code>browser-review</code> mode rather than GitHub CLI commands. PR creation emits a
 checksum-bound GitHub compare URL with the base branch, head branch, title, and body
 pre-populated; the operator only reviews the rendered GitHub form and approves creation.
-After that approval, <code>github.inspect</code> verifies the exact base, head branch, source SHA,
-open state, non-draft state, and affirmative mergeability while <code>git.inspect</code> proves the
-remote target has not advanced. Only then may a browser-review merge proposal for that
-exact PR page be emitted.</p>
-<p>For merge, the operator reviews the independently verified PR page, selects Create a
+If an earlier operator-approved promotion attempt already created exactly one open,
+non-draft pull request whose base, head branch, and head SHA match the newly frozen
+source, SAGE may reuse that existing review state instead of fabricating or requesting
+a duplicate PR-create mutation. <code>github.inspect</code> must independently identify the
+exact PR, prove affirmative mergeability, converge the complete required check set on
+one successful exact-source check suite, and <code>git.inspect</code> must prove the frozen target
+has not advanced. Only then may SAGE emit the browser-review merge proposal directly.
+If no exact PR exists, the normal PR-create boundary remains required; ambiguous or
+mismatched PR state fails closed.
+After PR creation approval, <code>github.inspect</code> performs the same exact base, head branch,
+source SHA, open state, non-draft state, mergeability, required-check, and frozen-target
+verification before a merge proposal may be emitted.
+For merge, the operator reviews the independently verified PR page, selects Create a
 merge commit if GitHub presents multiple merge methods, and performs the final merge
 approval. The workflow itself never opens the browser or clicks GitHub controls. After
 the operator merge, <code>github.inspect</code> verifies the exact PR identity, closed/merged
@@ -2279,18 +2414,22 @@ merge are permitted only as descendants of that exact merge commit. After the me
 interaction, the source branch itself may also receive a synchronized repair or recovery
 commit without rewriting the frozen promotion source; continuation requires that the frozen
 source remain an ancestor of the current synchronized source branch. Before PR verification,
-source equality remains exact.</p>
-<p>Any target advancement before merge, source divergence, stale local target, ambiguous
+source equality remains exact.
+Any target advancement before merge, source divergence, stale local target, ambiguous
 PR, head/base/SHA mismatch, missing affirmative merged state, missing/failed gate,
 unexpected operator command, local/remote target divergence after fetch, non-unique or
 wrong-parent merge topology, GitHub/Git merge-SHA disagreement, or failed final ancestry
-proof fails closed.</p>
-<p>Ordinary <code>sage.request-execution</code> remains the repository-content
+proof fails closed.
+Ordinary <code>sage.request-execution</code> remains the repository-content
 <code>stage -&gt; commit -&gt; push</code> lifecycle. The checkpoint-promotion workflow is a
 separate higher-trust composition.</p>
 <p>The deterministic dependency-deadlock regression proves that blocked work may
 be checkpointed safely while remaining non-promotable, then becomes eligible
 only after the dependency is resolved and the complete applicable gate passes.</p>
+<h2 id="exact-source-ci-convergence-prospective-after-pr-21">Exact-source CI convergence (prospective after PR #21)<a class="headerlink" href="#exact-source-ci-convergence-prospective-after-pr-21" title="Permanent link">&para;</a></h2>
+<p>Promotion mergeability is necessary but not sufficient. After PR creation, or after reuse of an exact already-open PR, and before SAGE offers the merge boundary, <code>github.inspect</code> reads the policy-required GitHub check runs for the exact frozen source SHA. The complete required-check set must converge on exactly one check suite in which every required check is uniquely present, <code>completed</code>, and <code>success</code>. Missing, queued, in-progress, failed, cancelled, stale, neutral, skipped, incoherent, or multiply successful required-check suites fail closed.
+The source-SHA binding is deliberate. The portable-stage workflow runs on feature-branch <code>push</code> so its authoritative stage evidence is attached to the exact source commit rather than only to GitHub's synthetic pull-request merge ref. Additional pull-request checks remain useful integration evidence but do not replace frozen-source identity.</p>
+<p>This is a prospective correction learned from PR #21. Historical PR #21 check state is preserved and is not rewritten.</p>
 
 
 

@@ -1,0 +1,95 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://kalaxy3.local/schemas/sage-portable-stage-receipt-v1.0.json",
+    "title": "Kalaxy3 SAGE Portable Stage Receipt v1.0",
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["schema_version", "record_type", "stage_contract", "source", "artifact", "build_contract", "invocation", "generated_at"],
+    "properties": {
+        "schema_version": {"const": "1.0"},
+        "record_type": {"const": "sage-portable-stage-receipt"},
+        "stage_contract": {"const": "kalaxy3-portable-stage-v1"},
+        "source": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["git_sha"],
+            "properties": {
+                "git_sha": {"type": "string", "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"}
+            }
+        },
+        "artifact": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["format", "logical_image_repository", "stage_tag", "archive_sha256", "index_digest", "index_location", "media_type", "platforms", "additional_manifests", "storage"],
+            "properties": {
+                "format": {"const": "oci-layout-tar"},
+                "logical_image_repository": {"type": "string", "minLength": 1},
+                "stage_tag": {"type": "string", "minLength": 1},
+                "archive_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                "index_digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+                "index_location": {"type": "string", "minLength": 1},
+                "media_type": {"enum": ["application/vnd.oci.image.index.v1+json", "application/vnd.docker.distribution.manifest.list.v2+json"]},
+                "platforms": {
+                    "type": "array",
+                    "minItems": 2,
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["os", "architecture", "digest"],
+                        "properties": {
+                            "os": {"type": "string"},
+                            "architecture": {"type": "string"},
+                            "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"}
+                        }
+                    }
+                },
+                "additional_manifests": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": ["digest", "platform"],
+                        "properties": {
+                            "digest": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+                            "platform": {"type": "string"}
+                        }
+                    }
+                },
+                "storage": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": ["provider", "artifact_name", "artifact_id", "artifact_digest"],
+                    "properties": {
+                        "provider": {"const": "github-actions-artifact"},
+                        "artifact_name": {"type": "string", "minLength": 1},
+                        "artifact_id": {"type": "string", "pattern": "^[1-9][0-9]*$"},
+                        "artifact_digest": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+                    }
+                }
+            }
+        },
+        "build_contract": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["dockerfile", "source_validation", "documentation_validation", "external_registry_credentials_used", "production_rebuild_permitted"],
+            "properties": {
+                "dockerfile": {"const": "yaml/nginx-docs/k8s-doc-to-nginx/nginx/Dockerfile.stage"},
+                "source_validation": {"const": "make sage-stage-guardrails"},
+                "documentation_validation": {"const": "make docs-mkdocs-publication-test"},
+                "external_registry_credentials_used": {"const": false},
+                "production_rebuild_permitted": {"const": false}
+            }
+        },
+        "invocation": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provider", "workflow_run_id", "workflow_run_attempt"],
+            "properties": {
+                "provider": {"const": "github-actions"},
+                "workflow_run_id": {"type": "string", "minLength": 1},
+                "workflow_run_attempt": {"type": "string", "minLength": 1}
+            }
+        },
+        "generated_at": {"type": "string", "minLength": 1}
+    }
+}

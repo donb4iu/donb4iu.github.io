@@ -1583,6 +1583,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -1964,6 +1968,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-intent-to-outcome-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE intent-to-outcome process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-legacy-evidence-projection-process/" class="md-nav__link">
         
   
@@ -2000,6 +2032,34 @@
     
   
     Kalaxy3 SAGE Mandatory Operating Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-portable-stage-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Portable Stage Process
   
 
     
@@ -2137,6 +2197,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Semantic authority propagation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planning-obligations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning obligations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2380,6 +2457,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Semantic authority propagation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#planning-obligations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Planning obligations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2480,13 +2574,18 @@ selection, or capability-gap decisions when this planner applies.</p>
 <li>the checksum-bound source-only package.</li>
 </ol>
 <p>The source-only package is governed by
-<code>sage-request-planning-source-schema-v1.0.json</code> for legacy callers, historical semantic-bound v1.1 sources, and additive v1.2 for newly confirmed sources that separate semantic applicability from implementation authority. Their manifests deliberately have
+<code>sage-request-planning-source-schema-v1.0.json</code> for legacy callers, historical semantic-bound v1.1 sources, additive v1.2 for sources that separate semantic applicability from implementation authority, and additive v1.3 for newly confirmed sources that also preserve Architect-confirmed planning obligations. Their manifests deliberately have
 no <code>capabilities</code>, <code>candidates</code>, <code>selection_factors</code>, or
 <code>new_primitive_required</code> fields.</p>
 <h2 id="semantic-authority-propagation">Semantic authority propagation<a class="headerlink" href="#semantic-authority-propagation" title="Permanent link">&para;</a></h2>
 <p>When a planning source is generated after Architect semantic confirmation, the source package embeds the exact semantic-understanding and semantic-confirmation artifacts and records their SHA-256 digests. Historical v1.1 sources retain the original combined-context semantic authority contract. New v1.2 sources record both the full Architect-confirmed <code>applicable_contexts</code> envelope and the narrower <code>implementation_contexts</code> used for source-mutation authority, plus complete context dispositions. That <strong>Architect-confirmed semantic authority</strong> is authoritative for downstream repository-authority resolution.</p>
-<p>The planner still performs literal SAGE discovery and evidence retrieval, but raw discovery remains audit evidence rather than a second semantic-authority decision. Request-relevant contexts may remain applicable even when they own no proposed source mutation; they do not thereby gain mutation authority. For v1.2, the planner resolves authority files only from <code>implementation_contexts</code> while preserving <code>applicable_contexts</code> for evidence, governance, and semantic re-entry checks. If literal discovery produces a context that was not part of the confirmed dispositions, or if path/dependency-derived implementation authority no longer matches the confirmed implementation-context set, planning fails closed and requires a <strong>return to semantic confirmation</strong> rather than broadening scope.</p>
-<p>Legacy v1.0 planning sources retain literal-discovery authority behavior. Historical v1.1 semantic sources remain readable under their original combined-context semantics and are never rewritten merely to acquire the v1.2 field.</p>
+<p>The planner still performs literal SAGE discovery and evidence retrieval, but raw discovery remains audit evidence rather than a second semantic-authority decision. Request-relevant contexts may remain applicable even when they own no proposed source mutation; they do not thereby gain mutation authority. For v1.2, the planner resolves authority files only from <code>implementation_contexts</code> while preserving <code>applicable_contexts</code> for evidence, governance, and semantic re-entry checks. If literal discovery produces a context that was not part of the confirmed dispositions, or if path/dependency-derived implementation authority expands beyond the confirmed implementation-context set, planning fails closed and requires a <strong>return to semantic confirmation</strong> rather than broadening scope. A narrowed active mutation set may derive only a subset of the confirmed implementation contexts without invalidating the still-authoritative semantic envelope.</p>
+<p>Legacy v1.0 planning sources retain literal-discovery authority behavior. Historical v1.1 and v1.2 semantic sources remain readable under their original contracts and are never rewritten merely to acquire newer fields.</p>
+<p>For semantic-bound sources, the active planning-source path set must remain a subset of the Architect-confirmed <code>implementation_scope</code>. This permits implementation-local refinement to touch only the files needed for the current candidate while retaining the original confirmed scope as the authority ceiling. Any path outside that ceiling is a semantic scope expansion and fails closed for re-confirmation.</p>
+<h3 id="planning-obligations">Planning obligations<a class="headerlink" href="#planning-obligations" title="Permanent link">&para;</a></h3>
+<p>v1.3 carries structured <strong>planning obligations</strong> from the confirmed semantic record. The obligation set preserves the accepted action outcome, Definition of Done / acceptance criteria, measurement obligations, authoritative semantic modifications and constraints, feasibility obligations, and explicit Architect planning directives. Each obligation records its provenance rather than flattening those sources into an opaque summary.</p>
+<p>Only obligations explicitly classified as <code>capability</code> become <code>RequiredCapability</code> inputs to <code>component.select</code>. Constraint, requirement, validation, measurement, feasibility, outcome, and lifecycle obligations remain first-class planning authority but do not masquerade as deployable components.</p>
+<p>A required domain capability with no repository-proven candidate produces a <strong>domain capability gap</strong> through the existing <code>capability.gap</code> owner. That gap has <code>new_primitive_required=false</code>: it stops planning for governed capability evaluation instead of silently falling back to an engineering-contribution mechanism or pretending that a new SAGE primitive is required.</p>
 <h2 id="planning-behavior">Planning behavior<a class="headerlink" href="#planning-behavior" title="Permanent link">&para;</a></h2>
 <p>For every primitive required by the current request-execution composition, the
 planner derives a required capability from the operating contract and an
@@ -2503,10 +2602,11 @@ eligible candidate from the live <strong>workflow-primitives</strong> registry.<
 </ul>
 <p><code>component.select</code> remains the selection authority. The planner does not use an
 opaque composite score.</p>
-<p>If a mandatory capability cannot be supplied by the registry,
-<code>capability.gap</code> records the insufficiency and the planner fails closed before
-proposal generation. A separately governed and approved capability gap is
+<p>If a mandatory workflow capability cannot be supplied by the registry,
+<code>capability.gap</code> records the primitive insufficiency and the planner fails closed before
+proposal generation. A separately governed and approved primitive gap is
 required before a new low-level primitive can be implemented.</p>
+<p>If an Architect-confirmed domain capability cannot be proven by an existing registered candidate, the same <code>capability.gap</code> ownership records a domain capability gap and fails closed without authorizing a new primitive. This distinction is required for capabilities such as reusable secrets management: the planner must surface the unresolved domain decision instead of accepting a controller-local token file merely because it appeared in the original contribution.</p>
 <h2 id="published-interface">Published interface<a class="headerlink" href="#published-interface" title="Permanent link">&para;</a></h2>
 <p>Successful planning emits the unchanged
 <code>sage-request-execution-proposal-schema-v1.0.json</code> package consumed by
@@ -2541,7 +2641,9 @@ repository planner is available.</p>
 <li>request-relevant contexts with no proposed source mutation remain visible in the semantic applicability envelope without leaking unrelated mutation authority;</li>
 <li>implementation contexts remain a subset of the full semantic applicability envelope;</li>
 <li>historical v1.1 semantic planning sources remain readable without rewrite; and</li>
-<li>a genuinely new post-confirmation context fails closed and returns to semantic confirmation instead of silently expanding authority.</li>
+<li>a genuinely new post-confirmation context fails closed and returns to semantic confirmation instead of silently expanding authority;</li>
+<li>Architect-confirmed planning obligations survive into v1.3 planning authority; and</li>
+<li>the reusable-secrets regression creates a domain capability gap with <code>new_primitive_required=false</code>, preserving Ansible as the established deployment/control model and preventing a controller-local token plus rendered Kubernetes Secret from satisfying the obligation by default.</li>
 </ul>
 <h2 id="repository-owned-source-construction">Repository-owned source construction<a class="headerlink" href="#repository-owned-source-construction" title="Permanent link">&para;</a></h2>
 <p><code>scripts/sage/request_planning.py</code> publishes <code>write_source_package</code> so trusted repository compositions can derive <code>sage-source.json</code>, payload hashes, and archive scope internally. Human, LLM, and external callers are not required to author that SAGE-internal manifest. The accepted-action semantic-bootstrap composition is the first consumer; it preserves the existing <code>sage-request-plan</code> proposal interface rather than duplicating component selection or capability-gap semantics.</p>

@@ -1583,6 +1583,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2260,6 +2264,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-intent-to-outcome-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE intent-to-outcome process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-legacy-evidence-projection-process/" class="md-nav__link">
         
   
@@ -2296,6 +2328,34 @@
     
   
     Kalaxy3 SAGE Mandatory Operating Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-portable-stage-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Portable Stage Process
   
 
     
@@ -3085,8 +3145,11 @@ activate it or mutate the cluster.</p>
 <li><code>scripts/sage/sage-candidate-lifecycle-guardrail.py</code>.</li>
 </ul>
 <h2 id="improvement-actions-and-baseline-extraction">Improvement actions and baseline extraction<a class="headerlink" href="#improvement-actions-and-baseline-extraction" title="Permanent link">&para;</a></h2>
-<p>Improvement actions convert accepted lessons into controlled engineering
-changes. The lifecycle is:</p>
+<p>Improvement actions convert governed evidence and learning into controlled
+engineering changes. Accepted lessons and completed sessions remain valid
+origins. A typed governed source record may also originate an action when the
+canonical action tool verifies the referenced receipt before registration. The
+lifecycle is:</p>
 <div class="highlight"><pre><span></span><code>identified
   → accepted
   → implemented
@@ -3097,7 +3160,15 @@ changes. The lifecycle is:</p>
 <p><code>rejected</code> is a terminal outcome for an evidence-backed no-action decision.
 Supported rework transitions return an action to the nearest appropriate
 earlier state.</p>
-<p>Each action must reference at least one lesson or session and preserve:</p>
+<p>Each action must preserve at least one governed origin. Historical and current
+lesson/session origins remain valid. Registry schema 1.2 additionally permits
+<code>source_records</code> containing portable typed descriptors for receipts verified by
+the canonical action tool. The initial supported record type is an
+Architect-approved SAGE domain-capability gap (<code>schema_version: 1.1</code>). A plain
+lifecycle <code>evidence_references</code> string is supporting evidence and does not by
+itself satisfy action-origin provenance. Existing 1.1-shaped action contracts
+and amendment digests remain valid without historical rewriting.</p>
+<p>Each action also preserves:</p>
 <ul>
 <li>owner and priority;</li>
 <li>intended control type;</li>
@@ -3107,6 +3178,15 @@ earlier state.</p>
 <li>append-only lifecycle and contract-amendment history;</li>
 <li>evidence references for every lifecycle event.</li>
 </ul>
+<p>An Architect may raise a credible capability-gap concern without fabricating a
+lesson or session. SAGE must preserve the claim as a claim, corroborate it with
+current governed evidence, and use a verified capability-gap source record when
+that gap legitimately originates improvement work. A bounded bootstrap
+intervention is permitted only when the existing action-origin contract itself
+prevents truthful registration of the action required to correct that contract.
+Such an intervention must be explicitly Architect-authorized, narrowly scoped,
+fully validated, traceable to a fixed baseline, and expire as soon as ordinary
+action registration becomes possible.</p>
 <p>An action contract may be amended only while the action remains <code>identified</code>.
 Amendment is not a lifecycle-state transition: <code>from_status</code> and <code>to_status</code>
 remain <code>identified</code>. The canonical action tool requires the caller to supply
@@ -3139,7 +3219,8 @@ narrative or commit volume.</p>
 <ul>
 <li><code>sage-improvement-actions.json</code>;</li>
 <li><code>sage-continuous-improvement-baseline-registry.json</code>;</li>
-<li><code>markdown/standards/sage-improvement-action-schema-v1.1.json</code>;</li>
+<li><code>markdown/standards/sage-improvement-action-schema-v1.1.json</code> (historical);</li>
+<li><code>markdown/standards/sage-improvement-action-schema-v1.2.json</code> (current);</li>
 <li><code>markdown/standards/sage-continuous-improvement-baseline-schema-v1.0.json</code>;</li>
 <li><code>scripts/sage/sage-improvement-actions.py</code>;</li>
 <li><code>scripts/sage/sage-baseline-extract.py</code>;</li>
