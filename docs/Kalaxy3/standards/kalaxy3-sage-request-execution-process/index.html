@@ -1587,6 +1587,8 @@
       
         
       
+        
+      
     
     
     
@@ -1710,6 +1712,34 @@
     
   
     Kalaxy3 SAGE Capability Intelligence Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-capability-intelligence-workflow-capability-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Workflow Capability Completeness Audit
   
 
     
@@ -2162,6 +2192,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#failure-recovery-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure recovery evidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#proposal-package" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2432,6 +2473,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#failure-recovery-evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure recovery evidence
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#proposal-package" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2547,6 +2599,14 @@ The bounded controller performs exactly stage → commit → push. It does not c
 <p>If post-mutation closeout fails after the controller receipt exists, <code>sage-request-continue-routine</code> is the repository-owned recovery path and consumes only that canonical receipt; it does not reconstruct operator output. The legacy pasted operator-result continuation remains available only for already-open/manual <code>stage</code>, <code>commit</code>, and <code>push</code> boundaries and genuinely external interactions that SAGE cannot deterministically observe. During the one-time schema-1.2 activation edge, an already-open checksum-bound <code>routine-git-lifecycle</code> proposal created under schema 1.0 may be executed by the repository-owned routine controller and closed from its stronger repository receipt; proposal generation itself never falls back and all newly generated routine proposals remain schema 1.2. New ordinary request execution uses the one-approval routine lifecycle and fails closed when its authority prerequisites are not satisfied.
 The proposal package declares the single-line commit message and <code>origin</code> push remote used by that deterministic lifecycle. Repository state, not terminal text, remains authoritative: SAGE records the receipt digest and independently verifies Git before closeout.
 The transaction commits only after all validation and safety checks pass and the operator proposal has been written. Any unexpected failure triggers rollback of the declared repository content before closeout and requires failure retrieval and diagnosis before retry.</p>
+<h2 id="failure-recovery-evidence">Failure recovery evidence<a class="headerlink" href="#failure-recovery-evidence" title="Permanent link">&para;</a></h2>
+<p>Failure recovery is evidence, not an inference from exception handling. <strong>rollback is not inferred</strong> merely because request execution entered a failure path.</p>
+<ul>
+<li>A failure before <code>AtomicFileTransaction</code> exists is recorded as <code>failed-pre-mutation</code>; no repository rollback is claimed.</li>
+<li>When a repository transaction exists, SAGE may call rollback, but <code>repository_content_restored</code> becomes true only after independent <code>git.inspect</code> verification proves the worktree is clean and the branch and HEAD still equal the proposal-bound authority.</li>
+<li>A rollback attempt that cannot be independently verified is recorded as <code>failed-rollback-unverified</code> and remains fail-closed.</li>
+<li>Failure diagnosis and closeout preserve the measured recovery state so later planning does not mistake control-flow intent for observed repository state.</li>
+</ul>
 <h2 id="proposal-package">Proposal package<a class="headerlink" href="#proposal-package" title="Permanent link">&para;</a></h2>
 <p>A proposal ZIP contains exactly <code>sage-proposal.json</code> plus <code>payload/&lt;repository-relative-path&gt;</code> for every source file. The manifest is governed by <code>sage-request-execution-proposal-schema-v1.0.json</code> and binds:</p>
 <ul>

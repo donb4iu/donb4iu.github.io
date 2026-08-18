@@ -1,0 +1,400 @@
+{
+  "schema_version": "1.0",
+  "record_type": "sage-workflow-capability-completeness-baseline",
+  "baseline_id": "SAGE-WORKFLOW-CAPABILITY-BASELINE-20260816-001",
+  "purpose": "Prevent predictable workflow/orchestration capability gaps from being discovered one collision at a time.",
+  "comparison_policy": {
+    "external_frameworks_are_discovery_sources_not_authority": true,
+    "frameworks": [
+      "github-actions",
+      "jenkins",
+      "argo-workflows",
+      "tekton"
+    ],
+    "required_dispositions": [
+      "implemented",
+      "partial",
+      "required-gap",
+      "deferred-gap",
+      "intentionally-prohibited",
+      "not-applicable"
+    ],
+    "class_level_remediation_required": true,
+    "silent_unclassified_allowed": false
+  },
+  "families": [
+    {
+      "family_id": "scm-lifecycle",
+      "capabilities": [
+        {
+          "capability_id": "scm.branch-lifecycle",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflows/branch_lifecycle.py"
+          ],
+          "framework_presence": {
+            "github-actions": "external-git",
+            "jenkins": "external-git",
+            "argo-workflows": "external-git",
+            "tekton": "external-git"
+          }
+        },
+        {
+          "capability_id": "scm.commit-push",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflows/routine_git_lifecycle.py"
+          ],
+          "framework_presence": {
+            "github-actions": "supported",
+            "jenkins": "supported",
+            "argo-workflows": "supported",
+            "tekton": "supported"
+          }
+        },
+        {
+          "capability_id": "scm.pull-request-merge",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflows/checkpoint_promotion.py"
+          ],
+          "framework_presence": {
+            "github-actions": "supported",
+            "jenkins": "plugin-or-api",
+            "argo-workflows": "api",
+            "tekton": "api"
+          }
+        },
+        {
+          "capability_id": "scm.tag-release",
+          "disposition": "required-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "supported",
+            "jenkins": "supported",
+            "argo-workflows": "supported",
+            "tekton": "supported"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "workflow-state",
+      "capabilities": [
+        {
+          "capability_id": "workflow.reentry",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflows/intent_to_outcome.py"
+          ],
+          "framework_presence": {
+            "github-actions": "rerun",
+            "jenkins": "restart",
+            "argo-workflows": "retry-resubmit",
+            "tekton": "rerun"
+          }
+        },
+        {
+          "capability_id": "workflow.retry",
+          "disposition": "partial",
+          "implementation": [
+            "scripts/sage/workflow/diagnosis.py"
+          ],
+          "framework_presence": {
+            "github-actions": "rerun",
+            "jenkins": "retry",
+            "argo-workflows": "retryStrategy",
+            "tekton": "retries"
+          }
+        },
+        {
+          "capability_id": "workflow.cancel",
+          "disposition": "required-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "supported",
+            "jenkins": "supported",
+            "argo-workflows": "supported",
+            "tekton": "supported"
+          }
+        },
+        {
+          "capability_id": "workflow.compensation-finally",
+          "disposition": "required-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "conditional-steps",
+            "jenkins": "post",
+            "argo-workflows": "exit-handlers",
+            "tekton": "finally"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "triggers-events",
+      "capabilities": [
+        {
+          "capability_id": "trigger.git",
+          "disposition": "implemented",
+          "implementation": [
+            ".github/workflows/kalaxy3_build_publish.yml"
+          ],
+          "framework_presence": {
+            "github-actions": "supported",
+            "jenkins": "supported",
+            "argo-workflows": "event-source",
+            "tekton": "triggers"
+          }
+        },
+        {
+          "capability_id": "trigger.manual",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/sage-request-execute.py"
+          ],
+          "framework_presence": {
+            "github-actions": "workflow_dispatch",
+            "jenkins": "build-now",
+            "argo-workflows": "submit",
+            "tekton": "manual-taskrun"
+          }
+        },
+        {
+          "capability_id": "trigger.schedule",
+          "disposition": "deferred-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "cron",
+            "jenkins": "cron",
+            "argo-workflows": "cronworkflow",
+            "tekton": "external-trigger"
+          }
+        },
+        {
+          "capability_id": "trigger.webhook-event",
+          "disposition": "deferred-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "workflow_run-webhook",
+            "jenkins": "webhook-plugin",
+            "argo-workflows": "events",
+            "tekton": "eventlistener"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "orchestration",
+      "capabilities": [
+        {
+          "capability_id": "orchestration.dependencies",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflow/composition.py"
+          ],
+          "framework_presence": {
+            "github-actions": "needs",
+            "jenkins": "stages",
+            "argo-workflows": "dag",
+            "tekton": "runAfter"
+          }
+        },
+        {
+          "capability_id": "orchestration.conditions",
+          "disposition": "partial",
+          "implementation": [
+            "scripts/sage/workflows/intent_to_outcome.py"
+          ],
+          "framework_presence": {
+            "github-actions": "if",
+            "jenkins": "when",
+            "argo-workflows": "when",
+            "tekton": "when"
+          }
+        },
+        {
+          "capability_id": "orchestration.concurrency-locks",
+          "disposition": "partial",
+          "implementation": [
+            ".github/workflows/kalaxy3_build_publish.yml"
+          ],
+          "framework_presence": {
+            "github-actions": "concurrency",
+            "jenkins": "locks",
+            "argo-workflows": "mutex-semaphore",
+            "tekton": "controller-queue"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "artifacts-promotion",
+      "capabilities": [
+        {
+          "capability_id": "artifact.multiarch-stage",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/sage-stage-receipt.py"
+          ],
+          "framework_presence": {
+            "github-actions": "artifacts",
+            "jenkins": "archive",
+            "argo-workflows": "artifacts",
+            "tekton": "results-workspaces"
+          }
+        },
+        {
+          "capability_id": "artifact.provenance",
+          "disposition": "partial",
+          "implementation": [
+            "markdown/standards/sage-portable-stage-receipt-schema-v1.0.json"
+          ],
+          "framework_presence": {
+            "github-actions": "attestations",
+            "jenkins": "fingerprints",
+            "argo-workflows": "metadata",
+            "tekton": "chains"
+          }
+        },
+        {
+          "capability_id": "artifact.promote-without-rebuild",
+          "disposition": "required-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "download-publish",
+            "jenkins": "copy-artifact",
+            "argo-workflows": "artifact-reuse",
+            "tekton": "results-workspaces"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "environment-authority",
+      "capabilities": [
+        {
+          "capability_id": "environment.binding",
+          "disposition": "required-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "environments",
+            "jenkins": "parameters-credentials",
+            "argo-workflows": "parameters-secrets",
+            "tekton": "params-workspaces"
+          }
+        },
+        {
+          "capability_id": "environment.approval",
+          "disposition": "partial",
+          "implementation": [
+            "scripts/sage/workflows/checkpoint_promotion.py"
+          ],
+          "framework_presence": {
+            "github-actions": "protection-rules",
+            "jenkins": "input",
+            "argo-workflows": "suspend",
+            "tekton": "external-approval"
+          }
+        },
+        {
+          "capability_id": "environment.secrets",
+          "disposition": "partial",
+          "implementation": [
+            "infrastructure/k3s-homelab/cloudflare/"
+          ],
+          "framework_presence": {
+            "github-actions": "secrets-oidc",
+            "jenkins": "credentials",
+            "argo-workflows": "secrets",
+            "tekton": "secrets"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "execution-portability",
+      "capabilities": [
+        {
+          "capability_id": "execution.qualified-executor",
+          "disposition": "required-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "runners",
+            "jenkins": "agents",
+            "argo-workflows": "pods",
+            "tekton": "taskruns"
+          }
+        },
+        {
+          "capability_id": "execution.engine-neutral",
+          "disposition": "partial",
+          "implementation": [
+            "markdown/standards/kalaxy3-sage-portable-stage-process.md"
+          ],
+          "framework_presence": {
+            "github-actions": "runner-bound",
+            "jenkins": "agent-bound",
+            "argo-workflows": "kubernetes",
+            "tekton": "kubernetes"
+          }
+        }
+      ]
+    },
+    {
+      "family_id": "evidence-observability-recovery",
+      "capabilities": [
+        {
+          "capability_id": "evidence.exact-sha-checks",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflow/github_inspect.py"
+          ],
+          "framework_presence": {
+            "github-actions": "checks",
+            "jenkins": "status",
+            "argo-workflows": "phase",
+            "tekton": "conditions-results"
+          }
+        },
+        {
+          "capability_id": "observability.lifecycle-events",
+          "disposition": "deferred-gap",
+          "implementation": [],
+          "framework_presence": {
+            "github-actions": "workflow_run-webhook",
+            "jenkins": "listeners",
+            "argo-workflows": "events-metrics",
+            "tekton": "cloud-events"
+          }
+        },
+        {
+          "capability_id": "recovery.rollback",
+          "disposition": "partial",
+          "implementation": [
+            "scripts/sage/workflow/diagnosis.py"
+          ],
+          "framework_presence": {
+            "github-actions": "manual",
+            "jenkins": "post-rollback",
+            "argo-workflows": "retry-resubmit",
+            "tekton": "finally-compensation"
+          }
+        },
+        {
+          "capability_id": "reuse.composition",
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflow/composition.py"
+          ],
+          "framework_presence": {
+            "github-actions": "reusable-workflows",
+            "jenkins": "shared-libraries",
+            "argo-workflows": "workflowtemplates",
+            "tekton": "tasks-pipelines"
+          }
+        }
+      ]
+    }
+  ]
+}

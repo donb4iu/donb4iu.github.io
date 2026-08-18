@@ -1587,6 +1587,8 @@
       
         
       
+        
+      
     
     
     
@@ -1710,6 +1712,34 @@
     
   
     Kalaxy3 SAGE Capability Intelligence Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-capability-intelligence-workflow-capability-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Workflow Capability Completeness Audit
   
 
     
@@ -2607,6 +2637,7 @@ opaque composite score.</p>
 proposal generation. A separately governed and approved primitive gap is
 required before a new low-level primitive can be implemented.</p>
 <p>If an Architect-confirmed domain capability cannot be proven by an existing registered candidate, the same <code>capability.gap</code> ownership records a domain capability gap and fails closed without authorizing a new primitive. This distinction is required for capabilities such as reusable secrets management: the planner must surface the unresolved domain decision instead of accepting a controller-local token file merely because it appeared in the original contribution.</p>
+<p>When more than one Architect-confirmed domain capability is unresolved, planning evaluates the complete domain-capability set in the same pass. It writes one versioned receipt per unresolved capability plus a checksum-bound <code>sage-domain-capability-gap-set</code> index (the domain capability gap set) and then fails closed once. The planner may not stop after the first domain gap when the remaining required capability set is already known. This permits the Architect and candidate-iteration lifecycle to govern one coherent class-level remediation instead of repeating discovery, confirmation, and mutation for structurally equivalent gaps.</p>
 <h2 id="published-interface">Published interface<a class="headerlink" href="#published-interface" title="Permanent link">&para;</a></h2>
 <p>Successful planning emits the unchanged
 <code>sage-request-execution-proposal-schema-v1.0.json</code> package consumed by
@@ -2643,7 +2674,8 @@ repository planner is available.</p>
 <li>historical v1.1 semantic planning sources remain readable without rewrite; and</li>
 <li>a genuinely new post-confirmation context fails closed and returns to semantic confirmation instead of silently expanding authority;</li>
 <li>Architect-confirmed planning obligations survive into v1.3 planning authority; and</li>
-<li>the reusable-secrets regression creates a domain capability gap with <code>new_primitive_required=false</code>, preserving Ansible as the established deployment/control model and preventing a controller-local token plus rendered Kubernetes Secret from satisfying the obligation by default.</li>
+<li>the reusable-secrets regression creates a domain capability gap with <code>new_primitive_required=false</code>, preserving Ansible as the established deployment/control model and preventing a controller-local token plus rendered Kubernetes Secret from satisfying the obligation by default;</li>
+<li>two unresolved Architect-confirmed domain capabilities are reported together in one planning pass rather than truncating the gap set to the first capability.</li>
 </ul>
 <h2 id="repository-owned-source-construction">Repository-owned source construction<a class="headerlink" href="#repository-owned-source-construction" title="Permanent link">&para;</a></h2>
 <p><code>scripts/sage/request_planning.py</code> publishes <code>write_source_package</code> so trusted repository compositions can derive <code>sage-source.json</code>, payload hashes, and archive scope internally. Human, LLM, and external callers are not required to author that SAGE-internal manifest. The accepted-action semantic-bootstrap composition is the first consumer; it preserves the existing <code>sage-request-plan</code> proposal interface rather than duplicating component selection or capability-gap semantics.</p>

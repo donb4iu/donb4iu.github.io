@@ -1587,6 +1587,8 @@
       
         
       
+        
+      
     
     
     
@@ -1710,6 +1712,34 @@
     
   
     Kalaxy3 SAGE Capability Intelligence Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-capability-intelligence-workflow-capability-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Workflow Capability Completeness Audit
   
 
     
@@ -2098,6 +2128,39 @@
     <span class="md-ellipsis">
       
         Governed candidate iteration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#candidate-union-and-serial-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Candidate union and serial validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authoritative-shared-responsibility-role-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authoritative shared-responsibility role contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intent-first-innovation-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent-first innovation boundary
       
     </span>
   </a>
@@ -2498,6 +2561,39 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#candidate-union-and-serial-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Candidate union and serial validation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authoritative-shared-responsibility-role-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authoritative shared-responsibility role contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intent-first-innovation-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intent-first innovation boundary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#earliest-affected-boundary" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2560,8 +2656,87 @@
 <p>Safe local-main reconciliation and source-branch retirement remain part of this E2E Definition of Done. The current checkpoint-promotion controller has already demonstrated that it stops before those final actions; this slice must treat that as a remaining composition gap to close without bypassing existing Git safety primitives.</p>
 <h2 id="governed-candidate-iteration">Governed candidate iteration<a class="headerlink" href="#governed-candidate-iteration" title="Permanent link">&para;</a></h2>
 <p>The active objective is distinct from its mutable <strong>candidate iteration</strong>. Each iteration records its number, parent checkpoint, triggering observation, affected planning obligations, validation state, unresolved findings, accumulated learning, invalidated downstream state, next governed boundary, and promotion eligibility.</p>
-<p>A commit or push is persistence only. A candidate with unresolved findings is a durable <strong>non-promotable</strong> checkpoint; it is not objective failure, validation success, or promotion eligibility.</p>
+<p>A commit or push is persistence only. If an unfinished candidate is deliberately persisted, unresolved findings make that persistence a durable <strong>non-promotable</strong> checkpoint; persistence is not required before another same-class correction is accumulated into the current candidate. A persisted checkpoint is not objective failure, validation success, or promotion eligibility.</p>
 <p>The one-time bootstrap seam may adopt a pre-front-door request execution as iteration 1 with an explicit historical candidate head and unresolved findings. For an iterative objective, adoption must also preserve the prior confirmed planning source and inherit the checksum-bound planning proposal from the adopted request-execution state; the source/proposal pair is validated before it becomes reusable lineage. This preserves the zero-trust iteration-1 lineage rather than rewriting or discarding it.</p>
+<h2 id="candidate-union-and-serial-validation">Candidate union and serial validation<a class="headerlink" href="#candidate-union-and-serial-validation" title="Permanent link">&para;</a></h2>
+<p>A governed objective may expose related defects incrementally. Serial validation
+is expected and useful: validation may reveal A, then B, then C. That does <strong>not</strong>
+require A, B, and C to become separately promotable changes.</p>
+<p>When a newly observed defect belongs to the same Architect-authorized correction
+class and the current candidate has not crossed into a live operator mutation
+boundary, the unfinished candidate may be superseded by a cumulative candidate:</p>
+<p><code>A -&gt; A+B -&gt; A+B+C -&gt; validate union -&gt; checkpoint/promote</code></p>
+<p>The superseded revision is recorded as <code>superseded-in-progress</code>. It does not
+have to become independently valid or promotable. A durable non-promotable
+checkpoint remains available when persistence is useful, but persistence is not
+a prerequisite for adding the next related correction. Promotion remains
+fail-closed until the current union candidate satisfies every applicable
+mandatory gate and has no unresolved findings.</p>
+<p>A live <code>request-operator-review-required</code> boundary is not silently superseded by
+this rule. Its outstanding mutation must first be dispositioned through a
+governed path so an obsolete approved command cannot race a newer candidate.</p>
+<h2 id="authoritative-shared-responsibility-role-contract">Authoritative shared-responsibility role contract<a class="headerlink" href="#authoritative-shared-responsibility-role-contract" title="Permanent link">&para;</a></h2>
+<p>This workflow consumes the accepted <code>SAGE-ACTION-20260811-001</code> role contract;
+it does not redefine the roles in workflow-local vocabulary. The following
+responsibility boundaries remain authoritative:</p>
+<ul>
+<li>The metamodel defines four first-class participant classes: human participants,
+  LLM, Kalaxy3 evidence/experience, and deterministic orchestration/execution,
+  with SAGE defined as the governing system-engineering federation that
+  reconciles their inputs into governed decisions.</li>
+<li>Human participant roles include stakeholder/sponsor/product owner,
+  architect/engineer, operator, and reviewer/approver; the same human may hold
+  multiple roles, and authority is represented as an explicit governed property
+  rather than inferred from technical capability.</li>
+<li>Shared-responsibility vocabulary defines Accountable Owner, Responsible,
+  Contributor, Authority-Approver, and optional Informed responsibilities per
+  activity; capability overlap is allowed while accountability and legitimate
+  authority remain explicit.</li>
+<li>The human Architect role has end-to-end accountable architectural
+  responsibility for intended future state, requirements, constraints,
+  Definition of Done, approval boundaries, and architectural fitness; multiple
+  qualified humans may hold the role, but nothing inside SAGE can make the
+  Architect unable to regain architectural control.</li>
+<li>Architect break-glass intervention is exceptional, explicit, minimum-scope,
+  attributable, and records trigger, rationale, controls or assumptions
+  overridden, resulting risk, and required post-verification; it cannot nullify
+  external legal, security, compliance, or other nondelegable constraints, and
+  recurring intervention classes become continuous-improvement evidence.</li>
+<li>The LLM is a first-class contributor of external/world knowledge,
+  state-of-practice patterns, alternatives, critique, risk identification, and
+  verification ideas, while remaining untrusted with authority: it cannot be
+  the Accountable Architect, sole source of legitimate stakeholder intent, or
+  holder of human-reserved approval authority.</li>
+<li>Kalaxy3 is explicitly modeled as accumulated local evidence and experience,
+  including current facts, validated lessons, standards, workflow experience,
+  measurements, and reusable capability; SAGE reconciles this local experience
+  with human intent, LLM knowledge, and current evidence.</li>
+<li>Deterministic orchestration/execution owns reproducible workflow state,
+  transitions, decisions, branches, retry, compensation, continuation, and exact
+  mutation boundaries; LLM output may propose or inform these operations but
+  does not own deterministic workflow state or transition authority.</li>
+</ul>
+<h2 id="intent-first-innovation-boundary">Intent-first innovation boundary<a class="headerlink" href="#intent-first-innovation-boundary" title="Permanent link">&para;</a></h2>
+<p>The LLM's architecture contribution is not limited to behavior or capability
+names that current SAGE already understands. It expands the possible solution
+space from the Architect-owned intended future state, requirements, constraints,
+Definition of Done, approval boundaries, and architectural fitness, using its
+defined contribution of external/world knowledge, state-of-practice patterns,
+alternatives, critique, risk identification, and verification ideas.</p>
+<p>The LLM may therefore propose innovative behavior, architectural capabilities,
+and alternative solution constructs that are absent from current SAGE. Evidence
+and risk then inform selection, including likelihood of successful
+implementation, maturity and evidence of successful use, operational risk,
+cost/economic basis, observability/measurement basis, security, reliability,
+reversibility, portability, skills, vendor dependency, and uncertainty.
+Experimental or novel alternatives are not excluded merely because SAGE does
+not yet implement or name them; maturity and evidence deficits are explicit
+inputs to Architect disposition.</p>
+<p>Only after alternatives have been proposed and evaluated does SAGE reconcile
+the selected or investigated direction with current repository capability,
+evidence, constraints, authority, and deterministic transition mechanisms.
+<strong>Current SAGE capabilities constrain the governed transition path; they do not
+define the future-state solution space.</strong></p>
 <h2 id="earliest-affected-boundary">Earliest affected boundary<a class="headerlink" href="#earliest-affected-boundary" title="Permanent link">&para;</a></h2>
 <p>SAGE re-enters only the <strong>earliest affected boundary</strong>:</p>
 <ul>
