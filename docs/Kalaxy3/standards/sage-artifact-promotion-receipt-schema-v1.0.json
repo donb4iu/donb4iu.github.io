@@ -1,0 +1,238 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-artifact-promotion-receipt-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE immutable OCI promotion receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "status",
+    "stage",
+    "environment",
+    "target",
+    "executor",
+    "evidence",
+    "verification",
+    "generated_at"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-artifact-promotion-receipt"
+    },
+    "status": {
+      "const": "pass"
+    },
+    "stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receipt_sha256",
+        "source_git_sha",
+        "archive_sha256",
+        "index_digest",
+        "platforms"
+      ],
+      "properties": {
+        "receipt_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "source_git_sha": {
+          "type": "string",
+          "pattern": "^(?:[0-9a-f]{40}|[0-9a-f]{64})$"
+        },
+        "archive_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "index_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "platforms": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "manifest_sha256",
+        "environment_id"
+      ],
+      "properties": {
+        "manifest_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "environment_id": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transport",
+        "repository",
+        "publication_tag",
+        "tag_reference",
+        "image_ref",
+        "index_digest",
+        "platforms"
+      ],
+      "properties": {
+        "transport": {
+          "const": "docker"
+        },
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publication_tag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tag_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "image_ref": {
+          "type": "string",
+          "pattern": "^[^@\\s]+@sha256:[0-9a-f]{64}$"
+        },
+        "index_digest": {
+          "type": "string",
+          "pattern": "^sha256:[0-9a-f]{64}$"
+        },
+        "platforms": {
+          "type": "array",
+          "minItems": 2,
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "executor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "workflow_engine",
+        "executor_id",
+        "os",
+        "architecture",
+        "tool",
+        "identity_is_provenance_only"
+      ],
+      "properties": {
+        "workflow_engine": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executor_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "os": {
+          "type": "string",
+          "minLength": 1
+        },
+        "architecture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "tool": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "name",
+            "version",
+            "version_output_sha256"
+          ],
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1
+            },
+            "version_output_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "version": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "identity_is_provenance_only": {
+          "const": true
+        }
+      }
+    },
+    "verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "archive_sha_match",
+        "index_digest_match",
+        "platform_digests_match",
+        "copy_preserved_digests",
+        "independent_target_raw_digest_match",
+        "rebuild_performed",
+        "secrets_in_command_arguments"
+      ],
+      "properties": {
+        "archive_sha_match": {
+          "const": true
+        },
+        "index_digest_match": {
+          "const": true
+        },
+        "platform_digests_match": {
+          "const": true
+        },
+        "copy_preserved_digests": {
+          "const": true
+        },
+        "independent_target_raw_digest_match": {
+          "const": true
+        },
+        "rebuild_performed": {
+          "const": false
+        },
+        "secrets_in_command_arguments": {
+          "const": false
+        }
+      }
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "event_log_sha256"
+      ],
+      "properties": {
+        "event_log_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    }
+  }
+}

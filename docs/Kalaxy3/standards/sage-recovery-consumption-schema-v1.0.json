@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-recovery-consumption-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE recovery governing-change consumption",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "recorded_at",
+    "recovery_identity_sha256",
+    "governing_condition_fingerprint",
+    "required_reentry_boundary",
+    "consumed_boundary",
+    "consumer_reference"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-recovery-governing-change-consumption"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recovery_identity_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "governing_condition_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "required_reentry_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "consumed_boundary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "consumer_reference": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

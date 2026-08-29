@@ -1,0 +1,181 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-causal-evidence-fact-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE causal evidence fact",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "fact_id",
+    "recorded_at",
+    "identity"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-causal-evidence-fact"
+    },
+    "fact_id": {
+      "type": "string",
+      "pattern": "^sha256:[0-9a-f]{64}$"
+    },
+    "recorded_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "objective_id",
+        "fact_type",
+        "producer",
+        "authority_reference",
+        "authority_validation",
+        "dependencies",
+        "evidence_references",
+        "evidence_files",
+        "attributes"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "1.0"
+        },
+        "objective_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "fact_type": {
+          "type": "string",
+          "minLength": 1
+        },
+        "producer": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "participant_class",
+            "identity"
+          ],
+          "properties": {
+            "participant_class": {
+              "type": "string",
+              "minLength": 1
+            },
+            "identity": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "authority_reference": {
+          "type": "string",
+          "minLength": 1
+        },
+        "authority_validation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "validated",
+            "receipt",
+            "receipt_id",
+            "disposition"
+          ],
+          "properties": {
+            "validated": {
+              "type": "boolean"
+            },
+            "receipt": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "source_path",
+                    "source_name",
+                    "sha256"
+                  ],
+                  "properties": {
+                    "source_path": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "source_name": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "sha256": {
+                      "type": "string",
+                      "pattern": "^[0-9a-f]{64}$"
+                    }
+                  }
+                }
+              ]
+            },
+            "receipt_id": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "disposition": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        },
+        "dependencies": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^sha256:[0-9a-f]{64}$"
+          }
+        },
+        "evidence_references": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "evidence_files": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "source_path",
+              "source_name",
+              "sha256"
+            ],
+            "properties": {
+              "source_path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source_name": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              }
+            }
+          }
+        },
+        "attributes": {
+          "type": "object"
+        }
+      }
+    }
+  }
+}

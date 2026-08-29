@@ -1589,6 +1589,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1704,6 +1710,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-artifact-promotion-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Immutable Artifact Promotion Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-capability-intelligence-process/" class="md-nav__link">
         
   
@@ -1740,6 +1774,34 @@
     
   
     SAGE Workflow Capability Completeness Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-causal-evidence-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE causal evidence graph
   
 
     
@@ -1846,6 +1908,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pre-promotion-source-reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-promotion source reconciliation
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#exact-source-ci-convergence-prospective-after-pr-21" class="md-nav__link">
@@ -2168,6 +2241,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-recovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Self-Directing Recovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-request-execution-process/" class="md-nav__link">
         
   
@@ -2363,6 +2464,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#pre-promotion-source-reconciliation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pre-promotion source reconciliation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#exact-source-ci-convergence-prospective-after-pr-21" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2408,6 +2520,36 @@ existing publication and cluster guardrails.
 The implementation action is provenance, not a circular eligibility gate.
 Promotion eligibility is established by current authority and validation
 receipts.</p>
+<h2 id="pre-promotion-source-reconciliation">Pre-promotion source reconciliation<a class="headerlink" href="#pre-promotion-source-reconciliation" title="Permanent link">&para;</a></h2>
+<p>The source-descends-from-target requirement remains mandatory. When a clean,
+synchronized source branch contains unique work but current <code>main</code> has also
+advanced since the branch fork, checkpoint promotion does not weaken or bypass
+that ancestry gate. Instead, before promotion validation, the composition may
+enter one bounded <strong>source reconciliation</strong> sub-lifecycle using the same
+least-authority Git facts and operator-proposal model.</p>
+<p>Reconciliation is eligible only when the local and independently read remote
+source heads agree, the local <code>origin/main</code> and independently read remote target
+agree, both sides have a non-empty unique delta, and the source-side and
+target-side three-dot changed-path sets are disjoint. Any overlapping changed
+path fails closed for explicit Architect-owned reconciliation; SAGE does not
+guess conflict resolution.</p>
+<p>For an eligible divergence, SAGE emits exactly one checksum-bound operator Git
+proposal to merge the <strong>exact frozen target SHA</strong> into the source branch with a
+normal merge commit (<code>--no-ff</code>, no rebase, reset, force push, or history
+rewriting). After the operator result, <code>git.inspect</code> must prove that the new
+source HEAD is exactly one merge commit whose first parent is the frozen source
+and whose second parent is the frozen target, while the live remote source still
+equals the frozen pre-merge source. SAGE then emits exactly one source-branch
+push proposal. After that push is independently verified, the reconciliation
+state closes and the composition immediately restarts ordinary checkpoint
+promotion using the reconciled source HEAD and the then-current target
+authority. All applicable promotion gates are rerun; reconciliation itself
+earns no promotability claim.</p>
+<p>If <code>main</code> advances again, the restarted promotion evaluates the new authority
+again rather than treating the earlier reconciliation as current. Source-branch
+retirement remains outside this blocker-remediation slice and is reconsidered
+only after successful promotion; its deferral does not weaken the requirement
+that <code>main</code> become authoritative for the promoted source.</p>
 <p>The repository-owned <code>sage.checkpoint-promotion</code> composition uses <code>git.inspect</code>
 for Git facts and <code>github.inspect</code> for pull-request facts. It does not import
 <code>GitRepository</code>, perform workflow-side <code>git fetch</code>, invoke <code>gh</code> through the

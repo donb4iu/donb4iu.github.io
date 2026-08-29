@@ -1,0 +1,63 @@
+{
+    "schema_version": "1.1",
+    "gap_id": "SAGE-GAP-20260821-SELF-DIRECTING-RECOVERY",
+    "request": "Make SAGE fail-closed recovery self-directing and recurrence-aware so SAGE, not the LLM/operator, determines the next governed boundary from persisted failure identity, governing-condition lineage, and lifecycle authority.",
+    "created_at": "2026-08-21T23:45:04-05:00",
+    "authority_receipt": "architect-directive:2026-08-21:make-self-directing-recovery-capability",
+    "component_manifest": "sage-workflow-primitives.json",
+    "required_capability": "Deterministic recovery resolution with cross-attempt recurrence identity, consumed-governance-change lineage, loop prevention, accepted-control failure escalation, and exactly one repository-owned next operator boundary.",
+    "gap_kind": "domain-capability",
+    "candidates_considered": [
+        {
+            "component_id": "failure.diagnose",
+            "version": "4192551f1df150d06d8ad62235746bc5f29eaa18",
+            "source_path": "scripts/sage/workflow/diagnosis.py",
+            "insufficiency": "Two identical request-execution failures at the same repository authority were each emitted with classification=new, recurrence.recurred=false, and no previous_failure_references.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "sage.request-execution",
+            "version": "4192551f1df150d06d8ad62235746bc5f29eaa18",
+            "source_path": "scripts/sage/workflows/request_execution.py",
+            "insufficiency": "The post-retrieval continuation decision repeatedly marks the same repository-owned-composition condition as changed and emits planning re-entry without durable consumed-change identity.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "sage.intent-to-outcome",
+            "version": "4192551f1df150d06d8ad62235746bc5f29eaa18",
+            "source_path": "scripts/sage/workflows/intent_to_outcome.py",
+            "insufficiency": "The parent lifecycle obeys planning re-entry but does not reject a second identical re-entry caused by an unchanged already-consumed governing change.",
+            "composition_can_close_gap": false
+        },
+        {
+            "component_id": "sage.action-lifecycle",
+            "version": "4192551f1df150d06d8ad62235746bc5f29eaa18",
+            "source_path": "scripts/sage/workflows/improvement_action_transition.py",
+            "insufficiency": "An accepted control that fails its live acceptance behavior has no repository-owned escalation that emits a successor gap/action and one next operator boundary.",
+            "composition_can_close_gap": false
+        }
+    ],
+    "gap": {
+        "missing_interface_or_behavior": "SAGE lacks a canonical persisted recovery identity/next-boundary contract. It cannot currently link identical failures across attempts, mark a governing change as consumed by the re-entry it caused, prevent duplicate re-entry, or escalate failure of an already-accepted control without LLM/operator inference.",
+        "why_configuration_is_insufficient": "The same failure repeated at the same branch, HEAD, upstream, remote-main observation, request, correction disposition, and planning boundary; runner or environment configuration cannot supply missing cross-attempt lineage.",
+        "why_composition_is_insufficient": "Existing primitives diagnose failures, retrieve evidence, classify governing changes, plan, execute, and manage action lifecycle, but their compositions do not share durable recovery identity and consumed-change semantics.",
+        "new_primitive_required": false,
+        "new_domain_capability_required": true
+    },
+    "proposed_primitive": null,
+    "approval": {
+        "status": "approved",
+        "reviewed_by": "Architect",
+        "reviewed_at": "2026-08-21T23:45:04-05:00",
+        "rationale": "The Architect explicitly directed 'make it so' after the live Action-002 sequence demonstrated that SAGE should provide the primitives/composition decision and tell the operator what to do rather than requiring source-code inspection and LLM-invented recovery."
+    },
+    "evidence_references": [
+        "state:/Users/donbuddenbaum/.local/state/kalaxy3/sage-request-execution/20260821-225829-699307/failure-diagnosis.json#sha256:632b99273b2a40ba97af2097161c060db8c67fd61d4d7b892885359f53fe3ffd",
+        "state:/Users/donbuddenbaum/.local/state/kalaxy3/sage-request-execution/20260821-225829-699307/post-retrieval-continuation-decision.json#sha256:4baa03fdf0fd309e06cab972ae0c90f8efe18532f7b1184cc0077592bfd90533",
+        "state:/Users/donbuddenbaum/.local/state/kalaxy3/sage-request-execution/20260821-231308-219555/failure-diagnosis.json#sha256:f38b23214390671d528595b8e75b4f669b0c1598ebf4ab7c4aeca26708d2727a",
+        "state:/Users/donbuddenbaum/.local/state/kalaxy3/sage-request-execution/20260821-231308-219555/post-retrieval-continuation-decision.json#sha256:4baa03fdf0fd309e06cab972ae0c90f8efe18532f7b1184cc0077592bfd90533",
+        "action:SAGE-ACTION-20260810-001",
+        "action:SAGE-ACTION-20260815-002",
+        "commit:4192551f1df150d06d8ad62235746bc5f29eaa18"
+    ]
+}

@@ -1,0 +1,256 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-recovery-next-boundary-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE recovery next-boundary decision",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "recorded_at",
+    "recovery_identity",
+    "classification",
+    "previous_failure_references",
+    "governing_conditions",
+    "governing_evidence",
+    "governing_condition_fingerprint",
+    "governing_change_consumed",
+    "disposition",
+    "next_boundary",
+    "owning_component",
+    "owning_control",
+    "reason",
+    "required_evidence",
+    "mutation_authority",
+    "operator_boundary",
+    "metrics"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-recovery-next-boundary"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recovery_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "request_sha256",
+        "component_id",
+        "failure_signature",
+        "repository_authority",
+        "repository_authority_sha256",
+        "identity_sha256"
+      ],
+      "properties": {
+        "request_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "component_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "failure_signature": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "repository_authority": {
+          "type": "object"
+        },
+        "repository_authority_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "identity_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "classification": {
+      "enum": [
+        "new",
+        "recurrence"
+      ]
+    },
+    "previous_failure_references": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "governing_conditions": {
+      "type": "object"
+    },
+    "governing_evidence": {
+      "type": "object"
+    },
+    "governing_condition_fingerprint": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "governing_change_consumed": {
+      "type": "boolean"
+    },
+    "disposition": {
+      "enum": [
+        "repair",
+        "governance-reentry",
+        "over-governance-blocked",
+        "successor-action"
+      ]
+    },
+    "next_boundary": {
+      "enum": [
+        "implementation-local",
+        "planning",
+        "semantic-confirmation",
+        "authority",
+        "await-existing-reentry",
+        "architect-decision"
+      ]
+    },
+    "owning_component": {
+      "type": "string",
+      "minLength": 1
+    },
+    "owning_control": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action_id",
+        "status",
+        "accepted_control_failure"
+      ],
+      "properties": {
+        "action_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "status": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "accepted_control_failure": {
+          "type": "boolean"
+        },
+        "accepted_control_failure_assertion": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "additionalProperties": false,
+          "required": [
+            "schema_version",
+            "record_type",
+            "control_action_id",
+            "violated_obligation",
+            "evidence_references"
+          ],
+          "properties": {
+            "schema_version": {
+              "const": "1.0"
+            },
+            "record_type": {
+              "const": "sage-accepted-control-failure-assertion"
+            },
+            "control_action_id": {
+              "type": "string",
+              "minLength": 1
+            },
+            "violated_obligation": {
+              "type": "string",
+              "minLength": 1
+            },
+            "evidence_references": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      }
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1
+    },
+    "required_evidence": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "mutation_authority": {
+      "type": "string",
+      "minLength": 1
+    },
+    "operator_boundary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "command",
+        "decision"
+      ],
+      "properties": {
+        "kind": {
+          "enum": [
+            "repository-workflow",
+            "architect-decision"
+          ]
+        },
+        "command": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "decision": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recurrence_detected",
+        "prevented_duplicate_reentry",
+        "successor_escalation"
+      ],
+      "properties": {
+        "recurrence_detected": {
+          "type": "boolean"
+        },
+        "prevented_duplicate_reentry": {
+          "type": "boolean"
+        },
+        "successor_escalation": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

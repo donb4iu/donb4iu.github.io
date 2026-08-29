@@ -259,8 +259,12 @@
         },
         {
           "capability_id": "artifact.promote-without-rebuild",
-          "disposition": "required-gap",
-          "implementation": [],
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflows/artifact_promotion.py",
+            "scripts/sage/sage-artifact-promote.py",
+            "markdown/standards/sage-artifact-promotion-receipt-schema-v1.0.json"
+          ],
           "framework_presence": {
             "github-actions": "download-publish",
             "jenkins": "copy-artifact",
@@ -275,8 +279,12 @@
       "capabilities": [
         {
           "capability_id": "environment.binding",
-          "disposition": "required-gap",
-          "implementation": [],
+          "disposition": "implemented",
+          "implementation": [
+            "markdown/standards/sage-promotion-environment-schema-v1.0.json",
+            "infrastructure/k3s-homelab/cloudflare/sage-experience-promotion-environment.json",
+            "infrastructure/k3s-homelab/cloudflare/deploy-sage-e2e.yml"
+          ],
           "framework_presence": {
             "github-actions": "environments",
             "jenkins": "parameters-credentials",
@@ -317,8 +325,11 @@
       "capabilities": [
         {
           "capability_id": "execution.qualified-executor",
-          "disposition": "required-gap",
-          "implementation": [],
+          "disposition": "implemented",
+          "implementation": [
+            "scripts/sage/workflows/artifact_promotion.py",
+            "infrastructure/k3s-homelab/cloudflare/sage-experience-promotion-environment.json"
+          ],
           "framework_presence": {
             "github-actions": "runners",
             "jenkins": "agents",

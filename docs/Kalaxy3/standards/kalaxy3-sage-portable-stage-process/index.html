@@ -18,7 +18,7 @@
         <link rel="prev" href="../kalaxy3-sage-operating-contract/">
       
       
-        <link rel="next" href="../kalaxy3-sage-request-execution-process/">
+        <link rel="next" href="../kalaxy3-sage-recovery-process/">
       
       
         
@@ -1589,6 +1589,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
     
@@ -1704,6 +1710,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../kalaxy3-sage-artifact-promotion-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Immutable Artifact Promotion Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../kalaxy3-sage-capability-intelligence-process/" class="md-nav__link">
         
   
@@ -1740,6 +1774,34 @@
     
   
     SAGE Workflow Capability Completeness Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-causal-evidence-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE causal evidence graph
   
 
     
@@ -2218,10 +2280,49 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#subsequent-artifact-promotion-clarification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequent artifact-promotion clarification
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-recovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Self-Directing Recovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
     </li>
   
 
@@ -2505,6 +2606,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#subsequent-artifact-promotion-clarification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Subsequent artifact-promotion clarification
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2540,6 +2652,7 @@
 <p>A feature-branch <code>push</code> is intentionally used for the authoritative source-stage checks because GitHub's <code>pull_request</code> execution context may use a synthetic merge ref. The stage check therefore binds to the exact feature-branch source SHA that SAGE freezes for promotion. PR validation may still run as additional integration evidence.</p>
 <h2 id="stage-trust-boundary">Stage trust boundary<a class="headerlink" href="#stage-trust-boundary" title="Permanent link">&para;</a></h2>
 <p>The source branch and its generated candidate are not permitted to receive production or external-registry credentials merely to create stage evidence. The first stage implementation exports the multi-architecture result locally as an OCI image-layout tar and persists it through an immutable GitHub Actions artifact. The job has read-only repository permission and no Docker Hub login or other external registry credential. This keeps artifact construction separate from later publication/promotion authority.</p>
+<p>The later publication boundary must evaluate predecessor workflow lineage before introducing credentials. In the current repository, the historical main-branch Docker publication job already establishes Docker Hub authority through GitHub-managed <code>DOCKERHUB_USERNAME</code> and <code>DOCKERHUB_TOKEN</code> secrets. The Action-002 promotion composition therefore reuses that existing GitHub secret boundary in an explicitly dispatched promotion job instead of creating an operator-local login or another token. HashiCorp Vault remains the governed credential source when the same promotion contract is executed outside GitHub Actions.</p>
 <p>GitHub Actions artifact retention is finite. Therefore a stage artifact is eligible for later promotion only while the immutable stored artifact and its bound receipt remain available and verify successfully. Expiration or loss is not permission to rebuild during promotion; it invalidates that stage artifact and requires governed re-entry to stage.</p>
 <h2 id="promotion-convergence">Promotion convergence<a class="headerlink" href="#promotion-convergence" title="Permanent link">&para;</a></h2>
 <p>Checkpoint promotion still performs its repository/controller validations locally. After the operator creates the PR, <code>github.inspect</code> additionally reads GitHub's GET-only check-run API for the frozen source SHA and fails closed unless all policy-required GitHub Actions checks are completed with <code>success</code>. Mergeability alone is no longer evidence of CI success.</p>
@@ -2576,6 +2689,8 @@
 <li>codify constraint-aware governed phasing as a reusable lifecycle contract;</li>
 <li>expose the PR #21 lineage, decision, prevented defect, stage evidence, learning, and delivered value in the external SAGE thin-slice experience.</li>
 </ul>
+<h2 id="subsequent-artifact-promotion-clarification">Subsequent artifact-promotion clarification<a class="headerlink" href="#subsequent-artifact-promotion-clarification" title="Permanent link">&para;</a></h2>
+<p>The follow-on immutable-artifact-promotion slice preserves this first-slice history but refines the target boundary. The inherited <code>doc</code> job is historical documentation-publication plumbing rather than the desired SAGE application promotion architecture. The <code>mynginx_docs</code>/Nginx runtime pattern itself remains fit for purpose. Current SAGE promotion therefore consumes the proven portable-stage artifact, publishes the exact OCI content by digest, and binds that digest into the existing Ansible/Kubernetes SAGE experience path. See <code>kalaxy3-sage-artifact-promotion-process.md</code>.</p>
 
 
 

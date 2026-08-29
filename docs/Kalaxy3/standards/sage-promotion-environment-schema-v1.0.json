@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "markdown/standards/sage-promotion-environment-schema-v1.0.json",
+  "title": "Kalaxy3 SAGE promotion environment manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "record_type",
+    "environment_id",
+    "artifact_target",
+    "deployment_binding",
+    "executor_contract",
+    "authority"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "record_type": {
+      "const": "sage-promotion-environment-manifest"
+    },
+    "environment_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "artifact_target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "transport",
+        "repository",
+        "publication_tag_prefix"
+      ],
+      "properties": {
+        "transport": {
+          "const": "docker"
+        },
+        "repository": {
+          "type": "string",
+          "minLength": 1
+        },
+        "publication_tag_prefix": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9._-]*$"
+        }
+      }
+    },
+    "deployment_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "playbook",
+        "receipt_variable",
+        "namespace",
+        "workload",
+        "container"
+      ],
+      "properties": {
+        "kind": {
+          "const": "ansible-kubernetes-image"
+        },
+        "playbook": {
+          "type": "string",
+          "minLength": 1
+        },
+        "receipt_variable": {
+          "const": "sage_promotion_receipt_file"
+        },
+        "namespace": {
+          "type": "string",
+          "minLength": 1
+        },
+        "workload": {
+          "type": "string",
+          "minLength": 1
+        },
+        "container": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "executor_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "required_capabilities",
+        "identity_is_provenance_only"
+      ],
+      "properties": {
+        "required_capabilities": {
+          "type": "array",
+          "minItems": 4,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "oci-archive-source",
+              "copy-all",
+              "preserve-digests",
+              "raw-inspect"
+            ]
+          }
+        },
+        "identity_is_provenance_only": {
+          "const": true
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "registry_credentials",
+        "secrets_in_manifest",
+        "secrets_in_command_arguments"
+      ],
+      "properties": {
+        "registry_credentials": {
+          "const": "executor-runtime-only"
+        },
+        "secrets_in_manifest": {
+          "const": false
+        },
+        "secrets_in_command_arguments": {
+          "const": false
+        }
+      }
+    }
+  }
+}
