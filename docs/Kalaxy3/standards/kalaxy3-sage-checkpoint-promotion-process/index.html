@@ -2569,7 +2569,16 @@ If no exact PR exists, the normal PR-create boundary remains required; ambiguous
 mismatched PR state fails closed.
 After PR creation approval, <code>github.inspect</code> performs the same exact base, head branch,
 source SHA, open state, non-draft state, mergeability, required-check, and frozen-target
-verification before a merge proposal may be emitted.
+verification before a merge proposal may be emitted.</p>
+<p>Persisted operator-boundary identity is recovery context, not authority over Git/GitHub
+chronology. On continuation SAGE independently observes the exact PR for the frozen base,
+head branch, and source SHA. If that PR is already merged, SAGE does not replay PR creation
+or merge merely because an earlier state record names one of those boundaries. It instead
+re-proves the exact-source required checks, exact frozen base, merged state, and target
+advancement, records that no satisfied mutation was replayed, and proceeds directly to the
+bounded post-merge graph refresh. An absent, ambiguous, closed-unmerged, mismatched, or
+otherwise invalid exact PR still fails closed. The configured operator boundaries therefore
+describe available authority surfaces, not a mandatory mechanical sequence.
 For merge, the operator reviews the independently verified PR page, selects Create a
 merge commit if GitHub presents multiple merge methods, and performs the final merge
 approval. The workflow itself never opens the browser or clicks GitHub controls. After
