@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://kalaxy3.local/schemas/sage-architecture-approval-evaluation-v1.0.json",
+  "title": "SAGE LLM Architecture Approval Evaluation",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "record_type",
+    "producer_class",
+    "authority",
+    "objective_id",
+    "decision_surface_sha256",
+    "framework_guided_not_bound",
+    "broad_solution_space_evaluated",
+    "current_sage_capability_not_solution_boundary",
+    "lenses_considered",
+    "alternative_assessment",
+    "material_findings",
+    "unknowns_and_limits",
+    "decision_influence",
+    "recommendation"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "record_type": {"const": "sage-llm-architecture-approval-evaluation"},
+    "producer_class": {"const": "llm-architecture-evaluator"},
+    "authority": {"const": "advisory"},
+    "objective_id": {"type": "string", "minLength": 1},
+    "decision_surface_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "framework_guided_not_bound": {"const": true},
+    "broad_solution_space_evaluated": {"const": true},
+    "current_sage_capability_not_solution_boundary": {"const": true},
+    "lenses_considered": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["lens", "materiality", "rationale"],
+        "properties": {
+          "lens": {"type": "string", "minLength": 1},
+          "materiality": {"enum": ["material", "considered-not-material", "unknown"]},
+          "rationale": {"type": "string", "minLength": 1}
+        },
+        "additionalProperties": true
+      }
+    },
+    "additional_lenses": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "alternative_assessment": {"type": "string", "minLength": 1},
+    "material_findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["service_area", "finding", "epistemic_status", "expected_decision_impact", "measurable_indicators"],
+        "properties": {
+          "service_area": {"type": "string", "minLength": 1},
+          "finding": {"type": "string", "minLength": 1},
+          "epistemic_status": {"enum": ["demonstrated", "derived", "hypothesized", "unknown", "contradicted"]},
+          "expected_decision_impact": {"type": "string", "minLength": 1},
+          "measurable_indicators": {"type": "array", "items": {"type": "string", "minLength": 1}}
+        },
+        "additionalProperties": true
+      }
+    },
+    "no_material_findings_rationale": {"type": "string"},
+    "unknowns_and_limits": {"type": "array", "items": {"type": "string", "minLength": 1}},
+    "decision_influence": {
+      "type": "object",
+      "required": ["risks_exposed", "alternatives_widened", "assumptions_challenged", "information_gain"],
+      "properties": {
+        "risks_exposed": {"type": "array"},
+        "alternatives_widened": {"type": "array"},
+        "assumptions_challenged": {"type": "array"},
+        "information_gain": {"type": "string"}
+      },
+      "additionalProperties": true
+    },
+    "recommendation": {"enum": ["retain", "approve-with-conditions", "revise", "defer", "reject"]}
+  },
+  "additionalProperties": true
+}
