@@ -1972,6 +1972,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#machine-neutral-causal-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine-neutral causal authority
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Machine-neutral causal authority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delegated-evidence-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegated evidence authority
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#remaining-limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2659,6 +2687,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#machine-neutral-causal-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine-neutral causal authority
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Machine-neutral causal authority">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#delegated-evidence-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Delegated evidence authority
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#remaining-limitations" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -2701,7 +2757,7 @@ Independent actors and workflows may produce evidence-backed facts concurrently.
 Synchronization occurs only when one fact causally depends on another fact or
 when an existing SAGE authority boundary requires it.</p>
 <h2 id="mvp-behavior">MVP behavior<a class="headerlink" href="#mvp-behavior" title="Permanent link">&para;</a></h2>
-<p>The MVP is a content-addressed immutable object store under SAGE local state.
+<p>The original MVP proved the content-addressed immutable object model under SAGE local state. That location is no longer an authority boundary: machine-local state is cache, projection, execution, or recovery state only.
 Each fact records the objective, semantic fact type, producer identity, an
 authority reference, the result of validating any bound SAGE authority receipt,
 zero or more causal predecessor fact IDs, evidence references, collision-safe
@@ -2826,6 +2882,59 @@ engine and does not require existing workflows to be rewritten before they
 can participate. Migration is incremental: a workflow may first contribute
 facts that reference its existing receipts and bind its existing authority
 receipt.</p>
+<h2 id="machine-neutral-causal-authority">Machine-neutral causal authority<a class="headerlink" href="#machine-neutral-causal-authority" title="Permanent link">&para;</a></h2>
+<p>SAGE-owned causal semantic facts that contribute to objective truth use the
+repository-backed <code>sage-causal-evidence-authority/</code> object store as the first
+machine-neutral durable authority. The content-addressed object representation
+is unchanged. A newly written worktree object is only a candidate. A committed or pushed
+feature-branch object also remains a candidate. It becomes canonical only when
+that exact content-addressed fact is reachable from the synchronized canonical
+<code>main</code> lineage. Git remains the durability,
+distribution, history, and reconstruction mechanism for this bounded slice;
+the causal graph does not create a second Git chronology.</p>
+<p>The default CLI therefore reads and writes the repository-backed authority
+store. <code>~/.local/state/kalaxy3/sage-causal-evidence-cache</code> is explicitly a
+disposable per-machine projection/cache. <code>cache-rebuild</code> deletes and reconstructs
+that cache from the authoritative object set and verifies content equality.
+Losing the local cache must never erase, supersede, invalidate, or create
+canonical causal truth.</p>
+<p>Canonical reads fail closed unless the CLI is running from a clean <code>main</code>
+checkout where <code>HEAD == origin/main</code> and the locally known <code>origin/main</code>
+matches the remote <code>origin/main</code>. The check uses the existing <code>git.inspect</code>
+primitive. This prevents uncommitted files, feature-branch facts, locally
+modified projection code, or a stale local remote-tracking ref from changing
+objective truth. <code>project</code>, <code>verify</code>, <code>lineage</code>, and <code>cache-rebuild</code> are
+canonical-read operations when the default store is used.</p>
+<p>An explicit <code>--root</code> selects a non-authoritative sandbox/test store and does
+not establish canonical objective truth. <code>record</code> may write a candidate fact
+into the repository-backed store on a working branch; its command result marks
+that fact <code>candidate-until-canonical-main-integration</code>.</p>
+<p>This first slice deliberately requires a clean canonical-main workspace for
+authoritative queries instead of teaching SAGE another Git-object reader. If
+that operational constraint creates material recurring operator cost or blocks
+needed concurrent/query behavior, that measured burden is a reconsideration
+trigger for a later repository-snapshot reader or different durable store.</p>
+<h3 id="delegated-evidence-authority">Delegated evidence authority<a class="headerlink" href="#delegated-evidence-authority" title="Permanent link">&para;</a></h3>
+<p>Proof owned by another system remains owned by that system. A causal fact may
+carry an optional structured <code>delegated_authority</code> reference with:</p>
+<ul>
+<li><code>authority_system</code>: the native authority, such as Git, GitHub Actions, an OCI
+  registry, a runtime platform, monitoring, or Vault;</li>
+<li><code>immutable_identity</code>: the authority's immutable object/run/artifact identity;</li>
+<li><code>verification_semantics</code>: how the referenced identity is proven;</li>
+<li><code>retrieval_reference</code>: where the authority can be queried or attested.</li>
+</ul>
+<p>The reference is provenance, not authority. It cannot make a fact readiness-
+eligible by itself. Existing SAGE authority validation remains required for any
+stronger derived claim. The graph stores the semantic relationship and durable
+reference; it does not copy Git history, workflow logs, registry objects,
+monitoring datasets, secrets, or another authority's native evidence merely to
+make a workstation-local duplicate.</p>
+<p>The first convergence slice deliberately keeps the current lightweight
+content-addressed representation. A database, graph engine, event store, or
+workflow-engine migration requires later measured evidence that scale, query
+cost, concurrency, or consistency needs materially justify the added
+architecture.</p>
 <h2 id="remaining-limitations">Remaining limitations<a class="headerlink" href="#remaining-limitations" title="Permanent link">&para;</a></h2>
 <p>The MVP+MRP slice deliberately does not claim distributed or replicated storage,
 automatic integration into every workflow, conflict resolution between

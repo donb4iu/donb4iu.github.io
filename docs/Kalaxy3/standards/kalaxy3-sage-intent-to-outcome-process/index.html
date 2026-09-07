@@ -3484,6 +3484,19 @@ boundary checks.</p>
 <p>A later candidate iteration clears the prior candidate's delivery-applicability
 disposition. Runtime or promotion applicability never transfers automatically
 between candidate generations.</p>
+<p>The <code>runtime-validation</code> boundary is an <strong>applicability-or-proof boundary</strong>, not
+a universal deployment-test assertion. A <strong>root objective</strong> may legitimately
+have no parent re-entry objective. Absence of a parent does not invalidate an
+explicit Architect runtime-N/A disposition; nested objectives preserve their
+explicit parent re-entry when one exists. Applicability remains an explicit
+governed decision and is not inferred solely from changed paths or objective
+identity.</p>
+<p>Generic orchestration changes carry a <strong>behavioral preservation</strong> obligation.
+Before specialized lifecycle behavior is replaced by a generalized path,
+regression evidence must cover representative prior successful paths, including
+repository-only runtime-N/A candidates and deployed runtime-required candidates.
+Generalization must not erase applicability distinctions that were previously
+semantically meaningful.</p>
 <h3 id="objective-architecture-correction-semantic-closeout-and-planning-critique">Objective-architecture correction: semantic closeout and planning critique<a class="headerlink" href="#objective-architecture-correction-semantic-closeout-and-planning-critique" title="Permanent link">&para;</a></h3>
 <p>The first live post-promotion execution of the bounded objective unit exposed a
 design contradiction in the initial implementation. The process contract said
