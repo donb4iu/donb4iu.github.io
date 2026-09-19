@@ -1,0 +1,77 @@
+{
+  "deterministic_finalization": {
+    "checks": {
+      "ansible_syntax_ollama": true,
+      "ansible_syntax_openwebui": true,
+      "existing_acceptance_digest_capable": true,
+      "existing_gpu_acceptance": true,
+      "existing_validation_wait_false": true,
+      "final_replicas_one": true,
+      "legacy_vct_class_preserved": true,
+      "legacy_vct_preserved": true,
+      "lock_60gi": true,
+      "lock_distinct_claims": true,
+      "lock_source_longhorn": true,
+      "lock_target_nfs_ssd": true,
+      "migration_copy_old_new": true,
+      "migration_is_task_list": true,
+      "migration_never_deletes_source_pvc": true,
+      "migration_pinned_helper": true,
+      "migration_quiesces": true,
+      "migration_recovery": true,
+      "migration_source_readonly": true,
+      "openwebui_exact_image": true,
+      "openwebui_gpu_free": true,
+      "openwebui_health": true,
+      "openwebui_mount": true,
+      "openwebui_ollama_url": true,
+      "openwebui_playbook_health": true,
+      "openwebui_recreate": true,
+      "openwebui_service": true,
+      "openwebui_single_deployment": true,
+      "openwebui_state": true,
+      "playbook_includes_migration": true,
+      "playbook_no_longhorn_active_assert": true,
+      "playbook_target_storage_nfs": true,
+      "playbook_waits_destination_pvc": true,
+      "rendered_final_claim": true,
+      "rendered_final_mount_path": true,
+      "validation_file_untouched": true
+    },
+    "cluster_mutation_performed": false,
+    "finalizer_helper_sha256": "aac4c4044f999693694107fc555c241eaffe9bd77c7eb319ace0accb6d74e9c3",
+    "quality_gate_pass": true,
+    "report_sha256": "c4caa2cad9c20efef24e31cc9c11195dc4b064f7cc77d35a7d16d82f64ffd3f3",
+    "repository_mutation_performed": false
+  },
+  "finalized_candidate": {
+    "payload_paths": [
+      "infrastructure/k3s-homelab/manifests/ollama.yml.j2",
+      "infrastructure/k3s-homelab/manifests/openwebui.yml.j2",
+      "infrastructure/k3s-homelab/ollama-platforms.json",
+      "infrastructure/k3s-homelab/playbooks/migrate-ollama-models.yml",
+      "infrastructure/k3s-homelab/playbooks/ollama.yml",
+      "infrastructure/k3s-homelab/playbooks/openwebui.yml"
+    ],
+    "sha256": "566a1e6103159425764f21611713ddbd718ce5090d918b23a759e06a11d4e666"
+  },
+  "integrated_prerequisite_source": {
+    "files": {
+      "infrastructure/k3s-homelab/playbooks/gpu.yml": "32d5c932fc86d21042ee8b3fad2a0323951b2c445aae7c9e2b360ccd4fa4e1bc",
+      "infrastructure/k3s-homelab/playbooks/tasks/nvidia-gpu-host.yml": "b7f8c1383e1b45e40166522bffef93b65a234b39ada51bacd4b95b6ddca8a254",
+      "infrastructure/k3s-homelab/playbooks/validate-ollama.yml": "34f7938338197abaac5fe5187b7fd1d4c279face80965365f2f29b24ecd760c2"
+    },
+    "semantics": "These exact prerequisite source bytes were present when the finalized candidate earned PASS and are integrated atomically rather than left as workstation-only state."
+  },
+  "record_type": "sage-gpt-oss-shared-inference-finalization-evidence",
+  "repository_base": {
+    "branch": "fix/sage-lifecycle-break-glass-20260907",
+    "head": "dd9ecd54ba3ec8369e0c148724f4c514e906b45c"
+  },
+  "runtime_status": {
+    "cluster_mutation_authorized": false,
+    "repository_integration_only": true,
+    "runtime_success_claimed": false
+  },
+  "schema_version": "1.0"
+}

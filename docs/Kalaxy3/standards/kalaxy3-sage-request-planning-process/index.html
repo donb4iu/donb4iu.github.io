@@ -1657,6 +1657,8 @@
       
         
       
+        
+      
     
     
     
@@ -2186,6 +2188,34 @@
     
   
     Kalaxy3 SAGE Legacy Evidence Projection Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-llm-workflow-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE isolated workflow-manager role
   
 
     
@@ -2863,13 +2893,17 @@ required before a new low-level primitive can be implemented.</p>
 <p>The optional approved-gap-set input is therefore an explicit Architect authority input to planning, never an LLM or tool self-approval mechanism. Missing, stale, candidate-substituted, semantic-authority-substituted, mismatched, partially approved, or checksum-invalid gap evidence fails closed.</p>
 <h2 id="published-interface">Published interface<a class="headerlink" href="#published-interface" title="Permanent link">&para;</a></h2>
 <p>Successful planning emits the unchanged
-<code>sage-request-execution-proposal-schema-v1.0.json</code> package consumed by
-<code>sage-request-execute.py</code>. Request execution therefore consumes a stable
-planning result instead of caller-authored capabilities and candidates.</p>
-<p>Normal usage is:</p>
-<div class="highlight"><pre><span></span><code><span class="go">SAGE_REQUEST=&quot;&lt;literal request&gt;&quot; SAGE_SOURCE=&quot;&lt;source.zip&gt;&quot; make sage-request-plan</span>
-<span class="go">SAGE_REQUEST=&quot;&lt;same literal request&gt;&quot; SAGE_PROPOSAL=&quot;&lt;planned proposal.zip&gt;&quot; make sage-request-execute</span>
-</code></pre></div>
+<code>sage-request-execution-proposal-schema-v1.0.json</code> package that is eventually
+consumed by <code>sage-request-execute.py</code>. That is a <strong>component compatibility
+contract</strong>, not an external lifecycle continuation. Planning returns the stable
+proposal to the owning SAGE lifecycle composition. The lifecycle owner must
+establish every mutation prerequisite, including the checksum-bound Architect
+objective-path decision, before request execution may be invoked.</p>
+<p>Normal external progression is owned by <code>sage-intent-to-outcome</code>. The
+<code>sage-request-plan</code> and <code>sage-request-execute</code> CLIs remain reusable component and
+debug interfaces for repository-owned compositions, tests, and bounded recovery;
+a successful direct planning CLI invocation must not advertise request execution
+as its next external boundary.</p>
 <p>The planner records resolved authority, component selection, event logs, and a
 local closeout under the SAGE local-state directory.</p>
 <h2 id="mutation-and-authority-boundary">Mutation and authority boundary<a class="headerlink" href="#mutation-and-authority-boundary" title="Permanent link">&para;</a></h2>

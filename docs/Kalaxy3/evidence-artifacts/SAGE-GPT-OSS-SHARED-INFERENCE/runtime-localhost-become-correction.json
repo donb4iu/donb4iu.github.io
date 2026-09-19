@@ -1,0 +1,39 @@
+{
+  "authority": {
+    "basis": "Architect-approved GPT-OSS runtime path",
+    "correction_class": "implementation-local",
+    "material_replan_required": false
+  },
+  "correction": {
+    "files": {
+      "infrastructure/k3s-homelab/playbooks/ollama.yml": {
+        "after_sha256": "f4f77e105d4be38fd3fa00de38673f516d6cf11da6a2f21bfb48a9710e6e3205",
+        "before_sha256": "006a9cfd1e0ea9b07c26645dc0122a8411d305657135fae6c71be38330519c0f",
+        "semantic_change": "explicit localhost become=false only"
+      },
+      "infrastructure/k3s-homelab/playbooks/openwebui.yml": {
+        "after_sha256": "f223bfb220acc9505cc47c7e2bc930998addb9946e8f8ca722331ac739c97340",
+        "before_sha256": "1c30c924f20d0be21d084446d35d1b6a95d4e23228655815918e2453452e86c4",
+        "semantic_change": "explicit localhost become=false only"
+      },
+      "infrastructure/k3s-homelab/playbooks/validate-ollama.yml": {
+        "after_sha256": "bbadaccb5a1de38bbcb4e982bb1d818e345a8b7a7f49727128761fcdd8005e02",
+        "before_sha256": "34f7938338197abaac5fe5187b7fd1d4c279face80965365f2f29b24ecd760c2",
+        "semantic_change": "explicit localhost become=false only"
+      }
+    },
+    "scope": "Disable inherited Ansible privilege escalation on localhost-only controller plays; no deployment, storage, model, GPU, placement, health, recovery, or acceptance semantics changed."
+  },
+  "failure": {
+    "classification": "implementation-local-controller-privilege-escalation",
+    "cluster_mutation_before_failure": false,
+    "observed_error": "sudo: a password is required",
+    "runtime_state": "/Users/dbuddenbaum/.local/state/kalaxy3/sage-gpt-oss-runtime/20260919-022031",
+    "summary_sha256": "e6efff243ae7d70c6adb7f6f5ca8833e3b7f45bd6cb56c307ce10dde3258055d",
+    "terminal_evidence_sha256": "6f550e37b872faa5baae11280c4292da865479b348024c9dd636dd197c43a124"
+  },
+  "objective_id": "SAGE-ACTION-20260813-001",
+  "parent_candidate_head": "f0cd765487c95a2d7e46d8e352139195536b40b1",
+  "record_type": "sage-gpt-oss-runtime-implementation-local-correction",
+  "schema_version": "1.0"
+}

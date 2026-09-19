@@ -1,0 +1,286 @@
+{
+  "schema_version": "1.0",
+  "record_type": "kalaxy3-cognition-evidence-analysis",
+  "producer": {
+    "participant_class": "fresh-evidence-analyst",
+    "authority": "advisory-only",
+    "provider": "OpenAI",
+    "model": "GPT-5.6 Sol"
+  },
+  "input_packet": {
+    "packet_sha256": "de3d0b37e99a72c9eb95b6330832ea3712d597c0e8060824b150c8c16e431034",
+    "source_manifest_sha256": "fde37fcfdc698478031b895ce08274704da30b37120b6181ef1d65c64c49e932"
+  },
+  "objective": "Analyze supplied Kalaxy2 prior art and current Kalaxy3 evidence to bound safe architecture innovation for a machine-neutral shared Kalaxy-hosted inference endpoint without selecting or implementing an architecture.",
+  "source_established_facts": [
+    {
+      "claim": "The Architect directs the current shared Kalaxy-hosted inference objective to serve as the bounded cognition-plane proving case, while explicitly excluding GPU/Ollama runtime changes from this cognition-plane proof.",
+      "source": "architect-cognition-plane-intent.txt",
+      "source_sha256": "020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570",
+      "evidence_locator": "Bounded MVP / immediate proof, lines 52-66",
+      "maturity": "authoritative Architect intent; not implementation proof"
+    },
+    {
+      "claim": "Kalaxy2 directly records MicroK8s NVIDIA enablement on amd64-01: the MicroK8s NVIDIA addon detected a GeForce GTX 1070, deployed the NVIDIA GPU Operator using the host GPU driver, and reported the operator deployment as successful.",
+      "source": "kalaxy2-microk8s-extracted.txt",
+      "source_sha256": "c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85",
+      "evidence_locator": "GPU section, lines 443-466",
+      "maturity": "historical Kalaxy2 local experience; requires adaptation and current revalidation"
+    },
+    {
+      "claim": "Kalaxy2 directly records two CUDA vector-add GPU test workloads whose logs copied data to the CUDA device, launched a CUDA kernel, copied output back, and ended with 'Test PASSED'.",
+      "source": "kalaxy2-microk8s-extracted.txt",
+      "source_sha256": "c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85",
+      "evidence_locator": "GPU test jobs, lines 468-498",
+      "maturity": "historical Kalaxy2 workload evidence; not current Kalaxy3 runtime qualification"
+    },
+    {
+      "claim": "The Kalaxy2 documentation index proves that documentation paths existed for Ollama, OpenWebUI, vLLM, fine-tuning, LLM setup, GPU monitoring, LLM monitoring, and serving topics.",
+      "source": "kalaxy2-ai-doc-index-extracted.txt",
+      "source_sha256": "4a6f094255f129e1c0e5eaeb3c24c00fb5bf5fb19c7dd076b65874f1cb80e858",
+      "evidence_locator": "Indexed paths including lines 38, 58, 63, 67, 72, 76, 82, 157, 165, and 202",
+      "maturity": "historical index evidence only; proves topic/file existence, not page contents or implementation"
+    },
+    {
+      "claim": "Current Kalaxy3 evidence identifies amd64-01 by live PCI inspection as NVIDIA GA102 GeForce RTX 3090 [10de:2204] and amd64-02 as NVIDIA GA106 GeForce RTX 3060 Lite Hash Rate [10de:2504].",
+      "source": "kalaxy3-shared-inference-current-evidence.txt",
+      "source_sha256": "583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea",
+      "evidence_locator": "Current evidence and untrusted candidate state, line 20",
+      "maturity": "captured live PCI observation evidence"
+    },
+    {
+      "claim": "At the captured pre-candidate inspection boundary, Secure Boot was disabled on both GPU nodes; both used nouveau and lacked nvidia-smi, the NVIDIA container runtime/toolkit, K3s NVIDIA containerd configuration, and Kubernetes nvidia.com/gpu allocation.",
+      "source": "kalaxy3-shared-inference-current-evidence.txt",
+      "source_sha256": "583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea",
+      "evidence_locator": "Current evidence and untrusted candidate state, lines 21-23",
+      "maturity": "captured live/pre-candidate observation; later untrusted candidate work does not upgrade runtime maturity"
+    },
+    {
+      "claim": "The captured shared-inference objective makes the machine-neutral shared model-serving endpoint essential, makes OpenWebUI optional, and requires runtime qualification from an Architect workstation that proves intended GPU use rather than silent CPU fallback.",
+      "source": "kalaxy3-shared-inference-current-evidence.txt",
+      "source_sha256": "583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea",
+      "evidence_locator": "Required functional outcome, lines 14-17",
+      "maturity": "captured Kalaxy3 objective/constraint evidence"
+    },
+    {
+      "claim": "The current GPU-IaC repository snapshot declares amd64-01 as rtx-3090 with 24 GiB and amd64-02 as rtx-3060-ti with 8 GiB; both GPU blocks declare kubernetes_schedulable false.",
+      "source": "kalaxy3-gpu-iac-context.txt",
+      "source_sha256": "c65044b41a9e776b6e3bb8e4d999d99dbb187d7b63ae7a1eee09e506b7b10260",
+      "evidence_locator": "HOST VARS, lines 16-89",
+      "maturity": "repository snapshot/context; declarations may be stale or contradicted by live observation"
+    },
+    {
+      "claim": "The captured Kalaxy3 repository uses exact K3s release/checksum validation and explicit Helm repository and chart-lock data, while the captured Helm repository/chart baseline does not include an NVIDIA repository or NVIDIA chart lock.",
+      "source": "kalaxy3-gpu-iac-context.txt",
+      "source_sha256": "c65044b41a9e776b6e3bb8e4d999d99dbb187d7b63ae7a1eee09e506b7b10260",
+      "evidence_locator": "K3S INSTALL lines 96-253; HELM CONFIG lines 255-405",
+      "maturity": "captured repository mechanism/context, not runtime proof"
+    },
+    {
+      "claim": "The current GPU working-tree candidate is explicitly untrusted; candidate guardrails exposed Helm trust/locking integration defects, and the captured evidence states that no live NVIDIA driver installation, Kubernetes GPU mutation, Ollama deployment, commit, or push had been performed by those helpers.",
+      "source": "kalaxy3-shared-inference-current-evidence.txt",
+      "source_sha256": "583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea",
+      "evidence_locator": "Current evidence and untrusted candidate state, lines 24-29",
+      "maturity": "captured candidate-state evidence; candidate remains untrusted"
+    },
+    {
+      "claim": "The published cognition-plane record is architecture evidence only and explicitly does not establish cognition-plane implementation, validation, runtime qualification, or completion of the bounded shared-inference cognition episode.",
+      "source": "cognition-plane-published-record.md",
+      "source_sha256": "cf6b99cf04874dc5f5087551742c8b72af06faeccc7ad8218f5168ef40496af6",
+      "evidence_locator": "Executive summary and Nonclaims, lines 81-83 and 179-187",
+      "maturity": "repository-published architecture evidence; explicitly not implementation/runtime proof"
+    }
+  ],
+  "evidence_conflicts": [
+    {
+      "conflict": "amd64-02 repository metadata declares an RTX 3060 Ti and 8 GiB, while live PCI evidence identifies the device as an RTX 3060 LHR. The model identity is contradicted; the 8 GiB VRAM declaration is not validated by the supplied current runtime evidence and must remain unresolved rather than being silently carried forward.",
+      "sources": [
+        "kalaxy3-gpu-iac-context.txt sha256=c65044b41a9e776b6e3bb8e4d999d99dbb187d7b63ae7a1eee09e506b7b10260 lines 67-89",
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 12, 20"
+      ],
+      "disposition": "unresolved",
+      "why_it_matters": "GPU identity and verified memory capacity constrain model fit, serving-runtime options, placement, and qualification criteria."
+    }
+  ],
+  "candidate_transferable_patterns": [
+    {
+      "pattern": "Qualify GPU enablement with an actual GPU workload and observable CUDA execution rather than treating installation success as sufficient proof.",
+      "evidence_basis": [
+        "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 468-498",
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 42-50"
+      ],
+      "transfer_level": "principle",
+      "required_adaptation_or_revalidation": [
+        "Use current Kalaxy3 K3s/containerd and current GPU hardware.",
+        "Use current repository-owned qualification and evidence mechanisms.",
+        "Prove Kubernetes nvidia.com/gpu exposure and intended GPU execution."
+      ]
+    },
+    {
+      "pattern": "Treat GPU capability as an end-to-end chain spanning host driver, container runtime, Kubernetes resource exposure, and a successful workload, rather than as a single package/addon installation.",
+      "evidence_basis": [
+        "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 445-498",
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 8-17"
+      ],
+      "transfer_level": "structural-pattern",
+      "required_adaptation_or_revalidation": [
+        "Replace MicroK8s-specific enablement with K3s-compatible mechanisms.",
+        "Revalidate against current driver, containerd, and device-plugin/operator compatibility."
+      ]
+    },
+    {
+      "pattern": "Integrate any current GPU-serving mechanism through Kalaxy3's existing reproducible repository controls, including explicit release/checksum locking and Helm repository/chart trust data.",
+      "evidence_basis": [
+        "kalaxy3-gpu-iac-context.txt sha256=c65044b41a9e776b6e3bb8e4d999d99dbb187d7b63ae7a1eee09e506b7b10260 lines 96-253 and 255-405",
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 16-17, 25-28"
+      ],
+      "transfer_level": "structural-pattern",
+      "required_adaptation_or_revalidation": [
+        "Determine the current supported NVIDIA integration for K3s.",
+        "Add only independently trusted and exactly locked artifacts if an NVIDIA chart is selected.",
+        "Preserve the repository's isolated Helm execution contract."
+      ]
+    }
+  ],
+  "nontransferable_or_environment_specific_mechanics": [
+    {
+      "mechanic": "The Kalaxy2 command `microk8s enable nvidia`.",
+      "reason": "It is a MicroK8s addon mechanism from the historical environment; the current platform is K3s and the packet explicitly forbids copying historical MicroK8s mechanics as Kalaxy3 design.",
+      "source": "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 443-466; fresh role prompt critical source rule"
+    },
+    {
+      "mechanic": "The historical MicroK8s addon-created NVIDIA repository/operator deployment details, including its namespace and implicit chart retrieval.",
+      "reason": "Those details were produced by the MicroK8s addon in 2024 and do not establish current Kalaxy3 Helm trust, chart version, namespace, or runtime wiring.",
+      "source": "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 448-465"
+    },
+    {
+      "mechanic": "The historical GTX 1070 / NVIDIA driver 535.183.01 host configuration.",
+      "reason": "It describes Kalaxy2 hardware and driver state, not the current RTX 3090/RTX 3060 LHR Kalaxy3 nodes or a currently qualified driver stack.",
+      "source": "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 501-517"
+    },
+    {
+      "mechanic": "The specific historical `gpu-test-job-medium.yaml` and `gpu-test-job-high.yaml` manifests as implementation artifacts.",
+      "reason": "Their successful logs establish a validation outcome, but the packet does not supply the manifest contents or prove they are appropriate for current K3s, current GPUs, or current policy.",
+      "source": "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 468-498"
+    }
+  ],
+  "bounded_engineering_inferences": [
+    {
+      "inference": "The Kalaxy2 CUDA-pass evidence makes real workload execution a strong candidate validation pattern for Kalaxy3, but not proof that any historical installation mechanism will work on K3s.",
+      "basis": [
+        "kalaxy2-microk8s-extracted.txt sha256=c711d41c9cd358cb491c4ebc20591758b12246151e48d77fd43c7c2b6c4e4f85 lines 445-498",
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 8-17"
+      ],
+      "confidence": "high",
+      "not_a_fact_because": "Transferability from MicroK8s/GTX 1070 to K3s/current RTX hardware has not been executed or validated."
+    },
+    {
+      "inference": "Any NVIDIA operator/device-plugin approach considered for Kalaxy3 will likely need to conform to the repository's existing explicit Helm trust, exact chart locking, and isolated execution patterns.",
+      "basis": [
+        "kalaxy3-gpu-iac-context.txt sha256=c65044b41a9e776b6e3bb8e4d999d99dbb187d7b63ae7a1eee09e506b7b10260 lines 255-405",
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 16, 25-28"
+      ],
+      "confidence": "high",
+      "not_a_fact_because": "No accepted NVIDIA Helm integration is established in the packet; the only such work described is untrusted candidate state."
+    },
+    {
+      "inference": "The initial amd64-02 serving placement should remain conditional during architecture reasoning until its current VRAM and usable GPU runtime capacity are directly established.",
+      "basis": [
+        "kalaxy3-shared-inference-current-evidence.txt sha256=583eb1b5a1f9185b3965714009217f532fa510d5876b415f5603c95a3a696aea lines 11-12, 20-23",
+        "kalaxy3-gpu-iac-context.txt sha256=c65044b41a9e776b6e3bb8e4d999d99dbb187d7b63ae7a1eee09e506b7b10260 lines 67-89"
+      ],
+      "confidence": "high",
+      "not_a_fact_because": "The packet supplies an initial placement direction and stale repository VRAM metadata, but no current runtime VRAM measurement or successful GPU-runtime qualification for amd64-02."
+    },
+    {
+      "inference": "The indexed Kalaxy2 AI documentation is potentially valuable retrieval prior art, but it cannot currently support a comparison of Ollama, vLLM, OpenWebUI, fine-tuning, monitoring, or serving implementation choices.",
+      "basis": [
+        "kalaxy2-ai-doc-index-extracted.txt sha256=4a6f094255f129e1c0e5eaeb3c24c00fb5bf5fb19c7dd076b65874f1cb80e858 indexed AI documentation paths"
+      ],
+      "confidence": "high",
+      "not_a_fact_because": "Only file/topic existence is supplied; the actual page content, commands, design choices, outcomes, and limitations are absent."
+    }
+  ],
+  "evidence_gaps_or_unknowns": [
+    {
+      "gap": "Actual Kalaxy2 page contents for Ollama, OpenWebUI, vLLM, fine-tuning, LLM setup, monitoring, and serving are not supplied.",
+      "why_needed": "The Architect explicitly requires applicable Kalaxy2 prior art to inform the bounded cognition episode. Topic existence alone cannot establish what was implemented, selected, learned, or proven.",
+      "preferred_source_type": "Original Kalaxy2 markdown/page source bytes with provenance and content hashes for the indexed AI documents.",
+      "blocking_for_architecture_innovation": true
+    },
+    {
+      "gap": "Current runtime VRAM for amd64-02 is not established; the only 8 GiB value is tied to stale repository metadata that also misidentifies the GPU model.",
+      "why_needed": "Verified GPU memory is required to reason safely about model fit, quantization, concurrency, serving runtime suitability, and whether the initial amd64-02 placement remains viable.",
+      "preferred_source_type": "Current live GPU runtime evidence from amd64-02 after a trusted driver is available, such as nvidia-smi or equivalent authoritative hardware/runtime inspection.",
+      "blocking_for_architecture_innovation": true
+    },
+    {
+      "gap": "No accepted current live NVIDIA driver/container-runtime/K3s GPU qualification exists for either Kalaxy3 GPU node in the packet.",
+      "why_needed": "Architecture alternatives that depend on Kubernetes GPU scheduling must distinguish desired capability from presently proven capability and identify compatibility constraints.",
+      "preferred_source_type": "Current host and K3s runtime qualification evidence covering driver, NVIDIA container runtime/toolkit, containerd integration, nvidia.com/gpu advertisement, and a successful GPU workload.",
+      "blocking_for_architecture_innovation": true
+    },
+    {
+      "gap": "The packet does not establish the intended model set, model sizes or quantization expectations, context lengths, concurrency, latency/throughput targets, or other serving workload requirements.",
+      "why_needed": "Those requirements materially affect runtime alternatives, GPU capacity, placement, storage, and performance tradeoffs.",
+      "preferred_source_type": "Architect-owned workload requirements or an authoritative current SAGE/shared-inference usage profile.",
+      "blocking_for_architecture_innovation": true
+    },
+    {
+      "gap": "The packet does not establish current live storage capacity/performance for model persistence or the network/exposure/authentication constraints for the shared endpoint.",
+      "why_needed": "The Definition of Done requires appropriate persistent storage and reachable machine-neutral workstation access; safe architecture alternatives need the current constraints rather than invented defaults.",
+      "preferred_source_type": "Current Kalaxy3 storage-class/capacity observations plus authoritative network, ingress, TLS/authentication, and workstation-access constraints.",
+      "blocking_for_architecture_innovation": true
+    }
+  ],
+  "material_architect_decision_surfaces": [
+    {
+      "decision": "Select the shared model-serving architecture/runtime alternative after evidence retrieval, rather than assuming indexed Kalaxy2 Ollama or vLLM topics imply a prior accepted choice.",
+      "why_material": "The choice affects compatibility, model support, operational complexity, GPU utilization, and the machine-neutral endpoint contract.",
+      "evidence_needed_before_decision": [
+        "Actual Kalaxy2 Ollama/vLLM/serving page contents and outcomes.",
+        "Verified current GPU memory/runtime capability on candidate nodes.",
+        "Current model/concurrency/performance requirements.",
+        "Current K3s/runtime compatibility constraints."
+      ]
+    },
+    {
+      "decision": "Confirm or revise the initial amd64-02 model-serving placement and the intended role of amd64-01.",
+      "why_material": "The current objective prefers amd64-02 and preserves the RTX 3090 for higher-value AI workloads, but amd64-02 memory/capability is not yet runtime-proven and its repository identity is stale.",
+      "evidence_needed_before_decision": [
+        "Current amd64-02 VRAM and GPU runtime qualification.",
+        "Current amd64-01 runtime qualification and competing workload constraints.",
+        "Target model and concurrency requirements."
+      ]
+    },
+    {
+      "decision": "Choose the persistent storage and endpoint exposure/security shape for the shared service.",
+      "why_material": "These choices affect durability, performance, workstation reachability, and trust boundaries, and the packet does not establish enough live storage/network evidence to select them.",
+      "evidence_needed_before_decision": [
+        "Current available storage classes, capacity, and relevant performance evidence.",
+        "Current network/ingress path and workstation reachability constraints.",
+        "Required TLS/authentication and privileged-surface boundaries."
+      ]
+    }
+  ],
+  "next_capability_recommendation": {
+    "capability": "evidence-retrieval",
+    "reason": "The packet is sufficient to establish historical Kalaxy2 GPU experience, current Kalaxy3 constraints, one hardware-identity conflict, and several transferable validation/governance patterns, but it is not sufficient for safe architecture innovation because the actual Kalaxy2 inference-serving page contents, amd64-02 runtime VRAM/capability, and key serving workload requirements are missing.",
+    "minimum_additional_inputs": [
+      "Original Kalaxy2 Ollama, vLLM, serving, OpenWebUI, LLM-setup, monitoring, and fine-tuning page contents with provenance.",
+      "Current amd64-02 authoritative GPU memory/runtime evidence and current end-to-end GPU qualification state for both GPU nodes.",
+      "Architect-owned shared-inference workload requirements: target models/quantization, context, concurrency, and performance priorities.",
+      "Current storage and endpoint-access/security constraints needed for persistence and workstation reachability."
+    ]
+  },
+  "authority_nonclaims": [
+    "This analysis does not select a final shared-inference architecture.",
+    "This analysis does not approve, reject, repair, or mutate the current GPU working-tree candidate.",
+    "This analysis does not decide SAGE evidence maturity, applicability, lifecycle state, recovery, re-entry, execution, validation, receipts, or persistence.",
+    "This analysis does not treat indexed Kalaxy2 AI documentation topics as evidence of their unsupplied page contents.",
+    "This analysis does not treat historical MicroK8s commands, addon behavior, chart details, driver versions, or node placement as current Kalaxy3/K3s design.",
+    "This analysis does not resolve amd64-02 VRAM from the stale 8 GiB repository declaration.",
+    "This analysis does not promote advisory inference or recommendations to Architect or SAGE authority.",
+    "This analysis does not claim current NVIDIA/Kubernetes GPU runtime qualification or shared inference deployment."
+  ]
+}

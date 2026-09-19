@@ -1,0 +1,5038 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ARM64 and AMD64 homelab architecture, operations, and evidence">
+      
+      
+        <meta name="author" content="one-time isolated SAGE evidence-generation role">
+      
+      
+        <link rel="canonical" href="https://donb4iu.github.io/docs/Kalaxy3/architecture/kalaxy3-sage-cognition-plane-architecture-decision-evidence/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../rpi4.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Kalaxy3 SAGE Cognition-Plane Architecture Direction and Advisory Candidate Evidence - Kalaxy3 K3s Cluster</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kalaxy3-sage-cognition-plane-architecture-direction-and-advisory-candidate-evidence" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-header__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Kalaxy3 K3s Cluster
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Kalaxy3 SAGE Cognition-Plane Architecture Direction and Advisory Candidate Evidence
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Kalaxy3 K3s Cluster" class="md-nav__button md-logo" aria-label="Kalaxy3 K3s Cluster" data-md-component="logo">
+      
+  <img src="../../rpi4.png" alt="logo">
+
+    </a>
+    Kalaxy3 K3s Cluster
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/donb4iu/Kalaxy3" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    donb4iu/Kalaxy3
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    architecture
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    architecture
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-capability-intelligence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Capability Intelligence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../kalaxy3-sage-thin-slice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE End-to-End Thin Slice
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../evidence/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Evidence
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Evidence
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/current/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Current records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/legacy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Historical records
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/migration-report/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Migration report
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/sections/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browse by section
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/status/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browse by status
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../evidence/subjects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browse by subject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-llm-role-agent-context-architecture-checkpoint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE LLM role-agent shared-context architecture checkpoint
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/kalaxy3-sage-operating-contract-enforcement-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Validate SAGE mandatory operating-contract enforcement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--validated"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../governance/sage-objective-dod-bounding-and-resumption-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Objective DoD bounding and future-resumption evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Infrastructure
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Infrastructure
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    K3s Homelab
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    K3s Homelab
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/01_Architecture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/02_IP_Address_Plan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IP Address Plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/03_Deployment_Order/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Deployment Order
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/04_Phased_Deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phased deployment and refinement workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_5" id="__nav_5_1_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture Decisions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Architecture Decisions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0001_Three_Server_Control_Plane/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0001: Use Three K3s Server Nodes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0002_MetalLB_and_Traefik/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0002: MetalLB with Traefik
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Architecture_Decisions/0003_Storage_Separation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ADR 0003: Separate Shared NFS and MinIO Local Storage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/k3s-install-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 K3s Installation Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Phase_Notes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase observations and decisions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_8" id="__nav_5_1_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Runbooks
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Runbooks
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Backup_and_Recovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup and Recovery Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/headlamp-login-token-instructions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Headlamp Login Token Instructions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-03-network-storage-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 03 Network and Storage Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/phase-04-ui-evidence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Phase 04 UI Evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Phase_00_Site_Survey/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Phase 0 Site Survey Runbook
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting Guide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Infrastructure/K3s_Homelab/Runbooks/Upgrade/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrade Strategy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    research
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    research
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../research/kalaxy3-cost-model-architecture-and-finops-analysis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 Cost Model Architecture and FinOps Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    standards
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    standards
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-mkdocs-evidence-navigation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 MkDocs Evidence Navigation Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-actionable-failure-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE actionable failure contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-architecture-approval-evaluation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE LLM architecture-approval evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-artifact-promotion-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Immutable Artifact Promotion Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-capability-intelligence-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Capability Intelligence Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-capability-intelligence-workflow-capability-audit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE Workflow Capability Completeness Audit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-causal-evidence-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE causal evidence graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-change-discovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Change Discovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-checkpoint-promotion-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE checkpoint promotion process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-continuous-improvement-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Continuous-Improvement Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-orchestration-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Orchestration Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-publication-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Generation and Git Publication Process
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-record-standard/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Evidence Record Standard
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--proposed"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-evidence-retrieval-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE deterministic evidence retrieval process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-generated-helper-runtime-validation-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 generated-helper runtime-validation process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-intent-to-outcome-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE intent-to-outcome process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-legacy-evidence-projection-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Legacy Evidence Projection Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-llm-workflow-manager/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SAGE isolated workflow-manager role
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-operating-contract/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Mandatory Operating Contract
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-portable-stage-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Portable Stage Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-recovery-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Self-Directing Recovery Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-request-execution-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Request Execution Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-request-planning-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE request-planning process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-semantic-bootstrap-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE semantic-understanding bootstrap process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-thin-slice-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE End-to-End Thin-Slice Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-workflow-primitives-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Workflow Primitives and Composition Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../standards/kalaxy3-sage-workflow-support-process/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kalaxy3 SAGE Workflow-Support Process
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#executive-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executive summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#record-metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Record metadata
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigation-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Navigation contract
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#five-ws-and-how" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five Ws and How
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Five Ws and How">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#five-w-completeness-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Five-W completeness gate
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-boundaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and boundaries
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope and boundaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#in-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonclaims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nonclaims
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-accepted-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final accepted state
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#claims-and-evidence-matrix" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims and evidence matrix
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#problem-and-decision-rationale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem and decision rationale
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem and decision rationale">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-or-opportunity" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Problem or opportunity
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decision-drivers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Decision drivers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alternatives-considered" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives considered
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tradeoffs-and-consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tradeoffs and consequences
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture-or-change-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture or change description
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture or change description">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Before
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        After
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#source-of-truth-and-implementation-lineage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source of truth and implementation lineage
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Source of truth and implementation lineage">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#repository-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository files
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation commit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioned-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Versioned dependencies
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-portability-and-repository-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Controller portability and repository authority
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configuration-excerpt" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Configuration excerpt
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prerequisites-and-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Prerequisites and assumptions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Prerequisites and assumptions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#proven-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proven prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assumptions
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation procedure
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation procedure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Preparation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expected-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Expected change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#observed-change" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Observed change
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#failed-or-superseded-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failed or superseded paths
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evidence-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence items
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evidence items">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ev-001-exact-architect-intent-source" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-001 — Exact Architect intent source
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-002-exact-advisory-architecture-candidate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-002 — Exact advisory architecture candidate
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-003-supplied-repository-snapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-003 — Supplied repository snapshot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-004-repository-authority-separation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-004 — Repository authority-separation rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ev-005-bounded-evidence-gap-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        EV-005 — Bounded evidence-gap inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verification-and-acceptance-criteria" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Verification and acceptance criteria
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verification and acceptance criteria">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Functional verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#negative-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Negative verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency-and-repeatability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency and repeatability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Idempotency and repeatability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#first-accepted-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        First accepted run
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#steady-state-rerun" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Steady-state rerun
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#interpretation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Interpretation
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-privacy-and-evidence-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security, privacy, and evidence handling
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Security, privacy, and evidence handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#security-controls" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Security controls
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensitive-material-excluded" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sensitive material excluded
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redactions-and-omissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Redactions and omissions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-security-risk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Residual security risk
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reliability-recovery-rollback-and-rebuild" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reliability, recovery, rollback, and rebuild
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Reliability, recovery, rollback, and rebuild">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#failure-modes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure modes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rollback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rollback
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rebuild-procedure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Rebuild procedure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-durability-and-backup-impact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Data durability and backup impact
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#operational-considerations-and-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operational considerations and observability
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Operational considerations and observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#health-signals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Health signals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#routine-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Routine verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#capacity-performance-cost-and-sustainability" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Capacity, performance, cost, and sustainability
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#known-limitations-evidence-gaps-and-risks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Known limitations, evidence gaps, and risks
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Troubleshooting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-checksum-mismatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source checksum mismatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#publisher-rejects-metadata-or-template-structure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publisher rejects metadata or template structure
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cognition-plane-implementation-is-assumed-from-this-record" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cognition-plane implementation is assumed from this record
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#freshness-revalidation-and-supersession" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Freshness, revalidation, and supersession
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Freshness, revalidation, and supersession">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revalidate-when" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revalidate when
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduled-review" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scheduled review
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supersession-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supersession rule
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#final-completion-checklist-and-reviewer-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Final completion checklist and reviewer acceptance
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Final completion checklist and reviewer acceptance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#governance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Governance
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evidence" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Evidence
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#safety-and-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Safety and operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#review-acceptance" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Review acceptance
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#git-review-and-publication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git review and publication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#appendices-and-raw-artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Appendices and raw artifacts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Appendices and raw artifacts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#artifact-inventory" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifact inventory
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#original-requester-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Original requester language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#source-checksum-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source checksum verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#additional-notes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Additional notes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="kalaxy3-sage-cognition-plane-architecture-direction-and-advisory-candidate-evidence">Kalaxy3 SAGE Cognition-Plane Architecture Direction and Advisory Candidate Evidence<a class="headerlink" href="#kalaxy3-sage-cognition-plane-architecture-direction-and-advisory-candidate-evidence" title="Permanent link">&para;</a></h1>
+<h2 id="executive-summary">Executive summary<a class="headerlink" href="#executive-summary" title="Permanent link">&para;</a></h2>
+<p>This draft evidence record preserves the supplied Architect cognition-plane direction at Architect-owned authority and the motivating persistent-LLM architecture candidate at advisory-only authority. It records the required responsibility planes, isolated advisory capabilities, capability-driven bounded choreography, positive persistent-collaborator duties, and exclusive SAGE deterministic governance/execution boundary. The supplied evidence does not establish implementation, validation, runtime qualification, or completion of the bounded shared-inference cognition episode; those remain explicit gaps.</p>
+<div class="toc">
+<ul>
+<li><a href="#kalaxy3-sage-cognition-plane-architecture-direction-and-advisory-candidate-evidence">Kalaxy3 SAGE Cognition-Plane Architecture Direction and Advisory Candidate Evidence</a><ul>
+<li><a href="#executive-summary">Executive summary</a></li>
+<li><a href="#record-metadata">Record metadata</a></li>
+<li><a href="#navigation-contract">Navigation contract</a></li>
+<li><a href="#five-ws-and-how">Five Ws and How</a><ul>
+<li><a href="#five-w-completeness-gate">Five-W completeness gate</a></li>
+</ul>
+</li>
+<li><a href="#scope-and-boundaries">Scope and boundaries</a><ul>
+<li><a href="#in-scope">In scope</a></li>
+<li><a href="#out-of-scope">Out of scope</a></li>
+<li><a href="#nonclaims">Nonclaims</a></li>
+</ul>
+</li>
+<li><a href="#final-accepted-state">Final accepted state</a></li>
+<li><a href="#claims-and-evidence-matrix">Claims and evidence matrix</a></li>
+<li><a href="#problem-and-decision-rationale">Problem and decision rationale</a><ul>
+<li><a href="#problem-or-opportunity">Problem or opportunity</a></li>
+<li><a href="#decision">Decision</a></li>
+<li><a href="#decision-drivers">Decision drivers</a></li>
+<li><a href="#alternatives-considered">Alternatives considered</a></li>
+<li><a href="#tradeoffs-and-consequences">Tradeoffs and consequences</a></li>
+</ul>
+</li>
+<li><a href="#architecture-or-change-description">Architecture or change description</a><ul>
+<li><a href="#before">Before</a></li>
+<li><a href="#after">After</a></li>
+</ul>
+</li>
+<li><a href="#source-of-truth-and-implementation-lineage">Source of truth and implementation lineage</a><ul>
+<li><a href="#repository-files">Repository files</a></li>
+<li><a href="#implementation-commit">Implementation commit</a></li>
+<li><a href="#versioned-dependencies">Versioned dependencies</a></li>
+<li><a href="#controller-portability-and-repository-authority">Controller portability and repository authority</a></li>
+<li><a href="#configuration-excerpt">Configuration excerpt</a></li>
+</ul>
+</li>
+<li><a href="#prerequisites-and-assumptions">Prerequisites and assumptions</a><ul>
+<li><a href="#proven-prerequisites">Proven prerequisites</a></li>
+<li><a href="#assumptions">Assumptions</a></li>
+</ul>
+</li>
+<li><a href="#implementation-procedure">Implementation procedure</a><ul>
+<li><a href="#preparation">Preparation</a></li>
+<li><a href="#execution">Execution</a></li>
+<li><a href="#expected-change">Expected change</a></li>
+<li><a href="#observed-change">Observed change</a></li>
+<li><a href="#failed-or-superseded-paths">Failed or superseded paths</a></li>
+</ul>
+</li>
+<li><a href="#evidence-items">Evidence items</a><ul>
+<li><a href="#ev-001-exact-architect-intent-source">EV-001 — Exact Architect intent source</a></li>
+<li><a href="#ev-002-exact-advisory-architecture-candidate">EV-002 — Exact advisory architecture candidate</a></li>
+<li><a href="#ev-003-supplied-repository-snapshot">EV-003 — Supplied repository snapshot</a></li>
+<li><a href="#ev-004-repository-authority-separation-rule">EV-004 — Repository authority-separation rule</a></li>
+<li><a href="#ev-005-bounded-evidence-gap-inventory">EV-005 — Bounded evidence-gap inventory</a></li>
+</ul>
+</li>
+<li><a href="#verification-and-acceptance-criteria">Verification and acceptance criteria</a><ul>
+<li><a href="#functional-verification">Functional verification</a></li>
+<li><a href="#negative-verification">Negative verification</a></li>
+</ul>
+</li>
+<li><a href="#idempotency-and-repeatability">Idempotency and repeatability</a><ul>
+<li><a href="#first-accepted-run">First accepted run</a></li>
+<li><a href="#steady-state-rerun">Steady-state rerun</a></li>
+<li><a href="#interpretation">Interpretation</a></li>
+</ul>
+</li>
+<li><a href="#security-privacy-and-evidence-handling">Security, privacy, and evidence handling</a><ul>
+<li><a href="#security-controls">Security controls</a></li>
+<li><a href="#sensitive-material-excluded">Sensitive material excluded</a></li>
+<li><a href="#redactions-and-omissions">Redactions and omissions</a></li>
+<li><a href="#residual-security-risk">Residual security risk</a></li>
+</ul>
+</li>
+<li><a href="#reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild</a><ul>
+<li><a href="#failure-modes">Failure modes</a></li>
+<li><a href="#rollback">Rollback</a></li>
+<li><a href="#rebuild-procedure">Rebuild procedure</a></li>
+<li><a href="#data-durability-and-backup-impact">Data durability and backup impact</a></li>
+</ul>
+</li>
+<li><a href="#operational-considerations-and-observability">Operational considerations and observability</a><ul>
+<li><a href="#health-signals">Health signals</a></li>
+<li><a href="#routine-verification">Routine verification</a></li>
+<li><a href="#capacity-performance-cost-and-sustainability">Capacity, performance, cost, and sustainability</a></li>
+</ul>
+</li>
+<li><a href="#known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a><ul>
+<li><a href="#source-checksum-mismatch">Source checksum mismatch</a></li>
+<li><a href="#publisher-rejects-metadata-or-template-structure">Publisher rejects metadata or template structure</a></li>
+<li><a href="#cognition-plane-implementation-is-assumed-from-this-record">Cognition-plane implementation is assumed from this record</a></li>
+</ul>
+</li>
+<li><a href="#freshness-revalidation-and-supersession">Freshness, revalidation, and supersession</a><ul>
+<li><a href="#revalidate-when">Revalidate when</a></li>
+<li><a href="#scheduled-review">Scheduled review</a></li>
+<li><a href="#supersession-rule">Supersession rule</a></li>
+</ul>
+</li>
+<li><a href="#final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance</a><ul>
+<li><a href="#governance">Governance</a></li>
+<li><a href="#evidence">Evidence</a></li>
+<li><a href="#safety-and-operations">Safety and operations</a></li>
+<li><a href="#review-acceptance">Review acceptance</a></li>
+</ul>
+</li>
+<li><a href="#git-review-and-publication">Git review and publication</a></li>
+<li><a href="#appendices-and-raw-artifacts">Appendices and raw artifacts</a><ul>
+<li><a href="#artifact-inventory">Artifact inventory</a></li>
+<li><a href="#original-requester-language">Original requester language</a></li>
+<li><a href="#source-checksum-verification">Source checksum verification</a></li>
+<li><a href="#additional-notes">Additional notes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="record-metadata">Record metadata<a class="headerlink" href="#record-metadata" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Evidence ID</strong></td>
+<td>SAGE-K3-COGNITION-20260913-001</td>
+</tr>
+<tr>
+<td><strong>Schema version</strong></td>
+<td>1.2</td>
+</tr>
+<tr>
+<td><strong>Project</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Title</strong></td>
+<td>Kalaxy3 SAGE Cognition-Plane Architecture Direction and Advisory Candidate Evidence</td>
+</tr>
+<tr>
+<td><strong>Navigation title</strong></td>
+<td>Establish SAGE cognition-plane responsibility boundaries</td>
+</tr>
+<tr>
+<td><strong>Navigation section</strong></td>
+<td>architecture</td>
+</tr>
+<tr>
+<td><strong>Navigation order</strong></td>
+<td>640</td>
+</tr>
+<tr>
+<td><strong>Summary</strong></td>
+<td>Records the Architect-owned cognition-plane architecture direction, preserves the motivating LLM candidate as advisory-only, and makes implementation and prior-art evidence gaps explicit.</td>
+</tr>
+<tr>
+<td><strong>Primary subject</strong></td>
+<td>SAGE cognition-plane architecture</td>
+</tr>
+<tr>
+<td><strong>Record type</strong></td>
+<td>architecture-decision</td>
+</tr>
+<tr>
+<td><strong>Status</strong></td>
+<td>draft</td>
+</tr>
+<tr>
+<td><strong>Classification</strong></td>
+<td>internal</td>
+</tr>
+<tr>
+<td><strong>Work session</strong></td>
+<td>SAGE cognition-plane evidence generation 2026-09-13</td>
+</tr>
+<tr>
+<td><strong>Started</strong></td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Completed</strong></td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Evidence collected</strong></td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record created</strong></td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td><strong>Record updated</strong></td>
+<td>2026-09-13T15:57:05-05:00</td>
+</tr>
+<tr>
+<td><strong>Local timezone</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>System timestamp timezone(s)</strong></td>
+<td>America/Chicago</td>
+</tr>
+<tr>
+<td><strong>Valid as of</strong></td>
+<td>2026-09-13</td>
+</tr>
+<tr>
+<td><strong>Review due</strong></td>
+<td>event-based</td>
+</tr>
+<tr>
+<td><strong>Target record path</strong></td>
+<td>markdown/architecture/kalaxy3-sage-cognition-plane-architecture-decision-evidence.md</td>
+</tr>
+<tr>
+<td><strong>Artifact root</strong></td>
+<td>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001</td>
+</tr>
+<tr>
+<td><strong>Repository</strong></td>
+<td>donb4iu/Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Branch</strong></td>
+<td>fix/sage-lifecycle-break-glass-20260907</td>
+</tr>
+<tr>
+<td><strong>Implementation commit</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Environment</strong></td>
+<td>research</td>
+</tr>
+<tr>
+<td><strong>System</strong></td>
+<td>Kalaxy3</td>
+</tr>
+<tr>
+<td><strong>Cluster</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Execution host</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Controller host</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Nodes</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Node addresses</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Namespaces</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Endpoints</strong></td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td><strong>Components and versions</strong></td>
+<td>SAGE-evidence-contract=1.2</td>
+</tr>
+<tr>
+<td><strong>Owner</strong></td>
+<td>Kalaxy3 Architect</td>
+</tr>
+<tr>
+<td><strong>Author</strong></td>
+<td>one-time isolated SAGE evidence-generation role</td>
+</tr>
+<tr>
+<td><strong>Operator</strong></td>
+<td>one-time isolated SAGE evidence-generation role</td>
+</tr>
+<tr>
+<td><strong>Reviewer</strong></td>
+<td>pending</td>
+</tr>
+<tr>
+<td><strong>Confidence</strong></td>
+<td>high</td>
+</tr>
+</tbody>
+</table>
+<h2 id="navigation-contract">Navigation contract<a class="headerlink" href="#navigation-contract" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The formal title identifies this as evidence of the Architect-owned cognition-plane direction plus the separately preserved advisory candidate.</li>
+<li>The navigation title is a concise architecture index label.</li>
+<li><code>architecture</code>, order <code>640</code>, the summary, and the primary subject are canonical schema-1.2 navigation values.</li>
+<li>Historical source maturity is preserved rather than rewritten or upgraded.</li>
+</ul>
+<h2 id="five-ws-and-how">Five Ws and How<a class="headerlink" href="#five-ws-and-how" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Requirement</th>
+<th>Answer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Who</strong></td>
+<td>Author one-time isolated SAGE evidence-generation role; operator one-time isolated SAGE evidence-generation role; owner Kalaxy3 Architect; reviewer pending. The role generated evidence only and acquired no Architect or SAGE execution authority.</td>
+</tr>
+<tr>
+<td><strong>What</strong></td>
+<td>Captures the Architect-owned cognition-plane architecture direction and the advisory-only architecture candidate without claiming implementation, validation, or execution.</td>
+</tr>
+<tr>
+<td><strong>When</strong></td>
+<td>Completed 2026-09-13T13:04:00-05:00; evidence collected 2026-09-13T13:04:00-05:00; local timezone America/Chicago; system timestamps America/Chicago; valid as of 2026-09-13; review due event-based. The original Architect decision timestamp is not supplied and is recorded as a gap rather than inferred.</td>
+</tr>
+<tr>
+<td><strong>Where</strong></td>
+<td>Environment research; cluster not-applicable; execution host not-applicable; controller not-applicable; runtime nodes, addresses, namespaces, and endpoints are not-applicable because this is evidence-only architecture capture; record markdown/architecture/kalaxy3-sage-cognition-plane-architecture-decision-evidence.md.</td>
+</tr>
+<tr>
+<td><strong>Why</strong></td>
+<td>The Architect identifies repeated role collision between persistent probabilistic collaboration and deterministic SAGE control, and directs an explicit separation that preserves positive collaborator value while keeping governance/execution authority in SAGE.</td>
+</tr>
+<tr>
+<td><strong>How</strong></td>
+<td>Exact embedded source bytes were extracted from the supplied brief, both declared source digests were verified, original requester language was preserved verbatim, repository evidence was preserved, authority classes were kept separate, and no implementation scope or runtime mutation was inferred.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="five-w-completeness-gate">Five-W completeness gate<a class="headerlink" href="#five-w-completeness-gate" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Who is complete and agrees with metadata.</li>
+<li>[x] What is complete.</li>
+<li>[x] When is complete, uses canonical timestamps, and includes timezone context.</li>
+<li>[x] Where is complete at repository and runtime levels and agrees with metadata.</li>
+<li>[x] Why includes rationale, alternatives, and tradeoffs.</li>
+<li>[x] How is reproducible and verifiable.</li>
+</ul>
+<h2 id="scope-and-boundaries">Scope and boundaries<a class="headerlink" href="#scope-and-boundaries" title="Permanent link">&para;</a></h2>
+<h3 id="in-scope">In scope<a class="headerlink" href="#in-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Preserve the exact Architect intent source and its declared authority.</li>
+<li>Preserve the exact persistent-LLM architecture candidate as advisory-only.</li>
+<li>Chronicle the Architect-directed three-plane responsibility split and bounded cognition-plane properties.</li>
+<li>Distinguish source observations, engineering inference, recommendations, uncertainty, and implementation status.</li>
+<li>Record repository snapshot evidence and bounded evidence gaps relevant to the requested MVP.</li>
+</ul>
+<h3 id="out-of-scope">Out of scope<a class="headerlink" href="#out-of-scope" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Repository mutation or inferred implementation file selection.</li>
+<li>GPU, Ollama, OpenWebUI, vLLM, finetuning, or shared-inference deployment.</li>
+<li>SAGE lifecycle, recovery, re-entry, or execution-state transitions.</li>
+<li>Running the advisory cognition episode requested as the future bounded MVP.</li>
+<li>Promoting historical prior art, LLM recommendations, or generated analysis to implementation-qualified authority.</li>
+</ul>
+<h3 id="nonclaims">Nonclaims<a class="headerlink" href="#nonclaims" title="Permanent link">&para;</a></h3>
+<p>This record does <strong>not</strong> claim:</p>
+<ul>
+<li>that the cognition plane is implemented, validated, accepted, or runtime-qualified;</li>
+<li>that the advisory candidate is an Architect decision merely because its structure aligns with the Architect source;</li>
+<li>that Kalaxy2 inference/GPU prior art has been retrieved or found applicable;</li>
+<li>that any implementation file list, graph engine, model provider, or inference runtime has been selected;</li>
+<li>that the supplied repository snapshot establishes repository state beyond its explicitly captured source branch and HEAD.</li>
+</ul>
+<h2 id="final-accepted-state">Final accepted state<a class="headerlink" href="#final-accepted-state" title="Permanent link">&para;</a></h2>
+<p>No SAGE implementation acceptance is claimed. The bounded evidentiary state is:</p>
+<div class="highlight"><pre><span></span><code>Architect-owned direction: preserved exactly and treated as architectural direction.
+Persistent-LLM architecture candidate: preserved exactly and advisory-only.
+SAGE deterministic governance/execution authority: preserved as a required boundary.
+Cognition-plane implementation: not established by supplied evidence.
+Bounded shared-inference cognition episode: not executed in this evidence-generation role.
+Repository/runtime mutation: none performed by this role.
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Accepted result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Architect intent source</td>
+<td>Captured verbatim with matching declared SHA-256 and preserved Architect authority</td>
+</tr>
+<tr>
+<td>Advisory architecture candidate</td>
+<td>Captured verbatim with matching declared SHA-256 and preserved advisory-only authority</td>
+</tr>
+<tr>
+<td>Implementation status</td>
+<td>Not established; no implementation paths declared</td>
+</tr>
+<tr>
+<td>Bounded MVP status</td>
+<td>Future proof requirement remains open</td>
+</tr>
+</tbody>
+</table>
+<h2 id="claims-and-evidence-matrix">Claims and evidence matrix<a class="headerlink" href="#claims-and-evidence-matrix" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Claim ID</th>
+<th>Claim</th>
+<th>Criticality</th>
+<th>Evidence IDs</th>
+<th>Result</th>
+<th>Confidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CLM-001</code></td>
+<td>The supplied Architect source directs an explicit separation of Architect interaction, isolated advisory cognition, and deterministic SAGE governance/execution responsibilities.</td>
+<td>critical</td>
+<td><code>EV-001</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-002</code></td>
+<td>The supplied persistent-LLM architecture candidate is advisory-only and recommends a three-plane architecture with evidence analyst, architecture innovator, path critic, and intent synthesizer capabilities.</td>
+<td>high</td>
+<td><code>EV-002</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-003</code></td>
+<td>The supplied evidence does not establish cognition-plane implementation or runtime mutation.</td>
+<td>critical</td>
+<td><code>EV-001</code>, <code>EV-002</code>, <code>EV-003</code>, <code>EV-005</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-004</code></td>
+<td>Repository governance requires source assertions, SAGE inference, predictions, authority decisions, and observed outcomes to remain distinct rather than silently overriding scoped authority.</td>
+<td>high</td>
+<td><code>EV-004</code></td>
+<td>supported</td>
+<td>high</td>
+</tr>
+<tr>
+<td><code>CLM-005</code></td>
+<td>The bundle does not supply Kalaxy2 inference/GPU prior-art source descriptors sufficient to execute the requested bounded evidence-analysis episode.</td>
+<td>high</td>
+<td><code>EV-005</code></td>
+<td>supported</td>
+<td>medium</td>
+</tr>
+</tbody>
+</table>
+<h2 id="problem-and-decision-rationale">Problem and decision rationale<a class="headerlink" href="#problem-and-decision-rationale" title="Permanent link">&para;</a></h2>
+<h3 id="problem-or-opportunity">Problem or opportunity<a class="headerlink" href="#problem-or-opportunity" title="Permanent link">&para;</a></h3>
+<p>The Architect source states that repeated prompt refinement has not reliably kept the persistent Architect-facing LLM focused on long-lived collaboration, evidence-informed innovation, criticism, and intent formulation. The source describes drift into deterministic SAGE control-plane responsibilities and premature implementation mechanics as an architecture problem rather than another prompt-tuning problem.</p>
+<h3 id="decision">Decision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h3>
+<p>Within Architect-owned authority, establish an explicit three-plane architecture: a persistent Architect interaction plane, isolated fresh/disposable advisory cognition capabilities with typed/provenance-bound handoffs, and a deterministic SAGE governance/execution plane. The role graph is capability-driven rather than a mandatory four-stage waterfall, and SAGE remains the sole deterministic authority for evidence authority/applicability/maturity, governed state, lifecycle/re-entry/recovery, allowed actions, mutation, execution, validation, receipts, and persistence.</p>
+<p>This record chronicles that direction; it does not claim the repository has implemented it.</p>
+<h3 id="decision-drivers">Decision drivers<a class="headerlink" href="#decision-drivers" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Preserve long-lived objective continuity and engineering value at the Architect interaction surface.</li>
+<li>Isolate probabilistic evidence analysis, innovation, criticism, and intent synthesis from deterministic SAGE control.</li>
+<li>Make role input/output context explicit, typed, provenance-bound, and replayable without inherited conversational memory.</li>
+<li>Preserve historical evidence at actual maturity without requiring implementation qualification for admission.</li>
+<li>Reuse valid role outputs, skip unnecessary capabilities, permit bounded return paths, and surface material Architect choices instead of looping.</li>
+<li>Keep model/provider choice replaceable and subordinate to repository-owned orchestration and SAGE authority.</li>
+</ul>
+<h3 id="alternatives-considered">Alternatives considered<a class="headerlink" href="#alternatives-considered" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Alternative</th>
+<th>Advantages</th>
+<th>Disadvantages or risks</th>
+<th>Decision</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Continue prompt refinement on one persistent LLM role</td>
+<td>Minimal structural change</td>
+<td>Architect source reports unreliable role separation and control-plane drift</td>
+<td>rejected by Architect direction</td>
+</tr>
+<tr>
+<td>Mandatory Evidence to Innovator to Critic to Intent waterfall</td>
+<td>Simple sequence</td>
+<td>Replaces prompt brittleness with workflow brittleness and ignores reusable valid outputs</td>
+<td>rejected by Architect constraint</td>
+</tr>
+<tr>
+<td>Persistent LLM controls cognition choreography</td>
+<td>Conversational flexibility</td>
+<td>Recreates probabilistic control over workflow state</td>
+<td>rejected by Architect constraint</td>
+</tr>
+<tr>
+<td>New graph/workflow engine now</td>
+<td>Explicit graph model</td>
+<td>Premature complexity before current repository composition is shown insufficient</td>
+<td>deferred by Architect constraint</td>
+</tr>
+<tr>
+<td>Capability-driven isolated advisory roles under repository-owned deterministic orchestration</td>
+<td>Preserves positive LLM value while keeping authority boundaries testable</td>
+<td>Requires typed contracts, provenance, and bounded orchestration proof</td>
+<td>Architect-directed target</td>
+</tr>
+</tbody>
+</table>
+<h3 id="tradeoffs-and-consequences">Tradeoffs and consequences<a class="headerlink" href="#tradeoffs-and-consequences" title="Permanent link">&para;</a></h3>
+<ul>
+<li>More explicit artifacts and provenance are required between cognition capabilities.</li>
+<li>The persistent collaborator retains positive synthesis and engineering duties but loses implicit workflow-control authority.</li>
+<li>Historical evidence may influence design earlier while remaining visibly historical, partial, uncertain, or revalidation-dependent.</li>
+<li>The bounded MVP must prove usefulness without expanding into broad autonomous multi-agent execution or delaying the shared-inference objective indefinitely.</li>
+</ul>
+<h2 id="architecture-or-change-description">Architecture or change description<a class="headerlink" href="#architecture-or-change-description" title="Permanent link">&para;</a></h2>
+<p>The following is the Architect-directed target architecture, not an observed implementation:</p>
+<div class="highlight"><pre><span></span><code>Architect
+   |
+   v
+Persistent Architect-facing collaborator
+  continuity | synthesis | engineering knowledge | alternatives | critique integration
+   |
+   | typed/provenance-bound selected inputs and outputs
+   v
+Isolated advisory cognition capabilities
+  Evidence Analyst &lt;-&gt; Architecture Innovator &lt;-&gt; Path Critic
+                           |
+                           v
+                    Intent Synthesizer
+   |
+   | candidate intent remains Architect-owned until disposition
+   v
+Architect disposition
+   |
+   v
+SAGE deterministic governance/execution
+  evidence authority/applicability/maturity | state | planning | recovery/re-entry
+  allowed actions | mutation | execution | validation | receipts | persistence
+</code></pre></div>
+<h3 id="before">Before<a class="headerlink" href="#before" title="Permanent link">&para;</a></h3>
+<p>The Architect source describes one persistent probabilistic role being expected to combine conversation continuity, evidence analysis, architectural innovation, adversarial criticism, intent formulation, and deterministic workflow control, with observed drift toward SAGE responsibilities.</p>
+<h3 id="after">After<a class="headerlink" href="#after" title="Permanent link">&para;</a></h3>
+<p>The target separates those responsibility planes, makes cognition roles fresh/disposable and context-isolated, uses typed/provenance-bound handoffs, and leaves deterministic orchestration and execution authority in SAGE. Implementation is not evidenced here.</p>
+<h2 id="source-of-truth-and-implementation-lineage">Source of truth and implementation lineage<a class="headerlink" href="#source-of-truth-and-implementation-lineage" title="Permanent link">&para;</a></h2>
+<h3 id="repository-files">Repository files<a class="headerlink" href="#repository-files" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/original-request.txt
+markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/architect-intent-source.txt
+markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/advisory-architecture-candidate.json
+markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/repository-evidence.md
+markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/legacy-evidence-source-registry.json
+markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/bundle-evidence-gap-inventory.json
+markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/source-authority-analysis.json
+markdown/standards/kalaxy3-sage-evidence-record-standard.md
+markdown/standards/kalaxy3-sage-evidence-publication-process.md
+markdown/standards/sage-evidence-metadata-contract-v1.2.json
+</code></pre></div>
+<h3 id="implementation-commit">Implementation commit<a class="headerlink" href="#implementation-commit" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>not-applicable
+</code></pre></div>
+<p>No implementation commit is claimed because this package declares <code>publication_mode: evidence-only</code> with an empty implementation-path list.</p>
+<h3 id="versioned-dependencies">Versioned dependencies<a class="headerlink" href="#versioned-dependencies" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Component/tool</th>
+<th style="text-align: right;">Version</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAGE evidence contract</td>
+<td style="text-align: right;">1.2</td>
+<td>repository metadata contract and publisher</td>
+</tr>
+</tbody>
+</table>
+<h3 id="controller-portability-and-repository-authority">Controller portability and repository authority<a class="headerlink" href="#controller-portability-and-repository-authority" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repository-controlled dependencies</td>
+<td>Schema-1.2 evidence standard, metadata contract, template, and publication process supplied in the bundle</td>
+</tr>
+<tr>
+<td>Controller bootstrap</td>
+<td>not-applicable to this evidence-only generation</td>
+</tr>
+<tr>
+<td>Controller preflight</td>
+<td>not-applicable to this evidence-only generation</td>
+</tr>
+<tr>
+<td>Controller host</td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td>Execution host</td>
+<td>not-applicable</td>
+</tr>
+<tr>
+<td>Machine-local authoritative state</td>
+<td>none claimed</td>
+</tr>
+</tbody>
+</table>
+<h3 id="configuration-excerpt">Configuration excerpt<a class="headerlink" href="#configuration-excerpt" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="nt">publication_mode</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">evidence-only</span>
+<span class="nt">implementation_paths</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span>
+<span class="nt">authority_preservation</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">architect_intent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Architect intent and architectural direction</span>
+<span class="w">  </span><span class="nt">advisory_candidate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">advisory-only</span>
+<span class="w">  </span><span class="nt">generated_analysis</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">generated analysis only</span>
+</code></pre></div>
+<h2 id="prerequisites-and-assumptions">Prerequisites and assumptions<a class="headerlink" href="#prerequisites-and-assumptions" title="Permanent link">&para;</a></h2>
+<h3 id="proven-prerequisites">Proven prerequisites<a class="headerlink" href="#proven-prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li>The supplied brief contains exact source contents and declared SHA-256 values for the Architect intent and advisory candidate; both exact extracted byte streams match their declared digests (<code>EV-001</code>, <code>EV-002</code>).</li>
+<li>The supplied repository contracts define schema-1.2 evidence metadata and publication requirements (<code>EV-004</code>).</li>
+</ul>
+<h3 id="assumptions">Assumptions<a class="headerlink" href="#assumptions" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Assumption ID</th>
+<th>Assumption</th>
+<th>Risk if false</th>
+<th>Validation plan</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ASM-001</code></td>
+<td>The bundle's stated source-authority labels accurately identify the Architect intent and persistent-LLM candidate producers.</td>
+<td>Authority could be misattributed.</td>
+<td>Architect/governance review before promoting this record beyond draft.</td>
+</tr>
+<tr>
+<td><code>ASM-002</code></td>
+<td>The supplied bundle is the complete allowed evidence context for this generation role.</td>
+<td>Missing allowed evidence could change gap characterization.</td>
+<td>Re-run evidence generation only from a newly authorized bundle if additional sources are supplied.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="implementation-procedure">Implementation procedure<a class="headerlink" href="#implementation-procedure" title="Permanent link">&para;</a></h2>
+<h3 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link">&para;</a></h3>
+<p>No product or repository implementation was authorized. The generation role used only the supplied bundle and canonical evidence contracts.</p>
+<h3 id="execution">Execution<a class="headerlink" href="#execution" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Preserve the full original requester language verbatim as an artifact.</li>
+<li>Extract exact Architect-intent and advisory-candidate bytes from the supplied brief.</li>
+<li>Verify each source SHA-256 against the declared digest.</li>
+<li>Preserve the supplied repository evidence and legacy-evidence source registry.</li>
+<li>Generate a bounded authority analysis and evidence-gap inventory without promoting source maturity.</li>
+<li>Produce an evidence-only schema-1.2 package with no implementation paths.</li>
+</ol>
+<h3 id="expected-change">Expected change<a class="headerlink" href="#expected-change" title="Permanent link">&para;</a></h3>
+<p>A publishable evidence package exists that chronicles the decision and candidate while leaving implementation state unchanged.</p>
+<h3 id="observed-change">Observed change<a class="headerlink" href="#observed-change" title="Permanent link">&para;</a></h3>
+<p>The package contains only the evidence record and evidence artifacts; no implementation paths are declared and no repository/runtime mutation is claimed.</p>
+<h3 id="failed-or-superseded-paths">Failed or superseded paths<a class="headerlink" href="#failed-or-superseded-paths" title="Permanent link">&para;</a></h3>
+<p>No failed implementation path was executed by this evidence-generation role. The Architect source itself records prompt-refinement-only and rigid/persistent-LLM-controlled choreography approaches as rejected architectural directions; those are source-owned rationale, not execution failures from this session.</p>
+<h2 id="evidence-items">Evidence items<a class="headerlink" href="#evidence-items" title="Permanent link">&para;</a></h2>
+<h3 id="ev-001-exact-architect-intent-source"><code>EV-001</code> — Exact Architect intent source<a class="headerlink" href="#ev-001-exact-architect-intent-source" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>external-authority</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-001</code>, <code>CLM-003</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>one-time isolated SAGE evidence-generation role</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>supplied SAGE evidence-generation input bundle</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>architect-intent-source.txt</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>SHA-256=standard algorithm</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Extracted bytes match declared source digest and preserve Architect authority</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none identified in selected source artifact</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/architect-intent-source.txt sha256=020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>Embedded source block labeled ARCHITECT INTENT SOURCE in the supplied evidence-generation brief.
+Declared SHA-256: 020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570
+Declared authority: Architect intent and architectural direction
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>Observed SHA-256: 020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570
+Digest match: true
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The artifact proves the exact supplied Architect source was preserved and supports the architecture-direction claims stated by that source. It does not prove repository implementation or runtime behavior.</p>
+<h3 id="ev-002-exact-advisory-architecture-candidate"><code>EV-002</code> — Exact advisory architecture candidate<a class="headerlink" href="#ev-002-exact-advisory-architecture-candidate" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>generated-artifact</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-002</code>, <code>CLM-003</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>one-time isolated SAGE evidence-generation role</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>supplied SAGE evidence-generation input bundle</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>advisory-architecture-candidate.json</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>SHA-256=standard algorithm</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Extracted bytes match declared source digest and remain advisory-only</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none identified in selected source artifact</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/advisory-architecture-candidate.json sha256=637630354004adecda6b4adb2ed9599ddd115550151a20ce425f0ac8da0c1ed8</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>Embedded source block labeled ADVISORY ARCHITECTURE SOURCE in the supplied evidence-generation brief.
+Declared SHA-256: 637630354004adecda6b4adb2ed9599ddd115550151a20ce425f0ac8da0c1ed8
+Declared producer: persistent Architect-facing LLM
+Declared authority: advisory-only
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>Observed SHA-256: 637630354004adecda6b4adb2ed9599ddd115550151a20ce425f0ac8da0c1ed8
+Digest match: true
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The candidate is preserved as evidence of an advisory recommendation. Alignment with Architect intent does not upgrade the candidate to Architect or SAGE authority.</p>
+<h3 id="ev-003-supplied-repository-snapshot"><code>EV-003</code> — Supplied repository snapshot<a class="headerlink" href="#ev-003-supplied-repository-snapshot" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>supplied bundle generation process</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>repository-evidence.md in supplied bundle</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>donb4iu/Kalaxy3 snapshot</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>Git=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Informational repository state preserved without mutation</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>informational</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none identified in selected artifact</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/repository-evidence.md sha256=be748b70a97fffbc5dd6b8c27ab16e434e029ae88d5a8e63364ece5654075577</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>Supplied repository snapshot: branch fix/sage-lifecycle-break-glass-20260907; HEAD 1048f1c02631022386aac15577902ebd99e3fea5; changed paths none; staged and unstaged diffs none.
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>The supplied snapshot records a clean source branch and no implementation changes for this evidence capture.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>This supports the nonimplementation boundary. It does not prove repository state after the captured working-session boundary and is not used to infer implementation scope.</p>
+<h3 id="ev-004-repository-authority-separation-rule"><code>EV-004</code> — Repository authority-separation rule<a class="headerlink" href="#ev-004-repository-authority-separation-rule" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>repository-evidence</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-004</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>one-time isolated SAGE evidence-generation role</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>supplied repository authority file</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>AGENTS.md capability-intelligence guardrail</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>text inspection=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Repository governance keeps source assertions, inference, decisions, and outcomes distinct</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>pass</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>high</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>repository source path AGENTS.md</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>AGENTS.md states: Preserve source assertions, SAGE inference, predictions, authority decisions, and observed outcomes as distinct records; never silently override a scoped authority.
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>The repository rule is consistent with preserving Architect intent, advisory LLM output, generated analysis, and implementation status as separate evidentiary classes.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>This is repository governance evidence for authority separation. It does not itself validate the cognition-plane architecture implementation.</p>
+<h3 id="ev-005-bounded-evidence-gap-inventory"><code>EV-005</code> — Bounded evidence-gap inventory<a class="headerlink" href="#ev-005-bounded-evidence-gap-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Classification</td>
+<td><code>generated-artifact</code></td>
+</tr>
+<tr>
+<td>Supports or contradicts</td>
+<td><code>CLM-003</code>, <code>CLM-005</code></td>
+</tr>
+<tr>
+<td>Collected by</td>
+<td>one-time isolated SAGE evidence-generation role</td>
+</tr>
+<tr>
+<td>Collected at</td>
+<td>2026-09-13T13:04:00-05:00</td>
+</tr>
+<tr>
+<td>Execution source</td>
+<td>supplied bundle only</td>
+</tr>
+<tr>
+<td>Target</td>
+<td>Kalaxy2 inference/GPU prior-art availability in the supplied bundle</td>
+</tr>
+<tr>
+<td>Tool and version</td>
+<td>bounded text inventory=version-not-captured</td>
+</tr>
+<tr>
+<td>Expected result</td>
+<td>Identify supplied prior-art descriptors without inventing missing evidence</td>
+</tr>
+<tr>
+<td>Actual result</td>
+<td>partial</td>
+</tr>
+<tr>
+<td>Confidence</td>
+<td>medium</td>
+</tr>
+<tr>
+<td>Sensitive data</td>
+<td>none</td>
+</tr>
+<tr>
+<td>Artifact</td>
+<td>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/bundle-evidence-gap-inventory.json sha256=ae6a93f831cb74aa75df490fb0dee444830e31fd36347960a9346edc6e06ae86</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command, query, source, or observation</strong></p>
+<div class="highlight"><pre><span></span><code>Inventory the supplied authority files for Kalaxy2, GPU, Ollama, OpenWebUI, vLLM, and finetuning references and inspect the supplied legacy-evidence source registry.
+</code></pre></div>
+<p><strong>Observed result</strong></p>
+<div class="highlight"><pre><span></span><code>The supplied legacy registry identifies Kalaxy2 Cloudflare service and SSH-access sources, not the requested Kalaxy2 inference/GPU prior-art sources. Ollama appears in current Kalaxy3 workflow-manager code, not as a supplied Kalaxy2 inference prior-art descriptor.
+</code></pre></div>
+<p><strong>Interpretation</strong></p>
+<p>The bounded MVP's requested historical inference/GPU evidence remains a retrieval gap in this package. This does not prove such evidence does not exist elsewhere; only that it is not established by the allowed bundle.</p>
+<h2 id="verification-and-acceptance-criteria">Verification and acceptance criteria<a class="headerlink" href="#verification-and-acceptance-criteria" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Criterion ID</th>
+<th>Requirement</th>
+<th>Test or evidence</th>
+<th>Expected</th>
+<th>Observed</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AC-001</code></td>
+<td>Preserve the Architect source verbatim</td>
+<td><code>EV-001</code></td>
+<td>Declared and observed SHA-256 match</td>
+<td>Match</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-002</code></td>
+<td>Preserve the advisory candidate verbatim and advisory-only</td>
+<td><code>EV-002</code></td>
+<td>Declared and observed SHA-256 match; no authority promotion</td>
+<td>Match and authority preserved</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-003</code></td>
+<td>Keep generated evidence separate from implementation claims</td>
+<td><code>EV-003</code>, <code>EV-004</code></td>
+<td>No implementation paths or runtime mutation claimed</td>
+<td>Evidence-only package boundary</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-004</code></td>
+<td>Capture limitations and evidence gaps</td>
+<td><code>EV-005</code></td>
+<td>Missing bounded-MVP prior art remains explicit</td>
+<td>Gap recorded</td>
+<td>pass</td>
+</tr>
+<tr>
+<td><code>AC-005</code></td>
+<td>Complete the shared-inference cognition episode</td>
+<td><code>EV-005</code></td>
+<td>Evidence analysis, alternatives, fresh critique, and candidate intent from applicable prior art</td>
+<td>Not executed by this role</td>
+<td>not-run</td>
+</tr>
+</tbody>
+</table>
+<h3 id="functional-verification">Functional verification<a class="headerlink" href="#functional-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Source SHA-256 verification for both embedded authoritative/advisory source artifacts.
+</code></pre></div>
+<p>Observed:</p>
+<div class="highlight"><pre><span></span><code>Architect source digest match: true
+Advisory candidate digest match: true
+</code></pre></div>
+<h3 id="negative-verification">Negative verification<a class="headerlink" href="#negative-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Check that the package declares evidence-only publication with no implementation paths and that the record makes no implemented/validated cognition-plane claim.
+</code></pre></div>
+<p>Observed:</p>
+<div class="highlight"><pre><span></span><code>implementation_paths: []
+publication_mode: evidence-only
+record status: draft
+implementation_commit: not-applicable
+</code></pre></div>
+<h2 id="idempotency-and-repeatability">Idempotency and repeatability<a class="headerlink" href="#idempotency-and-repeatability" title="Permanent link">&para;</a></h2>
+<h3 id="first-accepted-run">First accepted run<a class="headerlink" href="#first-accepted-run" title="Permanent link">&para;</a></h3>
+<p>The exact source extraction is content-addressed: both supplied source blocks reproduce their declared SHA-256 digests.</p>
+<h3 id="steady-state-rerun">Steady-state rerun<a class="headerlink" href="#steady-state-rerun" title="Permanent link">&para;</a></h3>
+<p>Re-running the evidence generator over byte-identical source blocks should reproduce the same source-artifact digests and the same authority classifications. Publication timestamps and ZIP container metadata are not claimed to be bit-for-bit invariant.</p>
+<h3 id="interpretation">Interpretation<a class="headerlink" href="#interpretation" title="Permanent link">&para;</a></h3>
+<p>Source preservation and digest verification are repeatable. Product/runtime idempotency is not applicable because this role performs no product or runtime implementation.</p>
+<h2 id="security-privacy-and-evidence-handling">Security, privacy, and evidence handling<a class="headerlink" href="#security-privacy-and-evidence-handling" title="Permanent link">&para;</a></h2>
+<h3 id="security-controls">Security controls<a class="headerlink" href="#security-controls" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Only the allowed bundle was used as Kalaxy3/SAGE context.</li>
+<li>Exact source artifacts were preserved without adding credentials or runtime secrets.</li>
+<li>The package contains no Kubernetes Secret values, private keys, bearer tokens, or authentication material intentionally collected for this evidence objective.</li>
+<li>Advisory content is explicitly labeled so generated LLM output cannot silently acquire authority.</li>
+</ul>
+<h3 id="sensitive-material-excluded">Sensitive material excluded<a class="headerlink" href="#sensitive-material-excluded" title="Permanent link">&para;</a></h3>
+<p>Credentials, tokens, passwords, private keys, secret values, authentication hashes, and unrelated personal information are excluded from this evidence package.</p>
+<h3 id="redactions-and-omissions">Redactions and omissions<a class="headerlink" href="#redactions-and-omissions" title="Permanent link">&para;</a></h3>
+<p>No redaction was required in the selected source artifacts. Material not supplied by the bundle was recorded as a gap rather than reconstructed from prior conversation or memory.</p>
+<h3 id="residual-security-risk">Residual security risk<a class="headerlink" href="#residual-security-risk" title="Permanent link">&para;</a></h3>
+<p>Future cognition-role inputs may contain sensitive operational evidence; typed role contracts and evidence packaging must continue to enforce least-context disclosure and secret exclusion when that implementation is proposed and validated.</p>
+<h2 id="reliability-recovery-rollback-and-rebuild">Reliability, recovery, rollback, and rebuild<a class="headerlink" href="#reliability-recovery-rollback-and-rebuild" title="Permanent link">&para;</a></h2>
+<h3 id="failure-modes">Failure modes<a class="headerlink" href="#failure-modes" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Failure mode</th>
+<th>Detection</th>
+<th>Impact</th>
+<th>Recovery</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Embedded source digest mismatch</td>
+<td>SHA-256 differs from declared source digest</td>
+<td>Source cannot be trusted as exact capture</td>
+<td>Reject the generated package and regenerate from the authorized bundle</td>
+</tr>
+<tr>
+<td>Authority-class collapse</td>
+<td>Advisory or generated analysis is described as authoritative/implemented</td>
+<td>Governance contamination</td>
+<td>Keep record in draft, correct classification from source labels, and regenerate</td>
+</tr>
+<tr>
+<td>Missing prior-art evidence is silently inferred</td>
+<td>Bounded MVP claims rely on absent source payloads</td>
+<td>False transferability/implementation confidence</td>
+<td>Preserve the gap and require newly authorized evidence retrieval</td>
+</tr>
+<tr>
+<td>Package contract drift</td>
+<td>Canonical publisher check rejects schema/metadata/template</td>
+<td>Evidence cannot publish</td>
+<td>Regenerate against the repository-owned schema-1.2 contracts</td>
+</tr>
+</tbody>
+</table>
+<h3 id="rollback">Rollback<a class="headerlink" href="#rollback" title="Permanent link">&para;</a></h3>
+<p>No runtime rollback is applicable because no runtime or repository implementation change is included. Before publication, discard the package if incorrect. After publication, preserve the immutable record and supersede it through the canonical evidence process if materially wrong or replaced.</p>
+<h3 id="rebuild-procedure">Rebuild procedure<a class="headerlink" href="#rebuild-procedure" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Start from the same authorized evidence-generation bundle.</li>
+<li>Re-extract the exact embedded Architect and advisory source bytes and verify their declared digests.</li>
+<li>Rebuild authority analysis and gap inventory from the bundle only.</li>
+<li>Regenerate the schema-1.2 evidence-only package and run the standard publisher check.</li>
+</ol>
+<h3 id="data-durability-and-backup-impact">Data durability and backup impact<a class="headerlink" href="#data-durability-and-backup-impact" title="Permanent link">&para;</a></h3>
+<p>No application data, cluster storage, model data, or runtime configuration is changed. Durability applies only to the published evidence record and artifacts through normal repository history.</p>
+<h2 id="operational-considerations-and-observability">Operational considerations and observability<a class="headerlink" href="#operational-considerations-and-observability" title="Permanent link">&para;</a></h2>
+<h3 id="health-signals">Health signals<a class="headerlink" href="#health-signals" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Canonical publisher package check passes before publication.</li>
+<li>Source-artifact SHA-256 values continue to match the declared Architect and advisory source digests.</li>
+<li>Record status remains draft until appropriate review or later evidence justifies a stronger lifecycle state.</li>
+</ul>
+<h3 id="routine-verification">Routine verification<a class="headerlink" href="#routine-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Use the repository-owned SAGE publisher check command for this ZIP.
+</code></pre></div>
+<h3 id="capacity-performance-cost-and-sustainability">Capacity, performance, cost, and sustainability<a class="headerlink" href="#capacity-performance-cost-and-sustainability" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Capacity:</strong> no cluster capacity change.</li>
+<li><strong>Performance:</strong> no runtime performance change.</li>
+<li><strong>Cost:</strong> no deployment or inference cost change.</li>
+<li><strong>Sustainability/power:</strong> no runtime power change.</li>
+</ul>
+<h2 id="known-limitations-evidence-gaps-and-risks">Known limitations, evidence gaps, and risks<a class="headerlink" href="#known-limitations-evidence-gaps-and-risks" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Type</th>
+<th>Description</th>
+<th>Impact</th>
+<th>Owner</th>
+<th>Due or trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GAP-001</code></td>
+<td>evidence-gap</td>
+<td>The original Architect decision timestamp is not supplied; this record timestamps evidence generation, not the originating decision event.</td>
+<td>Historical chronology cannot be made more precise from this bundle.</td>
+<td>Kalaxy3 Architect</td>
+<td>when source chronology becomes available</td>
+</tr>
+<tr>
+<td><code>GAP-002</code></td>
+<td>evidence-gap</td>
+<td>The requested Kalaxy2 GPU/Ollama/OpenWebUI/vLLM/finetuning prior-art source payloads are not supplied in the allowed bundle.</td>
+<td>The bounded MVP evidence-analysis and transferability assessment cannot be completed here.</td>
+<td>SAGE evidence retrieval under Architect intent</td>
+<td>before bounded MVP cognition episode</td>
+</tr>
+<tr>
+<td><code>GAP-003</code></td>
+<td>evidence-gap</td>
+<td>No completed Evidence Analyst, Architecture Innovator, Path Critic, or Intent Synthesizer output for this new objective is supplied.</td>
+<td>Cognition-plane behavior is architectural direction, not demonstrated behavior.</td>
+<td>SAGE cognition-plane objective</td>
+<td>bounded MVP proof</td>
+</tr>
+<tr>
+<td><code>GAP-004</code></td>
+<td>risk</td>
+<td>The advisory candidate aligns strongly with the Architect source and could be accidentally treated as authoritative.</td>
+<td>Authority leakage and false acceptance.</td>
+<td>SAGE governance</td>
+<td>every retrieval/publication/use of this record</td>
+</tr>
+<tr>
+<td><code>GAP-005</code></td>
+<td>limitation</td>
+<td>The supplied repository snapshot is bounded to branch fix/sage-lifecycle-break-glass-20260907 at HEAD 1048f1c02631022386aac15577902ebd99e3fea5.</td>
+<td>Snapshot facts must not be misread as repository state after the captured working-session boundary.</td>
+<td>SAGE publisher/reviewer</td>
+<td>publication and revalidation</td>
+</tr>
+<tr>
+<td><code>GAP-006</code></td>
+<td>evidence-gap</td>
+<td>Governance reviewer disposition of this generated evidence record is pending.</td>
+<td>Record remains draft and cannot claim accepted governance status.</td>
+<td>Kalaxy3 Architect</td>
+<td>before accepted status</td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<h3 id="source-checksum-mismatch">Source checksum mismatch<a class="headerlink" href="#source-checksum-mismatch" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The extracted source bytes no longer match the digest embedded in the authorized request.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>Compare the exact source artifact SHA-256 to the declared digest in original-request.txt.
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<div class="highlight"><pre><span></span><code>Reject the package and regenerate from the authorized bundle without normalizing whitespace or line endings.
+</code></pre></div>
+<h3 id="publisher-rejects-metadata-or-template-structure">Publisher rejects metadata or template structure<a class="headerlink" href="#publisher-rejects-metadata-or-template-structure" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>The generated record diverged from the repository-owned schema-1.2 contract.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>Run the standard publisher check command and inspect the first reported contract failure.
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<div class="highlight"><pre><span></span><code>Regenerate from the supplied canonical metadata contract, record template, and publication process; do not manually bypass the publisher.
+</code></pre></div>
+<h3 id="cognition-plane-implementation-is-assumed-from-this-record">Cognition-plane implementation is assumed from this record<a class="headerlink" href="#cognition-plane-implementation-is-assumed-from-this-record" title="Permanent link">&para;</a></h3>
+<p><strong>Meaning</strong></p>
+<p>A consumer has promoted architecture direction or advisory analysis beyond its evidentiary maturity.</p>
+<p><strong>Checks</strong></p>
+<div class="highlight"><pre><span></span><code>Inspect status, implementation_commit, source authority labels, nonclaims, and GAP-003.
+</code></pre></div>
+<p><strong>Recovery</strong></p>
+<div class="highlight"><pre><span></span><code>Treat this record as architecture evidence only and require separate implementation/runtime evidence before stronger claims.
+</code></pre></div>
+<h2 id="freshness-revalidation-and-supersession">Freshness, revalidation, and supersession<a class="headerlink" href="#freshness-revalidation-and-supersession" title="Permanent link">&para;</a></h2>
+<h3 id="revalidate-when">Revalidate when<a class="headerlink" href="#revalidate-when" title="Permanent link">&para;</a></h3>
+<ul>
+<li>the Architect changes the cognition-plane responsibility split or material constraints;</li>
+<li>the repository evidence standard, metadata contract, publisher, or authority model changes;</li>
+<li>applicable Kalaxy2 inference/GPU prior art is retrieved and projected;</li>
+<li>the bounded advisory cognition episode is executed;</li>
+<li>typed role contracts or repository-owned orchestration are implemented;</li>
+<li>the shared Kalaxy inference runtime becomes an execution path for these roles;</li>
+<li>a conflicting or superseding architecture decision is accepted.</li>
+</ul>
+<h3 id="scheduled-review">Scheduled review<a class="headerlink" href="#scheduled-review" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>event-based
+</code></pre></div>
+<h3 id="supersession-rule">Supersession rule<a class="headerlink" href="#supersession-rule" title="Permanent link">&para;</a></h3>
+<p>When a later evidence record proves implementation, runtime qualification, or a changed Architect direction, preserve this record and evidence ID, link the successor through canonical relationships, and state which source-capture claims remain valid.</p>
+<h2 id="final-completion-checklist-and-reviewer-acceptance">Final completion checklist and reviewer acceptance<a class="headerlink" href="#final-completion-checklist-and-reviewer-acceptance" title="Permanent link">&para;</a></h2>
+<h3 id="governance">Governance<a class="headerlink" href="#governance" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Evidence ID is unique among the supplied catalog and permanent for this generated record.</li>
+<li>[x] Schema version is 1.2.</li>
+<li>[x] Front matter follows the exact metadata contract and order.</li>
+<li>[x] Record metadata exactly mirrors front matter.</li>
+<li>[x] Status accurately reflects completeness.</li>
+<li>[x] Owner, author, operator, and reviewer state are identified.</li>
+<li>[x] Five Ws and How agree with canonical metadata.</li>
+<li>[x] Scope and nonclaims are explicit.</li>
+<li>[x] Implementation commit is validly not-applicable.</li>
+<li>[x] Relationships and supersession fields are complete for draft publication.</li>
+</ul>
+<h3 id="evidence">Evidence<a class="headerlink" href="#evidence" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Every critical claim has supporting evidence.</li>
+<li>[x] Expected and observed results are separated.</li>
+<li>[x] Direct observations identify source, target, time, and tool/version state.</li>
+<li>[x] Derived conclusions reference evidence IDs or explicit source observations.</li>
+<li>[x] Assumptions and planned work are marked.</li>
+<li>[x] Failed or rejected architectural paths are separated from final evidentiary state.</li>
+<li>[x] Idempotency or repeatability is documented or not-applicable.</li>
+<li>[x] No canonical metadata field uses not-captured.</li>
+</ul>
+<h3 id="safety-and-operations">Safety and operations<a class="headerlink" href="#safety-and-operations" title="Permanent link">&para;</a></h3>
+<ul>
+<li>[x] Secrets and sensitive data are excluded or redacted.</li>
+<li>[x] Security limitations and residual risks are recorded.</li>
+<li>[x] Rollback, rebuild, and data-durability impacts are documented.</li>
+<li>[x] Operational verification is documented without inventing runtime health claims.</li>
+<li>[x] Known limitations and gaps have owners or triggers.</li>
+<li>[x] Revalidation criteria are defined.</li>
+</ul>
+<h3 id="review-acceptance">Review acceptance<a class="headerlink" href="#review-acceptance" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Name</th>
+<th>Decision</th>
+<th>Date</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td>Kalaxy3 Architect</td>
+<td>pending</td>
+<td>pending</td>
+<td>Source intent is Architect-owned; evidence-record review is not supplied in this bundle.</td>
+</tr>
+<tr>
+<td>Reviewer</td>
+<td>pending</td>
+<td>pending</td>
+<td>pending</td>
+<td>Draft record cannot claim governance acceptance.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="git-review-and-publication">Git review and publication<a class="headerlink" href="#git-review-and-publication" title="Permanent link">&para;</a></h2>
+<p>Use only the repository-owned SAGE publication process. This package is evidence-only and intentionally contains no manual Git workflow or implementation mutation instructions.</p>
+<h2 id="appendices-and-raw-artifacts">Appendices and raw artifacts<a class="headerlink" href="#appendices-and-raw-artifacts" title="Permanent link">&para;</a></h2>
+<h3 id="artifact-inventory">Artifact inventory<a class="headerlink" href="#artifact-inventory" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Artifact</th>
+<th>Path or URI</th>
+<th>SHA-256</th>
+<th>Contains sensitive data</th>
+<th>Retention</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Original requester language</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/original-request.txt</code></td>
+<td>4fc527cd8f5acf80aa4070ee5a2919e1408fd19b022c72dd5b60df2ae8edc166</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+<tr>
+<td>Exact Architect intent source</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/architect-intent-source.txt</code></td>
+<td>020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+<tr>
+<td>Exact advisory architecture candidate</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/advisory-architecture-candidate.json</code></td>
+<td>637630354004adecda6b4adb2ed9599ddd115550151a20ce425f0ac8da0c1ed8</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+<tr>
+<td>Supplied repository snapshot</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/repository-evidence.md</code></td>
+<td>be748b70a97fffbc5dd6b8c27ab16e434e029ae88d5a8e63364ece5654075577</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+<tr>
+<td>Supplied legacy evidence registry</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/legacy-evidence-source-registry.json</code></td>
+<td>0f95a26e36217e7bf3aaa97d274269a4fd81e637d1b537b91c872d1a7f0d38e7</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+<tr>
+<td>Bounded bundle gap inventory</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/bundle-evidence-gap-inventory.json</code></td>
+<td>ae6a93f831cb74aa75df490fb0dee444830e31fd36347960a9346edc6e06ae86</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+<tr>
+<td>Authority and maturity analysis</td>
+<td><code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/source-authority-analysis.json</code></td>
+<td>18f6bb5bd3db784f83d8e4c2fed9c33310c54ffa715dfcc8eb3b2e83f2a4afb4</td>
+<td>no identified sensitive data</td>
+<td>preserve with evidence record</td>
+</tr>
+</tbody>
+</table>
+<h3 id="original-requester-language">Original requester language<a class="headerlink" href="#original-requester-language" title="Permanent link">&para;</a></h3>
+<p>The exact requester language is preserved verbatim in <code>markdown/evidence-artifacts/SAGE-K3-COGNITION-20260913-001/original-request.txt</code>; it is not paraphrased here.</p>
+<h3 id="source-checksum-verification">Source checksum verification<a class="headerlink" href="#source-checksum-verification" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Architect intent declared SHA-256: 020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570
+Architect intent observed SHA-256: 020b5fb50c9bb642cf9b2678a8a8488a043520df0cc387e8cb54952812edf570
+Advisory candidate declared SHA-256: 637630354004adecda6b4adb2ed9599ddd115550151a20ce425f0ac8da0c1ed8
+Advisory candidate observed SHA-256: 637630354004adecda6b4adb2ed9599ddd115550151a20ce425f0ac8da0c1ed8
+</code></pre></div>
+<h3 id="additional-notes">Additional notes<a class="headerlink" href="#additional-notes" title="Permanent link">&para;</a></h3>
+<p>The source-authority analysis is generated evidence only. It may organize and derive conclusions from supplied material, but it cannot upgrade Architect intent, advisory LLM output, historical prior art, repository state, or implementation maturity.</p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.sections", "navigation.indexes", "navigation.top", "search.highlight", "search.suggest", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

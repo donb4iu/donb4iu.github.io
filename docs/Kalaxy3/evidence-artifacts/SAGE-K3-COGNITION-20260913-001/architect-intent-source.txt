@@ -1,0 +1,94 @@
+Establish an explicit multi-agent cognition architecture for Kalaxy3/SAGE so the persistent Architect-facing LLM is no longer expected to combine long-lived conversation continuity, evidence analysis, architectural innovation, adversarial criticism, intent formulation, and deterministic workflow control in one probabilistic role.
+
+Architect-owned problem
+=======================
+Repeated attempts to refine the persistent LLM's prompt have not reliably produced the intended behavior. It drifts toward SAGE's deterministic control-plane responsibilities, sometimes formulates implementation mechanics before reading relevant evidence, and inconsistently performs the innovation and criticism that are its actual value. Treat this as an architecture problem, not another prompt-tuning exercise.
+
+Required responsibility planes
+==============================
+
+1. Architect interaction plane
+- The persistent Architect-facing LLM is the long-lived conversational collaborator and integration surface.
+- Its positive responsibilities are mandatory: maintain objective continuity; synthesize authorized role outputs; contribute advisory engineering knowledge; surface alternatives/tradeoffs; critique results; and formulate the Architect's intent/request to SAGE.
+- It may propose and challenge. It may not decide SAGE facts, evidence authority/applicability/maturity, recovery or re-entry boundaries, allowed actions, lifecycle transitions, repository mutation, validation success, or execution state.
+- It must not become the implicit agent orchestrator merely because it understands SAGE.
+
+2. Cognition / agent plane
+Establish at least these isolated fresh/disposable advisory capabilities with typed inputs and outputs:
+- Evidence Analyst: determine what supplied evidence establishes, provenance, maturity, limitations, contradictions, uncertainty, and transferability. Historical evidence may be useful without being implementation-qualified.
+- Architecture Innovator: combine evidence analysis with permitted broader engineering knowledge to create alternatives, improvements, technology choices, and 80/20 candidate architectures. Distinguish evidence-derived facts from engineering inference/recommendation.
+- Path Critic: attack candidate paths for wrong-problem risk, unsupported assumptions, unnecessary complexity, missed alternatives, authority leakage, poor value/complexity tradeoff, technology mismatch, and evidence gaps. It may return advisory findings toward evidence/innovation or surface a material Architect choice; it does not select SAGE recovery/execution boundaries.
+- Intent Synthesizer: convert Architect intent plus authorized advisory outputs into a concise candidate Architect request describing the problem/outcome/constraints and relevant evidence without inventing SAGE-internal implementation or lifecycle mechanics.
+
+Role contexts must be explicit and isolated. Architect chat, predecessor reasoning, prior-role chat, and unaccepted narrative are not implicitly inherited. Inputs and upstream outputs must be deliberately selected and provenance-bound.
+
+3. SAGE governance/execution plane
+- SAGE remains the sole deterministic authority for evidence authority/applicability/maturity, governed state, lifecycle/re-entry/recovery, allowed actions, mutation, execution, validation, receipts, and persistence.
+- Advisory agent output never becomes authoritative merely because an LLM produced it.
+- Repository-owned deterministic orchestration may require, skip, repeat, or stop cognitive capabilities based on typed artifact state and governed conditions; it must not ask the persistent LLM to improvise workflow state.
+- Architect confirmation remains required for material intent/architecture choices under existing authority rules.
+
+Architecture properties
+=======================
+- Use typed artifacts / a blackboard or causal-evidence projection for role handoff; do not depend on conversational memory between roles.
+- Preserve evidence maturity. Historical/prior-art evidence can remain historical, partial, uncertain, environment-specific, or requiring revalidation and still contribute to analysis/design. Evidence admission must not require implementation acceptance.
+- Preserve causal provenance from source evidence -> role input -> advisory output -> Architect disposition -> SAGE request -> execution evidence -> lessons/new evidence.
+- The role graph is capability-driven, not a mandatory rigid four-stage waterfall. Reuse valid outputs, skip unnecessary roles, allow bounded return paths when criticism identifies a material evidence/design gap, and surface a genuine Architect decision instead of looping.
+- Prevent unbounded LLM debate. Prefer the smallest graph that produces a decision-useful Architect request.
+- The executor is replaceable. The same role contracts/handoffs must work through today's SAGE-created fresh-ChatGPT replay mechanism and later through the shared Kalaxy-hosted inference endpoint using the existing provider-neutral role-invocation adapter. Ollama is an executor candidate, not an authority model or architecture dependency.
+- Reuse existing repository capabilities wherever applicable, including the isolated workflow-manager/context envelope, role-invocation adapter, existing path critic, causal-evidence mechanisms, and fresh-role replay transport. Do not introduce a new graph/workflow engine unless current repository-owned composition is shown insufficient for the bounded MVP.
+- Preserve machine neutrality and provider/model provenance for every role invocation.
+
+Persistent-collaborator completion contract
+===========================================
+For a substantial architecture/engineering objective, the collaboration layer must be able to show one of the following before presenting an implementation-oriented request to SAGE:
+- evidence synthesis exists or is explicitly not applicable;
+- innovation/alternatives analysis exists or is explicitly not applicable;
+- critique exists or is explicitly not applicable;
+- an intent candidate exists and remains Architect-owned until disposition.
+
+This is a positive-responsibility contract, not merely a list of prohibitions. The persistent collaborator is expected to add engineering value; it simply cannot convert advisory value into SAGE authority.
+
+Bounded MVP / immediate proof
+=============================
+Use the current shared Kalaxy-hosted inference objective as the proving case, but do not implement GPU/Ollama runtime changes as part of this cognition-plane proof.
+
+Use SAGE-owned/retrievable evidence including applicable Kalaxy2 GPU/Ollama/OpenWebUI/vLLM/finetuning prior art and current Kalaxy3 K3s/GPU/IaC/governance evidence.
+
+Demonstrate one complete advisory cognition episode that:
+1. admits Kalaxy2 material as historical prior-art evidence with provenance and explicit limitations rather than requiring implementation qualification;
+2. produces typed evidence synthesis describing what transfers, what does not, and what remains unknown;
+3. produces architecture alternatives for Kalaxy3 shared inference using evidence plus broader engineering knowledge;
+4. produces a fresh path critique;
+5. produces a candidate Architect intent/request asking SAGE to plan shared inference without hand-authoring SAGE lifecycle mechanics;
+6. lets the persistent Architect collaborator integrate and challenge those outputs for the Architect;
+7. performs no GPU/Ollama deployment or unrelated repository mutation during this proof;
+8. records role/provider/model/input/output provenance so the episode can later replay through the shared Kalaxy inference runtime.
+
+Success criteria
+================
+- Persistent collaborator positive duties are structurally observable rather than dependent only on prompt memory.
+- Historical evidence influences design without silent promotion to current/validated/implementation authority.
+- Each agent output distinguishes source-established facts, engineering inference, recommendations, uncertainty, and unresolved questions.
+- The critic can identify missed evidence/alternatives without acquiring SAGE workflow authority.
+- The candidate intent presented to SAGE is Architect/problem/outcome oriented and does not contain caller-invented SAGE state transitions.
+- SAGE remains the only deterministic execution/governance authority.
+- Context isolation and provider/model provenance are deterministic and testable.
+- The bounded MVP works with fresh-ChatGPT replay now and the same contracts work through the shared model endpoint later.
+- Over subsequent objective episodes, measure reduced post-semantic-confirmation scope churn, unnecessary Architect interactions, and persistent-LLM/SAGE role collisions.
+
+Architectural criticism / constraints
+=====================================
+- Do not solve this by adding more prose to the persistent LLM prompt alone.
+- Do not make a fixed Evidence->Innovator->Critic->Intent sequence mandatory when reusable valid outputs exist.
+- Do not turn advisory role results into facts or approvals.
+- Do not make Ollama, ChatGPT, or any model provider the orchestration authority.
+- Do not expand immediately into many specialist agents, autonomous tool use, broad parallel multi-agent execution, or graph-engine migration. Those are future evidence-driven choices.
+- Do not make this architecture change contingent on completing the current orphan-iteration/request-execution repair; preserve that defect evidence separately unless SAGE proves it directly blocks this objective.
+- Do not let this architecture work consume the shared-inference objective indefinitely. The MVP is successful when it produces the evidence-informed shared-inference intent that lets that objective resume on a better path.
+
+SAGE request
+============
+Treat this as Architect intent for a new bounded SAGE architecture objective. Retrieve and reuse applicable existing role-isolation, workflow-manager, path-critic, causal-evidence, legacy-evidence-projection, and provider-neutral role-invocation evidence before proposing implementation. Determine the smallest repository-owned implementation that establishes the cognition plane and its typed contracts, expose material architecture choices to the Architect, and preserve all advisory-versus-authoritative boundaries above.
+
+Do not infer an implementation file list from this request. SAGE must derive implementation scope from repository authority and evidence.

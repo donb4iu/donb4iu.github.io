@@ -1,0 +1,39 @@
+{
+  "authority": {
+    "basis": "Architect-approved GPT-OSS runtime path",
+    "correction_class": "implementation-local",
+    "material_replan_required": false
+  },
+  "correction": {
+    "files": {
+      "infrastructure/k3s-homelab/playbooks/ollama.yml": {
+        "after_sha256": "4ea4c4dc5b91d183c0b72f044560c840efa9f1069b0b42651a8a417ab932da1f",
+        "before_sha256": "f4f77e105d4be38fd3fa00de38673f516d6cf11da6a2f21bfb48a9710e6e3205",
+        "semantic_change": "add play-variable ansible_become=false override only"
+      },
+      "infrastructure/k3s-homelab/playbooks/openwebui.yml": {
+        "after_sha256": "b5a3afdda2b4d625feb88c0efff7b8927e6dc8512917e6707c9fc3373d2a4552",
+        "before_sha256": "f223bfb220acc9505cc47c7e2bc930998addb9946e8f8ca722331ac739c97340",
+        "semantic_change": "add play-variable ansible_become=false override only"
+      },
+      "infrastructure/k3s-homelab/playbooks/validate-ollama.yml": {
+        "after_sha256": "2c07ef7e825f2171bbd870855c8f87a370b86d468eecde25b850c355d9a5865b",
+        "before_sha256": "bbadaccb5a1de38bbcb4e982bb1d818e345a8b7a7f49727128761fcdd8005e02",
+        "semantic_change": "add play-variable ansible_become=false override only"
+      }
+    },
+    "scope": "Override the inventory-level ansible_become connection variable inside localhost-only controller plays; no deployment, storage, model, GPU, placement, health, recovery, or acceptance semantics changed."
+  },
+  "failure": {
+    "classification": "implementation-local-controller-privilege-escalation",
+    "cluster_mutation_before_failure": false,
+    "observed_error": "sudo: a password is required",
+    "prior_repository_pattern": "infrastructure/k3s-homelab/playbooks/validate-centralized-logging.yml uses play var ansible_become=false to override inventory-level connection state.",
+    "runtime_state": "/Users/dbuddenbaum/.local/state/kalaxy3/sage-gpt-oss-runtime-correction/20260919-024339",
+    "terminal_evidence_sha256": "0f58f05bf4c4a9618326111a10a890f22f8bbce14d849b40c108a535b52ea8e1"
+  },
+  "objective_id": "SAGE-ACTION-20260813-001",
+  "parent_candidate_head": "00c0cdbcdd679d995082d92053182967b7144fcd",
+  "record_type": "sage-gpt-oss-runtime-implementation-local-correction",
+  "schema_version": "1.0"
+}
