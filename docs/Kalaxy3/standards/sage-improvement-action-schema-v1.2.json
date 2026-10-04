@@ -440,30 +440,60 @@
             }
         },
         "source_record": {
-            "type": "object",
-            "additionalProperties": false,
-            "required": [
-                "record_type",
-                "record_id",
-                "schema_version",
-                "sha256"
-            ],
-            "properties": {
-                "record_type": {
-                    "const": "capability-gap"
+            "oneOf": [
+                {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "record_type",
+                        "record_id",
+                        "schema_version",
+                        "sha256"
+                    ],
+                    "properties": {
+                        "record_type": {
+                            "const": "capability-gap"
+                        },
+                        "record_id": {
+                            "type": "string",
+                            "pattern": "^SAGE-GAP-[0-9]{8}-[A-Z0-9][A-Z0-9-]*$"
+                        },
+                        "schema_version": {
+                            "const": "1.1"
+                        },
+                        "sha256": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{64}$"
+                        }
+                    }
                 },
-                "record_id": {
-                    "type": "string",
-                    "pattern": "^SAGE-GAP-[0-9]{8}-[A-Z0-9][A-Z0-9-]*$"
-                },
-                "schema_version": {
-                    "const": "1.1"
-                },
-                "sha256": {
-                    "type": "string",
-                    "pattern": "^[0-9a-f]{64}$"
+                {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "record_type",
+                        "record_id",
+                        "schema_version",
+                        "sha256"
+                    ],
+                    "properties": {
+                        "record_type": {
+                            "const": "lesson"
+                        },
+                        "record_id": {
+                            "type": "string",
+                            "pattern": "^LESSON-[A-Z0-9][A-Z0-9-]*$"
+                        },
+                        "schema_version": {
+                            "const": "1.0"
+                        },
+                        "sha256": {
+                            "type": "string",
+                            "pattern": "^[0-9a-f]{64}$"
+                        }
+                    }
                 }
-            }
+            ]
         }
     }
 }
