@@ -2873,8 +2873,10 @@
 <h2 id="purpose">Purpose<a class="headerlink" href="#purpose" title="Permanent link">&para;</a></h2>
 <p>This standard ensures that a requester can state a desired outcome without
 having to know or restate Kalaxy3 governance rules.</p>
-<p>The repository MUST establish the applicable SAGE context before analysis,
-editing, deployment, publication, or recovery work begins.</p>
+<p>The repository MUST attempt to infer useful SAGE context before analysis,
+editing, deployment, publication, or recovery work begins. Discovery is an
+advisory routing and validation-selection mechanism; it is not semantic,
+mutation, approval, or architectural authority.</p>
 <h2 id="authoritative-discovery-components">Authoritative discovery components<a class="headerlink" href="#authoritative-discovery-components" title="Permanent link">&para;</a></h2>
 <p>The authoritative discovery path consists of:</p>
 <ul>
@@ -2906,18 +2908,29 @@ editing, deployment, publication, or recovery work begins.</p>
 <div class="highlight"><pre><span></span><code>python3<span class="w"> </span>scripts/sage/sage-change-preflight.py<span class="w"> </span>--changed
 </code></pre></div>
 <h2 id="unclassified-requests">Unclassified requests<a class="headerlink" href="#unclassified-requests" title="Permanent link">&para;</a></h2>
-<p>The preflight MUST fail closed when no specialized context can be inferred.</p>
-<p>The authority map must then be extended and protected by regression and
-mutation tests before implementation continues.</p>
+<p>Failure to infer a specialized context is not, by itself, evidence that an
+objective, candidate, or governed mutation is invalid. The preflight therefore
+continues with the always-on governance contexts and records
+<code>advisory-unclassified</code>. Objective/semantic authority, candidate provenance,
+exact mutation scope, deterministic validation, nondelegable constraints, and
+Architect approval boundaries remain authoritative independently of discovery.</p>
+<p>A caller MAY request <code>--require-specialized-context</code> only when a specific
+repository-owned composition has an explicit, evidence-backed need for a
+specialized routing classification. Such strictness is local to that composition
+and must not silently become a universal SAGE admission rule.</p>
+<p>Path prefixes, filenames, request vocabulary, and authoritative-file membership
+are discovery hints for selecting useful context and checks. They do not create
+or remove authority. Missing or imperfect hints are continuous-improvement
+evidence; they are not a reason to block an otherwise governed candidate.</p>
 <h2 id="acceptance-criteria">Acceptance criteria<a class="headerlink" href="#acceptance-criteria" title="Permanent link">&para;</a></h2>
 <p>The discovery path is compliant only when:</p>
 <ul>
 <li>repository-root entry points direct implementers to SAGE discovery;</li>
-<li>request classification is machine-readable and deterministic;</li>
+<li>request/context classification is machine-readable and deterministic while remaining advisory;</li>
 <li>dependencies between change contexts are expanded automatically;</li>
 <li>authoritative files and working directories exist;</li>
 <li>baseline and post-change validation are reported;</li>
-<li>regression tests recognize representative Kalaxy3 requests;</li>
+<li>regression tests recognize representative Kalaxy3 requests and prove an unclassified hint cannot become implicit mutation authority;</li>
 <li>malformed authority maps fail validation;</li>
 <li>the requester need not enumerate internal governance rules.</li>
 </ul>

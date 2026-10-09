@@ -2029,6 +2029,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#git-state-reconciliation-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git-state reconciliation authority
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2695,6 +2706,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#git-state-reconciliation-authority" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Git-state reconciliation authority
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2821,6 +2843,21 @@ only after the dependency is resolved and the complete applicable gate passes.</
 <p>Promotion mergeability is necessary but not sufficient. After PR creation, or after reuse of an exact already-open PR, and before SAGE offers the merge boundary, <code>github.inspect</code> reads the policy-required GitHub check runs for the exact frozen source SHA. The complete required-check set must converge on exactly one check suite in which every required check is uniquely present, <code>completed</code>, and <code>success</code>. Missing, queued, in-progress, failed, cancelled, stale, neutral, skipped, incoherent, or multiply successful required-check suites fail closed.
 The source-SHA binding is deliberate. The portable-stage workflow runs on feature-branch <code>push</code> so its authoritative stage evidence is attached to the exact source commit rather than only to GitHub's synthetic pull-request merge ref. Additional pull-request checks remain useful integration evidence but do not replace frozen-source identity.</p>
 <p>This is a prospective correction learned from PR #21. Historical PR #21 check state is preserved and is not rewritten.</p>
+<h2 id="git-state-reconciliation-authority">Git-state reconciliation authority<a class="headerlink" href="#git-state-reconciliation-authority" title="Permanent link">&para;</a></h2>
+<p>Git commands are transition mechanisms, not admission authority. For repository
+versioning boundaries, checkpoint promotion evaluates independently observed Git
+facts from <code>git.inspect</code> against the active invariant. If the required state is
+already true, SAGE records <code>source_kind=observed-git-state</code> evidence and advances
+without replaying the Git mutation or requiring pasted command output.</p>
+<p>Operator-result evidence remains valid provenance when supplied, but it is not
+required to prove a Git state that the authoritative repository already proves.
+Conflicting or ambiguous Git state fails closed. Browser/GitHub interactions remain
+separately governed because repository Git state cannot prove those external
+mutations.</p>
+<p>A source-reconciliation merge may remain the causal merge ancestor while later
+source commits advance the synchronized branch. Promotion binds to the observed
+current source HEAD while preserving frozen source/target and exact merge topology
+as causal provenance.</p>
 
 
 
